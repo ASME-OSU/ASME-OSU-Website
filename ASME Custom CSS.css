@@ -6193,13 +6193,20 @@ body .asme-home .ah-featured-button:hover {
    ============================================= */
 
 body .asme-home .ah-about {
-  display: block !important;
+  display: flow-root !important;
   height: auto !important;
   min-height: 0 !important;
   max-height: none !important;
   margin: 0 0 18px !important;
-  padding: 18px 28px 20px !important;
+  padding: 14px 28px 12px !important;
   overflow: visible !important;
+}
+
+body .asme-home .ah-about > *,
+body .asme-home .ah-about-text,
+body .asme-home .ah-about-impact {
+  min-height: 0 !important;
+  max-height: none !important;
 }
 
 body .asme-home .ah-about-text {
@@ -6207,16 +6214,22 @@ body .asme-home .ah-about-text {
 }
 
 body .asme-home .ah-about-impact {
-  margin-top: 18px !important;
+  margin-top: 16px !important;
   align-self: auto !important;
+}
+
+body .asme-home .ah-about p:empty,
+body .asme-home .ah-about br {
+  display: none !important;
 }
 
 @media (min-width: 901px) {
   body .asme-home .ah-about {
-    display: block !important;
+    display: flow-root !important;
     height: auto !important;
     min-height: 0 !important;
-    max-height: none !important;
+    max-height: 178px !important;
+    overflow: hidden !important;
   }
 }
 
