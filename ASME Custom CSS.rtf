@@ -1,0 +1,6144 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 /* =============================================\
+   ASME OSU \'97 WordPress Theme v10\
+   Consolidated Additional CSS\
+\
+   Built from the final v9 iteration and includes:\
+   - Full-width responsive page layout across custom pages\
+   - Dark mode with contrast-safe backgrounds, cards, text, nav, footer, and blog/sidebar fixes\
+   - Compact desktop and mobile header/navigation styling\
+   - Final unified mobile menu system with duplicate-menu prevention\
+   - Corporate/Events dropdown and submenu fixes on mobile\
+   - Mobile full-width fixes for About, Join, Calendar, Sponsors, Gallery, Blog, and Leadership\
+   - Compact mobile home hero with centered text, hidden badge/stats, and reduced scroll height\
+   - Home hero slideshow with dark overlay, dots, OSU scarlet buttons, and award badge styling\
+   - Join page layout, Brevo-safe signup form styling, equal-height cards, polished submit button\
+   - Join page FAQ accordion styling\
+   - Calendar page layout with darkened Google Calendar iframe and tightened mobile intro spacing\
+   - Sponsors and partners grids with dark-mode name contrast fixes\
+   - Leadership board cards, year tabs, mobile two-column layout, and dark-mode contrast fixes\
+   - Blog/archive card layout, sidebar styling, pagination contrast, and mobile spacing fixes\
+   - Gallery mosaic layout with responsive image behavior\
+   - Custom footer layout with centered columns and dark-mode support\
+\
+   Notes:\
+   - Keep the final MOBILE block at the bottom of the CSS.\
+   - Remove older duplicate mobile/menu override blocks from v9.\
+   - Sections marked \'93MUST BE LAST\'94 should stay below their related base sections.\
+   \
+   \
+   ============================================= */\
+\
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap');\
+\
+/* =============================================\
+   SETTINGS\
+   ============================================= */\
+:root \{\
+  --asme-page-width: 2200px;\
+  --asme-content-width: 1700px;\
+  --asme-gutter: 24px;\
+  --asme-sidebar-width: 320px;\
+  --asme-gap: 16px;\
+\
+  --asme-navy: #0f3460;\
+  --asme-blue: #1a6cb8;\
+  --asme-text: #1a1a2e;\
+  --asme-muted: #6b7280;\
+  --asme-soft: #9ca3af;\
+  --asme-bg: #f4f5f7;\
+  --asme-card: #ffffff;\
+  --asme-line: #e5e7eb;\
+  --asme-chip: #e8f4fd;\
+  --asme-shadow: 0 6px 20px rgba(15, 52, 96, 0.08);\
+\}\
+\
+/* =============================================\
+   GLOBAL\
+   ============================================= */\
+html,\
+body \{\
+  max-width: 100%;\
+  overflow-x: hidden;\
+\}\
+\
+body \{\
+  background: var(--asme-bg) !important;\
+  color: var(--asme-text) !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+\}\
+\
+*,\
+*::before,\
+*::after \{\
+  box-sizing: border-box;\
+\}\
+\
+h1, h2, h3, h4, h5, h6,\
+.entry-title,\
+.entry-title a,\
+.site-title,\
+.site-title a \{\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-weight: 400 !important;\
+\}\
+\
+a \{\
+  color: var(--asme-navy);\
+  text-decoration: none;\
+  transition: color 0.18s ease;\
+\}\
+\
+a:hover \{\
+  color: var(--asme-blue);\
+\}\
+\
+/* =============================================\
+   SITE WIDTH\
+   ============================================= */\
+.site,\
+#page,\
+.site-content,\
+#content,\
+.site-inner,\
+.wrap,\
+.content-sidebar-wrap,\
+#primary,\
+.content-area,\
+#main,\
+.site-main \{\
+  width: 100% !important;\
+  max-width: none !important;\
+  box-sizing: border-box !important;\
+\}\
+\
+.site-content,\
+#content.site-content,\
+.site-content .wrap,\
+.content-sidebar-wrap \{\
+  max-width: var(--asme-page-width) !important;\
+  margin: 0 auto !important;\
+  padding: 16px var(--asme-gutter) 0 !important;\
+\}\
+\
+/* Static pages use the full content area and do not reserve sidebar space. */\
+.page #secondary,\
+.page .widget-area \{\
+  display: none !important;\
+\}\
+\
+.page #primary,\
+.page .content-area,\
+.page .site-main,\
+.page .entry-content \{\
+  width: 100% !important;\
+  max-width: none !important;\
+\}\
+\
+.page .content-sidebar-wrap \{\
+  display: block !important;\
+\}\
+\
+.page article.page \{\
+  background: transparent !important;\
+  border: none !important;\
+  border-radius: 0 !important;\
+  box-shadow: none !important;\
+  padding: 0 !important;\
+\}\
+\
+/* =============================================\
+   HEADER / NAV\
+   ============================================= */\
+.site-header,\
+#masthead \{\
+  background: #ffffff !important;\
+  border-bottom: 1px solid var(--asme-line) !important;\
+  border-radius: 0 0 20px 20px !important;\
+  box-shadow: 0 2px 16px rgba(15, 52, 96, 0.07) !important;\
+  padding: 0 32px !important;\
+  position: relative !important;\
+  z-index: 100 !important;\
+\}\
+\
+.site-branding \{\
+  display: flex !important;\
+  align-items: center !important;\
+  gap: 12px !important;\
+\}\
+\
+.custom-logo,\
+.site-logo img,\
+.custom-logo-link img \{\
+  width: auto !important;\
+  height: 40px !important;\
+  border-radius: 6px !important;\
+\}\
+\
+.site-title,\
+.site-title a \{\
+  font-size: 17px !important;\
+  line-height: 1.2 !important;\
+\}\
+\
+.site-description \{\
+  color: var(--asme-soft) !important;\
+  font-size: 10px !important;\
+  font-weight: 700 !important;\
+  letter-spacing: 0.06em !important;\
+  text-transform: uppercase !important;\
+\}\
+\
+.main-navigation ul li a,\
+.nav-menu li a \{\
+  border-radius: 999px !important;\
+  color: #4b5563 !important;\
+  font-size: 13px !important;\
+  font-weight: 500 !important;\
+  padding: 6px 14px !important;\
+\}\
+\
+.main-navigation ul li a:hover,\
+.main-navigation ul li.current-menu-item a,\
+.nav-menu li.current-menu-item a \{\
+  background: var(--asme-navy) !important;\
+  color: #ffffff !important;\
+\}\
+\
+/* Blend the public utility/login bar into the white header. */\
+.top-bar,\
+.topbar,\
+.header-top,\
+.utility-bar,\
+.utility-nav,\
+.site-top-bar,\
+.before-header,\
+.above-header,\
+#top-bar,\
+#utility-bar \{\
+  background: #ffffff !important;\
+  border: none !important;\
+  box-shadow: none !important;\
+\}\
+\
+.top-bar *,\
+.topbar *,\
+.header-top *,\
+.utility-bar *,\
+.utility-nav *,\
+.site-top-bar *,\
+.before-header *,\
+.above-header *,\
+#top-bar *,\
+#utility-bar * \{\
+  color: #000000 !important;\
+\}\
+\
+/* =============================================\
+   BLOG / ARCHIVE LAYOUT\
+   Sidebar only applies to blog-style pages.\
+   ============================================= */\
+.blog .content-sidebar-wrap,\
+.archive .content-sidebar-wrap,\
+.search .content-sidebar-wrap \{\
+  display: flex !important;\
+  flex-direction: row-reverse !important;\
+  align-items: flex-start !important;\
+  gap: var(--asme-gap) !important;\
+\}\
+\
+.blog #primary,\
+.blog .content-area,\
+.archive #primary,\
+.archive .content-area,\
+.search #primary,\
+.search .content-area \{\
+  flex: 1 1 auto !important;\
+  width: auto !important;\
+  min-width: 0 !important;\
+  max-width: none !important;\
+\}\
+\
+.blog #secondary,\
+.blog .widget-area,\
+.archive #secondary,\
+.archive .widget-area,\
+.search #secondary,\
+.search .widget-area \{\
+  display: block !important;\
+  flex: 0 0 var(--asme-sidebar-width) !important;\
+  width: var(--asme-sidebar-width) !important;\
+  min-width: 0 !important;\
+  margin: 0 !important;\
+  float: none !important;\
+\}\
+\
+/* =============================================\
+   BLOG POST GRID + CARDS\
+   ============================================= */\
+.search .site-main,\
+.search #main \{\
+  display: grid !important;\
+  grid-template-columns: 1fr !important;\
+  gap: 10px !important;\
+  align-items: start !important;\
+\}\
+\
+.nav-links,\
+.posts-navigation,\
+.pagination \{\
+  grid-column: 1 / -1 !important;\
+\}\
+\
+.blog article,\
+.archive article,\
+.search article \{\
+  display: flex !important;\
+  flex-direction: column !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+  overflow: hidden !important;\
+  background: var(--asme-card) !important;\
+  border: 1px solid var(--asme-line) !important;\
+  border-radius: 14px !important;\
+  box-shadow: none !important;\
+  transition: transform 0.18s ease, box-shadow 0.18s ease !important;\
+\}\
+\
+.blog article:hover,\
+.archive article:hover,\
+.search article:hover \{\
+  transform: translateY(-2px) !important;\
+  box-shadow: var(--asme-shadow) !important;\
+\}\
+\
+.post-thumbnail,\
+.entry-thumbnail,\
+.featured-image,\
+.wp-post-image-wrapper \{\
+  display: block !important;\
+  width: 100% !important;\
+  height: 100px !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+  overflow: hidden !important;\
+  background: #eef2f7 !important;\
+\}\
+\
+.post-thumbnail img,\
+.entry-thumbnail img,\
+.wp-post-image,\
+.post-thumbnail a img \{\
+  display: block !important;\
+  width: 100% !important;\
+  height: 100px !important;\
+  margin: 0 !important;\
+  border-radius: 0 !important;\
+  object-fit: cover !important;\
+  object-position: center !important;\
+\}\
+\
+.entry-header \{\
+  padding: 10px 12px 3px !important;\
+\}\
+\
+.entry-content \{\
+  flex: 1 !important;\
+  padding: 0 12px 4px !important;\
+\}\
+\
+.entry-footer \{\
+  margin-top: auto !important;\
+  padding: 5px 12px 8px !important;\
+  border-top: 1px solid #f3f4f6 !important;\
+\}\
+\
+.blog .entry-content > *,\
+.archive .entry-content > *,\
+.search .entry-content > * \{\
+  display: none !important;\
+\}\
+\
+.blog .entry-content > p:first-child,\
+.archive .entry-content > p:first-child,\
+.search .entry-content > p:first-child \{\
+  display: -webkit-box !important;\
+  overflow: hidden !important;\
+  -webkit-box-orient: vertical !important;\
+  -webkit-line-clamp: 2 !important;\
+  color: var(--asme-muted) !important;\
+  font-size: 12px !important;\
+  line-height: 1.5 !important;\
+\}\
+\
+.entry-title \{\
+  margin: 0 0 3px !important;\
+  font-size: 15px !important;\
+  line-height: 1.25 !important;\
+\}\
+\
+.entry-meta,\
+.posted-on,\
+.entry-date \{\
+  margin-bottom: 2px !important;\
+  color: var(--asme-soft) !important;\
+  font-size: 10px !important;\
+  font-weight: 500 !important;\
+\}\
+\
+.byline,\
+.author,\
+.meta-author,\
+.posted-by,\
+.entry-author,\
+.author.vcard \{\
+  display: none !important;\
+\}\
+\
+.cat-links a,\
+.tags-links a \{\
+  display: inline-block !important;\
+  margin-right: 4px !important;\
+  padding: 2px 8px !important;\
+  background: var(--asme-chip) !important;\
+  border-radius: 999px !important;\
+  color: var(--asme-navy) !important;\
+  font-size: 9px !important;\
+  font-weight: 700 !important;\
+  letter-spacing: 0.04em !important;\
+  text-transform: uppercase !important;\
+\}\
+\
+/* =============================================\
+   SIDEBAR WIDGETS\
+   Does not affect footer widgets.\
+   ============================================= */\
+#secondary .widget,\
+.sidebar .widget \{\
+  margin-bottom: 14px !important;\
+  padding: 16px 18px !important;\
+  overflow: hidden !important;\
+  background: var(--asme-card) !important;\
+  border: 1px solid var(--asme-line) !important;\
+  border-radius: 16px !important;\
+\}\
+\
+#secondary .widget-title,\
+.sidebar .widget-title,\
+#secondary .widgettitle,\
+.sidebar .widgettitle \{\
+  margin-bottom: 12px !important;\
+  padding-bottom: 8px !important;\
+  border-bottom: 2px solid #f3f4f6 !important;\
+  color: var(--asme-muted) !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 10px !important;\
+  font-weight: 700 !important;\
+  letter-spacing: 0.08em !important;\
+  text-transform: uppercase !important;\
+\}\
+\
+#secondary .widget ul li a,\
+.sidebar .widget ul li a \{\
+  display: block !important;\
+  padding: 7px 0 !important;\
+  border-bottom: 1px solid #f3f4f6 !important;\
+  color: #374151 !important;\
+  font-size: 12px !important;\
+  font-weight: 500 !important;\
+\}\
+\
+#secondary .widget ul li:last-child a,\
+.sidebar .widget ul li:last-child a \{\
+  border-bottom: none !important;\
+\}\
+\
+.search-form \{\
+  display: flex !important;\
+  gap: 8px !important;\
+\}\
+\
+.search-form .search-field \{\
+  flex: 1 !important;\
+  min-width: 0 !important;\
+  padding: 10px 12px !important;\
+  border: 1px solid var(--asme-line) !important;\
+  border-radius: 12px !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 12px !important;\
+\}\
+\
+.search-form .search-submit \{\
+  flex: 0 0 auto !important;\
+  padding: 10px 14px !important;\
+  background: var(--asme-navy) !important;\
+  border: none !important;\
+  border-radius: 12px !important;\
+  color: #ffffff !important;\
+  cursor: pointer !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 12px !important;\
+  font-weight: 600 !important;\
+\}\
+\
+/* =============================================\
+   CUSTOM HOME PAGE\
+   ============================================= */\
+.asme-home \{\
+  width: 100% !important;\
+  max-width: var(--asme-content-width) !important;\
+  margin: 0 auto !important;\
+  color: var(--asme-text);\
+  font-family: 'DM Sans', sans-serif;\
+\}\
+\
+.ah-hero \{\
+  display: flex;\
+  align-items: center;\
+  justify-content: space-between;\
+  gap: 28px;\
+  flex-wrap: wrap;\
+  margin-bottom: 24px;\
+  padding: 36px 40px;\
+  background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);\
+  border-radius: 20px;\
+\}\
+\
+.ah-hero-left \{\
+  flex: 1 1 320px;\
+  min-width: 0;\
+\}\
+\
+.ah-eyebrow \{\
+  margin-bottom: 10px;\
+  color: rgba(255,255,255,0.55);\
+  font-size: 10px;\
+  font-weight: 700;\
+  letter-spacing: 0.1em;\
+  text-transform: uppercase;\
+\}\
+\
+.ah-title \{\
+  margin: 0 0 12px !important;\
+  color: #ffffff !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 44px !important;\
+  font-weight: 400 !important;\
+  line-height: 1.08 !important;\
+\}\
+\
+.ah-sub \{\
+  max-width: 600px !important;\
+  margin-bottom: 22px;\
+  color: rgba(255,255,255,0.74);\
+  font-size: 17px !important;\
+  line-height: 1.65;\
+\}\
+\
+.ah-btns \{\
+  display: flex;\
+  gap: 10px;\
+  flex-wrap: wrap;\
+\}\
+\
+.ah-btn-p,\
+.ah-btn-o \{\
+  display: inline-block;\
+  border-radius: 999px;\
+  font-family: 'DM Sans', sans-serif;\
+  font-size: 13px;\
+  font-weight: 700;\
+  padding: 11px 24px;\
+  text-decoration: none !important;\
+\}\
+\
+.ah-btn-p \{\
+  background: #ffffff;\
+  color: var(--asme-navy) !important;\
+\}\
+\
+.ah-btn-o \{\
+  background: transparent;\
+  border: 1.5px solid rgba(255,255,255,0.4);\
+  color: #ffffff !important;\
+\}\
+\
+.ah-hero-right \{\
+  display: flex;\
+  flex-direction: column;\
+  align-items: center;\
+  gap: 14px;\
+  flex: 0 0 auto;\
+\}\
+\
+.ah-badge \{\
+  min-width: 260px !important;\
+  padding: 28px 30px !important;\
+  background: rgba(255,255,255,0.1);\
+  border: 1px solid rgba(255,255,255,0.22);\
+  border-radius: 18px;\
+  text-align: center;\
+\}\
+\
+.ah-badge img \{\
+  display: block;\
+  width: 165px !important;\
+  height: 165px !important;\
+  margin: 0 auto 10px;\
+  border-radius: 10px;\
+  object-fit: contain;\
+\}\
+\
+.ah-badge-label,\
+.ah-badge-year,\
+.ah-stat-l \{\
+  color: rgba(255,255,255,0.55);\
+  font-size: 9px;\
+  letter-spacing: 0.08em;\
+  text-transform: uppercase;\
+\}\
+\
+.ah-badge-name \{\
+  color: #ffffff;\
+  font-family: 'DM Serif Display', serif;\
+  font-size: 22px !important;\
+  line-height: 1.2;\
+\}\
+\
+.ah-stats \{\
+  display: flex;\
+  justify-content: center;\
+  gap: 8px;\
+  flex-wrap: wrap;\
+\}\
+\
+.ah-stat \{\
+  padding: 7px 14px;\
+  background: rgba(255,255,255,0.1);\
+  border: 1px solid rgba(255,255,255,0.18);\
+  border-radius: 999px;\
+  text-align: center;\
+\}\
+\
+.ah-stat-n \{\
+  display: block;\
+  color: #ffffff;\
+  font-size: 16px;\
+  font-weight: 700;\
+  line-height: 1;\
+\}\
+\
+.ah-section-title \{\
+  margin: 0 0 16px !important;\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 22px !important;\
+  font-weight: 400 !important;\
+\}\
+\
+.ah-about \{\
+  display: flex;\
+  align-items: center;\
+  gap: 28px;\
+  flex-wrap: wrap;\
+  margin-bottom: 20px;\
+  padding: 28px 32px;\
+  background: #ffffff;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 18px;\
+\}\
+\
+.ah-about-text \{\
+  flex: 1 1 260px;\
+\}\
+\
+.ah-about-text p \{\
+  margin: 0 0 12px;\
+  color: #4b5563;\
+  font-size: 14px;\
+  line-height: 1.7;\
+\}\
+\
+.ah-about-img \{\
+  display: flex;\
+  align-items: center;\
+  justify-content: center;\
+  flex: 0 0 180px;\
+  width: 180px;\
+  height: 130px;\
+  background: linear-gradient(135deg, #e8f4fd, #dbeafe);\
+  border-radius: 14px;\
+  font-size: 48px;\
+\}\
+\
+/* Get Involved: use div.ah-card with a real a.ah-card-button inside. */\
+.ah-cards-grid \{\
+  display: grid !important;\
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;\
+  gap: 22px !important;\
+  width: 100% !important;\
+  margin: 0 0 28px !important;\
+\}\
+\
+.ah-cards-grid > .ah-card \{\
+  display: flex !important;\
+  flex-direction: column !important;\
+  align-items: flex-start !important;\
+  justify-content: flex-start !important;\
+  min-height: 280px !important;\
+  padding: 30px 32px !important;\
+  background: #ffffff !important;\
+  border: 1px solid var(--asme-line) !important;\
+  border-radius: 18px !important;\
+  box-shadow: none !important;\
+  text-align: left !important;\
+\}\
+\
+.ah-cards-grid > .ah-card .ah-card-icon \{\
+  display: flex !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  width: 58px !important;\
+  height: 58px !important;\
+  margin: 0 0 18px !important;\
+  background: var(--asme-chip) !important;\
+  border-radius: 14px !important;\
+  font-size: 26px !important;\
+\}\
+\
+.ah-cards-grid > .ah-card h3 \{\
+  margin: 0 0 12px !important;\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 28px !important;\
+  line-height: 1.15 !important;\
+  font-weight: 400 !important;\
+\}\
+\
+.ah-cards-grid > .ah-card p \{\
+  flex: 1 1 auto !important;\
+  margin: 0 0 22px !important;\
+  color: var(--asme-muted) !important;\
+  font-size: 15px !important;\
+  line-height: 1.65 !important;\
+\}\
+\
+.ah-cards-grid > .ah-card .ah-card-button \{\
+  display: inline-flex !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  margin-top: auto !important;\
+  padding: 11px 18px !important;\
+  background: var(--asme-navy) !important;\
+  color: #ffffff !important;\
+  border-radius: 999px !important;\
+  font-size: 14px !important;\
+  font-weight: 800 !important;\
+  line-height: 1 !important;\
+  text-decoration: none !important;\
+\}\
+\
+.ah-cards-grid > .ah-card .ah-card-button:hover \{\
+  background: var(--asme-blue) !important;\
+  color: #ffffff !important;\
+\}\
+\
+/* Upcoming events agenda calendar. */\
+.ah-calendar-section \{\
+  background: #ffffff !important;\
+  border: 1px solid var(--asme-line) !important;\
+  border-radius: 20px !important;\
+  overflow: hidden !important;\
+  margin-top: 24px !important;\
+\}\
+\
+.ah-calendar-heading \{\
+  padding: 24px 28px 8px !important;\
+\}\
+\
+.ah-eyebrow-dark \{\
+  color: var(--asme-soft) !important;\
+  font-size: 11px !important;\
+  font-weight: 700 !important;\
+  letter-spacing: 0.1em !important;\
+  text-transform: uppercase !important;\
+\}\
+\
+.ah-calendar-mini iframe \{\
+  display: block !important;\
+  width: 100% !important;\
+  height: 430px !important;\
+  border: 0 !important;\
+\}\
+\
+/* =============================================\
+/* =============================================\
+   LEADERSHIP PAGE \'97 add to bottom of Additional CSS\
+   ============================================= */\
+\
+/* Full width, no sidebar on leadership page */\
+.page-id-leadership #secondary,\
+.page-id-leadership .widget-area \{\
+  display: none !important;\
+\}\
+\
+.page-id-leadership #primary,\
+.page-id-leadership .content-area \{\
+  width: 100% !important;\
+  max-width: 100% !important;\
+  flex: none !important;\
+\}\
+\
+.page-id-leadership .content-sidebar-wrap \{\
+  display: block !important;\
+\}\
+\
+.page-id-leadership article.page \{\
+  background: transparent !important;\
+  border: none !important;\
+  box-shadow: none !important;\
+  padding: 0 !important;\
+\}\
+\
+/* Hide the "Leadership" page title */\
+.page-id-leadership .entry-title \{\
+  display: none !important;\
+\}\
+\
+/* Board container */\
+.leadership-board \{\
+  width: 100% !important;\
+  max-width: 1100px !important;\
+  margin: 0 auto !important;\
+  padding: 24px 0 48px !important;\
+\}\
+\
+/* Year section spacing */\
+.leadership-year \{\
+  margin-bottom: 52px !important;\
+  background: transparent !important;\
+  border: none !important;\
+  box-shadow: none !important;\
+  padding: 0 !important;\
+  text-align: center !important;\
+\}\
+\
+/* Year header \'97 centered pill with lines */\
+.leadership-year-header \{\
+  display: flex !important;\
+  align-items: center !important;\
+  gap: 16px !important;\
+  margin-bottom: 28px !important;\
+\}\
+\
+.leadership-year-header::before,\
+.leadership-year-header::after \{\
+  content: '' !important;\
+  flex: 1 !important;\
+  height: 1px !important;\
+  background: #e5e7eb !important;\
+  display: block !important;\
+\}\
+\
+.leadership-year-header h2 \{\
+  background: #0f3460 !important;\
+  color: #ffffff !important;\
+  border-radius: 999px !important;\
+  padding: 8px 22px !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 13px !important;\
+  font-weight: 700 !important;\
+  white-space: nowrap !important;\
+  margin: 0 !important;\
+  display: inline-block !important;\
+\}\
+\
+/* Muted badge for past years */\
+.leadership-year + .leadership-year .leadership-year-header h2 \{\
+  background: #6b7280 !important;\
+\}\
+\
+/* Grid rows */\
+.leadership-row \{\
+  display: grid !important;\
+  gap: 14px !important;\
+  justify-content: center !important;\
+  margin-bottom: 14px !important;\
+\}\
+\
+.leadership-row-top \{\
+  grid-template-columns: repeat(3, minmax(0, 220px)) !important;\
+\}\
+\
+.leadership-row-bottom \{\
+  grid-template-columns: repeat(4, minmax(0, 180px)) !important;\
+\}\
+\
+/* Individual card */\
+.leader-card \{\
+  background: #ffffff !important;\
+  border: 1px solid #e5e7eb !important;\
+  border-radius: 18px !important;\
+  padding: 20px 16px 16px !important;\
+  text-align: center !important;\
+  display: flex !important;\
+  flex-direction: column !important;\
+  align-items: center !important;\
+  transition: transform 0.18s, box-shadow 0.18s !important;\
+\}\
+\
+.leader-card:hover \{\
+  transform: translateY(-3px) !important;\
+  box-shadow: 0 8px 24px rgba(15, 52, 96, 0.1) !important;\
+\}\
+\
+/* Role title \uc0\u8594  pill badge */\
+.leader-card h3 \{\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 9px !important;\
+  font-weight: 700 !important;\
+  color: #0f3460 !important;\
+  background: #e8f4fd !important;\
+  border-radius: 20px !important;\
+  padding: 3px 10px !important;\
+  text-transform: uppercase !important;\
+  letter-spacing: 0.06em !important;\
+  margin: 0 0 12px !important;\
+  min-height: 0 !important;\
+  width: auto !important;\
+\}\
+\
+/* Photo */\
+.leader-photo \{\
+  width: 90px !important;\
+  height: 90px !important;\
+  border-radius: 14px !important;\
+  object-fit: cover !important;\
+  object-position: center top !important;\
+  margin: 0 auto 12px !important;\
+  display: block !important;\
+  border: 2px solid #e8f4fd !important;\
+  background: #eef2f7 !important;\
+\}\
+\
+.leadership-row-top .leader-photo \{\
+  width: 110px !important;\
+  height: 110px !important;\
+  border-radius: 16px !important;\
+\}\
+\
+/* Name */\
+.leader-card h4 \{\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 16px !important;\
+  color: #0f3460 !important;\
+  font-weight: 400 !important;\
+  margin: 0 0 6px !important;\
+  line-height: 1.2 !important;\
+\}\
+\
+.leadership-row-top .leader-card h4 \{\
+  font-size: 18px !important;\
+\}\
+\
+/* Email */\
+.leader-card a,\
+.leader-card p \{\
+  font-size: 11px !important;\
+  color: #1a6cb8 !important;\
+  word-break: break-all !important;\
+  line-height: 1.4 !important;\
+  margin: 0 !important;\
+\}\
+\
+/* Divider between year sections */\
+.leadership-year + .leadership-year \{\
+  border-top: 1px solid #e5e7eb !important;\
+  padding-top: 48px !important;\
+\}\
+\
+/* Responsive */\
+@media (max-width: 900px) \{\
+  .leadership-row-top \{ grid-template-columns: repeat(3, minmax(0, 1fr)) !important; \}\
+  .leadership-row-bottom \{ grid-template-columns: repeat(2, minmax(0, 1fr)) !important; \}\
+\}\
+\
+@media (max-width: 600px) \{\
+  .leadership-row-top,\
+  .leadership-row-bottom \{ grid-template-columns: 1fr 1fr !important; \}\
+\}\
+/* =============================================\
+   ABOUT PAGE\
+   ============================================= */\
+\
+.asme-about-page \{\
+  width: 100%;\
+  max-width: 1500px;\
+  margin: 0 auto;\
+  padding: 8px 0 40px;\
+\}\
+\
+.about-hero \{\
+  display: grid;\
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);\
+  gap: 28px;\
+  align-items: stretch;\
+  margin-bottom: 28px;\
+\}\
+\
+.about-hero-copy,\
+.about-mission,\
+.about-pillar \{\
+  background: #ffffff;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 18px;\
+\}\
+\
+.about-hero-copy \{\
+  padding: 38px 40px;\
+  display: flex;\
+  flex-direction: column;\
+  justify-content: center;\
+\}\
+\
+.about-eyebrow,\
+.about-section-label \{\
+  color: var(--asme-soft);\
+  font-size: 11px;\
+  font-weight: 700;\
+  letter-spacing: 0.1em;\
+  margin-bottom: 10px;\
+  text-transform: uppercase;\
+\}\
+\
+.about-hero-copy h1 \{\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 44px !important;\
+  line-height: 1.08 !important;\
+  margin: 0 0 16px !important;\
+\}\
+\
+.about-hero-copy p,\
+.about-mission p,\
+.about-pillar p \{\
+  color: var(--asme-muted);\
+  font-size: 15px;\
+  line-height: 1.75;\
+  margin: 0;\
+\}\
+\
+.about-hero-image \{\
+  min-height: 420px;\
+  overflow: hidden;\
+  border-radius: 18px;\
+  background: #eef2f7;\
+  border: 1px solid var(--asme-line);\
+\}\
+\
+.about-hero-image img \{\
+  display: block;\
+  width: 100%;\
+  height: 100%;\
+  min-height: 420px;\
+  object-fit: cover;\
+  object-position: center;\
+\}\
+\
+.about-mission \{\
+  padding: 34px 40px;\
+  margin-bottom: 22px;\
+\}\
+\
+.about-mission h2 \{\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 32px !important;\
+  line-height: 1.18 !important;\
+  margin: 0 0 16px !important;\
+\}\
+\
+.about-mission p + p \{\
+  margin-top: 14px;\
+\}\
+\
+.about-pillars \{\
+  display: grid;\
+  grid-template-columns: repeat(3, minmax(0, 1fr));\
+  gap: 18px;\
+\}\
+\
+.about-pillar \{\
+  padding: 24px 26px;\
+\}\
+\
+.about-pillar h3 \{\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 24px !important;\
+  margin: 0 0 8px !important;\
+\}\
+\
+@media (max-width: 900px) \{\
+  .about-hero,\
+  .about-pillars \{\
+    grid-template-columns: 1fr;\
+  \}\
+\
+  .about-hero-copy,\
+  .about-mission,\
+  .about-pillar \{\
+    padding: 24px 22px;\
+  \}\
+\
+  .about-hero-copy h1 \{\
+    font-size: 34px !important;\
+  \}\
+\
+  .about-hero-image,\
+  .about-hero-image img \{\
+    min-height: 300px;\
+  \}\
+\}\
+\
+/* Make homepage award image larger */\
+.ah-badge img \{\
+  width: 190px !important;\
+  height: 190px !important;\
+\}\
+\
+.ah-badge \{\
+  width: 250px !important;\
+  padding: 22px !important;\
+\}\
+\
+/* =============================================\
+   Header dropdown polish\
+   ============================================= */\
+\
+/* More space between top-level nav items */\
+.main-navigation .main-nav > ul > li \{\
+  margin: 0 0px !important;\
+\}\
+\
+/* Keep parent menu buttons compact, including Events */\
+.main-navigation .main-nav > ul > li > a,\
+.nav-menu > li > a \{\
+  display: inline-flex !important;\
+  align-items: center !important;\
+  gap: 6px !important;\
+  width: auto !important;\
+  min-width: 0 !important;\
+  padding: 7px 14px !important;\
+  line-height: 1.2 !important;\
+  border-radius: 999px !important;\
+\}\
+\
+/* Remove extra arrow spacing on dropdown parent */\
+.main-navigation .menu-item-has-children > a \{\
+  padding-right: 14px !important;\
+\}\
+\
+.main-navigation .dropdown-menu-toggle \{\
+  padding-left: 4px !important;\
+  padding-right: 0 !important;\
+\}\
+\
+/* Dropdown container */\
+.main-navigation ul ul \{\
+  min-width: 210px !important;\
+  padding: 8px !important;\
+  background: #ffffff !important;\
+  border: 1px solid var(--asme-line) !important;\
+  border-radius: 14px !important;\
+  box-shadow: 0 10px 28px rgba(15, 52, 96, 0.14) !important;\
+  overflow: hidden !important;\
+\}\
+\
+/* Dropdown items */\
+.main-navigation ul ul li \{\
+  margin: 0 0 4px !important;\
+\}\
+\
+.main-navigation ul ul li:last-child \{\
+  margin-bottom: 0 !important;\
+\}\
+\
+.main-navigation ul ul li a \{\
+  width: 100% !important;\
+  padding: 9px 12px !important;\
+  border-radius: 10px !important;\
+  color: #374151 !important;\
+  background: transparent !important;\
+  font-size: 14px !important;\
+  line-height: 1.25 !important;\
+\}\
+\
+/* Dropdown hover/current item */\
+.main-navigation ul ul li a:hover,\
+.main-navigation ul ul li.current-menu-item > a \{\
+  background: var(--asme-navy) !important;\
+  color: #ffffff !important;\
+\}\
+\
+/* Give the header title more breathing room before the nav */\
+.site-header .inside-header,\
+#masthead .inside-header \{\
+  gap: 56px !important;\
+\}\
+\
+/* Keep nav buttons close together */\
+.main-navigation .main-nav > ul > li \{\
+  margin: 0 !important;\
+\}\
+\
+/* Prevent the title area from crowding the menu */\
+.site-branding-container \{\
+  margin-right: 24px !important;\
+\}\
+\
+/* =============================================\
+   SPONSORS PAGE\
+   ============================================= */\
+\
+.asme-sponsors-page \{\
+  width: 100%;\
+  max-width: 1500px;\
+  margin: 0 auto;\
+  padding: 8px 0 40px;\
+\}\
+\
+.sponsors-hero,\
+.sponsors-featured,\
+.sponsors-cta \{\
+  background: #ffffff;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 18px;\
+\}\
+\
+.sponsors-hero \{\
+  padding: 42px 46px;\
+  margin-bottom: 24px;\
+\}\
+\
+.sponsors-eyebrow \{\
+  color: var(--asme-soft);\
+  font-size: 11px;\
+  font-weight: 700;\
+  letter-spacing: 0.1em;\
+  margin-bottom: 10px;\
+  text-transform: uppercase;\
+\}\
+\
+.sponsors-hero h1,\
+.sponsors-section-header h2,\
+.sponsors-cta h2 \{\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-weight: 400 !important;\
+  line-height: 1.12 !important;\
+  margin: 0 !important;\
+\}\
+\
+.sponsors-hero h1 \{\
+  font-size: 44px !important;\
+  margin-bottom: 14px !important;\
+\}\
+\
+.sponsors-hero p,\
+.sponsors-cta p,\
+.sponsor-card p \{\
+  color: var(--asme-muted);\
+  font-size: 15px;\
+  line-height: 1.7;\
+  margin: 0;\
+\}\
+\
+.sponsors-hero p \{\
+  max-width: 820px;\
+\}\
+\
+.sponsors-featured \{\
+  padding: 34px 36px;\
+  margin-bottom: 24px;\
+\}\
+\
+.sponsors-section-header \{\
+  margin-bottom: 22px;\
+\}\
+\
+.sponsors-section-header h2,\
+.sponsors-cta h2 \{\
+  font-size: 32px !important;\
+\}\
+\
+.sponsors-grid \{\
+  display: grid;\
+  grid-template-columns: repeat(3, minmax(0, 1fr));\
+  gap: 18px;\
+\}\
+\
+.sponsor-card \{\
+  background: #f9fafb;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 16px;\
+  padding: 24px 22px;\
+  text-align: center;\
+\}\
+\
+.sponsor-logo-frame \{\
+  height: 150px;\
+  margin-bottom: 18px;\
+  background: #ffffff;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 14px;\
+  display: flex;\
+  align-items: center;\
+  justify-content: center;\
+  padding: 20px;\
+\}\
+\
+.sponsor-logo-frame img \{\
+  display: block;\
+  max-width: 100%;\
+  max-height: 100%;\
+  object-fit: contain;\
+\}\
+\
+.sponsor-card h3 \{\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 24px !important;\
+  margin: 0 0 8px !important;\
+\}\
+\
+.sponsors-cta \{\
+  padding: 30px 34px;\
+  display: flex;\
+  align-items: center;\
+  justify-content: space-between;\
+  gap: 24px;\
+\}\
+\
+.sponsors-cta p \{\
+  max-width: 720px;\
+  margin-top: 10px;\
+\}\
+\
+.sponsors-cta-button \{\
+  display: inline-flex;\
+  align-items: center;\
+  justify-content: center;\
+  background: var(--asme-navy);\
+  color: #ffffff !important;\
+  border-radius: 999px;\
+  padding: 12px 22px;\
+  font-size: 14px;\
+  font-weight: 800;\
+  text-decoration: none !important;\
+  white-space: nowrap;\
+\}\
+\
+.sponsors-cta-button:hover \{\
+  background: var(--asme-blue);\
+  color: #ffffff !important;\
+\}\
+\
+@media (max-width: 900px) \{\
+  .sponsors-grid \{\
+    grid-template-columns: 1fr;\
+  \}\
+\
+  .sponsors-cta \{\
+    flex-direction: column;\
+    align-items: flex-start;\
+  \}\
+\
+  .sponsors-hero,\
+  .sponsors-featured,\
+  .sponsors-cta \{\
+    padding: 24px 22px;\
+  \}\
+\
+  .sponsors-hero h1 \{\
+    font-size: 34px !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   SPONSOR ASME PAGE\
+   ============================================= */\
+\
+.asme-sponsor-page \{\
+  width: 100%;\
+  max-width: 1500px;\
+  margin: 0 auto;\
+  padding: 8px 0 40px;\
+\}\
+\
+.sponsor-hero,\
+.sponsor-section,\
+.sponsor-contact \{\
+  background: #ffffff;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 18px;\
+\}\
+\
+.sponsor-hero \{\
+  display: grid;\
+  grid-template-columns: minmax(320px, 1.2fr) minmax(260px, 0.8fr);\
+  gap: 26px;\
+  align-items: stretch;\
+  padding: 42px 46px;\
+  margin-bottom: 24px;\
+\}\
+\
+.sponsor-hero-copy \{\
+  display: flex;\
+  flex-direction: column;\
+  align-items: flex-start;\
+  justify-content: center;\
+\}\
+\
+.sponsor-eyebrow \{\
+  color: var(--asme-soft);\
+  font-size: 11px;\
+  font-weight: 700;\
+  letter-spacing: 0.1em;\
+  margin-bottom: 10px;\
+  text-transform: uppercase;\
+\}\
+\
+.sponsor-hero h1,\
+.sponsor-section h2,\
+.sponsor-contact h2 \{\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-weight: 400 !important;\
+  line-height: 1.12 !important;\
+  margin: 0 !important;\
+\}\
+\
+.sponsor-hero h1 \{\
+  max-width: 760px;\
+  font-size: 44px !important;\
+  margin-bottom: 16px !important;\
+\}\
+\
+.sponsor-hero p,\
+.sponsor-section-header p,\
+.sponsor-benefit-card p,\
+.sponsor-opportunity p,\
+.sponsor-contact p \{\
+  color: var(--asme-muted);\
+  font-size: 15px;\
+  line-height: 1.7;\
+  margin: 0;\
+\}\
+\
+.sponsor-hero p \{\
+  max-width: 760px;\
+  margin-bottom: 22px;\
+\}\
+\
+.sponsor-primary-button \{\
+  display: inline-flex;\
+  align-items: center;\
+  justify-content: center;\
+  background: var(--asme-navy);\
+  color: #ffffff !important;\
+  border-radius: 999px;\
+  padding: 12px 22px;\
+  font-size: 14px;\
+  font-weight: 800;\
+  text-decoration: none !important;\
+  white-space: nowrap;\
+\}\
+\
+.sponsor-primary-button:hover \{\
+  background: var(--asme-blue);\
+  color: #ffffff !important;\
+\}\
+\
+.sponsor-hero-panel \{\
+  background: linear-gradient(135deg, #0f3460, #16213e);\
+  border-radius: 18px;\
+  padding: 26px;\
+  display: grid;\
+  gap: 14px;\
+  align-content: center;\
+\}\
+\
+.sponsor-panel-stat \{\
+  background: rgba(255,255,255,0.1);\
+  border: 1px solid rgba(255,255,255,0.18);\
+  border-radius: 14px;\
+  padding: 18px 20px;\
+  text-align: center;\
+\}\
+\
+.sponsor-panel-stat strong \{\
+  display: block;\
+  color: #ffffff;\
+  font-size: 32px;\
+  line-height: 1;\
+  margin-bottom: 6px;\
+\}\
+\
+.sponsor-panel-stat span \{\
+  color: rgba(255,255,255,0.72);\
+  font-size: 12px;\
+  font-weight: 700;\
+  letter-spacing: 0.05em;\
+  text-transform: uppercase;\
+\}\
+\
+.sponsor-section \{\
+  padding: 34px 36px;\
+  margin-bottom: 24px;\
+\}\
+\
+.sponsor-section-header \{\
+  margin-bottom: 22px;\
+\}\
+\
+.sponsor-section h2,\
+.sponsor-contact h2 \{\
+  font-size: 32px !important;\
+  margin-bottom: 12px !important;\
+\}\
+\
+.sponsor-section-header p \{\
+  max-width: 880px;\
+\}\
+\
+.sponsor-benefit-grid \{\
+  display: grid;\
+  grid-template-columns: repeat(3, minmax(0, 1fr));\
+  gap: 18px;\
+\}\
+\
+.sponsor-benefit-card,\
+.sponsor-opportunity \{\
+  background: #f9fafb;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 16px;\
+  padding: 24px 22px;\
+\}\
+\
+.sponsor-benefit-card h3,\
+.sponsor-opportunity h3 \{\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 24px !important;\
+  margin: 0 0 8px !important;\
+\}\
+\
+.sponsor-opportunity-list \{\
+  display: grid;\
+  grid-template-columns: repeat(2, minmax(0, 1fr));\
+  gap: 16px;\
+\}\
+\
+.sponsor-contact \{\
+  padding: 30px 34px;\
+  display: flex;\
+  align-items: center;\
+  justify-content: space-between;\
+  gap: 24px;\
+\}\
+\
+.sponsor-contact p \{\
+  max-width: 760px;\
+\}\
+\
+@media (max-width: 900px) \{\
+  .sponsor-hero,\
+  .sponsor-benefit-grid,\
+  .sponsor-opportunity-list \{\
+    grid-template-columns: 1fr;\
+  \}\
+\
+  .sponsor-contact \{\
+    flex-direction: column;\
+    align-items: flex-start;\
+  \}\
+\
+  .sponsor-hero,\
+  .sponsor-section,\
+  .sponsor-contact \{\
+    padding: 24px 22px;\
+  \}\
+\
+  .sponsor-hero h1 \{\
+    font-size: 34px !important;\
+  \}\
+\}\
+\
+.sponsor-card h3 a \{\
+  color: var(--asme-navy) !important;\
+  text-decoration: none !important;\
+\}\
+\
+.sponsor-card h3 a:hover \{\
+  color: var(--asme-blue) !important;\
+\}\
+\
+/* =============================================\
+   SPONSOR ASME PAGE \'97 final stat panel\
+   ============================================= */\
+body .asme-sponsor-page .sponsor-hero-panel \{\
+  display: flex !important;\
+  flex-direction: column !important;\
+  justify-content: center !important;\
+  gap: 14px !important;\
+  padding: 24px !important;\
+  height: auto !important;\
+  min-height: 0 !important;\
+\}\
+\
+body .asme-sponsor-page .sponsor-panel-stat \{\
+  position: static !important;\
+  display: flex !important;\
+  flex-direction: column !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  height: 116px !important;\
+  min-height: 116px !important;\
+  padding: 0 !important;\
+  margin: 0 !important;\
+  overflow: visible !important;\
+\}\
+\
+body .asme-sponsor-page .sponsor-stat-inner \{\
+  position: static !important;\
+  display: flex !important;\
+  flex-direction: column !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  gap: 0 !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+  transform: translateY(10px) !important;\
+\}\
+\
+body .asme-sponsor-page .sponsor-panel-stat > strong,\
+body .asme-sponsor-page .sponsor-stat-inner > strong \{\
+  position: static !important;\
+  inset: auto !important;\
+  transform: none !important;\
+  display: block !important;\
+  margin: 0 0 2px !important;\
+  padding: 0 !important;\
+  font-size: 54px !important;\
+  line-height: 0.85 !important;\
+  font-weight: 800 !important;\
+  text-align: center !important;\
+\}\
+\
+body .asme-sponsor-page .sponsor-panel-stat > span,\
+body .asme-sponsor-page .sponsor-stat-inner > span \{\
+  position: static !important;\
+  inset: auto !important;\
+  transform: none !important;\
+  display: block !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+  font-size: 12px !important;\
+  line-height: 1 !important;\
+  letter-spacing: 0.04em !important;\
+  text-align: center !important;\
+  text-transform: uppercase !important;\
+\}\
+\
+/* =============================================\
+   HOME HERO \'97 final sizing\
+   ============================================= */\
+.asme-home .ah-hero \{\
+  display: flex !important;\
+  flex-wrap: wrap !important;\
+  align-items: center !important;\
+  justify-content: space-between !important;\
+  gap: 28px !important;\
+  padding: 30px 40px 14px !important;\
+  min-height: 0 !important;\
+  height: auto !important;\
+\}\
+\
+.asme-home .ah-hero-left \{\
+  flex: 1 1 520px !important;\
+  align-self: center !important;\
+\}\
+\
+.asme-home .ah-hero-right \{\
+  flex: 0 0 auto !important;\
+  align-self: center !important;\
+  justify-content: center !important;\
+\}\
+\
+.asme-home .ah-stats \{\
+  justify-content: flex-start !important;\
+  gap: 10px !important;\
+\}\
+\
+.asme-home .ah-stat \{\
+  width: 80px !important;\
+  height: 80px !important;\
+  border-radius: 50% !important;\
+  padding: 0 !important;\
+  display: flex !important;\
+  flex-direction: column !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+\}\
+\
+.asme-home .ah-stat-n \{\
+  font-size: 16px !important;\
+  line-height: 1.1 !important;\
+\}\
+\
+.asme-home .ah-stat-l \{\
+  font-size: 8px !important;\
+  line-height: 1.2 !important;\
+  letter-spacing: 0 !important;\
+  margin-top: 2px !important;\
+  text-align: center !important;\
+  text-transform: uppercase !important;\
+  word-spacing: normal !important;\
+\}\
+\
+.asme-home .ah-badge \{\
+  width: 300px !important;\
+  min-width: 300px !important;\
+  padding: 16px 20px 12px !important;\
+\}\
+\
+.asme-home .ah-badge img \{\
+  width: 210px !important;\
+  height: 210px !important;\
+  margin: 0 auto 8px !important;\
+\}\
+\
+.asme-home .ah-badge-label,\
+.asme-home .ah-badge-year \{\
+  margin: 0 !important;\
+  line-height: 1.05 !important;\
+\}\
+\
+.asme-home .ah-badge-name \{\
+  margin: 4px 0 !important;\
+  font-size: 19px !important;\
+  line-height: 1.05 !important;\
+\}\
+\
+/* Keep hero text readable in signed-in and signed-out views. */\
+.asme-home .ah-hero,\
+.asme-home .ah-hero * \{\
+  color: rgba(255,255,255,0.74) !important;\
+\}\
+\
+.asme-home .ah-title,\
+.asme-home .ah-title *,\
+.asme-home .ah-badge-name,\
+.asme-home .ah-badge-name *,\
+.asme-home .ah-stat-n \{\
+  color: #ffffff !important;\
+\}\
+\
+.asme-home .ah-eyebrow,\
+.asme-home .ah-badge-label,\
+.asme-home .ah-badge-year,\
+.asme-home .ah-stat-l \{\
+  color: rgba(255,255,255,0.55) !important;\
+\}\
+\
+.asme-home .ah-btn-p \{\
+  color: var(--asme-navy) !important;\
+\}\
+\
+.asme-home .ah-btn-o \{\
+  color: #ffffff !important;\
+\}\
+/* =============================================\
+   CUSTOM FOOTER\
+   Footer HTML should be pasted in Advanced Settings without style tags.\
+   ============================================= */\
+.site-info,\
+.copyright-bar,\
+.footer-bar,\
+.inside-site-info,\
+.site-footer .site-info,\
+.site-footer .copyright-bar,\
+.site-footer .footer-bar,\
+.site-footer .inside-site-info,\
+#colophon .site-info,\
+#colophon .copyright-bar,\
+#colophon .footer-bar,\
+#colophon .inside-site-info \{\
+  display: none !important;\
+  height: 0 !important;\
+  min-height: 0 !important;\
+  padding: 0 !important;\
+  margin: 0 !important;\
+  overflow: hidden !important;\
+\}\
+\
+.site-footer,\
+#colophon \{\
+  width: 100vw !important;\
+  max-width: 100vw !important;\
+  margin: 44px calc(50% - 50vw) 0 !important;\
+  padding: 32px var(--asme-gutter) 24px !important;\
+  background: var(--asme-bg) !important;\
+  border-top: 1px solid var(--asme-line) !important;\
+  border-radius: 0 !important;\
+  color: var(--asme-text) !important;\
+  opacity: 1 !important;\
+  visibility: visible !important;\
+\}\
+\
+.asme-footer-inner \{\
+  max-width: 1440px !important;\
+  margin: 0 auto !important;\
+  padding: 0 !important;\
+  color: var(--asme-text) !important;\
+\}\
+\
+.asme-footer-grid \{\
+  display: grid !important;\
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;\
+  gap: 32px !important;\
+  margin: 0 auto !important;\
+  padding: 0 !important;\
+  border-bottom: none !important;\
+  justify-items: center !important;\
+  align-items: start !important;\
+\}\
+\
+.asme-footer-col \{\
+  text-align: center !important;\
+\}\
+\
+.asme-footer-col h3 \{\
+  margin: 0 0 12px !important;\
+  color: var(--asme-navy) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 18px !important;\
+  font-weight: 400 !important;\
+\}\
+\
+.asme-footer-col p,\
+.asme-footer-col a \{\
+  display: block !important;\
+  width: fit-content !important;\
+  margin: 0 auto 8px !important;\
+  color: #374151 !important;\
+  font-size: 14px !important;\
+  line-height: 1.7 !important;\
+  text-align: center !important;\
+  text-decoration: none !important;\
+\}\
+\
+.asme-footer-col a:hover \{\
+  color: var(--asme-blue) !important;\
+\}\
+\
+.asme-footer-bottom \{\
+  display: block !important;\
+  width: 100% !important;\
+  max-width: none !important;\
+  margin: 28px 0 0 !important;\
+  padding: 18px 0 0 !important;\
+  border-top: none !important;\
+  text-align: center !important;\
+\}\
+\
+.asme-footer-bottom span \{\
+  display: block !important;\
+  width: 100% !important;\
+  max-width: none !important;\
+  margin: 0 auto !important;\
+  color: var(--asme-navy) !important;\
+  opacity: 1 !important;\
+  text-align: center !important;\
+  font-size: 13px !important;\
+\}\
+\
+/* =============================================\
+   RESPONSIVE\
+   ============================================= */\
+@media (max-width: 1100px) \{\
+  :root \{\
+    --asme-sidebar-width: 260px;\
+  \}\
+\
+  .blog .site-main,\
+  .archive .site-main,\
+  .search .site-main,\
+  .blog #main,\
+  .archive #main,\
+  .search #main,\
+  .ah-cards-grid \{\
+    grid-template-columns: 1fr !important;\
+  \}\
+\}\
+\
+@media (max-width: 900px) \{\
+  .blog .content-sidebar-wrap,\
+  .archive .content-sidebar-wrap,\
+  .search .content-sidebar-wrap \{\
+    display: block !important;\
+  \}\
+\
+  .blog #secondary,\
+  .blog .widget-area,\
+  .archive #secondary,\
+  .archive .widget-area,\
+  .search #secondary,\
+  .search .widget-area \{\
+    width: 100% !important;\
+  \}\
+\
+  .asme-gallery \{\
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;\
+  \}\
+\}\
+\
+@media (max-width: 768px) \{\
+  :root \{\
+    --asme-gutter: 12px;\
+  \}\
+\
+  .site-header,\
+  #masthead \{\
+    padding: 0 14px !important;\
+  \}\
+\
+  .site-title,\
+  .site-title a \{\
+    font-size: 14px !important;\
+  \}\
+\
+  .site-description \{\
+    display: none !important;\
+  \}\
+\
+  .ah-hero,\
+  .ah-about \{\
+    flex-direction: column;\
+    padding: 24px 20px;\
+  \}\
+\
+  .ah-title \{\
+    font-size: 32px !important;\
+  \}\
+\
+  .ah-badge img \{\
+    width: 130px !important;\
+    height: 130px !important;\
+  \}\
+\
+  .ah-hero-right \{\
+    width: 100%;\
+    flex-direction: row;\
+    justify-content: center;\
+  \}\
+\
+  .ah-calendar-mini iframe \{\
+    height: 360px !important;\
+  \}\
+\
+  .leadership-row-top,\
+  .leadership-row-bottom \{\
+    grid-template-columns: 1fr;\
+  \}\
+\
+  .asme-footer-grid \{\
+    grid-template-columns: 1fr !important;\
+  \}\
+\}\
+\
+@media (max-width: 520px) \{\
+  .asme-gallery \{\
+    grid-template-columns: 1fr !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   EVENTS CALENDAR PAGE\
+   ============================================= */\
+.asme-cal-page \{\
+  width: 100%;\
+  max-width: 1200px;\
+  margin: 0 auto;\
+  padding-top: 24px !important;\
+  padding-bottom: 32px;\
+\}\
+\
+.acp-header \{\
+  display: flex;\
+  align-items: center !important;\
+  justify-content: space-between;\
+  gap: 24px;\
+  flex-wrap: wrap;\
+  margin-bottom: 24px !important;\
+\}\
+\
+.acp-header-left \{\
+  flex: 1 1 300px;\
+  min-width: 0;\
+\}\
+\
+.acp-eyebrow \{\
+  font-size: 10px;\
+  font-weight: 700;\
+  color: var(--asme-soft);\
+  text-transform: uppercase;\
+  letter-spacing: 0.1em;\
+  margin-bottom: 8px;\
+\}\
+\
+.acp-title \{\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 36px !important;\
+  color: var(--asme-navy) !important;\
+  font-weight: 400 !important;\
+  margin: 0 0 10px !important;\
+  line-height: 1.1 !important;\
+\}\
+\
+.acp-sub \{\
+  font-size: 14px;\
+  color: var(--asme-muted);\
+  line-height: 1.65;\
+  max-width: 520px;\
+  margin: 0;\
+\}\
+\
+.acp-header-right \{\
+  display: flex;\
+  flex-direction: column;\
+  align-items: center !important;\
+  gap: 2px !important;\
+  flex-shrink: 0;\
+  padding-top: 8px;\
+  text-align: center !important;\
+\}\
+\
+.acp-subscribe-btn \{\
+  display: block !important;\
+  background: var(--asme-navy);\
+  color: #fff !important;\
+  border-radius: 999px;\
+  padding: 12px 24px !important;\
+  font-family: 'DM Sans', sans-serif;\
+  font-size: 14px !important;\
+  font-weight: 700;\
+  line-height: 1 !important;\
+  text-align: center !important;\
+  text-decoration: none !important;\
+  transition: background 0.18s;\
+  white-space: nowrap;\
+\}\
+\
+.acp-subscribe-btn:hover \{\
+  background: var(--asme-blue) !important;\
+  color: #fff !important;\
+\}\
+\
+.acp-subscribe-note \{\
+  font-size: 11px !important;\
+  color: var(--asme-soft);\
+  margin: 0;\
+  text-align: center !important;\
+\}\
+\
+.acp-header-right p \{\
+  margin-bottom: 0 !important;\
+\}\
+\
+.acp-chips \{\
+  display: none !important;\
+\}\
+\
+.acp-cal-card \{\
+  background: #fff;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 20px;\
+  overflow: hidden;\
+  box-shadow: 0 4px 24px rgba(15, 52, 96, 0.07);\
+  margin-bottom: 20px;\
+\}\
+\
+.acp-cal-topbar \{\
+  display: flex;\
+  align-items: center;\
+  gap: 6px;\
+  padding: 10px 16px;\
+  background: #f4f5f7;\
+  border-bottom: 1px solid var(--asme-line);\
+\}\
+\
+.acp-cal-dot \{\
+  width: 10px;\
+  height: 10px;\
+  border-radius: 50%;\
+  background: #e5e7eb;\
+  display: inline-block;\
+\}\
+\
+.acp-cal-dot:nth-child(1) \{\
+  background: #fc5f5a;\
+\}\
+\
+.acp-cal-dot:nth-child(2) \{\
+  background: #fdbc40;\
+\}\
+\
+.acp-cal-dot:nth-child(3) \{\
+  background: #34c749;\
+\}\
+\
+.acp-cal-label \{\
+  margin-left: 10px;\
+  font-size: 11px;\
+  font-weight: 600;\
+  color: var(--asme-soft);\
+  letter-spacing: 0.03em;\
+\}\
+\
+.acp-cal-card iframe \{\
+  display: block !important;\
+  width: 100% !important;\
+  border: none !important;\
+\}\
+\
+.acp-info-strip \{\
+  display: grid;\
+  grid-template-columns: repeat(3, minmax(0, 1fr));\
+  gap: 14px;\
+\}\
+\
+.acp-info-item \{\
+  display: flex;\
+  align-items: flex-start;\
+  gap: 12px;\
+  background: #fff;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 14px;\
+  padding: 16px 18px;\
+\}\
+\
+.acp-info-icon \{\
+  font-size: 22px;\
+  flex-shrink: 0;\
+  margin-top: 1px;\
+\}\
+\
+.acp-info-title \{\
+  font-size: 13px;\
+  font-weight: 700;\
+  color: var(--asme-navy);\
+  margin-bottom: 4px;\
+\}\
+\
+.acp-info-sub \{\
+  font-size: 12px;\
+  color: var(--asme-muted);\
+  line-height: 1.55;\
+\}\
+\
+.acp-info-sub a \{\
+  color: var(--asme-blue);\
+  font-weight: 600;\
+\}\
+\
+/* Header/navigation compacting. */\
+.site-header,\
+#masthead \{\
+  border-radius: 0 0 10px 10px !important;\
+  box-shadow: 0 2px 8px rgba(15, 52, 96, 0.05) !important;\
+\}\
+\
+.main-navigation .main-nav > ul > li > a,\
+.nav-menu > li > a \{\
+  padding: 4px 10px !important;\
+  line-height: 1.4 !important;\
+  height: auto !important;\
+  min-height: 0 !important;\
+  margin: 0 2.5px !important;\
+\}\
+\
+.main-navigation .main-nav > ul,\
+.nav-menu \{\
+  column-gap: 0 !important;\
+  row-gap: 8px !important;\
+\}\
+\
+.main-navigation ul ul \{\
+  padding: 8px !important;\
+\}\
+\
+.main-navigation ul ul li \{\
+  margin: 0 0 6px !important;\
+  padding: 0 !important;\
+\}\
+\
+.main-navigation ul ul li:last-child \{\
+  margin-bottom: 0 !important;\
+\}\
+\
+.main-navigation ul ul li a \{\
+  display: block !important;\
+  width: auto !important;\
+  margin: 0 !important;\
+  padding: 9px 14px !important;\
+  box-sizing: border-box !important;\
+\}\
+\
+/* Blog/archive latest layout: masonry-style cards with flyer crops. */\
+.blog .site-main,\
+.archive .site-main,\
+.blog #main,\
+.archive #main \{\
+  display: block !important;\
+  column-count: 2 !important;\
+  column-gap: 14px !important;\
+\}\
+\
+.blog article,\
+.archive article \{\
+  break-inside: avoid !important;\
+  margin-bottom: 14px !important;\
+  display: block !important;\
+\}\
+\
+.blog .content-sidebar-wrap,\
+.archive .content-sidebar-wrap \{\
+  gap: 56px !important;\
+\}\
+\
+.blog #primary,\
+.blog .content-area,\
+.archive #primary,\
+.archive .content-area \{\
+  padding-right: 8px !important;\
+\}\
+\
+.blog .post-thumbnail,\
+.blog .entry-thumbnail,\
+.blog .wp-post-image-wrapper,\
+.archive .post-thumbnail,\
+.archive .entry-thumbnail \{\
+  height: 260px !important;\
+\}\
+\
+.blog .post-thumbnail img,\
+.blog .entry-thumbnail img,\
+.blog .wp-post-image,\
+.blog .post-thumbnail a img,\
+.archive .post-thumbnail img,\
+.archive .entry-thumbnail img,\
+.archive .wp-post-image \{\
+  height: 260px !important;\
+  object-position: center center !important;\
+\}\
+\
+.blog .entry-header,\
+.archive .entry-header \{\
+  padding: 14px 16px 4px !important;\
+\}\
+\
+.blog .entry-content,\
+.archive .entry-content \{\
+  display: none !important;\
+  padding: 0 16px 6px !important;\
+\}\
+\
+.blog .entry-footer,\
+.archive .entry-footer \{\
+  padding: 6px 16px 12px !important;\
+\}\
+\
+/* =============================================\
+   GALLERY PAGE \'97 adaptive WordPress gallery mosaic\
+   Requires the footer script that adds orientation classes.\
+   ============================================= */\
+.asme-gallery-page \{\
+  max-width: var(--asme-content-width);\
+  margin: 0 auto;\
+\}\
+\
+.gallery-hero \{\
+  background: #ffffff;\
+  border: 1px solid var(--asme-line);\
+  border-radius: 20px;\
+  padding: 34px 38px;\
+  margin-bottom: 24px;\
+\}\
+\
+.gallery-eyebrow \{\
+  color: var(--asme-soft);\
+  font-size: 11px;\
+  font-weight: 700;\
+  letter-spacing: 0.1em;\
+  text-transform: uppercase;\
+  margin-bottom: 8px;\
+\}\
+\
+.gallery-hero h1 \{\
+  margin: 0 0 10px !important;\
+  color: var(--asme-navy) !important;\
+  font-size: 42px !important;\
+  line-height: 1.05 !important;\
+\}\
+\
+.gallery-hero p \{\
+  max-width: 680px;\
+  margin: 0;\
+  color: var(--asme-muted);\
+  font-size: 15px;\
+  line-height: 1.7;\
+\}\
+\
+.asme-gallery-page .gallery \{\
+  display: grid !important;\
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;\
+  grid-auto-rows: 64px !important;\
+  grid-auto-flow: dense !important;\
+  gap: 12px !important;\
+  margin: 0 !important;\
+\}\
+\
+.asme-gallery-page .gallery br \{\
+  display: none !important;\
+\}\
+\
+.asme-gallery-page .gallery-item,\
+.asme-gallery-page .gallery-item:nth-child(n),\
+.asme-gallery-page .gallery-columns-3 .gallery-item \{\
+  float: none !important;\
+  width: auto !important;\
+  max-width: none !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+  grid-column: span 4 !important;\
+  grid-row: span 4 !important;\
+  overflow: hidden !important;\
+  border-radius: 18px !important;\
+  box-shadow: 0 10px 28px rgba(15, 52, 96, 0.1) !important;\
+\}\
+\
+.asme-gallery-page .gallery-item.is-landscape \{\
+  grid-column: span 6 !important;\
+  grid-row: span 5 !important;\
+\}\
+\
+.asme-gallery-page .gallery-item.is-panorama \{\
+  grid-column: span 8 !important;\
+  grid-row: span 4 !important;\
+\}\
+\
+.asme-gallery-page .gallery-item.is-portrait \{\
+  grid-column: span 3 !important;\
+  grid-row: span 6 !important;\
+\}\
+\
+.asme-gallery-page .gallery-item.is-square \{\
+  grid-column: span 4 !important;\
+  grid-row: span 5 !important;\
+\}\
+\
+.asme-gallery-page .gallery-icon,\
+.asme-gallery-page .gallery-icon a \{\
+  display: block !important;\
+  width: 100% !important;\
+  height: 100% !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+\}\
+\
+.asme-gallery-page .gallery img,\
+.asme-gallery-page .gallery-icon img,\
+.asme-gallery-page .gallery-size-large img,\
+.asme-gallery-page .gallery-item:nth-child(n) img \{\
+  display: block !important;\
+  width: 100% !important;\
+  max-width: none !important;\
+  height: 100% !important;\
+  min-height: 0 !important;\
+  max-height: none !important;\
+  object-fit: cover !important;\
+  object-position: center center !important;\
+  border: none !important;\
+  border-radius: 18px !important;\
+  box-shadow: none !important;\
+\}\
+\
+.asme-gallery-page .gallery-caption \{\
+  display: none !important;\
+\}\
+\
+@media (max-width: 900px) \{\
+  .asme-gallery-page .gallery \{\
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;\
+    grid-auto-rows: 64px !important;\
+  \}\
+\
+  .asme-gallery-page .gallery-item,\
+  .asme-gallery-page .gallery-item:nth-child(n),\
+  .asme-gallery-page .gallery-item.is-landscape,\
+  .asme-gallery-page .gallery-item.is-panorama,\
+  .asme-gallery-page .gallery-item.is-square \{\
+    grid-column: span 3 !important;\
+    grid-row: span 4 !important;\
+  \}\
+\
+  .asme-gallery-page .gallery-item.is-portrait \{\
+    grid-column: span 3 !important;\
+    grid-row: span 6 !important;\
+  \}\
+\}\
+\
+@media (max-width: 560px) \{\
+  .asme-gallery-page .gallery \{\
+    grid-template-columns: 1fr !important;\
+    grid-auto-rows: auto !important;\
+  \}\
+\
+  .asme-gallery-page .gallery-item,\
+  .asme-gallery-page .gallery-item:nth-child(n),\
+  .asme-gallery-page .gallery-item.is-landscape,\
+  .asme-gallery-page .gallery-item.is-panorama,\
+  .asme-gallery-page .gallery-item.is-portrait,\
+  .asme-gallery-page .gallery-item.is-square \{\
+    grid-column: auto !important;\
+    grid-row: auto !important;\
+  \}\
+\
+  .asme-gallery-page .gallery img,\
+  .asme-gallery-page .gallery-icon img \{\
+    height: auto !important;\
+    aspect-ratio: 4 / 3 !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   FOOTER \'97 final centering lock\
+   Keeps footer columns and copyright centered.\
+   ============================================= */\
+.site-footer,\
+#colophon,\
+.asme-footer-inner,\
+.asme-footer-grid,\
+.asme-footer-col,\
+.asme-footer-bottom \{\
+  text-align: center !important;\
+\}\
+\
+.asme-footer-inner \{\
+  width: 100% !important;\
+  max-width: 1440px !important;\
+  margin-left: auto !important;\
+  margin-right: auto !important;\
+\}\
+\
+.asme-footer-grid \{\
+  display: grid !important;\
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;\
+  justify-items: center !important;\
+  align-items: start !important;\
+\}\
+\
+.asme-footer-col \{\
+  display: flex !important;\
+  flex-direction: column !important;\
+  align-items: center !important;\
+\}\
+\
+.asme-footer-col p,\
+.asme-footer-col a \{\
+  width: auto !important;\
+  margin-left: auto !important;\
+  margin-right: auto !important;\
+  text-align: center !important;\
+\}\
+\
+.asme-footer-bottom \{\
+  display: flex !important;\
+  justify-content: center !important;\
+  align-items: center !important;\
+\}\
+\
+.asme-footer-bottom span \{\
+  display: block !important;\
+  width: auto !important;\
+  margin: 0 auto !important;\
+  text-align: center !important;\
+\}\
+\
+/* =============================================\
+   MOBILE\
+   Consolidated latest mobile overrides\
+   ============================================= */\
+@media (max-width: 768px) \{\
+  :root \{\
+    --asme-gutter: 8px;\
+  \}\
+\
+  .site-content,\
+  #content.site-content,\
+  .site-content .wrap,\
+  .content-sidebar-wrap \{\
+    padding-left: 6px !important;\
+    padding-right: 6px !important;\
+  \}\
+\
+  .site-header,\
+  #masthead \{\
+    padding: 12px 8px 16px !important;\
+    min-height: 0 !important;\
+    text-align: center !important;\
+  \}\
+\
+  .site-header .inside-header,\
+  #masthead .inside-header \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    min-height: 0 !important;\
+    padding: 0 !important;\
+    display: flex !important;\
+    flex-direction: column !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    gap: 12px !important;\
+    text-align: center !important;\
+  \}\
+\
+  .site-branding,\
+  .site-branding-container,\
+  .site-logo,\
+  .custom-logo-link \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    display: flex !important;\
+    flex-direction: column !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    gap: 8px !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    text-align: center !important;\
+  \}\
+\
+  .custom-logo,\
+  .site-logo img,\
+  .custom-logo-link img \{\
+    display: block !important;\
+    width: auto !important;\
+    height: 42px !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+  \}\
+\
+  .site-title,\
+  .site-title a,\
+  .site-description \{\
+    width: 100% !important;\
+    max-width: 360px !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    text-align: center !important;\
+  \}\
+\
+  .site-title,\
+  .site-title a \{\
+    white-space: normal !important;\
+    overflow-wrap: normal !important;\
+    word-break: normal !important;\
+    font-size: clamp(27px, 7.4vw, 34px) !important;\
+    line-height: 1.12 !important;\
+  \}\
+\
+  .site-description \{\
+    display: block !important;\
+    margin-top: 2px !important;\
+    color: var(--asme-soft) !important;\
+    font-size: 10px !important;\
+    font-weight: 700 !important;\
+    letter-spacing: 0.06em !important;\
+    text-transform: uppercase !important;\
+  \}\
+\
+  .main-navigation,\
+  #site-navigation \{\
+    width: 100% !important;\
+    margin: 10px auto 0 !important;\
+    text-align: center !important;\
+  \}\
+\
+  .menu-toggle \{\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+  \}\
+\
+  .asme-home \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+  \}\
+\
+  .asme-home .ah-hero \{\
+    width: auto !important;\
+    max-width: none !important;\
+    margin-left: 6px !important;\
+    margin-right: 6px !important;\
+    padding: 24px 18px 28px !important;\
+    text-align: center !important;\
+    row-gap: 22px !important;\
+    overflow: hidden !important;\
+    box-sizing: border-box !important;\
+  \}\
+\
+  .asme-home .ah-hero-left,\
+  .asme-home .ah-hero-right \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    min-width: 0 !important;\
+    flex: 1 1 100% !important;\
+    text-align: center !important;\
+    align-items: center !important;\
+  \}\
+\
+  .asme-home .ah-hero-right \{\
+    display: flex !important;\
+    flex-direction: column !important;\
+    justify-content: center !important;\
+    align-self: center !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    margin-top: 10px !important;\
+    padding-left: 0 !important;\
+    padding-right: 0 !important;\
+    transform: none !important;\
+  \}\
+\
+  .asme-home .ah-eyebrow,\
+  .asme-home .ah-title,\
+  .asme-home .ah-sub \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    padding-left: 0 !important;\
+    padding-right: 0 !important;\
+    text-align: center !important;\
+    box-sizing: border-box !important;\
+    overflow-wrap: normal !important;\
+    word-break: normal !important;\
+  \}\
+\
+  .asme-home .ah-title \{\
+    font-size: clamp(28px, 8vw, 36px) !important;\
+    line-height: 1.08 !important;\
+  \}\
+\
+  .asme-home .ah-sub \{\
+    font-size: clamp(16px, 4.5vw, 20px) !important;\
+    line-height: 1.55 !important;\
+  \}\
+\
+  .asme-home .ah-btns \{\
+    width: 100% !important;\
+    justify-content: center !important;\
+    gap: 10px !important;\
+  \}\
+\
+  .asme-home .ah-btn-p,\
+  .asme-home .ah-btn-o \{\
+    max-width: 100% !important;\
+    white-space: nowrap !important;\
+  \}\
+\
+  .asme-home .ah-stats \{\
+    width: 100% !important;\
+    display: grid !important;\
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;\
+    justify-items: center !important;\
+    align-items: center !important;\
+    gap: 6px !important;\
+    margin-top: 18px !important;\
+    padding-left: 0 !important;\
+    padding-right: 0 !important;\
+  \}\
+\
+  .asme-home .ah-stat \{\
+    width: clamp(58px, 18.5vw, 68px) !important;\
+    height: clamp(58px, 18.5vw, 68px) !important;\
+    padding: 0 !important;\
+    margin: 0 !important;\
+  \}\
+\
+  .asme-home .ah-stat-n \{\
+    font-size: clamp(14px, 4vw, 18px) !important;\
+    line-height: 1 !important;\
+  \}\
+\
+  .asme-home .ah-stat-l \{\
+    margin-top: 2px !important;\
+    font-size: 5.8px !important;\
+    line-height: 1.05 !important;\
+    letter-spacing: 0 !important;\
+  \}\
+\
+  .asme-home .ah-badge \{\
+    position: relative !important;\
+    left: auto !important;\
+    right: auto !important;\
+    transform: none !important;\
+    align-self: center !important;\
+    width: min(88%, 330px) !important;\
+    max-width: 330px !important;\
+    min-width: 0 !important;\
+    margin: 0 auto !important;\
+    padding: 20px 18px 18px !important;\
+    display: flex !important;\
+    flex-direction: column !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    gap: 8px !important;\
+  \}\
+\
+  .asme-home .ah-badge img \{\
+    display: block !important;\
+    width: min(220px, 68vw) !important;\
+    height: auto !important;\
+    max-height: 220px !important;\
+    margin: 0 auto 8px !important;\
+    object-fit: contain !important;\
+  \}\
+\
+  .asme-home .ah-badge-label \{\
+    margin: 6px 0 0 !important;\
+  \}\
+\
+  .asme-home .ah-badge-name \{\
+    margin: 0 !important;\
+    line-height: 1.08 !important;\
+  \}\
+\
+  .asme-home .ah-badge-year \{\
+    margin: 0 !important;\
+  \}\
+\
+  .acp-header \{\
+    flex-direction: column !important;\
+  \}\
+\
+  .acp-header-right \{\
+    align-items: flex-start !important;\
+  \}\
+\
+  .acp-subscribe-note \{\
+    text-align: left !important;\
+  \}\
+\
+  .acp-info-strip \{\
+    grid-template-columns: 1fr !important;\
+  \}\
+\
+  .acp-title \{\
+    font-size: 28px !important;\
+  \}\
+\
+  .acp-cal-card iframe \{\
+    height: 480px !important;\
+  \}\
+\
+  .asme-footer-grid \{\
+    grid-template-columns: 1fr !important;\
+  \}\
+\}\
+\
+@media (max-width: 400px) \{\
+  .site-title,\
+  .site-title a \{\
+    font-size: clamp(24px, 7vw, 30px) !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   END\
+   ============================================= */\
+\
+/* =============================================\
+   ASME \'97 Subtle Animations\
+   ============================================= */\
+@keyframes asme-fade-up \{\
+  from \{ opacity: 0; transform: translateY(20px); \}\
+  to \{ opacity: 1; transform: translateY(0); \}\
+\}\
+\
+.ah-eyebrow \{\
+  animation: asme-fade-up 0.5s ease both;\
+  animation-delay: 0.05s;\
+\}\
+\
+.ah-title \{\
+  animation: asme-fade-up 0.55s ease both;\
+  animation-delay: 0.15s;\
+\}\
+\
+.ah-sub \{\
+  animation: asme-fade-up 0.55s ease both;\
+  animation-delay: 0.25s;\
+\}\
+\
+.ah-btns \{\
+  animation: asme-fade-up 0.55s ease both;\
+  animation-delay: 0.35s;\
+\}\
+\
+.ah-stats \{\
+  animation: asme-fade-up 0.55s ease both;\
+  animation-delay: 0.42s;\
+\}\
+\
+.ah-badge \{\
+  animation: asme-fade-up 0.6s ease both;\
+  animation-delay: 0.2s;\
+\}\
+\
+.ah-card \{\
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;\
+\}\
+\
+.ah-card:hover \{\
+  transform: translateY(-4px) !important;\
+  box-shadow: 0 12px 32px rgba(15, 52, 96, 0.12) !important;\
+  border-color: #0f3460 !important;\
+\}\
+\
+.leader-card:hover .leader-photo \{\
+  transform: scale(1.04);\
+  transition: transform 0.3s ease;\
+\}\
+\
+.leader-photo \{\
+  transition: transform 0.3s ease;\
+\}\
+\
+.asme-gallery-page .gallery-item img \{\
+  transition: transform 0.35s ease !important;\
+\}\
+\
+.asme-gallery-page .gallery-item:hover img \{\
+  transform: scale(1.05) !important;\
+\}\
+\
+.widget ul li a \{\
+  transition: color 0.18s ease, padding-left 0.18s ease !important;\
+\}\
+\
+.widget ul li a:hover \{\
+  padding-left: 6px !important;\
+  color: var(--asme-navy) !important;\
+\}\
+\
+.acp-subscribe-btn,\
+.ah-btn-p,\
+.ah-btn-o \{\
+  transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease !important;\
+\}\
+\
+.acp-subscribe-btn:hover,\
+.ah-btn-p:hover,\
+.ah-btn-o:hover \{\
+  transform: scale(1.03) !important;\
+\}\
+\
+.asme-animate \{\
+  opacity: 0;\
+  transform: translateY(18px);\
+  transition: opacity 0.55s ease, transform 0.55s ease;\
+\}\
+\
+.asme-animate.is-visible \{\
+  opacity: 1;\
+  transform: translateY(0);\
+\}\
+\
+/* =============================================\
+   SPONSOR PAGE \'97 stat panel fix\
+   ============================================= */\
+.sponsor-stat-inner \{\
+  display: flex !important;\
+  flex-direction: column !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  gap: 2px !important;\
+  line-height: 1 !important;\
+\}\
+\
+.sponsor-stat-inner strong \{\
+  display: block !important;\
+  font-size: 36px !important;\
+  font-weight: 700 !important;\
+  line-height: 1 !important;\
+  margin: 0 !important;\
+  letter-spacing: -0.5px !important;\
+\}\
+\
+.sponsor-stat-inner span \{\
+  display: block !important;\
+  font-size: 11px !important;\
+  line-height: 1.2 !important;\
+  margin: 0 !important;\
+  text-align: center !important;\
+  text-transform: uppercase !important;\
+  letter-spacing: 0.06em !important;\
+  opacity: 0.7 !important;\
+\}\
+\
+/* =============================================\
+   LEADERSHIP \'97 Auto grid + accordion\
+   ============================================= */\
+.lb-current-year \{\
+  margin-bottom: 40px;\
+\}\
+\
+.lb-current-header,\
+.lb-year-panel-header \{\
+  display: flex;\
+  align-items: center;\
+  gap: 16px;\
+\}\
+\
+.lb-current-header \{\
+  margin-bottom: 28px;\
+\}\
+\
+.lb-year-panel-header \{\
+  margin-bottom: 22px;\
+\}\
+\
+.lb-current-header::before,\
+.lb-current-header::after,\
+.lb-year-panel-header::before,\
+.lb-year-panel-header::after \{\
+  content: '';\
+  flex: 1;\
+  height: 1px;\
+  background: #e5e7eb;\
+\}\
+\
+.lb-current-header h2 \{\
+  background: #0f3460 !important;\
+  color: #fff !important;\
+  border-radius: 999px !important;\
+  padding: 8px 22px !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 13px !important;\
+  font-weight: 700 !important;\
+  white-space: nowrap !important;\
+  margin: 0 !important;\
+\}\
+\
+.lb-past-years \{\
+  border-top: 1px solid #e5e7eb;\
+  padding-top: 32px;\
+\}\
+\
+.lb-past-label \{\
+  margin-bottom: 16px;\
+  text-align: center;\
+  color: #9ca3af;\
+  font-size: 10px;\
+  font-weight: 700;\
+  letter-spacing: 0.1em;\
+  text-transform: uppercase;\
+\}\
+\
+.lb-year-tabs \{\
+  display: flex;\
+  flex-wrap: wrap;\
+  justify-content: center;\
+  gap: 8px;\
+  margin-bottom: 28px;\
+\}\
+\
+.lb-year-tab \{\
+  padding: 7px 18px;\
+  background: #f3f4f6;\
+  border: 1px solid #e5e7eb;\
+  border-radius: 999px;\
+  color: #4b5563;\
+  font-size: 12px;\
+  font-weight: 600;\
+  cursor: pointer;\
+  transition: background 0.18s, color 0.18s, border-color 0.18s;\
+  user-select: none;\
+\}\
+\
+.lb-year-tab:hover \{\
+  background: #e8f4fd;\
+  color: #0f3460;\
+  border-color: #0f3460;\
+\}\
+\
+.lb-year-tab.active \{\
+  background: #0f3460;\
+  color: #fff;\
+  border-color: #0f3460;\
+\}\
+\
+.lb-year-panel \{\
+  display: none;\
+  animation: lb-fade-in 0.3s ease;\
+\}\
+\
+.lb-year-panel.active \{\
+  display: block;\
+\}\
+\
+@keyframes lb-fade-in \{\
+  from \{ opacity: 0; transform: translateY(8px); \}\
+  to \{ opacity: 1; transform: translateY(0); \}\
+\}\
+\
+.lb-year-panel-header h3 \{\
+  background: #6b7280 !important;\
+  color: #fff !important;\
+  border-radius: 999px !important;\
+  padding: 7px 20px !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 12px !important;\
+  font-weight: 700 !important;\
+  white-space: nowrap !important;\
+  margin: 0 !important;\
+\}\
+\
+.leadership-board .lb-grid \{\
+  display: flex !important;\
+  flex-wrap: wrap !important;\
+  justify-content: center !important;\
+  gap: 14px !important;\
+  max-width: 760px !important;\
+  margin: 0 auto !important;\
+\}\
+\
+.leadership-board .lb-grid .leader-card \{\
+  flex: 0 0 170px !important;\
+  width: 170px !important;\
+  max-width: 170px !important;\
+\}\
+\
+@media (max-width: 768px) \{\
+  .leadership-board .lb-grid .leader-card \{\
+    flex: 0 0 140px !important;\
+    width: 140px !important;\
+    max-width: 140px !important;\
+  \}\
+\}\
+\
+@media (max-width: 480px) \{\
+  .leadership-board .lb-grid .leader-card \{\
+    flex: 0 0 120px !important;\
+    width: 120px !important;\
+    max-width: 120px !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   SPONSORS PAGE \'97 additional grids\
+   ============================================= */\
+.sponsors-section-sub \{\
+  max-width: 560px;\
+  margin: 6px auto 0;\
+  color: var(--asme-muted);\
+  font-size: 14px;\
+  line-height: 1.6;\
+  text-align: center;\
+\}\
+\
+.sponsors-divider \{\
+  height: 1px;\
+  margin: 48px 0;\
+  background: #e5e7eb;\
+\}\
+\
+.sponsors-grid-primary \{\
+  display: grid !important;\
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;\
+  gap: 20px !important;\
+  max-width: 900px !important;\
+  margin: 0 auto !important;\
+\}\
+\
+.sponsor-card-primary \{\
+  position: relative !important;\
+  background: #fff !important;\
+  border: 2px solid #0f3460 !important;\
+  border-radius: 20px !important;\
+  padding: 28px 24px !important;\
+  text-align: center !important;\
+  transition: transform 0.2s, box-shadow 0.2s !important;\
+\}\
+\
+.sponsor-card-primary::before \{\
+  content: '\uc0\u9733  Sponsor';\
+  position: absolute;\
+  top: -12px;\
+  left: 50%;\
+  transform: translateX(-50%);\
+  background: #0f3460;\
+  color: #fff;\
+  font-size: 9px;\
+  font-weight: 700;\
+  letter-spacing: 0.06em;\
+  text-transform: uppercase;\
+  white-space: nowrap;\
+  padding: 3px 12px;\
+  border-radius: 999px;\
+\}\
+\
+.sponsor-card-primary:hover \{\
+  transform: translateY(-4px) !important;\
+  box-shadow: 0 12px 32px rgba(15, 52, 96, 0.14) !important;\
+\}\
+\
+.sponsor-card-primary .sponsor-logo-frame \{\
+  width: 100% !important;\
+  height: 120px !important;\
+  display: flex !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  margin-bottom: 16px !important;\
+  background: #f9fafb !important;\
+  border-radius: 12px !important;\
+  padding: 16px !important;\
+\}\
+\
+.sponsor-card-primary .sponsor-logo-frame img \{\
+  max-width: 100% !important;\
+  max-height: 80px !important;\
+  object-fit: contain !important;\
+  border-radius: 0 !important;\
+\}\
+\
+.sponsor-card-primary h3 \{\
+  margin: 0 0 8px !important;\
+  color: #0f3460 !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 17px !important;\
+  font-weight: 400 !important;\
+\}\
+\
+.sponsor-card-primary h3 a \{\
+  color: #0f3460 !important;\
+  text-decoration: none !important;\
+\}\
+\
+.sponsor-card-primary p \{\
+  margin: 0 !important;\
+  color: var(--asme-muted) !important;\
+  font-size: 13px !important;\
+  line-height: 1.6 !important;\
+\}\
+\
+.sponsor-logo-link \{\
+  display: block !important;\
+  text-decoration: none !important;\
+  cursor: pointer !important;\
+\}\
+\
+.sponsor-logo-link:hover .sponsor-logo-frame \{\
+  background: #e8f4fd !important;\
+\}\
+\
+.sponsors-grid-partners \{\
+  display: grid !important;\
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;\
+  gap: 14px !important;\
+  max-width: 900px !important;\
+  margin: 0 auto !important;\
+\}\
+\
+.sponsor-card-partner \{\
+  background: #fff !important;\
+  border: 1px solid #e5e7eb !important;\
+  border-radius: 14px !important;\
+  padding: 18px 16px !important;\
+  text-align: center !important;\
+  transition: transform 0.18s, box-shadow 0.18s !important;\
+\}\
+\
+.sponsor-card-partner:hover \{\
+  transform: translateY(-2px) !important;\
+  box-shadow: 0 6px 18px rgba(15, 52, 96, 0.08) !important;\
+\}\
+\
+.sponsor-card-partner .sponsor-logo-frame \{\
+  width: 100% !important;\
+  height: 70px !important;\
+  display: flex !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  margin-bottom: 10px !important;\
+  background: #f9fafb !important;\
+  border-radius: 10px !important;\
+  padding: 10px !important;\
+\}\
+\
+.sponsor-card-partner .sponsor-logo-frame img \{\
+  max-width: 100% !important;\
+  max-height: 58px !important;\
+  object-fit: contain !important;\
+  border-radius: 0 !important;\
+\}\
+\
+.sponsor-card-partner h3 \{\
+  margin: 0 !important;\
+  color: #374151 !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 12px !important;\
+  font-weight: 600 !important;\
+  line-height: 1.3 !important;\
+\}\
+\
+.sponsor-card-partner h3 a \{\
+  color: #374151 !important;\
+  text-decoration: none !important;\
+\}\
+\
+.sponsor-card-partner h3 a:hover \{\
+  color: #0f3460 !important;\
+\}\
+\
+.sponsors-partners .sponsors-section-header,\
+.sponsors-partners .sponsors-eyebrow,\
+.sponsors-partners h2 \{\
+  text-align: center !important;\
+\}\
+\
+.sponsors-partners \{\
+  padding-bottom: 40px !important;\
+\}\
+\
+/* =============================================\
+   OSU \'d7 ASME COLOR BLEND\
+   ============================================= */\
+:root \{\
+  --osu-scarlet: #BB0000;\
+  --osu-scarlet-dark: #8F0000;\
+  --osu-scarlet-light: #f5e6e6;\
+  --osu-gold: #C8AA6E;\
+\}\
+\
+.main-navigation ul li.current-menu-item > a,\
+.nav-menu li.current-menu-item > a \{\
+  background: var(--osu-scarlet) !important;\
+  color: #ffffff !important;\
+\}\
+\
+.ah-btn-p \{\
+  background: var(--osu-scarlet) !important;\
+  color: #ffffff !important;\
+\}\
+\
+.ah-btn-p:hover \{\
+  background: var(--osu-scarlet-dark) !important;\
+  color: #ffffff !important;\
+  opacity: 1 !important;\
+\}\
+\
+.ah-cards-grid > .ah-card .ah-card-button,\
+.sponsors-cta-button,\
+.sponsor-primary-button,\
+.acp-subscribe-btn,\
+.search-form .search-submit,\
+.widget_search input[type='submit'] \{\
+  background: var(--osu-scarlet) !important;\
+  color: #ffffff !important;\
+\}\
+\
+.ah-cards-grid > .ah-card .ah-card-button:hover,\
+.sponsors-cta-button:hover,\
+.sponsor-primary-button:hover,\
+.acp-subscribe-btn:hover \{\
+  background: var(--osu-scarlet-dark) !important;\
+  color: #ffffff !important;\
+\}\
+\
+.ah-badge \{\
+  border-color: var(--osu-gold) !important;\
+  border-width: 1.5px !important;\
+  border-style: solid !important;\
+\}\
+\
+.ah-badge-label \{\
+  color: var(--osu-gold) !important;\
+\}\
+\
+.cat-links a,\
+.tags-links a,\
+.leader-card h3 \{\
+  background: var(--osu-scarlet-light) !important;\
+  color: var(--osu-scarlet) !important;\
+\}\
+\
+.cat-links a:hover,\
+.tags-links a:hover \{\
+  background: var(--osu-scarlet) !important;\
+  color: #ffffff !important;\
+\}\
+\
+.lb-current-header h2,\
+.lb-year-tab.active \{\
+  background: var(--osu-scarlet) !important;\
+  border-color: var(--osu-scarlet) !important;\
+\}\
+\
+.lb-year-tab:hover \{\
+  background: var(--osu-scarlet-light) !important;\
+  color: var(--osu-scarlet) !important;\
+  border-color: var(--osu-scarlet) !important;\
+\}\
+\
+.sponsor-card-primary::before \{\
+  background: var(--osu-scarlet) !important;\
+\}\
+\
+.sponsor-card-primary \{\
+  border-color: var(--osu-scarlet) !important;\
+\}\
+\
+.asme-footer-col a:hover \{\
+  color: var(--osu-scarlet) !important;\
+\}\
+\
+.page-numbers.current,\
+.page-numbers:hover,\
+.nav-links a:hover \{\
+  background: var(--osu-scarlet) !important;\
+  border-color: var(--osu-scarlet) !important;\
+  color: #ffffff !important;\
+\}\
+\
+.sponsor-hero-panel \{\
+  background: linear-gradient(135deg, #BB0000 0%, #7a0000 100%) !important;\
+\}\
+\
+.ah-hero \{\
+  background: linear-gradient(135deg, #0f3460 0%, #1a1a3e 60%, #3d0a0a 100%) !important;\
+\}\
+\
+.about-pillar \{\
+  border-top: 3px solid var(--osu-scarlet) !important;\
+\}\
+\
+.ah-card:hover \{\
+  border-color: var(--osu-scarlet) !important;\
+  box-shadow: 0 12px 32px rgba(187, 0, 0, 0.1) !important;\
+\}\
+\
+/* =============================================\
+   HERO PHOTO BACKGROUND SLIDESHOW\
+   ============================================= */\
+.ah-hero \{\
+  position: relative !important;\
+  overflow: hidden !important;\
+  isolation: isolate !important;\
+  background: transparent !important;\
+\}\
+\
+.ah-hero-slides \{\
+  position: absolute !important;\
+  inset: 0 !important;\
+  z-index: 0 !important;\
+\}\
+\
+.ah-hero-slide \{\
+  position: absolute !important;\
+  inset: 0 !important;\
+  opacity: 0 !important;\
+  background-size: cover !important;\
+  transition: opacity 1.2s ease !important;\
+  animation: ah-ken-burns 8s ease-in-out infinite alternate !important;\
+\}\
+\
+.ah-hero-slide.active \{\
+  opacity: 1 !important;\
+\}\
+\
+@keyframes ah-ken-burns \{\
+  from \{ transform: scale(1); \}\
+  to \{ transform: scale(1.07); \}\
+\}\
+\
+.ah-hero-overlay \{\
+  position: absolute !important;\
+  inset: 0 !important;\
+  z-index: 1 !important;\
+  background: linear-gradient(\
+    105deg,\
+    rgba(10, 20, 50, 0.82) 0%,\
+    rgba(10, 20, 50, 0.65) 55%,\
+    rgba(10, 20, 50, 0.5) 100%\
+  ) !important;\
+\}\
+\
+.ah-hero-left,\
+.ah-hero-right \{\
+  position: relative !important;\
+  z-index: 2 !important;\
+\}\
+\
+.ah-hero-dots \{\
+  position: absolute !important;\
+  bottom: 14px !important;\
+  left: 50% !important;\
+  z-index: 3 !important;\
+  display: flex !important;\
+  gap: 7px !important;\
+  transform: translateX(-50%) !important;\
+\}\
+\
+.ah-hero-dot \{\
+  width: 7px !important;\
+  height: 7px !important;\
+  padding: 0 !important;\
+  border: none !important;\
+  border-radius: 50% !important;\
+  cursor: pointer !important;\
+  background: rgba(255, 255, 255, 0.35) !important;\
+  transition: background 0.25s, transform 0.25s !important;\
+\}\
+\
+.ah-hero-dot.active \{\
+  background: #ffffff !important;\
+  transform: scale(1.3) !important;\
+\}\
+\
+.ah-hero-dots \{\
+  pointer-events: auto !important;\
+\}\
+\
+/* =============================================\
+   HERO \'97 latest desktop horizontal adjustment\
+   ============================================= */\
+.ah-hero \{\
+  padding-left: 18px !important;\
+  padding-right: 18px !important;\
+  gap: 24px !important;\
+\}\
+\
+.ah-hero-left \{\
+  margin-left: 0 !important;\
+  padding-left: 0 !important;\
+  max-width: 820px !important;\
+\}\
+\
+.ah-hero-right \{\
+  width: 320px !important;\
+  max-width: 320px !important;\
+  min-width: 320px !important;\
+  flex: 0 0 320px !important;\
+  margin-left: auto !important;\
+  margin-right: 0 !important;\
+  padding-right: 0 !important;\
+\}\
+\
+.ah-badge \{\
+  max-width: 320px !important;\
+  margin-right: 0 !important;\
+\}\
+\
+.ah-sub \{\
+  max-width: 720px !important;\
+\}\
+\
+@media (max-width: 1200px) \{\
+  .ah-hero \{\
+    padding-left: 16px !important;\
+    padding-right: 16px !important;\
+    gap: 20px !important;\
+  \}\
+\
+  .ah-hero-right \{\
+    width: 300px !important;\
+    max-width: 300px !important;\
+    min-width: 300px !important;\
+    flex: 0 0 300px !important;\
+  \}\
+\
+  .ah-badge \{\
+    max-width: 300px !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   HERO FINAL ALIGNMENT + JOIN BUTTON TEXT\
+   Paste at bottom of Additional CSS\
+   ============================================= */\
+\
+/* Keep the Join ASME button text white in every state */\
+.asme-home .ah-btn-p,\
+.asme-home .ah-btn-p:link,\
+.asme-home .ah-btn-p:visited,\
+.asme-home .ah-btn-p:hover,\
+.asme-home .ah-btn-p:focus,\
+.asme-home .ah-btn-p:active \{\
+  color: #ffffff !important;\
+\}\
+\
+/* =============================================\
+   HERO DESKTOP HEIGHT \'97 COMPACT\
+   Paste at bottom of Additional CSS\
+   ============================================= */\
+\
+@media (min-width: 901px) \{\
+  .asme-home .ah-hero \{\
+    height: 500px !important;\
+    min-height: 0 !important;\
+    max-height: 500px !important;\
+    padding-top: 20px !important;\
+    padding-bottom: 20px !important;\
+    align-content: center !important;\
+    overflow: hidden !important;\
+  \}\
+\
+  .asme-home .ah-title \{\
+    font-size: 38px !important;\
+    line-height: 1.02 !important;\
+    margin-bottom: 8px !important;\
+  \}\
+\
+  .asme-home .ah-eyebrow \{\
+    margin-bottom: 8px !important;\
+  \}\
+\
+  .asme-home .ah-sub \{\
+    font-size: 16px !important;\
+    line-height: 1.4 !important;\
+    margin-bottom: 14px !important;\
+  \}\
+\
+  .asme-home .ah-btns \{\
+    gap: 12px !important;\
+  \}\
+\
+  .asme-home .ah-btn-p,\
+  .asme-home .ah-btn-o \{\
+    padding: 10px 22px !important;\
+  \}\
+\
+  .asme-home .ah-stats \{\
+    margin-top: 12px !important;\
+  \}\
+\
+  .asme-home .ah-stat \{\
+    width: 70px !important;\
+    height: 70px !important;\
+  \}\
+\
+  .asme-home .ah-stat-n \{\
+    font-size: 15px !important;\
+  \}\
+\
+  .asme-home .ah-stat-l \{\
+    font-size: 7px !important;\
+  \}\
+\
+  .asme-home .ah-badge \{\
+    width: 280px !important;\
+    max-width: 280px !important;\
+    padding: 12px 16px !important;\
+  \}\
+\
+  .asme-home .ah-badge img \{\
+    width: 165px !important;\
+    height: 165px !important;\
+    margin-bottom: 5px !important;\
+  \}\
+\
+  .asme-home .ah-badge-name \{\
+    font-size: 17px !important;\
+    line-height: 1.05 !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   HERO DESKTOP BALANCE RESET\
+   Moves text left by giving the left side more room\
+   ============================================= */\
+\
+@media (min-width: 901px) \{\
+  .asme-home .ah-hero \{\
+    display: grid !important;\
+    grid-template-columns: minmax(0, 1.45fr) 360px !important;\
+    align-items: center !important;\
+    column-gap: 32px !important;\
+    padding: 44px 36px 32px !important;\
+  \}\
+\
+  .asme-home .ah-hero-left \{\
+    width: 100% !important;\
+    max-width: none !important;\
+    min-width: 0 !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    justify-self: start !important;\
+    text-align: left !important;\
+    transform: none !important;\
+  \}\
+\
+  .asme-home .ah-title,\
+  .asme-home .ah-sub,\
+  .asme-home .ah-eyebrow \{\
+    margin-left: 0 !important;\
+    margin-right: auto !important;\
+    text-align: left !important;\
+  \}\
+\
+  .asme-home .ah-title \{\
+    max-width: 820px !important;\
+  \}\
+\
+  .asme-home .ah-sub \{\
+    max-width: 980px !important;\
+  \}\
+\
+  .asme-home .ah-btns,\
+  .asme-home .ah-stats \{\
+    justify-content: flex-start !important;\
+  \}\
+\
+  .asme-home .ah-hero-right \{\
+    width: 360px !important;\
+    max-width: 360px !important;\
+    min-width: 0 !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    justify-self: end !important;\
+    display: flex !important;\
+    justify-content: flex-end !important;\
+    align-items: center !important;\
+    transform: none !important;\
+  \}\
+\
+  .asme-home .ah-badge \{\
+    width: 320px !important;\
+    max-width: 320px !important;\
+    min-width: 0 !important;\
+    margin: 0 !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   HERO DESKTOP HEIGHT \'97 15% SMALLER + LARGER AWARD\
+   Paste at bottom of Additional CSS\
+   ============================================= */\
+\
+@media (min-width: 901px) \{\
+  .asme-home .ah-hero \{\
+    height: 425px !important;\
+    max-height: 425px !important;\
+    min-height: 0 !important;\
+    padding-top: 16px !important;\
+    padding-bottom: 16px !important;\
+  \}\
+\
+  .asme-home .ah-title \{\
+    font-size: 36px !important;\
+    line-height: 1 !important;\
+    margin-bottom: 6px !important;\
+  \}\
+\
+  .asme-home .ah-sub \{\
+    font-size: 15px !important;\
+    line-height: 1.32 !important;\
+    margin-bottom: 12px !important;\
+  \}\
+\
+  .asme-home .ah-stats \{\
+    margin-top: 10px !important;\
+  \}\
+\
+  .asme-home .ah-badge \{\
+    width: 300px !important;\
+    max-width: 300px !important;\
+    padding: 12px 16px !important;\
+  \}\
+\
+  .asme-home .ah-badge img \{\
+    width: 185px !important;\
+    height: 185px !important;\
+    margin-bottom: 5px !important;\
+  \}\
+\
+  .asme-home .ah-badge-name \{\
+    font-size: 18px !important;\
+    line-height: 1.05 !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   JOIN PAGE \'97 consolidated final version\
+   ============================================= */\
+\
+.asme-join-page,\
+.asme-join-page * \{\
+  box-sizing: border-box !important;\
+\}\
+\
+.asme-join-page \{\
+  width: 100% !important;\
+  max-width: 1240px !important;\
+  margin: 0 auto !important;\
+  padding: 12px 32px 48px !important;\
+\}\
+\
+/* Prevent WordPress auto-formatting from adding weird gaps */\
+.asme-join-page br,\
+.asme-join-page p:empty \{\
+  display: none !important;\
+\}\
+\
+.asme-join-page p,\
+.asme-join-page h1,\
+.asme-join-page h2,\
+.asme-join-page h3,\
+.asme-join-page div,\
+.asme-join-page label,\
+.asme-join-page input,\
+.asme-join-page span,\
+.asme-join-page strong,\
+.asme-join-page form \{\
+  min-height: 0 !important;\
+  max-height: none !important;\
+\}\
+\
+/* Layout */\
+.asme-join-page .join-hero \{\
+  display: grid !important;\
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) !important;\
+  gap: 28px !important;\
+  align-items: stretch !important;\
+  width: 100% !important;\
+\}\
+\
+.asme-join-page .join-hero-copy,\
+.asme-join-page .join-form-card \{\
+  width: 100% !important;\
+  height: 100% !important;\
+  min-height: 0 !important;\
+  margin: 0 !important;\
+  align-self: stretch !important;\
+  background: #ffffff !important;\
+  border: 1px solid var(--asme-line, #e5e7eb) !important;\
+  border-radius: 18px !important;\
+  padding: 28px 34px !important;\
+\}\
+\
+/* Left card */\
+.asme-join-page .join-hero-copy \{\
+  display: flex !important;\
+  flex-direction: column !important;\
+  justify-content: center !important;\
+\}\
+\
+.asme-join-page .join-eyebrow \{\
+  display: block !important;\
+  margin: 0 0 10px !important;\
+  color: var(--asme-soft, #9ca3af) !important;\
+  font-size: 11px !important;\
+  font-weight: 700 !important;\
+  letter-spacing: 0.1em !important;\
+  text-transform: uppercase !important;\
+\}\
+\
+.asme-join-page .join-hero-copy h1 \{\
+  margin: 0 0 14px !important;\
+  color: var(--asme-navy, #0f3460) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 38px !important;\
+  line-height: 1.08 !important;\
+\}\
+\
+.asme-join-page .join-hero-copy p \{\
+  margin: 0 !important;\
+  color: var(--asme-muted, #6b7280) !important;\
+  font-size: 15px !important;\
+  line-height: 1.62 !important;\
+\}\
+\
+.asme-join-page .join-highlights \{\
+  display: grid !important;\
+  gap: 9px !important;\
+  margin-top: 18px !important;\
+\}\
+\
+.asme-join-page .join-highlights div \{\
+  display: block !important;\
+  height: auto !important;\
+  min-height: 0 !important;\
+  padding: 11px 15px !important;\
+  background: #f9fafb !important;\
+  border: 1px solid var(--asme-line, #e5e7eb) !important;\
+  border-left: 3px solid #bb0000 !important;\
+  border-radius: 10px !important;\
+\}\
+\
+.asme-join-page .join-highlights strong,\
+.asme-join-page .join-highlights span \{\
+  display: block !important;\
+  height: auto !important;\
+  min-height: 0 !important;\
+  margin-top: 0 !important;\
+  padding: 0 !important;\
+\}\
+\
+.asme-join-page .join-highlights strong \{\
+  margin-bottom: 3px !important;\
+  color: var(--asme-navy, #0f3460) !important;\
+  font-size: 13px !important;\
+  font-weight: 700 !important;\
+\}\
+\
+.asme-join-page .join-highlights span \{\
+  color: var(--asme-muted, #6b7280) !important;\
+  font-size: 12px !important;\
+  line-height: 1.45 !important;\
+\}\
+\
+/* Right card */\
+.asme-join-page .join-form-card \{\
+  display: flex !important;\
+  flex-direction: column !important;\
+  justify-content: center !important;\
+\}\
+\
+.asme-join-page .join-form-heading \{\
+  margin: 0 0 18px !important;\
+  padding: 0 0 14px !important;\
+  border-bottom: 1px solid #f3f4f6 !important;\
+\}\
+\
+.asme-join-page .join-form-heading h2 \{\
+  margin: 0 0 6px !important;\
+  color: var(--asme-navy, #0f3460) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 30px !important;\
+  font-weight: 400 !important;\
+  line-height: 1.1 !important;\
+\}\
+\
+.asme-join-page .join-form-heading p \{\
+  margin: 0 !important;\
+  color: var(--asme-muted, #6b7280) !important;\
+  font-size: 13px !important;\
+  line-height: 1.45 !important;\
+\}\
+\
+/* Form */\
+.asme-join-page .join-form \{\
+  display: grid !important;\
+  grid-template-columns: 1fr !important;\
+  gap: 14px !important;\
+  width: 100% !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+\}\
+\
+.asme-join-page .join-form p,\
+.asme-join-page .join-form div,\
+.asme-join-page .join-form label,\
+.asme-join-page .join-form input \{\
+  margin-top: 0 !important;\
+  margin-bottom: 0 !important;\
+\}\
+\
+.asme-join-page .join-field-row \{\
+  display: grid !important;\
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;\
+  gap: 14px !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+\}\
+\
+.asme-join-page .join-field \{\
+  display: grid !important;\
+  grid-template-columns: 1fr !important;\
+  gap: 7px !important;\
+  min-height: 0 !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+\}\
+\
+.asme-join-page .join-field label \{\
+  display: block !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+  color: var(--asme-navy, #0f3460) !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 11px !important;\
+  font-weight: 700 !important;\
+  line-height: 1.2 !important;\
+  letter-spacing: 0.05em !important;\
+  text-transform: uppercase !important;\
+\}\
+\
+.asme-join-page .join-field input \{\
+  display: block !important;\
+  width: 100% !important;\
+  height: 42px !important;\
+  min-height: 42px !important;\
+  max-height: 42px !important;\
+  margin: 0 !important;\
+  padding: 9px 14px !important;\
+  background: #f9fafb !important;\
+  border: 1px solid #e5e7eb !important;\
+  border-radius: 10px !important;\
+  color: var(--asme-text, #1a1a2e) !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 13px !important;\
+  line-height: 1.2 !important;\
+  outline: none !important;\
+\}\
+\
+.asme-join-page .join-field input:focus \{\
+  border-color: #bb0000 !important;\
+  box-shadow: 0 0 0 3px rgba(187, 0, 0, 0.1) !important;\
+\}\
+\
+/* Button */\
+.asme-join-page .join-submit-wrap \{\
+  position: relative !important;\
+  top: 24px !important;\
+  display: flex !important;\
+  justify-content: center !important;\
+  margin: 24px 0 0 !important;\
+  padding: 0 0 24px !important;\
+\}\
+\
+.asme-join-page .join-submit-button \{\
+  appearance: none !important;\
+  display: inline-flex !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  width: auto !important;\
+  min-width: 220px !important;\
+  height: 54px !important;\
+  min-height: 54px !important;\
+  max-height: 54px !important;\
+  margin: 0 !important;\
+  padding: 0 42px !important;\
+  background: #bb0000 !important;\
+  border: 0 !important;\
+  border-radius: 999px !important;\
+  color: #ffffff !important;\
+  cursor: pointer !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 22px !important;\
+  font-weight: 400 !important;\
+  line-height: 1 !important;\
+  letter-spacing: 0.01em !important;\
+  text-align: center !important;\
+\}\
+\
+.asme-join-page .join-submit-button span \{\
+  display: block !important;\
+  line-height: 1 !important;\
+  transform: translateY(-1px) !important;\
+\}\
+\
+.asme-join-page .join-submit-button:hover \{\
+  background: #990000 !important;\
+\}\
+\
+.asme-join-page .join-hidden-field \{\
+  display: none !important;\
+\}\
+\
+/* Mobile */\
+@media (max-width: 900px) \{\
+  .asme-join-page \{\
+    padding: 8px 14px 40px !important;\
+  \}\
+\
+  .asme-join-page .join-hero,\
+  .asme-join-page .join-field-row \{\
+    grid-template-columns: 1fr !important;\
+  \}\
+\
+  .asme-join-page .join-hero \{\
+    gap: 18px !important;\
+    align-items: start !important;\
+  \}\
+\
+  .asme-join-page .join-hero-copy,\
+  .asme-join-page .join-form-card \{\
+    height: auto !important;\
+    padding: 24px 22px !important;\
+  \}\
+\
+  .asme-join-page .join-hero-copy h1 \{\
+    font-size: 34px !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   DARK MODE \'97 consolidated final version\
+   ============================================= */\
+\
+@media (prefers-color-scheme: dark) \{\
+  :root \{\
+    --asme-bg: #07111f;\
+    --asme-card: #0f1b2d;\
+    --asme-card-soft: #111f33;\
+    --asme-line: #26364f;\
+    --asme-text: #f8fafc;\
+    --asme-muted: #cbd5e1;\
+    --asme-soft: #94a3b8;\
+    --asme-navy: #f8fafc;\
+    --asme-blue: #93c5fd;\
+    --asme-chip: #1e293b;\
+    --osu-scarlet: #bb0000;\
+    --osu-scarlet-dark: #990000;\
+  \}\
+\
+  html,\
+  body,\
+  .site,\
+  #page,\
+  .site-content,\
+  #content,\
+  #content.site-content,\
+  .site-content .wrap,\
+  .content-sidebar-wrap,\
+  #primary,\
+  .content-area,\
+  #main,\
+  .site-main,\
+  .inside-article,\
+  .page .inside-article,\
+  .page article.page,\
+  article.page,\
+  .entry-content,\
+  .separate-containers .inside-article,\
+  .one-container .site-content \{\
+    background: var(--asme-bg) !important;\
+    color: var(--asme-text) !important;\
+  \}\
+\
+  .asme-home,\
+  .asme-about-page,\
+  .asme-join-page,\
+  .asme-sponsors-page,\
+  .asme-sponsor-page,\
+  .asme-gallery-page,\
+  .asme-cal-page \{\
+    background: transparent !important;\
+    color: var(--asme-text) !important;\
+  \}\
+\
+  /* Header and navigation */\
+  .site-header,\
+  #masthead,\
+  .inside-header \{\
+    background: var(--asme-card) !important;\
+    border-color: var(--asme-line) !important;\
+    box-shadow: none !important;\
+  \}\
+\
+  .site-title,\
+  .site-title a,\
+  .main-title,\
+  .main-title a,\
+  .site-branding .site-title,\
+  .site-branding .site-title a \{\
+    color: #ffffff !important;\
+    opacity: 1 !important;\
+    text-shadow: none !important;\
+  \}\
+\
+  .site-description,\
+  .site-branding .site-description \{\
+    color: var(--asme-muted) !important;\
+    opacity: 1 !important;\
+  \}\
+\
+  .main-navigation,\
+  #site-navigation,\
+  .main-navigation .main-nav,\
+  .main-navigation .main-nav > ul,\
+  .nav-menu,\
+  .main-navigation ul li,\
+  .nav-menu li \{\
+    background: transparent !important;\
+  \}\
+\
+  .main-navigation ul li a,\
+  .nav-menu li a,\
+  .main-navigation .main-nav > ul > li > a,\
+  .nav-menu > li > a \{\
+    background: transparent !important;\
+    color: #dbe4f0 !important;\
+    border: 1px solid transparent !important;\
+    opacity: 1 !important;\
+  \}\
+\
+  .main-navigation ul li a:hover,\
+  .nav-menu li a:hover,\
+  .main-navigation .main-nav > ul > li > a:hover,\
+  .nav-menu > li > a:hover \{\
+    background: #1e293b !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  .main-navigation ul li.current-menu-item > a,\
+  .nav-menu li.current-menu-item > a,\
+  .main-navigation .main-nav > ul > li.current-menu-item > a \{\
+    background: var(--osu-scarlet) !important;\
+    color: #ffffff !important;\
+    border-color: var(--osu-scarlet) !important;\
+  \}\
+\
+  .main-navigation .dropdown-menu-toggle,\
+  .main-navigation .dropdown-menu-toggle *,\
+  .main-navigation .menu-item-has-children > a \{\
+    color: #dbe4f0 !important;\
+  \}\
+\
+  .main-navigation ul ul,\
+  .main-navigation .main-nav ul ul,\
+  .nav-menu ul \{\
+    background: var(--asme-card) !important;\
+    border: 1px solid #334155 !important;\
+    border-radius: 18px !important;\
+    padding: 10px !important;\
+    overflow: visible !important;\
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35) !important;\
+  \}\
+\
+  .main-navigation ul ul li,\
+  .main-navigation .main-nav ul ul li,\
+  .nav-menu ul li \{\
+    background: transparent !important;\
+    margin: 0 0 6px !important;\
+    padding: 0 !important;\
+  \}\
+\
+  .main-navigation ul ul li:last-child,\
+  .main-navigation .main-nav ul ul li:last-child,\
+  .nav-menu ul li:last-child \{\
+    margin-bottom: 0 !important;\
+  \}\
+\
+  .main-navigation ul ul li a,\
+  .main-navigation .main-nav ul ul li a,\
+  .nav-menu ul li a \{\
+    display: block !important;\
+    width: 100% !important;\
+    min-width: 0 !important;\
+    margin: 0 !important;\
+    padding: 12px 18px !important;\
+    background: transparent !important;\
+    border: 1px solid transparent !important;\
+    border-radius: 14px !important;\
+    color: #dbe4f0 !important;\
+    line-height: 1.2 !important;\
+  \}\
+\
+  .main-navigation ul ul li a:hover,\
+  .main-navigation .main-nav ul ul li a:hover,\
+  .nav-menu ul li a:hover,\
+  .main-navigation ul ul li.current-menu-item > a,\
+  .main-navigation .main-nav ul ul li.current-menu-item > a,\
+  .nav-menu ul li.current-menu-item > a \{\
+    background: #1e293b !important;\
+    border-color: #475569 !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  /* Common cards and sections */\
+  .asme-home .ah-about,\
+  .asme-home .ah-cards-grid > .ah-card,\
+  .ah-calendar-section,\
+  .acp-cal-card,\
+  .acp-info-item,\
+  .gallery-hero,\
+  .about-hero-copy,\
+  .about-mission,\
+  .about-pillar,\
+  .sponsors-hero,\
+  .sponsors-featured,\
+  .sponsors-cta,\
+  .sponsor-hero,\
+  .sponsor-section,\
+  .sponsor-contact,\
+  .sponsor-card,\
+  .sponsor-card-primary,\
+  .sponsor-card-partner,\
+  .leader-card,\
+  .asme-join-page .join-hero-copy,\
+  .asme-join-page .join-form-card \{\
+    background: var(--asme-card) !important;\
+    border-color: var(--asme-line) !important;\
+    color: var(--asme-text) !important;\
+  \}\
+\
+  .asme-join-page .join-highlights div,\
+  .sponsor-benefit-card,\
+  .sponsor-opportunity \{\
+    background: var(--asme-card-soft) !important;\
+    border-color: var(--asme-line) !important;\
+  \}\
+\
+  /* Headings */\
+  h1,\
+  h2,\
+  h3,\
+  h4,\
+  h5,\
+  h6,\
+  .entry-title,\
+  .entry-title a,\
+  .ah-section-title,\
+  .asme-home .ah-section-title,\
+  .asme-home .ah-about h2,\
+  .asme-home .ah-card h3,\
+  .gallery-hero h1,\
+  .acp-title,\
+  .about-hero-copy h1,\
+  .about-mission h2,\
+  .about-pillar h3,\
+  .sponsor-benefit-card h3,\
+  .sponsor-opportunity h3,\
+  .asme-join-page .join-hero-copy h1,\
+  .asme-join-page .join-form-heading h2,\
+  .asme-join-page .join-highlights strong,\
+  .entry-content h2,\
+  .entry-content h3 \{\
+    color: #ffffff !important;\
+  \}\
+\
+  /* Body text */\
+  p,\
+  .asme-home p,\
+  .asme-home .ah-about-text p,\
+  .asme-home .ah-card p,\
+  .gallery-hero p,\
+  .acp-sub,\
+  .acp-info-sub,\
+  .about-hero-copy p,\
+  .about-mission p,\
+  .about-pillar p,\
+  .asme-join-page .join-hero-copy p,\
+  .asme-join-page .join-form-heading p,\
+  .asme-join-page .join-highlights span \{\
+    color: var(--asme-muted) !important;\
+  \}\
+\
+  /* Forms */\
+  input,\
+  textarea,\
+  select,\
+  .asme-join-page .join-field input,\
+  .search-form .search-field \{\
+    background: #0f172a !important;\
+    border-color: #334155 !important;\
+    color: var(--asme-text) !important;\
+  \}\
+\
+  input::placeholder,\
+  textarea::placeholder,\
+  .asme-join-page .join-field input::placeholder \{\
+    color: var(--asme-soft) !important;\
+  \}\
+\
+  .asme-join-page .join-field label \{\
+    color: #dbeafe !important;\
+  \}\
+\
+  /* Google Calendar iframes */\
+  .acp-cal-card \{\
+    overflow: hidden !important;\
+  \}\
+\
+  .acp-cal-topbar,\
+  .ah-calendar-heading \{\
+    background: var(--asme-card-soft) !important;\
+    border-color: var(--asme-line) !important;\
+  \}\
+\
+  .acp-cal-label \{\
+    color: var(--asme-muted) !important;\
+  \}\
+\
+  .acp-cal-card iframe,\
+  .ah-calendar-mini iframe \{\
+    filter: invert(1) hue-rotate(180deg) saturate(0.85) contrast(0.92) brightness(0.95) !important;\
+    background: var(--asme-card) !important;\
+  \}\
+\
+  /* Sponsors */\
+  .sponsors-grid-partners .sponsor-card h3,\
+  .sponsors-grid-partners .sponsor-card h3 a,\
+  .sponsor-card-partner h3,\
+  .sponsor-card-partner h3 a \{\
+    color: #ffffff !important;\
+  \}\
+\
+  .sponsors-grid-partners .sponsor-card h3 a:hover,\
+  .sponsor-card-partner h3 a:hover \{\
+    color: var(--asme-blue) !important;\
+  \}\
+\
+  .sponsors-grid-primary .sponsor-card h3,\
+  .sponsors-grid-primary .sponsor-card h3 a,\
+  .sponsor-card-primary h3,\
+  .sponsor-card-primary h3 a,\
+  .sponsors-grid-partners .sponsor-card h3,\
+  .sponsors-grid-partners .sponsor-card h3 a,\
+  .sponsor-card-partner h3,\
+  .sponsor-card-partner h3 a \{\
+    color: #ffffff !important;\
+  \}\
+\
+  .sponsors-grid-primary .sponsor-card h3 a:hover,\
+  .sponsor-card-primary h3 a:hover,\
+  .sponsors-grid-partners .sponsor-card h3 a:hover,\
+  .sponsor-card-partner h3 a:hover \{\
+    color: var(--asme-blue) !important;\
+  \}\
+\
+  /* Leadership */\
+  .leadership-board .leader-card \{\
+    background: var(--asme-card) !important;\
+    border-color: var(--asme-line) !important;\
+  \}\
+\
+  .leadership-board .leader-card h4,\
+  .leadership-board .leader-card h4 a \{\
+    color: #ffffff !important;\
+  \}\
+\
+  .leadership-board .leader-card a,\
+  .leadership-board .leader-card p \{\
+    color: #60a5fa !important;\
+  \}\
+\
+  .leadership-board .leader-card h3 \{\
+    background: #fee2e2 !important;\
+    color: #7f1d1d !important;\
+  \}\
+\
+  .leadership-board .lb-past-label \{\
+    color: var(--asme-muted) !important;\
+  \}\
+\
+  .leadership-board .lb-year-tab \{\
+    background: #1e293b !important;\
+    border-color: #334155 !important;\
+    color: #e5e7eb !important;\
+  \}\
+\
+  .leadership-board .lb-year-tab:hover \{\
+    background: #334155 !important;\
+    color: #ffffff !important;\
+    border-color: #64748b !important;\
+  \}\
+\
+  .leadership-board .lb-year-tab.active \{\
+    background: var(--osu-scarlet) !important;\
+    border-color: var(--osu-scarlet) !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  .leadership-board .lb-year-panel-header h3 \{\
+    background: #475569 !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  .leadership-board .leadership-year-header::before,\
+  .leadership-board .leadership-year-header::after,\
+  .leadership-board .lb-current-header::before,\
+  .leadership-board .lb-current-header::after,\
+  .leadership-board .lb-year-panel-header::before,\
+  .leadership-board .lb-year-panel-header::after \{\
+    background: #64748b !important;\
+  \}\
+\
+  /* Blog sidebar */\
+  #secondary .widget,\
+  .sidebar .widget,\
+  .widget-area .widget \{\
+    background: var(--asme-card) !important;\
+    border-color: #334155 !important;\
+    color: #e5e7eb !important;\
+  \}\
+\
+  #secondary .widget-title,\
+  .sidebar .widget-title,\
+  #secondary .widgettitle,\
+  .sidebar .widgettitle \{\
+    color: #ffffff !important;\
+    border-bottom-color: #e5e7eb !important;\
+  \}\
+\
+  #secondary .widget ul li,\
+  .sidebar .widget ul li,\
+  .widget-area .widget ul li \{\
+    color: var(--asme-muted) !important;\
+    border-bottom-color: #475569 !important;\
+  \}\
+\
+  #secondary .widget ul li a,\
+  .sidebar .widget ul li a,\
+  .widget-area .widget ul li a \{\
+    color: var(--asme-muted) !important;\
+    border-bottom-color: #64748b !important;\
+  \}\
+\
+  #secondary .widget ul li a:hover,\
+  .sidebar .widget ul li a:hover,\
+  .widget-area .widget ul li a:hover \{\
+    color: #ffffff !important;\
+  \}\
+\
+  #secondary .widget p,\
+  .sidebar .widget p,\
+  .widget-area .widget p,\
+  #secondary .widget span,\
+  .sidebar .widget span,\
+  .widget-area .widget span \{\
+    color: var(--asme-muted) !important;\
+  \}\
+\
+  #secondary .search-form .search-field,\
+  .sidebar .search-form .search-field \{\
+    background: #111827 !important;\
+    border-color: #475569 !important;\
+    color: var(--asme-text) !important;\
+  \}\
+\
+  #secondary .search-form .search-field::placeholder,\
+  .sidebar .search-form .search-field::placeholder \{\
+    color: var(--asme-muted) !important;\
+  \}\
+\
+  /* Blog pagination */\
+  .paging-navigation,\
+  .pagination,\
+  .nav-links,\
+  .posts-navigation,\
+  .page-links,\
+  .site-main .paging-navigation,\
+  .site-main .pagination,\
+  .site-main .nav-links,\
+  .site-main .posts-navigation \{\
+    background: transparent !important;\
+    border: 0 !important;\
+    box-shadow: none !important;\
+    color: var(--asme-text) !important;\
+  \}\
+\
+  .paging-navigation .nav-links,\
+  .pagination .nav-links,\
+  .site-main .nav-links,\
+  .entry-content .pagination,\
+  .entry-content .nav-links \{\
+    display: flex !important;\
+    align-items: center !important;\
+    gap: 10px !important;\
+    width: fit-content !important;\
+    margin: 0 auto !important;\
+    padding: 12px 16px !important;\
+    background: var(--asme-bg) !important;\
+    border-radius: 0 !important;\
+    box-shadow: none !important;\
+  \}\
+\
+  .page-numbers,\
+  .nav-links .page-numbers,\
+  .pagination .page-numbers,\
+  .nav-links a,\
+  .posts-navigation a \{\
+    display: inline-flex !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    min-width: 44px !important;\
+    height: 44px !important;\
+    padding: 0 14px !important;\
+    margin: 0 !important;\
+    background: var(--asme-card) !important;\
+    border: 1px solid #334155 !important;\
+    border-radius: 10px !important;\
+    color: #e5e7eb !important;\
+    font-size: 20px !important;\
+    font-weight: 800 !important;\
+    line-height: 1 !important;\
+  \}\
+\
+  .page-numbers.current \{\
+    background: var(--osu-scarlet) !important;\
+    border-color: var(--osu-scarlet) !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  .page-numbers:hover,\
+  .nav-links a:hover,\
+  .posts-navigation a:hover \{\
+    background: #1e293b !important;\
+    border-color: #64748b !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  .page-numbers.dots \{\
+    background: transparent !important;\
+    border-color: transparent !important;\
+    color: var(--asme-muted) !important;\
+  \}\
+\
+  .page-numbers.next,\
+  .page-numbers.prev \{\
+    width: auto !important;\
+    min-width: 88px !important;\
+  \}\
+\
+  /* Footer */\
+  .site-footer,\
+  #colophon \{\
+    background: var(--asme-bg) !important;\
+    border-color: var(--asme-line) !important;\
+  \}\
+\
+  .asme-footer-col h3,\
+  .asme-footer-bottom span \{\
+    color: #ffffff !important;\
+  \}\
+\
+  .asme-footer-col p,\
+  .asme-footer-col a \{\
+    color: var(--asme-muted) !important;\
+  \}\
+\}\
+\
+  /* Mobile menu button contrast */\
+  .menu-toggle,\
+  .menu-toggle:hover,\
+  .menu-toggle:focus,\
+  .main-navigation .menu-toggle,\
+  #site-navigation .menu-toggle \{\
+    background: transparent !important;\
+    color: #ffffff !important;\
+    border-color: transparent !important;\
+  \}\
+\
+  .menu-toggle .gp-icon,\
+  .menu-toggle .gp-icon svg,\
+  .menu-toggle .gp-icon svg path,\
+  .main-navigation .menu-toggle .gp-icon,\
+  .main-navigation .menu-toggle .gp-icon svg,\
+  .main-navigation .menu-toggle .gp-icon svg path \{\
+    color: #ffffff !important;\
+    fill: #ffffff !important;\
+    stroke: #ffffff !important;\
+  \}\
+\
+/* =============================================\
+   PAGE TOP GAP \'97 tuned per page\
+   ============================================= */\
+\
+.site-content,\
+#content.site-content,\
+.site-content .wrap,\
+.content-sidebar-wrap,\
+#primary,\
+.content-area,\
+#main,\
+.site-main,\
+.entry-content \{\
+  padding-top: 0 !important;\
+  margin-top: 0 !important;\
+\}\
+\
+/* Homepage looked good with the stronger pull */\
+.asme-home \{\
+  padding-top: 0 !important;\
+  margin-top: -38px !important;\
+\}\
+\
+/* Other custom pages need less pull so they don't crowd the header */\
+.asme-about-page,\
+.asme-join-page,\
+.asme-sponsors-page,\
+.asme-sponsor-page,\
+.asme-gallery-page,\
+.asme-cal-page,\
+.leadership-board \{\
+  padding-top: 0 !important;\
+  margin-top: -16px !important;\
+\}\
+\
+/* Events and blog need a little more breathing room under the header */\
+.asme-cal-page,\
+.blog .content-sidebar-wrap,\
+.archive .content-sidebar-wrap,\
+.search .content-sidebar-wrap \{\
+  margin-top: 8px !important;\
+\}\
+\
+/* Blog page top spacing */\
+.blog .content-sidebar-wrap,\
+.archive .content-sidebar-wrap,\
+.search .content-sidebar-wrap \{\
+  padding-top: 72px !important;\
+  margin-top: 0 !important;\
+\}\
+\
+/* Blog page: force more space below header */\
+body.blog #content,\
+body.archive #content,\
+body.search #content \{\
+  padding-top: 30px !important;\
+\}\
+\
+body.blog .content-sidebar-wrap,\
+body.archive .content-sidebar-wrap,\
+body.search .content-sidebar-wrap \{\
+  padding-top: 72px !important;\
+  margin-top: 0 !important;\
+\}\
+\
+body.blog .site-main,\
+body.archive .site-main,\
+body.search .site-main \{\
+  padding-top: 0 !important;\
+  margin-top: 0 !important;\
+\}\
+\
+\
+/* =============================================\
+   JOIN PAGE \'97 FAQ section\
+   Stable full-width accordion\
+   ============================================= */\
+\
+.asme-join-page .join-faq-section \{\
+  margin-top: 28px !important;\
+  padding: 38px 40px !important;\
+  background: #ffffff !important;\
+  border: 1px solid var(--asme-line, #e5e7eb) !important;\
+  border-radius: 18px !important;\
+\}\
+\
+.asme-join-page .join-faq-heading \{\
+  display: grid !important;\
+  grid-template-columns: minmax(240px, 0.85fr) minmax(320px, 1.15fr) !important;\
+  gap: 28px !important;\
+  align-items: end !important;\
+  max-width: 1180px !important;\
+  margin: 0 auto 28px !important;\
+  text-align: left !important;\
+\}\
+\
+.asme-join-page .join-faq-heading .join-eyebrow \{\
+  grid-column: 1 / -1 !important;\
+  margin-bottom: -10px !important;\
+\}\
+\
+.asme-join-page .join-faq-heading h2 \{\
+  margin: 0 !important;\
+  color: var(--asme-navy, #0f3460) !important;\
+  font-family: 'DM Serif Display', serif !important;\
+  font-size: 38px !important;\
+  font-weight: 400 !important;\
+  line-height: 1.08 !important;\
+\}\
+\
+.asme-join-page .join-faq-heading p \{\
+  margin: 0 !important;\
+  color: var(--asme-muted, #6b7280) !important;\
+  font-size: 15px !important;\
+  line-height: 1.65 !important;\
+\}\
+\
+/* Stable accordion list */\
+.asme-join-page .join-faq-list \{\
+  display: grid !important;\
+  grid-template-columns: 1fr !important;\
+  gap: 12px !important;\
+  width: 100% !important;\
+  max-width: 1180px !important;\
+  margin: 0 auto !important;\
+  column-count: initial !important;\
+  column-gap: initial !important;\
+\}\
+\
+.asme-join-page .join-faq-item \{\
+  display: block !important;\
+  width: 100% !important;\
+  margin: 0 !important;\
+  break-inside: auto !important;\
+  background: #f9fafb !important;\
+  border: 1px solid var(--asme-line, #e5e7eb) !important;\
+  border-radius: 14px !important;\
+  overflow: hidden !important;\
+\}\
+\
+.asme-join-page .join-faq-item summary \{\
+  position: relative !important;\
+  cursor: pointer !important;\
+  list-style: none !important;\
+  padding: 17px 50px 17px 18px !important;\
+  color: var(--asme-navy, #0f3460) !important;\
+  font-family: 'DM Sans', sans-serif !important;\
+  font-size: 14px !important;\
+  font-weight: 800 !important;\
+  line-height: 1.35 !important;\
+\}\
+\
+.asme-join-page .join-faq-item summary::-webkit-details-marker \{\
+  display: none !important;\
+\}\
+\
+.asme-join-page .join-faq-item summary::after \{\
+  content: '+' !important;\
+  position: absolute !important;\
+  right: 18px !important;\
+  top: 50% !important;\
+  transform: translateY(-50%) !important;\
+  color: #bb0000 !important;\
+  font-size: 25px !important;\
+  font-weight: 800 !important;\
+  line-height: 1 !important;\
+\}\
+\
+.asme-join-page .join-faq-item[open] summary \{\
+  padding-bottom: 10px !important;\
+\}\
+\
+.asme-join-page .join-faq-item[open] summary::after \{\
+  content: '\uc0\u8722 ' !important;\
+\}\
+\
+.asme-join-page .join-faq-item p \{\
+  margin: 0 !important;\
+  padding: 0 18px 18px !important;\
+  color: var(--asme-muted, #6b7280) !important;\
+  font-size: 13px !important;\
+  line-height: 1.65 !important;\
+\}\
+\
+@media (prefers-color-scheme: dark) \{\
+  .asme-join-page .join-faq-section \{\
+    background: var(--asme-card, #0f1b2d) !important;\
+    border-color: var(--asme-line, #26364f) !important;\
+  \}\
+\
+  .asme-join-page .join-faq-item \{\
+    background: var(--asme-card-soft, #111f33) !important;\
+    border-color: var(--asme-line, #26364f) !important;\
+  \}\
+\
+  .asme-join-page .join-faq-heading h2,\
+  .asme-join-page .join-faq-item summary \{\
+    color: #ffffff !important;\
+  \}\
+\
+  .asme-join-page .join-faq-heading p,\
+  .asme-join-page .join-faq-item p \{\
+    color: #cbd5e1 !important;\
+  \}\
+\}\
+\
+@media (max-width: 900px) \{\
+  .asme-join-page .join-faq-section \{\
+    padding: 24px 22px !important;\
+  \}\
+\
+  .asme-join-page .join-faq-heading \{\
+    grid-template-columns: 1fr !important;\
+    gap: 10px !important;\
+  \}\
+\
+  .asme-join-page .join-faq-heading .join-eyebrow \{\
+    margin-bottom: 0 !important;\
+  \}\
+\
+  .asme-join-page .join-faq-heading h2 \{\
+    font-size: 30px !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   MOBILE \'97 final consolidated version\
+   MUST BE LAST\
+   ============================================= */\
+\
+@media (max-width: 768px) \{\
+  html,\
+  body \{\
+    overflow-x: hidden !important;\
+  \}\
+\
+  /* Full-width mobile wrappers */\
+  body .site,\
+  body #page,\
+  body .site-content,\
+  body #content,\
+  body #content.site-content,\
+  body .site-content .wrap,\
+  body .content-sidebar-wrap,\
+  body #primary,\
+  body .content-area,\
+  body #main,\
+  body .site-main,\
+  body article,\
+  body article.page,\
+  body .inside-article,\
+  body .entry-content \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    min-width: 0 !important;\
+    margin-left: 0 !important;\
+    margin-right: 0 !important;\
+    padding-left: 0 !important;\
+    padding-right: 0 !important;\
+    box-sizing: border-box !important;\
+  \}\
+\
+  body .asme-home,\
+  body .asme-about-page,\
+  body .asme-join-page,\
+  body .asme-sponsors-page,\
+  body .asme-sponsor-page,\
+  body .asme-gallery-page,\
+  body .asme-cal-page,\
+  body .leadership-board \{\
+    width: calc(100vw - 12px) !important;\
+    max-width: calc(100vw - 12px) !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    padding-left: 0 !important;\
+    padding-right: 0 !important;\
+    box-sizing: border-box !important;\
+  \}\
+\
+  body .ah-hero,\
+  body .ah-about,\
+  body .ah-cards-grid,\
+  body .ah-calendar-section,\
+  body .about-hero,\
+  body .about-mission,\
+  body .about-pillars,\
+  body .about-pillar,\
+  body .join-hero,\
+  body .join-hero-copy,\
+  body .join-form-card,\
+  body .join-faq-section,\
+  body .sponsors-hero,\
+  body .sponsors-featured,\
+  body .sponsors-partners,\
+  body .sponsors-cta,\
+  body .sponsor-hero,\
+  body .sponsor-section,\
+  body .sponsor-contact,\
+  body .gallery-hero,\
+  body .asme-gallery-page .gallery,\
+  body .acp-header,\
+  body .acp-cal-card,\
+  body .acp-info-strip,\
+  body .acp-info-item,\
+  body .leadership-year,\
+  body .lb-current-year,\
+  body .lb-past-years,\
+  body.blog article,\
+  body.archive article,\
+  body.search article,\
+  body #secondary .widget,\
+  body .sidebar .widget \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    min-width: 0 !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    box-sizing: border-box !important;\
+  \}\
+\
+  body .about-hero,\
+  body .join-hero,\
+  body .acp-info-strip \{\
+    display: grid !important;\
+    grid-template-columns: 1fr !important;\
+  \}\
+\
+  body.blog .content-sidebar-wrap,\
+  body.archive .content-sidebar-wrap,\
+  body.search .content-sidebar-wrap \{\
+    display: block !important;\
+    padding-top: 42px !important;\
+  \}\
+\
+  /* Header */\
+  body .site-header,\
+  body #masthead \{\
+    padding: 16px 8px 18px !important;\
+    min-height: 0 !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .site-header .inside-header,\
+  body #masthead .inside-header \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    min-height: 0 !important;\
+    padding: 0 !important;\
+    display: flex !important;\
+    flex-direction: column !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    gap: 8px !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .site-branding,\
+  body .site-branding-container,\
+  body .site-logo,\
+  body .custom-logo-link \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    display: flex !important;\
+    flex-direction: column !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    gap: 8px !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .custom-logo,\
+  body .site-logo img,\
+  body .custom-logo-link img \{\
+    width: auto !important;\
+    height: 72px !important;\
+    margin: 0 auto !important;\
+  \}\
+\
+  body .site-title,\
+  body .site-title a \{\
+    width: 100% !important;\
+    max-width: 720px !important;\
+    margin: 6px auto 0 !important;\
+    text-align: center !important;\
+    font-size: clamp(31px, 8vw, 40px) !important;\
+    line-height: 1.08 !important;\
+    white-space: normal !important;\
+    word-break: normal !important;\
+  \}\
+\
+  body .site-description \{\
+    display: block !important;\
+    margin: 6px auto 0 !important;\
+    color: var(--asme-soft) !important;\
+    font-size: 12px !important;\
+    font-weight: 700 !important;\
+    line-height: 1.1 !important;\
+    letter-spacing: 0.06em !important;\
+    text-align: center !important;\
+    text-transform: uppercase !important;\
+  \}\
+\
+  /* Mobile nav: only real primary nav */\
+  body nav.main-navigation:not(#site-navigation),\
+  body .main-navigation:not(#site-navigation) \{\
+    display: none !important;\
+  \}\
+\
+  body #site-navigation,\
+  body #site-navigation.main-navigation \{\
+    display: block !important;\
+    width: 100% !important;\
+    margin: 8px auto 0 !important;\
+    padding: 0 !important;\
+    min-height: 0 !important;\
+    background: transparent !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .menu-toggle,\
+  body .menu-toggle:hover,\
+  body .menu-toggle:focus,\
+  body #site-navigation .menu-toggle \{\
+    display: inline-flex !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    width: auto !important;\
+    height: 34px !important;\
+    min-height: 0 !important;\
+    margin: 0 auto !important;\
+    padding: 0 10px !important;\
+    background: transparent !important;\
+    border: 0 !important;\
+    color: #ffffff !important;\
+    line-height: 1 !important;\
+  \}\
+\
+  body .menu-toggle .gp-icon,\
+  body .menu-toggle .gp-icon svg,\
+  body .menu-toggle .gp-icon svg path \{\
+    color: #ffffff !important;\
+    fill: #ffffff !important;\
+    stroke: #ffffff !important;\
+  \}\
+\
+  body #site-navigation:not(.toggled) .main-nav > ul,\
+  body #site-navigation:not(.toggled) ul ul \{\
+    display: none !important;\
+  \}\
+\
+  body #site-navigation.toggled .main-nav \{\
+    display: block !important;\
+    width: 100% !important;\
+    margin: 8px auto 0 !important;\
+    padding: 0 0 14px !important;\
+    background: transparent !important;\
+  \}\
+\
+  body #site-navigation.toggled .main-nav > ul \{\
+    display: flex !important;\
+    flex-direction: column !important;\
+    align-items: center !important;\
+    gap: 8px !important;\
+    width: min(84vw, 360px) !important;\
+    max-width: 360px !important;\
+    margin: 0 auto !important;\
+    padding: 0 !important;\
+    background: transparent !important;\
+    text-align: center !important;\
+  \}\
+\
+  body #site-navigation.toggled .main-nav > ul > li \{\
+    display: block !important;\
+    position: static !important;\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    height: auto !important;\
+    min-height: 0 !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    background: transparent !important;\
+    text-align: center !important;\
+  \}\
+\
+  body #site-navigation.toggled .main-nav > ul > li > a \{\
+    display: flex !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    width: 100% !important;\
+    height: 42px !important;\
+    min-height: 42px !important;\
+    margin: 0 !important;\
+    padding: 0 14px !important;\
+    background: #111f33 !important;\
+    border: 1px solid #26364f !important;\
+    border-radius: 15px !important;\
+    color: #dbe4f0 !important;\
+    font-size: 18px !important;\
+    font-weight: 750 !important;\
+    line-height: 1 !important;\
+    text-align: center !important;\
+    box-sizing: border-box !important;\
+  \}\
+\
+  body #site-navigation.toggled .main-nav > ul > li > a:hover \{\
+    background: #1e293b !important;\
+    border-color: #475569 !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  body #site-navigation.toggled .main-nav > ul > li.current-menu-item > a,\
+  body #site-navigation.toggled .main-nav > ul > li.current_page_item > a \{\
+    background: #bb0000 !important;\
+    border-color: #bb0000 !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  body #site-navigation.toggled .dropdown-menu-toggle \{\
+    display: inline-flex !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    width: auto !important;\
+    height: auto !important;\
+    margin: 0 !important;\
+    padding: 0 0 0 8px !important;\
+    color: inherit !important;\
+    line-height: 1 !important;\
+    transform: translateY(1px) !important;\
+  \}\
+\
+  /* Dropdowns */\
+  body #site-navigation.toggled .main-nav > ul > li:not(.sfHover):not(:hover) > ul,\
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children:not(.sfHover):not(.dropdown-hover) > ul \{\
+    display: none !important;\
+    height: 0 !important;\
+    min-height: 0 !important;\
+    max-height: 0 !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    border: 0 !important;\
+    overflow: hidden !important;\
+  \}\
+\
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children > ul,\
+  body #site-navigation.toggled .main-nav > ul > li > ul \{\
+    position: static !important;\
+    float: none !important;\
+    clear: both !important;\
+    display: grid !important;\
+    grid-template-columns: 1fr !important;\
+    gap: 6px !important;\
+    width: 100% !important;\
+    min-width: 0 !important;\
+    max-width: 100% !important;\
+    height: auto !important;\
+    margin: 6px 0 0 !important;\
+    padding: 7px !important;\
+    background: #0b1626 !important;\
+    border: 1px solid #26364f !important;\
+    border-radius: 15px !important;\
+    box-shadow: none !important;\
+    transform: none !important;\
+    opacity: 1 !important;\
+    visibility: visible !important;\
+    box-sizing: border-box !important;\
+  \}\
+\
+  body #site-navigation.toggled ul ul li \{\
+    display: block !important;\
+    width: 100% !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    background: transparent !important;\
+  \}\
+\
+  body #site-navigation.toggled ul ul li a \{\
+    display: flex !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    width: 100% !important;\
+    height: 38px !important;\
+    min-height: 38px !important;\
+    margin: 0 !important;\
+    padding: 0 12px !important;\
+    background: #111f33 !important;\
+    border: 1px solid #26364f !important;\
+    border-radius: 12px !important;\
+    color: #dbe4f0 !important;\
+    font-size: 15px !important;\
+    font-weight: 750 !important;\
+    line-height: 1 !important;\
+    text-align: center !important;\
+    box-sizing: border-box !important;\
+  \}\
+\
+  body #site-navigation.toggled ul ul li a:hover,\
+  body #site-navigation.toggled ul ul li.current-menu-item > a,\
+  body #site-navigation.toggled ul ul li.current_page_item > a \{\
+    background: #1e293b !important;\
+    border-color: #475569 !important;\
+    color: #ffffff !important;\
+  \}\
+\
+  /* Homepage hero */\
+  body .asme-home .ah-hero \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    height: 500px !important;\
+    max-height: 500px !important;\
+    margin: 10px auto 18px !important;\
+    padding: 20px 14px !important;\
+    border-radius: 22px !important;\
+    display: grid !important;\
+    place-items: center !important;\
+    overflow: hidden !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-home .ah-hero-left \{\
+    width: 100% !important;\
+    max-width: 560px !important;\
+    margin: 0 auto !important;\
+    padding: 0 !important;\
+    align-self: center !important;\
+    justify-self: center !important;\
+    text-align: center !important;\
+    transform: translateY(-125px) !important;\
+  \}\
+\
+  body .asme-home .ah-eyebrow,\
+  body .asme-home .ah-title,\
+  body .asme-home .ah-sub,\
+  body .asme-home .ah-btns \{\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    text-align: center !important;\
+    justify-content: center !important;\
+  \}\
+\
+  body .asme-home .ah-eyebrow \{\
+    font-size: 9px !important;\
+    line-height: 1.2 !important;\
+    margin-bottom: 8px !important;\
+  \}\
+\
+  body .asme-home .ah-title \{\
+    max-width: 11ch !important;\
+    font-size: clamp(36px, 10vw, 48px) !important;\
+    line-height: 0.98 !important;\
+    margin-bottom: 10px !important;\
+  \}\
+\
+  body .asme-home .ah-sub \{\
+    max-width: 24ch !important;\
+    font-size: 19px !important;\
+    line-height: 1.32 !important;\
+    margin-bottom: 16px !important;\
+  \}\
+\
+  body .asme-home .ah-btns \{\
+    gap: 9px !important;\
+    margin: 0 !important;\
+  \}\
+\
+  body .asme-home .ah-btn-p,\
+  body .asme-home .ah-btn-o \{\
+    padding: 10px 16px !important;\
+    font-size: 13px !important;\
+  \}\
+\
+  body .asme-home .ah-stats,\
+  body .asme-home .ah-hero-right \{\
+    display: none !important;\
+  \}\
+\
+  body .asme-home .ah-hero-dots \{\
+    bottom: 12px !important;\
+  \}\
+\
+  body .asme-home .ah-hero-slide \{\
+    background-position: center center !important;\
+  \}\
+\
+  /* Calendar mobile header */\
+  body .asme-cal-page \{\
+    padding-top: 10px !important;\
+  \}\
+\
+  body .asme-cal-page .acp-header \{\
+    display: grid !important;\
+    grid-template-columns: 1fr !important;\
+    justify-items: center !important;\
+    align-items: start !important;\
+    gap: 12px !important;\
+    margin-bottom: 14px !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-cal-page .acp-header-left,\
+  body .asme-cal-page .acp-header-right \{\
+    width: 100% !important;\
+    max-width: 100% !important;\
+    min-height: 0 !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-cal-page .acp-header-right \{\
+    display: flex !important;\
+    flex-direction: column !important;\
+    gap: 4px !important;\
+  \}\
+\
+  body .asme-cal-page .acp-eyebrow,\
+  body .asme-cal-page .acp-title,\
+  body .asme-cal-page .acp-sub,\
+  body .asme-cal-page .acp-subscribe-note \{\
+    text-align: center !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+  \}\
+\
+  body .asme-cal-page .acp-eyebrow \{\
+    margin-bottom: 6px !important;\
+  \}\
+\
+  body .asme-cal-page .acp-title \{\
+    margin-bottom: 10px !important;\
+  \}\
+\
+  body .asme-cal-page .acp-sub \{\
+    max-width: 30ch !important;\
+    margin-bottom: 8px !important;\
+    line-height: 1.45 !important;\
+  \}\
+\
+  body .asme-cal-page .acp-subscribe-btn \{\
+    margin: 0 auto 4px !important;\
+  \}\
+\
+  body .asme-cal-page .acp-subscribe-note \{\
+    margin-bottom: 0 !important;\
+  \}\
+\
+  body .asme-cal-page .acp-cal-card \{\
+    margin-top: 8px !important;\
+  \}\
+\
+  /* Leadership cards */\
+  body .leadership-board .lb-grid,\
+  body .leadership-row,\
+  body .leadership-row-top,\
+  body .leadership-row-bottom \{\
+    display: grid !important;\
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;\
+    gap: 18px 14px !important;\
+    width: 100% !important;\
+    max-width: 640px !important;\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    justify-content: center !important;\
+  \}\
+\
+  body .leadership-board .lb-grid .leader-card,\
+  body .leader-card \{\
+    width: 100% !important;\
+    max-width: none !important;\
+    min-width: 0 !important;\
+    flex: none !important;\
+    margin: 0 !important;\
+    padding: 18px 12px 16px !important;\
+  \}\
+\
+  body .leader-photo,\
+  body .leadership-row-top .leader-photo \{\
+    width: min(120px, 34vw) !important;\
+    height: min(120px, 34vw) !important;\
+  \}\
+\
+  body .leader-card h4,\
+  body .leadership-row-top .leader-card h4 \{\
+    font-size: clamp(18px, 5vw, 24px) !important;\
+    line-height: 1.08 !important;\
+  \}\
+\
+  body .leader-card a,\
+  body .leader-card p \{\
+    font-size: clamp(12px, 3.6vw, 15px) !important;\
+    line-height: 1.3 !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   V10 \'97 refined animations\
+   ============================================= */\
+\
+@media (prefers-reduced-motion: no-preference) \{\
+  .asme-animate \{\
+    opacity: 0;\
+    transform: translateY(18px);\
+    transition:\
+      opacity 0.55s ease,\
+      transform 0.55s ease,\
+      border-color 0.2s ease,\
+      box-shadow 0.2s ease;\
+    transition-delay: var(--asme-delay, 0ms);\
+    will-change: opacity, transform;\
+  \}\
+\
+  .asme-animate.is-visible \{\
+    opacity: 1;\
+    transform: translateY(0);\
+  \}\
+\
+  .ah-card,\
+  .leader-card,\
+  .sponsor-card,\
+  .about-pillar,\
+  .acp-info-item,\
+  .join-faq-item \{\
+    transition:\
+      transform 0.2s ease,\
+      box-shadow 0.2s ease,\
+      border-color 0.2s ease,\
+      background 0.2s ease !important;\
+  \}\
+\
+  .ah-card:hover,\
+  .leader-card:hover,\
+  .sponsor-card:hover,\
+  .about-pillar:hover,\
+  .acp-info-item:hover,\
+  .join-faq-item:hover \{\
+    transform: translateY(-4px) !important;\
+    box-shadow: 0 12px 32px rgba(15, 52, 96, 0.14) !important;\
+  \}\
+\
+  .asme-gallery-page .gallery-item img,\
+  .sponsor-logo-frame img,\
+  .leader-photo \{\
+    transition: transform 0.35s ease, filter 0.25s ease !important;\
+  \}\
+\
+  .asme-gallery-page .gallery-item:hover img,\
+  .leader-card:hover .leader-photo \{\
+    transform: scale(1.04) !important;\
+  \}\
+\
+  .sponsor-card:hover .sponsor-logo-frame img \{\
+    transform: scale(1.035) !important;\
+    filter: saturate(1.08) contrast(1.04);\
+  \}\
+\
+  .ah-btn-p,\
+  .ah-btn-o,\
+  .acp-subscribe-btn,\
+  .sponsors-cta-button,\
+  .sponsor-primary-button,\
+  .join-submit-button \{\
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease !important;\
+  \}\
+\
+  .ah-btn-p:hover,\
+  .ah-btn-o:hover,\
+  .acp-subscribe-btn:hover,\
+  .sponsors-cta-button:hover,\
+  .sponsor-primary-button:hover,\
+  .join-submit-button:hover \{\
+    transform: translateY(-2px) !important;\
+  \}\
+\}\
+\
+@media (prefers-reduced-motion: reduce) \{\
+  .asme-animate \{\
+    opacity: 1 !important;\
+    transform: none !important;\
+    transition: none !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   LEADERSHIP \'97 LinkedIn button polish\
+   ============================================= */\
+\
+.leader-card .leader-linkedin,\
+.leader-card .leader-linkedin:link,\
+.leader-card .leader-linkedin:visited \{\
+  display: inline-flex !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  width: 30px !important;\
+  height: 30px !important;\
+  margin-top: 16px !important;\
+  background: #0a66c2 !important;\
+  border: 0 !important;\
+  border-radius: 8px !important;\
+  color: #ffffff !important;\
+  font-family: Arial, sans-serif !important;\
+  font-size: 16px !important;\
+  font-weight: 800 !important;\
+  line-height: 1 !important;\
+  text-decoration: none !important;\
+  word-break: normal !important;\
+\}\
+\
+.leader-card .leader-linkedin:hover,\
+.leader-card .leader-linkedin:focus \{\
+  background: #004182 !important;\
+  color: #ffffff !important;\
+  transform: translateY(-1px) !important;\
+\}\
+\
+/* =============================================\
+   HOME \'97 featured event + compact about impact\
+   Keeps original v10 hero layout intact\
+   ============================================= */\
+\
+/* Hide old separate impact row if it still exists. */\
+body .asme-home > .ah-impact-section \{\
+  display: none !important;\
+\}\
+\
+/* Slightly lower desktop hero content without changing the original layout. */\
+@media (min-width: 901px) \{\
+  body .asme-home .ah-hero \{\
+    padding-top: 58px !important;\
+    padding-bottom: 30px !important;\
+  \}\
+\
+  body .asme-home .ah-hero-left,\
+  body .asme-home .ah-hero-right \{\
+    transform: translateY(22px) !important;\
+  \}\
+\
+  body .asme-home .ah-hero-dots \{\
+    bottom: 16px !important;\
+  \}\
+\}\
+\
+/* About block: compact text with stat chips underneath. */\
+body .asme-home .ah-about \{\
+  display: block !important;\
+  height: auto !important;\
+  min-height: 0 !important;\
+  max-height: none !important;\
+  margin: 0 0 18px !important;\
+  padding: 22px 28px 24px !important;\
+  border-radius: 16px !important;\
+  overflow: visible !important;\
+\}\
+\
+body .asme-home .ah-about-img \{\
+  display: none !important;\
+\}\
+\
+body .asme-home .ah-about-text \{\
+  display: block !important;\
+  width: 100% !important;\
+  max-width: none !important;\
+  margin: 0 !important;\
+  padding: 0 !important;\
+\}\
+\
+body .asme-home .ah-about .ah-section-title \{\
+  margin: 0 0 10px !important;\
+  font-size: 24px !important;\
+  line-height: 1.1 !important;\
+\}\
+\
+body .asme-home .ah-about-text p \{\
+  max-width: 1200px !important;\
+  margin: 0 0 8px !important;\
+  font-size: 14px !important;\
+  line-height: 1.55 !important;\
+\}\
+\
+body .asme-home .ah-about-text p:last-child \{\
+  margin-bottom: 0 !important;\
+\}\
+\
+body .asme-home .ah-about-impact \{\
+  display: grid !important;\
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;\
+  gap: 10px !important;\
+  width: 100% !important;\
+  height: auto !important;\
+  min-height: 0 !important;\
+  margin: 18px 0 0 !important;\
+  padding: 0 !important;\
+\}\
+\
+body .asme-home .ah-impact-mini \{\
+  display: flex !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  gap: 10px !important;\
+  height: 44px !important;\
+  min-height: 44px !important;\
+  max-height: 44px !important;\
+  margin: 0 !important;\
+  padding: 0 12px !important;\
+  background: #f9fafb !important;\
+  border: 1px solid var(--asme-line, #e5e7eb) !important;\
+  border-left: 3px solid #bb0000 !important;\
+  border-radius: 10px !important;\
+  text-align: center !important;\
+\}\
+\
+body .asme-home .ah-impact-mini span \{\
+  display: block !important;\
+  color: #bb0000 !important;\
+  font-size: 21px !important;\
+  font-weight: 850 !important;\
+  line-height: 1 !important;\
+\}\
+\
+body .asme-home .ah-impact-mini strong \{\
+  display: block !important;\
+  color: var(--asme-navy, #0f3460) !important;\
+  font-size: 11px !important;\
+  font-weight: 800 !important;\
+  line-height: 1.1 !important;\
+\}\
+\
+@media (min-width: 901px) \{\
+  body .asme-home .ah-about \{\
+    height: 184px !important;\
+    min-height: 184px !important;\
+    max-height: 184px !important;\
+    padding: 16px 28px 18px !important;\
+    margin-bottom: 14px !important;\
+    overflow: hidden !important;\
+  \}\
+\
+  body .asme-home .ah-about .ah-section-title \{\
+    margin: 0 0 6px !important;\
+    font-size: 21px !important;\
+    line-height: 1 !important;\
+  \}\
+\
+  body .asme-home .ah-about-text p \{\
+    margin: 0 0 5px !important;\
+    font-size: 13px !important;\
+    line-height: 1.32 !important;\
+  \}\
+\
+  body .asme-home .ah-about-impact \{\
+    margin: 24px 0 0 !important;\
+    gap: 8px !important;\
+  \}\
+\
+  body .asme-home .ah-impact-mini \{\
+    height: 34px !important;\
+    min-height: 34px !important;\
+    max-height: 34px !important;\
+    padding: 0 10px !important;\
+  \}\
+\
+  body .asme-home .ah-impact-mini span \{\
+    font-size: 18px !important;\
+  \}\
+\
+  body .asme-home .ah-impact-mini strong \{\
+    font-size: 10px !important;\
+  \}\
+\}\
+\
+/* Featured event card. */\
+body .asme-home .ah-featured-event \{\
+  display: flex !important;\
+  align-items: center !important;\
+  justify-content: space-between !important;\
+  gap: 24px !important;\
+  width: 100% !important;\
+  margin: 0 0 24px !important;\
+  padding: 28px 32px !important;\
+  background: var(--asme-card, #ffffff) !important;\
+  border: 1px solid var(--asme-line, #e5e7eb) !important;\
+  border-radius: 18px !important;\
+\}\
+\
+body .asme-home .ah-featured-event-copy \{\
+  min-width: 0 !important;\
+\}\
+\
+body .asme-home .ah-featured-event p \{\
+  max-width: 760px !important;\
+  margin: 0 !important;\
+  color: var(--asme-muted, #6b7280) !important;\
+  font-size: 15px !important;\
+  line-height: 1.65 !important;\
+\}\
+\
+body .asme-home .ah-featured-meta \{\
+  display: flex !important;\
+  flex-wrap: wrap !important;\
+  gap: 8px !important;\
+  margin-top: 16px !important;\
+\}\
+\
+body .asme-home .ah-featured-meta span \{\
+  display: inline-flex !important;\
+  align-items: center !important;\
+  padding: 7px 12px !important;\
+  background: var(--asme-chip, #e8f4fd) !important;\
+  border-radius: 999px !important;\
+  color: var(--asme-navy, #0f3460) !important;\
+  font-size: 12px !important;\
+  font-weight: 800 !important;\
+\}\
+\
+body .asme-home .ah-featured-button \{\
+  display: inline-flex !important;\
+  align-items: center !important;\
+  justify-content: center !important;\
+  flex: 0 0 auto !important;\
+  padding: 12px 22px !important;\
+  background: #bb0000 !important;\
+  border-radius: 999px !important;\
+  color: #ffffff !important;\
+  font-size: 14px !important;\
+  font-weight: 800 !important;\
+  text-decoration: none !important;\
+  white-space: nowrap !important;\
+\}\
+\
+body .asme-home .ah-featured-button:hover \{\
+  background: #990000 !important;\
+  color: #ffffff !important;\
+\}\
+\
+@media (prefers-color-scheme: dark) \{\
+  body .asme-home .ah-impact-mini \{\
+    background: var(--asme-card-soft, #111f33) !important;\
+    border-color: var(--asme-line, #26364f) !important;\
+  \}\
+\
+  body .asme-home .ah-impact-mini strong \{\
+    color: #ffffff !important;\
+  \}\
+\
+  body .asme-home .ah-featured-event \{\
+    background: var(--asme-card, #0f1b2d) !important;\
+    border-color: var(--asme-line, #26364f) !important;\
+  \}\
+\
+  body .asme-home .ah-featured-meta span \{\
+    background: var(--asme-chip, #1e293b) !important;\
+    color: #dbeafe !important;\
+  \}\
+\}\
+\
+@media (max-width: 768px) \{\
+  body .asme-home .ah-featured-event \{\
+    flex-direction: column !important;\
+    align-items: flex-start !important;\
+    padding: 24px 22px !important;\
+  \}\
+\
+  body .asme-home .ah-featured-button \{\
+    width: 100% !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   MOBILE \'97 final consolidated hero/menu/about\
+   MUST BE LAST\
+   ============================================= */\
+\
+@media (max-width: 768px) \{\
+  /* Menu: icon only, ASME blue in light mode. */\
+  body .menu-toggle,\
+  body .menu-toggle:hover,\
+  body .menu-toggle:focus,\
+  body #site-navigation .menu-toggle,\
+  body #site-navigation .menu-toggle:hover,\
+  body #site-navigation .menu-toggle:focus \{\
+    color: #0f3460 !important;\
+    font-size: 0 !important;\
+    gap: 0 !important;\
+    background: transparent !important;\
+    border: 0 !important;\
+  \}\
+\
+  body .menu-toggle .gp-icon,\
+  body #site-navigation .menu-toggle .gp-icon,\
+  body .menu-toggle .gp-icon svg,\
+  body .menu-toggle .gp-icon svg path,\
+  body #site-navigation .menu-toggle .gp-icon svg,\
+  body #site-navigation .menu-toggle .gp-icon svg path \{\
+    display: inline-flex !important;\
+    color: #0f3460 !important;\
+    fill: #0f3460 !important;\
+    stroke: #0f3460 !important;\
+    font-size: initial !important;\
+    margin: 0 !important;\
+  \}\
+\
+  body .menu-toggle .mobile-menu,\
+  body .menu-toggle .menu-toggle-text,\
+  body .menu-toggle .screen-reader-text \{\
+    display: none !important;\
+  \}\
+\
+  /* Hero: centered and lowered. */\
+  body .asme-home .ah-hero \{\
+    height: 590px !important;\
+    min-height: 590px !important;\
+    max-height: 590px !important;\
+    padding: 78px 18px 34px !important;\
+    display: flex !important;\
+    align-items: flex-start !important;\
+    justify-content: center !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-home .ah-hero-left \{\
+    width: 100% !important;\
+    max-width: 560px !important;\
+    margin: 0 auto !important;\
+    padding: 0 !important;\
+    transform: none !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-home .ah-eyebrow,\
+  body .asme-home .ah-title,\
+  body .asme-home .ah-sub,\
+  body .asme-home .ah-btns \{\
+    margin-left: auto !important;\
+    margin-right: auto !important;\
+    text-align: center !important;\
+    justify-content: center !important;\
+  \}\
+\
+  body .asme-home .ah-title \{\
+    max-width: 12ch !important;\
+    font-size: clamp(34px, 9.2vw, 44px) !important;\
+    line-height: 1.02 !important;\
+    margin-bottom: 12px !important;\
+  \}\
+\
+  body .asme-home .ah-sub \{\
+    max-width: 27ch !important;\
+    font-size: 18px !important;\
+    line-height: 1.38 !important;\
+    margin-bottom: 18px !important;\
+  \}\
+\
+  body .asme-home .ah-stats,\
+  body .asme-home .ah-hero-right \{\
+    display: none !important;\
+  \}\
+\
+  /* Who We Are: centered and shorter. */\
+  body .asme-home .ah-about \{\
+    height: auto !important;\
+    min-height: 0 !important;\
+    max-height: none !important;\
+    margin: 0 0 16px !important;\
+    padding: 16px 16px 18px !important;\
+    border-radius: 16px !important;\
+    overflow: visible !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-home .ah-about-img \{\
+    display: none !important;\
+  \}\
+\
+  body .asme-home .ah-about .ah-section-title \{\
+    margin: 0 0 8px !important;\
+    font-size: 24px !important;\
+    line-height: 1.05 !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-home .ah-about-text p \{\
+    max-width: 100% !important;\
+    margin: 0 auto 7px !important;\
+    font-size: 12.25px !important;\
+    line-height: 1.32 !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-home .ah-about-impact \{\
+    display: grid !important;\
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;\
+    gap: 7px !important;\
+    margin: 10px 0 0 !important;\
+    padding: 0 !important;\
+  \}\
+\
+  body .asme-home .ah-about .ah-about-impact .ah-impact-mini \{\
+    min-height: 48px !important;\
+    height: auto !important;\
+    max-height: none !important;\
+    padding: 7px 8px !important;\
+    display: flex !important;\
+    flex-direction: column !important;\
+    align-items: center !important;\
+    justify-content: center !important;\
+    gap: 3px !important;\
+    border-radius: 11px !important;\
+    overflow: visible !important;\
+    text-align: center !important;\
+  \}\
+\
+  body .asme-home .ah-about .ah-about-impact .ah-impact-mini span \{\
+    display: block !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    font-size: 19px !important;\
+    line-height: 1 !important;\
+  \}\
+\
+  body .asme-home .ah-about .ah-about-impact .ah-impact-mini strong \{\
+    display: block !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    font-size: 9.25px !important;\
+    line-height: 1.08 !important;\
+  \}\
+\}\
+\
+@media (max-width: 768px) and (prefers-color-scheme: dark) \{\
+  body .menu-toggle,\
+  body .menu-toggle:hover,\
+  body .menu-toggle:focus,\
+  body #site-navigation .menu-toggle,\
+  body #site-navigation .menu-toggle:hover,\
+  body #site-navigation .menu-toggle:focus \{\
+    color: #ffffff !important;\
+  \}\
+\
+  body .menu-toggle .gp-icon,\
+  body .menu-toggle .gp-icon svg,\
+  body .menu-toggle .gp-icon svg path,\
+  body #site-navigation .menu-toggle .gp-icon,\
+  body #site-navigation .menu-toggle .gp-icon svg,\
+  body #site-navigation .menu-toggle .gp-icon svg path \{\
+    color: #ffffff !important;\
+    fill: #ffffff !important;\
+    stroke: #ffffff !important;\
+  \}\
+\}\
+\
+@media (max-width: 768px) \{\
+  body .asme-home .ah-about .ah-about-impact .ah-impact-mini span \{\
+    padding-top: 16px !important;\
+  \}\
+\}\
+@media (max-width: 768px) \{\
+  /* Hide the X/close icon from menu toggle */\
+  body .menu-toggle .gp-icon-close,\
+  body .menu-toggle .gp-icon + .gp-icon,\
+  body #site-navigation .menu-toggle .gp-icon-close,\
+  body #site-navigation .menu-toggle .gp-icon + .gp-icon \{\
+    display: none !important;\
+  \}\
+\}\
+\
+body .asme-home .ah-about-impact .ah-impact-mini br \{\
+  display: none !important;\
+\}\
+\
+@media (max-width: 768px) \{\
+  body .menu-toggle > svg,\
+  body #site-navigation .menu-toggle > svg \{\
+    display: none !important;\
+  \}\
+\}\
+\
+@media (max-width: 768px) \{\
+  /* X icon fix */\
+  body .menu-toggle .gp-icon:last-child,\
+  body #site-navigation .menu-toggle .gp-icon:last-child,\
+  body .menu-toggle > svg,\
+  body #site-navigation .menu-toggle > svg \{\
+    display: none !important;\
+  \}\
+\
+  /* Spacing between text and stat cards */\
+  body .asme-home .ah-about-impact \{\
+    margin-top: 16px !important;\
+  \}\
+\
+  /* Remove the empty paragraph WordPress injects below the cards */\
+  body .asme-home .ah-about-impact p:empty,\
+  body .asme-home .ah-about p:empty \{\
+    display: none !important;\
+    margin: 0 !important;\
+    padding: 0 !important;\
+    height: 0 !important;\
+  \}\
+\}\
+\
+@media (max-width: 768px) \{\
+  /* X icon \'97 target second gp-icon directly */\
+  body .menu-toggle .gp-icon + .gp-icon,\
+  body .menu-toggle .icon-close,\
+  body #site-navigation .menu-toggle .gp-icon + .gp-icon,\
+  body #site-navigation .menu-toggle .icon-close \{\
+    display: none !important;\
+  \}\
+\
+  /* Center content inside stat cards */\
+  body .asme-home .ah-about .ah-about-impact .ah-impact-mini span,\
+  body .asme-home .ah-about .ah-about-impact .ah-impact-mini strong \{\
+    text-align: center !important;\
+    width: 100% !important;\
+  \}\
+\}\
+\
+@media (max-width: 768px) \{\
+  /* Hide all SVGs in toggle, then re-show only the hamburger (first one) */\
+  body .menu-toggle svg,\
+  body #site-navigation .menu-toggle svg \{\
+    display: none !important;\
+  \}\
+\
+  body .menu-toggle .gp-icon svg:first-child,\
+  body #site-navigation .menu-toggle .gp-icon svg:first-child \{\
+    display: inline-block !important;\
+  \}\
+\}\
+\
+/* =============================================\
+   MOBILE MENU \'97 remove extra X icon\
+   MUST BE LAST\
+   ============================================= */\
+\
+@media (max-width: 768px) \{\
+  body .menu-toggle .gp-icon svg:nth-of-type(n+2),\
+  body #site-navigation .menu-toggle .gp-icon svg:nth-of-type(n+2),\
+  body .menu-toggle .gp-icon + .gp-icon,\
+  body #site-navigation .menu-toggle .gp-icon + .gp-icon,\
+  body .menu-toggle .gp-icon[class*="close"],\
+  body #site-navigation .menu-toggle .gp-icon[class*="close"],\
+  body .menu-toggle [class*="close"],\
+  body #site-navigation .menu-toggle [class*="close"] \{\
+    display: none !important;\
+  \}\
+\}\
+\
+@media (max-width: 768px) \{\
+  body .asme-home .ah-hero \{\
+    height: 480px !important;\
+    min-height: 480px !important;\
+    max-height: 480px !important;\
+  \}\
+\}\
+\
+.asme-footer-social \{\
+  display: flex;\
+  flex-direction: column;\
+  gap: 10px;\
+\}\
+\
+.asme-footer-social a \{\
+  display: flex;\
+  align-items: center;\
+  gap: 8px;\
+\}\
+\
+.asme-footer-social \{\
+  display: flex;\
+  flex-direction: column;\
+  gap: 12px;\
+\}\
+\
+.asme-footer-social a \{\
+  display: flex;\
+  align-items: center;\
+  gap: 8px;\
+  line-height: 1;\
+\}\
+\
+.asme-footer-social svg \{\
+  flex-shrink: 0;\
+  vertical-align: middle;\
+\}\
+\
+.asme-footer-bottom \{\
+  display: flex;\
+  align-items: center;\
+  justify-content: space-between;\
+  flex-wrap: wrap;\
+  gap: 8px;\
+\}\
+\
+.asme-footer-login \{\
+  font-size: 11px;\
+  opacity: 0.4;\
+  text-decoration: none;\
+  transition: opacity 0.2s;\
+\}\
+\
+.asme-footer-login:hover \{\
+  opacity: 0.8;\
+\}\
+\
+.asme-footer-social a \{\
+  display: flex;\
+  flex-direction: row;\
+  align-items: center;\
+  gap: 8px;\
+  line-height: 1;\
+\}\
+\
+.asme-footer-social \{\
+  display: flex;\
+  flex-direction: column;\
+  align-items: center;\
+  gap: 12px;\
+\}\
+\
+.asme-footer-social a \{\
+  display: flex !important;\
+  flex-direction: row !important;\
+  align-items: center !important;\
+  justify-content: center;\
+  gap: 8px;\
+  text-align: center;\
+  width: 100%;\
+\}\
+\
+.asme-footer-social svg \{\
+  flex-shrink: 0;\
+\}\
+\
+/* Remove extra gap before footer */\
+.entry-content > *:last-child,\
+.page-content > *:last-child,\
+.ah-calendar-section,\
+.ah-calendar-mini,\
+.ah-calendar-mini iframe \{\
+  margin-bottom: 0 !important;\
+  padding-bottom: 0 !important;\
+\}\
+\
+.entry-content,\
+.page-content \{\
+  margin-bottom: 0 !important;\
+  padding-bottom: 0 !important;\
+\}\
+\
+.site-main,\
+.content-area,\
+main#main \{\
+  margin-bottom: 0 !important;\
+  padding-bottom: 0 !important;\
+\}\
+\
+.asme-footer-login \{\
+  display: flex;\
+  align-items: center;\
+  opacity: 0.25;\
+  text-decoration: none;\
+  transition: opacity 0.2s;\
+  color: inherit;\
+\}\
+\
+.asme-footer-login:hover \{\
+  opacity: 0.7;\
+\}\
+\
+.acp-cal-card \{\
+  margin-top: 40px !important;\
+\}\
+\
+/* Calendar page \'97 more top breathing room, less gap before calendar */\
+body .asme-cal-page \{\
+  padding-top: 48px !important;\
+\}\
+\
+body .asme-cal-page .acp-header \{\
+  margin-bottom: 8px !important;\
+\}\
+\
+body .asme-cal-page .acp-cal-card \{\
+  margin-top: 12px !important;\
+\}}
