@@ -1,0 +1,370 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <div class="asme-footer-inner">\
+  <div class="asme-footer-grid">\
+    <div class="asme-footer-col">\
+      <h3>Ohio State ASME</h3>\
+      <p>American Society of Mechanical Engineers</p>\
+      <p>@ The Ohio State University</p>\
+      <p>Columbus, OH 43210</p>\
+      <a href="mailto:asme@osu.edu">asme@osu.edu</a>\
+    </div>\
+    <div class="asme-footer-col">\
+      <h3>Quick Links</h3>\
+      <a href="https://org.osu.edu/asme/join/">Join ASME</a>\
+      <a href="https://org.osu.edu/asme/leadership/">Leadership</a>\
+      <a href="https://org.osu.edu/asme/pictures/">Gallery</a>\
+      <a href="https://org.osu.edu/asme/aboutus/">About Us</a>\
+      <a href="https://org.osu.edu/asme/sponsor-asme/">Sponsor ASME</a>\
+    </div>\
+    <div class="asme-footer-col">\
+      <h3>Connect</h3>\
+      <div class="asme-footer-social">\
+        <a href="https://www.instagram.com/asmeohiostate/" target="_blank" rel="noopener" aria-label="Instagram">\
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; display:block;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>\
+          Instagram\
+        </a>\
+        <a href="https://www.linkedin.com/company/asme-osu/" target="_blank" rel="noopener" aria-label="LinkedIn">\
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0; display:block;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>\
+          LinkedIn\
+        </a>\
+        <a href="https://org.osu.edu/asme/calendar/" rel="noopener" aria-label="Calendar">\
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; display:block;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>\
+          Calendar\
+        </a>\
+      </div>\
+    </div>\
+  </div>\
+  <div class="asme-footer-bottom">\
+    <span>\'a9 2026 ASME Ohio State University Chapter. All rights reserved.</span>\
+    <a href="https://org.osu.edu/asme/wp-admin/" class="asme-footer-login" aria-label="Admin Login" title="Admin Login">\
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>\
+    </a>\
+  </div>\
+</div>\
+\
+<!-- V10 interactions script goes directly below this line -->\
+\
+<script>\
+(function () \{\
+  document.addEventListener('DOMContentLoaded', function () \{\
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;\
+\
+    /* Gallery orientation classes */\
+    document.querySelectorAll('.asme-gallery-page .gallery-item img').forEach(function (img) \{\
+      function classifyImage() \{\
+        var item = img.closest('.gallery-item');\
+        if (!item || !img.naturalWidth || !img.naturalHeight) return;\
+\
+        var ratio = img.naturalWidth / img.naturalHeight;\
+        item.classList.remove('is-portrait', 'is-landscape', 'is-panorama', 'is-square');\
+\
+        if (ratio >= 1.75) item.classList.add('is-panorama');\
+        else if (ratio >= 1.15) item.classList.add('is-landscape');\
+        else if (ratio <= 0.85) item.classList.add('is-portrait');\
+        else item.classList.add('is-square');\
+      \}\
+\
+      if (img.complete) classifyImage();\
+      else img.addEventListener('load', classifyImage);\
+    \});\
+\
+    /* Scroll reveal animations */\
+    var revealTargets = document.querySelectorAll([\
+      '.ah-about',\
+      '.ah-section-title',\
+      '.ah-card',\
+      '.ah-calendar-section',\
+      '.about-hero',\
+      '.about-mission',\
+      '.about-pillar',\
+      '.asme-join-page .join-hero-copy',\
+      '.asme-join-page .join-form-card',\
+      '.join-faq-section',\
+      '.join-faq-item',\
+      '.sponsors-hero',\
+      '.sponsor-card',\
+      '.sponsors-cta',\
+      '.sponsor-hero',\
+      '.sponsor-section',\
+      '.sponsor-contact',\
+      '.gallery-hero',\
+      '.asme-gallery-page .gallery-item',\
+      '.leadership-year',\
+      '.leader-card',\
+      '.acp-header',\
+      '.acp-cal-card',\
+      '.acp-info-item',\
+      '.blog article',\
+      '.archive article',\
+      '.search article',\
+      '#secondary .widget',\
+      '.asme-footer-col'\
+    ].join(','));\
+\
+    revealTargets.forEach(function (el, i) \{\
+      el.classList.add('asme-animate');\
+      el.style.setProperty('--asme-delay', Math.min((i % 6) * 55, 275) + 'ms');\
+    \});\
+\
+    if (reduceMotion) \{\
+      revealTargets.forEach(function (el) \{\
+        el.classList.add('is-visible');\
+      \});\
+    \} else if ('IntersectionObserver' in window) \{\
+      var observer = new IntersectionObserver(function (entries) \{\
+        entries.forEach(function (entry) \{\
+          if (entry.isIntersecting) \{\
+            entry.target.classList.add('is-visible');\
+            observer.unobserve(entry.target);\
+          \}\
+        \});\
+      \}, \{ threshold: 0.12, rootMargin: '0px 0px -40px 0px' \});\
+\
+      revealTargets.forEach(function (el) \{\
+        observer.observe(el);\
+      \});\
+    \}\
+\
+    /* Sponsor page count-up animation */\
+    function countUp(el, target, suffix, duration) \{\
+      var start = null;\
+\
+      function step(ts) \{\
+        if (!start) start = ts;\
+        var progress = Math.min((ts - start) / duration, 1);\
+        var eased = 1 - Math.pow(1 - progress, 3);\
+        el.textContent = Math.floor(eased * target) + suffix;\
+        if (progress < 1) requestAnimationFrame(step);\
+      \}\
+\
+      requestAnimationFrame(step);\
+    \}\
+\
+    var panel = document.querySelector('.sponsor-hero-panel');\
+    if (panel && !reduceMotion && 'IntersectionObserver' in window) \{\
+      var countTriggered = false;\
+      var countObserver = new IntersectionObserver(function (entries) \{\
+        if (entries[0].isIntersecting && !countTriggered) \{\
+          countTriggered = true;\
+          countObserver.disconnect();\
+\
+          document.querySelectorAll('.sponsor-stat-inner strong').forEach(function (el) \{\
+            var raw = el.textContent.trim();\
+            var suffix = raw.replace(/[0-9]/g, '');\
+            var target = parseInt(raw.replace(/\\D/g, ''), 10);\
+\
+            if (!isNaN(target)) \{\
+              el.textContent = '0' + suffix;\
+              countUp(el, target, suffix, 1500);\
+            \}\
+          \});\
+        \}\
+      \}, \{ threshold: 0.45 \});\
+\
+      countObserver.observe(panel);\
+    \}\
+\
+    /* Home hero slideshow */\
+    var ahSlides = [\
+      \{\
+        url: 'https://org.osu.edu/asme/files/2024/02/FallCareerFair_2.HEIC_-0de7b12be03c2f6b.png',\
+        focus: 'center 37%'\
+      \},\
+      \{\
+        url: 'https://org.osu.edu/asme/files/2024/02/SpringCareerFair2024_2-583e2a7ffea08f33.png',\
+        focus: 'center 50%'\
+      \},\
+      \{\
+        url: 'https://org.osu.edu/asme/files/2024/03/MicrosoftTeams-image-84f8ac384c4c262e.jpg',\
+        focus: 'center center'\
+      \},\
+      \{\
+        url: 'https://org.osu.edu/asme/files/2026/04/ASME_Barsocial_2025-e1777080033405.jpg',\
+        focus: 'center 30%'\
+      \}\
+    ];\
+\
+    var container = document.getElementById('ahSlides');\
+    var dotsContainer = document.getElementById('ahDots');\
+    if (!container || !dotsContainer || ahSlides.length === 0) return;\
+\
+    var current = 0;\
+    var slides = [];\
+    var dots = [];\
+    var timer = null;\
+\
+    ahSlides.forEach(function (s, i) \{\
+      var el = document.createElement('div');\
+      el.className = 'ah-hero-slide';\
+      el.style.backgroundImage = 'url(' + s.url + ')';\
+      el.style.backgroundPosition = s.focus || 'center center';\
+      if (i === 0) el.classList.add('active');\
+\
+      container.appendChild(el);\
+      slides.push(el);\
+\
+      var dot = document.createElement('button');\
+      dot.className = 'ah-hero-dot' + (i === 0 ? ' active' : '');\
+      dot.type = 'button';\
+      dot.setAttribute('aria-label', 'Show slide ' + (i + 1));\
+      dot.addEventListener('click', function () \{\
+        goTo(i);\
+        restartTimer();\
+      \});\
+\
+      dotsContainer.appendChild(dot);\
+      dots.push(dot);\
+    \});\
+\
+    function goTo(n) \{\
+      slides[current].classList.remove('active');\
+      dots[current].classList.remove('active');\
+\
+      current = (n + slides.length) % slides.length;\
+\
+      slides[current].classList.add('active');\
+      dots[current].classList.add('active');\
+    \}\
+\
+    function restartTimer() \{\
+      if (timer) clearInterval(timer);\
+      if (!reduceMotion) \{\
+        timer = setInterval(function () \{\
+          if (!document.hidden) goTo(current + 1);\
+        \}, 5000);\
+      \}\
+    \}\
+\
+    restartTimer();\
+  \});\
+\})();\
+</script>\
+\
+<script>\
+(function () \{\
+  var directIcs = 'https://calendar.google.com/calendar/ical/c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com/public/basic.ics';\
+  var proxyIcs = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(directIcs);\
+\
+  var titleEl = document.getElementById('asmeFeaturedTitle');\
+  var descEl = document.getElementById('asmeFeaturedDescription');\
+  var dateEl = document.getElementById('asmeFeaturedDate');\
+  var locEl = document.getElementById('asmeFeaturedLocation');\
+\
+  if (!titleEl || !descEl || !dateEl || !locEl) return;\
+\
+  function clean(value) \{\
+    return (value || '')\
+      .replace(/\\\\,/g, ',')\
+      .replace(/\\\\n/g, ' ')\
+      .replace(/\\\\\\\\/g, '\\\\')\
+      .trim();\
+  \}\
+\
+  function unfold(text) \{\
+    return text.replace(/\\r?\\n[ \\t]/g, '');\
+  \}\
+\
+  function getField(block, name) \{\
+    var match = block.match(new RegExp('^' + name + '(?:;[^:]*)?:(.*)$', 'm'));\
+    return match ? clean(match[1]) : '';\
+  \}\
+\
+  function parseDate(raw) \{\
+    if (!raw) return null;\
+\
+    if (/^\\d\{8\}$/.test(raw)) \{\
+      return new Date(\
+        Number(raw.slice(0, 4)),\
+        Number(raw.slice(4, 6)) - 1,\
+        Number(raw.slice(6, 8)),\
+        12\
+      );\
+    \}\
+\
+    if (/^\\d\{8\}T\\d\{6\}Z$/.test(raw)) \{\
+      return new Date(\
+        raw.slice(0, 4) + '-' +\
+        raw.slice(4, 6) + '-' +\
+        raw.slice(6, 8) + 'T' +\
+        raw.slice(9, 11) + ':' +\
+        raw.slice(11, 13) + ':' +\
+        raw.slice(13, 15) + 'Z'\
+      );\
+    \}\
+\
+    return null;\
+  \}\
+\
+  function formatDate(date, allDay) \{\
+    return date.toLocaleDateString('en-US', \{\
+      weekday: 'short',\
+      month: 'long',\
+      day: 'numeric',\
+      year: 'numeric'\
+    \}) + (allDay ? ' \'b7 All day' : ' \'b7 ' + date.toLocaleTimeString('en-US', \{\
+      hour: 'numeric',\
+      minute: '2-digit'\
+    \}));\
+  \}\
+\
+  function renderFallback() \{\
+    titleEl.textContent = 'Upcoming ASME Event';\
+    descEl.textContent = 'View the full calendar for the latest ASME OSU events and updates.';\
+    dateEl.textContent = 'Calendar available';\
+    locEl.textContent = 'ASME OSU';\
+  \}\
+\
+  function renderFromIcs(text) \{\
+    var now = new Date();\
+    var blocks = unfold(text).match(/BEGIN:VEVENT[\\s\\S]*?END:VEVENT/g) || [];\
+\
+    var events = blocks.map(function (block) \{\
+      var rawStart = getField(block, 'DTSTART');\
+      var start = parseDate(rawStart);\
+      return \{\
+        title: getField(block, 'SUMMARY'),\
+        description: getField(block, 'DESCRIPTION'),\
+        location: getField(block, 'LOCATION'),\
+        start: start,\
+        allDay: /^\\d\{8\}$/.test(rawStart)\
+      \};\
+    \}).filter(function (event) \{\
+      return event.start && event.start >= now;\
+    \}).sort(function (a, b) \{\
+      return a.start - b.start;\
+    \});\
+\
+    if (!events.length) \{\
+      renderFallback();\
+      return;\
+    \}\
+\
+    var event = events[0];\
+\
+    titleEl.textContent = event.title || 'Upcoming ASME Event';\
+    descEl.textContent = event.description || 'Join ASME OSU for our next chapter event. Check the full calendar for details and updates.';\
+    dateEl.textContent = formatDate(event.start, event.allDay);\
+    locEl.textContent = event.location || 'Location TBA';\
+  \}\
+\
+  fetch(directIcs)\
+    .then(function (res) \{\
+      if (!res.ok) throw new Error('Direct iCal failed');\
+      return res.text();\
+    \})\
+    .catch(function () \{\
+      return fetch(proxyIcs).then(function (res) \{\
+        if (!res.ok) throw new Error('Proxy iCal failed');\
+        return res.text();\
+      \});\
+    \})\
+    .then(renderFromIcs)\
+    .catch(renderFallback);\
+\})();\
+</script>}
