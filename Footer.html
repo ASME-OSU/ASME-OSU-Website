@@ -247,18 +247,29 @@
       // Construct lightbox elements dynamically
       var lightbox = document.createElement('div');
       lightbox.className = 'asme-lightbox';
+      lightbox.setAttribute('role', 'dialog');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.setAttribute('aria-label', 'Gallery image viewer');
       lightbox.innerHTML = 
         '<button class="asme-lightbox-close" aria-label="Close">&times;</button>' +
         '<button class="asme-lightbox-prev" aria-label="Previous">&lsaquo;</button>' +
         '<button class="asme-lightbox-next" aria-label="Next">&rsaquo;</button>' +
         '<div class="asme-lightbox-content">' +
           '<img src="" alt="Gallery Image">' +
-          '<div class="asme-lightbox-caption"></div>' +
+          '<div class="asme-lightbox-bar">' +
+            '<div class="asme-lightbox-caption"></div>' +
+            '<div class="asme-lightbox-actions">' +
+              '<a class="asme-lightbox-download" href="#" download>Download</a>' +
+              '<a class="asme-lightbox-open" href="#" target="_blank" rel="noopener">Open</a>' +
+            '</div>' +
+          '</div>' +
         '</div>';
       document.body.appendChild(lightbox);
 
       var img = lightbox.querySelector('img');
       var caption = lightbox.querySelector('.asme-lightbox-caption');
+      var downloadLink = lightbox.querySelector('.asme-lightbox-download');
+      var openLink = lightbox.querySelector('.asme-lightbox-open');
       var prevBtn = lightbox.querySelector('.asme-lightbox-prev');
       var nextBtn = lightbox.querySelector('.asme-lightbox-next');
       var closeBtn = lightbox.querySelector('.asme-lightbox-close');
@@ -271,12 +282,16 @@
         var imgUrl = link.getAttribute('href');
         var originalImg = link.querySelector('img');
         var altText = originalImg ? originalImg.getAttribute('alt') : 'ASME Gallery Image';
+        var filename = (imgUrl.split('/').pop() || 'asme-gallery-image').split('?')[0];
         
         img.style.opacity = '0';
         setTimeout(function() {
           img.src = imgUrl;
           img.alt = altText;
           caption.textContent = altText || '';
+          downloadLink.href = imgUrl;
+          downloadLink.setAttribute('download', filename);
+          openLink.href = imgUrl;
           img.style.opacity = '1';
         }, 150);
       }
@@ -286,18 +301,25 @@
           e.preventDefault();
           updateImage(index);
           lightbox.classList.add('active');
+          document.body.classList.add('asme-lightbox-open-body');
+          closeBtn.focus();
         });
       });
 
       function closeLightbox() {
         lightbox.classList.remove('active');
+        document.body.classList.remove('asme-lightbox-open-body');
       }
 
       closeBtn.addEventListener('click', closeLightbox);
       lightbox.addEventListener('click', function (e) {
-        if (e.target === lightbox || e.target === lightbox.querySelector('.asme-lightbox-content')) {
+        if (e.target === lightbox) {
           closeLightbox();
         }
+      });
+
+      lightbox.querySelector('.asme-lightbox-content').addEventListener('click', function (e) {
+        e.stopPropagation();
       });
 
       prevBtn.addEventListener('click', function (e) {

@@ -2423,6 +2423,218 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   }
 }
 
+
+/* Gallery lightbox modal. */
+.asme-lightbox-open-body {
+  overflow: hidden !important;
+}
+
+.asme-lightbox {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 28px !important;
+  background: rgba(4, 10, 20, 0.86) !important;
+  backdrop-filter: blur(14px) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.22s ease !important;
+}
+
+.asme-lightbox.active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.asme-lightbox-content {
+  position: relative !important;
+  display: grid !important;
+  grid-template-rows: minmax(0, 1fr) auto !important;
+  width: min(1120px, 94vw) !important;
+  max-height: 88vh !important;
+  overflow: hidden !important;
+  background: #0f1b2d !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45) !important;
+}
+
+.asme-lightbox-content img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: calc(88vh - 72px) !important;
+  object-fit: contain !important;
+  background: #050b14 !important;
+  transition: opacity 0.16s ease !important;
+}
+
+.asme-lightbox-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  min-height: 64px !important;
+  padding: 14px 16px !important;
+  background: rgba(15, 27, 45, 0.96) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.asme-lightbox-caption {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  color: #e5e7eb !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.asme-lightbox-actions {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  gap: 8px !important;
+}
+
+.asme-lightbox-actions a,
+.asme-lightbox-close,
+.asme-lightbox-prev,
+.asme-lightbox-next {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease !important;
+}
+
+.asme-lightbox-actions a {
+  height: 36px !important;
+  padding: 0 13px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+}
+
+.asme-lightbox-actions a:hover,
+.asme-lightbox-actions a:focus,
+.asme-lightbox-close:hover,
+.asme-lightbox-close:focus,
+.asme-lightbox-prev:hover,
+.asme-lightbox-prev:focus,
+.asme-lightbox-next:hover,
+.asme-lightbox-next:focus {
+  background: #bb0000 !important;
+  border-color: #bb0000 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+.asme-lightbox-close {
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  z-index: 2 !important;
+  width: 42px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  font-size: 26px !important;
+  line-height: 1 !important;
+}
+
+.asme-lightbox-prev,
+.asme-lightbox-next {
+  position: absolute !important;
+  top: 50% !important;
+  z-index: 2 !important;
+  width: 46px !important;
+  height: 58px !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  font-size: 34px !important;
+  line-height: 1 !important;
+  transform: translateY(-50%) !important;
+}
+
+.asme-lightbox-prev:hover,
+.asme-lightbox-prev:focus,
+.asme-lightbox-next:hover,
+.asme-lightbox-next:focus {
+  transform: translateY(-50%) scale(1.03) !important;
+}
+
+.asme-lightbox-prev {
+  left: 18px !important;
+}
+
+.asme-lightbox-next {
+  right: 18px !important;
+}
+
+@media (max-width: 768px) {
+  .asme-lightbox {
+    padding: 14px !important;
+  }
+
+  .asme-lightbox-content {
+    width: 96vw !important;
+    max-height: 84vh !important;
+    border-radius: 14px !important;
+  }
+
+  .asme-lightbox-content img {
+    max-height: calc(84vh - 118px) !important;
+  }
+
+  .asme-lightbox-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    padding: 12px !important;
+  }
+
+  .asme-lightbox-caption {
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  .asme-lightbox-actions {
+    width: 100% !important;
+  }
+
+  .asme-lightbox-actions a {
+    flex: 1 1 0 !important;
+  }
+
+  .asme-lightbox-close {
+    top: 10px !important;
+    right: 10px !important;
+  }
+
+  .asme-lightbox-prev,
+  .asme-lightbox-next {
+    width: 38px !important;
+    height: 50px !important;
+    font-size: 28px !important;
+  }
+
+  .asme-lightbox-prev {
+    left: 10px !important;
+  }
+
+  .asme-lightbox-next {
+    right: 10px !important;
+  }
+}
+
 /* =============================================
    FOOTER — final centering lock
    Keeps footer columns and copyright centered.
