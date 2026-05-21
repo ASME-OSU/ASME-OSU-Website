@@ -101,7 +101,7 @@
     ].join(','));
 
     revealTargets.forEach(function (el, i) {
-      el.classList.add('asme-animate');
+      el.classList.add('asme-animate', 'asme-reveal');
       el.style.setProperty('--asme-delay', Math.min((i % 6) * 55, 275) + 'ms');
     });
 

@@ -2771,103 +2771,6 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
    ============================================= */
 
 /* =============================================
-   ASME — Subtle Animations
-   ============================================= */
-@keyframes asme-fade-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.ah-eyebrow {
-  animation: asme-fade-up 0.5s ease both;
-  animation-delay: 0.05s;
-}
-
-.ah-title {
-  animation: asme-fade-up 0.55s ease both;
-  animation-delay: 0.15s;
-}
-
-.ah-sub {
-  animation: asme-fade-up 0.55s ease both;
-  animation-delay: 0.25s;
-}
-
-.ah-btns {
-  animation: asme-fade-up 0.55s ease both;
-  animation-delay: 0.35s;
-}
-
-.ah-stats {
-  animation: asme-fade-up 0.55s ease both;
-  animation-delay: 0.42s;
-}
-
-.ah-badge {
-  animation: asme-fade-up 0.6s ease both;
-  animation-delay: 0.2s;
-}
-
-.ah-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
-}
-
-.ah-card:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 12px 32px rgba(15, 52, 96, 0.12) !important;
-  border-color: #0f3460 !important;
-}
-
-.leader-card:hover .leader-photo {
-  transform: scale(1.04);
-  transition: transform 0.3s ease;
-}
-
-.leader-photo {
-  transition: transform 0.3s ease;
-}
-
-.asme-gallery-page .gallery-item img {
-  transition: transform 0.35s ease !important;
-}
-
-.asme-gallery-page .gallery-item:hover img {
-  transform: scale(1.05) !important;
-}
-
-.widget ul li a {
-  transition: color 0.18s ease, padding-left 0.18s ease !important;
-}
-
-.widget ul li a:hover {
-  padding-left: 6px !important;
-  color: var(--asme-navy) !important;
-}
-
-.acp-subscribe-btn,
-.ah-btn-p,
-.ah-btn-o {
-  transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease !important;
-}
-
-.acp-subscribe-btn:hover,
-.ah-btn-p:hover,
-.ah-btn-o:hover {
-  transform: scale(1.03) !important;
-}
-
-.asme-animate {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-
-.asme-animate.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =============================================
    SPONSOR PAGE — stat panel fix
    ============================================= */
 .sponsor-stat-inner {
@@ -5181,6 +5084,7 @@ body.search .site-main {
   body .asme-home .ah-eyebrow,
   body .asme-home .ah-title,
   body .asme-home .ah-sub,
+  body .asme-home .ah-status-row,
   body .asme-home .ah-btns {
     margin-left: auto !important;
     margin-right: auto !important;
@@ -5345,33 +5249,61 @@ body.search .site-main {
 }
 
 /* =============================================
-   V10 — refined animations
+   ANIMATIONS — V10 utility system
+   Use these classes instead of one-off motion rules.
    ============================================= */
 
+:root {
+  --asme-motion-distance: 18px;
+  --asme-motion-duration: 0.55s;
+  --asme-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes asme-fade-up {
+  from { opacity: 0; transform: translateY(var(--asme-motion-distance)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes asme-soft-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(187, 0, 0, 0); }
+  50% { box-shadow: 0 0 0 6px rgba(187, 0, 0, 0.12); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .asme-reveal,
   .asme-animate {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(var(--asme-motion-distance));
     transition:
-      opacity 0.55s ease,
-      transform 0.55s ease,
+      opacity var(--asme-motion-duration) var(--asme-motion-ease),
+      transform var(--asme-motion-duration) var(--asme-motion-ease),
       border-color 0.2s ease,
       box-shadow 0.2s ease;
     transition-delay: var(--asme-delay, 0ms);
     will-change: opacity, transform;
   }
 
+  .asme-reveal.is-visible,
   .asme-animate.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
 
+  .asme-reveal-stagger > * {
+    transition-delay: calc(var(--asme-stagger-index, 0) * 55ms);
+  }
+
+  .asme-hover-lift,
   .ah-card,
   .leader-card,
   .sponsor-card,
+  .sponsor-card-primary,
+  .sponsor-card-partner,
   .about-pillar,
   .acp-info-item,
-  .join-faq-item {
+  .join-faq-item,
+  body .asme-home .ah-impact-mini,
+  body .asme-home .ah-featured-event {
     transition:
       transform 0.2s ease,
       box-shadow 0.2s ease,
@@ -5379,12 +5311,18 @@ body.search .site-main {
       background 0.2s ease !important;
   }
 
+  .asme-hover-lift:hover,
+  .asme-hover-lift:focus-within,
   .ah-card:hover,
   .leader-card:hover,
   .sponsor-card:hover,
+  .sponsor-card-primary:hover,
+  .sponsor-card-partner:hover,
   .about-pillar:hover,
   .acp-info-item:hover,
-  .join-faq-item:hover {
+  .join-faq-item:hover,
+  body .asme-home .ah-impact-mini:hover,
+  body .asme-home .ah-featured-event:hover {
     transform: translateY(-4px) !important;
     box-shadow: 0 12px 32px rgba(15, 52, 96, 0.14) !important;
   }
@@ -5400,7 +5338,9 @@ body.search .site-main {
     transform: scale(1.04) !important;
   }
 
-  .sponsor-card:hover .sponsor-logo-frame img {
+  .sponsor-card:hover .sponsor-logo-frame img,
+  .sponsor-card-primary:hover .sponsor-logo-frame img,
+  .sponsor-card-partner:hover .sponsor-logo-frame img {
     transform: scale(1.035) !important;
     filter: saturate(1.08) contrast(1.04);
   }
@@ -5410,7 +5350,8 @@ body.search .site-main {
   .acp-subscribe-btn,
   .sponsors-cta-button,
   .sponsor-primary-button,
-  .join-submit-button {
+  .join-submit-button,
+  .ah-featured-button {
     transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease !important;
   }
 
@@ -5419,12 +5360,28 @@ body.search .site-main {
   .acp-subscribe-btn:hover,
   .sponsors-cta-button:hover,
   .sponsor-primary-button:hover,
-  .join-submit-button:hover {
+  .join-submit-button:hover,
+  .ah-featured-button:hover {
     transform: translateY(-2px) !important;
+  }
+
+  @media (hover: hover) and (min-width: 769px) {
+    .leader-card .leader-linkedin {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s ease, transform 0.2s ease, background 0.18s ease !important;
+    }
+
+    .leader-card:hover .leader-linkedin,
+    .leader-card:focus-within .leader-linkedin {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .asme-reveal,
   .asme-animate {
     opacity: 1 !important;
     transform: none !important;
@@ -5472,6 +5429,45 @@ body.search .site-main {
 /* Hide old separate impact row if it still exists in the page HTML. */
 body .asme-home > .ah-impact-section {
   display: none !important;
+}
+
+
+/* Small current-status chips for the home hero. */
+body .asme-home .ah-status-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 0 14px !important;
+}
+
+body .asme-home .ah-status-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 6px 11px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 999px !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.02em !important;
+}
+
+body .asme-home .ah-status-pill::before {
+  content: '' !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: #bb0000 !important;
+  box-shadow: 0 0 0 3px rgba(187, 0, 0, 0.2) !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body .asme-home .ah-status-pill::before {
+    animation: asme-soft-pulse 2.2s ease-in-out infinite !important;
+  }
 }
 
 /* Slightly lower desktop hero content without changing the original layout. */
@@ -5802,6 +5798,16 @@ body .asme-home .ah-featured-button:hover {
     font-size: 18px !important;
     line-height: 1.38 !important;
     margin-bottom: 18px !important;
+  }
+
+  body .asme-home .ah-status-row {
+    gap: 7px !important;
+    margin-bottom: 16px !important;
+  }
+
+  body .asme-home .ah-status-pill {
+    padding: 6px 10px !important;
+    font-size: 10px !important;
   }
 
   body .asme-home .ah-stats,
