@@ -49,7 +49,7 @@
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* Gallery orientation classes */
-    document.querySelectorAll('.asme-gallery-page .gallery-item img').forEach(function (img) {
+    document.querySelectorAll('.asme-gallery-page .gallery-item img, .gallery .gallery-item img').forEach(function (img) {
       function classifyImage() {
         var item = img.closest('.gallery-item');
         if (!item || !img.naturalWidth || !img.naturalHeight) return;
@@ -185,14 +185,14 @@
 
     var container = document.getElementById('ahSlides');
     var dotsContainer = document.getElementById('ahDots');
-    if (!container || !dotsContainer || ahSlides.length === 0) return;
 
-    var current = 0;
-    var slides = [];
-    var dots = [];
-    var timer = null;
+    if (container && dotsContainer && ahSlides.length) {
+      var current = 0;
+      var slides = [];
+      var dots = [];
+      var timer = null;
 
-    ahSlides.forEach(function (s, i) {
+      ahSlides.forEach(function (s, i) {
       var el = document.createElement('div');
       el.className = 'ah-hero-slide';
       el.style.backgroundImage = 'url(' + s.url + ')';
@@ -211,11 +211,11 @@
         restartTimer();
       });
 
-      dotsContainer.appendChild(dot);
-      dots.push(dot);
-    });
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      });
 
-    function goTo(n) {
+      function goTo(n) {
       slides[current].classList.remove('active');
       dots[current].classList.remove('active');
 
@@ -225,23 +225,36 @@
       dots[current].classList.add('active');
     }
 
-    function restartTimer() {
-      if (timer) clearInterval(timer);
-      if (!reduceMotion) {
-        timer = setInterval(function () {
-          if (!document.hidden) goTo(current + 1);
-        }, 5000);
+      function restartTimer() {
+        if (timer) clearInterval(timer);
+        if (!reduceMotion) {
+          timer = setInterval(function () {
+            if (!document.hidden) goTo(current + 1);
+          }, 5000);
+        }
       }
-    }
 
-    restartTimer();
+      restartTimer();
+    }
 
     /* =============================================
        INTERACTIVE GALLERY LIGHTBOX
        Unifies image viewing experience directly on page
        ============================================= */
     (function () {
-      var galleryItems = document.querySelectorAll('.asme-gallery-page .gallery-item a');
+      var galleryItems = Array.prototype.slice.call(document.querySelectorAll([
+        '.asme-gallery-page .gallery-item a',
+        '.asme-gallery-page .gallery-icon a',
+        '.gallery .gallery-item a',
+        '.gallery .gallery-icon a',
+        '.wp-block-gallery a[href]',
+        '.wp-block-image a[href]'
+      ].join(','))).filter(function (link) {
+        var href = link.getAttribute('href') || '';
+        var hasImage = !!link.querySelector('img');
+        var isImageFile = /\.(jpe?g|png|gif|webp|avif|heic)(\?.*)?$/i.test(href);
+        return hasImage && isImageFile;
+      });
       if (!galleryItems.length) return;
 
       // Construct lightbox elements dynamically

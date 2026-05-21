@@ -6185,6 +6185,47 @@ body .asme-home .ah-featured-button:hover {
   }
 }
 
+
+
+/* =============================================
+   HOME ABOUT — final content-height lock
+   MUST STAY AFTER DARK/MOBILE HOME FIXES
+   ============================================= */
+
+body .asme-home .ah-about {
+  display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 0 18px !important;
+  padding: 18px 28px 20px !important;
+  overflow: visible !important;
+}
+
+body .asme-home .ah-about-text {
+  display: block !important;
+}
+
+body .asme-home .ah-about-impact {
+  margin-top: 18px !important;
+  align-self: auto !important;
+}
+
+@media (min-width: 901px) {
+  body .asme-home .ah-about {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body .asme-home .ah-about {
+    padding: 16px 16px 18px !important;
+    margin-bottom: 16px !important;
+  }
+}
 /* =============================================
    FOOTER + PAGE BOTTOM POLISH
    ============================================= */
