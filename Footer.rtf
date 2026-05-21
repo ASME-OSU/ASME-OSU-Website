@@ -1,9 +1,8 @@
 {\rtf1\ansi\ansicpg1252\cocoartf2870
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Light;}
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 <div class="asme-footer-inner">\
   <div class="asme-footer-grid">\
@@ -242,6 +241,96 @@
     \}\
 \
     restartTimer();\
+\
+    /* =============================================\
+       INTERACTIVE GALLERY LIGHTBOX\
+       Unifies image viewing experience directly on page\
+       ============================================= */\
+    (function () \{\
+      var galleryItems = document.querySelectorAll('.asme-gallery-page .gallery-item a');\
+      if (!galleryItems.length) return;\
+\
+      // Construct lightbox elements dynamically\
+      var lightbox = document.createElement('div');\
+      lightbox.className = 'asme-lightbox';\
+      lightbox.innerHTML = \
+        '<button class="asme-lightbox-close" aria-label="Close">&times;</button>' +\
+        '<button class="asme-lightbox-prev" aria-label="Previous">&lsaquo;</button>' +\
+        '<button class="asme-lightbox-next" aria-label="Next">&rsaquo;</button>' +\
+        '<div class="asme-lightbox-content">' +\
+          '<img src="" alt="Gallery Image">' +\
+          '<div class="asme-lightbox-caption"></div>' +\
+        '</div>';\
+      document.body.appendChild(lightbox);\
+\
+      var img = lightbox.querySelector('img');\
+      var caption = lightbox.querySelector('.asme-lightbox-caption');\
+      var prevBtn = lightbox.querySelector('.asme-lightbox-prev');\
+      var nextBtn = lightbox.querySelector('.asme-lightbox-next');\
+      var closeBtn = lightbox.querySelector('.asme-lightbox-close');\
+      var currentIndex = 0;\
+\
+      function updateImage(index) \{\
+        if (index < 0 || index >= galleryItems.length) return;\
+        currentIndex = index;\
+        var link = galleryItems[currentIndex];\
+        var imgUrl = link.getAttribute('href');\
+        var originalImg = link.querySelector('img');\
+        var altText = originalImg ? originalImg.getAttribute('alt') : 'ASME Gallery Image';\
+        \
+        img.style.opacity = '0';\
+        setTimeout(function() \{\
+          img.src = imgUrl;\
+          img.alt = altText;\
+          caption.textContent = altText || '';\
+          img.style.opacity = '1';\
+        \}, 150);\
+      \}\
+\
+      galleryItems.forEach(function (link, index) \{\
+        link.addEventListener('click', function (e) \{\
+          e.preventDefault();\
+          updateImage(index);\
+          lightbox.classList.add('active');\
+        \});\
+      \});\
+\
+      function closeLightbox() \{\
+        lightbox.classList.remove('active');\
+      \}\
+\
+      closeBtn.addEventListener('click', closeLightbox);\
+      lightbox.addEventListener('click', function (e) \{\
+        if (e.target === lightbox || e.target === lightbox.querySelector('.asme-lightbox-content')) \{\
+          closeLightbox();\
+        \}\
+      \});\
+\
+      prevBtn.addEventListener('click', function (e) \{\
+        e.stopPropagation();\
+        var prevIdx = currentIndex - 1;\
+        if (prevIdx < 0) prevIdx = galleryItems.length - 1;\
+        updateImage(prevIdx);\
+      \});\
+\
+      nextBtn.addEventListener('click', function (e) \{\
+        e.stopPropagation();\
+        var nextIdx = currentIndex + 1;\
+        if (nextIdx >= galleryItems.length) nextIdx = 0;\
+        updateImage(nextIdx);\
+      \});\
+\
+      document.addEventListener('keydown', function (e) \{\
+        if (!lightbox.classList.contains('active')) return;\
+        if (e.key === 'Escape') \{\
+          closeLightbox();\
+        \} else if (e.key === 'ArrowLeft') \{\
+          prevBtn.click();\
+        \} else if (e.key === 'ArrowRight') \{\
+          nextBtn.click();\
+        \}\
+      \});\
+    \})();\
   \});\
 \})();\
 </script>\
