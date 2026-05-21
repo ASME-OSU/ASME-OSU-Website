@@ -12,14 +12,15 @@ The files in this repository represent copy-paste blocks for various sections of
 
 | File Name | Target Location in WordPress Admin | Purpose |
 | :--- | :--- | :--- |
-| **[`ASME Custom CSS.rtf`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/ASME%20Custom%20CSS.rtf)** | **Appearance > Customize > Additional CSS** | Custom responsive variables, dark-mode cards, button spacing patches, grayscale partner sponsor grids, and styling overrides. |
-| **[`Footer.rtf`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Footer.rtf)** | **GeneratePress Elements / Footer Code Snippets** | Custom bottom-bar footer structure and all client-side JavaScript controllers (Animations, Slideshow, Google Calendar, Gallery Lightbox). |
-| **[`Home Page.rtf`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Home%20Page.rtf)** | **Pages > Home (Custom HTML Block)** | Layout structure for the Home Hero slideshow, statistics panels, Quick Links grid, and Calendar embed widget. |
-| **[`Join Page.rtf`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Join%20Page.rtf)** | **Pages > Join (Custom HTML Block)** | Newsletter signup form connected to Brevo (Sendinblue) and the dynamic FAQ accordion component. |
-| **[`Leadership Page.rtf`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Leadership%20Page.rtf)** | **Pages > Leadership (Custom HTML Block)** | Structure for officer grids, year tabs, and biography modal styling. |
-| **[`Gallery Page.rtf`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Gallery%20Page.rtf)** | **Pages > Gallery (Custom HTML Block)** | HTML structure for visual media collections. |
-| **[`About Us Page.rtf`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/About%20Us%20Page.rtf)** | **Pages > About Us (Custom HTML Block)** | Organizational pillars, history, and mission statements. |
-| **[`Current Sponsors Page.rtf`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Current%20Sponsors%20Page.rtf)** | **Pages > Sponsors (Custom HTML Block)** | Tiers layout for corporate sponsors and partner boards. |
+| **[`ASME Custom CSS.css`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/ASME%20Custom%20CSS.css)** | **Appearance > Customize > Additional CSS** | Custom responsive variables, dark-mode cards, button spacing patches, grayscale partner sponsor grids, and styling overrides. |
+| **[`Footer.html`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Footer.html)** | **GeneratePress Elements / Footer Code Snippets** | Custom bottom-bar footer structure and all client-side JavaScript controllers (Animations, Slideshow, Google Calendar, Gallery Lightbox). |
+| **[`Home Page.html`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Home%20Page.html)** | **Pages > Home (Custom HTML Block)** | Layout structure for the Home Hero slideshow, statistics panels, Quick Links grid, and Calendar embed widget. |
+| **[`Join Page.html`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Join%20Page.html)** | **Pages > Join (Custom HTML Block)** | Newsletter signup form connected to Brevo (Sendinblue) and the dynamic FAQ accordion component. |
+| **[`Leadership Page.html`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Leadership%20Page.html)** | **Pages > Leadership (Custom HTML Block)** | Structure for officer grids, year tabs, and biography modal styling. |
+| **[`Gallery Page.html`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Gallery%20Page.html)** | **Pages > Gallery (Custom HTML Block)** | HTML structure for visual media collections. |
+| **[`About Us Page.html`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/About%20Us%20Page.html)** | **Pages > About Us (Custom HTML Block)** | Organizational pillars, history, and mission statements. |
+| **[`Current Sponsors Page.html`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Current%20Sponsors%20Page.html)** | **Pages > Sponsors (Custom HTML Block)** | Tiers layout for corporate sponsors and partner boards. |
+| **[`Sponsor ASME Page.html`](file:///Users/matthewallen/.gemini/antigravity/scratch/ASME-OSU-Website/Sponsor%20ASME%20Page.html)** | **Pages > Sponsor ASME (Custom HTML Block)** | Corporate sponsorship registration info, benefit tiers, and contacts. |
 
 ---
 
@@ -37,7 +38,7 @@ The website's custom CSS uses CSS custom properties (`:root`) to maintain brandi
 
 ---
 
-## ⚡ Client-Side Features (`Footer.rtf`)
+## ⚡ Client-Side Features (`Footer.html`)
 
 The custom scripts are loaded dynamically on page load to add interactivity:
 
@@ -52,7 +53,7 @@ The custom scripts are loaded dynamically on page load to add interactivity:
 
 To make updates to the ASME OSU website:
 
-1.  **Edit Files Locally:** Edit the `.rtf` code blocks in this repository. (It is easiest to convert them to plain text or edit them inside a text editor, then commit).
+1.  **Edit Files Locally:** Edit the code files (`.html`, `.css`) directly using your preferred text or code editor.
 2.  **Commit and Push:**
     ```bash
     git add .
