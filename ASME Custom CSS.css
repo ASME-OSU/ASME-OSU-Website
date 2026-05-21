@@ -5692,6 +5692,55 @@ body .asme-home .ah-featured-button:hover {
   }
 }
 
+
+
+/* =============================================
+   HOME — dark-mode contrast and spacing repair
+   MUST STAY AFTER HOME IMPACT STYLES
+   ============================================= */
+
+@media (min-width: 901px) {
+  body .asme-home .ah-about {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+  }
+
+  body .asme-home .ah-about-impact {
+    margin-top: 18px !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body .asme-home .ah-about {
+    background: var(--asme-card, #0f1b2d) !important;
+    border-color: var(--asme-line, #26364f) !important;
+  }
+
+  body .asme-home .ah-about-text p {
+    color: #cbd5e1 !important;
+  }
+
+  body .asme-home .ah-about-impact .ah-impact-mini {
+    background: #111f33 !important;
+    border-color: #26364f !important;
+    border-left-color: #bb0000 !important;
+  }
+
+  body .asme-home .ah-impact-mini span {
+    color: #ff3333 !important;
+  }
+
+  body .asme-home .ah-impact-mini strong {
+    color: #f8fafc !important;
+    opacity: 1 !important;
+  }
+}
 /* =============================================
    MOBILE — final consolidated hero/menu/about
    MUST BE LAST
