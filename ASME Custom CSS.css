@@ -1124,23 +1124,29 @@ a:hover {
 }
 
 .about-stats-strip {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
-  justify-content: center;
-  gap: 0;
+  gap: 14px;
   margin: 0 0 24px;
-  padding: 28px 32px;
-  background: #0f3460;
-  border-radius: 16px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
 }
 
 .about-stat-item {
   display: flex;
-  flex: 1;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  min-height: 112px;
+  padding: 24px 18px;
+  background: #ffffff;
+  border: 1px solid var(--asme-line);
+  border-top: 3px solid #bb0000;
+  border-radius: 16px;
   text-align: center;
+  box-shadow: 0 8px 22px rgba(15, 52, 96, 0.05);
 }
 
 .about-stat-num {
@@ -1152,7 +1158,7 @@ a:hover {
 }
 
 .about-stat-label {
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--asme-muted);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -1160,11 +1166,7 @@ a:hover {
 }
 
 .about-stat-divider {
-  flex-shrink: 0;
-  width: 1px;
-  height: 40px;
-  margin: 0 8px;
-  background: rgba(255, 255, 255, 0.12);
+  display: none;
 }
 
 .about-pillar-icon {
@@ -1172,15 +1174,16 @@ a:hover {
   align-items: center;
   justify-content: center;
   margin-bottom: 12px;
-  padding: 5px 12px;
-  background: var(--osu-scarlet-light, #f5e6e6);
-  border-radius: 999px;
+  width: 34px;
+  height: 34px;
+  background: rgba(187, 0, 0, 0.1);
+  border: 1px solid rgba(187, 0, 0, 0.18);
+  border-radius: 50%;
   color: #bb0000;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 850;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   line-height: 1;
-  text-transform: uppercase;
 }
 
 .about-award,
@@ -1349,6 +1352,17 @@ a:hover {
 }
 
 @media (prefers-color-scheme: dark) {
+  .about-stat-item {
+    background: var(--asme-card, #0f1b2d) !important;
+    border-color: var(--asme-line, #26364f) !important;
+    border-top-color: #bb0000 !important;
+    box-shadow: none !important;
+  }
+
+  .about-stat-label {
+    color: #cbd5e1 !important;
+  }
+
   .about-award,
   .about-history {
     background: var(--asme-card, #0f1b2d) !important;
@@ -1371,9 +1385,8 @@ a:hover {
 
 @media (max-width: 768px) {
   .about-stats-strip {
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 20px 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
   .about-stat-divider {
@@ -1381,7 +1394,8 @@ a:hover {
   }
 
   .about-stat-item {
-    flex: 0 0 calc(50% - 8px);
+    min-height: 96px;
+    padding: 18px 12px;
   }
 
   .about-award-inner {
