@@ -332,7 +332,14 @@
 <script>
 (function () {
   var directIcs = 'https://calendar.google.com/calendar/ical/c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com/public/basic.ics';
-  var proxyIcs = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(directIcs);
+  var cacheKey = 'asmeFeaturedEventIcsV1';
+  /* Try the public calendar directly first, then no-account CORS fallbacks. */
+  var fetchUrls = [
+    directIcs,
+    'https://api.allorigins.win/raw?url=' + encodeURIComponent(directIcs),
+    'https://corsproxy.io/?' + encodeURIComponent(directIcs),
+    'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(directIcs)
+  ];
 
   var titleEl = document.getElementById('asmeFeaturedTitle');
   var descEl = document.getElementById('asmeFeaturedDescription');
@@ -403,6 +410,54 @@
     locEl.textContent = 'ASME OSU';
   }
 
+  function readCachedIcs() {
+    try {
+      var cached = localStorage.getItem(cacheKey);
+      return cached ? JSON.parse(cached).text : '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function writeCachedIcs(text) {
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({
+        savedAt: Date.now(),
+        text: text
+      }));
+    } catch (e) {}
+  }
+
+  function fetchWithTimeout(url, timeout) {
+    var controller = new AbortController();
+    var timer = setTimeout(function () {
+      controller.abort();
+    }, timeout);
+
+    return fetch(url, { signal: controller.signal })
+      .then(function (res) {
+        clearTimeout(timer);
+        if (!res.ok) throw new Error('iCal request failed');
+        return res.text();
+      })
+      .then(function (text) {
+        if (!/BEGIN:VCALENDAR/i.test(text)) {
+          throw new Error('Invalid iCal response');
+        }
+        return text;
+      });
+  }
+
+  function fetchIcs(index) {
+    if (index >= fetchUrls.length) {
+      return Promise.reject(new Error('All iCal sources failed'));
+    }
+
+    return fetchWithTimeout(fetchUrls[index], 5500).catch(function () {
+      return fetchIcs(index + 1);
+    });
+  }
+
   function renderFromIcs(text) {
     var now = new Date();
     var blocks = unfold(text).match(/BEGIN:VEVENT[\s\S]*?END:VEVENT/g) || [];
@@ -436,18 +491,19 @@
     locEl.textContent = event.location || 'Location TBA';
   }
 
-  fetch(directIcs)
-    .then(function (res) {
-      if (!res.ok) throw new Error('Direct iCal failed');
-      return res.text();
+  fetchIcs(0)
+    .then(function (text) {
+      writeCachedIcs(text);
+      renderFromIcs(text);
     })
     .catch(function () {
-      return fetch(proxyIcs).then(function (res) {
-        if (!res.ok) throw new Error('Proxy iCal failed');
-        return res.text();
-      });
-    })
-    .then(renderFromIcs)
-    .catch(renderFallback);
+      /* If every live request fails, keep showing the last known good event. */
+      var cached = readCachedIcs();
+      if (cached) {
+        renderFromIcs(cached);
+      } else {
+        renderFallback();
+      }
+    });
 })();
 </script>
