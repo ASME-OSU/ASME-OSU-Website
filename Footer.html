@@ -41,37 +41,66 @@
   </div>
 </div>
 
-<!-- V10 interactions script goes directly below this line -->
-
+<!-- V11 interactions script -->
 <script>
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* Gallery orientation classes */
+    /* ─────────────────────────────────────────
+       1. GALLERY ORIENTATION CLASSES
+    ───────────────────────────────────────── */
     document.querySelectorAll('.asme-gallery-page .gallery-item img, .gallery .gallery-item img').forEach(function (img) {
       function classifyImage() {
         var item = img.closest('.gallery-item');
         if (!item || !img.naturalWidth || !img.naturalHeight) return;
-
         var ratio = img.naturalWidth / img.naturalHeight;
         item.classList.remove('is-portrait', 'is-landscape', 'is-panorama', 'is-square');
-
         if (ratio >= 1.75) item.classList.add('is-panorama');
         else if (ratio >= 1.15) item.classList.add('is-landscape');
         else if (ratio <= 0.85) item.classList.add('is-portrait');
         else item.classList.add('is-square');
       }
-
       if (img.complete) classifyImage();
       else img.addEventListener('load', classifyImage);
     });
 
-    /* Scroll reveal animations */
+    /* ─────────────────────────────────────────
+       2. HERO TEXT STAGGER (homepage load)
+    ───────────────────────────────────────── */
+    var heroStaggerSelectors = [
+      '.ah-eyebrow',
+      '.ah-title',
+      '.ah-sub',
+      '.ah-btns',
+      '.ah-stats',
+      '.ah-badge'
+    ];
+
+    if (!reduceMotion) {
+      heroStaggerSelectors.forEach(function (selector, i) {
+        var el = document.querySelector(selector);
+        if (!el) return;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+        el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+        el.style.transitionDelay = (i * 110) + 'ms';
+        setTimeout(function () {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 80 + i * 110);
+      });
+    }
+
+    /* ─────────────────────────────────────────
+       3. SCROLL REVEAL — expanded targets
+    ───────────────────────────────────────── */
     var revealTargets = document.querySelectorAll([
       '.ah-about',
       '.ah-section-title',
       '.ah-card',
+      '.ah-featured-event',
+      '.ah-about-impact',
       '.ah-calendar-section',
       '.about-hero',
       '.about-mission',
@@ -100,15 +129,18 @@
       '.asme-footer-col'
     ].join(','));
 
-    revealTargets.forEach(function (el, i) {
+    /* Smarter stagger — resets per parent so sibling cards cascade nicely */
+    var parentCounters = new Map();
+    revealTargets.forEach(function (el) {
+      var parent = el.parentElement;
+      var count = parentCounters.get(parent) || 0;
+      parentCounters.set(parent, count + 1);
       el.classList.add('asme-animate', 'asme-reveal');
-      el.style.setProperty('--asme-delay', Math.min((i % 6) * 55, 275) + 'ms');
+      el.style.setProperty('--asme-delay', Math.min(count * 70, 350) + 'ms');
     });
 
     if (reduceMotion) {
-      revealTargets.forEach(function (el) {
-        el.classList.add('is-visible');
-      });
+      revealTargets.forEach(function (el) { el.classList.add('is-visible'); });
     } else if ('IntersectionObserver' in window) {
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -117,17 +149,15 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-      revealTargets.forEach(function (el) {
-        observer.observe(el);
-      });
+      }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+      revealTargets.forEach(function (el) { observer.observe(el); });
     }
 
-    /* Sponsor page count-up animation */
+    /* ─────────────────────────────────────────
+       4. COUNT-UP ANIMATION
+    ───────────────────────────────────────── */
     function countUp(el, target, suffix, duration) {
       var start = null;
-
       function step(ts) {
         if (!start) start = ts;
         var progress = Math.min((ts - start) / duration, 1);
@@ -135,23 +165,43 @@
         el.textContent = Math.floor(eased * target) + suffix;
         if (progress < 1) requestAnimationFrame(step);
       }
-
       requestAnimationFrame(step);
     }
 
+    /* Homepage impact mini stat cards */
+    var impactGrid = document.querySelector('.ah-about-impact');
+    if (impactGrid && !reduceMotion && 'IntersectionObserver' in window) {
+      var homeCountTriggered = false;
+      var homeCountObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !homeCountTriggered) {
+          homeCountTriggered = true;
+          homeCountObserver.disconnect();
+          document.querySelectorAll('.ah-impact-mini span').forEach(function (el) {
+            var raw = el.textContent.trim();
+            var suffix = raw.replace(/[0-9]/g, '');
+            var target = parseInt(raw.replace(/\D/g, ''), 10);
+            if (!isNaN(target) && target > 0) {
+              el.textContent = '0' + suffix;
+              countUp(el, target, suffix, 1200);
+            }
+          });
+        }
+      }, { threshold: 0.5 });
+      homeCountObserver.observe(impactGrid);
+    }
+
+    /* Sponsor page stat panel */
     var panel = document.querySelector('.sponsor-hero-panel');
     if (panel && !reduceMotion && 'IntersectionObserver' in window) {
-      var countTriggered = false;
-      var countObserver = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting && !countTriggered) {
-          countTriggered = true;
-          countObserver.disconnect();
-
+      var sponsorCountTriggered = false;
+      var sponsorCountObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !sponsorCountTriggered) {
+          sponsorCountTriggered = true;
+          sponsorCountObserver.disconnect();
           document.querySelectorAll('.sponsor-stat-inner strong').forEach(function (el) {
             var raw = el.textContent.trim();
             var suffix = raw.replace(/[0-9]/g, '');
             var target = parseInt(raw.replace(/\D/g, ''), 10);
-
             if (!isNaN(target)) {
               el.textContent = '0' + suffix;
               countUp(el, target, suffix, 1500);
@@ -159,71 +209,84 @@
           });
         }
       }, { threshold: 0.45 });
-
-      countObserver.observe(panel);
+      sponsorCountObserver.observe(panel);
     }
 
-    /* Home hero slideshow */
+    /* ─────────────────────────────────────────
+       5. CARD HOVER LIFT
+    ───────────────────────────────────────── */
+    if (!reduceMotion) {
+      document.querySelectorAll(
+        '.ah-card, .ah-impact-mini, .leader-card, .sponsor-card, .acp-info-item, .join-faq-item'
+      ).forEach(function (card) {
+        card.style.transition = (card.style.transition || '') + ', transform 0.2s ease, box-shadow 0.2s ease';
+        card.addEventListener('mouseenter', function () {
+          card.style.transform = 'translateY(-3px)';
+          card.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
+        });
+        card.addEventListener('mouseleave', function () {
+          card.style.transform = 'translateY(0)';
+          card.style.boxShadow = '';
+        });
+      });
+    }
+
+    /* ─────────────────────────────────────────
+       6. SMOOTH SCROLL for anchor links
+    ───────────────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      });
+    });
+
+    /* ─────────────────────────────────────────
+       7. HOME HERO SLIDESHOW
+    ───────────────────────────────────────── */
     var ahSlides = [
-      {
-        url: 'https://org.osu.edu/asme/files/2024/02/FallCareerFair_2.HEIC_-0de7b12be03c2f6b.png',
-        focus: 'center 37%'
-      },
-      {
-        url: 'https://org.osu.edu/asme/files/2024/02/SpringCareerFair2024_2-583e2a7ffea08f33.png',
-        focus: 'center 50%'
-      },
-      {
-        url: 'https://org.osu.edu/asme/files/2024/03/MicrosoftTeams-image-84f8ac384c4c262e.jpg',
-        focus: 'center center'
-      },
-      {
-        url: 'https://org.osu.edu/asme/files/2026/04/ASME_Barsocial_2025-e1777080033405.jpg',
-        focus: 'center 30%'
-      }
+      { url: 'https://org.osu.edu/asme/files/2024/02/FallCareerFair_2.HEIC_-0de7b12be03c2f6b.png', focus: 'center 37%' },
+      { url: 'https://org.osu.edu/asme/files/2024/02/SpringCareerFair2024_2-583e2a7ffea08f33.png', focus: 'center 50%' },
+      { url: 'https://org.osu.edu/asme/files/2024/03/MicrosoftTeams-image-84f8ac384c4c262e.jpg',   focus: 'center center' },
+      { url: 'https://org.osu.edu/asme/files/2026/04/ASME_Barsocial_2025-e1777080033405.jpg',      focus: 'center 30%' }
     ];
 
-    var container = document.getElementById('ahSlides');
+    var container     = document.getElementById('ahSlides');
     var dotsContainer = document.getElementById('ahDots');
 
     if (container && dotsContainer && ahSlides.length) {
       var current = 0;
-      var slides = [];
-      var dots = [];
-      var timer = null;
+      var slides  = [];
+      var dots    = [];
+      var timer   = null;
 
       ahSlides.forEach(function (s, i) {
-      var el = document.createElement('div');
-      el.className = 'ah-hero-slide';
-      el.style.backgroundImage = 'url(' + s.url + ')';
-      el.style.backgroundPosition = s.focus || 'center center';
-      if (i === 0) el.classList.add('active');
+        var el = document.createElement('div');
+        el.className = 'ah-hero-slide';
+        el.style.backgroundImage   = 'url(' + s.url + ')';
+        el.style.backgroundPosition = s.focus || 'center center';
+        if (i === 0) el.classList.add('active');
+        container.appendChild(el);
+        slides.push(el);
 
-      container.appendChild(el);
-      slides.push(el);
-
-      var dot = document.createElement('button');
-      dot.className = 'ah-hero-dot' + (i === 0 ? ' active' : '');
-      dot.type = 'button';
-      dot.setAttribute('aria-label', 'Show slide ' + (i + 1));
-      dot.addEventListener('click', function () {
-        goTo(i);
-        restartTimer();
-      });
-
+        var dot = document.createElement('button');
+        dot.className = 'ah-hero-dot' + (i === 0 ? ' active' : '');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Show slide ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); restartTimer(); });
         dotsContainer.appendChild(dot);
         dots.push(dot);
       });
 
       function goTo(n) {
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-
-      current = (n + slides.length) % slides.length;
-
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
 
       function restartTimer() {
         if (timer) clearInterval(timer);
@@ -237,10 +300,9 @@
       restartTimer();
     }
 
-    /* =============================================
-       INTERACTIVE GALLERY LIGHTBOX
-       Unifies image viewing experience directly on page
-       ============================================= */
+    /* ─────────────────────────────────────────
+       8. GALLERY LIGHTBOX
+    ───────────────────────────────────────── */
     (function () {
       var galleryItems = Array.prototype.slice.call(document.querySelectorAll([
         '.asme-gallery-page .gallery-item a',
@@ -255,15 +317,15 @@
         var isImageFile = /\.(jpe?g|png|gif|webp|avif|heic)(\?.*)?$/i.test(href);
         return hasImage && isImageFile;
       });
+
       if (!galleryItems.length) return;
 
-      // Construct lightbox elements dynamically
       var lightbox = document.createElement('div');
       lightbox.className = 'asme-lightbox';
       lightbox.setAttribute('role', 'dialog');
       lightbox.setAttribute('aria-modal', 'true');
       lightbox.setAttribute('aria-label', 'Gallery image viewer');
-      lightbox.innerHTML = 
+      lightbox.innerHTML =
         '<button class="asme-lightbox-close" aria-label="Close">&times;</button>' +
         '<button class="asme-lightbox-prev" aria-label="Previous">&lsaquo;</button>' +
         '<button class="asme-lightbox-next" aria-label="Next">&rsaquo;</button>' +
@@ -279,33 +341,33 @@
         '</div>';
       document.body.appendChild(lightbox);
 
-      var img = lightbox.querySelector('img');
-      var caption = lightbox.querySelector('.asme-lightbox-caption');
+      var img          = lightbox.querySelector('img');
+      var caption      = lightbox.querySelector('.asme-lightbox-caption');
       var downloadLink = lightbox.querySelector('.asme-lightbox-download');
-      var openLink = lightbox.querySelector('.asme-lightbox-open');
-      var prevBtn = lightbox.querySelector('.asme-lightbox-prev');
-      var nextBtn = lightbox.querySelector('.asme-lightbox-next');
-      var closeBtn = lightbox.querySelector('.asme-lightbox-close');
+      var openLink     = lightbox.querySelector('.asme-lightbox-open');
+      var prevBtn      = lightbox.querySelector('.asme-lightbox-prev');
+      var nextBtn      = lightbox.querySelector('.asme-lightbox-next');
+      var closeBtn     = lightbox.querySelector('.asme-lightbox-close');
       var currentIndex = 0;
 
       function updateImage(index) {
         if (index < 0 || index >= galleryItems.length) return;
         currentIndex = index;
-        var link = galleryItems[currentIndex];
-        var imgUrl = link.getAttribute('href');
+        var link       = galleryItems[currentIndex];
+        var imgUrl     = link.getAttribute('href');
         var originalImg = link.querySelector('img');
-        var altText = originalImg ? originalImg.getAttribute('alt') : 'ASME Gallery Image';
-        var filename = (imgUrl.split('/').pop() || 'asme-gallery-image').split('?')[0];
-        
+        var altText    = originalImg ? originalImg.getAttribute('alt') : 'ASME Gallery Image';
+        var filename   = (imgUrl.split('/').pop() || 'asme-gallery-image').split('?')[0];
+
         img.style.opacity = '0';
-        setTimeout(function() {
-          img.src = imgUrl;
-          img.alt = altText;
+        setTimeout(function () {
+          img.src            = imgUrl;
+          img.alt            = altText;
           caption.textContent = altText || '';
-          downloadLink.href = imgUrl;
+          downloadLink.href  = imgUrl;
           downloadLink.setAttribute('download', filename);
-          openLink.href = imgUrl;
-          img.style.opacity = '1';
+          openLink.href      = imgUrl;
+          img.style.opacity  = '1';
         }, 150);
       }
 
@@ -326,40 +388,29 @@
 
       closeBtn.addEventListener('click', closeLightbox);
       lightbox.addEventListener('click', function (e) {
-        if (e.target === lightbox) {
-          closeLightbox();
-        }
+        if (e.target === lightbox) closeLightbox();
       });
-
       lightbox.querySelector('.asme-lightbox-content').addEventListener('click', function (e) {
         e.stopPropagation();
       });
 
       prevBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        var prevIdx = currentIndex - 1;
-        if (prevIdx < 0) prevIdx = galleryItems.length - 1;
-        updateImage(prevIdx);
+        updateImage(currentIndex - 1 < 0 ? galleryItems.length - 1 : currentIndex - 1);
       });
-
       nextBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        var nextIdx = currentIndex + 1;
-        if (nextIdx >= galleryItems.length) nextIdx = 0;
-        updateImage(nextIdx);
+        updateImage(currentIndex + 1 >= galleryItems.length ? 0 : currentIndex + 1);
       });
 
       document.addEventListener('keydown', function (e) {
         if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') {
-          closeLightbox();
-        } else if (e.key === 'ArrowLeft') {
-          prevBtn.click();
-        } else if (e.key === 'ArrowRight') {
-          nextBtn.click();
-        }
+        if (e.key === 'Escape')      closeLightbox();
+        else if (e.key === 'ArrowLeft')  prevBtn.click();
+        else if (e.key === 'ArrowRight') nextBtn.click();
       });
     })();
+
   });
 })();
 </script>
@@ -367,8 +418,8 @@
 <script>
 (function () {
   var directIcs = 'https://calendar.google.com/calendar/ical/c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com/public/basic.ics';
-  var cacheKey = 'asmeFeaturedEventIcsV1';
-  /* Try the public calendar directly first, then no-account CORS fallbacks. */
+  var cacheKey  = 'asmeFeaturedEventIcsV1';
+
   var fetchUrls = [
     directIcs,
     'https://api.allorigins.win/raw?url=' + encodeURIComponent(directIcs),
@@ -377,23 +428,17 @@
   ];
 
   var titleEl = document.getElementById('asmeFeaturedTitle');
-  var descEl = document.getElementById('asmeFeaturedDescription');
-  var dateEl = document.getElementById('asmeFeaturedDate');
-  var locEl = document.getElementById('asmeFeaturedLocation');
+  var descEl  = document.getElementById('asmeFeaturedDescription');
+  var dateEl  = document.getElementById('asmeFeaturedDate');
+  var locEl   = document.getElementById('asmeFeaturedLocation');
 
   if (!titleEl || !descEl || !dateEl || !locEl) return;
 
   function clean(value) {
-    return (value || '')
-      .replace(/\\,/g, ',')
-      .replace(/\\n/g, ' ')
-      .replace(/\\\\/g, '\\')
-      .trim();
+    return (value || '').replace(/\\,/g, ',').replace(/\\n/g, ' ').replace(/\\\\/g, '\\').trim();
   }
 
-  function unfold(text) {
-    return text.replace(/\r?\n[ \t]/g, '');
-  }
+  function unfold(text) { return text.replace(/\r?\n[ \t]/g, ''); }
 
   function getField(block, name) {
     var match = block.match(new RegExp('^' + name + '(?:;[^:]*)?:(.*)$', 'm'));
@@ -402,38 +447,9 @@
 
   function parseDate(raw) {
     if (!raw) return null;
-
-    if (/^\d{8}$/.test(raw)) {
-      return new Date(
-        Number(raw.slice(0, 4)),
-        Number(raw.slice(4, 6)) - 1,
-        Number(raw.slice(6, 8)),
-        12
-      );
-    }
-
-    if (/^\d{8}T\d{6}$/.test(raw)) {
-      return new Date(
-        Number(raw.slice(0, 4)),
-        Number(raw.slice(4, 6)) - 1,
-        Number(raw.slice(6, 8)),
-        Number(raw.slice(9, 11)),
-        Number(raw.slice(11, 13)),
-        Number(raw.slice(13, 15))
-      );
-    }
-
-    if (/^\d{8}T\d{6}Z$/.test(raw)) {
-      return new Date(
-        raw.slice(0, 4) + '-' +
-        raw.slice(4, 6) + '-' +
-        raw.slice(6, 8) + 'T' +
-        raw.slice(9, 11) + ':' +
-        raw.slice(11, 13) + ':' +
-        raw.slice(13, 15) + 'Z'
-      );
-    }
-
+    if (/^\d{8}$/.test(raw)) return new Date(Number(raw.slice(0,4)), Number(raw.slice(4,6))-1, Number(raw.slice(6,8)), 12);
+    if (/^\d{8}T\d{6}$/.test(raw)) return new Date(Number(raw.slice(0,4)), Number(raw.slice(4,6))-1, Number(raw.slice(6,8)), Number(raw.slice(9,11)), Number(raw.slice(11,13)), Number(raw.slice(13,15)));
+    if (/^\d{8}T\d{6}Z$/.test(raw)) return new Date(raw.slice(0,4)+'-'+raw.slice(4,6)+'-'+raw.slice(6,8)+'T'+raw.slice(9,11)+':'+raw.slice(11,13)+':'+raw.slice(13,15)+'Z');
     return null;
   }
 
@@ -445,63 +461,40 @@
   function getNextOccurrence(start, rule, now) {
     if (!start || start >= now) return start;
     if (!/FREQ=WEEKLY/.test(rule || '')) return start;
-
     var interval = parseInt(getRuleValue(rule, 'INTERVAL') || '1', 10);
-    var until = parseDate(getRuleValue(rule, 'UNTIL'));
-    var next = new Date(start.getTime());
-    var stepMs = Math.max(interval, 1) * 7 * 24 * 60 * 60 * 1000;
-
+    var until    = parseDate(getRuleValue(rule, 'UNTIL'));
+    var next     = new Date(start.getTime());
+    var stepMs   = Math.max(interval, 1) * 7 * 24 * 60 * 60 * 1000;
     while (next < now) {
       next = new Date(next.getTime() + stepMs);
       if (until && next > until) return null;
     }
-
     return next;
   }
 
   function formatDate(date, allDay) {
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric'
-    }) + (allDay ? ' · All day' : ' · ' + date.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit'
-    }));
+    return date.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' }) +
+      (allDay ? ' · All day' : ' · ' + date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
   }
 
   function renderFallback() {
     titleEl.textContent = 'Upcoming ASME Event';
-    descEl.textContent = 'View the full calendar for the latest ASME OSU events and updates.';
-    dateEl.textContent = 'Calendar available';
-    locEl.textContent = 'ASME OSU';
+    descEl.textContent  = 'View the full calendar for the latest ASME OSU events and updates.';
+    dateEl.textContent  = 'Calendar available';
+    locEl.textContent   = 'ASME OSU';
   }
 
   function readCachedIcs() {
-    try {
-      var cached = localStorage.getItem(cacheKey);
-      return cached ? JSON.parse(cached).text : '';
-    } catch (e) {
-      return '';
-    }
+    try { var c = localStorage.getItem(cacheKey); return c ? JSON.parse(c).text : ''; } catch(e) { return ''; }
   }
 
   function writeCachedIcs(text) {
-    try {
-      localStorage.setItem(cacheKey, JSON.stringify({
-        savedAt: Date.now(),
-        text: text
-      }));
-    } catch (e) {}
+    try { localStorage.setItem(cacheKey, JSON.stringify({ savedAt: Date.now(), text: text })); } catch(e) {}
   }
 
   function fetchWithTimeout(url, timeout) {
     var controller = new AbortController();
-    var timer = setTimeout(function () {
-      controller.abort();
-    }, timeout);
-
+    var timer = setTimeout(function () { controller.abort(); }, timeout);
     return fetch(url, { signal: controller.signal })
       .then(function (res) {
         clearTimeout(timer);
@@ -509,71 +502,43 @@
         return res.text();
       })
       .then(function (text) {
-        if (!/BEGIN:VCALENDAR/i.test(text)) {
-          throw new Error('Invalid iCal response');
-        }
+        if (!/BEGIN:VCALENDAR/i.test(text)) throw new Error('Invalid iCal response');
         return text;
       });
   }
 
   function fetchIcs(index) {
-    if (index >= fetchUrls.length) {
-      return Promise.reject(new Error('All iCal sources failed'));
-    }
-
-    return fetchWithTimeout(fetchUrls[index], 5500).catch(function () {
-      return fetchIcs(index + 1);
-    });
+    if (index >= fetchUrls.length) return Promise.reject(new Error('All iCal sources failed'));
+    return fetchWithTimeout(fetchUrls[index], 5500).catch(function () { return fetchIcs(index + 1); });
   }
 
   function renderFromIcs(text) {
-    var now = new Date();
+    var now    = new Date();
     var blocks = unfold(text).match(/BEGIN:VEVENT[\s\S]*?END:VEVENT/g) || [];
-
     var events = blocks.map(function (block) {
-      var rawStart = getField(block, 'DTSTART');
-      var start = parseDate(rawStart);
-      var rule = getField(block, 'RRULE');
+      var rawStart  = getField(block, 'DTSTART');
+      var start     = parseDate(rawStart);
+      var rule      = getField(block, 'RRULE');
       var nextStart = getNextOccurrence(start, rule, now);
-      return {
-        title: getField(block, 'SUMMARY'),
-        description: getField(block, 'DESCRIPTION'),
-        location: getField(block, 'LOCATION'),
-        start: nextStart,
-        allDay: /^\d{8}$/.test(rawStart)
-      };
-    }).filter(function (event) {
-      return event.start && event.start >= now;
-    }).sort(function (a, b) {
-      return a.start - b.start;
-    });
+      return { title: getField(block, 'SUMMARY'), description: getField(block, 'DESCRIPTION'), location: getField(block, 'LOCATION'), start: nextStart, allDay: /^\d{8}$/.test(rawStart) };
+    }).filter(function (e) { return e.start && e.start >= now; })
+      .sort(function (a, b) { return a.start - b.start; });
 
-    if (!events.length) {
-      renderFallback();
-      return;
-    }
+    if (!events.length) { renderFallback(); return; }
 
     var event = events[0];
-
     titleEl.textContent = event.title || 'Upcoming ASME Event';
-    descEl.textContent = event.description || 'Join ASME OSU for our next chapter event. Check the full calendar for details and updates.';
-    dateEl.textContent = formatDate(event.start, event.allDay);
-    locEl.textContent = event.location || 'Location TBA';
+    descEl.textContent  = event.description || 'Join ASME OSU for our next chapter event. Check the full calendar for details and updates.';
+    dateEl.textContent  = formatDate(event.start, event.allDay);
+    locEl.textContent   = event.location || 'Location TBA';
   }
 
   fetchIcs(0)
-    .then(function (text) {
-      writeCachedIcs(text);
-      renderFromIcs(text);
-    })
+    .then(function (text) { writeCachedIcs(text); renderFromIcs(text); })
     .catch(function () {
-      /* If every live request fails, keep showing the last known good event. */
       var cached = readCachedIcs();
-      if (cached) {
-        renderFromIcs(cached);
-      } else {
-        renderFallback();
-      }
+      if (cached) renderFromIcs(cached);
+      else renderFallback();
     });
 })();
 </script>
