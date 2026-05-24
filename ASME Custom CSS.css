@@ -4271,6 +4271,68 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   justify-content: center !important;
 }
 
+.asme-join-page .join-social-proof {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  margin: -28px -34px 22px !important;
+  padding: 14px 20px !important;
+  background: #0f3460 !important;
+  border-radius: 18px 18px 0 0 !important;
+}
+
+.asme-join-page .join-proof-stat {
+  display: flex !important;
+  flex: 1 1 0 !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+  text-align: center !important;
+}
+
+.asme-join-page .join-proof-num {
+  color: #bb0000 !important;
+  font-family: 'DM Serif Display', serif !important;
+  font-size: 22px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+}
+
+.asme-join-page .join-proof-label {
+  color: rgba(255,255,255,0.62) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.1 !important;
+  text-transform: uppercase !important;
+}
+
+.asme-join-page .join-proof-divider {
+  flex: 0 0 1px !important;
+  width: 1px !important;
+  height: 32px !important;
+  margin: 0 8px !important;
+  background: rgba(255,255,255,0.14) !important;
+}
+
+.asme-join-page .join-proof-award {
+  display: flex !important;
+  flex: 1.35 1 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+  color: rgba(255,255,255,0.76) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+}
+
 .asme-join-page .join-form-heading {
   margin: 0 0 18px !important;
   padding: 0 0 14px !important;
@@ -4433,6 +4495,24 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   .asme-join-page .join-form-card {
     height: auto !important;
     padding: 24px 22px !important;
+  }
+
+  .asme-join-page .join-social-proof {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    margin: -24px -22px 20px !important;
+    padding: 12px 14px !important;
+    border-radius: 18px 18px 0 0 !important;
+  }
+
+  .asme-join-page .join-proof-divider {
+    display: none !important;
+  }
+
+  .asme-join-page .join-proof-stat,
+  .asme-join-page .join-proof-award {
+    flex: 0 1 auto !important;
+    width: auto !important;
   }
 
   .asme-join-page .join-hero-copy h1 {
