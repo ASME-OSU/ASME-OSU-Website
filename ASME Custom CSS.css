@@ -6727,3 +6727,164 @@ main#main {
 .acp-cal-card {
   margin-top: 40px !important;
 }
+
+/* =============================================
+   HOME HERO — mobile/tablet centering lock
+   Keeps the hero centered until the desktop badge layout has room.
+   MUST BE LAST
+   ============================================= */
+@media (max-width: 900px) {
+  body .asme-home .ah-hero {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    overflow-x: hidden !important;
+  }
+
+  body .asme-home .ah-hero-right {
+    display: none !important;
+  }
+
+  body .asme-home .ah-hero-left {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 600px !important;
+    box-sizing: border-box !important;
+    flex: none !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body .asme-home .ah-eyebrow,
+  body .asme-home .ah-title,
+  body .asme-home .ah-sub,
+  body .asme-home .ah-status-row,
+  body .asme-home .ah-btns,
+  body .asme-home .ah-stats {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 600px) {
+  body .asme-home .ah-hero {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  body .asme-home .ah-hero-left {
+    max-width: 100% !important;
+  }
+}
+
+/* Hero centering - 769px to 900px gap zone. */
+@media (min-width: 769px) and (max-width: 900px) {
+  body .asme-home .ah-hero {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  body .asme-home .ah-hero-right {
+    display: none !important;
+  }
+
+  body .asme-home .ah-hero-left {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 640px !important;
+    flex: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+
+  body .asme-home .ah-eyebrow,
+  body .asme-home .ah-title,
+  body .asme-home .ah-sub,
+  body .asme-home .ah-status-row,
+  body .asme-home .ah-btns,
+  body .asme-home .ah-stats {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* Hero centering - final approach, no hero-left margin auto. */
+@media (max-width: 900px) {
+  body #page .asme-home .ah-hero {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  body #page .asme-home .ah-hero-right {
+    display: none !important;
+  }
+
+  body #page .asme-home .ah-hero-left {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+    transform: none !important;
+  }
+
+  body #page .asme-home .ah-eyebrow,
+  body #page .asme-home .ah-title,
+  body #page .asme-home .ah-sub {
+    display: block !important;
+    width: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  body #page .asme-home .ah-title {
+    max-width: 12ch !important;
+  }
+
+  body #page .asme-home .ah-sub {
+    max-width: 28ch !important;
+  }
+
+  body #page .asme-home .ah-status-row,
+  body #page .asme-home .ah-btns,
+  body #page .asme-home .ah-stats {
+    display: flex !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-content: center !important;
+  }
+}
