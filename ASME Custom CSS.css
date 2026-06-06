@@ -6913,31 +6913,9 @@ body .asme-cal-page .acp-header {
 }
 
 /* =============================================
-   CALENDAR PAGE — final wrapper seam + intro spacing
-   MUST BE LAST
+   CALENDAR PAGE — final intro spacing
+   Page title strip should be disabled in GeneratePress page settings.
    ============================================= */
-body:has(.asme-cal-page) #content.site-content,
-body:has(.asme-cal-page) .site-content,
-body:has(.asme-cal-page) .content-sidebar-wrap,
-body:has(.asme-cal-page) #primary,
-body:has(.asme-cal-page) .content-area,
-body:has(.asme-cal-page) .site-main,
-body:has(.asme-cal-page) article.page,
-body:has(.asme-cal-page) .inside-article,
-body:has(.asme-cal-page) .entry-content {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  background: var(--asme-card, #ffffff) !important;
-}
-
-body:has(.asme-cal-page) .entry-header,
-body:has(.asme-cal-page) .page-header {
-  display: none !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
 body #page .asme-cal-page {
   margin-top: 0 !important;
   padding-top: 56px !important;
@@ -6956,5 +6934,60 @@ body #page .asme-cal-page .acp-header {
   body #page .asme-cal-page .acp-header {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
+  }
+}
+
+/* =============================================
+   LIGHT THEME — off-white palette
+   ============================================= */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #f5f7fa !important;
+  }
+
+  .site-content,
+  #content {
+    background-color: #f5f7fa !important;
+  }
+
+  body .ah-card,
+  body .ah-impact-mini,
+  body .ah-featured-event,
+  body .join-form-card,
+  body .about-award,
+  body .about-history,
+  body .about-pillar,
+  body .leader-card,
+  body .sponsor-card,
+  body .join-faq-item,
+  body .acp-cal-card,
+  body .acp-info-item {
+    background-color: #ffffff !important;
+    border-color: #e4e7ec !important;
+  }
+
+  body .about-mission,
+  body .asme-footer-inner {
+    border-color: #e4e7ec !important;
+  }
+
+  body .ah-about-text p,
+  body .ah-card p,
+  body .about-pillar p,
+  body .leader-card p,
+  body .acp-sub {
+    color: #4b5563 !important;
+  }
+
+  body .ah-about,
+  body .asme-join-page .join-faq-section,
+  body .acp-info-strip {
+    background-color: #eef1f6 !important;
+  }
+
+  body .join-form-card input,
+  body .join-form-card select {
+    background-color: #f9fafb !important;
+    border-color: #d1d5db !important;
   }
 }
