@@ -6911,3 +6911,40 @@ body .asme-cal-page .acp-header {
     justify-content: center !important;
   }
 }
+
+/* =============================================
+   CALENDAR PAGE — final wrapper seam + intro spacing
+   MUST BE LAST
+   ============================================= */
+body:has(.asme-cal-page) #content.site-content,
+body:has(.asme-cal-page) .site-content,
+body:has(.asme-cal-page) .content-sidebar-wrap,
+body:has(.asme-cal-page) #primary,
+body:has(.asme-cal-page) .content-area,
+body:has(.asme-cal-page) .site-main,
+body:has(.asme-cal-page) article.page,
+body:has(.asme-cal-page) .inside-article,
+body:has(.asme-cal-page) .entry-content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  background: var(--asme-card, #ffffff) !important;
+}
+
+body #page .asme-cal-page {
+  margin-top: 0 !important;
+  padding-top: 56px !important;
+}
+
+body #page .asme-cal-page .acp-header {
+  margin-bottom: 40px !important;
+}
+
+@media (max-width: 768px) {
+  body #page .asme-cal-page {
+    padding-top: 28px !important;
+  }
+
+  body #page .asme-cal-page .acp-header {
+    margin-bottom: 20px !important;
+  }
+}
