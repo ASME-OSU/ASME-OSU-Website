@@ -8551,3 +8551,12 @@ body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon {
     color: #fca5a5 !important;
   }
 }
+
+/* Keep Member Resources on the normal white site canvas.
+   The shared members shell uses gray for the points dashboard preview,
+   but it reads like an unwanted band on the resources page. */
+body #page .asme-member-resources-page {
+  --m-bg: #ffffff !important;
+  background-color: #ffffff !important;
+  padding-top: 0 !important;
+}
