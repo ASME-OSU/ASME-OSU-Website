@@ -6980,9 +6980,12 @@ body #page .asme-cal-page .acp-header {
   }
 
   body .ah-about,
-  body .asme-join-page .join-faq-section,
-  body .acp-info-strip {
+  body .asme-join-page .join-faq-section {
     background-color: #eef1f6 !important;
+  }
+
+  body .acp-info-strip {
+    background-color: transparent !important;
   }
 
   body .join-form-card input,
