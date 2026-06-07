@@ -7936,3 +7936,79 @@ body #page .asme-cal-page .acp-header {
     grid-template-columns: 1fr;
   }
 }
+
+/* =============================================
+   MEMBER RESOURCES PAGE - WordPress render lock
+   Keep this last in the members section.
+   ============================================= */
+body #page .asme-member-resources-page > p,
+body #page .asme-member-resources-page > br,
+body #page .asme-member-resources-page p:empty,
+body #page .asme-member-resources-page .asme-member-grid > p,
+body #page .asme-member-resources-page .asme-member-grid > br,
+body #page .asme-member-resources-page .asme-resource-priority > p,
+body #page .asme-member-resources-page .asme-resource-priority > br,
+body #page .asme-member-resources-page .asme-resource-priority-grid > p,
+body #page .asme-member-resources-page .asme-resource-priority-grid > br {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-priority {
+  align-items: stretch !important;
+  gap: 18px !important;
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
+  padding-bottom: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-priority-grid {
+  gap: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-priority + .asme-resource-group,
+body #page .asme-member-resources-page .asme-resource-priority ~ .asme-resource-group {
+  margin-top: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-group {
+  padding-top: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-group-header {
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
+}
+
+@media (min-width: 1100px) {
+  body #page .asme-member-resources-page .asme-resource-priority {
+    grid-template-columns: minmax(260px, 0.9fr) repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-priority-grid {
+    display: contents !important;
+  }
+}
+
+@media (max-width: 1099px) {
+  body #page .asme-member-resources-page .asme-resource-priority {
+    grid-template-columns: 1fr !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-priority-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body #page .asme-member-resources-page .asme-resource-priority-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
