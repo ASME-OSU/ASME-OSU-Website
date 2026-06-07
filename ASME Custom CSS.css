@@ -8262,36 +8262,6 @@ body #page .asme-member-resources-page .asme-flat-icon--sponsor::after {
   transform: rotate(18deg);
 }
 
-body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon {
-  color: var(--m-navy, #0f3460) !important;
-  font-size: 14px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.4px !important;
-  line-height: 1 !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-resource-card-icon.asme-flat-icon {
-  color: var(--m-scarlet, #bb0000) !important;
-}
-
-body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: var(--m-navy, #0f3460) !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  font-style: normal !important;
-  line-height: 1 !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon::before,
-body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon::after,
-body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon::before,
-body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon::after {
-  display: none !important;
-}
-
 @media (min-width: 1100px) {
   body #page .asme-member-resources-page .asme-resource-priority {
     grid-template-columns: minmax(260px, 0.9fr) repeat(3, minmax(0, 1fr)) !important;
@@ -8316,5 +8286,268 @@ body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon::af
 @media (max-width: 640px) {
   body #page .asme-member-resources-page .asme-resource-priority-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ============================================================
+   MEMBERS SECTION — CONSOLIDATED FIXES
+   Append to end of ASME Custom CSS.css
+   Covers: flat icon text hide, dark mode, entry header, cleanup
+   ============================================================ */
+
+
+/* ── FIX 1: Hide flat icon abbreviation text ─────────────────
+   The "AS", "OS", "CP" etc. text inside .asme-flat-icon divs
+   must be invisible — the actual icon is drawn by ::before/::after.
+   Without this, text shows as fallback if pseudo-elements fail.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon {
+  font-size: 0 !important;
+  color: transparent !important;
+  user-select: none !important;
+}
+
+body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon {
+  font-size: 0 !important;
+  color: transparent !important;
+  user-select: none !important;
+}
+
+
+/* ── FIX 2: Suppress GeneratePress entry header on member pages ──
+   Uses the page slug body class WordPress adds automatically.
+   Check your body tag classes in DevTools and swap the slugs
+   if WordPress uses a different format (e.g. page-id-XXX).
+   ─────────────────────────────────────────────────────────── */
+
+.page-template-default:has(.asme-members-page) .entry-header,
+.page-template-default:has(.asme-members-page) .page-header {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+
+/* ── FIX 3: Dark mode for the entire members section ────────
+   Adapts cards, banners, leaderboard, hero, badges, and buttons
+   to the existing site dark mode palette.
+   ─────────────────────────────────────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+
+  /* Page background */
+  .asme-members-page {
+    --m-bg:          #0a1628;
+    --m-card:        #0f1b2d;
+    --m-border:      #26364f;
+    --m-text:        #e2e8f0;
+    --m-muted:       #94a3b8;
+    --m-light-navy:  #162d52;
+    --m-amber-bg:    #1c1400;
+    --m-amber-border:#78350f;
+    --m-green-bg:    #052e16;
+    --m-green-border:#065f46;
+    --m-blue-soft:   #0f1f3a;
+    background-color: var(--m-bg) !important;
+  }
+
+  /* Hero — already dark navy, just lighten the texture */
+  .asme-member-hero {
+    background-color: #0f3460 !important;
+  }
+
+  /* Resource cards */
+  .asme-resource-card {
+    background-color: #0f1b2d !important;
+    border-color: #26364f !important;
+    color: #e2e8f0 !important;
+  }
+
+  .asme-resource-card:hover {
+    border-color: #3d5a80 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+  }
+
+  .asme-resource-card-title {
+    color: #e2e8f0 !important;
+  }
+
+  .asme-resource-card-desc {
+    color: #94a3b8 !important;
+  }
+
+  .asme-resource-card-footer {
+    border-top-color: #26364f !important;
+  }
+
+  .asme-resource-card-arrow {
+    color: #e2e8f0 !important;
+  }
+
+  /* Category group header */
+  .asme-resource-group-header {
+    border-bottom-color: #26364f !important;
+  }
+
+  .asme-resource-group-title {
+    color: #e2e8f0 !important;
+  }
+
+  .asme-resource-group-count {
+    background-color: #162d52 !important;
+    color: #93c5fd !important;
+  }
+
+  /* Points preview block */
+  .asme-points-preview {
+    background-color: #0f1b2d !important;
+    border-color: #26364f !important;
+  }
+
+  .asme-points-preview-banner {
+    background-color: #1c1400 !important;
+    border-bottom-color: #78350f !important;
+  }
+
+  .asme-points-preview-banner p {
+    color: #fbbf24 !important;
+  }
+
+  .asme-points-preview-body {
+    background-color: #0f1b2d !important;
+  }
+
+  /* Points feature tiles */
+  .asme-points-feature {
+    background-color: #162d52 !important;
+    border-color: #26364f !important;
+  }
+
+  .asme-points-feature-name {
+    color: #e2e8f0 !important;
+  }
+
+  .asme-points-feature-desc {
+    color: #94a3b8 !important;
+  }
+
+  /* Leaderboard skeleton */
+  .asme-leaderboard-preview {
+    background-color: #0f1b2d !important;
+    border-color: #26364f !important;
+  }
+
+  .asme-leaderboard-header {
+    border-bottom-color: #26364f !important;
+  }
+
+  .asme-leaderboard-header h3 {
+    color: #e2e8f0 !important;
+  }
+
+  .asme-leaderboard-row {
+    border-bottom-color: #26364f !important;
+  }
+
+  .asme-skeleton {
+    background: linear-gradient(
+      90deg,
+      #162d52 25%,
+      #1e3a5f 50%,
+      #162d52 75%
+    ) !important;
+    background-size: 400px 100% !important;
+  }
+
+  /* Info banners */
+  .asme-info-banner--amber {
+    background-color: #1c1400 !important;
+    border-color: #78350f !important;
+    color: #fbbf24 !important;
+  }
+
+  .asme-info-banner--blue {
+    background-color: #0f1f3a !important;
+    border-color: #26364f !important;
+    color: #93c5fd !important;
+  }
+
+  /* Status badges */
+  .asme-status-badge--coming-soon {
+    background-color: #1c1400 !important;
+    color: #fbbf24 !important;
+    border-color: #78350f !important;
+  }
+
+  .asme-status-badge--dev {
+    background-color: #0f1f3a !important;
+    color: #93c5fd !important;
+    border-color: #26364f !important;
+  }
+
+  .asme-status-badge--resource {
+    background-color: #052e16 !important;
+    color: #34d399 !important;
+    border-color: #065f46 !important;
+  }
+
+  .asme-status-badge--external {
+    background-color: #1e2330 !important;
+    color: #94a3b8 !important;
+    border-color: #334155 !important;
+  }
+
+  .asme-status-badge--featured {
+    background-color: #2d0000 !important;
+    color: #fca5a5 !important;
+    border-color: #7f1d1d !important;
+  }
+
+  /* Section labels and headings */
+  .asme-section-heading {
+    color: #e2e8f0 !important;
+  }
+
+  .asme-section-desc {
+    color: #94a3b8 !important;
+  }
+
+  /* CTA strip — already dark navy, just ensure text holds */
+  .asme-member-cta {
+    background-color: #0f3460 !important;
+  }
+
+  /* Ghost button in dark mode */
+  .asme-btn--ghost {
+    background-color: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    color: #ffffff !important;
+  }
+
+  .asme-btn--ghost:hover {
+    background-color: rgba(255,255,255,0.14) !important;
+  }
+
+  /* Flat icon color in dark mode */
+  body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon {
+    color: transparent !important;
+  }
+
+  body #page .asme-member-resources-page .asme-flat-icon::before,
+  body #page .asme-member-resources-page .asme-flat-icon::after {
+    border-color: #93c5fd !important;
+    background-color: #93c5fd !important;
+    color: #93c5fd !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-flat-icon::before,
+  body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-flat-icon::after {
+    border-color: #fca5a5 !important;
+    background-color: #fca5a5 !important;
+    color: #fca5a5 !important;
   }
 }
