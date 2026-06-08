@@ -8674,3 +8674,204 @@ body #page .asme-member-resources-page .asme-flat-icon--email::after {
   clip-path: none !important;
   transform: none !important;
 }
+
+
+/* ============================================================
+   MEMBERS SECTION — VISUAL & ALIGNMENT IMPROVEMENTS
+   ============================================================ */
+
+
+/* ── Outer page spacing ──────────────────────────────────────
+   Push the entire members page away from the WordPress header
+   and give consistent bottom breathing room.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page {
+  margin-top: 8px !important;
+  margin-bottom: 32px !important;
+}
+
+
+/* ── Hero improvements ───────────────────────────────────────
+   Tighten line-height on h1, add bottom margin to hero,
+   fix hero padding at tablet widths.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-member-hero {
+  margin-bottom: 20px !important;
+}
+
+body #page .asme-member-hero h1 {
+  line-height: 1.1 !important;
+  letter-spacing: -0.3px !important;
+}
+
+/* Fix hero padding at tablet widths */
+@media (min-width: 641px) and (max-width: 860px) {
+  body #page .asme-member-hero {
+    padding: 36px 28px 32px !important;
+  }
+}
+
+
+/* ── Info banner → first group spacing ──────────────────────
+   Give the first resource group more room after the banner.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-info-banner {
+  margin-bottom: 28px !important;
+}
+
+body #page .asme-members-page .asme-resource-group:first-of-type {
+  margin-top: 4px !important;
+}
+
+
+/* ── Group header refinements ────────────────────────────────
+   Add top margin between groups so they breathe better.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-resource-group {
+  margin-bottom: 40px !important;
+}
+
+body #page .asme-members-page .asme-resource-group-header {
+  padding-bottom: 12px !important;
+  margin-bottom: 16px !important;
+}
+
+body #page .asme-members-page .asme-resource-group-title {
+  font-size: 12px !important;
+  letter-spacing: 1.5px !important;
+}
+
+
+/* ── Card grid column control ────────────────────────────────
+   Tighter min-width prevents awkward half-empty rows.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-member-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  gap: 14px !important;
+}
+
+/* 3-col variant used on points "How it Works" */
+body #page .asme-members-page .asme-member-grid--3col {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+/* Forms & Admin — cap at 2 cols since it only has 2 cards */
+body #page .asme-members-page .asme-resource-group:last-of-type .asme-member-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+  max-width: 640px !important;
+}
+
+
+/* ── Card visual polish ──────────────────────────────────────
+   Equal card heights via flex, cleaner footer alignment,
+   more restrained hover shadow.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-resource-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  padding: 20px 20px 16px !important;
+}
+
+body #page .asme-members-page .asme-resource-card-desc {
+  flex: 1 !important;
+  margin-bottom: 0 !important;
+}
+
+body #page .asme-members-page .asme-resource-card-footer {
+  margin-top: auto !important;
+  padding-top: 12px !important;
+}
+
+/* Subtler icon background for non-accent cards */
+body #page .asme-members-page .asme-resource-card:not(.asme-resource-card--accented):not(.asme-resource-card--scarlet) .asme-resource-card-icon {
+  background: #f0f4f8 !important;
+}
+
+
+/* ── CTA heading font ────────────────────────────────────────
+   Match other heading styles on the page.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-member-cta-copy h3 {
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-weight: 400 !important;
+  font-size: 22px !important;
+  letter-spacing: -0.2px !important;
+}
+
+
+/* ── Leaderboard skeleton spacing ────────────────────────────
+   Give skeleton name bars more visual room.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-leaderboard-row {
+  padding: 14px 20px !important;
+  gap: 12px !important;
+}
+
+body #page .asme-members-page .asme-skeleton-name {
+  height: 12px !important;
+}
+
+body #page .asme-members-page .asme-leaderboard-preview {
+  margin-bottom: 32px !important;
+}
+
+
+/* ── Points feature grid ─────────────────────────────────────
+   More consistent spacing on the planned features tiles.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-points-features {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)) !important;
+  gap: 10px !important;
+}
+
+body #page .asme-members-page .asme-points-feature {
+  padding: 18px 16px !important;
+}
+
+body #page .asme-members-page .asme-points-preview-body {
+  padding: 28px 32px 24px !important;
+}
+
+
+/* ── Mobile adjustments ──────────────────────────────────────
+   Stack things properly at narrow widths.
+   ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  body #page .asme-members-page .asme-member-grid--3col {
+    grid-template-columns: 1fr !important;
+  }
+
+  body #page .asme-members-page .asme-resource-group:last-of-type .asme-member-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+  }
+
+  body #page .asme-members-page .asme-points-features {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  body #page .asme-members-page .asme-member-hero h1 {
+    font-size: 24px !important;
+  }
+
+  body #page .asme-members-page .asme-member-cta-copy h3 {
+    font-size: 18px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  body #page .asme-members-page .asme-points-features {
+    grid-template-columns: 1fr !important;
+  }
+}
