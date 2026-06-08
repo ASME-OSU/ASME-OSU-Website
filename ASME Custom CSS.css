@@ -8621,3 +8621,56 @@ body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon::af
     color: #fca5a5 !important;
   }
 }
+
+/* Cleaner resource icons for cards that were reading like emoji/fallbacks. */
+body #page .asme-member-resources-page .asme-flat-icon--early-career::before {
+  top: 25px !important;
+  left: 10px !important;
+  width: 23px !important;
+  height: 3px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: currentColor !important;
+  clip-path: none !important;
+  transform: rotate(-38deg) !important;
+  transform-origin: left center !important;
+}
+
+body #page .asme-member-resources-page .asme-flat-icon--early-career::after {
+  top: 11px !important;
+  left: 23px !important;
+  width: 9px !important;
+  height: 9px !important;
+  border: 0 !important;
+  border-top: 3px solid currentColor !important;
+  border-right: 3px solid currentColor !important;
+  border-radius: 1px !important;
+  background: transparent !important;
+  clip-path: none !important;
+  transform: rotate(0deg) !important;
+}
+
+body #page .asme-member-resources-page .asme-flat-icon--email::before {
+  top: 11px !important;
+  left: 8px !important;
+  width: 26px !important;
+  height: 20px !important;
+  border: 3px solid currentColor !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+  transform: none !important;
+}
+
+body #page .asme-member-resources-page .asme-flat-icon--email::after {
+  top: 16px !important;
+  left: 11px !important;
+  width: 20px !important;
+  height: 11px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(135deg, transparent calc(50% - 1.5px), currentColor calc(50% - 1.5px), currentColor calc(50% + 1.5px), transparent calc(50% + 1.5px)),
+    linear-gradient(45deg, transparent calc(50% - 1.5px), currentColor calc(50% - 1.5px), currentColor calc(50% + 1.5px), transparent calc(50% + 1.5px)) !important;
+  clip-path: none !important;
+  transform: none !important;
+}
