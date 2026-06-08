@@ -8561,6 +8561,28 @@ body #page .asme-member-resources-page {
   padding-top: 0 !important;
 }
 
+/* Match the older pages: Member Resources should sit on the normal
+   white WordPress canvas, not the global light-theme gray canvas. */
+body:has(.asme-member-resources-page),
+body:has(.asme-member-resources-page) #page,
+body:has(.asme-member-resources-page) .site,
+body:has(.asme-member-resources-page) .site-content,
+body:has(.asme-member-resources-page) #content,
+body:has(.asme-member-resources-page) .content-area,
+body:has(.asme-member-resources-page) .inside-article,
+body:has(.asme-member-resources-page) .entry-content {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+body:has(.asme-member-resources-page) .asme-members-page,
+body:has(.asme-member-resources-page) .asme-member-resources-page,
+body:has(.asme-member-resources-page) .asme-resource-group,
+body:has(.asme-member-resources-page) .asme-resource-group-header {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
 /* Force the CSS-drawn flat icons to render.
    The fallback text is hidden by font-size, while currentColor stays
    available for the icon shapes drawn in ::before and ::after. */
