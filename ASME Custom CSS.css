@@ -8560,3 +8560,42 @@ body #page .asme-member-resources-page {
   background-color: #ffffff !important;
   padding-top: 0 !important;
 }
+
+/* Force the CSS-drawn flat icons to render.
+   The fallback text is hidden by font-size, while currentColor stays
+   available for the icon shapes drawn in ::before and ::after. */
+body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon,
+body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon {
+  color: var(--m-navy, #0f3460) !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-resource-card-icon.asme-flat-icon {
+  color: var(--m-scarlet, #bb0000) !important;
+}
+
+body #page .asme-member-resources-page .asme-flat-icon::before,
+body #page .asme-member-resources-page .asme-flat-icon::after {
+  display: block !important;
+  visibility: visible !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon::before,
+body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon::after,
+body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon::before,
+body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon::after {
+  display: block !important;
+  visibility: visible !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon,
+  body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon {
+    color: #93c5fd !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-resource-card-icon.asme-flat-icon {
+    color: #fca5a5 !important;
+  }
+}
