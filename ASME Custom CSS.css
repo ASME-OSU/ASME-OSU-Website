@@ -8561,6 +8561,15 @@ body #page .asme-member-resources-page {
   padding-top: 0 !important;
 }
 
+body:has(.asme-members-page) .entry-content,
+body:has(.asme-members-page) .page-content,
+body:has(.asme-members-page) .site-main,
+body:has(.asme-members-page) .content-area,
+body:has(.asme-members-page) main#main {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 /* Match the older pages: Member Resources should sit on the normal
    white WordPress canvas, not the global light-theme gray canvas. */
 body:has(.asme-member-resources-page),
@@ -8873,5 +8882,27 @@ body #page .asme-members-page .asme-points-preview-body {
 @media (max-width: 400px) {
   body #page .asme-members-page .asme-points-features {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* MEMBERS PAGE — footer transition and mobile gutter lock.
+   Keep this after member visual alignment overrides. */
+body:has(.asme-members-page) .site-footer,
+body:has(.asme-members-page) #colophon {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+  body .asme-members-page,
+  body #page .asme-members-page {
+    width: calc(100vw - 12px) !important;
+    max-width: calc(100vw - 12px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
   }
 }
