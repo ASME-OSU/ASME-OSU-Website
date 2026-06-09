@@ -8906,3 +8906,26 @@ body:has(.asme-members-page) #colophon {
     box-sizing: border-box !important;
   }
 }
+
+/* MEMBERS PAGE — align section count pills with titles. */
+body #page .asme-members-page .asme-resource-group-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+body #page .asme-members-page .asme-resource-group-title {
+  line-height: 1.1 !important;
+  margin: 0 !important;
+}
+
+body #page .asme-members-page .asme-resource-group-count {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 30px !important;
+  height: 30px !important;
+  padding: 0 9px !important;
+  line-height: 1 !important;
+  flex: 0 0 auto !important;
+}
