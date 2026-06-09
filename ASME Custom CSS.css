@@ -8929,3 +8929,450 @@ body #page .asme-members-page .asme-resource-group-count {
   line-height: 1 !important;
   flex: 0 0 auto !important;
 }
+
+/* ============================================================
+   MEMBERS SECTION — COMPREHENSIVE FIX v2
+   Fixes: dark mode specificity, group title alignment,
+   points page dark mode, flat icon dark mode, priority copy.
+   Append to END of ASME Custom CSS.css after all other rules.
+   ============================================================ */
+
+
+/* ── 1. GROUP HEADER ALIGNMENT ───────────────────────────────
+   GeneratePress injects h2 { margin-bottom: 20px } with higher
+   specificity than our .asme-resource-group-title { margin: 0 }.
+   Force margin reset and ensure flex alignment is clean.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-resource-group-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: nowrap !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 16px !important;
+  border-bottom: 1px solid var(--m-border, #e4e7ec) !important;
+}
+
+body #page .asme-members-page .asme-resource-group-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  color: var(--m-navy, #0f3460) !important;
+  line-height: 1.2 !important;
+  flex-shrink: 0 !important;
+}
+
+body #page .asme-members-page .asme-resource-group-count {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 2px 8px !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  background: var(--m-light-navy, #eef2f8) !important;
+  color: var(--m-navy, #0f3460) !important;
+  flex-shrink: 0 !important;
+}
+
+
+/* ── 2. DARK MODE — RESOURCES PAGE (HIGH SPECIFICITY) ────────
+   All rules prefixed with body #page to beat existing
+   page-scoped light mode rules (specificity 0,3,1+).
+   ─────────────────────────────────────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+
+  /* Page + section backgrounds */
+  body #page .asme-members-page,
+  body #page .asme-member-resources-page {
+    background-color: #0a1628 !important;
+    --m-bg: #0a1628;
+    --m-card: #0f1b2d;
+    --m-border: #26364f;
+    --m-text: #e2e8f0;
+    --m-muted: #94a3b8;
+    --m-light-navy: #162d52;
+    --m-amber-bg: #1c1400;
+    --m-amber-border: #78350f;
+    --m-green-bg: #052e16;
+    --m-green-border: #065f46;
+    --m-blue-soft: #0f1f3a;
+  }
+
+  /* Resource cards */
+  body #page .asme-members-page .asme-resource-card,
+  body #page .asme-member-resources-page .asme-resource-card {
+    background-color: #0f1b2d !important;
+    border-color: #26364f !important;
+    color: #e2e8f0 !important;
+  }
+
+  body #page .asme-members-page .asme-resource-card:hover,
+  body #page .asme-member-resources-page .asme-resource-card:hover {
+    border-color: #3d5a80 !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.45) !important;
+  }
+
+  body #page .asme-members-page .asme-resource-card-title,
+  body #page .asme-member-resources-page .asme-resource-card-title {
+    color: #e2e8f0 !important;
+  }
+
+  body #page .asme-members-page .asme-resource-card-desc,
+  body #page .asme-member-resources-page .asme-resource-card-desc {
+    color: #94a3b8 !important;
+  }
+
+  body #page .asme-members-page .asme-resource-card-footer,
+  body #page .asme-member-resources-page .asme-resource-card-footer {
+    border-top-color: #26364f !important;
+  }
+
+  body #page .asme-members-page .asme-resource-card-arrow,
+  body #page .asme-member-resources-page .asme-resource-card-arrow {
+    color: #93c5fd !important;
+  }
+
+  /* Card icon backgrounds */
+  body #page .asme-member-resources-page .asme-resource-card-icon.asme-flat-icon {
+    background: linear-gradient(135deg, #162d52, #1e3a5f) !important;
+    box-shadow: inset 0 0 0 1px rgba(147,197,253,0.12) !important;
+    color: #93c5fd !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-resource-card-icon.asme-flat-icon {
+    background: linear-gradient(135deg, #2d0000, #4a0000) !important;
+    box-shadow: inset 0 0 0 1px rgba(252,165,165,0.15) !important;
+    color: #fca5a5 !important;
+  }
+
+  /* Flat icon pseudo-element colors */
+  body #page .asme-member-resources-page .asme-flat-icon::before,
+  body #page .asme-member-resources-page .asme-flat-icon::after {
+    background-color: #93c5fd !important;
+    border-color: #93c5fd !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-flat-icon::before,
+  body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-flat-icon::after {
+    background-color: #fca5a5 !important;
+    border-color: #fca5a5 !important;
+  }
+
+  /* Info banner icon */
+  body #page .asme-member-resources-page .asme-info-banner-icon.asme-flat-icon {
+    background: #162d52 !important;
+  }
+
+  body #page .asme-member-resources-page .asme-flat-icon--info::before,
+  body #page .asme-member-resources-page .asme-flat-icon--info::after {
+    background: #93c5fd !important;
+  }
+
+  /* Group headers */
+  body #page .asme-members-page .asme-resource-group-header,
+  body #page .asme-member-resources-page .asme-resource-group-header {
+    border-bottom-color: #26364f !important;
+  }
+
+  body #page .asme-members-page .asme-resource-group-title,
+  body #page .asme-member-resources-page .asme-resource-group-title {
+    color: #94a3b8 !important;
+  }
+
+  body #page .asme-members-page .asme-resource-group-count,
+  body #page .asme-member-resources-page .asme-resource-group-count {
+    background-color: #162d52 !important;
+    color: #93c5fd !important;
+  }
+
+  /* Priority copy card */
+  body #page .asme-member-resources-page .asme-resource-priority-copy {
+    background-color: #0f1b2d !important;
+    border-color: #26364f !important;
+    color: #e2e8f0 !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-priority-copy h2,
+  body #page .asme-member-resources-page .asme-resource-priority-copy h3 {
+    color: #e2e8f0 !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-priority-copy p {
+    color: #94a3b8 !important;
+  }
+
+  /* Info banners */
+  body #page .asme-members-page .asme-info-banner--blue,
+  body #page .asme-member-resources-page .asme-info-banner--blue {
+    background-color: #0f1f3a !important;
+    border-color: #26364f !important;
+    color: #93c5fd !important;
+  }
+
+  body #page .asme-members-page .asme-info-banner--amber,
+  body #page .asme-member-resources-page .asme-info-banner--amber {
+    background-color: #1c1400 !important;
+    border-color: #78350f !important;
+    color: #fbbf24 !important;
+  }
+
+  /* Status badges */
+  body #page .asme-members-page .asme-status-badge--coming-soon,
+  body #page .asme-member-resources-page .asme-status-badge--coming-soon {
+    background-color: #1c1400 !important;
+    color: #fbbf24 !important;
+    border-color: #78350f !important;
+  }
+
+  body #page .asme-members-page .asme-status-badge--dev,
+  body #page .asme-member-resources-page .asme-status-badge--dev {
+    background-color: #0f1f3a !important;
+    color: #93c5fd !important;
+    border-color: #26364f !important;
+  }
+
+  body #page .asme-members-page .asme-status-badge--resource,
+  body #page .asme-member-resources-page .asme-status-badge--resource {
+    background-color: #052e16 !important;
+    color: #34d399 !important;
+    border-color: #065f46 !important;
+  }
+
+  body #page .asme-members-page .asme-status-badge--external,
+  body #page .asme-member-resources-page .asme-status-badge--external {
+    background-color: #1e2330 !important;
+    color: #94a3b8 !important;
+    border-color: #334155 !important;
+  }
+
+  body #page .asme-members-page .asme-status-badge--featured,
+  body #page .asme-member-resources-page .asme-status-badge--featured {
+    background-color: #2d0000 !important;
+    color: #fca5a5 !important;
+    border-color: #7f1d1d !important;
+  }
+
+  /* CTA strip buttons */
+  body #page .asme-members-page .asme-btn--ghost,
+  body #page .asme-member-resources-page .asme-btn--ghost {
+    background-color: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    color: #ffffff !important;
+  }
+
+  body #page .asme-members-page .asme-btn--ghost:hover,
+  body #page .asme-member-resources-page .asme-btn--ghost:hover {
+    background-color: rgba(255,255,255,0.14) !important;
+  }
+
+  /* Section headings */
+  body #page .asme-members-page .asme-section-heading,
+  body #page .asme-member-resources-page .asme-section-heading {
+    color: #e2e8f0 !important;
+  }
+
+  body #page .asme-members-page .asme-section-desc,
+  body #page .asme-member-resources-page .asme-section-desc {
+    color: #94a3b8 !important;
+  }
+
+
+  /* ── 3. DARK MODE — POINTS PAGE SPECIFIC ──────────────────
+     Points page uses .asme-members-page but NOT
+     .asme-member-resources-page so needs its own rules.
+     ──────────────────────────────────────────────────────── */
+
+  /* Points preview block */
+  body #page .asme-members-page .asme-points-preview {
+    background-color: #0f1b2d !important;
+    border-color: #26364f !important;
+  }
+
+  body #page .asme-members-page .asme-points-preview-banner {
+    background-color: #1c1400 !important;
+    border-bottom-color: #78350f !important;
+  }
+
+  body #page .asme-members-page .asme-points-preview-banner p {
+    color: #fbbf24 !important;
+  }
+
+  body #page .asme-members-page .asme-points-preview-banner p span {
+    color: #d97706 !important;
+  }
+
+  body #page .asme-members-page .asme-points-preview-body {
+    background-color: #0f1b2d !important;
+  }
+
+  /* Points feature tiles */
+  body #page .asme-members-page .asme-points-feature {
+    background-color: #162d52 !important;
+    border-color: #26364f !important;
+  }
+
+  body #page .asme-members-page .asme-points-feature-name {
+    color: #e2e8f0 !important;
+  }
+
+  body #page .asme-members-page .asme-points-feature-desc {
+    color: #94a3b8 !important;
+  }
+
+  /* Leaderboard */
+  body #page .asme-members-page .asme-leaderboard-preview {
+    background-color: #0f1b2d !important;
+    border-color: #26364f !important;
+  }
+
+  body #page .asme-members-page .asme-leaderboard-header {
+    border-bottom-color: #26364f !important;
+    background-color: #0f1b2d !important;
+  }
+
+  body #page .asme-members-page .asme-leaderboard-header h3 {
+    color: #e2e8f0 !important;
+    margin: 0 !important;
+  }
+
+  body #page .asme-members-page .asme-leaderboard-row {
+    border-bottom-color: #26364f !important;
+  }
+
+  /* Dark skeleton shimmer */
+  body #page .asme-members-page .asme-skeleton {
+    background: linear-gradient(
+      90deg,
+      #162d52 25%,
+      #1e3a5f 50%,
+      #162d52 75%
+    ) !important;
+    background-size: 400px 100% !important;
+  }
+
+  /* "How Points Work" cards on points page */
+  body #page .asme-members-page .asme-resource-card {
+    background-color: #0f1b2d !important;
+    border-color: #26364f !important;
+  }
+
+  body #page .asme-members-page .asme-resource-card-title {
+    color: #e2e8f0 !important;
+  }
+
+  body #page .asme-members-page .asme-resource-card-desc {
+    color: #94a3b8 !important;
+  }
+
+  body #page .asme-members-page .asme-resource-card-icon {
+    background: #162d52 !important;
+  }
+}
+
+
+/* ── 4. LEADERBOARD HEADER H3 MARGIN RESET ───────────────────
+   GeneratePress sets h3 margin in .entry-content which
+   pushes the leaderboard header out of alignment.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-leaderboard-header h3 {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+
+/* Same fix for points feature headings */
+body #page .asme-members-page .asme-points-feature-name {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* And section headings */
+body #page .asme-members-page .asme-section-heading {
+  margin-bottom: 10px !important;
+}
+
+
+/* ── 5. CARD ICON ALIGNMENT ON POINTS PAGE ───────────────────
+   The emoji icons on the "How Points Work" and feature cards
+   need consistent sizing and no default line-height offset.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .asme-members-page .asme-points-feature-icon,
+body #page .asme-members-page .asme-resource-card-icon {
+  display: block !important;
+  line-height: 1 !important;
+  margin-bottom: 8px !important;
+}
+
+
+/* ── 6. ENTRY HEADER SUPPRESSION — BOTH PAGES ────────────────
+   Stronger selector than the previous :has() approach since
+   :has() may not be supported in the site's browser targets.
+   Works by targeting the entry-header when our wrapper exists
+   as a sibling in .entry-content.
+   ─────────────────────────────────────────────────────────── */
+
+body #page .entry-content:has(.asme-members-page) + .entry-header,
+body #page .entry-header:has(+ .entry-content .asme-members-page) {
+  display: none !important;
+}
+
+/* Fallback: tighten the gap if header still shows */
+body #page .entry-header + .entry-content .asme-members-page {
+  margin-top: 0 !important;
+}
+
+/* MEMBERS PAGE — final live-site lock.
+   Keep after comprehensive member fixes so Chrome/Safari keep the stabilized spacing. */
+body:has(.asme-members-page) .site-footer,
+body:has(.asme-members-page) #colophon {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+  body .asme-members-page,
+  body #page .asme-members-page {
+    width: calc(100vw - 12px) !important;
+    max-width: calc(100vw - 12px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
+
+body #page .asme-members-page .asme-resource-group-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: nowrap !important;
+}
+
+body #page .asme-members-page .asme-resource-group-title {
+  line-height: 1.1 !important;
+  margin: 0 !important;
+}
+
+body #page .asme-members-page .asme-resource-group-count {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 30px !important;
+  height: 30px !important;
+  padding: 0 9px !important;
+  line-height: 1 !important;
+  flex: 0 0 auto !important;
+}
