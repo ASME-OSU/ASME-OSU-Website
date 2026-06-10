@@ -10230,3 +10230,28 @@ body #page .asme-member-resources-page .asme-member-grid > p:empty {
     padding-right: 0 !important;
   }
 }
+
+/* MOBILE GUTTER STANDARD — keep custom pages aligned on phones.
+   One page-level wrapper should own the edge spacing: 16px per side. */
+@media (max-width: 768px) {
+  body .asme-home,
+  body .asme-about-page,
+  body .asme-join-page,
+  body .asme-sponsors-page,
+  body .asme-sponsor-page,
+  body .asme-gallery-page,
+  body .asme-cal-page,
+  body .leadership-board,
+  body .asme-members-page,
+  body #page .asme-members-page,
+  body .asme-member-resources-page,
+  body #page .asme-member-resources-page {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
