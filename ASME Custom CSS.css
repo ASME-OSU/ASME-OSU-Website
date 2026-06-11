@@ -10369,3 +10369,34 @@ body #page .asme-members-page .asme-skeleton-score {
     box-sizing: border-box !important;
   }
 }
+
+/* MEMBER POINTS - dark footer transition.
+   Prevent the GeneratePress footer shell from showing a white band above the custom footer. */
+@media (prefers-color-scheme: dark) {
+  body:has(.asme-members-page),
+  body:has(.asme-members-page) #page,
+  body:has(.asme-members-page) .site,
+  body:has(.asme-members-page) .site-content,
+  body:has(.asme-members-page) #content,
+  body:has(.asme-members-page) .content-area,
+  body:has(.asme-members-page) .site-main,
+  body:has(.asme-members-page) .inside-article,
+  body:has(.asme-members-page) .entry-content,
+  body:has(.asme-members-page) .site-footer,
+  body:has(.asme-members-page) #colophon {
+    background: #07111f !important;
+    background-color: #07111f !important;
+    color: #f8fafc !important;
+  }
+
+  body:has(.asme-members-page) .site-footer,
+  body:has(.asme-members-page) #colophon {
+    margin-top: 0 !important;
+    border-top-color: #26364f !important;
+  }
+
+  body:has(.asme-members-page) .asme-footer-inner {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+}
