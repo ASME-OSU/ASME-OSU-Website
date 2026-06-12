@@ -71,6 +71,29 @@ max-width: calc(100vw - 32px);
 
 Use the existing page wrapper classes, such as `asme-home`, `asme-about-page`, `asme-join-page`, `asme-member-resources-page`, and `asme-members-page`, instead of adding one-off width rules. If a page looks edge-to-edge on mobile, fix it in the shared gutter rule rather than adding a separate page-specific patch.
 
+## Member Pages
+
+The member pages are sensitive to GeneratePress heading defaults. For compact section labels, use classed paragraph tags such as:
+
+```html
+<p class="asme-resource-group-title">Getting Started</p>
+```
+
+Avoid `h2`, `h3`, and `h4` for small component labels unless the CSS override is scoped with `body #page`. GeneratePress applies heading margins that can push the count badges out of line.
+
+For Member Resources:
+
+- Keep resource card icons as inline SVG inside `.asme-resource-svg-icon`; do not depend on Flaticon, emoji, or an external icon CDN.
+- Keep the resource jump links in `.asme-jump-nav`.
+- Use `.asme-member-grid--2col` for two-card groups so the cards do not stretch awkwardly across a three-column grid.
+
+For Member Points:
+
+- Keep the leaderboard title as `.asme-leaderboard-title` on a paragraph tag.
+- Keep the dark footer transition rule near the bottom of `ASME Custom CSS.css`; it prevents the WordPress footer shell from showing a light band between the page and footer in dark mode.
+
+If a Claude/Codex handoff includes a full CSS dump, do not paste it over the live stylesheet. Cherry-pick the specific rules needed, then run the CSS checks and verify the affected page.
+
 ## Notes
 
 - CSS updates go live from GitHub/jsDelivr after push and cache purge.
