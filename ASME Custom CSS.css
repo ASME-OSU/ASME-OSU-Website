@@ -7765,9 +7765,6 @@ body #page .asme-cal-page .acp-header {
     padding: 20px 18px 18px;
   }
 
-  .asme-resource-group-header {
-    flex-wrap: wrap;
-  }
 }
 
 @media (max-width: 400px) {
@@ -7814,10 +7811,6 @@ body #page .asme-cal-page .acp-header {
 
 .asme-member-resources-page .asme-resource-group {
   margin-bottom: 38px;
-}
-
-.asme-member-resources-page .asme-resource-group-header {
-  margin-bottom: 16px;
 }
 
 .asme-member-resources-page .asme-resource-card {
@@ -8084,20 +8077,6 @@ body #page .asme-member-resources-page .asme-resource-group-header {
     color: #e2e8f0 !important;
   }
 
-  /* Category group header */
-  .asme-resource-group-header {
-    border-bottom-color: #26364f !important;
-  }
-
-  .asme-resource-group-title {
-    color: #e2e8f0 !important;
-  }
-
-  .asme-resource-group-count {
-    background-color: #162d52 !important;
-    color: #93c5fd !important;
-  }
-
   /* Points preview block */
   .asme-points-preview {
     background-color: #0f1b2d !important;
@@ -8264,8 +8243,7 @@ body:has(.asme-member-resources-page) .entry-content {
 
 body:has(.asme-member-resources-page) .asme-members-page,
 body:has(.asme-member-resources-page) .asme-member-resources-page,
-body:has(.asme-member-resources-page) .asme-resource-group,
-body:has(.asme-member-resources-page) .asme-resource-group-header {
+body:has(.asme-member-resources-page) .asme-resource-group {
   background: #ffffff !important;
   background-color: #ffffff !important;
 }
@@ -8328,17 +8306,6 @@ body #page .asme-members-page .asme-resource-group:first-of-type {
 body #page .asme-members-page .asme-resource-group {
   margin-bottom: 40px !important;
 }
-
-body #page .asme-members-page .asme-resource-group-header {
-  padding-bottom: 12px !important;
-  margin-bottom: 16px !important;
-}
-
-body #page .asme-members-page .asme-resource-group-title {
-  font-size: 12px !important;
-  letter-spacing: 1.5px !important;
-}
-
 
 /* ── Card grid column control ────────────────────────────────
    Tighter min-width prevents awkward half-empty rows.
@@ -8492,29 +8459,6 @@ body:has(.asme-members-page) #colophon {
   }
 }
 
-/* MEMBERS PAGE — align section count pills with titles. */
-body #page .asme-members-page .asme-resource-group-header {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-
-body #page .asme-members-page .asme-resource-group-title {
-  line-height: 1.1 !important;
-  margin: 0 !important;
-}
-
-body #page .asme-members-page .asme-resource-group-count {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-width: 30px !important;
-  height: 30px !important;
-  padding: 0 9px !important;
-  line-height: 1 !important;
-  flex: 0 0 auto !important;
-}
-
 /* ============================================================
    MEMBERS SECTION — COMPREHENSIVE FIX v2
    Fixes: dark mode specificity, group title alignment,
@@ -8523,50 +8467,7 @@ body #page .asme-members-page .asme-resource-group-count {
    ============================================================ */
 
 
-/* ── 1. GROUP HEADER ALIGNMENT ───────────────────────────────
-   GeneratePress injects h2 { margin-bottom: 20px } with higher
-   specificity than our .asme-resource-group-title { margin: 0 }.
-   Force margin reset and ensure flex alignment is clean.
-   ─────────────────────────────────────────────────────────── */
-
-body #page .asme-members-page .asme-resource-group-header {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  flex-wrap: nowrap !important;
-  padding-bottom: 12px !important;
-  margin-bottom: 16px !important;
-  border-bottom: 1px solid var(--m-border, #e4e7ec) !important;
-}
-
-body #page .asme-members-page .asme-resource-group-title {
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1.5px !important;
-  color: var(--m-navy, #0f3460) !important;
-  line-height: 1.2 !important;
-  flex-shrink: 0 !important;
-}
-
-body #page .asme-members-page .asme-resource-group-count {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 2px 8px !important;
-  border-radius: 999px !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  line-height: 1.4 !important;
-  background: var(--m-light-navy, #eef2f8) !important;
-  color: var(--m-navy, #0f3460) !important;
-  flex-shrink: 0 !important;
-}
-
-
-/* ── 2. DARK MODE — RESOURCES PAGE (HIGH SPECIFICITY) ────────
+/* ── DARK MODE — RESOURCES PAGE (HIGH SPECIFICITY) ───────────
    All rules prefixed with body #page to beat existing
    page-scoped light mode rules (specificity 0,3,1+).
    ─────────────────────────────────────────────────────────── */
@@ -8621,23 +8522,6 @@ body #page .asme-members-page .asme-resource-group-count {
 
   body #page .asme-members-page .asme-resource-card-arrow,
   body #page .asme-member-resources-page .asme-resource-card-arrow {
-    color: #93c5fd !important;
-  }
-
-  /* Group headers */
-  body #page .asme-members-page .asme-resource-group-header,
-  body #page .asme-member-resources-page .asme-resource-group-header {
-    border-bottom-color: #26364f !important;
-  }
-
-  body #page .asme-members-page .asme-resource-group-title,
-  body #page .asme-member-resources-page .asme-resource-group-title {
-    color: #94a3b8 !important;
-  }
-
-  body #page .asme-members-page .asme-resource-group-count,
-  body #page .asme-member-resources-page .asme-resource-group-count {
-    background-color: #162d52 !important;
     color: #93c5fd !important;
   }
 
@@ -8903,29 +8787,6 @@ body:has(.asme-members-page) #colophon {
   }
 }
 
-body #page .asme-members-page .asme-resource-group-header {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  flex-wrap: nowrap !important;
-}
-
-body #page .asme-members-page .asme-resource-group-title {
-  line-height: 1.1 !important;
-  margin: 0 !important;
-}
-
-body #page .asme-members-page .asme-resource-group-count {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-width: 30px !important;
-  height: 30px !important;
-  padding: 0 9px !important;
-  line-height: 1 !important;
-  flex: 0 0 auto !important;
-}
-
 /* MEMBERS RESOURCES — follow the site-wide light/dark palette.
    Keep this last so member resources inherits the same visual system as Home/About
    instead of being pinned to only one browser color scheme. */
@@ -8969,19 +8830,6 @@ body #page .asme-member-resources-page .asme-resource-group,
 body #page .asme-member-resources-page .asme-resource-group-header {
   background: transparent !important;
   background-color: transparent !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-group-header {
-  border-bottom-color: #e4e7ec !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-group-title {
-  color: #0f3460 !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-group-count {
-  background: #e8f4fd !important;
-  color: #0f3460 !important;
 }
 
 body #page .asme-member-resources-page .asme-info-banner--blue {
@@ -9109,19 +8957,6 @@ body #page .asme-member-resources-page .asme-status-badge--featured {
   body #page .asme-member-resources-page .asme-resource-group-header {
     background: transparent !important;
     background-color: transparent !important;
-  }
-
-  body #page .asme-member-resources-page .asme-resource-group-header {
-    border-bottom-color: #26364f !important;
-  }
-
-  body #page .asme-member-resources-page .asme-resource-group-title {
-    color: #f8fafc !important;
-  }
-
-  body #page .asme-member-resources-page .asme-resource-group-count {
-    background: #1e293b !important;
-    color: #dbeafe !important;
   }
 
   body #page .asme-member-resources-page .asme-info-banner--blue {
@@ -9325,56 +9160,6 @@ body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-resour
   color: #bb0000 !important;
 }
 
-body #page .asme-member-resources-page .asme-resource-group-header {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 8px !important;
-  flex-wrap: nowrap !important;
-  width: 100% !important;
-  min-height: 24px !important;
-  margin-bottom: 16px !important;
-  padding-bottom: 12px !important;
-  border-bottom: 1px solid var(--m-border, #e4e7ec) !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-group-header h2,
-body #page .asme-member-resources-page .asme-resource-group-title {
-  display: inline-flex !important;
-  align-items: center !important;
-  min-height: 24px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  letter-spacing: 1.8px !important;
-  text-transform: uppercase !important;
-  color: var(--m-navy, #0f3460) !important;
-  line-height: 1 !important;
-  flex: 0 0 auto !important;
-  align-self: center !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-group-count {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  align-self: center !important;
-  min-width: 24px !important;
-  width: 24px !important;
-  height: 24px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 999px !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  line-height: 1 !important;
-  background: var(--m-light-navy, #eef2f8) !important;
-  color: var(--m-navy, #0f3460) !important;
-  transform: none !important;
-  flex: 0 0 auto !important;
-}
-
 body #page .asme-member-resources-page .asme-jump-nav {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -9419,14 +9204,6 @@ body #page .asme-member-resources-page .asme-resource-group--admin .asme-member-
 body #page .asme-member-resources-page .asme-member-grid--2col {
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   max-width: 760px !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-group--start .asme-resource-group-title {
-  color: var(--m-scarlet, #bb0000) !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-group--start .asme-resource-group-header {
-  border-bottom-color: rgba(187, 0, 0, 0.18) !important;
 }
 
 body #page .asme-member-resources-page .asme-resource-card {
@@ -9519,27 +9296,6 @@ body #page .asme-member-resources-page .asme-member-grid > p:empty {
     color: #93c5fd !important;
   }
 
-  body #page .asme-member-resources-page .asme-resource-group-title {
-    color: #94a3b8 !important;
-  }
-
-  body #page .asme-member-resources-page .asme-resource-group--start .asme-resource-group-title {
-    color: #fca5a5 !important;
-  }
-
-  body #page .asme-member-resources-page .asme-resource-group-header {
-    border-bottom-color: #26364f !important;
-  }
-
-  body #page .asme-member-resources-page .asme-resource-group--start .asme-resource-group-header {
-    border-bottom-color: rgba(252, 165, 165, 0.2) !important;
-  }
-
-  body #page .asme-member-resources-page .asme-resource-group-count {
-    background: #162d52 !important;
-    color: #93c5fd !important;
-  }
-
   body #page .asme-member-resources-page .asme-jump-nav a {
     background: #0f1b2d !important;
     border-color: #26364f !important;
@@ -9553,20 +9309,31 @@ body #page .asme-member-resources-page .asme-member-grid > p:empty {
   }
 }
 
-/* MEMBER PAGES — final component title and leaderboard alignment.
-   Compact component titles use classed paragraphs to avoid theme heading margins. */
+/* MEMBERS SECTION - group header/title/count alignment.
+   Single source of truth for member resource section headings across Resources
+   and Points. Handles both classed paragraphs and pasted h2 headings. */
 body #page .asme-members-page .asme-resource-group-header,
 body #page .asme-member-resources-page .asme-resource-group-header {
   display: flex !important;
+  flex-direction: row !important;
   align-items: center !important;
+  flex-wrap: nowrap !important;
   gap: 8px !important;
+  width: 100% !important;
   min-height: 24px !important;
+  margin-bottom: 16px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid var(--m-border, #e4e7ec) !important;
 }
 
+body #page .asme-members-page .asme-resource-group-header h2,
 body #page .asme-members-page .asme-resource-group-title,
+body #page .asme-member-resources-page .asme-resource-group-header h2,
 body #page .asme-member-resources-page .asme-resource-group-title {
   display: inline-flex !important;
   align-items: center !important;
+  align-self: center !important;
+  flex: 0 0 auto !important;
   min-height: 24px !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -9575,6 +9342,7 @@ body #page .asme-member-resources-page .asme-resource-group-title {
   letter-spacing: 1.8px !important;
   text-transform: uppercase !important;
   line-height: 1 !important;
+  color: var(--m-navy, #0f3460) !important;
 }
 
 body #page .asme-members-page .asme-resource-group-count,
@@ -9588,11 +9356,51 @@ body #page .asme-member-resources-page .asme-resource-group-count {
   height: 24px !important;
   margin: 0 !important;
   padding: 0 !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
   line-height: 1 !important;
   align-self: center !important;
   transform: none !important;
+  background: var(--m-light-navy, #eef2f8) !important;
+  color: var(--m-navy, #0f3460) !important;
 }
 
+body #page .asme-member-resources-page .asme-resource-group--start .asme-resource-group-title {
+  color: var(--m-scarlet, #bb0000) !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-group--start .asme-resource-group-header {
+  border-bottom-color: rgba(187, 0, 0, 0.18) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-members-page .asme-resource-group-header,
+  body #page .asme-member-resources-page .asme-resource-group-header {
+    border-bottom-color: #26364f !important;
+  }
+
+  body #page .asme-members-page .asme-resource-group-title,
+  body #page .asme-member-resources-page .asme-resource-group-title {
+    color: #94a3b8 !important;
+  }
+
+  body #page .asme-members-page .asme-resource-group-count,
+  body #page .asme-member-resources-page .asme-resource-group-count {
+    background: #162d52 !important;
+    color: #93c5fd !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-group--start .asme-resource-group-title {
+    color: #fca5a5 !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-group--start .asme-resource-group-header {
+    border-bottom-color: rgba(252, 165, 165, 0.2) !important;
+  }
+}
+
+/* MEMBER PAGES - compact component title and leaderboard alignment. */
 body #page .asme-members-page .asme-resource-card-title,
 body #page .asme-member-resources-page .asme-resource-card-title,
 body #page .asme-members-page .asme-points-feature-name,
