@@ -8704,9 +8704,6 @@ body:has(.asme-members-page) #colophon {
     color: #94a3b8 !important;
   }
 
-  body #page .asme-members-page .asme-resource-card-icon {
-    background: #162d52 !important;
-  }
 }
 
 
@@ -8740,8 +8737,7 @@ body #page .asme-members-page .asme-section-heading {
    need consistent sizing and no default line-height offset.
    ─────────────────────────────────────────────────────────── */
 
-body #page .asme-members-page .asme-points-feature-icon,
-body #page .asme-members-page .asme-resource-card-icon {
+body #page .asme-members-page .asme-points-feature-icon {
   display: block !important;
   line-height: 1 !important;
   margin-bottom: 8px !important;
