@@ -9364,7 +9364,7 @@ body #page .asme-member-resources-page .asme-resource-group-count {
   font-weight: 700 !important;
   line-height: 1 !important;
   align-self: center !important;
-  transform: none !important;
+  transform: translateY(1px) !important;
   background: var(--m-light-navy, #eef2f8) !important;
   color: var(--m-navy, #0f3460) !important;
 }
