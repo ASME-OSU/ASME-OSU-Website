@@ -9760,3 +9760,33 @@ body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-sv
     opacity: 1 !important;
   }
 }
+
+/* MEMBER PAGES - final section count alignment.
+   Forces section titles and count badges onto the same centered row. */
+body #page .asme-members-page .asme-resource-group-header,
+body #page .asme-member-resources-page .asme-resource-group-header {
+  display: grid !important;
+  grid-template-columns: max-content 24px !important;
+  align-items: center !important;
+  justify-content: start !important;
+  column-gap: 8px !important;
+  row-gap: 0 !important;
+}
+
+body #page .asme-members-page .asme-resource-group-header > .asme-resource-group-title,
+body #page .asme-member-resources-page .asme-resource-group-header > .asme-resource-group-title,
+body #page .asme-members-page .asme-resource-group-header > .asme-resource-group-count,
+body #page .asme-member-resources-page .asme-resource-group-header > .asme-resource-group-count {
+  align-self: center !important;
+  justify-self: start !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+}
+
+body #page .asme-members-page .asme-resource-group-header > .asme-resource-group-count,
+body #page .asme-member-resources-page .asme-resource-group-header > .asme-resource-group-count {
+  justify-self: center !important;
+}
