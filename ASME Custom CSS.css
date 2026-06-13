@@ -9591,11 +9591,44 @@ body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid
 }
 
 /* MEMBER PAGES - jump nav, point values, and page notes.
-   Supports cross-page navigation and the Member Points "Prepare Now" sections. */
+   Generalizes the Resources pill nav so Points does not fall back to a raw list. */
 body #page .asme-members-page .asme-jump-nav {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  margin: 0 0 28px 0 !important;
+  list-style: none !important;
   position: sticky !important;
   top: 8px !important;
   z-index: 5 !important;
+}
+
+body #page .asme-members-page .asme-jump-nav li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body #page .asme-members-page .asme-jump-nav a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  background: var(--m-card, #ffffff) !important;
+  color: var(--m-navy, #0f3460) !important;
+  border: 1px solid var(--m-border, #e4e7ec) !important;
+  transition: background 0.15s ease, border-color 0.15s ease !important;
+}
+
+body #page .asme-members-page .asme-jump-nav a:hover {
+  background: var(--m-light-navy, #eef2f8) !important;
+  border-color: rgba(15, 52, 96, 0.25) !important;
+  text-decoration: none !important;
 }
 
 body #page .asme-members-page .asme-resource-group,
@@ -9678,6 +9711,17 @@ body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-sv
 
   body #page .asme-members-page .asme-page-meta a {
     color: #93c5fd !important;
+  }
+
+  body #page .asme-members-page .asme-jump-nav a {
+    background: #0f1b2d !important;
+    border-color: #26364f !important;
+    color: #e2e8f0 !important;
+  }
+
+  body #page .asme-members-page .asme-jump-nav a:hover {
+    background: #162d52 !important;
+    border-color: #324a6e !important;
   }
 
   body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--chapter {
