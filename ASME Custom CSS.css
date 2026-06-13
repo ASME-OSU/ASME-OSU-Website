@@ -8218,6 +8218,13 @@ body #page .asme-member-resources-page {
   padding-top: 0 !important;
 }
 
+/* Keep the Member Points page on the same white site canvas.
+   Individual preview tiles can still use --m-bg where a gray card fill is intentional. */
+body #page .asme-members-page:not(.asme-member-resources-page) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
 body:has(.asme-members-page) .entry-content,
 body:has(.asme-members-page) .page-content,
 body:has(.asme-members-page) .site-main,
