@@ -1484,7 +1484,9 @@ a:hover {
 
 /* Dropdown container */
 .main-navigation ul ul {
-  min-width: 210px !important;
+  width: max-content !important;
+  min-width: 0 !important;
+  max-width: calc(100vw - 32px) !important;
   padding: 8px !important;
   background: #ffffff !important;
   border: 1px solid var(--asme-line) !important;
@@ -1504,12 +1506,13 @@ a:hover {
 
 .main-navigation ul ul li a {
   width: 100% !important;
-  padding: 9px 12px !important;
+  padding: 9px 14px !important;
   border-radius: 10px !important;
   color: #374151 !important;
   background: transparent !important;
   font-size: 14px !important;
   line-height: 1.25 !important;
+  white-space: nowrap !important;
 }
 
 /* Dropdown hover/current item */
@@ -2528,10 +2531,11 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 
 .main-navigation ul ul li a {
   display: block !important;
-  width: auto !important;
+  width: 100% !important;
   margin: 0 !important;
   padding: 9px 14px !important;
   box-sizing: border-box !important;
+  white-space: nowrap !important;
 }
 
 /* Blog/archive latest layout: masonry-style cards with flyer crops. */
@@ -4646,6 +4650,9 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   .main-navigation ul ul,
   .main-navigation .main-nav ul ul,
   .nav-menu ul {
+    width: max-content !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 32px) !important;
     background: var(--asme-card) !important;
     border: 1px solid #334155 !important;
     border-radius: 18px !important;
@@ -4681,6 +4688,7 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
     border-radius: 14px !important;
     color: #dbe4f0 !important;
     line-height: 1.2 !important;
+    white-space: nowrap !important;
   }
 
   .main-navigation ul ul li a:hover,
