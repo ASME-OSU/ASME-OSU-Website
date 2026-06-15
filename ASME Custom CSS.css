@@ -9462,9 +9462,9 @@ body #page .asme-members-page .asme-skeleton-score {
   }
 }
 
-/* MEMBER POINTS - clean step number badges.
-   Keycap emoji can render as long white glyph strips in some browsers. */
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid--3col > .asme-resource-card .asme-resource-card-icon {
+/* MEMBER POINTS - clean step number icons.
+   Plain text numbers avoid the white keycap emoji strip in dark mode. */
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-points-step-icon {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -9476,45 +9476,19 @@ body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid
   border-radius: 10px !important;
   background: #e8f4fd !important;
   border: 1px solid #c7d9ee !important;
-  color: transparent !important;
-  font-size: 0 !important;
-  line-height: 1 !important;
-  overflow: hidden !important;
-  box-shadow: none !important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid--3col > .asme-resource-card .asme-resource-card-icon::before {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  height: 100% !important;
   color: #0f3460 !important;
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   font-size: 17px !important;
   font-weight: 800 !important;
   line-height: 1 !important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid--3col > .asme-resource-card:nth-child(1) .asme-resource-card-icon::before {
-  content: "1" !important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid--3col > .asme-resource-card:nth-child(2) .asme-resource-card-icon::before {
-  content: "2" !important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid--3col > .asme-resource-card:nth-child(3) .asme-resource-card-icon::before {
-  content: "3" !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid--3col > .asme-resource-card .asme-resource-card-icon {
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-points-step-icon {
     background: #162d52 !important;
     border-color: #284263 !important;
-  }
-
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid--3col > .asme-resource-card .asme-resource-card-icon::before {
     color: #93c5fd !important;
   }
 }
