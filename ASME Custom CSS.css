@@ -9712,3 +9712,56 @@ body #page .asme-member-resources-page .asme-resource-card-footer--actions a {
     border-color: #26364f !important;
   }
 }
+
+/* MEMBER POINTS PAGE - WordPress-safe cards and final dark canvas guard.
+   Linked point cards use inline children so Gutenberg does not split them into
+   empty anchors. These rules preserve the card layout and hide any stale empty
+   card shells that WordPress may leave behind. */
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card > span.asme-resource-card-icon,
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card > span.asme-resource-card-title,
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card > span.asme-resource-card-desc,
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card > span.asme-resource-card-footer {
+  display: flex !important;
+}
+
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card > span.asme-resource-card-title,
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card > span.asme-resource-card-desc {
+  display: block !important;
+}
+
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > br,
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > p:empty,
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > .asme-resource-card:empty,
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > .asme-resource-card:not(:has(.asme-resource-card-title)) {
+  display: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:has(.asme-members-page:not(.asme-member-resources-page)),
+  body:has(.asme-members-page:not(.asme-member-resources-page)) #page,
+  body:has(.asme-members-page:not(.asme-member-resources-page)) .site,
+  body:has(.asme-members-page:not(.asme-member-resources-page)) .site-content,
+  body:has(.asme-members-page:not(.asme-member-resources-page)) #content,
+  body:has(.asme-members-page:not(.asme-member-resources-page)) .content-area,
+  body:has(.asme-members-page:not(.asme-member-resources-page)) .site-main,
+  body:has(.asme-members-page:not(.asme-member-resources-page)) .inside-article,
+  body:has(.asme-members-page:not(.asme-member-resources-page)) .entry-content,
+  body #page .asme-members-page:not(.asme-member-resources-page) {
+    background: #07111f !important;
+    background-color: #07111f !important;
+  }
+
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-group,
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid,
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-points-preview,
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-leaderboard-preview {
+    background-color: transparent !important;
+  }
+
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-points-preview-body,
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-points-feature,
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card,
+  body #page .asme-members-page:not(.asme-member-resources-page) .asme-leaderboard-preview {
+    background-color: #0f1b2d !important;
+  }
+}
