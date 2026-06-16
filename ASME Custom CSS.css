@@ -9714,7 +9714,13 @@ body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-ca
 body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > br,
 body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > p:empty,
 body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > .asme-resource-card:empty,
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > .asme-resource-card:not(:has(.asme-resource-card-title)) {
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > .asme-resource-card:not(:has(.asme-resource-card-title)),
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > :not(.asme-resource-card):not(:has(.asme-resource-card-title)):not(:has(.asme-resource-card-desc)) {
+  display: none !important;
+}
+
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > p:has(> br:only-child),
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid > p:has(> .asme-resource-card:empty) {
   display: none !important;
 }
 
