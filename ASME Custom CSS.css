@@ -6060,6 +6060,37 @@ body.search .site-main {
 }
 
 /* =============================================
+   LEADERSHIP — balanced desktop board width
+   Keeps the existing card styling while reducing the empty side space on
+   wide screens.
+   ============================================= */
+
+@media (min-width: 901px) {
+  body .leadership-board {
+    max-width: min(1320px, calc(100vw - 96px)) !important;
+  }
+
+  body .leadership-board .lb-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 1240px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+  }
+
+  body .leadership-board .lb-grid .leader-card {
+    flex: 1 1 250px !important;
+    width: auto !important;
+    max-width: 290px !important;
+    min-width: 230px !important;
+  }
+}
+
+/* =============================================
    HOME — featured event + compact about impact
    Keeps original v10 hero layout intact
    ============================================= */
