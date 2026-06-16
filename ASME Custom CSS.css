@@ -9710,42 +9710,25 @@ body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid
   display: none !important;
 }
 
-/* MEMBER POINTS PAGE - align How Points Work cards.
-   The linked cards use span-only markup for WordPress safety while the middle
-   card uses normal block markup, so this section gets its own row model. */
+/* MEMBER POINTS PAGE - compact How Points Work cards.
+   This keeps the explainer row aligned without forcing oversized grid rows. */
 body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-member-grid--3col {
   align-items: stretch !important;
 }
 
 body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card {
-  display: grid !important;
-  grid-template-rows: 38px auto 1fr auto !important;
-  row-gap: 16px !important;
-  min-height: 280px !important;
-  height: 100% !important;
-  align-content: start !important;
+  min-height: 230px !important;
+  padding: 18px 18px 16px !important;
+  gap: 8px !important;
 }
 
 body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-points-step-icon {
-  margin: 0 !important;
-  align-self: start !important;
-  justify-self: start !important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card-title,
-body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card-desc,
-body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card-footer {
-  margin: 0 !important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card-desc {
-  align-self: start !important;
+  margin-bottom: 4px !important;
 }
 
 body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card-footer {
-  align-self: end !important;
-  margin-top: 0 !important;
-  min-height: 45px !important;
+  margin-top: 2px !important;
+  padding-top: 9px !important;
 }
 
 @media (prefers-color-scheme: dark) {
