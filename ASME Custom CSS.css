@@ -6003,19 +6003,6 @@ body.search .site-main {
     transform: translateY(-2px) !important;
   }
 
-  @media (hover: hover) and (min-width: 769px) {
-    .leader-card .leader-linkedin {
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.2s ease, transform 0.2s ease, background 0.18s ease !important;
-    }
-
-    .leader-card:hover .leader-linkedin,
-    .leader-card:focus-within .leader-linkedin {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6049,6 +6036,7 @@ body.search .site-main {
   font-weight: 800 !important;
   line-height: 1 !important;
   text-decoration: none !important;
+  transition: transform 0.18s ease, background 0.18s ease !important;
   word-break: normal !important;
 }
 
