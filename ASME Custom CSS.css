@@ -9732,6 +9732,7 @@ body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .as
 
 body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card {
   padding: 18px 18px 16px !important;
+  padding-bottom: 66px !important;
   gap: 6px !important;
   justify-content: space-between !important;
 }
@@ -9751,6 +9752,10 @@ body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .as
 }
 
 body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card-footer {
+  position: absolute !important;
+  right: 18px !important;
+  bottom: 16px !important;
+  left: 18px !important;
   margin-top: 2px !important;
   padding-top: 9px !important;
 }
