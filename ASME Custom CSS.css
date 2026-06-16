@@ -813,67 +813,6 @@ a:hover {
   padding: 24px 0 48px !important;
 }
 
-/* Year section spacing */
-.leadership-year {
-  margin-bottom: 52px !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  text-align: center !important;
-}
-
-/* Year header — centered pill with lines */
-.leadership-year-header {
-  display: flex !important;
-  align-items: center !important;
-  gap: 16px !important;
-  margin-bottom: 28px !important;
-}
-
-.leadership-year-header::before,
-.leadership-year-header::after {
-  content: '' !important;
-  flex: 1 !important;
-  height: 1px !important;
-  background: #e5e7eb !important;
-  display: block !important;
-}
-
-.leadership-year-header h2 {
-  background: #0f3460 !important;
-  color: #ffffff !important;
-  border-radius: 999px !important;
-  padding: 8px 22px !important;
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  white-space: nowrap !important;
-  margin: 0 !important;
-  display: inline-block !important;
-}
-
-/* Muted badge for past years */
-.leadership-year + .leadership-year .leadership-year-header h2 {
-  background: #6b7280 !important;
-}
-
-/* Grid rows */
-.leadership-row {
-  display: grid !important;
-  gap: 14px !important;
-  justify-content: center !important;
-  margin-bottom: 14px !important;
-}
-
-.leadership-row-top {
-  grid-template-columns: repeat(3, minmax(0, 220px)) !important;
-}
-
-.leadership-row-bottom {
-  grid-template-columns: repeat(4, minmax(0, 180px)) !important;
-}
-
 /* Individual card */
 .leader-card {
   background: #ffffff !important;
@@ -921,12 +860,6 @@ a:hover {
   background: #eef2f7 !important;
 }
 
-.leadership-row-top .leader-photo {
-  width: 110px !important;
-  height: 110px !important;
-  border-radius: 16px !important;
-}
-
 /* Name */
 .leader-card h4 {
   font-family: 'DM Serif Display', serif !important;
@@ -937,10 +870,6 @@ a:hover {
   line-height: 1.2 !important;
 }
 
-.leadership-row-top .leader-card h4 {
-  font-size: 18px !important;
-}
-
 /* Email */
 .leader-card a,
 .leader-card p {
@@ -949,23 +878,6 @@ a:hover {
   word-break: break-all !important;
   line-height: 1.4 !important;
   margin: 0 !important;
-}
-
-/* Divider between year sections */
-.leadership-year + .leadership-year {
-  border-top: 1px solid #e5e7eb !important;
-  padding-top: 48px !important;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .leadership-row-top { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
-  .leadership-row-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-}
-
-@media (max-width: 600px) {
-  .leadership-row-top,
-  .leadership-row-bottom { grid-template-columns: 1fr 1fr !important; }
 }
 /* =============================================
    ABOUT PAGE
@@ -2287,11 +2199,6 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 
   .ah-calendar-mini iframe {
     height: 360px !important;
-  }
-
-  .leadership-row-top,
-  .leadership-row-bottom {
-    grid-template-columns: 1fr;
   }
 
   .asme-footer-grid {
@@ -4902,8 +4809,6 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
     color: #ffffff !important;
   }
 
-  .leadership-board .leadership-year-header::before,
-  .leadership-board .leadership-year-header::after,
   .leadership-board .lb-current-header::before,
   .leadership-board .lb-current-header::after,
   .leadership-board .lb-year-panel-header::before,
@@ -5392,7 +5297,6 @@ body.search .site-main {
   body .acp-cal-card,
   body .acp-info-strip,
   body .acp-info-item,
-  body .leadership-year,
   body .lb-current-year,
   body .lb-past-years,
   body.blog article,
@@ -5843,10 +5747,7 @@ body.search .site-main {
   }
 
   /* Leadership cards */
-  body .leadership-board .lb-grid,
-  body .leadership-row,
-  body .leadership-row-top,
-  body .leadership-row-bottom {
+  body .leadership-board .lb-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 18px 14px !important;
@@ -5867,14 +5768,12 @@ body.search .site-main {
     padding: 18px 12px 16px !important;
   }
 
-  body .leader-photo,
-  body .leadership-row-top .leader-photo {
+  body .leader-photo {
     width: min(120px, 34vw) !important;
     height: min(120px, 34vw) !important;
   }
 
-  body .leader-card h4,
-  body .leadership-row-top .leader-card h4 {
+  body .leader-card h4 {
     font-size: clamp(18px, 5vw, 24px) !important;
     line-height: 1.08 !important;
   }
