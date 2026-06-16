@@ -8205,7 +8205,15 @@ body:has(.asme-member-resources-page) .site-content,
 body:has(.asme-member-resources-page) #content,
 body:has(.asme-member-resources-page) .content-area,
 body:has(.asme-member-resources-page) .inside-article,
-body:has(.asme-member-resources-page) .entry-content {
+body:has(.asme-member-resources-page) .entry-content,
+body:has(.asme-members-page:not(.asme-member-resources-page)),
+body:has(.asme-members-page:not(.asme-member-resources-page)) #page,
+body:has(.asme-members-page:not(.asme-member-resources-page)) .site,
+body:has(.asme-members-page:not(.asme-member-resources-page)) .site-content,
+body:has(.asme-members-page:not(.asme-member-resources-page)) #content,
+body:has(.asme-members-page:not(.asme-member-resources-page)) .content-area,
+body:has(.asme-members-page:not(.asme-member-resources-page)) .inside-article,
+body:has(.asme-members-page:not(.asme-member-resources-page)) .entry-content {
   background: #ffffff !important;
   background-color: #ffffff !important;
 }
@@ -9717,9 +9725,19 @@ body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .as
 }
 
 body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card {
-  min-height: 230px !important;
   padding: 18px 18px 16px !important;
-  gap: 8px !important;
+  gap: 6px !important;
+  justify-content: space-between !important;
+}
+
+body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card-title {
+  font-size: 14px !important;
+  margin-top: 4px !important;
+}
+
+body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-resource-card-desc {
+  font-size: 13px !important;
+  flex: 1 !important;
 }
 
 body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .asme-points-step-icon {
