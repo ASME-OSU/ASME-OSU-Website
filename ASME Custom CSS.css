@@ -5977,6 +5977,29 @@ body.search .site-main {
   }
 }
 
+/* LEADERSHIP — footer spacing lock
+   Keeps the board-to-footer rhythm consistent with the other custom pages. */
+body .leadership-board {
+  margin-bottom: 0 !important;
+  padding-bottom: 16px !important;
+}
+
+body:has(.leadership-board) .site-content,
+body:has(.leadership-board) #content,
+body:has(.leadership-board) .content-area,
+body:has(.leadership-board) .site-main,
+body:has(.leadership-board) .inside-article,
+body:has(.leadership-board) .entry-content {
+  min-height: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+body:has(.leadership-board) .site-footer,
+body:has(.leadership-board) #colophon {
+  margin-top: 24px !important;
+}
+
 /* =============================================
    HOME — featured event + compact about impact
    Keeps original v10 hero layout intact
