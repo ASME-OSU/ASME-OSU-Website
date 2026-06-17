@@ -6000,6 +6000,103 @@ body:has(.leadership-board) #colophon {
   margin-top: 24px !important;
 }
 
+/* NAVIGATION — compact dropdowns and consistent active states.
+   Dropdown parents should read as active when their child page is current, and
+   submenu panels should size to their labels instead of a wide inherited box. */
+body .main-navigation .main-nav > ul > li.current-menu-item > a,
+body .main-navigation .main-nav > ul > li.current_page_item > a,
+body .main-navigation .main-nav > ul > li.current-menu-parent > a,
+body .main-navigation .main-nav > ul > li.current-menu-ancestor > a,
+body .main-navigation .main-nav > ul > li.current_page_parent > a,
+body .main-navigation .main-nav > ul > li.current_page_ancestor > a,
+body .nav-menu > li.current-menu-item > a,
+body .nav-menu > li.current_page_item > a,
+body .nav-menu > li.current-menu-parent > a,
+body .nav-menu > li.current-menu-ancestor > a,
+body .nav-menu > li.current_page_parent > a,
+body .nav-menu > li.current_page_ancestor > a {
+  background: var(--osu-scarlet, #bb0000) !important;
+  border-color: var(--osu-scarlet, #bb0000) !important;
+  color: #ffffff !important;
+}
+
+body .main-navigation .main-nav ul ul,
+body .main-navigation ul ul,
+body .nav-menu ul {
+  width: max-content !important;
+  min-width: max-content !important;
+  max-width: min(320px, calc(100vw - 32px)) !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+}
+
+body .main-navigation .main-nav ul ul li,
+body .main-navigation ul ul li,
+body .nav-menu ul li {
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+body .main-navigation .main-nav ul ul li a,
+body .main-navigation ul ul li a,
+body .nav-menu ul li a {
+  display: flex !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: calc(100vw - 48px) !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 9px 18px !important;
+  white-space: nowrap !important;
+}
+
+body .main-navigation .main-nav ul ul li.current-menu-item > a,
+body .main-navigation .main-nav ul ul li.current_page_item > a,
+body .main-navigation ul ul li.current-menu-item > a,
+body .main-navigation ul ul li.current_page_item > a,
+body .nav-menu ul li.current-menu-item > a,
+body .nav-menu ul li.current_page_item > a {
+  background: var(--asme-navy, #0f3460) !important;
+  color: #ffffff !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  body .main-navigation .main-nav ul ul li.current-menu-item > a,
+  body .main-navigation .main-nav ul ul li.current_page_item > a,
+  body .main-navigation ul ul li.current-menu-item > a,
+  body .main-navigation ul ul li.current_page_item > a,
+  body .nav-menu ul li.current-menu-item > a,
+  body .nav-menu ul li.current_page_item > a {
+    background: #1e293b !important;
+    border-color: #475569 !important;
+    color: #ffffff !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body #site-navigation.toggled .main-nav > ul > li.current-menu-parent > a,
+  body #site-navigation.toggled .main-nav > ul > li.current-menu-ancestor > a,
+  body #site-navigation.toggled .main-nav > ul > li.current_page_parent > a,
+  body #site-navigation.toggled .main-nav > ul > li.current_page_ancestor > a {
+    background: #bb0000 !important;
+    border-color: #bb0000 !important;
+    color: #ffffff !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children > ul,
+  body #site-navigation.toggled .main-nav > ul > li > ul {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  body #site-navigation.toggled ul ul li a {
+    width: 100% !important;
+    justify-content: center !important;
+    white-space: normal !important;
+  }
+}
+
 /* =============================================
    HOME — featured event + compact about impact
    Keeps original v10 hero layout intact
