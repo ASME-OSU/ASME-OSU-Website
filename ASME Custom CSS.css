@@ -3588,6 +3588,60 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   padding-bottom: 40px !important;
 }
 
+/* SPONSORS — wider partner wall and clearer company names.
+   Uses more desktop width while keeping cards readable on tablet/mobile. */
+body .sponsors-grid-partners {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
+  gap: 18px !important;
+  width: 100% !important;
+  max-width: min(1480px, calc(100vw - 96px)) !important;
+}
+
+body .sponsor-card-partner {
+  padding: 18px 18px 20px !important;
+}
+
+body .sponsor-card-partner .sponsor-logo-frame {
+  height: 78px !important;
+  margin-bottom: 14px !important;
+  padding: 12px !important;
+}
+
+body .sponsor-card-partner .sponsor-logo-frame img {
+  max-height: 62px !important;
+}
+
+body .sponsor-card-partner h3,
+body .sponsor-card-partner h3 a,
+body .sponsors-grid-partners .sponsor-card h3,
+body .sponsors-grid-partners .sponsor-card h3 a {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+
+@media (min-width: 1280px) {
+  body .sponsors-grid-partners {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body .sponsors-grid-partners {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    max-width: 100% !important;
+    gap: 14px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  body .sponsors-grid-partners {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* =============================================
    OSU × ASME COLOR BLEND
    ============================================= */
