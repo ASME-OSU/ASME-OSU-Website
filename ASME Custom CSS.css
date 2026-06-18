@@ -9892,9 +9892,11 @@ body.archive #page article:hover {
 
 /* Thumbnail */
 body.blog #page .post-thumbnail,
+body.blog #page .post-image,
 body.blog #page .entry-thumbnail,
 body.blog #page .wp-post-image-wrapper,
 body.archive #page .post-thumbnail,
+body.archive #page .post-image,
 body.archive #page .entry-thumbnail,
 body.archive #page .wp-post-image-wrapper {
   display: block !important;
@@ -9908,10 +9910,12 @@ body.archive #page .wp-post-image-wrapper {
 }
 
 body.blog #page .post-thumbnail img,
+body.blog #page .post-image img,
 body.blog #page .entry-thumbnail img,
 body.blog #page .wp-post-image,
 body.blog #page .post-thumbnail a img,
 body.archive #page .post-thumbnail img,
+body.archive #page .post-image img,
 body.archive #page .entry-thumbnail img,
 body.archive #page .wp-post-image,
 body.archive #page .post-thumbnail a img {
@@ -9977,19 +9981,25 @@ body.archive #page .posted-by {
 
 /* Excerpt */
 body.blog #page .entry-content,
-body.archive #page .entry-content {
+body.blog #page .entry-summary,
+body.archive #page .entry-content,
+body.archive #page .entry-summary {
   display: block !important;
   flex: 1 !important;
   padding: 0 20px 8px !important;
 }
 
 body.blog #page .entry-content > *,
-body.archive #page .entry-content > * {
+body.blog #page .entry-summary > *,
+body.archive #page .entry-content > *,
+body.archive #page .entry-summary > * {
   display: none !important;
 }
 
 body.blog #page .entry-content > p:first-child,
-body.archive #page .entry-content > p:first-child {
+body.blog #page .entry-summary > p:first-child,
+body.archive #page .entry-content > p:first-child,
+body.archive #page .entry-summary > p:first-child {
   display: -webkit-box !important;
   overflow: hidden !important;
   -webkit-box-orient: vertical !important;
@@ -9998,6 +10008,25 @@ body.archive #page .entry-content > p:first-child {
   font-size: 13px !important;
   line-height: 1.6 !important;
   font-family: 'DM Sans', sans-serif !important;
+}
+
+body.blog #page article .entry-content img,
+body.blog #page article .entry-summary img,
+body.blog #page article .entry-content figure,
+body.blog #page article .entry-summary figure,
+body.blog #page article .entry-content .wp-block-image,
+body.blog #page article .entry-summary .wp-block-image,
+body.blog #page article .entry-content .gallery,
+body.blog #page article .entry-summary .gallery,
+body.archive #page article .entry-content img,
+body.archive #page article .entry-summary img,
+body.archive #page article .entry-content figure,
+body.archive #page article .entry-summary figure,
+body.archive #page article .entry-content .wp-block-image,
+body.archive #page article .entry-summary .wp-block-image,
+body.archive #page article .entry-content .gallery,
+body.archive #page article .entry-summary .gallery {
+  display: none !important;
 }
 
 /* Footer / category tags */
@@ -10162,7 +10191,9 @@ body.archive #page .content-sidebar-wrap {
   }
 
   body.blog #page .entry-content > p:first-child,
-  body.archive #page .entry-content > p:first-child {
+  body.blog #page .entry-summary > p:first-child,
+  body.archive #page .entry-content > p:first-child,
+  body.archive #page .entry-summary > p:first-child {
     color: #94a3b8 !important;
   }
 
@@ -10222,9 +10253,13 @@ body.archive #page .content-sidebar-wrap {
   }
 
   body.blog #page .post-thumbnail,
+  body.blog #page .post-image,
   body.archive #page .post-thumbnail,
+  body.archive #page .post-image,
   body.blog #page .post-thumbnail img,
+  body.blog #page .post-image img,
   body.archive #page .post-thumbnail img,
+  body.archive #page .post-image img,
   body.blog #page .wp-post-image,
   body.archive #page .wp-post-image {
     height: 180px !important;
