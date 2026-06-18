@@ -235,11 +235,9 @@ a:hover {
 }
 
 /* =============================================
-   BLOG / ARCHIVE LAYOUT
-   Sidebar only applies to blog-style pages.
+   SEARCH LAYOUT
+   Blog/archive layout is handled by the final high-specificity override.
    ============================================= */
-.blog .content-sidebar-wrap,
-.archive .content-sidebar-wrap,
 .search .content-sidebar-wrap {
   display: flex !important;
   flex-direction: row-reverse !important;
@@ -247,10 +245,6 @@ a:hover {
   gap: var(--asme-gap) !important;
 }
 
-.blog #primary,
-.blog .content-area,
-.archive #primary,
-.archive .content-area,
 .search #primary,
 .search .content-area {
   flex: 1 1 auto !important;
@@ -259,10 +253,6 @@ a:hover {
   max-width: none !important;
 }
 
-.blog #secondary,
-.blog .widget-area,
-.archive #secondary,
-.archive .widget-area,
 .search #secondary,
 .search .widget-area {
   display: block !important;
@@ -274,7 +264,7 @@ a:hover {
 }
 
 /* =============================================
-   BLOG POST GRID + CARDS
+   SEARCH POST GRID + CARDS
    ============================================= */
 .search .site-main,
 .search #main {
@@ -290,8 +280,6 @@ a:hover {
   grid-column: 1 / -1 !important;
 }
 
-.blog article,
-.archive article,
 .search article {
   display: flex !important;
   flex-direction: column !important;
@@ -305,8 +293,6 @@ a:hover {
   transition: transform 0.18s ease, box-shadow 0.18s ease !important;
 }
 
-.blog article:hover,
-.archive article:hover,
 .search article:hover {
   transform: translateY(-2px) !important;
   box-shadow: var(--asme-shadow) !important;
@@ -353,14 +339,10 @@ a:hover {
   border-top: 1px solid #f3f4f6 !important;
 }
 
-.blog .entry-content > *,
-.archive .entry-content > *,
 .search .entry-content > * {
   display: none !important;
 }
 
-.blog .entry-content > p:first-child,
-.archive .entry-content > p:first-child,
 .search .entry-content > p:first-child {
   display: -webkit-box !important;
   overflow: hidden !important;
@@ -2125,11 +2107,7 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
     --asme-sidebar-width: 260px;
   }
 
-  .blog .site-main,
-  .archive .site-main,
   .search .site-main,
-  .blog #main,
-  .archive #main,
   .search #main,
   .ah-cards-grid {
     grid-template-columns: 1fr !important;
@@ -2137,16 +2115,10 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 }
 
 @media (max-width: 900px) {
-  .blog .content-sidebar-wrap,
-  .archive .content-sidebar-wrap,
   .search .content-sidebar-wrap {
     display: block !important;
   }
 
-  .blog #secondary,
-  .blog .widget-area,
-  .archive #secondary,
-  .archive .widget-area,
   .search #secondary,
   .search .widget-area {
     width: 100% !important;
@@ -2443,70 +2415,6 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   padding: 9px 14px !important;
   box-sizing: border-box !important;
   white-space: nowrap !important;
-}
-
-/* Blog/archive latest layout: masonry-style cards with flyer crops. */
-.blog .site-main,
-.archive .site-main,
-.blog #main,
-.archive #main {
-  display: block !important;
-  column-count: 2 !important;
-  column-gap: 14px !important;
-}
-
-.blog article,
-.archive article {
-  break-inside: avoid !important;
-  margin-bottom: 14px !important;
-  display: block !important;
-}
-
-.blog .content-sidebar-wrap,
-.archive .content-sidebar-wrap {
-  gap: 56px !important;
-}
-
-.blog #primary,
-.blog .content-area,
-.archive #primary,
-.archive .content-area {
-  padding-right: 8px !important;
-}
-
-.blog .post-thumbnail,
-.blog .entry-thumbnail,
-.blog .wp-post-image-wrapper,
-.archive .post-thumbnail,
-.archive .entry-thumbnail {
-  height: 260px !important;
-}
-
-.blog .post-thumbnail img,
-.blog .entry-thumbnail img,
-.blog .wp-post-image,
-.blog .post-thumbnail a img,
-.archive .post-thumbnail img,
-.archive .entry-thumbnail img,
-.archive .wp-post-image {
-  height: 260px !important;
-  object-position: center center !important;
-}
-
-.blog .entry-header,
-.archive .entry-header {
-  padding: 14px 16px 4px !important;
-}
-
-.blog .entry-content,
-.archive .entry-content {
-  display: none !important;
-  padding: 0 16px 6px !important;
-}
-
-.blog .entry-footer,
-.archive .entry-footer {
-  padding: 6px 16px 12px !important;
 }
 
 /* =============================================
@@ -5096,23 +5004,13 @@ body .sponsors-grid-partners .sponsor-card h3 a {
   margin-top: -16px !important;
 }
 
-/* Events and blog need a little more breathing room under the header */
+/* Events and search need a little more breathing room under the header */
 .asme-cal-page,
-.blog .content-sidebar-wrap,
-.archive .content-sidebar-wrap,
 .search .content-sidebar-wrap {
   margin-top: 8px !important;
 }
 
-/* Blog page top spacing */
-.blog .content-sidebar-wrap,
-.archive .content-sidebar-wrap,
-.search .content-sidebar-wrap {
-  padding-top: 72px !important;
-  margin-top: 0 !important;
-}
-
-/* Blog page: force more space below header */
+/* Blog/archive/search: force more space below header */
 body.blog #content,
 body.archive #content,
 body.search #content {
@@ -5367,8 +5265,6 @@ body.search .site-main {
   body .acp-info-item,
   body .lb-current-year,
   body .lb-past-years,
-  body.blog article,
-  body.archive article,
   body.search article,
   body #secondary .widget,
   body .sidebar .widget {
@@ -5387,8 +5283,6 @@ body.search .site-main {
     grid-template-columns: 1fr !important;
   }
 
-  body.blog .content-sidebar-wrap,
-  body.archive .content-sidebar-wrap,
   body.search .content-sidebar-wrap {
     display: block !important;
     padding-top: 42px !important;
