@@ -3626,6 +3626,20 @@ body .sponsors-grid-partners .sponsor-card h3 a {
   body .sponsors-grid-partners {
     grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
   }
+
+  body .sponsors-grid-partners {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+  }
+
+  body .sponsors-grid-partners > .sponsor-card-partner,
+  body .sponsors-grid-partners > .sponsor-card {
+    flex: 0 1 calc((100% - 90px) / 6) !important;
+    max-width: calc((100% - 90px) / 6) !important;
+    min-width: 0 !important;
+  }
 }
 
 @media (max-width: 900px) {
