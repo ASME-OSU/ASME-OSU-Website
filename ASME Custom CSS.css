@@ -9852,6 +9852,46 @@ body #page .asme-members-page:not(.asme-member-resources-page) #how-it-works .as
   padding-top: 9px !important;
 }
 
+/* MEMBER PAGES - unified hero sizing.
+   Keeps Member Points and Member Resources using the same hero rhythm. */
+body #page .asme-members-page .asme-member-hero,
+body #page .asme-member-resources-page .asme-member-hero {
+  min-height: 0 !important;
+  padding: 44px 48px 42px !important;
+  margin-bottom: 22px !important;
+}
+
+body #page .asme-members-page .asme-member-hero-inner,
+body #page .asme-member-resources-page .asme-member-hero-inner {
+  align-items: flex-start !important;
+}
+
+body #page .asme-members-page .asme-member-hero-desc,
+body #page .asme-member-resources-page .asme-member-hero-desc {
+  max-width: 660px !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+@media (max-width: 900px) {
+  body #page .asme-members-page .asme-member-hero,
+  body #page .asme-member-resources-page .asme-member-hero {
+    padding: 38px 32px 34px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body #page .asme-members-page .asme-member-hero,
+  body #page .asme-member-resources-page .asme-member-hero {
+    padding: 32px 20px 30px !important;
+    border-radius: 14px !important;
+  }
+
+  body #page .asme-members-page .asme-member-hero-inner,
+  body #page .asme-member-resources-page .asme-member-hero-inner {
+    gap: 16px !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   body:has(.asme-members-page:not(.asme-member-resources-page)),
   body:has(.asme-members-page:not(.asme-member-resources-page)) #page,
