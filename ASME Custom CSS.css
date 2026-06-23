@@ -7084,10 +7084,10 @@ body #page .asme-cal-page .acp-header {
   opacity: 0.9;
   background-image:
     linear-gradient(90deg, rgba(15,52,96,0.15), rgba(15,52,96,0)),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='76' height='68' viewBox='0 0 76 68'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cellipse cx='38.0' cy='17.0' rx='4' ry='11' transform='rotate(-90,38.0,17.0)'/%3E%3Cellipse cx='50.4' cy='26.0' rx='4' ry='11' transform='rotate(-18,50.4,26.0)'/%3E%3Cellipse cx='45.6' cy='40.5' rx='4' ry='11' transform='rotate(54,45.6,40.5)'/%3E%3Cellipse cx='30.4' cy='40.5' rx='4' ry='11' transform='rotate(126,30.4,40.5)'/%3E%3Cellipse cx='25.6' cy='26.0' rx='4' ry='11' transform='rotate(198,25.6,26.0)'/%3E%3C/g%3E%3Cpath d='M38 30 Q40 42 38 54' fill='none' stroke='%23ffffff' stroke-opacity='0.08' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='96' viewBox='0 0 150 96'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.035' stroke-width='1.1'%3E%3Cpath d='M0 48 37.5 12 75 48 37.5 84 0 48Z'/%3E%3Cpath d='M75 48 112.5 12 150 48 112.5 84 75 48Z'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.05'%3E%3Cpath d='M75 43C65 29 67 15 77 5c10 13 8 28-2 38Z'/%3E%3Cpath d='M77 44C93 31 110 31 122 41c-12 13-29 15-45 3Z'/%3E%3Cpath d='M77 47C92 55 99 71 92 86c-14-6-21-22-15-39Z'/%3E%3Cpath d='M73 47C59 59 43 65 29 58c10-14 28-19 44-11Z'/%3E%3Cpath d='M73 44C55 42 41 34 35 20c17-4 33 5 38 24Z'/%3E%3C/g%3E%3Cpath d='M75 46C80 62 79 78 70 92' fill='none' stroke='%23ffffff' stroke-opacity='.055' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat, repeat;
-  background-size: 100% 100%, 76px 68px;
-  background-position: center, 0 0;
+  background-size: 100% 100%, 150px 96px;
+  background-position: center, -24px -8px;
   pointer-events: none;
 }
 
