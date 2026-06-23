@@ -7076,19 +7076,18 @@ body #page .asme-cal-page .acp-header {
   overflow: hidden;
 }
 
-/* Subtle geometric texture overlay */
+/* Buckeye-leaf inspired geometric texture overlay */
 .asme-member-hero::before {
   content: '';
   position: absolute;
   inset: 0;
+  opacity: 0.9;
   background-image:
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 28px,
-      rgba(255,255,255,0.025) 28px,
-      rgba(255,255,255,0.025) 29px
-    );
+    linear-gradient(90deg, rgba(15,52,96,0.15), rgba(15,52,96,0)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='104' viewBox='0 0 180 104'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='1.4'%3E%3Cpath d='M0 52 45 8l45 44-45 44L0 52Z'/%3E%3Cpath d='M90 52 135 8l45 44-45 44-45-44Z'/%3E%3Cpath d='M45 8V0M45 96v8M135 8V0M135 96v8'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.105'%3E%3Cpath d='M45 45c5-8 11-11 16-9-1 7-6 11-16 9Z'/%3E%3Cpath d='M45 45c-5-8-11-11-16-9 1 7 6 11 16 9Z'/%3E%3Cpath d='M45 45c2-9 6-14 12-15 2 7-2 12-12 15Z'/%3E%3Cpath d='M45 45c-2-9-6-14-12-15-2 7 2 12 12 15Z'/%3E%3Cpath d='M45 45c-3 8-2 14 0 18 3-4 4-10 0-18Z'/%3E%3Cpath d='M135 97c5-8 11-11 16-9-1 7-6 11-16 9Z'/%3E%3Cpath d='M135 97c-5-8-11-11-16-9 1 7 6 11 16 9Z'/%3E%3Cpath d='M135 97c2-9 6-14 12-15 2 7-2 12-12 15Z'/%3E%3Cpath d='M135 97c-2-9-6-14-12-15-2 7 2 12 12 15Z'/%3E%3Cpath d='M135 97c-3 8-2 14 0 18 3-4 4-10 0-18Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat, repeat;
+  background-size: 100% 100%, 180px 104px;
+  background-position: center, -18px -10px;
   pointer-events: none;
 }
 
