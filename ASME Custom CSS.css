@@ -9166,6 +9166,25 @@ body #page .asme-member-resources-page .asme-member-grid--2col {
   max-width: 760px !important;
 }
 
+body #page .asme-member-resources-page .asme-member-grid--scrollbar {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 16px !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  max-width: 100% !important;
+  padding: 2px 4px 16px !important;
+  margin-right: -4px !important;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+body #page .asme-member-resources-page .asme-member-grid--scrollbar .asme-resource-card {
+  flex: 0 0 min(310px, 84vw) !important;
+  min-width: min(310px, 84vw) !important;
+  scroll-snap-align: start;
+}
+
 body #page .asme-member-resources-page .asme-resource-card {
   display: flex !important;
   flex-direction: column !important;
