@@ -10401,62 +10401,77 @@ body.archive #page .content-sidebar-wrap {
    Color-coded left border by tier; darkest/premium at bottom.
    ============================================================ */
 
+/* ============================================================
+   SPONSORSHIP TIER CARDS (replaces old row-table layout)
+   Card-based, image icon at top, price + perks below.
+   Brutus gets dark navy filled treatment (premium signal).
+   Custom gets scarlet fill. Others stay light with accent border.
+   ============================================================ */
+
 .sponsor-tiers-table {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.sponsor-tier-row {
   display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 0;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid var(--asme-line, #e5e7eb);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
 }
 
-.sponsor-tier-info {
-  padding: 20px 22px;
+/* Base card */
+.sponsor-tier-card {
+  border-radius: 18px;
+  border: 1px solid var(--asme-line, #e5e7eb);
+  background: #ffffff;
+  padding: 24px 20px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 4px;
+  gap: 0;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.sponsor-tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(15,52,96,0.10);
+}
+
+.sponsor-tier-icon {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin-bottom: 14px;
 }
 
 .sponsor-tier-name {
-  margin: 0 !important;
+  margin: 0 0 2px !important;
   font-family: 'DM Serif Display', serif !important;
-  font-size: 20px !important;
+  font-size: 22px !important;
   font-weight: 400 !important;
   line-height: 1.1 !important;
+  color: var(--asme-navy, #0f3460) !important;
 }
 
 .sponsor-tier-price {
-  margin: 0 !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  opacity: 0.75 !important;
+  margin: 0 0 16px !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  color: var(--asme-navy, #0f3460) !important;
 }
 
 .sponsor-tier-perks {
-  padding: 18px 24px !important;
-  margin: 0 !important;
   list-style: none !important;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px 24px;
-  align-content: center;
-  background: #f9fafb;
-  border-left: 1px solid var(--asme-line, #e5e7eb);
+  margin: 0 0 20px !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
 }
 
 .sponsor-tier-perks li {
-  font-size: 13px;
-  color: var(--asme-muted, #6b7280);
-  padding-left: 16px;
+  font-size: 13px !important;
+  color: var(--asme-muted, #6b7280) !important;
+  padding-left: 18px !important;
   position: relative;
-  line-height: 1.4;
+  line-height: 1.4 !important;
 }
 
 .sponsor-tier-perks li::before {
@@ -10464,75 +10479,93 @@ body.archive #page .content-sidebar-wrap {
   position: absolute;
   left: 0;
   font-weight: 700;
+  color: var(--asme-navy, #0f3460);
 }
 
-/* Gray tier */
-.sponsor-tier-row--gray .sponsor-tier-info {
-  background: #f3f4f6;
-  border-left: 4px solid #9ca3af;
+.sponsor-tier-cta {
+  display: block;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none !important;
+  background: var(--asme-navy, #0f3460);
+  color: #ffffff !important;
+  transition: background 0.15s;
+  margin-top: auto;
 }
-.sponsor-tier-row--gray .sponsor-tier-name { color: #374151 !important; }
-.sponsor-tier-row--gray .sponsor-tier-price { color: #6b7280 !important; }
-.sponsor-tier-row--gray .sponsor-tier-perks li::before { color: #9ca3af; }
 
-/* Scarlet tier */
-.sponsor-tier-row--scarlet .sponsor-tier-info {
-  background: #fff5f5;
-  border-left: 4px solid #bb0000;
+.sponsor-tier-cta:hover {
+  background: #1a4a7a;
+  color: #ffffff !important;
 }
-.sponsor-tier-row--scarlet .sponsor-tier-name { color: #bb0000 !important; }
-.sponsor-tier-row--scarlet .sponsor-tier-price { color: #bb0000 !important; }
-.sponsor-tier-row--scarlet .sponsor-tier-perks li::before { color: #bb0000; }
 
-/* Buckeye tier */
-.sponsor-tier-row--buckeye .sponsor-tier-info {
-  background: #fffbeb;
-  border-left: 4px solid #b45309;
+/* Brutus — dark navy fill, white text, biggest card */
+.sponsor-tier-card--brutus {
+  background: linear-gradient(160deg, #0f3460, #16213e) !important;
+  border-color: #0f3460 !important;
+  box-shadow: 0 8px 32px rgba(15,52,96,0.22) !important;
 }
-.sponsor-tier-row--buckeye .sponsor-tier-name { color: #92400e !important; }
-.sponsor-tier-row--buckeye .sponsor-tier-price { color: #b45309 !important; }
-.sponsor-tier-row--buckeye .sponsor-tier-perks li::before { color: #b45309; }
 
-/* Block O tier */
-.sponsor-tier-row--blocko .sponsor-tier-info {
-  background: #1a1a1a;
-  border-left: 4px solid #ffffff40;
+.sponsor-tier-card--brutus .sponsor-tier-name {
+  color: #ffffff !important;
 }
-.sponsor-tier-row--blocko .sponsor-tier-name { color: #ffffff !important; }
-.sponsor-tier-row--blocko .sponsor-tier-price { color: rgba(255,255,255,0.7) !important; }
-.sponsor-tier-row--blocko .sponsor-tier-perks li::before { color: #6b7280; }
 
-/* Brutus tier */
-.sponsor-tier-row--brutus .sponsor-tier-info {
-  background: linear-gradient(160deg, #0f3460, #16213e);
-  border-left: 4px solid #93c5fd;
+.sponsor-tier-card--brutus .sponsor-tier-price {
+  color: #93c5fd !important;
 }
-.sponsor-tier-row--brutus .sponsor-tier-name { color: #ffffff !important; }
-.sponsor-tier-row--brutus .sponsor-tier-price { color: #93c5fd !important; }
-.sponsor-tier-row--brutus .sponsor-tier-perks li::before { color: #0f3460; }
 
-/* Custom tier */
-.sponsor-tier-row--custom .sponsor-tier-info {
-  background: linear-gradient(160deg, #bb0000, #7f0000);
-  border-left: 4px solid rgba(255,255,255,0.3);
+.sponsor-tier-card--brutus .sponsor-tier-perks li {
+  color: rgba(255,255,255,0.8) !important;
 }
-.sponsor-tier-row--custom .sponsor-tier-name { color: #ffffff !important; }
-.sponsor-tier-row--custom .sponsor-tier-price { color: rgba(255,255,255,0.85) !important; font-style: italic !important; }
-.sponsor-tier-row--custom .sponsor-tier-perks li::before { color: #bb0000; }
 
-@media (max-width: 700px) {
-  .sponsor-tier-row {
+.sponsor-tier-card--brutus .sponsor-tier-perks li::before {
+  color: #93c5fd !important;
+}
+
+.sponsor-tier-card--brutus .sponsor-tier-cta {
+  background: #ffffff !important;
+  color: #0f3460 !important;
+}
+
+.sponsor-tier-card--brutus .sponsor-tier-cta:hover {
+  background: #e8f0fb !important;
+}
+
+/* Custom — scarlet fill */
+.sponsor-tier-card--custom {
+  background: linear-gradient(160deg, #bb0000, #7f0000) !important;
+  border-color: #bb0000 !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-name,
+.sponsor-tier-card--custom .sponsor-tier-price {
+  color: #ffffff !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-perks li {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-perks li::before {
+  color: #fca5a5 !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-cta {
+  background: #ffffff !important;
+  color: #bb0000 !important;
+}
+
+@media (max-width: 900px) {
+  .sponsor-tiers-table {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .sponsor-tiers-table {
     grid-template-columns: 1fr;
-  }
-
-  .sponsor-tier-perks {
-    grid-template-columns: 1fr !important;
-    border-left: none !important;
-    border-top: 1px solid var(--asme-line, #e5e7eb) !important;
-  }
-
-  .sponsor-tier-info {
-    padding: 16px 18px;
   }
 }
 
