@@ -9169,6 +9169,7 @@ body #page .asme-member-resources-page .asme-member-grid--2col {
 body #page .asme-member-resources-page .asme-member-grid--scrollbar {
   display: flex !important;
   flex-wrap: nowrap !important;
+  align-items: stretch !important;
   gap: 16px !important;
   overflow-x: auto !important;
   overflow-y: visible !important;
@@ -9182,6 +9183,8 @@ body #page .asme-member-resources-page .asme-member-grid--scrollbar {
 body #page .asme-member-resources-page .asme-member-grid--scrollbar .asme-resource-card {
   flex: 0 0 min(310px, 84vw) !important;
   min-width: min(310px, 84vw) !important;
+  height: auto !important;
+  align-self: stretch !important;
   scroll-snap-align: start;
 }
 
