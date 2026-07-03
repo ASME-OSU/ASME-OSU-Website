@@ -10265,3 +10265,416 @@ body.archive #page .content-sidebar-wrap {
     height: 180px !important;
   }
 }
+
+/* ============================================================
+   SPONSOR PAGE — TIER SYSTEM
+   Tier groups, labels, featured Brutus card, grid variants,
+   tier table rows (replacing the old flat 3-col grid),
+   and partner name label.
+   ============================================================ */
+
+/* Tier group wrapper — space between tier sections */
+.sponsor-tier-group {
+  margin-bottom: 32px;
+}
+
+.sponsor-tier-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Tier label pill — sits above each tier's cards */
+.sponsor-tier-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.sponsor-tier-label--brutus {
+  background: #0f3460;
+  color: #ffffff;
+}
+
+.sponsor-tier-label--blocko {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.sponsor-tier-label--scarlet {
+  background: #bb0000;
+  color: #ffffff;
+}
+
+/* Brutus featured card — full width, bigger logo, premium feel */
+.sponsor-tier-featured {
+  width: 100%;
+}
+
+.sponsor-card--brutus {
+  border: 2px solid #0f3460 !important;
+  box-shadow: 0 4px 24px rgba(15,52,96,0.12) !important;
+  position: relative !important;
+}
+
+.sponsor-card--brutus::before {
+  background: linear-gradient(135deg, #0f3460, #1a4a7a) !important;
+}
+
+.sponsor-card--brutus .sponsor-logo-frame {
+  height: 160px !important;
+}
+
+/* Block O — single card, medium prominence */
+.sponsor-card--blocko {
+  border: 2px solid #1a1a1a !important;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.10) !important;
+}
+
+.sponsor-card--blocko::before {
+  background: #1a1a1a !important;
+}
+
+/* Scarlet tier cards */
+.sponsor-card--scarlet-tier {
+  border: 2px solid #bb0000 !important;
+  box-shadow: 0 2px 10px rgba(187,0,0,0.08) !important;
+}
+
+.sponsor-card--scarlet-tier::before {
+  background: #bb0000 !important;
+  content: '★ Scarlet Sponsor' !important;
+}
+
+/* Override the generic ::before for each tier */
+.sponsor-card--brutus::before {
+  content: '👑 Brutus Sponsor' !important;
+}
+
+.sponsor-card--blocko::before {
+  content: '⬛ Block O Sponsor' !important;
+}
+
+/* Sponsor name divider inside h3 */
+.sponsor-name-divider {
+  color: var(--asme-soft, #9ca3af);
+  font-weight: 300;
+  margin: 0 4px;
+}
+
+/* Tier grids */
+.sponsor-tier-grid--1col {
+  display: grid;
+  grid-template-columns: minmax(0, 560px);
+  gap: 18px;
+}
+
+.sponsor-tier-grid--2col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 700px) {
+  .sponsor-tier-grid--2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Partner name label */
+.sponsor-partner-name {
+  margin: 0 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--asme-navy, #0f3460) !important;
+  text-align: center !important;
+}
+
+/* ============================================================
+   SPONSORSHIP TIERS TABLE
+   Compact row layout — tier name/price on left, perks on right.
+   Color-coded left border by tier; darkest/premium at bottom.
+   ============================================================ */
+
+.sponsor-tiers-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sponsor-tier-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--asme-line, #e5e7eb);
+}
+
+.sponsor-tier-info {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.sponsor-tier-name {
+  margin: 0 !important;
+  font-family: 'DM Serif Display', serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
+}
+
+.sponsor-tier-price {
+  margin: 0 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  opacity: 0.75 !important;
+}
+
+.sponsor-tier-perks {
+  padding: 18px 24px !important;
+  margin: 0 !important;
+  list-style: none !important;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 24px;
+  align-content: center;
+  background: #f9fafb;
+  border-left: 1px solid var(--asme-line, #e5e7eb);
+}
+
+.sponsor-tier-perks li {
+  font-size: 13px;
+  color: var(--asme-muted, #6b7280);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.sponsor-tier-perks li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+/* Gray tier */
+.sponsor-tier-row--gray .sponsor-tier-info {
+  background: #f3f4f6;
+  border-left: 4px solid #9ca3af;
+}
+.sponsor-tier-row--gray .sponsor-tier-name { color: #374151 !important; }
+.sponsor-tier-row--gray .sponsor-tier-price { color: #6b7280 !important; }
+.sponsor-tier-row--gray .sponsor-tier-perks li::before { color: #9ca3af; }
+
+/* Scarlet tier */
+.sponsor-tier-row--scarlet .sponsor-tier-info {
+  background: #fff5f5;
+  border-left: 4px solid #bb0000;
+}
+.sponsor-tier-row--scarlet .sponsor-tier-name { color: #bb0000 !important; }
+.sponsor-tier-row--scarlet .sponsor-tier-price { color: #bb0000 !important; }
+.sponsor-tier-row--scarlet .sponsor-tier-perks li::before { color: #bb0000; }
+
+/* Buckeye tier */
+.sponsor-tier-row--buckeye .sponsor-tier-info {
+  background: #fffbeb;
+  border-left: 4px solid #b45309;
+}
+.sponsor-tier-row--buckeye .sponsor-tier-name { color: #92400e !important; }
+.sponsor-tier-row--buckeye .sponsor-tier-price { color: #b45309 !important; }
+.sponsor-tier-row--buckeye .sponsor-tier-perks li::before { color: #b45309; }
+
+/* Block O tier */
+.sponsor-tier-row--blocko .sponsor-tier-info {
+  background: #1a1a1a;
+  border-left: 4px solid #ffffff40;
+}
+.sponsor-tier-row--blocko .sponsor-tier-name { color: #ffffff !important; }
+.sponsor-tier-row--blocko .sponsor-tier-price { color: rgba(255,255,255,0.7) !important; }
+.sponsor-tier-row--blocko .sponsor-tier-perks li::before { color: #6b7280; }
+
+/* Brutus tier */
+.sponsor-tier-row--brutus .sponsor-tier-info {
+  background: linear-gradient(160deg, #0f3460, #16213e);
+  border-left: 4px solid #93c5fd;
+}
+.sponsor-tier-row--brutus .sponsor-tier-name { color: #ffffff !important; }
+.sponsor-tier-row--brutus .sponsor-tier-price { color: #93c5fd !important; }
+.sponsor-tier-row--brutus .sponsor-tier-perks li::before { color: #0f3460; }
+
+/* Custom tier */
+.sponsor-tier-row--custom .sponsor-tier-info {
+  background: linear-gradient(160deg, #bb0000, #7f0000);
+  border-left: 4px solid rgba(255,255,255,0.3);
+}
+.sponsor-tier-row--custom .sponsor-tier-name { color: #ffffff !important; }
+.sponsor-tier-row--custom .sponsor-tier-price { color: rgba(255,255,255,0.85) !important; font-style: italic !important; }
+.sponsor-tier-row--custom .sponsor-tier-perks li::before { color: #bb0000; }
+
+@media (max-width: 700px) {
+  .sponsor-tier-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sponsor-tier-perks {
+    grid-template-columns: 1fr !important;
+    border-left: none !important;
+    border-top: 1px solid var(--asme-line, #e5e7eb) !important;
+  }
+
+  .sponsor-tier-info {
+    padding: 16px 18px;
+  }
+}
+
+/* ============================================================
+   CURRENT SPONSORS PAGE — TIER BLOCKS + MODIFIER CLASSES
+   Builds on .sponsor-card-primary base. Each tier block stacks
+   vertically; tier label sits above via ::before on the block.
+   Modifier classes on individual cards override border/pill color.
+   ============================================================ */
+
+/* Tier block wrapper — provides spacing and the tier label strip */
+.sponsors-tier-block {
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.sponsors-tier-block:last-child {
+  margin-bottom: 0;
+}
+
+/* Tier label — displayed above the card(s) via a block element */
+.sponsors-tier-block::before {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  position: static;
+  transform: none;
+  left: auto;
+  top: auto;
+}
+
+.sponsors-tier-block--brutus::before {
+  content: '👑 Brutus Sponsor';
+  background: linear-gradient(135deg, #0f3460, #1a4a7a);
+  color: #ffffff;
+}
+
+.sponsors-tier-block--blocko::before {
+  content: '⬛ Block O Sponsor';
+  background: #1c1c1c;
+  color: #ffffff;
+}
+
+.sponsors-tier-block--scarlet::before {
+  content: '🔴 Scarlet Sponsors';
+  background: #bb0000;
+  color: #ffffff;
+}
+
+/* 2-col grid for Scarlet tier (multiple cards side by side) */
+.sponsors-grid-scarlet {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+@media (max-width: 640px) {
+  .sponsors-grid-scarlet {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── BRUTUS card — full width, biggest logo, navy premium ── */
+.sponsor-card--brutus {
+  border: 2px solid #0f3460 !important;
+  box-shadow: 0 6px 28px rgba(15, 52, 96, 0.13) !important;
+  max-width: 100% !important;
+}
+
+/* Override the generic ::before pill (which says '★ Sponsor') */
+.sponsor-card--brutus::before {
+  content: '👑 Brutus' !important;
+  background: linear-gradient(135deg, #0f3460, #1a4a7a) !important;
+  font-size: 9px !important;
+}
+
+.sponsor-card--brutus .sponsor-logo-frame {
+  height: 160px !important;
+}
+
+.sponsor-card--brutus h3 {
+  font-size: 20px !important;
+}
+
+/* ── BLOCK O card — dark border, elevated feel ── */
+.sponsor-card--blocko {
+  border: 2px solid #1c1c1c !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12) !important;
+}
+
+.sponsor-card--blocko::before {
+  content: '⬛ Block O' !important;
+  background: #1c1c1c !important;
+  font-size: 9px !important;
+}
+
+.sponsor-card--blocko .sponsor-logo-frame {
+  height: 140px !important;
+}
+
+.sponsor-card--blocko h3 {
+  font-size: 18px !important;
+}
+
+/* ── SCARLET tier cards — scarlet border/pill ── */
+.sponsor-card--scarlet-tier {
+  border: 2px solid #bb0000 !important;
+  box-shadow: 0 3px 12px rgba(187, 0, 0, 0.09) !important;
+}
+
+.sponsor-card--scarlet-tier::before {
+  content: '🔴 Scarlet' !important;
+  background: #bb0000 !important;
+  font-size: 9px !important;
+}
+
+.sponsor-card--scarlet-tier .sponsor-logo-frame {
+  height: 120px !important;
+}
+
+/* Brutus hover — bigger lift for biggest sponsor */
+.sponsor-card--brutus:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 40px rgba(15, 52, 96, 0.18) !important;
+}
+
+/* CTA → sponsor tiers page instead of just email */
+.sponsors-cta-button--outline {
+  background: transparent !important;
+  border: 2px solid var(--asme-navy) !important;
+  color: var(--asme-navy) !important;
+}
+
+.sponsors-cta-button--outline:hover {
+  background: var(--asme-navy) !important;
+  color: #ffffff !important;
+}
