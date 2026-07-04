@@ -11667,19 +11667,19 @@ html body .sponsors-lower-tier-row > p,
 /* Sponsor form: canonical repo markup with header and form as siblings */
 body #page .asme-sponsor-page .sponsor-contact {
   display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
+  grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr) !important;
   gap: 0 !important;
-  max-width: 1100px !important;
+  max-width: 1160px !important;
   width: 100% !important;
   margin: 0 auto !important;
   border: 1px solid var(--asme-line, #e5e7eb) !important;
-  border-radius: 20px !important;
+  border-radius: 18px !important;
   overflow: hidden !important;
   align-items: stretch !important;
 }
 
 body #page .asme-sponsor-page .sponsor-contact > .sponsor-contact-header {
-  padding: 48px 40px !important;
+  padding: 44px 42px !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
@@ -11689,7 +11689,11 @@ body #page .asme-sponsor-page .sponsor-contact > .sponsor-contact-header {
 }
 
 body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
-  padding: 48px 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 20px !important;
+  padding: 42px 44px !important;
   border: none !important;
   border-radius: 0 !important;
   border-left: 1px solid var(--asme-line, #e5e7eb) !important;
@@ -11701,7 +11705,20 @@ body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
 body #page .asme-sponsor-page .sponsor-form-row {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
-  gap: 24px !important;
+  gap: 22px !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-group {
+  margin: 0 !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-group input,
+body #page .asme-sponsor-page .sponsor-form-group select {
+  min-height: 52px !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-group textarea {
+  min-height: 118px !important;
 }
 
 /* Sponsor form: compatibility for current live WordPress block where header is nested in the form */
