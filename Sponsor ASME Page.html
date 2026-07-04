@@ -246,6 +246,8 @@
           return 'mailto:asme@osu.edu?subject=' + subject + '&body=' + body;
         }
 
+        window.asmeBuildSponsorMailto = buildMailto;
+
         function updateSubmitLink() {
           submitLink.setAttribute('href', buildMailto());
         }
@@ -254,16 +256,6 @@
         form.addEventListener('change', updateSubmitLink);
 
         submitLink.addEventListener('click', function (event) {
-          var company = getValue('sif-company');
-          var contact = getValue('sif-contact');
-          var email = getValue('sif-email');
-
-          if (!company || !contact || !email) {
-            event.preventDefault();
-            alert('Please fill in Company Name, Contact Name, and Email Address.');
-            return;
-          }
-
           updateSubmitLink();
         });
 
