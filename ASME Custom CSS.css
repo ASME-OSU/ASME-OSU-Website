@@ -11231,3 +11231,93 @@ body #page .asme-sponsors-page .sponsor-card--brutus:hover {
     border-bottom-color: #263a5f !important;
   }
 }
+
+/* ============================================================
+   CURRENT SPONSORS - blended feature/grid layout
+   ============================================================ */
+
+body #page .asme-sponsors-page .sponsors-featured {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 24px 20px !important;
+  align-items: stretch !important;
+}
+
+body #page .asme-sponsors-page .sponsors-featured .sponsors-section-header {
+  grid-column: 1 / -1 !important;
+  margin-bottom: 0 !important;
+}
+
+body #page .asme-sponsors-page .sponsors-tier-block {
+  margin-bottom: 0 !important;
+}
+
+body #page .asme-sponsors-page .sponsors-tier-block--brutus,
+body #page .asme-sponsors-page .sponsors-tier-block--blocko {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body #page .asme-sponsors-page .sponsors-tier-block--scarlet {
+  grid-column: 1 / -1 !important;
+}
+
+body #page .asme-sponsors-page .sponsor-card-primary {
+  grid-template-columns: 118px minmax(0, 1fr) !important;
+  column-gap: 16px !important;
+  padding: 16px !important;
+  max-width: none !important;
+  min-height: 142px !important;
+  height: 100% !important;
+}
+
+body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame {
+  width: 118px !important;
+  height: 78px !important;
+  padding: 10px !important;
+}
+
+body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame img {
+  max-height: 56px !important;
+}
+
+body #page .asme-sponsors-page .sponsor-card-primary h3 {
+  font-size: 17px !important;
+}
+
+body #page .asme-sponsors-page .sponsor-card-primary p {
+  max-width: 520px !important;
+  font-size: 12.5px !important;
+}
+
+body #page .asme-sponsors-page .sponsor-card--brutus .sponsor-logo-frame,
+body #page .asme-sponsors-page .sponsor-card--blocko .sponsor-logo-frame,
+body #page .asme-sponsors-page .sponsor-card--scarlet-tier .sponsor-logo-frame {
+  height: 78px !important;
+}
+
+body #page .asme-sponsors-page .sponsors-grid-scarlet {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+}
+
+@media (max-width: 980px) {
+  body #page .asme-sponsors-page .sponsors-featured {
+    grid-template-columns: 1fr !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-block--scarlet {
+    grid-column: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body #page .asme-sponsors-page .sponsor-card-primary {
+    grid-template-columns: 92px minmax(0, 1fr) !important;
+    min-height: 0 !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-grid-scarlet {
+    grid-template-columns: 1fr !important;
+  }
+}
