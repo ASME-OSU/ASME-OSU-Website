@@ -11874,3 +11874,47 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
   padding: 4px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10) !important;
 }
+
+/* ============================================================
+   SPONSOR PAGE - GRID FIX #4 (forced specificity)
+   The 3-column row is rendering as a wrapping flexbox instead
+   of a grid, causing Block O (the first/odd item) to sit alone,
+   centered, above the other two cards. This forces true grid
+   behavior with maximum specificity so nothing else can override it.
+   ============================================================ */
+
+body #page .sponsors-lower-tier-row,
+body #page .asme-sponsors-page .sponsors-lower-tier-row,
+html body .sponsors-lower-tier-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  flex-wrap: unset !important;
+  justify-content: stretch !important;
+  align-items: stretch !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+body #page .sponsors-lower-tier-row > *,
+body #page .asme-sponsors-page .sponsors-lower-tier-row > *,
+html body .sponsors-lower-tier-row > * {
+  flex: unset !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+body #page .sponsors-lower-tier-row > p,
+body #page .asme-sponsors-page .sponsors-lower-tier-row > p,
+html body .sponsors-lower-tier-row > p {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  body #page .sponsors-lower-tier-row,
+  body #page .asme-sponsors-page .sponsors-lower-tier-row,
+  html body .sponsors-lower-tier-row {
+    grid-template-columns: 1fr !important;
+  }
+}
