@@ -11683,3 +11683,108 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
 .sponsor-see-current-link:hover {
   text-decoration: underline;
 }
+
+/* ============================================================
+   SPONSOR PAGES — LAYOUT REVISION #2
+   Append to end of ASME Custom CSS.css
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. NEW LAYOUT: Brutus stays full-width hero, but Block O +
+      Scarlet sponsors move into a single 3-column row below.
+      Requires HTML restructure — see note at bottom of file.
+   ------------------------------------------------------------ */
+
+.sponsors-lower-tier-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 16px !important;
+  align-items: stretch !important;
+}
+
+.sponsors-lower-tier-row .sponsors-tier-block {
+  margin: 0 !important;
+}
+
+/* Compact vertical card style for the 3-col row —
+   logo on top, name + desc below, tier bar above each */
+.sponsors-lower-tier-row .sponsor-card-primary {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  height: 100% !important;
+  gap: 12px !important;
+  min-height: 0 !important;
+}
+
+.sponsors-lower-tier-row .sponsor-logo-link {
+  width: 100% !important;
+}
+
+.sponsors-lower-tier-row .sponsor-logo-frame {
+  width: 100% !important;
+}
+
+.sponsors-lower-tier-row .sponsor-card-primary h3,
+.sponsors-lower-tier-row .sponsor-card-primary p {
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+
+@media (max-width: 900px) {
+  .sponsors-lower-tier-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   2. Block O dark mode fix — replace pure black with
+      dark charcoal so it separates from the navy page bg
+   ------------------------------------------------------------ */
+@media (prefers-color-scheme: dark) {
+  .sponsors-tier-block--blocko::before,
+  .sponsor-card--blocko::before {
+    background: #2a2a2a !important;
+  }
+
+  .sponsor-card--blocko {
+    background: #1e1e1e !important;
+    border-color: #3a3a3a !important;
+  }
+
+  .sponsor-card--blocko h3,
+  .sponsor-card--blocko p {
+    color: #e5e7eb !important;
+  }
+
+  .sponsor-card--blocko .sponsor-logo-frame {
+    background: #f5f5f5 !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   3. Form width — expand to match tier section width
+   ------------------------------------------------------------ */
+.sponsor-contact {
+  max-width: 1100px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.sponsor-inquiry-form {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.sponsor-form-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+}
+
+@media (max-width: 700px) {
+  .sponsor-form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
