@@ -11488,10 +11488,14 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
   }
 }
 
-/* Fix: Block O tier block was narrower and off-center compared to
-   Brutus and Scarlet. Force both blocks inside sponsors-top-tier-grid
-   to stretch full width and align flush left, matching Scarlet below. */
+/* ============================================================
+   SPONSOR PAGES — BATCH UPDATE
+   Append this entire file to the end of ASME Custom CSS.css
+   ============================================================ */
 
+/* ------------------------------------------------------------
+   1. FIX: Block O tier block alignment (Current Sponsors page)
+   ------------------------------------------------------------ */
 .sponsors-top-tier-grid {
   display: block !important;
   width: 100% !important;
@@ -11508,4 +11512,174 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
   width: 100% !important;
   max-width: 100% !important;
   justify-self: stretch !important;
+}
+
+/* ------------------------------------------------------------
+   2. SWAP: Brutus becomes scarlet, Custom becomes navy
+   (Sponsor ASME tier cards)
+   ------------------------------------------------------------ */
+.sponsor-tier-card--brutus {
+  background: linear-gradient(160deg, #bb0000, #7f0000) !important;
+  border-color: #bb0000 !important;
+}
+
+.sponsor-tier-card--brutus .sponsor-tier-name,
+.sponsor-tier-card--brutus .sponsor-tier-price {
+  color: #ffffff !important;
+}
+
+.sponsor-tier-card--brutus .sponsor-tier-perks li {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+.sponsor-tier-card--brutus .sponsor-tier-perks li::before {
+  color: #fca5a5 !important;
+}
+
+.sponsor-tier-card--brutus .sponsor-tier-cta {
+  background: #ffffff !important;
+  color: #bb0000 !important;
+}
+
+.sponsor-tier-card--custom {
+  background: linear-gradient(160deg, #0f3460, #16213e) !important;
+  border-color: #0f3460 !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-name {
+  color: #ffffff !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-price {
+  color: #93c5fd !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-perks li {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-perks li::before {
+  color: #93c5fd !important;
+}
+
+.sponsor-tier-card--custom .sponsor-tier-cta {
+  background: #ffffff !important;
+  color: #0f3460 !important;
+}
+
+/* Also swap the left-border accent colors on the tier card list */
+.sponsor-tier-card--brutus { border-left-color: #fca5a5 !important; }
+.sponsor-tier-card--custom { border-left-color: #93c5fd !important; }
+
+/* ------------------------------------------------------------
+   3. "GLOW" TREATMENT — higher tiers get more visual prominence
+   (Current Sponsors page primary sponsor cards)
+   ------------------------------------------------------------ */
+
+/* Brutus — biggest glow, scarlet-tinted (matches the swap above) */
+.sponsor-card--brutus {
+  box-shadow:
+    0 0 0 1px rgba(187, 0, 0, 0.35),
+    0 0 40px 6px rgba(187, 0, 0, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.35) !important;
+  border-color: rgba(187, 0, 0, 0.5) !important;
+}
+
+.sponsor-card--brutus:hover {
+  box-shadow:
+    0 0 0 1px rgba(187, 0, 0, 0.5),
+    0 0 56px 10px rgba(187, 0, 0, 0.35),
+    0 12px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Block O — moderate glow, cool white/silver */
+.sponsor-card--blocko {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 24px 3px rgba(255, 255, 255, 0.10),
+    0 6px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+.sponsor-card--blocko:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 32px 5px rgba(255, 255, 255, 0.15),
+    0 8px 28px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Scarlet tier — subtle glow only, smallest of the three */
+.sponsor-card--scarlet-tier {
+  box-shadow:
+    0 0 0 1px rgba(187, 0, 0, 0.2),
+    0 0 14px 2px rgba(187, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+.sponsor-card--scarlet-tier:hover {
+  box-shadow:
+    0 0 0 1px rgba(187, 0, 0, 0.3),
+    0 0 20px 3px rgba(187, 0, 0, 0.18),
+    0 6px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Smooth transitions for the glow on hover */
+.sponsor-card--brutus,
+.sponsor-card--blocko,
+.sponsor-card--scarlet-tier {
+  transition: box-shadow 0.25s ease, transform 0.2s ease !important;
+}
+
+/* ------------------------------------------------------------
+   4. RRIC logo frame fix — add white padding so the dark
+      logo image doesn't clash with the light frames used by
+      Pratt & Whitney / OSU CoE / ASME Sections
+   ------------------------------------------------------------ */
+.sponsor-card--scarlet-tier .sponsor-logo-frame {
+  background: #ffffff !important;
+  border-radius: 10px !important;
+  padding: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* ------------------------------------------------------------
+   5. Small tier badge icon on each sponsor card
+      (uses the same tier images from the Sponsorship Tiers page)
+      NOTE: requires one new element per card in the HTML:
+      <img src="TIER_IMAGE_URL" class="sponsor-card-tier-badge">
+      placed as the first child inside each .sponsor-card-primary
+   ------------------------------------------------------------ */
+.sponsor-card-tier-badge {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain !important;
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  opacity: 0.9 !important;
+}
+
+.sponsor-card-primary {
+  position: relative !important;
+}
+
+/* ------------------------------------------------------------
+   6. Cross-link styling — "See our current sponsors" link
+      to be added near the Sponsorship Tiers heading on the
+      Sponsor ASME page (HTML addition needed, see note below)
+   ------------------------------------------------------------ */
+.sponsor-see-current-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--asme-navy, #0f3460);
+  text-decoration: none;
+}
+
+.sponsor-see-current-link:hover {
+  text-decoration: underline;
 }
