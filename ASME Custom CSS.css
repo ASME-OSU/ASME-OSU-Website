@@ -10894,3 +10894,112 @@ body.archive #page .content-sidebar-wrap {
     text-align: center !important;
   }
 }
+
+/* ============================================================
+   SPONSOR PAGE - dark mode repair for latest tier/form updates
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-sponsor-page .sponsor-tier-card {
+    background: #0f1b2d !important;
+    border-color: #263a5f !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22) !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-card:hover {
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-name,
+  body #page .asme-sponsor-page .sponsor-tier-price {
+    color: #f8fafc !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-perks li {
+    color: #cbd5e1 !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-perks li::before {
+    color: #93c5fd !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-cta {
+    background: #f8fafc !important;
+    color: #0f3460 !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-cta:hover {
+    background: #dbeafe !important;
+    color: #0f3460 !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-card:nth-child(1) { border-left-color: #94a3b8 !important; }
+  body #page .asme-sponsor-page .sponsor-tier-card:nth-child(2) { border-left-color: #ef4444 !important; }
+  body #page .asme-sponsor-page .sponsor-tier-card:nth-child(3) { border-left-color: #f59e0b !important; }
+  body #page .asme-sponsor-page .sponsor-tier-card:nth-child(4) { border-left-color: #e5e7eb !important; }
+
+  body #page .asme-sponsor-page .sponsor-tier-card--brutus {
+    background: linear-gradient(160deg, #123b70, #0b1728) !important;
+    border-color: #3b82f6 !important;
+    border-left-color: #93c5fd !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-price {
+    color: #bfdbfe !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-card--custom {
+    background: linear-gradient(160deg, #c40000, #7f0000) !important;
+    border-color: #ef4444 !important;
+    border-left-color: rgba(255, 255, 255, 0.55) !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-cta {
+    color: #9f0000 !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-inquiry-form {
+    background: #0f1b2d !important;
+    border-color: #263a5f !important;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-form-group label {
+    color: #f8fafc !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-form-optional {
+    color: #94a3b8 !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-form-group input,
+  body #page .asme-sponsor-page .sponsor-form-group select,
+  body #page .asme-sponsor-page .sponsor-form-group textarea {
+    background: #07111f !important;
+    border-color: #3b4f73 !important;
+    color: #f8fafc !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-form-group input::placeholder,
+  body #page .asme-sponsor-page .sponsor-form-group textarea::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-form-group input:focus,
+  body #page .asme-sponsor-page .sponsor-form-group select:focus,
+  body #page .asme-sponsor-page .sponsor-form-group textarea:focus {
+    background: #0b1626 !important;
+    border-color: #93c5fd !important;
+    box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.18) !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-form-submit {
+    background: #bb0000 !important;
+    color: #ffffff !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-form-submit:hover {
+    background: #d31313 !important;
+  }
+}
