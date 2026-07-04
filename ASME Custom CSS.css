@@ -11512,20 +11512,19 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
 
 /* Sponsor ASME hero stats */
 body #page .asme-sponsor-page .sponsor-hero-panel {
-  align-self: center !important;
   justify-content: center !important;
   gap: 12px !important;
-  padding: 20px !important;
+  padding: 24px 24px 14px !important;
   min-height: 0 !important;
 }
 
 body #page .asme-sponsor-page .sponsor-panel-stat {
-  height: 104px !important;
-  min-height: 104px !important;
+  height: 116px !important;
+  min-height: 116px !important;
 }
 
 body #page .asme-sponsor-page .sponsor-stat-inner {
-  transform: none !important;
+  transform: translateY(4px) !important;
 }
 
 .sponsor-see-current-link {
