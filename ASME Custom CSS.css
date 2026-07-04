@@ -11512,9 +11512,12 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
 
 /* Sponsor ASME hero stats */
 body #page .asme-sponsor-page .sponsor-hero-panel {
+  align-self: center !important;
   justify-content: center !important;
   gap: 12px !important;
-  padding: 24px 24px 14px !important;
+  height: fit-content !important;
+  max-height: none !important;
+  padding: 24px 24px 18px !important;
   min-height: 0 !important;
 }
 
