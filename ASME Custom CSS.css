@@ -10832,3 +10832,65 @@ body.archive #page .content-sidebar-wrap {
   .sponsor-form-row { grid-template-columns: 1fr; }
   .sponsor-inquiry-form { padding: 24px 20px; }
 }
+
+/* ============================================================
+   FIXES: double pills, tier card borders, form layout
+   ============================================================ */
+
+/* 1. Kill card-level pills on Current Sponsors page —
+      the tier block label above already does the job */
+.sponsor-card--brutus::before,
+.sponsor-card--blocko::before,
+.sponsor-card--scarlet-tier::before {
+  display: none !important;
+}
+
+/* 2. Left border accent per tier card + remove icon */
+.sponsor-tier-icon {
+  display: none !important;
+}
+
+.sponsor-tier-card {
+  border-left: 4px solid #e5e7eb !important;
+  padding-left: 20px !important;
+}
+
+.sponsor-tier-card:nth-child(1) { border-left-color: #9ca3af !important; } /* Gray */
+.sponsor-tier-card:nth-child(2) { border-left-color: #bb0000 !important; } /* Scarlet */
+.sponsor-tier-card:nth-child(3) { border-left-color: #b45309 !important; } /* Buckeye */
+.sponsor-tier-card:nth-child(4) { border-left-color: #1c1c1c !important; } /* Block O */
+.sponsor-tier-card--brutus      { border-left-color: #93c5fd !important; padding: 28px 24px 24px !important; } /* Brutus — bigger */
+.sponsor-tier-card--custom      { border-left-color: rgba(255,255,255,0.35) !important; }
+
+/* 3. Form layout fix — side-by-side header + form card */
+.sponsor-contact {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 48px !important;
+  align-items: center !important;
+  max-width: 1000px !important;
+}
+
+.sponsor-contact-header {
+  text-align: left !important;
+  margin-bottom: 0 !important;
+}
+
+.sponsor-inquiry-form {
+  padding: 32px 32px !important;
+}
+
+.sponsor-form-submit {
+  width: 100% !important;
+  text-align: center !important;
+}
+
+@media (max-width: 760px) {
+  .sponsor-contact {
+    grid-template-columns: 1fr !important;
+  }
+
+  .sponsor-contact-header {
+    text-align: center !important;
+  }
+}
