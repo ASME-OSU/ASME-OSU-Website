@@ -218,8 +218,12 @@
 
         form.setAttribute('data-mailto-ready', 'true');
 
+        function findField(id) {
+          return form.querySelector('#' + id) || document.getElementById(id);
+        }
+
         function getValue(id) {
-          var field = document.getElementById(id);
+          var field = findField(id);
           return field ? field.value.trim() : '';
         }
 
@@ -227,7 +231,7 @@
           var company = getValue('sif-company');
           var contact = getValue('sif-contact');
           var email = getValue('sif-email');
-          var tierField = document.getElementById('sif-tier');
+          var tierField = findField('sif-tier');
           var tier = tierField ? tierField.value : '';
           var message = getValue('sif-message');
 
@@ -254,10 +258,9 @@
 
         form.addEventListener('input', updateSubmitLink);
         form.addEventListener('change', updateSubmitLink);
-
-        submitLink.addEventListener('click', function (event) {
-          updateSubmitLink();
-        });
+        submitLink.addEventListener('mousedown', updateSubmitLink);
+        submitLink.addEventListener('touchstart', updateSubmitLink);
+        submitLink.addEventListener('click', updateSubmitLink);
 
         updateSubmitLink();
       }
@@ -267,6 +270,8 @@
       } else {
         initSponsorInquiryForm();
       }
+
+      window.addEventListener('load', initSponsorInquiryForm);
     })();
   </script>
 
