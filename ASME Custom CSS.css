@@ -12004,3 +12004,19 @@ html body .sponsors-lower-tier-row > p {
   padding-top: 20px !important;
   box-sizing: border-box !important;
 }
+
+/* ============================================================
+   SPONSOR PAGE - FIX #6
+   Tighten lower-row sponsor titles so longer names do not wrap
+   awkwardly near the tier badge.
+   ============================================================ */
+
+.sponsor-card-primary h3 {
+  padding-right: 60px !important;
+  font-size: 20px !important;
+  line-height: 1.25 !important;
+}
+
+.sponsors-lower-tier-row .sponsor-card-primary h3 {
+  font-size: 18px !important;
+}
