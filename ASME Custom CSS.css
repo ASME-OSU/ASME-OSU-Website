@@ -10733,3 +10733,102 @@ body.archive #page .content-sidebar-wrap {
   background: var(--asme-navy) !important;
   color: #ffffff !important;
 }
+
+/* ============================================================
+   SPONSOR INQUIRY FORM (mailto-based)
+   ============================================================ */
+
+.sponsor-contact {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.sponsor-contact-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.sponsor-inquiry-form {
+  background: #ffffff;
+  border: 1px solid var(--asme-line, #e5e7eb);
+  border-radius: 20px;
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sponsor-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.sponsor-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sponsor-form-group label {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: var(--asme-navy, #0f3460) !important;
+}
+
+.sponsor-form-required { color: #bb0000; margin-left: 2px; }
+.sponsor-form-optional { font-weight: 400; color: #9ca3af; }
+
+.sponsor-form-group input,
+.sponsor-form-group select,
+.sponsor-form-group textarea {
+  padding: 11px 16px !important;
+  border: 1px solid var(--asme-line, #e5e7eb) !important;
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  color: var(--asme-navy, #0f3460) !important;
+  background: #f9fafb !important;
+  outline: none !important;
+  transition: border-color 0.15s !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.sponsor-form-group textarea {
+  border-radius: 16px !important;
+  resize: vertical !important;
+}
+
+.sponsor-form-group input:focus,
+.sponsor-form-group select:focus,
+.sponsor-form-group textarea:focus {
+  border-color: var(--asme-navy, #0f3460) !important;
+  background: #ffffff !important;
+}
+
+.sponsor-form-submit {
+  display: block;
+  width: fit-content;
+  margin: 4px auto 0;
+  padding: 13px 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--asme-navy, #0f3460);
+  color: #ffffff;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.sponsor-form-submit:hover {
+  background: #1a4a7a;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .sponsor-form-row { grid-template-columns: 1fr; }
+  .sponsor-inquiry-form { padding: 24px 20px; }
+}
