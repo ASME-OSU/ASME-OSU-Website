@@ -10819,12 +10819,15 @@ body.archive #page .content-sidebar-wrap {
   font-weight: 700;
   font-family: 'DM Sans', sans-serif;
   background: var(--asme-navy, #0f3460);
-  color: #ffffff;
+  color: #ffffff !important;
+  text-decoration: none !important;
   transition: background 0.15s, transform 0.15s;
 }
 
 .sponsor-form-submit:hover {
   background: #1a4a7a;
+  color: #ffffff !important;
+  text-decoration: none !important;
   transform: translateY(-2px);
 }
 

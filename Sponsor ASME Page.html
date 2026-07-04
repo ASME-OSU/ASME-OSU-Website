@@ -203,43 +203,78 @@
         <label for="sif-message">Brief Message <span class="sponsor-form-optional">(Optional)</span></label>
         <textarea id="sif-message" rows="4" placeholder="Tell us a bit about your interest in partnering with ASME OSU..."></textarea>
       </div>
-      <button type="button" class="sponsor-form-submit">Submit Inquiry →</button>
+      <a href="mailto:asme@osu.edu?subject=ASME%20OSU%20Sponsorship%20Inquiry" class="sponsor-form-submit">Submit Inquiry →</a>
     </div>
   </section>
 
   <script>
     (function () {
-      var form = document.querySelector('.asme-sponsor-page .sponsor-inquiry-form');
-      if (!form) return;
+      function initSponsorInquiryForm() {
+        var form = document.querySelector('.asme-sponsor-page .sponsor-inquiry-form');
+        if (!form || form.getAttribute('data-mailto-ready') === 'true') return;
 
-      var submitButton = form.querySelector('.sponsor-form-submit');
-      if (!submitButton) return;
+        var submitLink = form.querySelector('.sponsor-form-submit');
+        if (!submitLink) return;
 
-      submitButton.addEventListener('click', function () {
-        var company = document.getElementById('sif-company').value.trim();
-        var contact = document.getElementById('sif-contact').value.trim();
-        var email = document.getElementById('sif-email').value.trim();
-        var tier = document.getElementById('sif-tier').value;
-        var message = document.getElementById('sif-message').value.trim();
+        form.setAttribute('data-mailto-ready', 'true');
 
-        if (!company || !contact || !email) {
-          alert('Please fill in Company Name, Contact Name, and Email Address.');
-          return;
+        function getValue(id) {
+          var field = document.getElementById(id);
+          return field ? field.value.trim() : '';
         }
 
-        var subject = encodeURIComponent('ASME OSU Sponsorship Inquiry' + (tier ? ' — ' + tier : '') + ' | ' + company);
-        var body = encodeURIComponent(
-          'Hi ASME OSU,\n\n' +
-          'I am interested in sponsoring ASME OSU' + (tier ? ' at the ' + tier + ' level' : '') + '.\n\n' +
-          'Company: ' + company + '\n' +
-          'Contact: ' + contact + '\n' +
-          'Reply-to: ' + email + '\n' +
-          (message ? '\nAdditional notes:\n' + message : '') +
-          '\n\nLooking forward to hearing from you.\n\n' + contact
-        );
+        function buildMailto() {
+          var company = getValue('sif-company');
+          var contact = getValue('sif-contact');
+          var email = getValue('sif-email');
+          var tierField = document.getElementById('sif-tier');
+          var tier = tierField ? tierField.value : '';
+          var message = getValue('sif-message');
 
-        window.location.href = 'mailto:asme@osu.edu?subject=' + subject + '&body=' + body;
-      });
+          var subject = encodeURIComponent('ASME OSU Sponsorship Inquiry' + (tier ? ' - ' + tier : '') + (company ? ' | ' + company : ''));
+          var body = encodeURIComponent(
+            'Hi ASME OSU,\n\n' +
+            'I am interested in sponsoring ASME OSU' + (tier ? ' at the ' + tier + ' level' : '') + '.\n\n' +
+            (company ? 'Company: ' + company + '\n' : '') +
+            (contact ? 'Contact: ' + contact + '\n' : '') +
+            (email ? 'Reply-to: ' + email + '\n' : '') +
+            (message ? '\nAdditional notes:\n' + message : '') +
+            '\n\nLooking forward to hearing from you.' +
+            (contact ? '\n\n' + contact : '')
+          );
+
+          return 'mailto:asme@osu.edu?subject=' + subject + '&body=' + body;
+        }
+
+        function updateSubmitLink() {
+          submitLink.setAttribute('href', buildMailto());
+        }
+
+        form.addEventListener('input', updateSubmitLink);
+        form.addEventListener('change', updateSubmitLink);
+
+        submitLink.addEventListener('click', function (event) {
+          var company = getValue('sif-company');
+          var contact = getValue('sif-contact');
+          var email = getValue('sif-email');
+
+          if (!company || !contact || !email) {
+            event.preventDefault();
+            alert('Please fill in Company Name, Contact Name, and Email Address.');
+            return;
+          }
+
+          updateSubmitLink();
+        });
+
+        updateSubmitLink();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSponsorInquiryForm);
+      } else {
+        initSponsorInquiryForm();
+      }
     })();
   </script>
 
