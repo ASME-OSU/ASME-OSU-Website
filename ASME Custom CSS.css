@@ -11066,39 +11066,6 @@ body #page .asme-sponsor-page .sponsor-tier-cta {
   padding: 9px 14px !important;
 }
 
-body #page .asme-sponsor-page .sponsor-contact {
-  display: block !important;
-  max-width: 760px !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-}
-
-body #page .asme-sponsor-page .sponsor-inquiry-form {
-  padding: 30px !important;
-  gap: 18px !important;
-  border-radius: 18px !important;
-}
-
-body #page .asme-sponsor-page .sponsor-form-intro {
-  text-align: left !important;
-  margin: 0 0 6px !important;
-  padding-bottom: 18px !important;
-  border-bottom: 1px solid var(--asme-line, #e5e7eb) !important;
-}
-
-body #page .asme-sponsor-page .sponsor-form-intro h2 {
-  font-size: 30px !important;
-}
-
-body #page .asme-sponsor-page .sponsor-form-intro p {
-  max-width: 620px !important;
-}
-
-body #page .asme-sponsor-page .sponsor-form-group textarea {
-  min-height: 112px !important;
-}
-
 body #page .asme-sponsors-page .sponsors-tier-block {
   margin-bottom: 14px !important;
 }
@@ -11698,7 +11665,7 @@ html body .sponsors-lower-tier-row > p,
 }
 
 /* Sponsor form: canonical repo markup with header and form as siblings */
-.sponsor-contact {
+body #page .asme-sponsor-page .sponsor-contact {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 0 !important;
@@ -11711,7 +11678,7 @@ html body .sponsors-lower-tier-row > p,
   align-items: stretch !important;
 }
 
-.sponsor-contact-header {
+body #page .asme-sponsor-page .sponsor-contact > .sponsor-contact-header {
   padding: 48px 40px !important;
   display: flex !important;
   flex-direction: column !important;
@@ -11721,7 +11688,7 @@ html body .sponsors-lower-tier-row > p,
   background: #f9fafb !important;
 }
 
-.sponsor-inquiry-form {
+body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
   padding: 48px 40px !important;
   border: none !important;
   border-radius: 0 !important;
@@ -11731,7 +11698,7 @@ html body .sponsors-lower-tier-row > p,
   margin: 0 !important;
 }
 
-.sponsor-form-row {
+body #page .asme-sponsor-page .sponsor-form-row {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 24px !important;
@@ -11792,12 +11759,12 @@ html body .sponsors-lower-tier-row > p,
 }
 
 @media (max-width: 800px) {
-  .sponsor-contact,
+  body #page .asme-sponsor-page .sponsor-contact,
   .asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form {
     grid-template-columns: 1fr !important;
   }
 
-  .sponsor-inquiry-form {
+  body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
     border-left: none !important;
     border-top: 1px solid var(--asme-line, #e5e7eb) !important;
   }
@@ -11813,7 +11780,7 @@ html body .sponsors-lower-tier-row > p,
     border-bottom: 1px solid var(--asme-line, #e5e7eb) !important;
   }
 
-  .sponsor-form-row {
+  body #page .asme-sponsor-page .sponsor-form-row {
     grid-template-columns: 1fr !important;
   }
 }
