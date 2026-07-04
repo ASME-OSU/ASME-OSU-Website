@@ -11487,3 +11487,25 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
     font-size: 17px !important;
   }
 }
+
+/* Fix: Block O tier block was narrower and off-center compared to
+   Brutus and Scarlet. Force both blocks inside sponsors-top-tier-grid
+   to stretch full width and align flush left, matching Scarlet below. */
+
+.sponsors-top-tier-grid {
+  display: block !important;
+  width: 100% !important;
+}
+
+.sponsors-top-tier-grid .sponsors-tier-block {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.sponsors-top-tier-grid .sponsor-card-primary {
+  width: 100% !important;
+  max-width: 100% !important;
+  justify-self: stretch !important;
+}
