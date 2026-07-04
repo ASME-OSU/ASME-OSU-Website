@@ -11097,7 +11097,7 @@ body #page .asme-sponsor-page .sponsor-form-group textarea {
 }
 
 body #page .asme-sponsors-page .sponsors-tier-block {
-  margin-bottom: 16px !important;
+  margin-bottom: 14px !important;
 }
 
 body #page .asme-sponsors-page .sponsors-tier-block::before {
@@ -11126,15 +11126,21 @@ body #page .asme-sponsors-page .sponsors-grid-scarlet {
 body #page .asme-sponsors-page .sponsor-card-primary {
   display: grid !important;
   grid-template-columns: 136px minmax(0, 1fr) !important;
+  grid-template-rows: auto auto !important;
   column-gap: 18px !important;
+  row-gap: 4px !important;
   align-items: center !important;
   padding: 16px 18px !important;
   border-radius: 14px !important;
   text-align: left !important;
+  min-height: 0 !important;
+  max-width: 980px !important;
 }
 
 body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-link {
+  grid-column: 1 !important;
   grid-row: 1 / span 2 !important;
+  align-self: center !important;
 }
 
 body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame {
@@ -11150,12 +11156,19 @@ body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame img {
 }
 
 body #page .asme-sponsors-page .sponsor-card-primary h3 {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-self: end !important;
   margin: 0 0 5px !important;
   font-size: 18px !important;
   line-height: 1.2 !important;
 }
 
 body #page .asme-sponsors-page .sponsor-card-primary p {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  align-self: start !important;
+  max-width: 680px !important;
   font-size: 13px !important;
   line-height: 1.45 !important;
 }
