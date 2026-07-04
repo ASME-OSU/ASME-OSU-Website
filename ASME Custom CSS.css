@@ -11788,3 +11788,89 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ============================================================
+   SPONSOR PAGE - LAYOUT FIX #3
+   Option A: lower sponsors render as one compact 3-card row.
+   ============================================================ */
+
+.sponsors-lower-tier-label {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 5px 14px !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 14px !important;
+  background: #bb0000 !important;
+  color: #ffffff !important;
+}
+
+.sponsors-lower-tier-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  width: 100% !important;
+  align-items: stretch !important;
+}
+
+.sponsors-lower-tier-row > * {
+  margin: 0 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.sponsors-lower-tier-row .sponsors-tier-block::before {
+  display: none !important;
+  content: none !important;
+}
+
+.sponsors-lower-tier-row .sponsor-card-primary {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  height: 100% !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+.sponsors-lower-tier-row .sponsor-logo-link,
+.sponsors-lower-tier-row .sponsor-logo-frame {
+  width: 100% !important;
+}
+
+@media (max-width: 900px) {
+  .sponsors-lower-tier-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.sponsor-card--brutus {
+  border: 1px solid var(--asme-line, #e5e7eb) !important;
+  box-shadow:
+    0 0 32px 4px rgba(187, 0, 0, 0.14),
+    0 8px 28px rgba(0, 0, 0, 0.10) !important;
+}
+
+.sponsor-card--brutus:hover {
+  box-shadow:
+    0 0 44px 6px rgba(187, 0, 0, 0.20),
+    0 10px 32px rgba(0, 0, 0, 0.14) !important;
+}
+
+.sponsor-card-tier-badge {
+  width: 48px !important;
+  height: 48px !important;
+  object-fit: contain !important;
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  opacity: 1 !important;
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10) !important;
+}
