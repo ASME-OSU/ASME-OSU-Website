@@ -11511,8 +11511,13 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--scarlet-tier {
 }
 
 /* Sponsor ASME hero stats */
+body #page .asme-sponsor-page .sponsor-hero,
+html body #page .entry-content .asme-sponsor-page .sponsor-hero {
+  align-items: start !important;
+}
+
 body #page .asme-sponsor-page .sponsor-hero-panel {
-  align-self: center !important;
+  align-self: stretch !important;
   justify-content: flex-start !important;
   gap: 12px !important;
   height: auto !important;
@@ -11523,7 +11528,7 @@ body #page .asme-sponsor-page .sponsor-hero-panel {
 }
 
 html body #page .entry-content .asme-sponsor-page .sponsor-hero-panel {
-  align-self: center !important;
+  align-self: stretch !important;
   justify-content: flex-start !important;
   height: auto !important;
   block-size: auto !important;
