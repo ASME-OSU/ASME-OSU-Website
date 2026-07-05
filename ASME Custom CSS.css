@@ -12670,7 +12670,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .spon
 
 body #page .asme-sponsors-page .sponsors-lower-tier-row,
 html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row {
-  align-items: start !important;
+  align-items: stretch !important;
 }
 
 body #page .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary,
@@ -12678,7 +12678,8 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
   grid-template-columns: minmax(104px, 118px) minmax(0, 1fr) 44px !important;
   grid-template-rows: auto auto !important;
   min-height: 138px !important;
-  height: auto !important;
+  height: 100% !important;
+  align-self: stretch !important;
   padding: 16px 16px !important;
   align-items: center !important;
   align-content: center !important;
