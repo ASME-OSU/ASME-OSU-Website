@@ -11578,13 +11578,13 @@ body #page .asme-sponsor-page .sponsor-stat-inner {
 
 .sponsors-top-tier-grid .sponsor-card-primary {
   display: grid !important;
-  grid-template-columns: 190px minmax(0, 1fr) 52px !important;
+  grid-template-columns: 220px minmax(0, 1fr) 62px !important;
   grid-template-rows: auto auto !important;
-  column-gap: 22px !important;
+  column-gap: 28px !important;
   row-gap: 6px !important;
   align-items: center !important;
-  min-height: 176px !important;
-  padding: 26px 28px !important;
+  min-height: 210px !important;
+  padding: 32px 34px !important;
   text-align: left !important;
 }
 
@@ -11596,8 +11596,8 @@ body #page .asme-sponsor-page .sponsor-stat-inner {
 }
 
 .sponsors-top-tier-grid .sponsor-logo-frame {
-  width: 190px !important;
-  height: 116px !important;
+  width: 220px !important;
+  height: 132px !important;
   margin: 0 !important;
 }
 
@@ -11706,37 +11706,36 @@ html body .sponsors-lower-tier-row > p,
 }
 
 .sponsors-lower-tier-row .sponsor-card--blocko h3 {
-  font-size: 20px !important;
+  font-size: 19px !important;
   color: #f8fafc !important;
 }
 
 .sponsors-lower-tier-row .sponsor-card--blocko .sponsor-logo-frame {
-  width: 136px !important;
-  height: 94px !important;
+  width: 132px !important;
+  height: 90px !important;
 }
 
 .sponsor-card--brutus {
-  border: 1px solid var(--asme-line, #e5e7eb) !important;
-  box-shadow: 0 14px 34px rgba(15, 52, 96, 0.10), 0 0 0 1px rgba(187, 0, 0, 0.08) !important;
+  border: 1px solid rgba(147, 197, 253, 0.32) !important;
+  box-shadow: 0 18px 44px rgba(15, 52, 96, 0.22), 0 0 0 1px rgba(147, 197, 253, 0.16), 0 0 34px rgba(147, 197, 253, 0.10) !important;
 }
 
 .sponsor-card--brutus:hover {
-  box-shadow: 0 16px 38px rgba(15, 52, 96, 0.14), 0 0 0 1px rgba(187, 0, 0, 0.14) !important;
+  box-shadow: 0 20px 50px rgba(15, 52, 96, 0.28), 0 0 0 1px rgba(147, 197, 253, 0.24), 0 0 42px rgba(147, 197, 253, 0.14) !important;
 }
 
 .sponsor-card--blocko {
   background: linear-gradient(145deg, #282828 0%, #1b1b1b 58%, #111111 100%) !important;
-  border-color: rgba(229, 231, 235, 0.46) !important;
+  border-color: rgba(229, 231, 235, 0.34) !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 0 0 1px rgba(255, 255, 255, 0.18),
-    0 0 26px 4px rgba(229, 231, 235, 0.16),
-    0 12px 30px rgba(0, 0, 0, 0.38) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 18px 2px rgba(229, 231, 235, 0.10),
+    0 10px 26px rgba(0, 0, 0, 0.34) !important;
 }
 
 .sponsor-card--blocko .sponsor-card-tier-badge {
-  border-color: rgba(229, 231, 235, 0.72) !important;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 8px 18px rgba(0, 0, 0, 0.22) !important;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.22)) !important;
 }
 
 .sponsor-card--scarlet-tier {
@@ -11770,8 +11769,8 @@ html body .sponsors-lower-tier-row > p,
 }
 
 .sponsor-card-tier-badge {
-  width: 46px !important;
-  height: 46px !important;
+  width: 48px !important;
+  height: 48px !important;
   object-fit: contain !important;
   position: static !important;
   grid-column: 3 !important;
@@ -11779,19 +11778,20 @@ html body .sponsors-lower-tier-row > p,
   align-self: start !important;
   justify-self: end !important;
   opacity: 1 !important;
-  background: #ffffff !important;
-  border: 1px solid var(--asme-line, #e5e7eb) !important;
-  border-radius: 10px !important;
-  padding: 5px !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.24)) !important;
   box-sizing: border-box !important;
 }
 
 html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary {
   display: grid !important;
-  grid-template-columns: 190px minmax(0, 1fr) 52px !important;
-  min-height: 176px !important;
-  padding: 26px 28px !important;
+  grid-template-columns: 220px minmax(0, 1fr) 62px !important;
+  min-height: 210px !important;
+  padding: 32px 34px !important;
 }
 
 html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-logo-link,
@@ -11803,8 +11803,8 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
 }
 
 html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-logo-frame {
-  width: 190px !important;
-  height: 116px !important;
+  width: 220px !important;
+  height: 132px !important;
   margin: 0 !important;
 }
 
@@ -11843,6 +11843,11 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card-tier-badge {
   grid-row: 1 / span 2 !important;
   align-self: start !important;
   justify-self: end !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
 }
 
 /* Sponsor form: canonical repo markup with header and form as siblings */
@@ -12029,7 +12034,7 @@ body #page .asme-sponsor-page .sponsor-form-group textarea {
 
   .sponsor-card--blocko {
     background: linear-gradient(145deg, #303030 0%, #1f1f1f 58%, #111111 100%) !important;
-    border-color: rgba(229, 231, 235, 0.52) !important;
+    border-color: rgba(229, 231, 235, 0.34) !important;
   }
 
   .sponsor-card--blocko h3,
