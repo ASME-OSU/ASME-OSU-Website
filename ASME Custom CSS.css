@@ -11543,7 +11543,7 @@ body #page .asme-sponsor-page .sponsor-panel-stat {
 }
 
 body #page .asme-sponsor-page .sponsor-stat-inner {
-  transform: translateY(4px) !important;
+  transform: none !important;
 }
 
 .sponsor-see-current-link {
