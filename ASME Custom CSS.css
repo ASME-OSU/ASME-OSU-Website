@@ -11701,12 +11701,13 @@ html body .sponsors-lower-tier-row > p,
 }
 
 .sponsors-lower-tier-row .sponsor-card--blocko h3 {
-  font-size: 19px !important;
+  font-size: 20px !important;
+  color: #f8fafc !important;
 }
 
 .sponsors-lower-tier-row .sponsor-card--blocko .sponsor-logo-frame {
-  width: 132px !important;
-  height: 90px !important;
+  width: 136px !important;
+  height: 94px !important;
 }
 
 .sponsor-card--brutus {
@@ -11719,7 +11720,18 @@ html body .sponsors-lower-tier-row > p,
 }
 
 .sponsor-card--blocko {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 24px 3px rgba(255, 255, 255, 0.10), 0 6px 24px rgba(0, 0, 0, 0.3) !important;
+  background: linear-gradient(145deg, #282828 0%, #1b1b1b 58%, #111111 100%) !important;
+  border-color: rgba(229, 231, 235, 0.46) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 26px 4px rgba(229, 231, 235, 0.16),
+    0 12px 30px rgba(0, 0, 0, 0.38) !important;
+}
+
+.sponsor-card--blocko .sponsor-card-tier-badge {
+  border-color: rgba(229, 231, 235, 0.72) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 8px 18px rgba(0, 0, 0, 0.22) !important;
 }
 
 .sponsor-card--scarlet-tier {
@@ -12011,8 +12023,8 @@ body #page .asme-sponsor-page .sponsor-form-group textarea {
   }
 
   .sponsor-card--blocko {
-    background: #1e1e1e !important;
-    border-color: #3a3a3a !important;
+    background: linear-gradient(145deg, #303030 0%, #1f1f1f 58%, #111111 100%) !important;
+    border-color: rgba(229, 231, 235, 0.52) !important;
   }
 
   .sponsor-card--blocko h3,
