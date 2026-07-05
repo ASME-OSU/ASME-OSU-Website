@@ -63,7 +63,7 @@
     </div>
     <div class="sponsor-tiers-table">
 
-      <div class="sponsor-tier-card">
+      <div class="sponsor-tier-card sponsor-tier-card--gray">
         <div class="sponsor-tier-heading">
           <img src="https://org.osu.edu/asme/files/2026/07/Gray-Tier.png" alt="Gray tier icon" class="sponsor-tier-icon">
           <p class="sponsor-tier-name">Gray</p>
@@ -74,10 +74,10 @@
           <li>Logo in email newsletter</li>
           <li>Certificate of sponsorship</li>
         </ul>
-        <a href="mailto:asme@osu.edu?subject=ASME OSU Gray Sponsorship Inquiry" class="sponsor-tier-cta">Get Started</a>
+        <button type="button" class="sponsor-tier-cta" data-sponsor-tier="Gray ($250)">Get Started</button>
       </div>
 
-      <div class="sponsor-tier-card">
+      <div class="sponsor-tier-card sponsor-tier-card--scarlet">
         <div class="sponsor-tier-heading">
           <img src="https://org.osu.edu/asme/files/2026/07/Scarlet-Tier.png" alt="Scarlet tier icon" class="sponsor-tier-icon">
           <p class="sponsor-tier-name">Scarlet</p>
@@ -91,10 +91,10 @@
           <li>Full resume book access</li>
           <li>Event banner placement</li>
         </ul>
-        <a href="mailto:asme@osu.edu?subject=ASME OSU Scarlet Sponsorship Inquiry" class="sponsor-tier-cta">Get Started</a>
+        <button type="button" class="sponsor-tier-cta" data-sponsor-tier="Scarlet ($500)">Get Started</button>
       </div>
 
-      <div class="sponsor-tier-card">
+      <div class="sponsor-tier-card sponsor-tier-card--buckeye">
         <div class="sponsor-tier-heading">
           <img src="https://org.osu.edu/asme/files/2026/07/Buckeye-Tier.png" alt="Buckeye tier icon" class="sponsor-tier-icon">
           <p class="sponsor-tier-name">Buckeye</p>
@@ -108,10 +108,10 @@
           <li>Priority job posting</li>
           <li>Company tour opportunity</li>
         </ul>
-        <a href="mailto:asme@osu.edu?subject=ASME OSU Buckeye Sponsorship Inquiry" class="sponsor-tier-cta">Get Started</a>
+        <button type="button" class="sponsor-tier-cta" data-sponsor-tier="Buckeye ($1,000)">Get Started</button>
       </div>
 
-      <div class="sponsor-tier-card">
+      <div class="sponsor-tier-card sponsor-tier-card--blocko">
         <div class="sponsor-tier-heading">
           <img src="https://org.osu.edu/asme/files/2026/07/BlockO-Tier.png" alt="Block O tier icon" class="sponsor-tier-icon">
           <p class="sponsor-tier-name">Block O</p>
@@ -125,7 +125,7 @@
           <li>Custom workshop</li>
           <li>Exec lunch with reps</li>
         </ul>
-        <a href="mailto:asme@osu.edu?subject=ASME OSU Block O Sponsorship Inquiry" class="sponsor-tier-cta">Get Started</a>
+        <button type="button" class="sponsor-tier-cta" data-sponsor-tier="Block O ($2,500)">Get Started</button>
       </div>
 
       <div class="sponsor-tier-card sponsor-tier-card--brutus">
@@ -142,7 +142,7 @@
           <li>First right of refusal</li>
           <li>All Block O benefits</li>
         </ul>
-        <a href="mailto:asme@osu.edu?subject=ASME OSU Brutus Sponsorship Inquiry" class="sponsor-tier-cta">Get Started</a>
+        <button type="button" class="sponsor-tier-cta" data-sponsor-tier="Brutus ($5,000)">Get Started</button>
       </div>
 
       <div class="sponsor-tier-card sponsor-tier-card--custom">
@@ -159,7 +159,7 @@
           <li>Conference travel support</li>
           <li>Fully in-kind contributions</li>
         </ul>
-        <a href="mailto:asme@osu.edu?subject=ASME OSU Custom Sponsorship Inquiry" class="sponsor-tier-cta">Get Started</a>
+        <button type="button" class="sponsor-tier-cta" data-sponsor-tier="Custom / Let's Talk">Get Started</button>
       </div>
 
     </div>
@@ -173,24 +173,24 @@
       <p>Fill out this quick form and our team will reach out within 2–3 business days to discuss partnership opportunities.</p>
     </div>
 
-    <div class="sponsor-inquiry-form">
+    <div class="sponsor-inquiry-form" data-sponsor-form>
       <div class="sponsor-form-row">
         <div class="sponsor-form-group">
           <label for="sif-company">Company Name <span class="sponsor-form-required">*</span></label>
-          <input type="text" id="sif-company" placeholder="Acme Corp">
+          <input type="text" id="sif-company" data-sponsor-field="company" placeholder="Acme Corp">
         </div>
         <div class="sponsor-form-group">
           <label for="sif-contact">Contact Name <span class="sponsor-form-required">*</span></label>
-          <input type="text" id="sif-contact" placeholder="Jane Smith">
+          <input type="text" id="sif-contact" data-sponsor-field="contact" placeholder="Jane Smith">
         </div>
       </div>
       <div class="sponsor-form-group">
         <label for="sif-email">Your Email Address <span class="sponsor-form-required">*</span></label>
-        <input type="email" id="sif-email" placeholder="jane@acmecorp.com">
+        <input type="email" id="sif-email" data-sponsor-field="email" placeholder="jane@acmecorp.com">
       </div>
       <div class="sponsor-form-group">
         <label for="sif-tier">Sponsorship Tier of Interest</label>
-        <select id="sif-tier">
+        <select id="sif-tier" data-sponsor-field="tier">
           <option value="">— Select a tier —</option>
           <option value="Gray ($250)">Gray — $250</option>
           <option value="Scarlet ($500)">Scarlet — $500</option>
@@ -202,39 +202,82 @@
       </div>
       <div class="sponsor-form-group">
         <label for="sif-message">Brief Message <span class="sponsor-form-optional">(Optional)</span></label>
-        <textarea id="sif-message" rows="4" placeholder="Tell us a bit about your interest in partnering with ASME OSU..."></textarea>
+        <textarea id="sif-message" data-sponsor-field="message" rows="4" placeholder="Tell us a bit about your interest in partnering with ASME OSU..."></textarea>
       </div>
       <a href="mailto:asme@osu.edu?subject=ASME%20OSU%20Sponsorship%20Inquiry" class="sponsor-form-submit">Submit Inquiry →</a>
     </div>
   </section>
 
+  <div class="sponsor-modal" id="sponsor-modal" hidden>
+    <div class="sponsor-modal-backdrop" data-sponsor-modal-close></div>
+    <div class="sponsor-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="sponsor-modal-title">
+      <button type="button" class="sponsor-modal-close" aria-label="Close sponsorship inquiry" data-sponsor-modal-close>×</button>
+      <div class="sponsor-modal-header">
+        <div class="sponsor-eyebrow">Start The Conversation</div>
+        <h2 id="sponsor-modal-title">Become a Sponsor</h2>
+        <p>Tell us a little about your interest and we will follow up within 2–3 business days.</p>
+      </div>
+      <div class="sponsor-inquiry-form sponsor-inquiry-form--modal" data-sponsor-form>
+        <div class="sponsor-form-row">
+          <div class="sponsor-form-group">
+            <label for="sif-modal-company">Company Name <span class="sponsor-form-required">*</span></label>
+            <input type="text" id="sif-modal-company" data-sponsor-field="company" placeholder="Acme Corp">
+          </div>
+          <div class="sponsor-form-group">
+            <label for="sif-modal-contact">Contact Name <span class="sponsor-form-required">*</span></label>
+            <input type="text" id="sif-modal-contact" data-sponsor-field="contact" placeholder="Jane Smith">
+          </div>
+        </div>
+        <div class="sponsor-form-group">
+          <label for="sif-modal-email">Your Email Address <span class="sponsor-form-required">*</span></label>
+          <input type="email" id="sif-modal-email" data-sponsor-field="email" placeholder="jane@acmecorp.com">
+        </div>
+        <div class="sponsor-form-group">
+          <label for="sif-modal-tier">Sponsorship Tier of Interest</label>
+          <select id="sif-modal-tier" data-sponsor-field="tier">
+            <option value="">— Select a tier —</option>
+            <option value="Gray ($250)">Gray — $250</option>
+            <option value="Scarlet ($500)">Scarlet — $500</option>
+            <option value="Buckeye ($1,000)">Buckeye — $1,000</option>
+            <option value="Block O ($2,500)">Block O — $2,500</option>
+            <option value="Brutus ($5,000)">Brutus — $5,000</option>
+            <option value="Custom / Let's Talk">Custom / Let's Talk</option>
+          </select>
+        </div>
+        <div class="sponsor-form-group">
+          <label for="sif-modal-message">Brief Message <span class="sponsor-form-optional">(Optional)</span></label>
+          <textarea id="sif-modal-message" data-sponsor-field="message" rows="4" placeholder="Tell us a bit about your interest in partnering with ASME OSU..."></textarea>
+        </div>
+        <a href="mailto:asme@osu.edu?subject=ASME%20OSU%20Sponsorship%20Inquiry" class="sponsor-form-submit">Submit Inquiry →</a>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
-      function initSponsorInquiryForm() {
-        var form = document.querySelector('.asme-sponsor-page .sponsor-inquiry-form');
+      function initSponsorInquiryForm(form) {
         if (!form || form.getAttribute('data-mailto-ready') === 'true') return;
-
         var submitLink = form.querySelector('.sponsor-form-submit');
         if (!submitLink) return;
 
         form.setAttribute('data-mailto-ready', 'true');
 
-        function findField(id) {
-          return form.querySelector('#' + id) || document.getElementById(id);
+        function findField(name) {
+          return form.querySelector('[data-sponsor-field="' + name + '"]');
         }
 
-        function getValue(id) {
-          var field = findField(id);
+        function getValue(name) {
+          var field = findField(name);
           return field ? field.value.trim() : '';
         }
 
         function buildMailto() {
-          var company = getValue('sif-company');
-          var contact = getValue('sif-contact');
-          var email = getValue('sif-email');
-          var tierField = findField('sif-tier');
+          var company = getValue('company');
+          var contact = getValue('contact');
+          var email = getValue('email');
+          var tierField = findField('tier');
           var tier = tierField ? tierField.value : '';
-          var message = getValue('sif-message');
+          var message = getValue('message');
 
           var subject = encodeURIComponent('ASME OSU Sponsorship Inquiry' + (tier ? ' - ' + tier : '') + (company ? ' | ' + company : ''));
           var body = encodeURIComponent(
@@ -251,8 +294,6 @@
           return 'mailto:asme@osu.edu?subject=' + subject + '&body=' + body;
         }
 
-        window.asmeBuildSponsorMailto = buildMailto;
-
         function updateSubmitLink() {
           submitLink.setAttribute('href', buildMailto());
         }
@@ -266,13 +307,78 @@
         updateSubmitLink();
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSponsorInquiryForm);
-      } else {
-        initSponsorInquiryForm();
+      function initSponsorForms() {
+        var forms = document.querySelectorAll('.asme-sponsor-page [data-sponsor-form]');
+        forms.forEach(initSponsorInquiryForm);
       }
 
-      window.addEventListener('load', initSponsorInquiryForm);
+      function setTier(form, tier) {
+        if (!form || !tier) return;
+        var tierField = form.querySelector('[data-sponsor-field="tier"]');
+        if (!tierField) return;
+        tierField.value = tier;
+        tierField.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      function openSponsorModal(tier) {
+        var modal = document.getElementById('sponsor-modal');
+        if (!modal) return;
+        var modalForm = modal.querySelector('[data-sponsor-form]');
+        modal.hidden = false;
+        document.documentElement.classList.add('sponsor-modal-open');
+        setTier(modalForm, tier);
+        var firstField = modal.querySelector('[data-sponsor-field="company"]');
+        if (firstField) firstField.focus();
+      }
+
+      function closeSponsorModal() {
+        var modal = document.getElementById('sponsor-modal');
+        if (!modal) return;
+        modal.hidden = true;
+        document.documentElement.classList.remove('sponsor-modal-open');
+      }
+
+      function bindSponsorModal() {
+        if (document.documentElement.getAttribute('data-sponsor-modal-ready') === 'true') return;
+        document.documentElement.setAttribute('data-sponsor-modal-ready', 'true');
+
+        document.addEventListener('click', function (event) {
+          var target = event.target && event.target.closest ? event.target : null;
+          if (!target) return;
+
+          var tierButton = target.closest('[data-sponsor-tier]');
+          if (tierButton) {
+            event.preventDefault();
+            openSponsorModal(tierButton.getAttribute('data-sponsor-tier'));
+            return;
+          }
+
+          if (target.closest('[data-sponsor-modal-close]')) {
+            event.preventDefault();
+            closeSponsorModal();
+          }
+        });
+
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') closeSponsorModal();
+        });
+      }
+
+      function initSponsorExperience() {
+        initSponsorForms();
+        bindSponsorModal();
+      }
+
+      window.openSponsorModal = openSponsorModal;
+      window.closeSponsorModal = closeSponsorModal;
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSponsorExperience);
+      } else {
+        initSponsorExperience();
+      }
+
+      window.addEventListener('load', initSponsorExperience);
     })();
   </script>
 
