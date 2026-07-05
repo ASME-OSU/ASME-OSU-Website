@@ -12644,3 +12644,72 @@ html body #page .entry-content .asme-sponsor-page .sponsor-form-group select::-m
     max-height: calc(100dvh - 48px) !important;
   }
 }
+
+/* ============================================================
+   CURRENT SPONSORS - COMPACT CARD VERTICAL SPACE
+   The sponsor cards should feel substantial without reserving a
+   blank lower half after the logo and copy.
+   ============================================================ */
+
+body #page .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary,
+html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary {
+  grid-template-columns: 190px minmax(0, 1fr) 58px !important;
+  grid-template-rows: auto auto !important;
+  min-height: 170px !important;
+  height: auto !important;
+  padding: 24px 32px !important;
+  align-items: center !important;
+  align-content: center !important;
+}
+
+body #page .asme-sponsors-page .sponsors-top-tier-grid .sponsor-logo-frame,
+html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-logo-frame {
+  width: 190px !important;
+  height: 112px !important;
+}
+
+body #page .asme-sponsors-page .sponsors-lower-tier-row,
+html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row {
+  align-items: start !important;
+}
+
+body #page .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary,
+html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary {
+  grid-template-columns: minmax(104px, 118px) minmax(0, 1fr) 44px !important;
+  grid-template-rows: auto auto !important;
+  min-height: 138px !important;
+  height: auto !important;
+  padding: 16px 16px !important;
+  align-items: center !important;
+  align-content: center !important;
+  row-gap: 4px !important;
+}
+
+body #page .asme-sponsors-page .sponsors-lower-tier-row .sponsor-logo-frame,
+html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-logo-frame,
+body #page .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card--blocko .sponsor-logo-frame,
+html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card--blocko .sponsor-logo-frame {
+  width: 118px !important;
+  height: 76px !important;
+}
+
+body #page .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary h3,
+html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary h3 {
+  align-self: end !important;
+  margin-bottom: 0 !important;
+}
+
+body #page .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary p,
+html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary p {
+  align-self: start !important;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 900px) {
+  body #page .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary,
+  body #page .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary,
+  html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary,
+  html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary {
+    min-height: 0 !important;
+  }
+}
