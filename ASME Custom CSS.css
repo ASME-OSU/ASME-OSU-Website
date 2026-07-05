@@ -11907,52 +11907,6 @@ body #page .asme-sponsor-page .sponsor-form-group textarea {
   min-height: 118px !important;
 }
 
-/* Sponsor form: compatibility for current live WordPress block where header is nested in the form */
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) {
-  display: block !important;
-}
-
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form {
-  display: grid !important;
-  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr) !important;
-  gap: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  max-width: none !important;
-  width: 100% !important;
-  align-items: stretch !important;
-}
-
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > .sponsor-contact-header {
-  grid-column: 1 !important;
-  grid-row: 1 / 8 !important;
-  min-height: 100% !important;
-  padding: 56px 42px !important;
-  border-right: 1px solid var(--asme-line, #e5e7eb) !important;
-}
-
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > :not(.sponsor-contact-header) {
-  grid-column: 2 !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > .sponsor-form-row,
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > .sponsor-form-group,
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > p {
-  padding-left: 40px !important;
-  padding-right: 40px !important;
-}
-
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > .sponsor-form-row {
-  padding-top: 48px !important;
-}
-
-.asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > p:last-child {
-  padding-bottom: 48px !important;
-}
-
 @media (max-width: 900px) {
   body #page .sponsors-lower-tier-row,
   body #page .asme-sponsors-page .sponsors-lower-tier-row,
@@ -12000,25 +11954,13 @@ body #page .asme-sponsor-page .sponsor-form-group textarea {
 }
 
 @media (max-width: 800px) {
-  body #page .asme-sponsor-page .sponsor-contact,
-  .asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form {
+  body #page .asme-sponsor-page .sponsor-contact {
     grid-template-columns: 1fr !important;
   }
 
   body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
     border-left: none !important;
     border-top: 1px solid var(--asme-line, #e5e7eb) !important;
-  }
-
-  .asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > .sponsor-contact-header,
-  .asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > :not(.sponsor-contact-header) {
-    grid-column: 1 !important;
-    grid-row: auto !important;
-  }
-
-  .asme-sponsor-page .sponsor-contact:has(.sponsor-inquiry-form > .sponsor-contact-header) .sponsor-inquiry-form > .sponsor-contact-header {
-    border-right: 0 !important;
-    border-bottom: 1px solid var(--asme-line, #e5e7eb) !important;
   }
 
   body #page .asme-sponsor-page .sponsor-form-row {
@@ -12044,5 +11986,116 @@ body #page .asme-sponsor-page .sponsor-form-group textarea {
 
   .sponsor-card--blocko .sponsor-logo-frame {
     background: #f5f5f5 !important;
+  }
+}
+
+/* ============================================================
+   SPONSOR ASME PAGE - FIX #6 (root cause fixes)
+   Live WordPress has the corrected sibling contact structure.
+   ============================================================ */
+
+/* Fix hero gap: align-self stretch was overriding align-items. */
+body #page .asme-sponsor-page .sponsor-hero-panel,
+html body #page .entry-content .asme-sponsor-page .sponsor-hero-panel {
+  align-self: start !important;
+}
+
+/* Compact, dark-mode appropriate sponsor contact composer. */
+body #page .asme-sponsor-page .sponsor-contact {
+  display: grid !important;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr) !important;
+  gap: 0 !important;
+  max-width: 1080px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  align-items: stretch !important;
+  background: #0f1b2d !important;
+}
+
+body #page .asme-sponsor-page .sponsor-contact > .sponsor-contact-header {
+  padding: 32px 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: left !important;
+  margin: 0 !important;
+  background: #142236 !important;
+}
+
+body #page .asme-sponsor-page .sponsor-contact-header .sponsor-eyebrow {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+body #page .asme-sponsor-page .sponsor-contact-header h2 {
+  color: #ffffff !important;
+  font-size: 26px !important;
+  margin: 6px 0 10px !important;
+}
+
+body #page .asme-sponsor-page .sponsor-contact-header p {
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  padding: 28px 30px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 14px !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-group {
+  margin: 0 !important;
+  gap: 4px !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-group label {
+  font-size: 12px !important;
+  margin-bottom: 2px !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-group input,
+body #page .asme-sponsor-page .sponsor-form-group select {
+  min-height: 40px !important;
+  padding: 8px 14px !important;
+  font-size: 13px !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-group textarea {
+  min-height: 70px !important;
+  padding: 8px 14px !important;
+  font-size: 13px !important;
+}
+
+body #page .asme-sponsor-page .sponsor-form-submit {
+  padding: 12px 20px !important;
+  font-size: 14px !important;
+}
+
+@media (max-width: 800px) {
+  body #page .asme-sponsor-page .sponsor-contact {
+    grid-template-columns: 1fr !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
+    border-left: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
 }
