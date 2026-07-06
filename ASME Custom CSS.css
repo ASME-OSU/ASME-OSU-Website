@@ -12714,3 +12714,19 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
     min-height: 0 !important;
   }
 }
+
+/* Featured sponsor cards: lock the desktop row to the tallest card. */
+@media (min-width: 901px) {
+  body #page .asme-sponsors-page .sponsors-lower-tier-row,
+  html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row {
+    align-items: stretch !important;
+    grid-auto-rows: 190px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-lower-tier-row > .sponsor-card-primary,
+  html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row > .sponsor-card-primary {
+    min-height: 190px !important;
+    height: 190px !important;
+    align-self: stretch !important;
+  }
+}
