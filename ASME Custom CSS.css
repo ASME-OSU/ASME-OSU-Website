@@ -10738,16 +10738,6 @@ body.archive #page .content-sidebar-wrap {
    SPONSOR INQUIRY FORM (mailto-based)
    ============================================================ */
 
-.sponsor-contact {
-  max-width: 780px;
-  margin: 0 auto;
-}
-
-.sponsor-contact-header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-
 .sponsor-inquiry-form {
   background: #ffffff;
   border: 1px solid var(--asme-line, #e5e7eb);
@@ -10865,34 +10855,12 @@ body.archive #page .content-sidebar-wrap {
 .sponsor-tier-card--brutus      { border-left-color: #93c5fd !important; padding: 28px 24px 24px !important; } /* Brutus — bigger */
 .sponsor-tier-card--custom      { border-left-color: rgba(255,255,255,0.35) !important; }
 
-/* 3. Form layout fix — side-by-side header + form card */
-.sponsor-contact {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 48px !important;
-  align-items: center !important;
-  max-width: 1000px !important;
-}
-
-.sponsor-contact-header {
-  text-align: left !important;
-  margin-bottom: 0 !important;
-}
-
-.sponsor-inquiry-form {
-  padding: 32px 32px !important;
-}
-
 .sponsor-form-submit {
   width: 100% !important;
   text-align: center !important;
 }
 
 @media (max-width: 760px) {
-  .sponsor-contact {
-    grid-template-columns: 1fr !important;
-  }
-
   .sponsor-contact-header {
     text-align: center !important;
   }
@@ -11850,63 +11818,6 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card-tier-badge {
   box-shadow: none !important;
 }
 
-/* Sponsor form: canonical repo markup with header and form as siblings */
-body #page .asme-sponsor-page .sponsor-contact {
-  display: grid !important;
-  grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr) !important;
-  gap: 0 !important;
-  max-width: 1160px !important;
-  width: 100% !important;
-  margin: 0 auto !important;
-  border: 1px solid var(--asme-line, #e5e7eb) !important;
-  border-radius: 18px !important;
-  overflow: hidden !important;
-  align-items: stretch !important;
-}
-
-body #page .asme-sponsor-page .sponsor-contact > .sponsor-contact-header {
-  padding: 44px 42px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  text-align: left !important;
-  margin: 0 !important;
-  background: #f9fafb !important;
-}
-
-body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  gap: 20px !important;
-  padding: 42px 44px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  border-left: 1px solid var(--asme-line, #e5e7eb) !important;
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-}
-
-body #page .asme-sponsor-page .sponsor-form-row {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 22px !important;
-}
-
-body #page .asme-sponsor-page .sponsor-form-group {
-  margin: 0 !important;
-}
-
-body #page .asme-sponsor-page .sponsor-form-group input,
-body #page .asme-sponsor-page .sponsor-form-group select {
-  min-height: 52px !important;
-}
-
-body #page .asme-sponsor-page .sponsor-form-group textarea {
-  min-height: 118px !important;
-}
-
 @media (max-width: 900px) {
   body #page .sponsors-lower-tier-row,
   body #page .asme-sponsors-page .sponsors-lower-tier-row,
@@ -11950,42 +11861,6 @@ body #page .asme-sponsor-page .sponsor-form-group textarea {
   html body #page .entry-content .asme-sponsors-page .sponsor-card-tier-badge {
     width: 42px !important;
     height: 42px !important;
-  }
-}
-
-@media (max-width: 800px) {
-  body #page .asme-sponsor-page .sponsor-contact {
-    grid-template-columns: 1fr !important;
-  }
-
-  body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
-    border-left: none !important;
-    border-top: 1px solid var(--asme-line, #e5e7eb) !important;
-  }
-
-  body #page .asme-sponsor-page .sponsor-form-row {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .sponsors-tier-block--blocko::before,
-  .sponsor-card--blocko::before {
-    background: #2a2a2a !important;
-  }
-
-  .sponsor-card--blocko {
-    background: linear-gradient(145deg, #303030 0%, #1f1f1f 58%, #111111 100%) !important;
-    border-color: rgba(229, 231, 235, 0.34) !important;
-  }
-
-  .sponsor-card--blocko h3,
-  .sponsor-card--blocko p {
-    color: #e5e7eb !important;
-  }
-
-  .sponsor-card--blocko .sponsor-logo-frame {
-    background: #f5f5f5 !important;
   }
 }
 
@@ -12911,11 +12786,6 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
     word-break: normal !important;
   }
 
-  body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),
-  html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) {
-    background: #f8fafc !important;
-    border-color: #dce3ec !important;
-  }
 }
 
 /* Mobile sponsor page dark surfaces: reduce bright panels. */
