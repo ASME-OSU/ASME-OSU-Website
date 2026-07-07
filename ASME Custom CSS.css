@@ -12884,3 +12884,36 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
     grid-row: auto !important;
   }
 }
+
+/* ============================================================
+   SPONSOR ASME - MOBILE WHY SPONSOR POLISH
+   Give mobile benefit cards safer side padding and reduce the
+   harsh white glare on stacked tier cards.
+   ============================================================ */
+
+@media (max-width: 700px) {
+  body #page .asme-sponsor-page .sponsor-benefit-card,
+  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card {
+    padding: 24px 20px !important;
+    background: #142236 !important;
+    border: 1px solid rgba(147, 197, 253, 0.18) !important;
+    box-shadow: 0 14px 28px rgba(2, 8, 23, 0.18) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-benefit-card h3,
+  body #page .asme-sponsor-page .sponsor-benefit-card p,
+  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card h3,
+  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card p {
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),
+  html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) {
+    background: #f8fafc !important;
+    border-color: #dce3ec !important;
+  }
+}
