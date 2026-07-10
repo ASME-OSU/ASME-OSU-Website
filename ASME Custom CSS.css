@@ -8414,28 +8414,6 @@ body #page .asme-members-page .asme-points-preview-body {
   }
 }
 
-/* MEMBERS PAGE — footer transition and mobile gutter lock.
-   Keep this after member visual alignment overrides. */
-body:has(.asme-members-page) .site-footer,
-body:has(.asme-members-page) #colophon {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-  margin-top: 0 !important;
-}
-
-@media (max-width: 768px) {
-  body .asme-members-page,
-  body #page .asme-members-page {
-    width: calc(100vw - 12px) !important;
-    max-width: calc(100vw - 12px) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    box-sizing: border-box !important;
-  }
-}
-
 /* ============================================================
    MEMBERS SECTION — COMPREHENSIVE FIX v2
    Fixes: dark mode specificity, group title alignment,
