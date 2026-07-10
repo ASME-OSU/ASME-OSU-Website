@@ -5776,11 +5776,6 @@ body.search .site-main {
     transform: translateY(0);
   }
 
-  .asme-reveal-stagger > * {
-    transition-delay: calc(var(--asme-stagger-index, 0) * 55ms);
-  }
-
-  .asme-hover-lift,
   .ah-card,
   .leader-card,
   .sponsor-card,
@@ -5798,8 +5793,6 @@ body.search .site-main {
       background 0.2s ease !important;
   }
 
-  .asme-hover-lift:hover,
-  .asme-hover-lift:focus-within,
   .ah-card:hover,
   .leader-card:hover,
   .sponsor-card:hover,
@@ -7255,12 +7248,6 @@ body #page .asme-cal-page .acp-header {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
-/* Full-width list layout variant */
-.asme-member-grid--list {
-  grid-template-columns: 1fr;
-  gap: 10px;
-}
-
 /* ── Resource Card ── */
 .asme-resource-card {
   background: var(--m-card, #ffffff);
@@ -7339,14 +7326,6 @@ body #page .asme-cal-page .acp-header {
   opacity: 0.85;
   transform: translateX(3px);
 }
-
-/* Disabled / coming soon card state */
-.asme-resource-card--disabled {
-  opacity: 0.6;
-  pointer-events: none;
-  cursor: default;
-}
-
 
 /* ── 7. CATEGORY GROUP WRAPPER ───────────────────────────────
    Groups a label + grid together. Used on Resources page.
@@ -7606,17 +7585,6 @@ body #page .asme-cal-page .acp-header {
   background: rgba(255,255,255,0.18);
   transform: translateY(-1px);
 }
-
-.asme-btn--navy {
-  background: var(--m-navy, #0f3460);
-  color: #ffffff !important;
-}
-
-.asme-btn--navy:hover {
-  background: #0d2a52;
-  transform: translateY(-1px);
-}
-
 
 /* ── 11. INFO BANNER ─────────────────────────────────────────
    Horizontal notice strip used on points page.
@@ -8932,8 +8900,7 @@ body #page .asme-member-resources-page .asme-resource-svg-icon--career {
   color: #059669 !important;
 }
 
-body #page .asme-member-resources-page .asme-resource-svg-icon--calendar,
-body #page .asme-member-resources-page .asme-resource-svg-icon--subscribe {
+body #page .asme-member-resources-page .asme-resource-svg-icon--calendar {
   background: #eff6ff !important;
   border-color: #bfdbfe !important;
   color: #2563eb !important;
@@ -8965,7 +8932,6 @@ body #page .asme-member-resources-page .asme-resource-svg-icon--linkedin {
 }
 
 body #page .asme-member-resources-page .asme-resource-svg-icon--email,
-body #page .asme-member-resources-page .asme-resource-svg-icon--sponsor,
 body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-resource-card-icon.asme-resource-svg-icon {
   background: #fff0f0 !important;
   border-color: #fecdd3 !important;
@@ -9006,11 +8972,6 @@ body #page .asme-member-resources-page .asme-jump-nav a:hover {
   background: var(--m-light-navy, #eef2f8) !important;
   border-color: rgba(15, 52, 96, 0.25) !important;
   text-decoration: none !important;
-}
-
-body #page .asme-member-resources-page .asme-resource-group--admin .asme-member-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  max-width: 760px !important;
 }
 
 body #page .asme-member-resources-page .asme-member-grid--2col {
@@ -9059,11 +9020,6 @@ body #page .asme-member-resources-page .asme-member-grid > p:empty {
 }
 
 @media (max-width: 640px) {
-  body #page .asme-member-resources-page .asme-resource-group--admin .asme-member-grid {
-    grid-template-columns: 1fr !important;
-    max-width: 100% !important;
-  }
-
   body #page .asme-member-resources-page .asme-member-grid--2col {
     grid-template-columns: 1fr !important;
     max-width: 100% !important;
@@ -9084,8 +9040,7 @@ body #page .asme-member-resources-page .asme-member-grid > p:empty {
     color: #34d399 !important;
   }
 
-  body #page .asme-member-resources-page .asme-resource-svg-icon--calendar,
-  body #page .asme-member-resources-page .asme-resource-svg-icon--subscribe {
+  body #page .asme-member-resources-page .asme-resource-svg-icon--calendar {
     background: #1e3a5f !important;
     border-color: #2f5f99 !important;
     color: #60a5fa !important;
@@ -9117,7 +9072,6 @@ body #page .asme-member-resources-page .asme-member-grid > p:empty {
   }
 
   body #page .asme-member-resources-page .asme-resource-svg-icon--email,
-  body #page .asme-member-resources-page .asme-resource-svg-icon--sponsor,
   body #page .asme-member-resources-page .asme-resource-card--scarlet .asme-resource-card-icon.asme-resource-svg-icon {
     background: #2d0000 !important;
     border-color: #7f1d1d !important;
