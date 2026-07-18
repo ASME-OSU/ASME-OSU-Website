@@ -34,8 +34,9 @@ Then hard refresh the site.
 | `Join Page.html` | Join page custom HTML block | Join/signup content and FAQ. |
 | `Sponsor ASME Page.html` | Sponsor ASME page custom HTML block | Corporate sponsorship information and calls to action. |
 | `Member Resources Page.html` | Member Resources page custom HTML block | Member resource hub, SVG resource cards, jump links, career links, forms, and chapter resources. |
-| `Member Points Page.html` | Member Points page custom HTML block | Member point tracking page shell while the tracking system is in development. |
+| `Member Points Page.html` | Member Points page custom HTML block | Live Google Sheets-backed point values, system status, privacy-safe leaderboard, and member explanation. |
 | `Footer.html` | GeneratePress footer element/snippet | Custom footer markup and client-side scripts, if used on the WordPress site. |
+| `Member Points Integration.js` | Loaded by `Footer.html` from jsDelivr | Reads only the sanitized Website Export Google Sheet and renders point values/status/leaderboard on the Member Points page. |
 | `Leadership Page.html` | Leadership page custom HTML block | Officer/leadership layout, if maintained in WordPress. |
 | `Gallery Page.html` | Gallery page custom HTML block | Gallery layout, if maintained in WordPress. |
 | `Current Sponsors Page.html` | Sponsors page custom HTML block | Sponsor listing layout, if maintained in WordPress. |
@@ -91,6 +92,9 @@ For Member Points:
 
 - Keep the leaderboard title as `.asme-leaderboard-title` on a paragraph tag.
 - Keep the dark footer transition rule near the bottom of `ASME Custom CSS.css`; it prevents the WordPress footer shell from showing a light band between the page and footer in dark mode.
+- The page reads only the sanitized Website Export Sheet: `Leaderboard_Public!A:G`, `Point_Values_Public!A:F`, and `System_Status!A:B`. The private master workbook, roster, form responses, emails, and name.number values must never be linked from the website.
+- The export must be status-gated so it contains headers/blank rows while `System_Status` is `TESTING` or `PAUSED`. The page also hides names unless status is `LIVE`.
+- Before launch, make only the sanitized Website Export Sheet viewable by link, paste the updated `Member Points Page.html` into WordPress, paste the updated `Footer.html` into the GeneratePress footer element, push the JS/CSS files, purge jsDelivr, and hard refresh.
 
 If a Claude/Codex handoff includes a full CSS dump, do not paste it over the live stylesheet. Cherry-pick the specific rules needed, then run the CSS checks and verify the affected page.
 
