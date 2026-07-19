@@ -108,7 +108,7 @@
           eventTypes: EVENT_TYPES.map(function (type) { return { label: type.label, count: Number(value(r, type.column)) || 0 }; }),
           topType: value(r, 14)
         };
-      }).filter(function (r) { return r.name && Number.isFinite(r.points); }).slice(0, 10);
+      }).filter(function (r) { return r.name && Number.isFinite(r.points); });
     }
 
     function setDashboardState(message, isError) {
@@ -191,7 +191,7 @@
       }
       if (title && members[0] && members[0].period) title.textContent = 'Semester Leaderboard — ' + members[0].period;
       if (!members.length) { var empty = document.createElement('p'); empty.className = 'asme-leaderboard-state'; empty.textContent = 'No public totals are available yet.'; rowsEl.appendChild(empty); return; }
-      members.forEach(function (member) {
+      members.slice(0, 10).forEach(function (member) {
         var row = document.createElement('div'); row.className = 'asme-leaderboard-row'; row.tabIndex = 0; row.setAttribute('role', 'button'); row.setAttribute('aria-label', 'View dashboard for ' + member.name);
         var rank = document.createElement('span'); rank.className = 'asme-leaderboard-rank'; rank.textContent = Number.isFinite(member.rank) && member.rank > 0 ? String(member.rank) : '—';
         var avatar = document.createElement('span'); avatar.className = 'asme-leaderboard-avatar'; avatar.setAttribute('aria-hidden', 'true'); avatar.textContent = (member.name[0] || '?').toUpperCase();
