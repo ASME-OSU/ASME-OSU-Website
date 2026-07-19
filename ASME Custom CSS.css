@@ -13343,7 +13343,19 @@ body #page .asme-points-page-v2 .asme-points-flow-arrow {
 
 body #page .asme-points-page-v2 .asme-points-cta-compact {
   min-height: 0;
-  padding: 22px 26px;
+  padding: 18.7px 26px;
+  align-items: center;
+}
+
+body #page .asme-points-page-v2 .asme-points-cta-compact .asme-member-cta-copy,
+body #page .asme-points-page-v2 .asme-points-cta-compact .asme-member-cta-actions {
+  align-self: center;
+}
+
+body #page .asme-points-page-v2 .asme-points-cta-compact .asme-member-cta-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 body #page .asme-points-page-v2 .asme-points-cta-compact h3 {
