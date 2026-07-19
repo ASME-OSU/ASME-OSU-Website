@@ -1,72 +1,58 @@
-<div class="asme-members-page" id="asmePointsApp">
+<div class="asme-members-page asme-points-page-v2" id="asmePointsApp">
 
-  <div class="asme-member-hero">
+  <div class="asme-member-hero asme-points-hero-compact">
     <div class="asme-member-hero-inner">
       <div class="asme-member-hero-copy">
         <span class="asme-member-eyebrow">ASME OSU · Members</span>
         <h1>Member Points</h1>
-        <p class="asme-member-hero-desc">Check in at approved events, earn points automatically, and use the member dashboard to follow your semester standing and event activity.</p>
+        <p class="asme-member-hero-desc">See the semester leaders, then search your name for points and attendance.</p>
       </div>
       <div class="asme-member-hero-meta">
         <span class="asme-status-badge asme-status-badge--dev" id="asmePointsStatusBadge">Testing</span>
-        <span class="asme-status-badge asme-status-badge--resource">Sheet Sync</span>
       </div>
     </div>
   </div>
 
-  <div class="asme-info-banner asme-info-banner--amber" id="asmePointsNotice" role="status">
-    <span class="asme-info-banner-icon">ℹ️</span>
-    <p><strong>Point tracking is in testing.</strong> The page is connected to the officer-managed Google Sheet. Names remain hidden until officers switch the system status to LIVE.</p>
-  </div>
-
-  <ul class="asme-jump-nav">
-    <li><a href="#point-values">📊 Point Values</a></li>
-    <li><a href="#member-dashboard">👤 My Dashboard</a></li>
+  <ul class="asme-jump-nav asme-points-jump-nav">
     <li><a href="#leaderboard">🏆 Leaderboard</a></li>
-    <li><a href="#how-it-works">❓ How It Works</a></li>
-    <li><a href="https://org.osu.edu/asme/member-resources/">📚 Member Resources</a></li>
+    <li><a href="#member-dashboard">⌕ Find My Points</a></li>
+    <li><a href="#point-values">＋ Point Values</a></li>
+    <li><a href="https://org.osu.edu/asme/member-resources/">Member Resources →</a></li>
   </ul>
 
-  <div class="asme-points-preview">
-    <div class="asme-points-preview-body">
-      <span class="asme-section-label">Connected system</span>
-      <h2 class="asme-section-heading">What the points system handles</h2>
-      <p class="asme-section-desc">The Google Form is the check-in screen. The private master workbook verifies each response, prevents duplicate credit, and publishes only the safe fields needed by this page.</p>
-      <div class="asme-points-features">
-        <div class="asme-points-feature"><span class="asme-points-feature-icon">📝</span><p class="asme-points-feature-name">Verified check-ins</p><p class="asme-points-feature-desc">Members submit their OSU name.number and event ID through the form.</p></div>
-        <div class="asme-points-feature"><span class="asme-points-feature-icon">⚙️</span><p class="asme-points-feature-name">Automatic scoring</p><p class="asme-points-feature-desc">The workbook looks up the approved event type and point value.</p></div>
-        <div class="asme-points-feature"><span class="asme-points-feature-icon">🛡️</span><p class="asme-points-feature-name">Duplicate protection</p><p class="asme-points-feature-desc">Only the first valid check-in for a member/event pair earns points.</p></div>
-        <div class="asme-points-feature"><span class="asme-points-feature-icon">🔒</span><p class="asme-points-feature-name">Privacy-safe display</p><p class="asme-points-feature-desc">Private names, email addresses, and name.number values never enter the public export.</p></div>
-        <div class="asme-points-feature"><span class="asme-points-feature-icon">🔎</span><p class="asme-points-feature-name">Officer review</p><p class="asme-points-feature-desc">Invalid or duplicate submissions go to a review queue instead of silently earning credit.</p></div>
-        <div class="asme-points-feature"><span class="asme-points-feature-icon">📚</span><p class="asme-points-feature-name">Audit trail</p><p class="asme-points-feature-desc">Point Log and Adjustments preserve the reason for every score change.</p></div>
+  <div class="asme-leaderboard-preview asme-leaderboard-featured" id="leaderboard">
+    <div class="asme-leaderboard-header">
+      <div>
+        <span class="asme-section-label">Top 10</span>
+        <p class="asme-leaderboard-title" id="asmeLeaderboardTitle">Semester Leaderboard</p>
       </div>
+      <span class="asme-status-badge asme-status-badge--dev" id="asmeLeaderboardStatus">Testing</span>
     </div>
+    <div id="asmeLeaderboardRows" class="asme-leaderboard-body" aria-live="polite" aria-busy="true">
+      <p class="asme-leaderboard-state asme-leaderboard-state--loading">Loading leaderboard…</p>
+    </div>
+    <p class="asme-leaderboard-caption" id="asmeLeaderboardCaption">Top 10 verified totals.</p>
   </div>
 
-  <div class="asme-resource-group asme-resource-group--start" id="point-values">
-    <div class="asme-resource-group-header"><p class="asme-resource-group-title">Current Point Values</p></div>
-    <div class="asme-points-features" id="asmePointValuesGrid" aria-live="polite" aria-busy="true">
-      <div class="asme-points-feature asme-points-feature--loading"><p class="asme-points-feature-name">Loading official values…</p><p class="asme-points-feature-desc">Reading the public Website Export sheet.</p></div>
-    </div>
-    <p class="asme-section-desc asme-points-note">Values are loaded from the officer-managed export sheet, so the website stays in sync when approved values change.</p>
-  </div>
-
-  <div class="asme-member-dashboard" id="member-dashboard">
+  <div class="asme-member-dashboard asme-member-dashboard--search" id="member-dashboard">
     <div class="asme-member-dashboard-heading">
       <div>
-        <span class="asme-section-label">Public member view</span>
-        <h2 class="asme-section-heading">Member Dashboard</h2>
-        <p class="asme-section-desc">Choose your public display name to see your current points, rank, attendance, and event-type activity.</p>
+        <span class="asme-section-label">Your semester</span>
+        <h2 class="asme-section-heading">Find Your Points</h2>
+        <p class="asme-section-desc">Search the public name you chose on the check-in form.</p>
       </div>
-      <label class="asme-member-picker" for="asmeMemberSelect">
-        <span>Find a member</span>
-        <select id="asmeMemberSelect" disabled>
-          <option>Loading public totals…</option>
-        </select>
-      </label>
+      <div class="asme-member-search-wrap">
+        <label for="asmeMemberSearch">Search by name</label>
+        <div class="asme-member-search-field">
+          <span aria-hidden="true">⌕</span>
+          <input type="search" id="asmeMemberSearch" placeholder="Start typing a name…" autocomplete="off" disabled aria-controls="asmeMemberSearchResults" aria-describedby="asmeMemberSearchHint" aria-expanded="false">
+        </div>
+        <div class="asme-member-search-results" id="asmeMemberSearchResults" aria-label="Matching members" hidden></div>
+        <p class="asme-member-search-hint" id="asmeMemberSearchHint">Loading public names…</p>
+      </div>
     </div>
 
-    <p class="asme-member-dashboard-state" id="asmeMemberDashboardState" role="status">Loading the member dashboard…</p>
+    <p class="asme-member-dashboard-state" id="asmeMemberDashboardState" role="status">Loading dashboard…</p>
 
     <div class="asme-member-dashboard-panel" id="asmeMemberDashboardPanel" aria-busy="true" hidden>
       <div class="asme-dashboard-identity">
@@ -81,7 +67,7 @@
       </div>
 
       <div class="asme-dashboard-kpis" aria-label="Member key performance indicators">
-        <div class="asme-dashboard-kpi"><span>Current rank</span><strong id="asmeDashboardRank">—</strong></div>
+        <div class="asme-dashboard-kpi"><span>Rank</span><strong id="asmeDashboardRank">—</strong></div>
         <div class="asme-dashboard-kpi"><span>Points</span><strong id="asmeDashboardPoints">—</strong></div>
         <div class="asme-dashboard-kpi"><span>Events</span><strong id="asmeDashboardEvents">—</strong></div>
         <div class="asme-dashboard-kpi"><span>Status</span><strong id="asmeDashboardStatus">—</strong></div>
@@ -89,39 +75,37 @@
 
       <div class="asme-dashboard-activity">
         <div class="asme-dashboard-activity-heading">
-          <h3>Events by type</h3>
-          <span>Verified, point-earning check-ins</span>
+          <h3>Attendance Mix</h3>
+          <span>Point-earning events</span>
         </div>
         <div class="asme-event-type-list" id="asmeDashboardBreakdown"></div>
       </div>
     </div>
 
-    <p class="asme-dashboard-privacy">This public view contains only your chosen display name and aggregate activity. Email addresses and OSU name.number values remain in the private officer workbook.</p>
+    <p class="asme-dashboard-privacy">Public totals only. Email and OSU name.number stay private.</p>
   </div>
 
-  <div class="asme-leaderboard-preview" id="leaderboard">
-    <div class="asme-leaderboard-header">
-      <p class="asme-leaderboard-title" id="asmeLeaderboardTitle">Semester Leaderboard</p>
-      <span class="asme-status-badge asme-status-badge--dev" id="asmeLeaderboardStatus">Testing</span>
+  <details class="asme-point-values-compact" id="point-values">
+    <summary>
+      <span><strong>Point Values</strong><small>See what each event is worth</small></span>
+      <span class="asme-point-values-toggle" aria-hidden="true">＋</span>
+    </summary>
+    <div class="asme-point-values-grid" id="asmePointValuesGrid" aria-live="polite" aria-busy="true">
+      <div class="asme-point-value-chip asme-points-feature--loading"><span>Loading values…</span></div>
     </div>
-    <div id="asmeLeaderboardRows" class="asme-leaderboard-body" aria-live="polite" aria-busy="true">
-      <p class="asme-leaderboard-state asme-leaderboard-state--loading">Loading the latest status…</p>
-    </div>
-    <p class="asme-leaderboard-caption" id="asmeLeaderboardCaption">The leaderboard will appear after the system is approved for public launch.</p>
+  </details>
+
+  <div class="asme-points-flow-compact" id="how-it-works" aria-label="How points work">
+    <div><span>1</span><strong>Check in</strong><small>Use the event form.</small></div>
+    <span class="asme-points-flow-arrow" aria-hidden="true">→</span>
+    <div><span>2</span><strong>Get verified</strong><small>Roster, event, and duplicates are checked.</small></div>
+    <span class="asme-points-flow-arrow" aria-hidden="true">→</span>
+    <div><span>3</span><strong>See your total</strong><small>The dashboard updates automatically.</small></div>
   </div>
 
-  <div class="asme-resource-group" id="how-it-works">
-    <div class="asme-resource-group-header"><p class="asme-resource-group-title">How It Works</p></div>
-    <div class="asme-member-grid asme-member-grid--3col">
-      <div class="asme-resource-card asme-resource-card--static"><div class="asme-resource-card-icon asme-points-step-icon">1</div><p class="asme-resource-card-title">Check in</p><p class="asme-resource-card-desc">Use the event Google Form and enter your OSU name.number. First-time members choose either full name or first name plus last initial for public display.</p></div>
-      <div class="asme-resource-card asme-resource-card--static"><div class="asme-resource-card-icon asme-points-step-icon">2</div><p class="asme-resource-card-title">Sheet verifies</p><p class="asme-resource-card-desc">The private workbook checks the roster, event, and duplicate rule. Exceptions go to the officer Review Queue.</p></div>
-      <div class="asme-resource-card asme-resource-card--static"><div class="asme-resource-card-icon asme-points-step-icon">3</div><p class="asme-resource-card-title">Dashboard updates</p><p class="asme-resource-card-desc">Valid points roll into Member Totals, the member dashboard, and the privacy-safe Website Export. The page reads that export only.</p></div>
-    </div>
-  </div>
-
-  <div class="asme-member-cta">
-    <div class="asme-member-cta-copy"><h3>Want to see your points count?</h3><p>Watch the event calendar and use the check-in link shared by officers at each approved event.</p></div>
-    <div class="asme-member-cta-actions"><a href="https://org.osu.edu/asme/calendar/" class="asme-btn asme-btn--primary">See Events →</a><a href="https://org.osu.edu/asme/member-resources/" class="asme-btn asme-btn--ghost">Member Resources</a></div>
+  <div class="asme-member-cta asme-points-cta-compact">
+    <div class="asme-member-cta-copy"><h3>Ready to earn points?</h3><p>Check the calendar for the next approved event.</p></div>
+    <div class="asme-member-cta-actions"><a href="https://org.osu.edu/asme/calendar/" class="asme-btn asme-btn--primary">See Events →</a></div>
   </div>
 
 </div>
