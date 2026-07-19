@@ -2888,6 +2888,20 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   grid-row: span 5 !important;
 }
 
+/* Keep desktop mosaic rows complete when the orientation mix leaves
+   unusable one- or two-column holes in the 12-column grid. */
+@media (min-width: 901px) {
+  body #page .asme-gallery-page .gallery-item.is-square {
+    grid-column: span 6 !important;
+    grid-row: span 6 !important;
+  }
+
+  body #page .asme-gallery-page .gallery-item:nth-last-child(-n + 3) {
+    grid-column: span 4 !important;
+    grid-row: span 7 !important;
+  }
+}
+
 .asme-gallery-page .gallery-icon,
 .asme-gallery-page .gallery-icon a {
   display: block !important;
