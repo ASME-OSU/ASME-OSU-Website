@@ -2623,6 +2623,31 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   color: #fff !important;
 }
 
+@keyframes asme-calendar-subscribe-pulse {
+  0%, 62%, 100% {
+    box-shadow: 0 0 0 0 rgba(187, 0, 0, 0);
+  }
+  12% {
+    box-shadow: 0 0 0 0 rgba(187, 0, 0, 0.28);
+  }
+  38% {
+    box-shadow: 0 0 0 11px rgba(187, 0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body #page .asme-cal-page .acp-subscribe-btn {
+    animation: asme-calendar-subscribe-pulse 3.2s ease-out infinite !important;
+    will-change: box-shadow;
+  }
+
+  body #page .asme-cal-page .acp-subscribe-btn:hover,
+  body #page .asme-cal-page .acp-subscribe-btn:focus-visible {
+    animation: none !important;
+    box-shadow: 0 0 0 5px rgba(187, 0, 0, 0.14) !important;
+  }
+}
+
 .acp-subscribe-note {
   font-size: 11px !important;
   color: var(--asme-soft);
