@@ -2637,7 +2637,7 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 
 @media (prefers-reduced-motion: no-preference) {
   body #page .asme-cal-page .acp-subscribe-btn {
-    animation: asme-calendar-subscribe-pulse 3.2s ease-out infinite !important;
+    animation: asme-calendar-subscribe-pulse 2.6s ease-out infinite !important;
     will-change: box-shadow;
   }
 
