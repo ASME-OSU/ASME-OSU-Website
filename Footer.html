@@ -334,7 +334,7 @@
         '<button class="asme-lightbox-prev" aria-label="Previous">&lsaquo;</button>' +
         '<button class="asme-lightbox-next" aria-label="Next">&rsaquo;</button>' +
         '<div class="asme-lightbox-content">' +
-          '<img src="" alt="Gallery Image">' +
+          '<img src="" alt="Gallery Image" decoding="async">' +
           '<div class="asme-lightbox-bar">' +
             '<div class="asme-lightbox-caption"></div>' +
             '<div class="asme-lightbox-actions">' +
@@ -353,26 +353,47 @@
       var nextBtn      = lightbox.querySelector('.asme-lightbox-next');
       var closeBtn     = lightbox.querySelector('.asme-lightbox-close');
       var currentIndex = 0;
+      var imageRequestId = 0;
 
       function updateImage(index) {
         if (index < 0 || index >= galleryItems.length) return;
         currentIndex = index;
+        var requestId  = ++imageRequestId;
         var link       = galleryItems[currentIndex];
         var imgUrl     = link.getAttribute('href');
         var originalImg = link.querySelector('img');
         var altText    = originalImg ? originalImg.getAttribute('alt') : 'ASME Gallery Image';
         var filename   = (imgUrl.split('/').pop() || 'asme-gallery-image').split('?')[0];
+        var preloader  = new Image();
 
-        img.style.opacity = '0';
-        setTimeout(function () {
-          img.src            = imgUrl;
-          img.alt            = altText;
+        lightbox.setAttribute('aria-busy', 'true');
+
+        function commitImage() {
+          if (requestId !== imageRequestId) return;
+          img.src             = imgUrl;
+          img.alt             = altText || 'ASME Gallery Image';
           caption.textContent = altText || '';
-          downloadLink.href  = imgUrl;
+          downloadLink.href   = imgUrl;
           downloadLink.setAttribute('download', filename);
-          openLink.href      = imgUrl;
-          img.style.opacity  = '1';
-        }, 150);
+          openLink.href       = imgUrl;
+          lightbox.setAttribute('aria-busy', 'false');
+        }
+
+        preloader.onload = function () {
+          if (typeof preloader.decode === 'function') {
+            preloader.decode().catch(function () {}).then(commitImage);
+          } else {
+            commitImage();
+          }
+        };
+
+        preloader.onerror = function () {
+          if (requestId === imageRequestId) {
+            lightbox.setAttribute('aria-busy', 'false');
+          }
+        };
+
+        preloader.src = imgUrl;
       }
 
       galleryItems.forEach(function (link, index) {
