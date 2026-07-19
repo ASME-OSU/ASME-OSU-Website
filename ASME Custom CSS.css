@@ -13356,10 +13356,18 @@ body #page .asme-points-page-v2 .asme-points-cta-compact .asme-member-cta-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: visible;
 }
 
 body #page .asme-points-page-v2 .asme-points-cta-compact h3 {
-  margin-bottom: 3px;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-size: 18px !important;
+  line-height: 1.2 !important;
+  margin: 0 0 3px !important;
 }
 
 body #page .asme-points-page-v2 .asme-points-cta-compact p {
