@@ -61,6 +61,24 @@
       return cell && cell.v !== null && cell.v !== undefined ? String(cell.v).trim() : '';
     }
 
+    function displayValue(row, index) {
+      var cell = row.c && row.c[index];
+      if (!cell) return '';
+      if (cell.f !== null && cell.f !== undefined) return String(cell.f).trim();
+      return cell.v !== null && cell.v !== undefined ? String(cell.v).trim() : '';
+    }
+
+    function updatedLabel(raw) {
+      var match = String(raw || '').match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/);
+      if (!match) return raw ? 'Updated ' + raw : 'Updated automatically';
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var hour = Number(match[4]);
+      var minute = match[5];
+      var period = hour >= 12 ? 'PM' : 'AM';
+      var hour12 = hour % 12 || 12;
+      return 'Updated ' + months[Number(match[2]) - 1] + ' ' + Number(match[3]) + ' at ' + hour12 + ':' + minute + ' ' + period + ' ET';
+    }
+
     function setStatus(status) {
       var clean = (status || 'TESTING').toUpperCase();
       var label = clean === 'LIVE' ? 'Live' : clean === 'PAUSED' ? 'Paused' : 'Testing';
@@ -97,7 +115,7 @@
           points: Number(value(r, 3)),
           events: Number(value(r, 4)),
           tier: value(r, 5),
-          updated: value(r, 6),
+          updated: displayValue(r, 6),
           eventTypes: EVENT_TYPES.map(function (type) { return { label: type.label, count: Number(value(r, type.column)) || 0 }; }),
           topType: value(r, 14)
         };
@@ -244,7 +262,7 @@
         row.addEventListener('click', function () { chooseMember(member, true); });
         row.addEventListener('keydown', function (event) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); chooseMember(member, true); } });
       });
-      if (caption) caption.textContent = 'Top 10 verified totals · Select a row to view details.';
+      if (caption) caption.textContent = updatedLabel(members[0] && members[0].updated) + ' · Select a row to view details.';
     }
 
     Promise.all([
