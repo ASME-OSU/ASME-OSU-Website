@@ -13052,6 +13052,62 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
   }
 }
 
+/* ============================================================
+   MOBILE SITE HEADER — final compact layout
+   Keeps the full chapter identity while reducing the masthead's
+   vertical footprint on phones. This must remain after the older
+   responsive header blocks so the measurements stay predictable.
+   ============================================================ */
+@media (max-width: 768px) {
+  body .site-header,
+  body #masthead {
+    padding: 8px 10px 10px !important;
+  }
+
+  body .site-header .inside-header,
+  body #masthead .inside-header,
+  body .site-branding-container,
+  body .site-logo,
+  body .site-branding {
+    gap: 4px !important;
+  }
+
+  body .custom-logo,
+  body .site-logo img,
+  body .site-logo .header-image,
+  body .custom-logo-link img {
+    width: auto !important;
+    height: 42px !important;
+  }
+
+  body .main-title,
+  body .main-title a,
+  body .site-title,
+  body .site-title a {
+    margin: 0 auto !important;
+    font-size: clamp(20px, 5.7vw, 24px) !important;
+    line-height: 1.05 !important;
+  }
+
+  body .site-description {
+    margin: 1px auto 0 !important;
+    font-size: 9px !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  body #site-navigation,
+  body #site-navigation.main-navigation {
+    margin: 2px auto 0 !important;
+  }
+
+  body .menu-toggle,
+  body #site-navigation .menu-toggle {
+    height: 30px !important;
+    min-height: 30px !important;
+  }
+}
+
 /* Member Points v2 — leaderboard-first, searchable, and compact */
 body #page .asme-points-page-v2 .asme-points-hero-compact {
   margin-bottom: 18px;
