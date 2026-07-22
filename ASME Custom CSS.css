@@ -13090,6 +13090,15 @@ html body #page .entry-content .asme-sponsor-page .sponsor-stat-inner > br {
   display: none !important;
 }
 
+body #page .asme-sponsor-page .sponsor-panel-stat > p,
+body #page .asme-sponsor-page .sponsor-panel-stat > br,
+html body #page .entry-content .asme-sponsor-page .sponsor-panel-stat > p,
+html body #page .entry-content .asme-sponsor-page .sponsor-panel-stat > br {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 body #page .asme-sponsor-page .sponsor-stat-inner > strong,
 body #page .asme-sponsor-page .sponsor-stat-inner > span,
 html body #page .entry-content .asme-sponsor-page .sponsor-stat-inner > strong,
