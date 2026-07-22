@@ -13061,8 +13061,10 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
 
 body #page .asme-sponsor-page .sponsor-panel-stat,
 html body #page .entry-content .asme-sponsor-page .sponsor-panel-stat {
-  display: grid !important;
-  place-items: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
   padding: 0 !important;
   text-align: center !important;
 }
@@ -13075,8 +13077,9 @@ html body #page .entry-content .asme-sponsor-page .sponsor-stat-inner {
   justify-content: center !important;
   gap: 8px !important;
   width: 100% !important;
-  height: 100% !important;
+  height: auto !important;
   min-height: 0 !important;
+  flex: 0 0 auto !important;
   margin: 0 !important;
   padding: 0 !important;
   transform: none !important;
