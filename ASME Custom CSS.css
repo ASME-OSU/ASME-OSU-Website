@@ -13110,6 +13110,50 @@ html body #page .entry-content .asme-sponsor-page .sponsor-stat-inner > span {
 }
 
 /* ============================================================
+   ABOUT + JOIN STATS — KEEP NUMBER/LABEL AS ONE CENTERED UNIT
+   WordPress inserts direct <br> elements between adjacent spans in
+   Custom HTML blocks. Remove that line box so the intentional gap,
+   rather than an empty text line, controls the spacing.
+   ============================================================ */
+
+body #page .asme-about-page .about-stat-item,
+html body #page .entry-content .asme-about-page .about-stat-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  text-align: center !important;
+}
+
+body #page .asme-about-page .about-stat-item > br,
+body #page .asme-about-page .about-stat-item > p,
+html body #page .entry-content .asme-about-page .about-stat-item > br,
+html body #page .entry-content .asme-about-page .about-stat-item > p {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body #page .asme-join-page .join-proof-stat,
+html body #page .entry-content .asme-join-page .join-proof-stat {
+  justify-content: center !important;
+}
+
+body #page .asme-join-page .join-proof-stat > br,
+body #page .asme-join-page .join-proof-stat > p,
+body #page .asme-join-page .join-proof-award > br,
+body #page .asme-join-page .join-proof-award > p,
+html body #page .entry-content .asme-join-page .join-proof-stat > br,
+html body #page .entry-content .asme-join-page .join-proof-stat > p,
+html body #page .entry-content .asme-join-page .join-proof-award > br,
+html body #page .entry-content .asme-join-page .join-proof-award > p {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ============================================================
    MOBILE SITE HEADER — final compact layout
    Keeps the full chapter identity while reducing the masthead's
    vertical footprint on phones. This must remain after the older
