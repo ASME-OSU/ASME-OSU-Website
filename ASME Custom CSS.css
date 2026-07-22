@@ -3570,6 +3570,16 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 /* =============================================
    LEADERSHIP — Auto grid + accordion
    ============================================= */
+.lb-page-title {
+  margin: 0 0 30px !important;
+  color: #0f3460 !important;
+  font-family: 'DM Serif Display', serif !important;
+  font-size: clamp(38px, 5vw, 54px) !important;
+  font-weight: 400 !important;
+  line-height: 1.05 !important;
+  text-align: center !important;
+}
+
 .lb-current-year {
   margin-bottom: 40px;
 }
@@ -3635,13 +3645,16 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 }
 
 .lb-year-tab {
+  appearance: none;
   padding: 7px 18px;
   background: #f3f4f6;
   border: 1px solid #e5e7eb;
   border-radius: 999px;
   color: #4b5563;
   font-size: 12px;
+  font-family: inherit;
   font-weight: 600;
+  line-height: 1.2;
   cursor: pointer;
   transition: background 0.18s, color 0.18s, border-color 0.18s;
   user-select: none;
@@ -3651,6 +3664,11 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   background: #e8f4fd;
   color: #0f3460;
   border-color: #0f3460;
+}
+
+.lb-year-tab:focus-visible {
+  outline: 3px solid rgba(187, 0, 0, 0.35);
+  outline-offset: 2px;
 }
 
 .lb-year-tab.active {
@@ -3673,6 +3691,7 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.lb-year-panel-header h2,
 .lb-year-panel-header h3 {
   background: #6b7280 !important;
   color: #fff !important;
@@ -5134,6 +5153,10 @@ body .sponsors-grid-partners .sponsor-card h3 a {
   }
 
   /* Leadership */
+  .leadership-board .lb-page-title {
+    color: #ffffff !important;
+  }
+
   .leadership-board .leader-card {
     background: var(--asme-card) !important;
     border-color: var(--asme-line) !important;
@@ -5176,6 +5199,7 @@ body .sponsors-grid-partners .sponsor-card h3 a {
     color: #ffffff !important;
   }
 
+  .leadership-board .lb-year-panel-header h2,
   .leadership-board .lb-year-panel-header h3 {
     background: #475569 !important;
     color: #ffffff !important;

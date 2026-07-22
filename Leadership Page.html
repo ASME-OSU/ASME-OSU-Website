@@ -1,4 +1,6 @@
-<section class="leadership-board"><!-- ========== CURRENT YEAR — always visible ========== -->
+<section class="leadership-board">
+<h1 class="lb-page-title">Leadership</h1>
+<!-- ========== CURRENT YEAR — always visible ========== -->
 <div class="lb-current-year">
 <div class="lb-current-header">
 <h2>2026–2027 Executive Board</h2>
@@ -26,7 +28,7 @@
 
 </article><article class="leader-card">
 <h3>Administrator</h3>
-<img class="leader-photo" src="https://org.osu.edu/asme/files/2026/07/Kasper-Szymczak.png" alt="Dhruv Agrawal" />
+<img class="leader-photo" src="https://org.osu.edu/asme/files/2026/07/Kasper-Szymczak.png" alt="Kasper Szymczak" />
 <h4>Kasper Szymczak</h4>
 <a href="mailto:szymczak.28@osu.edu">szymczak.28@osu.edu</a>
 <a class="leader-linkedin" href="https://www.linkedin.com/in/kasper-szymczak-b97581321/" target="_blank" rel="noopener" aria-label="Kasper Szymczak on LinkedIn">in</a>
@@ -57,21 +59,21 @@
 <!-- ========== PAST YEARS — accordion ========== -->
 <div class="lb-past-years">
 <div class="lb-past-label">Past Executive Boards</div>
-<div class="lb-year-tabs">
-<div class="lb-year-tab active" data-year="2526">2025–2026</div>
-<div class="lb-year-tab" data-year="2425">2024–2025</div>
-<div class="lb-year-tab" data-year="2324">2023–2024</div>
-<div class="lb-year-tab" data-year="2223">2022–2023</div>
-<div class="lb-year-tab" data-year="2122">2021–2022</div>
-<div class="lb-year-tab" data-year="2021">2020–2021</div>
-<div class="lb-year-tab" data-year="1920">2019–2020</div>
-<div class="lb-year-tab" data-year="1819">2018–2019</div>
-<div class="lb-year-tab" data-year="1718">2017–2018</div>
+<div class="lb-year-tabs" role="tablist" aria-label="Past executive boards">
+<button type="button" id="lb-tab-2526" class="lb-year-tab active" data-year="2526" role="tab" aria-selected="true" aria-controls="lb-2526">2025–2026</button>
+<button type="button" id="lb-tab-2425" class="lb-year-tab" data-year="2425" role="tab" aria-selected="false" aria-controls="lb-2425">2024–2025</button>
+<button type="button" id="lb-tab-2324" class="lb-year-tab" data-year="2324" role="tab" aria-selected="false" aria-controls="lb-2324">2023–2024</button>
+<button type="button" id="lb-tab-2223" class="lb-year-tab" data-year="2223" role="tab" aria-selected="false" aria-controls="lb-2223">2022–2023</button>
+<button type="button" id="lb-tab-2122" class="lb-year-tab" data-year="2122" role="tab" aria-selected="false" aria-controls="lb-2122">2021–2022</button>
+<button type="button" id="lb-tab-2021" class="lb-year-tab" data-year="2021" role="tab" aria-selected="false" aria-controls="lb-2021">2020–2021</button>
+<button type="button" id="lb-tab-1920" class="lb-year-tab" data-year="1920" role="tab" aria-selected="false" aria-controls="lb-1920">2019–2020</button>
+<button type="button" id="lb-tab-1819" class="lb-year-tab" data-year="1819" role="tab" aria-selected="false" aria-controls="lb-1819">2018–2019</button>
+<button type="button" id="lb-tab-1718" class="lb-year-tab" data-year="1718" role="tab" aria-selected="false" aria-controls="lb-1718">2017–2018</button>
 </div>
 <!-- 2025-2026 -->
-<div id="lb-2526" class="lb-year-panel active">
+<div id="lb-2526" class="lb-year-panel active" role="tabpanel" aria-labelledby="lb-tab-2526">
 <div class="lb-year-panel-header">
-<h3>2025–2026 Executive Board</h3>
+<h2>2025–2026 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President</h3>
@@ -118,9 +120,9 @@
 </article></div>
 </div>
 <!-- 2024-2025 -->
-<div id="lb-2425" class="lb-year-panel">
+<div id="lb-2425" class="lb-year-panel" role="tabpanel" aria-labelledby="lb-tab-2425" hidden>
 <div class="lb-year-panel-header">
-<h3>2024–2025 Executive Board</h3>
+<h2>2024–2025 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President</h3>
@@ -167,9 +169,9 @@
 </article></div>
 </div>
 <!-- 2023-2024 -->
-<div id="lb-2324" class="lb-year-panel">
+<div id="lb-2324" class="lb-year-panel" role="tabpanel" aria-labelledby="lb-tab-2324" hidden>
 <div class="lb-year-panel-header">
-<h3>2023–2024 Executive Board</h3>
+<h2>2023–2024 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President</h3>
@@ -206,9 +208,9 @@
 </article></div>
 </div>
 <!-- 2022-2023 -->
-<div id="lb-2223" class="lb-year-panel">
+<div id="lb-2223" class="lb-year-panel" role="tabpanel" aria-labelledby="lb-tab-2223" hidden>
 <div class="lb-year-panel-header">
-<h3>2022–2023 Executive Board</h3>
+<h2>2022–2023 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President</h3>
@@ -237,9 +239,9 @@
 </article></div>
 </div>
 <!-- 2021-2022 -->
-<div id="lb-2122" class="lb-year-panel">
+<div id="lb-2122" class="lb-year-panel" role="tabpanel" aria-labelledby="lb-tab-2122" hidden>
 <div class="lb-year-panel-header">
-<h3>2021–2022 Executive Board</h3>
+<h2>2021–2022 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President / Treasurer</h3>
@@ -264,9 +266,9 @@
 </article></div>
 </div>
 <!-- 2020-2021 -->
-<div id="lb-2021" class="lb-year-panel">
+<div id="lb-2021" class="lb-year-panel" role="tabpanel" aria-labelledby="lb-tab-2021" hidden>
 <div class="lb-year-panel-header">
-<h3>2020–2021 Executive Board</h3>
+<h2>2020–2021 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President / Corporate Liaison</h3>
@@ -295,9 +297,9 @@
 </article></div>
 </div>
 <!-- 2019-2020 -->
-<div id="lb-1920" class="lb-year-panel">
+<div id="lb-1920" class="lb-year-panel" role="tabpanel" aria-labelledby="lb-tab-1920" hidden>
 <div class="lb-year-panel-header">
-<h3>2019–2020 Executive Board</h3>
+<h2>2019–2020 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President</h3>
@@ -334,9 +336,9 @@
 </article></div>
 </div>
 <!-- 2018-2019 -->
-<div id="lb-1819" class="lb-year-panel">
+<div id="lb-1819" class="lb-year-panel" role="tabpanel" aria-labelledby="lb-tab-1819" hidden>
 <div class="lb-year-panel-header">
-<h3>2018–2019 Executive Board</h3>
+<h2>2018–2019 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President</h3>
@@ -381,9 +383,9 @@
 </article></div>
 </div>
 <!-- 2017-2018 -->
-<div id="lb-1718" class="lb-year-panel">
+<div id="lb-1718" class="lb-year-panel" role="tabpanel" aria-labelledby="lb-tab-1718" hidden>
 <div class="lb-year-panel-header">
-<h3>2017–2018 Executive Board</h3>
+<h2>2017–2018 Executive Board</h2>
 </div>
 <div class="lb-grid"><article class="leader-card">
 <h3>President</h3>
@@ -440,11 +442,21 @@
   document.querySelectorAll('.lb-year-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
       var year = this.getAttribute('data-year');
-      document.querySelectorAll('.lb-year-tab').forEach(function(t) { t.classList.remove('active'); });
-      document.querySelectorAll('.lb-year-panel').forEach(function(p) { p.classList.remove('active'); });
+      document.querySelectorAll('.lb-year-tab').forEach(function(t) {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.lb-year-panel').forEach(function(p) {
+        p.classList.remove('active');
+        p.hidden = true;
+      });
       this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
       var panel = document.getElementById('lb-' + year);
-      if (panel) panel.classList.add('active');
+      if (panel) {
+        panel.classList.add('active');
+        panel.hidden = false;
+      }
     });
   });
 })();
