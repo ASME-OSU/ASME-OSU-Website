@@ -13199,6 +13199,10 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
     padding: 12px 14px !important;
   }
 
+  body #page .asme-join-page .join-form-card {
+    justify-content: flex-start !important;
+  }
+
   body #page .asme-join-page .join-proof-divider {
     display: none !important;
   }
