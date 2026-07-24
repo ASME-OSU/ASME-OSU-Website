@@ -13156,7 +13156,15 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
    Keeps compact desktop sections readable when a tablet is held
    vertically without applying the full phone treatment.
    ============================================================ */
-@media (min-width: 700px) and (max-width: 900px) and (orientation: portrait) {
+@media (min-width: 700px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-home .ah-about {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding-bottom: 18px !important;
+  }
+
   /* Home: give all four impact statistics enough vertical space. */
   body #page .asme-home .ah-about-impact {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -13218,6 +13226,30 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
   body #page .asme-join-page .join-proof-award {
     font-size: 10px !important;
     white-space: normal !important;
+  }
+
+  /* Sponsors: stack card groups before their copy can be squeezed. */
+  body #page .asme-sponsors-page .sponsors-top-tier-grid,
+  html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-lower-tier-row,
+  html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-lower-tier-row > *,
+  html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
   }
 
   /* Sponsors: keep logo, copy, and tier badge in a stable card row. */
