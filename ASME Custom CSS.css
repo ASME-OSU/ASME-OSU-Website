@@ -12904,6 +12904,81 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
 }
 
 /* ============================================================
+   TABLET SITE HEADER
+   The full chapter identity and desktop navigation cannot share
+   one row at tablet widths. Stack them into two compact rows so
+   the menu stays horizontal instead of collapsing into a column.
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1180px) {
+  body .site-header,
+  body #masthead {
+    padding: 14px 24px !important;
+  }
+
+  body .site-header .inside-header,
+  body #masthead .inside-header {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+  }
+
+  body .site-branding-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    text-align: center !important;
+  }
+
+  body .site-branding {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    row-gap: 2px !important;
+    text-align: center !important;
+  }
+
+  body .main-title,
+  body .main-title a {
+    font-size: clamp(21px, 2.45vw, 25px) !important;
+    line-height: 1.1 !important;
+  }
+
+  body #mobile-menu-control-wrapper {
+    display: none !important;
+  }
+
+  body #site-navigation,
+  body #site-navigation .inside-navigation,
+  body #site-navigation .main-nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  body #site-navigation .inside-navigation {
+    justify-content: center !important;
+  }
+
+  body #site-navigation .main-nav > ul {
+    width: 100% !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+  }
+
+  body #site-navigation .main-nav > ul > li > a {
+    margin: 0 1px !important;
+    padding: 5px 9px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* ============================================================
    CURRENT SPONSORS - MOBILE STACK
    Desktop sponsor cards use a three-column layout; on phones that
    collapses the text column. Stack the card content instead.
