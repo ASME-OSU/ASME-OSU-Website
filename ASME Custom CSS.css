@@ -7122,6 +7122,13 @@ body .asme-home .ah-about br {
   opacity: 0.7 !important;
 }
 
+/* Keep the admin shortcut on desktop, where site editing is practical. */
+@media (max-width: 1180px), (hover: none) and (pointer: coarse) {
+  .asme-footer-login {
+    display: none !important;
+  }
+}
+
 .entry-content > *:last-child,
 .page-content > *:last-child,
 .ah-calendar-section,
