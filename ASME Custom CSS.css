@@ -14973,7 +14973,7 @@ body #page .asme-home .ah-about-text .ah-section-title {
   line-height: 1.08 !important;
 }
 
-body #page .asme-home .ah-about-text p {
+body #page .asme-home .ah-about-text > p:not(:has(> .ah-about-link)) {
   grid-column: 2 !important;
   grid-row: 1 !important;
   max-width: 760px !important;
@@ -14982,11 +14982,24 @@ body #page .asme-home .ah-about-text p {
   line-height: 1.58 !important;
 }
 
-body #page .asme-home .ah-about-link {
+/* WordPress wraps the CTA anchor in its own paragraph. Treat either the raw
+   anchor or that generated wrapper as the second item in the copy column. */
+body #page .asme-home .ah-about-text > .ah-about-link,
+body #page .asme-home .ah-about-text > p:has(> .ah-about-link) {
   grid-column: 2 !important;
   grid-row: 2 !important;
   align-self: start !important;
   justify-self: start !important;
+  margin: 0 !important;
+}
+
+body #page .asme-home .ah-about-text > p:has(> .ah-about-link) {
+  max-width: none !important;
+  font-size: inherit !important;
+  line-height: normal !important;
+}
+
+body #page .asme-home .ah-about-link {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -15025,7 +15038,8 @@ body #page .asme-home .ah-about-link:hover {
     gap: 10px 32px !important;
   }
 
-  body #page .asme-home .ah-about-link {
+  body #page .asme-home .ah-about-text > .ah-about-link,
+  body #page .asme-home .ah-about-text > p:has(> .ah-about-link) {
     grid-column: 2 !important;
     grid-row: 2 !important;
     justify-self: start !important;
@@ -15116,6 +15130,11 @@ body #page .asme-home .ah-about-link:hover {
     display: block !important;
   }
 
+  body #page .asme-home .ah-about-text > p:has(> .ah-about-link) {
+    width: 100% !important;
+    justify-self: stretch !important;
+  }
+
   body #page .asme-home .ah-about-text .ah-eyebrow-dark {
     margin-bottom: 7px !important;
   }
@@ -15124,7 +15143,7 @@ body #page .asme-home .ah-about-link:hover {
     margin-bottom: 10px !important;
   }
 
-  body #page .asme-home .ah-about-text p {
+  body #page .asme-home .ah-about-text > p:not(:has(> .ah-about-link)) {
     margin-bottom: 15px !important;
   }
 }
@@ -15250,7 +15269,7 @@ body #page .asme-home .ah-about-link:hover {
 
   body #page .asme-home .ah-about-text .ah-eyebrow-dark,
   body #page .asme-home .ah-about-text .ah-section-title,
-  body #page .asme-home .ah-about-text p {
+  body #page .asme-home .ah-about-text > p:not(:has(> .ah-about-link)) {
     text-align: left !important;
   }
 
@@ -15258,7 +15277,7 @@ body #page .asme-home .ah-about-link:hover {
     font-size: 26px !important;
   }
 
-  body #page .asme-home .ah-about-text p {
+  body #page .asme-home .ah-about-text > p:not(:has(> .ah-about-link)) {
     font-size: 13px !important;
     line-height: 1.55 !important;
   }
