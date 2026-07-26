@@ -14471,9 +14471,9 @@ body #page .asme-about-page *::after {
   box-sizing: border-box !important;
 }
 
-/* WordPress wraps the section comments in empty paragraphs. Remove those
-   generated spacers so the page uses the intentional flex gap only. */
-body #page .asme-about-page > p:empty {
+/* WordPress wraps the section comments in whitespace-only paragraphs. Remove
+   those generated spacers so the page uses the intentional flex gap only. */
+body #page .asme-about-page > p {
   display: none !important;
   height: 0 !important;
   margin: 0 !important;
@@ -14514,7 +14514,7 @@ body #page .asme-about-page .about-section-label {
 }
 
 body #page .asme-about-page .about-hero-copy h1 {
-  max-width: 16ch !important;
+  max-width: 20ch !important;
   margin: 0 0 14px !important;
   color: var(--asme-navy, #0f3460) !important;
   font-family: 'DM Serif Display', Georgia, serif !important;
