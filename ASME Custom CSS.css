@@ -14589,10 +14589,7 @@ body #page .asme-about-page .about-hero-image img {
 }
 
 body #page .asme-about-page .about-section-heading {
-  display: flex !important;
-  align-items: flex-end !important;
-  justify-content: space-between !important;
-  gap: 36px !important;
+  display: block !important;
   margin: 0 0 22px !important;
 }
 
@@ -14602,6 +14599,7 @@ body #page .asme-about-page .about-section-heading--compact {
 
 body #page .asme-about-page .about-section-heading > div {
   min-width: 0 !important;
+  max-width: 640px !important;
 }
 
 body #page .asme-about-page .about-section-heading h2,
@@ -14617,9 +14615,8 @@ body #page .asme-about-page .about-cta-section h2 {
 }
 
 body #page .asme-about-page .about-section-heading > p {
-  flex: 0 1 620px !important;
-  max-width: 620px !important;
-  margin: 0 !important;
+  max-width: 720px !important;
+  margin: 12px 0 0 !important;
   color: var(--asme-muted, #667085) !important;
   font-size: 14px !important;
   line-height: 1.65 !important;
@@ -14956,9 +14953,10 @@ body #page .asme-home .ah-about {
 
 body #page .asme-home .ah-about-text {
   display: grid !important;
-  grid-template-columns: minmax(220px, 0.55fr) minmax(320px, 1.45fr) auto !important;
-  align-items: center !important;
-  gap: 10px 28px !important;
+  grid-template-columns: minmax(330px, 0.9fr) minmax(420px, 1.1fr) !important;
+  grid-template-rows: auto auto !important;
+  align-items: start !important;
+  gap: 10px 42px !important;
 }
 
 body #page .asme-home .ah-about-text .ah-eyebrow-dark {
@@ -14977,16 +14975,18 @@ body #page .asme-home .ah-about-text .ah-section-title {
 
 body #page .asme-home .ah-about-text p {
   grid-column: 2 !important;
-  grid-row: 1 / span 2 !important;
-  max-width: 800px !important;
+  grid-row: 1 !important;
+  max-width: 760px !important;
   margin: 0 !important;
   font-size: 14px !important;
   line-height: 1.58 !important;
 }
 
 body #page .asme-home .ah-about-link {
-  grid-column: 3 !important;
-  grid-row: 1 / span 2 !important;
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  align-self: start !important;
+  justify-self: start !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -15021,14 +15021,15 @@ body #page .asme-home .ah-about-link:hover {
   }
 
   body #page .asme-home .ah-about-text {
-    grid-template-columns: minmax(200px, 0.65fr) minmax(280px, 1.35fr) !important;
+    grid-template-columns: minmax(300px, 0.9fr) minmax(360px, 1.1fr) !important;
+    gap: 10px 32px !important;
   }
 
   body #page .asme-home .ah-about-link {
     grid-column: 2 !important;
-    grid-row: 3 !important;
+    grid-row: 2 !important;
     justify-self: start !important;
-    margin-top: 4px !important;
+    margin-top: 0 !important;
   }
 }
 
