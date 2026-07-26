@@ -14457,7 +14457,7 @@ body #page .asme-members-page .asme-points-data-flow-arrow {
 body #page .asme-about-page {
   display: flex !important;
   flex-direction: column !important;
-  gap: 24px !important;
+  gap: 20px !important;
   width: 100% !important;
   max-width: 1500px !important;
   margin: 0 auto !important;
@@ -14471,10 +14471,19 @@ body #page .asme-about-page *::after {
   box-sizing: border-box !important;
 }
 
+/* WordPress wraps the section comments in empty paragraphs. Remove those
+   generated spacers so the page uses the intentional flex gap only. */
+body #page .asme-about-page > p:empty {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 body #page .asme-about-page .about-hero {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.95fr) !important;
-  gap: 24px !important;
+  gap: 20px !important;
   align-items: stretch !important;
   margin: 0 !important;
 }
@@ -14485,7 +14494,7 @@ body #page .asme-about-page .about-hero-copy {
   justify-content: center !important;
   min-width: 0 !important;
   min-height: 430px !important;
-  padding: clamp(34px, 4.2vw, 62px) !important;
+  padding: 36px 40px !important;
   background:
     radial-gradient(circle at 100% 0%, rgba(187, 0, 0, 0.08), transparent 38%),
     #ffffff !important;
@@ -14505,11 +14514,11 @@ body #page .asme-about-page .about-section-label {
 }
 
 body #page .asme-about-page .about-hero-copy h1 {
-  max-width: 13ch !important;
-  margin: 0 0 18px !important;
+  max-width: 16ch !important;
+  margin: 0 0 14px !important;
   color: var(--asme-navy, #0f3460) !important;
   font-family: 'DM Serif Display', Georgia, serif !important;
-  font-size: clamp(40px, 4.25vw, 64px) !important;
+  font-size: clamp(40px, 3.5vw, 52px) !important;
   font-weight: 400 !important;
   line-height: 1.02 !important;
   letter-spacing: -0.025em !important;
@@ -14519,22 +14528,22 @@ body #page .asme-about-page .about-hero-copy > p {
   max-width: 60ch !important;
   margin: 0 !important;
   color: var(--asme-muted, #667085) !important;
-  font-size: 16px !important;
-  line-height: 1.68 !important;
+  font-size: 15px !important;
+  line-height: 1.58 !important;
 }
 
 body #page .asme-about-page .about-hero-actions {
   display: flex !important;
   flex-wrap: wrap !important;
   gap: 10px !important;
-  margin-top: 24px !important;
+  margin-top: 18px !important;
 }
 
 body #page .asme-about-page .about-hero-badges {
   display: flex !important;
   flex-wrap: wrap !important;
   gap: 8px !important;
-  margin-top: 18px !important;
+  margin-top: 12px !important;
 }
 
 body #page .asme-about-page .about-hero-badge {
@@ -14584,11 +14593,11 @@ body #page .asme-about-page .about-section-heading {
   align-items: flex-end !important;
   justify-content: space-between !important;
   gap: 36px !important;
-  margin: 0 0 26px !important;
+  margin: 0 0 22px !important;
 }
 
 body #page .asme-about-page .about-section-heading--compact {
-  margin-bottom: 22px !important;
+  margin-bottom: 18px !important;
 }
 
 body #page .asme-about-page .about-section-heading > div {
@@ -14621,7 +14630,7 @@ body #page .asme-about-page .about-action,
 body #page .asme-about-page .about-impact,
 body #page .asme-about-page .about-semester {
   margin: 0 !important;
-  padding: clamp(28px, 3.6vw, 48px) !important;
+  padding: clamp(26px, 3vw, 38px) !important;
   background: #f3f6fa !important;
   border: 1px solid var(--asme-line, #e5e7eb) !important;
   border-radius: 20px !important;
@@ -14641,8 +14650,8 @@ body #page .asme-about-page .about-pillars {
 
 body #page .asme-about-page .about-pillar {
   min-width: 0 !important;
-  min-height: 220px !important;
-  padding: 24px !important;
+  min-height: 200px !important;
+  padding: 22px !important;
   background: #ffffff !important;
   border: 1px solid var(--asme-line, #e5e7eb) !important;
   border-radius: 16px !important;
@@ -14654,7 +14663,7 @@ body #page .asme-about-page .about-pillar-icon {
   justify-content: center !important;
   width: 34px !important;
   height: 34px !important;
-  margin: 0 0 18px !important;
+  margin: 0 0 14px !important;
   background: rgba(187, 0, 0, 0.09) !important;
   border: 1px solid rgba(187, 0, 0, 0.16) !important;
   border-radius: 50% !important;
@@ -14691,7 +14700,7 @@ body #page .asme-about-page .about-photo-strip {
 body #page .asme-about-page .about-photo {
   position: relative !important;
   min-width: 0 !important;
-  height: 300px !important;
+  height: 270px !important;
   margin: 0 !important;
   overflow: hidden !important;
   background: #e9eef5 !important;
@@ -14738,8 +14747,8 @@ body #page .asme-about-page .about-stat-item {
   justify-content: center !important;
   gap: 7px !important;
   min-width: 0 !important;
-  min-height: 128px !important;
-  padding: 22px 14px !important;
+  min-height: 116px !important;
+  padding: 18px 14px !important;
   background: #f8fafc !important;
   border: 1px solid var(--asme-line, #e5e7eb) !important;
   border-top: 3px solid #bb0000 !important;
@@ -14825,8 +14834,8 @@ body #page .asme-about-page .about-semester-grid {
 body #page .asme-about-page .about-semester-step {
   position: relative !important;
   min-width: 0 !important;
-  min-height: 176px !important;
-  padding: 24px !important;
+  min-height: 160px !important;
+  padding: 22px !important;
   background: #ffffff !important;
   border: 1px solid var(--asme-line, #e5e7eb) !important;
   border-radius: 16px !important;
@@ -14834,7 +14843,7 @@ body #page .asme-about-page .about-semester-step {
 
 body #page .asme-about-page .about-semester-step > span {
   display: block !important;
-  margin: 0 0 18px !important;
+  margin: 0 0 14px !important;
   color: #bb0000 !important;
   font-size: 11px !important;
   font-weight: 850 !important;
@@ -14879,7 +14888,7 @@ body #page .asme-about-page .about-cta-btn--outline:hover {
 
 body #page .asme-about-page .about-cta-section {
   margin: 0 !important;
-  padding: clamp(36px, 4.2vw, 58px) 28px !important;
+  padding: clamp(34px, 3.6vw, 48px) 28px !important;
   background: #0b203b !important;
   border: 1px solid #23405f !important;
   border-radius: 20px !important;
@@ -15020,6 +15029,31 @@ body #page .asme-home .ah-about-link:hover {
     grid-row: 3 !important;
     justify-self: start !important;
     margin-top: 4px !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  body #page .asme-about-page .about-hero-copy {
+    min-height: 0 !important;
+    padding: 34px 36px !important;
+  }
+
+  body #page .asme-about-page .about-hero-copy h1 {
+    max-width: 17ch !important;
+  }
+
+  body #page .asme-about-page .about-hero-image {
+    min-height: 0 !important;
+    aspect-ratio: 16 / 7 !important;
+  }
+
+  body #page .asme-about-page .about-hero-image img {
+    min-height: 0 !important;
   }
 }
 
