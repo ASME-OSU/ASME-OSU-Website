@@ -15152,6 +15152,13 @@ body #page .asme-home .ah-about-link:hover {
 }
 
 @media (max-width: 600px) {
+  body #page .asme-about-page {
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
   body #page .asme-about-page .about-hero-copy {
     padding: 28px 22px !important;
   }
