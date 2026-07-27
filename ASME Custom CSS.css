@@ -14628,6 +14628,7 @@ body #page .asme-about-page .about-impact,
 body #page .asme-about-page .about-semester {
   margin: 0 !important;
   padding: clamp(26px, 3vw, 38px) !important;
+  padding-bottom: 22px !important;
   background: #f3f6fa !important;
   border: 1px solid var(--asme-line, #e5e7eb) !important;
   border-radius: 20px !important;
