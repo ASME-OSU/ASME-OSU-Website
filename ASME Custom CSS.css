@@ -14947,47 +14947,59 @@ body #page .asme-home .ah-about {
   display: block !important;
   min-height: 0 !important;
   max-height: none !important;
-  padding: 30px !important;
+  padding: 24px 30px !important;
   overflow: visible !important;
 }
 
 body #page .asme-home .ah-about-text {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
+  display: grid !important;
+  grid-template-columns: minmax(340px, 0.9fr) minmax(420px, 1.1fr) !important;
+  grid-template-rows: auto auto auto !important;
+  align-items: start !important;
+  gap: 0 42px !important;
   width: 100% !important;
-  max-width: 900px !important;
+  max-width: none !important;
   margin: 0 auto !important;
-  text-align: center !important;
+  text-align: left !important;
 }
 
 body #page .asme-home .ah-about-text .ah-eyebrow-dark {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
   margin: 0 0 8px !important;
-  text-align: center !important;
+  text-align: left !important;
 }
 
 body #page .asme-home .ah-about-text .ah-section-title {
-  max-width: 620px !important;
-  margin: 0 0 12px !important;
-  font-size: 28px !important;
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+  max-width: 520px !important;
+  margin: 0 !important;
+  font-size: 25px !important;
   line-height: 1.08 !important;
-  text-align: center !important;
+  text-align: left !important;
 }
 
 body #page .asme-home .ah-about-text > p:not(:has(> .ah-about-link)) {
+  grid-column: 2 !important;
+  grid-row: 1 / span 3 !important;
+  align-self: center !important;
   max-width: 760px !important;
-  margin: 0 0 16px !important;
+  margin: 0 !important;
   font-size: 14px !important;
   line-height: 1.58 !important;
-  text-align: center !important;
+  text-align: left !important;
 }
 
 /* WordPress wraps the CTA anchor in its own paragraph. Keep either markup
-   centered as the final item in this single, cohesive content stack. */
+   directly beneath the title so the horizontal teaser stays compact. */
 body #page .asme-home .ah-about-text > .ah-about-link,
 body #page .asme-home .ah-about-text > p:has(> .ah-about-link) {
-  align-self: center !important;
-  margin: 0 !important;
+  grid-column: 1 !important;
+  grid-row: 3 !important;
+  align-self: start !important;
+  justify-self: start !important;
+  margin: 14px 0 0 !important;
 }
 
 body #page .asme-home .ah-about-text > p:has(> .ah-about-link) {
@@ -15028,6 +15040,11 @@ body #page .asme-home .ah-about-link:hover {
   body #page .asme-about-page .about-pillar,
   body #page .asme-about-page .about-semester-step {
     min-height: 0 !important;
+  }
+
+  body #page .asme-home .ah-about-text {
+    grid-template-columns: minmax(300px, 0.9fr) minmax(360px, 1.1fr) !important;
+    gap: 0 32px !important;
   }
 
 }
@@ -15112,11 +15129,13 @@ body #page .asme-home .ah-about-link:hover {
   }
 
   body #page .asme-home .ah-about-text {
-    display: flex !important;
+    display: block !important;
   }
 
+  body #page .asme-home .ah-about-text > .ah-about-link,
   body #page .asme-home .ah-about-text > p:has(> .ah-about-link) {
     width: auto !important;
+    margin-top: 0 !important;
   }
 
   body #page .asme-home .ah-about-text .ah-eyebrow-dark {
@@ -15252,7 +15271,6 @@ body #page .asme-home .ah-about-link:hover {
   }
 
   body #page .asme-home .ah-about-text {
-    align-items: stretch !important;
     text-align: left !important;
   }
 
