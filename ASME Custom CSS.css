@@ -55,98 +55,234 @@
 /* Sponsor page: one-time Zeffy donation callout */
 body #page .asme-sponsor-page .sponsor-donation,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation {
+  position: relative !important;
   display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr) !important;
-  gap: 32px !important;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.72fr) !important;
+  gap: clamp(36px, 6vw, 84px) !important;
   align-items: center !important;
-  margin: 0 auto 36px !important;
-  padding: 32px 36px !important;
-  border: 1px solid rgba(15, 52, 96, 0.14) !important;
-  border-left: 5px solid #bb0000 !important;
-  border-radius: 16px !important;
-  background: #ffffff !important;
-  box-shadow: 0 14px 38px rgba(15, 52, 96, 0.10) !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  margin: 0 auto 40px !important;
+  padding: clamp(34px, 5vw, 52px) clamp(28px, 5vw, 64px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 88% 20%, rgba(187, 0, 0, 0.34), transparent 31%),
+    linear-gradient(135deg, #091c34 0%, #0f3460 62%, #173f6d 100%) !important;
+  box-shadow: 0 22px 52px rgba(9, 28, 52, 0.24) !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation::after,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation::after {
+  content: "" !important;
+  position: absolute !important;
+  z-index: -1 !important;
+  right: -72px !important;
+  bottom: -94px !important;
+  width: 250px !important;
+  height: 250px !important;
+  border: 42px solid rgba(255, 255, 255, 0.035) !important;
+  border-radius: 50% !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation-copy,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-copy,
+body #page .asme-sponsor-page .sponsor-donation-action,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-action {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation-kicker,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-kicker {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  margin: 0 0 10px !important;
+  color: rgba(255, 255, 255, 0.68) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.14em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation-kicker span,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-kicker span {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #ef4444 !important;
+  box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.14) !important;
 }
 
 body #page .asme-sponsor-page .sponsor-donation h2,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation h2 {
-  margin: 6px 0 8px !important;
-  color: #0f3460 !important;
-  font-size: clamp(24px, 3vw, 34px) !important;
-  line-height: 1.12 !important;
+  max-width: 620px !important;
+  margin: 0 0 10px !important;
+  color: #ffffff !important;
+  font-size: clamp(30px, 3.6vw, 44px) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -0.025em !important;
 }
 
 body #page .asme-sponsor-page .sponsor-donation-copy > p,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation-copy > p {
+  max-width: 640px !important;
   margin: 0 !important;
-  color: #4b5563 !important;
-  font-size: 15px !important;
-  line-height: 1.65 !important;
+  color: rgba(255, 255, 255, 0.74) !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
 }
 
 body #page .asme-sponsor-page .sponsor-donation-action,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation-action {
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 12px !important;
+  align-items: stretch !important;
+  gap: 14px !important;
 }
 
 body #page .asme-sponsor-page .sponsor-donation-button,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation-button {
   display: inline-flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  min-height: 46px !important;
-  padding: 12px 20px !important;
-  border: 2px solid #bb0000 !important;
-  border-radius: 8px !important;
-  background: #bb0000 !important;
-  color: #ffffff !important;
-  font-size: 14px !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  min-height: 54px !important;
+  padding: 14px 18px 14px 21px !important;
+  border: 1px solid rgba(255, 255, 255, 0.92) !important;
+  border-radius: 11px !important;
+  background: #ffffff !important;
+  color: #0f3460 !important;
+  font-size: 15px !important;
   font-weight: 800 !important;
   line-height: 1.2 !important;
   text-decoration: none !important;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18) !important;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation-button svg,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-button svg {
+  width: 22px !important;
+  height: 22px !important;
+  fill: none !important;
+  stroke: #bb0000 !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  transition: transform 0.2s ease !important;
 }
 
 body #page .asme-sponsor-page .sponsor-donation-button:hover,
 body #page .asme-sponsor-page .sponsor-donation-button:focus-visible,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation-button:hover,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation-button:focus-visible {
-  border-color: #8f0000 !important;
-  background: #8f0000 !important;
-  color: #ffffff !important;
-  transform: translateY(-1px) !important;
+  border-color: #ffffff !important;
+  background: #f8fafc !important;
+  color: #bb0000 !important;
+  outline: 3px solid rgba(255, 255, 255, 0.28) !important;
+  outline-offset: 3px !important;
+  transform: translateY(-2px) !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation-button:hover svg,
+body #page .asme-sponsor-page .sponsor-donation-button:focus-visible svg,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-button:hover svg,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-button:focus-visible svg {
+  transform: translateX(3px) !important;
 }
 
 body #page .asme-sponsor-page .sponsor-donation-note,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation-note {
+  display: grid !important;
+  grid-template-columns: 22px minmax(0, 1fr) !important;
+  gap: 11px !important;
+  align-items: start !important;
   margin: 0 !important;
-  color: #4b5563 !important;
-  font-size: 13px !important;
-  line-height: 1.55 !important;
+  padding: 13px 15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  border-radius: 11px !important;
+  background: rgba(4, 18, 35, 0.34) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation-note > svg,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-note > svg {
+  width: 21px !important;
+  height: 21px !important;
+  margin-top: 1px !important;
+  fill: none !important;
+  stroke: #fca5a5 !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation-note p,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-note p {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
 }
 
 body #page .asme-sponsor-page .sponsor-donation-note strong,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation-note strong {
-  color: #111827 !important;
+  color: #ffffff !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+body #page .asme-sponsor-page .sponsor-donation-note b,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-note b {
+  color: #ffffff !important;
+  font-weight: 900 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-sponsor-page .sponsor-donation-button,
+  body #page .asme-sponsor-page .sponsor-donation-button svg,
+  html body #page .entry-content .asme-sponsor-page .sponsor-donation-button,
+  html body #page .entry-content .asme-sponsor-page .sponsor-donation-button svg {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body #page .asme-sponsor-page .sponsor-donation,
+  html body #page .entry-content .asme-sponsor-page .sponsor-donation {
+    grid-template-columns: 1fr !important;
+    gap: 26px !important;
+  }
 }
 
 @media (max-width: 760px) {
   body #page .asme-sponsor-page .sponsor-donation,
   html body #page .entry-content .asme-sponsor-page .sponsor-donation {
     grid-template-columns: 1fr !important;
-    gap: 22px !important;
-    padding: 26px 22px !important;
+    gap: 24px !important;
+    margin-bottom: 30px !important;
+    padding: 30px 22px 24px !important;
+    border-radius: 18px !important;
   }
 
   body #page .asme-sponsor-page .sponsor-donation-button,
   html body #page .entry-content .asme-sponsor-page .sponsor-donation-button {
     width: 100% !important;
   }
-}
 
+  body #page .asme-sponsor-page .sponsor-donation h2,
+  html body #page .entry-content .asme-sponsor-page .sponsor-donation h2 {
+    font-size: clamp(29px, 9vw, 38px) !important;
+  }
+}
 /* Member Points public dashboard */
 body #page .asme-members-page .asme-member-dashboard {
   margin: 32px 0;
