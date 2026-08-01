@@ -143,6 +143,17 @@ html body #page .entry-content .asme-sponsor-page .sponsor-donation-action {
   gap: 14px !important;
 }
 
+body #page .asme-sponsor-page .sponsor-donation br,
+body #page .asme-sponsor-page .sponsor-donation-copy > p:empty,
+body #page .asme-sponsor-page .sponsor-donation-action > p:empty,
+body #page .asme-sponsor-page .sponsor-donation-note > p:empty,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation br,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-copy > p:empty,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-action > p:empty,
+html body #page .entry-content .asme-sponsor-page .sponsor-donation-note > p:empty {
+  display: none !important;
+}
+
 body #page .asme-sponsor-page .sponsor-donation-button,
 html body #page .entry-content .asme-sponsor-page .sponsor-donation-button {
   display: inline-flex !important;
