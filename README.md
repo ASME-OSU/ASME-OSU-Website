@@ -72,6 +72,39 @@ max-width: calc(100vw - 32px);
 
 Use the existing page wrapper classes, such as `asme-home`, `asme-about-page`, `asme-join-page`, `asme-member-resources-page`, and `asme-members-page`, instead of adding one-off width rules. If a page looks edge-to-edge on mobile, fix it in the shared gutter rule rather than adding a separate page-specific patch.
 
+## WordPress Auto-Formatting (`wpautop`)
+
+WordPress can automatically insert `<p>` and `<br>` elements when custom page HTML is saved in the Classic Editor. This is a recurring source of layout bugs on this site. The repository HTML may look correct locally while the live WordPress DOM contains additional elements.
+
+This is especially disruptive inside CSS grid and flex components. A direct `<br>` can become an unintended grid row, making a card taller or pushing its real content toward the top. Empty paragraphs can also create unexplained gaps between cards or sections.
+
+Typical symptoms include:
+
+- content that is vertically off-center only on the live site;
+- unexplained space below cards or sections;
+- grid rows that are taller than their configured minimum height;
+- a local preview that does not match WordPress.
+
+When diagnosing one of these issues, inspect the live DOM—not only the HTML file—and check for direct `BR` or empty `P` children. Also compare their computed `display`, height, grid row, and margins.
+
+Use narrowly scoped defensive rules such as:
+
+```css
+/* WordPress may insert paragraphs between grid children. */
+.component-grid > p {
+  display: none !important;
+}
+
+/* A direct break inside a grid card becomes a phantom grid row. */
+.component-card > br {
+  display: none !important;
+}
+```
+
+Do not use a broad rule such as `.component-card p { display: none; }`; legitimate descriptions are also paragraphs. Scope cleanup selectors to a specific page and direct-child relationship. If an empty paragraph has no measurable height, leave it alone rather than risking real content.
+
+For the Current Sponsors page, the relevant protection is near the end of `ASME Custom CSS.css` and hides direct WordPress-inserted breaks inside `.sponsor-card-primary`. After any sponsor-card markup change, verify both the local preview and the live WordPress DOM before adjusting card heights or padding.
+
 ## Member Pages
 
 The member pages are sensitive to GeneratePress heading defaults. For compact section labels, use classed paragraph tags such as:
