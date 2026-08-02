@@ -3144,6 +3144,20 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   }
 }
 
+/* Avoid stacking the featured section's bottom margin with the
+   divider margins. WordPress-inserted empty paragraphs are already
+   hidden inside the sponsor grid and do not contribute spacing. */
+body #page .asme-sponsors-page > .sponsors-featured,
+html body #page .entry-content .asme-sponsors-page > .sponsors-featured {
+  margin-bottom: 0 !important;
+}
+
+body #page .asme-sponsors-page > .sponsors-divider,
+html body #page .entry-content .asme-sponsors-page > .sponsors-divider {
+  margin-top: 24px !important;
+  margin-bottom: 32px !important;
+}
+
 .asme-gallery-page .gallery-icon,
 .asme-gallery-page .gallery-icon a {
   display: block !important;
