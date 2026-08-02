@@ -15746,3 +15746,13 @@ html body #page .entry-content .asme-sponsors-page .sponsors-featured .sponsor-c
     height: auto !important;
   }
 }
+
+/* WordPress wpautop injects a direct <br> and an empty paragraph
+   into each custom sponsor card. In a CSS grid, the <br> becomes an
+   unintended final row and pushes the real card content upward. */
+body #page .asme-sponsors-page .sponsor-card-primary > br,
+body #page .asme-sponsors-page .sponsor-card-primary > p:empty,
+html body #page .entry-content .asme-sponsors-page .sponsor-card-primary > br,
+html body #page .entry-content .asme-sponsors-page .sponsor-card-primary > p:empty {
+  display: none !important;
+}
