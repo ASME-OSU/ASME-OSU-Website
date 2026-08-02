@@ -15711,3 +15711,24 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card--buckeye-tier .
     color: #c3cfdd !important;
   }
 }
+
+/* Featured sponsor cards share one section label, so card-level
+   sponsor pills are redundant. Let desktop rows fit their content. */
+body #page .asme-sponsors-page .sponsors-featured .sponsor-card-primary::before,
+html body #page .entry-content .asme-sponsors-page .sponsors-featured .sponsor-card-primary::before {
+  display: none !important;
+  content: none !important;
+}
+
+@media (min-width: 901px) {
+  body #page .asme-sponsors-page .sponsors-lower-tier-row,
+  html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row {
+    grid-auto-rows: auto !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-lower-tier-row > .sponsor-card-primary,
+  html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row > .sponsor-card-primary {
+    min-height: 138px !important;
+    height: auto !important;
+  }
+}
