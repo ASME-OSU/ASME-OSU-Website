@@ -68,9 +68,17 @@
     </div>
   </div>
 
-  <div class="ah-featured-event" id="asmeFeaturedEvent">
+  <div class="ah-featured-event" id="asmeFeaturedEvent" role="region" aria-labelledby="asmeFeaturedTitle">
+    <svg class="ah-featured-orbit" aria-hidden="true" focusable="false">
+      <rect class="ah-featured-orbit-glow" pathLength="100"></rect>
+      <rect class="ah-featured-orbit-line" pathLength="100"></rect>
+    </svg>
+
     <div class="ah-featured-event-copy">
-      <div class="ah-eyebrow-dark">Featured Upcoming Event</div>
+      <div class="ah-eyebrow-dark ah-featured-eyebrow">
+        <span class="ah-event-beacon" aria-hidden="true"></span>
+        Featured Upcoming Event
+      </div>
       <h2 class="ah-section-title" id="asmeFeaturedTitle">Upcoming ASME Event</h2>
       <p id="asmeFeaturedDescription">Loading the next event from the ASME calendar...</p>
 

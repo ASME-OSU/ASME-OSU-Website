@@ -15756,3 +15756,296 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card-primary > br,
 html body #page .entry-content .asme-sponsors-page .sponsor-card-primary > p:empty {
   display: none !important;
 }
+
+/* ============================================================
+   HOME FEATURED EVENT — SCARLET CIRCUIT SPOTLIGHT
+   A restrained moving perimeter signal and blueprint grid give
+   the calendar-fed card an active engineering identity.
+   ============================================================ */
+
+body #page .asme-home .ah-featured-event {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 230px !important;
+  overflow: hidden !important;
+  padding: 34px 38px !important;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(187, 0, 0, 0.11), transparent 25%),
+    linear-gradient(rgba(15, 52, 96, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 52, 96, 0.035) 1px, transparent 1px),
+    #ffffff !important;
+  background-size: auto, 28px 28px, 28px 28px, auto !important;
+  border-color: rgba(15, 52, 96, 0.18) !important;
+  box-shadow: 0 16px 38px rgba(15, 52, 96, 0.08) !important;
+}
+
+body #page .asme-home .ah-featured-event::before {
+  position: absolute !important;
+  z-index: -1 !important;
+  top: -118px !important;
+  right: -78px !important;
+  width: 330px !important;
+  height: 330px !important;
+  border: 1px solid rgba(187, 0, 0, 0.10) !important;
+  border-radius: 50% !important;
+  box-shadow:
+    0 0 0 38px rgba(187, 0, 0, 0.025),
+    0 0 0 82px rgba(15, 52, 96, 0.025) !important;
+  content: "" !important;
+  pointer-events: none !important;
+}
+
+body #page .asme-home .ah-featured-event-copy,
+body #page .asme-home .ah-featured-button {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+body #page .asme-home .ah-featured-event-copy {
+  max-width: 980px !important;
+}
+
+body #page .asme-home .ah-featured-eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  margin-bottom: 8px !important;
+}
+
+body #page .asme-home .ah-event-beacon {
+  position: relative !important;
+  display: inline-block !important;
+  flex: 0 0 auto !important;
+  width: 8px !important;
+  height: 8px !important;
+  background: #bb0000 !important;
+  border: 2px solid rgba(255, 255, 255, 0.92) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 0 1px rgba(187, 0, 0, 0.30) !important;
+}
+
+body #page .asme-home .ah-event-beacon::after {
+  position: absolute !important;
+  inset: -6px !important;
+  border: 1px solid rgba(187, 0, 0, 0.42) !important;
+  border-radius: 50% !important;
+  content: "" !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: scale(0.55);
+}
+
+body #page .asme-home .ah-featured-event .ah-section-title {
+  max-width: 900px !important;
+  margin-bottom: 13px !important;
+  font-size: clamp(29px, 2.25vw, 40px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.025em !important;
+}
+
+body #page .asme-home .ah-featured-event p {
+  max-width: 880px !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+
+body #page .asme-home .ah-featured-meta {
+  gap: 10px !important;
+  margin-top: 18px !important;
+}
+
+body #page .asme-home .ah-featured-meta span {
+  gap: 7px !important;
+  min-height: 34px !important;
+  padding: 8px 13px !important;
+  background: rgba(232, 244, 253, 0.82) !important;
+  border: 1px solid rgba(15, 52, 96, 0.08) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+body #page .asme-home .ah-featured-meta span::before {
+  color: #bb0000 !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+
+body #page .asme-home .ah-featured-meta span:first-child::before {
+  content: "◷" !important;
+}
+
+body #page .asme-home .ah-featured-meta span:nth-child(2)::before {
+  content: "⌖" !important;
+}
+
+body #page .asme-home .ah-featured-button {
+  min-width: 168px !important;
+  min-height: 52px !important;
+  padding: 14px 24px !important;
+  box-shadow: 0 10px 24px rgba(187, 0, 0, 0.24) !important;
+}
+
+body #page .asme-home .ah-featured-orbit {
+  position: absolute !important;
+  z-index: 4 !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+}
+
+body #page .asme-home .ah-featured-orbit rect {
+  x: 1px;
+  y: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  rx: 17px;
+  ry: 17px;
+  fill: none !important;
+  stroke-dasharray: 9 91 !important;
+  stroke-linecap: round !important;
+  vector-effect: non-scaling-stroke !important;
+}
+
+body #page .asme-home .ah-featured-orbit-glow {
+  stroke: rgba(255, 55, 55, 0.42) !important;
+  stroke-width: 7px !important;
+  filter: blur(3px) !important;
+}
+
+body #page .asme-home .ah-featured-orbit-line {
+  stroke: #f43f3f !important;
+  stroke-width: 2.5px !important;
+  filter: drop-shadow(0 0 4px rgba(255, 70, 70, 0.80)) !important;
+}
+
+@keyframes asme-featured-orbit-lap {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  7% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 1;
+    stroke-dashoffset: -100;
+  }
+  84%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes asme-event-beacon-pulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body #page .asme-home .ah-featured-orbit rect {
+    animation: asme-featured-orbit-lap 6.8s linear infinite !important;
+  }
+
+  body #page .asme-home .ah-event-beacon::after {
+    animation: asme-event-beacon-pulse 2.8s ease-in-out infinite !important;
+  }
+
+  body #page .asme-home .ah-featured-event:hover .ah-featured-orbit rect {
+    animation-duration: 4.8s !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-home .ah-featured-event {
+    background:
+      radial-gradient(circle at 88% 12%, rgba(187, 0, 0, 0.22), transparent 28%),
+      linear-gradient(rgba(147, 197, 253, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(147, 197, 253, 0.035) 1px, transparent 1px),
+      #0f1b2d !important;
+    background-size: auto, 28px 28px, 28px 28px, auto !important;
+    border-color: rgba(147, 197, 253, 0.22) !important;
+    box-shadow: 0 18px 42px rgba(2, 8, 23, 0.26) !important;
+  }
+
+  body #page .asme-home .ah-featured-event::before {
+    border-color: rgba(248, 113, 113, 0.12) !important;
+    box-shadow:
+      0 0 0 38px rgba(187, 0, 0, 0.035),
+      0 0 0 82px rgba(147, 197, 253, 0.025) !important;
+  }
+
+  body #page .asme-home .ah-featured-meta span {
+    background: rgba(30, 41, 59, 0.84) !important;
+    border-color: rgba(148, 163, 184, 0.12) !important;
+    color: #dbeafe !important;
+  }
+
+  body #page .asme-home .ah-event-beacon {
+    border-color: #0f1b2d !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body #page .asme-home .ah-featured-event {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    padding: 27px 23px !important;
+  }
+
+  body #page .asme-home .ah-featured-event-copy,
+  body #page .asme-home .ah-featured-meta {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body #page .asme-home .ah-featured-event::before {
+    top: -145px !important;
+    right: -160px !important;
+  }
+
+  body #page .asme-home .ah-featured-event .ah-section-title {
+    font-size: clamp(27px, 8vw, 34px) !important;
+  }
+
+  body #page .asme-home .ah-featured-event p {
+    font-size: 15px !important;
+  }
+
+  body #page .asme-home .ah-featured-meta span {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+    white-space: normal !important;
+  }
+
+  body #page .asme-home .ah-featured-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-home .ah-featured-orbit-glow {
+    display: none !important;
+  }
+
+  body #page .asme-home .ah-featured-orbit-line {
+    opacity: 1 !important;
+    stroke-dasharray: 5 95 !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
