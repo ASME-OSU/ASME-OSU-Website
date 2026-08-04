@@ -16089,45 +16089,38 @@ body #page .asme-home .ah-featured-orbit-line {
   body .main-navigation .main-nav > ul > li > a,
   body .nav-menu > li > a {
     position: relative !important;
+    background-image: linear-gradient(#ef4444, #ef4444) !important;
+    background-repeat: no-repeat !important;
+    background-position: center calc(100% - 1px) !important;
+    background-size: 0 2px !important;
+    transition:
+      background-size 190ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease !important;
   }
 
-  body .main-navigation .main-nav > ul > li > a::after,
-  body .nav-menu > li > a::after {
-    content: '' !important;
-    position: absolute !important;
-    right: 12px !important;
-    bottom: 1px !important;
-    left: 12px !important;
-    height: 2px !important;
-    border-radius: 999px !important;
-    background: #ef4444 !important;
-    opacity: 0 !important;
-    transform: scaleX(0.35) !important;
-    transition: opacity 170ms ease, transform 190ms cubic-bezier(0.22, 1, 0.36, 1) !important;
-    pointer-events: none !important;
+  body .main-navigation .main-nav > ul > li > a:hover,
+  body .main-navigation .main-nav > ul > li > a:focus-visible,
+  body .nav-menu > li > a:hover,
+  body .nav-menu > li > a:focus-visible {
+    background-size: calc(100% - 24px) 2px !important;
   }
 
-  body .main-navigation .main-nav > ul > li > a:hover::after,
-  body .main-navigation .main-nav > ul > li > a:focus-visible::after,
-  body .nav-menu > li > a:hover::after,
-  body .nav-menu > li > a:focus-visible::after {
-    opacity: 1 !important;
-    transform: scaleX(1) !important;
-  }
-
-  body .main-navigation .main-nav > ul > li.current-menu-item > a::after,
-  body .main-navigation .main-nav > ul > li.current_page_item > a::after,
-  body .main-navigation .main-nav > ul > li.current-menu-parent > a::after,
-  body .main-navigation .main-nav > ul > li.current-menu-ancestor > a::after,
-  body .main-navigation .main-nav > ul > li.current_page_parent > a::after,
-  body .main-navigation .main-nav > ul > li.current_page_ancestor > a::after,
-  body .nav-menu > li.current-menu-item > a::after,
-  body .nav-menu > li.current_page_item > a::after,
-  body .nav-menu > li.current-menu-parent > a::after,
-  body .nav-menu > li.current-menu-ancestor > a::after,
-  body .nav-menu > li.current_page_parent > a::after,
-  body .nav-menu > li.current_page_ancestor > a::after {
-    display: none !important;
+  body .main-navigation .main-nav > ul > li.current-menu-item > a,
+  body .main-navigation .main-nav > ul > li.current_page_item > a,
+  body .main-navigation .main-nav > ul > li.current-menu-parent > a,
+  body .main-navigation .main-nav > ul > li.current-menu-ancestor > a,
+  body .main-navigation .main-nav > ul > li.current_page_parent > a,
+  body .main-navigation .main-nav > ul > li.current_page_ancestor > a,
+  body .nav-menu > li.current-menu-item > a,
+  body .nav-menu > li.current_page_item > a,
+  body .nav-menu > li.current-menu-parent > a,
+  body .nav-menu > li.current-menu-ancestor > a,
+  body .nav-menu > li.current_page_parent > a,
+  body .nav-menu > li.current_page_ancestor > a {
+    background-image: none !important;
   }
 
   body .main-navigation .dropdown-menu-toggle {
@@ -16341,7 +16334,7 @@ body #page .sponsor-donation-button:hover svg {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body .main-navigation .main-nav > ul > li > a::after,
+  body .main-navigation .main-nav > ul > li > a,
   body .main-navigation .dropdown-menu-toggle,
   body #page .asme-join-page .join-faq-item::details-content,
   body #page .asme-points-page-v2 .asme-point-values-compact::details-content,
