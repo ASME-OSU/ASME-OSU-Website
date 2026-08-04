@@ -16091,8 +16091,8 @@ body #page .asme-home .ah-featured-orbit-line {
     position: relative !important;
   }
 
-  body .main-navigation .main-nav > ul > li:not(.current-menu-item):not(.current_page_item):not(.current-menu-parent):not(.current-menu-ancestor):not(.current_page_parent):not(.current_page_ancestor) > a::after,
-  body .nav-menu > li:not(.current-menu-item):not(.current_page_item):not(.current-menu-parent):not(.current-menu-ancestor):not(.current_page_parent):not(.current_page_ancestor) > a::after {
+  body .main-navigation .main-nav > ul > li > a::after,
+  body .nav-menu > li > a::after {
     content: '' !important;
     position: absolute !important;
     right: 12px !important;
@@ -16113,6 +16113,21 @@ body #page .asme-home .ah-featured-orbit-line {
   body .nav-menu > li > a:focus-visible::after {
     opacity: 1 !important;
     transform: scaleX(1) !important;
+  }
+
+  body .main-navigation .main-nav > ul > li.current-menu-item > a::after,
+  body .main-navigation .main-nav > ul > li.current_page_item > a::after,
+  body .main-navigation .main-nav > ul > li.current-menu-parent > a::after,
+  body .main-navigation .main-nav > ul > li.current-menu-ancestor > a::after,
+  body .main-navigation .main-nav > ul > li.current_page_parent > a::after,
+  body .main-navigation .main-nav > ul > li.current_page_ancestor > a::after,
+  body .nav-menu > li.current-menu-item > a::after,
+  body .nav-menu > li.current_page_item > a::after,
+  body .nav-menu > li.current-menu-parent > a::after,
+  body .nav-menu > li.current-menu-ancestor > a::after,
+  body .nav-menu > li.current_page_parent > a::after,
+  body .nav-menu > li.current_page_ancestor > a::after {
+    display: none !important;
   }
 
   body .main-navigation .dropdown-menu-toggle {
