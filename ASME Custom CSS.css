@@ -15923,20 +15923,10 @@ body #page .asme-home .ah-featured-orbit-line {
 }
 
 @keyframes asme-featured-orbit-lap {
-  0% {
-    opacity: 0;
+  from {
     stroke-dashoffset: 0;
   }
-  7% {
-    opacity: 1;
-  }
-  76% {
-    opacity: 1;
-    stroke-dashoffset: -100;
-  }
-  84%,
-  100% {
-    opacity: 0;
+  to {
     stroke-dashoffset: -100;
   }
 }
@@ -15960,10 +15950,6 @@ body #page .asme-home .ah-featured-orbit-line {
 
   body #page .asme-home .ah-event-beacon::after {
     animation: asme-event-beacon-pulse 2.8s ease-in-out infinite !important;
-  }
-
-  body #page .asme-home .ah-featured-event:hover .ah-featured-orbit rect {
-    animation-duration: 4.8s !important;
   }
 }
 
