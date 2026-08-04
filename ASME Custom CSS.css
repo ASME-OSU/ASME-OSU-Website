@@ -16068,3 +16068,290 @@ body #page .asme-home .ah-featured-orbit-line {
     stroke-dashoffset: 0 !important;
   }
 }
+
+/* ============================================================
+   SITEWIDE MOTION POLISH
+   Purposeful feedback for navigation, expandable content,
+   galleries, forms, and member data. Decorative loops stay rare.
+   ============================================================ */
+
+@keyframes asme-data-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes asme-dashboard-enter {
+  from { opacity: 0; transform: translateY(7px) scale(0.995); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  body .main-navigation .main-nav > ul > li > a,
+  body .nav-menu > li > a {
+    position: relative !important;
+  }
+
+  body .main-navigation .main-nav > ul > li:not(.current-menu-item):not(.current_page_item):not(.current-menu-parent):not(.current-menu-ancestor):not(.current_page_parent):not(.current_page_ancestor) > a::after,
+  body .nav-menu > li:not(.current-menu-item):not(.current_page_item):not(.current-menu-parent):not(.current-menu-ancestor):not(.current_page_parent):not(.current_page_ancestor) > a::after {
+    content: '' !important;
+    position: absolute !important;
+    right: 12px !important;
+    bottom: 1px !important;
+    left: 12px !important;
+    height: 2px !important;
+    border-radius: 999px !important;
+    background: #ef4444 !important;
+    opacity: 0 !important;
+    transform: scaleX(0.35) !important;
+    transition: opacity 170ms ease, transform 190ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+    pointer-events: none !important;
+  }
+
+  body .main-navigation .main-nav > ul > li > a:hover::after,
+  body .main-navigation .main-nav > ul > li > a:focus-visible::after,
+  body .nav-menu > li > a:hover::after,
+  body .nav-menu > li > a:focus-visible::after {
+    opacity: 1 !important;
+    transform: scaleX(1) !important;
+  }
+
+  body .main-navigation .dropdown-menu-toggle {
+    transform-origin: center !important;
+    transition: transform 190ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  body .main-navigation .menu-item-has-children:hover > a .dropdown-menu-toggle,
+  body .main-navigation .menu-item-has-children.sfHover > a .dropdown-menu-toggle,
+  body .main-navigation .menu-item-has-children:focus-within > a .dropdown-menu-toggle {
+    transform: rotate(180deg) !important;
+  }
+}
+
+/* Expandable content: smooth where supported, graceful native fallback elsewhere. */
+body #page .asme-join-page .join-faq-item,
+body #page .asme-points-page-v2 .asme-point-values-compact {
+  interpolate-size: allow-keywords;
+}
+
+body #page .asme-join-page .join-faq-item summary::after {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), color 180ms ease !important;
+}
+
+body #page .asme-join-page .join-faq-item[open] summary::after {
+  content: '+' !important;
+  transform: translateY(-50%) rotate(45deg) !important;
+}
+
+body #page .asme-join-page .join-faq-item summary,
+body #page .asme-points-page-v2 .asme-point-values-compact summary {
+  transition: background-color 180ms ease, color 180ms ease !important;
+}
+
+body #page .asme-join-page .join-faq-item summary:hover,
+body #page .asme-points-page-v2 .asme-point-values-compact summary:hover {
+  background: rgba(187, 0, 0, 0.045) !important;
+}
+
+@supports selector(details::details-content) {
+  body #page .asme-join-page .join-faq-item::details-content,
+  body #page .asme-points-page-v2 .asme-point-values-compact::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition:
+      block-size 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 200ms ease,
+      content-visibility 300ms allow-discrete;
+  }
+
+  body #page .asme-join-page .join-faq-item[open]::details-content,
+  body #page .asme-points-page-v2 .asme-point-values-compact[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+/* Gallery: make clickability obvious without covering the photography. */
+body #page .asme-gallery-page .gallery-item a {
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+  border-radius: inherit !important;
+  isolation: isolate !important;
+}
+
+body #page .asme-gallery-page .gallery-item a::before,
+body #page .asme-gallery-page .gallery-item a::after {
+  position: absolute !important;
+  z-index: 2 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 190ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+body #page .asme-gallery-page .gallery-item a::before {
+  content: '' !important;
+  inset: 0 !important;
+  background: linear-gradient(to top, rgba(3, 10, 22, 0.62), transparent 48%) !important;
+}
+
+body #page .asme-gallery-page .gallery-item a::after {
+  content: 'View photo  ↗' !important;
+  right: 16px !important;
+  bottom: 14px !important;
+  padding: 7px 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 999px !important;
+  background: rgba(8, 18, 34, 0.78) !important;
+  color: #ffffff !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em !important;
+  transform: translateY(7px) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+body #page .asme-gallery-page .gallery-item a:hover::before,
+body #page .asme-gallery-page .gallery-item a:hover::after,
+body #page .asme-gallery-page .gallery-item a:focus-visible::before,
+body #page .asme-gallery-page .gallery-item a:focus-visible::after {
+  opacity: 1 !important;
+}
+
+body #page .asme-gallery-page .gallery-item a:hover::after,
+body #page .asme-gallery-page .gallery-item a:focus-visible::after {
+  transform: translateY(0) !important;
+}
+
+.asme-lightbox-content {
+  transition: opacity 160ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.asme-lightbox-content.is-switching {
+  opacity: 0 !important;
+  transform: translateX(var(--asme-lightbox-exit-shift, -10px)) scale(0.992) !important;
+}
+
+.asme-lightbox-content.is-entering {
+  opacity: 0 !important;
+  transform: translateX(var(--asme-lightbox-shift, 16px)) scale(0.992) !important;
+  transition: none !important;
+}
+
+/* Member tools: data arrives with short, one-time feedback. */
+body #page .asme-points-page-v2 .asme-data-enter {
+  animation: asme-data-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--asme-data-delay, 0ms);
+}
+
+body #page .asme-points-page-v2 .asme-dashboard-enter {
+  animation: asme-dashboard-enter 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+body #page .asme-points-page-v2 .asme-event-type-bar {
+  transition: width 620ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+body #page .asme-points-page-v2 .asme-member-search-results:not([hidden]) {
+  transform-origin: top center !important;
+  animation: asme-dashboard-enter 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Forms: focused fields feel responsive without bouncing. */
+body #page .asme-join-page .join-field label,
+body #page .asme-sponsor-page .sponsor-form-group label {
+  transition: color 180ms ease !important;
+}
+
+body #page .asme-join-page .join-field:focus-within label,
+body #page .asme-sponsor-page .sponsor-form-group:focus-within label {
+  color: #ef4444 !important;
+}
+
+body #page .asme-join-page .join-field input,
+body #page .asme-sponsor-page .sponsor-form-group input,
+body #page .asme-sponsor-page .sponsor-form-group select,
+body #page .asme-sponsor-page .sponsor-form-group textarea,
+body #page .asme-points-page-v2 .asme-member-search-field input {
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background-color 180ms ease !important;
+}
+
+body #page .asme-join-page .join-field input:focus,
+body #page .asme-sponsor-page .sponsor-form-group input:focus,
+body #page .asme-sponsor-page .sponsor-form-group select:focus,
+body #page .asme-sponsor-page .sponsor-form-group textarea:focus,
+body #page .asme-points-page-v2 .asme-member-search-field input:focus {
+  transform: translateY(-1px) !important;
+}
+
+/* Consistent press and icon feedback on primary actions. */
+body #page .ah-btn-p:active,
+body #page .ah-btn-o:active,
+body #page .ah-featured-button:active,
+body #page .acp-subscribe-btn:active,
+body #page .join-submit-button:active,
+body #page .sponsor-primary-button:active,
+body #page .sponsor-tier-cta:active,
+body #page .sponsor-form-submit:active,
+body #page .sponsor-donation-button:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+body #page .sponsor-donation-button svg,
+.asme-footer-social a svg {
+  transition: transform 190ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+body #page .sponsor-donation-button:hover svg {
+  transform: translateX(3px) !important;
+}
+
+.asme-footer-social a:hover svg,
+.asme-footer-social a:focus-visible svg {
+  transform: translateY(-2px) scale(1.06) !important;
+}
+
+@media (hover: none) {
+  body #page .asme-gallery-page .gallery-item a::before,
+  body #page .asme-gallery-page .gallery-item a::after {
+    display: none !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-join-page .join-faq-item summary:hover,
+  body #page .asme-points-page-v2 .asme-point-values-compact summary:hover {
+    background: rgba(239, 68, 68, 0.08) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .main-navigation .main-nav > ul > li > a::after,
+  body .main-navigation .dropdown-menu-toggle,
+  body #page .asme-join-page .join-faq-item::details-content,
+  body #page .asme-points-page-v2 .asme-point-values-compact::details-content,
+  body #page .asme-gallery-page .gallery-item a::before,
+  body #page .asme-gallery-page .gallery-item a::after,
+  .asme-lightbox-content,
+  body #page .asme-points-page-v2 .asme-data-enter,
+  body #page .asme-points-page-v2 .asme-dashboard-enter,
+  body #page .asme-points-page-v2 .asme-member-search-results:not([hidden]),
+  body #page .asme-points-page-v2 .asme-event-type-bar,
+  body #page .asme-join-page .join-field input,
+  body #page .asme-sponsor-page .sponsor-form-group input,
+  body #page .asme-sponsor-page .sponsor-form-group select,
+  body #page .asme-sponsor-page .sponsor-form-group textarea,
+  body #page .asme-points-page-v2 .asme-member-search-field input,
+  body #page .sponsor-donation-button svg,
+  .asme-footer-social a svg {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-data-enter,
+  body #page .asme-points-page-v2 .asme-dashboard-enter,
+  body #page .asme-points-page-v2 .asme-member-search-results:not([hidden]) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

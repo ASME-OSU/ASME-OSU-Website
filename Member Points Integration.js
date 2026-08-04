@@ -26,6 +26,7 @@
     var dashboardStatus = document.getElementById('asmeDashboardStatus');
     var dashboardTopType = document.getElementById('asmeDashboardTopType');
     var dashboardBreakdown = document.getElementById('asmeDashboardBreakdown');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var members = [];
 
     var EVENT_TYPES = [
@@ -91,13 +92,39 @@
       return clean;
     }
 
+    function animateNumber(el, target, prefix, suffix, duration) {
+      if (!el) return;
+      var end = Number(target);
+      if (!Number.isFinite(end) || reduceMotion) {
+        el.textContent = (prefix || '') + (Number.isFinite(end) ? end : target) + (suffix || '');
+        return;
+      }
+      var startTime = null;
+      function frame(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = (prefix || '') + Math.round(end * eased) + (suffix || '');
+        if (progress < 1) window.requestAnimationFrame(frame);
+      }
+      window.requestAnimationFrame(frame);
+    }
+
+    function replayEntrance(el, className) {
+      if (!el || reduceMotion) return;
+      el.classList.remove(className);
+      void el.offsetWidth;
+      el.classList.add(className);
+    }
+
     function renderValues(t) {
       if (!valuesGrid) return;
       valuesGrid.textContent = '';
       var rows = (t.rows || []).filter(function (r) { return value(r, 1) && value(r, 2); });
       if (!rows.length) { valuesGrid.textContent = 'Point values are temporarily unavailable.'; return; }
-      rows.forEach(function (r) {
-        var chip = document.createElement('div'); chip.className = 'asme-point-value-chip';
+      rows.forEach(function (r, index) {
+        var chip = document.createElement('div'); chip.className = 'asme-point-value-chip asme-data-enter';
+        chip.style.setProperty('--asme-data-delay', Math.min(index * 35, 245) + 'ms');
         var name = document.createElement('span'); name.textContent = value(r, 4) || value(r, 1);
         var points = document.createElement('strong'); points.textContent = value(r, 2) + ' pts';
         chip.appendChild(name); chip.appendChild(points); valuesGrid.appendChild(chip);
@@ -140,11 +167,15 @@
       if (dashboardState) dashboardState.hidden = true;
       dashboard.hidden = false;
       dashboard.setAttribute('aria-busy', 'false');
+      replayEntrance(dashboard, 'asme-dashboard-enter');
       if (dashboardName) dashboardName.textContent = member.name;
       if (dashboardPeriod) dashboardPeriod.textContent = member.period || 'Current period';
-      if (dashboardRank) dashboardRank.textContent = Number.isFinite(member.rank) && member.rank > 0 ? '#' + member.rank : '—';
-      if (dashboardPoints) dashboardPoints.textContent = Number.isFinite(member.points) ? String(member.points) : '0';
-      if (dashboardEvents) dashboardEvents.textContent = Number.isFinite(member.events) ? String(member.events) : '0';
+      if (dashboardRank) {
+        if (Number.isFinite(member.rank) && member.rank > 0) animateNumber(dashboardRank, member.rank, '#', '', 520);
+        else dashboardRank.textContent = '—';
+      }
+      animateNumber(dashboardPoints, Number.isFinite(member.points) ? member.points : 0, '', '', 700);
+      animateNumber(dashboardEvents, Number.isFinite(member.events) ? member.events : 0, '', '', 620);
       if (dashboardStatus) dashboardStatus.textContent = member.tier || 'Active';
       if (dashboardTopType) dashboardTopType.textContent = member.events > 0 ? (member.topType || 'Activity recorded') : 'No events yet';
 
@@ -156,13 +187,21 @@
           return;
         }
         var max = Math.max.apply(null, activeTypes.map(function (type) { return type.count; }));
-        activeTypes.forEach(function (type) {
-          var item = document.createElement('div'); item.className = 'asme-event-type-row';
+        activeTypes.forEach(function (type, index) {
+          var item = document.createElement('div'); item.className = 'asme-event-type-row asme-data-enter';
+          item.style.setProperty('--asme-data-delay', Math.min(index * 45, 270) + 'ms');
           var label = document.createElement('span'); label.className = 'asme-event-type-label'; label.textContent = type.label;
           var track = document.createElement('span'); track.className = 'asme-event-type-track';
-          var bar = document.createElement('span'); bar.className = 'asme-event-type-bar'; bar.style.width = Math.max(14, (type.count / max) * 100) + '%';
+          var bar = document.createElement('span'); bar.className = 'asme-event-type-bar';
+          var targetWidth = Math.max(14, (type.count / max) * 100) + '%';
+          bar.style.width = reduceMotion ? targetWidth : '0%';
           var count = document.createElement('strong'); count.className = 'asme-event-type-count'; count.textContent = String(type.count);
           track.appendChild(bar); item.appendChild(label); item.appendChild(track); item.appendChild(count); dashboardBreakdown.appendChild(item);
+          if (!reduceMotion) {
+            window.requestAnimationFrame(function () {
+              window.requestAnimationFrame(function () { bar.style.width = targetWidth; });
+            });
+          }
         });
       }
     }
@@ -198,8 +237,9 @@
       if (!matches.length) {
         var noMatch = document.createElement('p'); noMatch.className = 'asme-member-search-empty'; noMatch.textContent = 'No public name matches “' + clean + '”.'; searchResults.appendChild(noMatch);
       } else {
-        matches.slice(0, 8).forEach(function (member) {
-          var button = document.createElement('button'); button.type = 'button'; button.className = 'asme-member-search-result';
+        matches.slice(0, 8).forEach(function (member, index) {
+          var button = document.createElement('button'); button.type = 'button'; button.className = 'asme-member-search-result asme-data-enter';
+          button.style.setProperty('--asme-data-delay', Math.min(index * 28, 140) + 'ms');
           var name = document.createElement('strong'); name.textContent = member.name;
           var meta = document.createElement('span'); meta.textContent = '#' + member.rank + ' · ' + member.points + ' pts';
           button.appendChild(name); button.appendChild(meta);
@@ -251,8 +291,9 @@
       }
       if (title && members[0] && members[0].period) title.textContent = 'Semester Leaderboard — ' + members[0].period;
       if (!members.length) { var empty = document.createElement('p'); empty.className = 'asme-leaderboard-state'; empty.textContent = 'No public totals yet.'; rowsEl.appendChild(empty); return; }
-      members.slice(0, 10).forEach(function (member) {
-        var row = document.createElement('div'); row.className = 'asme-leaderboard-row'; row.tabIndex = 0; row.setAttribute('role', 'button'); row.setAttribute('aria-label', 'View dashboard for ' + member.name);
+      members.slice(0, 10).forEach(function (member, index) {
+        var row = document.createElement('div'); row.className = 'asme-leaderboard-row asme-data-enter'; row.tabIndex = 0; row.setAttribute('role', 'button'); row.setAttribute('aria-label', 'View dashboard for ' + member.name);
+        row.style.setProperty('--asme-data-delay', Math.min(index * 45, 360) + 'ms');
         var rank = document.createElement('span'); rank.className = 'asme-leaderboard-rank'; rank.textContent = Number.isFinite(member.rank) && member.rank > 0 ? String(member.rank) : '—';
         var avatar = document.createElement('span'); avatar.className = 'asme-leaderboard-avatar'; avatar.setAttribute('aria-hidden', 'true'); avatar.textContent = (member.name[0] || '?').toUpperCase();
         var name = document.createElement('span'); name.className = 'asme-leaderboard-name'; name.textContent = member.name;

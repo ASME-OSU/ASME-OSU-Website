@@ -216,24 +216,7 @@
       sponsorCountObserver.observe(panel);
     }
 
-    /* ─────────────────────────────────────────
-       5. CARD HOVER LIFT
-    ───────────────────────────────────────── */
-    if (!reduceMotion) {
-      document.querySelectorAll(
-        '.ah-card, .ah-impact-mini, .leader-card, .sponsor-card, .acp-info-item, .join-faq-item'
-      ).forEach(function (card) {
-        card.style.transition = (card.style.transition || '') + ', transform 0.2s ease, box-shadow 0.2s ease';
-        card.addEventListener('mouseenter', function () {
-          card.style.transform = 'translateY(-3px)';
-          card.style.boxShadow = '0 8px 24px rgba(0,0,0,0.12)';
-        });
-        card.addEventListener('mouseleave', function () {
-          card.style.transform = 'translateY(0)';
-          card.style.boxShadow = '';
-        });
-      });
-    }
+    /* Card hover motion is owned by the shared CSS motion system. */
 
     /* ─────────────────────────────────────────
        6. SMOOTH SCROLL for anchor links
@@ -352,10 +335,11 @@
       var prevBtn      = lightbox.querySelector('.asme-lightbox-prev');
       var nextBtn      = lightbox.querySelector('.asme-lightbox-next');
       var closeBtn     = lightbox.querySelector('.asme-lightbox-close');
+      var contentPanel = lightbox.querySelector('.asme-lightbox-content');
       var currentIndex = 0;
       var imageRequestId = 0;
 
-      function updateImage(index) {
+      function updateImage(index, direction) {
         if (index < 0 || index >= galleryItems.length) return;
         currentIndex = index;
         var requestId  = ++imageRequestId;
@@ -365,18 +349,40 @@
         var altText    = originalImg ? originalImg.getAttribute('alt') : 'ASME Gallery Image';
         var filename   = (imgUrl.split('/').pop() || 'asme-gallery-image').split('?')[0];
         var preloader  = new Image();
+        var shouldTransition = !reduceMotion && Boolean(direction) && lightbox.classList.contains('active');
+
+        if (shouldTransition) {
+          contentPanel.style.setProperty('--asme-lightbox-shift', direction > 0 ? '16px' : '-16px');
+          contentPanel.style.setProperty('--asme-lightbox-exit-shift', direction > 0 ? '-10px' : '10px');
+          contentPanel.classList.remove('is-entering');
+          contentPanel.classList.add('is-switching');
+        }
 
         lightbox.setAttribute('aria-busy', 'true');
 
         function commitImage() {
           if (requestId !== imageRequestId) return;
-          img.src             = imgUrl;
-          img.alt             = altText || 'ASME Gallery Image';
-          caption.textContent = altText || '';
-          downloadLink.href   = imgUrl;
-          downloadLink.setAttribute('download', filename);
-          openLink.href       = imgUrl;
-          lightbox.setAttribute('aria-busy', 'false');
+          function swapImage() {
+            if (requestId !== imageRequestId) return;
+            if (shouldTransition) {
+              contentPanel.classList.remove('is-switching');
+              contentPanel.classList.add('is-entering');
+            }
+            img.src             = imgUrl;
+            img.alt             = altText || 'ASME Gallery Image';
+            caption.textContent = altText || '';
+            downloadLink.href   = imgUrl;
+            downloadLink.setAttribute('download', filename);
+            openLink.href       = imgUrl;
+            lightbox.setAttribute('aria-busy', 'false');
+            if (shouldTransition) {
+              window.requestAnimationFrame(function () {
+                window.requestAnimationFrame(function () { contentPanel.classList.remove('is-entering'); });
+              });
+            }
+          }
+          if (shouldTransition) window.setTimeout(swapImage, 120);
+          else swapImage();
         }
 
         preloader.onload = function () {
@@ -399,7 +405,7 @@
       galleryItems.forEach(function (link, index) {
         link.addEventListener('click', function (e) {
           e.preventDefault();
-          updateImage(index);
+          updateImage(index, 0);
           lightbox.classList.add('active');
           document.body.classList.add('asme-lightbox-open-body');
           closeBtn.focus();
@@ -421,11 +427,11 @@
 
       prevBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        updateImage(currentIndex - 1 < 0 ? galleryItems.length - 1 : currentIndex - 1);
+        updateImage(currentIndex - 1 < 0 ? galleryItems.length - 1 : currentIndex - 1, -1);
       });
       nextBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        updateImage(currentIndex + 1 >= galleryItems.length ? 0 : currentIndex + 1);
+        updateImage(currentIndex + 1 >= galleryItems.length ? 0 : currentIndex + 1, 1);
       });
 
       document.addEventListener('keydown', function (e) {
@@ -571,7 +577,7 @@
 <script>
 (function () {
   var pointsScript = document.createElement('script');
-  pointsScript.src = 'https://asme-osu.github.io/ASME-OSU-Website/Member%20Points%20Integration.js?v=20260719-search5';
+  pointsScript.src = 'https://asme-osu.github.io/ASME-OSU-Website/Member%20Points%20Integration.js?v=20260803-motion1';
   document.head.appendChild(pointsScript);
 })();
 </script>
