@@ -16377,3 +16377,144 @@ body #page .sponsor-donation-button:hover svg {
     transform: none !important;
   }
 }
+
+/* ============================================================
+   MOBILE NAVIGATION — compact two-column menu sheet
+   Keeps the full navigation available without turning the header
+   into a tall single-column stack on phone-sized screens.
+   ============================================================ */
+@keyframes asme-mobile-menu-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  body #site-navigation,
+  body #site-navigation.main-navigation {
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  body #site-navigation.toggled .main-nav {
+    position: absolute !important;
+    z-index: 10000 !important;
+    top: calc(100% + 6px) !important;
+    left: 50% !important;
+    width: min(calc(100vw - 24px), 420px) !important;
+    max-width: 420px !important;
+    max-height: min(68vh, 520px) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    background: transparent !important;
+    border-radius: 18px !important;
+    transform-origin: top center !important;
+    animation: asme-mobile-menu-enter 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body #site-navigation.toggled .main-nav > ul {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: start !important;
+    gap: 6px !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    background: rgba(7, 17, 31, 0.98) !important;
+    border: 1px solid rgba(148, 163, 184, 0.28) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 44px rgba(2, 8, 23, 0.32) !important;
+    box-sizing: border-box !important;
+    backdrop-filter: blur(14px) !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li > a {
+    justify-content: flex-start !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    padding: 0 12px !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    font-weight: 750 !important;
+    text-align: left !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children:focus-within {
+    grid-column: 1 / -1 !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover > ul,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover > ul,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children:focus-within > ul {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 6px 0 0 !important;
+    padding: 6px !important;
+    overflow: visible !important;
+  }
+
+  body #site-navigation.toggled ul ul li a {
+    justify-content: flex-start !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 10px !important;
+    border-radius: 9px !important;
+    font-size: 13px !important;
+    text-align: left !important;
+  }
+
+  body #site-navigation.toggled .dropdown-menu-toggle {
+    margin-left: auto !important;
+    padding-left: 8px !important;
+  }
+
+  body #site-navigation .menu-toggle .gp-icon svg {
+    transform-box: fill-box !important;
+    transform-origin: 50% 50% !important;
+  }
+
+  body #site-navigation .menu-toggle[aria-expanded="true"] .gp-icon svg:first-of-type {
+    display: none !important;
+  }
+
+  body #site-navigation .menu-toggle[aria-expanded="true"] .gp-icon svg:nth-of-type(2) {
+    display: block !important;
+  }
+}
+
+@media (max-width: 360px) {
+  body #site-navigation.toggled .main-nav > ul {
+    padding: 8px !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li > a {
+    padding: 0 10px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #site-navigation.toggled .main-nav {
+    animation: none !important;
+  }
+}
