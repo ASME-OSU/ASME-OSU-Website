@@ -16717,33 +16717,33 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
     align-content: center !important;
   }
 
-  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-link,
-  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-link {
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-link,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-link {
     grid-column: 1 !important;
     grid-row: 1 / span 2 !important;
     align-self: center !important;
   }
 
-  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-frame,
-  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-frame {
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-frame,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-frame {
     width: 200px !important;
     height: 150px !important;
     padding: 14px !important;
   }
 
-  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-frame img,
-  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-frame img {
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-frame img,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-frame img {
     max-width: 100% !important;
     max-height: 118px !important;
   }
 
-  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-frame img[src*="PW-Logo"],
-  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-frame img[src*="PW-Logo"] {
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-frame img[src*="PW-Logo"],
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-frame img[src*="PW-Logo"] {
     width: 174px !important;
   }
 
-  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-frame img[src*="PPG_Logo"],
-  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-frame img[src*="PPG_Logo"] {
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-frame img[src*="PPG_Logo"],
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--brutus .sponsor-logo-frame img[src*="PPG_Logo"] {
     height: 118px !important;
     max-height: 118px !important;
   }
