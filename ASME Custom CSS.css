@@ -16793,3 +16793,13 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
     height: 56px !important;
   }
 }
+
+body #page .asme-sponsors-page .sponsors-top-tier-grid > p,
+body #page .asme-sponsors-page .sponsors-top-tier-grid > br,
+html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > p,
+html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > br {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
