@@ -16773,8 +16773,8 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
     position: absolute !important;
     top: 18px !important;
     right: 18px !important;
-    width: 68px !important;
-    height: 68px !important;
+    width: 48px !important;
+    height: 48px !important;
     grid-column: auto !important;
     grid-row: auto !important;
   }
@@ -16789,8 +16789,8 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card-tier-badge,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card-tier-badge {
-    width: 56px !important;
-    height: 56px !important;
+    width: 44px !important;
+    height: 44px !important;
   }
 }
 
