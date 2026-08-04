@@ -16125,13 +16125,26 @@ body #page .asme-home .ah-featured-orbit-line {
   }
 
   body .main-navigation .dropdown-menu-toggle {
-    transform-origin: center !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  body .main-navigation .dropdown-menu-toggle .gp-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  body .main-navigation .dropdown-menu-toggle svg {
+    display: block !important;
+    transform-box: fill-box !important;
+    transform-origin: 50% 50% !important;
     transition: transform 190ms cubic-bezier(0.22, 1, 0.36, 1) !important;
   }
 
-  body .main-navigation .menu-item-has-children:hover > a .dropdown-menu-toggle,
-  body .main-navigation .menu-item-has-children.sfHover > a .dropdown-menu-toggle,
-  body .main-navigation .menu-item-has-children:focus-within > a .dropdown-menu-toggle {
+  body .main-navigation .menu-item-has-children:hover > a .dropdown-menu-toggle svg,
+  body .main-navigation .menu-item-has-children.sfHover > a .dropdown-menu-toggle svg,
+  body .main-navigation .menu-item-has-children:focus-within > a .dropdown-menu-toggle svg {
     transform: rotate(180deg) !important;
   }
 }
@@ -16336,7 +16349,7 @@ body #page .sponsor-donation-button:hover svg {
 
 @media (prefers-reduced-motion: reduce) {
   body .main-navigation .main-nav > ul > li > a,
-  body .main-navigation .dropdown-menu-toggle,
+  body .main-navigation .dropdown-menu-toggle svg,
   body #page .asme-join-page .join-faq-item::details-content,
   body #page .asme-points-page-v2 .asme-point-values-compact::details-content,
   body #page .asme-gallery-page .gallery-item a::before,
