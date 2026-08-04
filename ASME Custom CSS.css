@@ -16411,8 +16411,7 @@ body #page .sponsor-donation-button:hover svg {
     max-height: min(68vh, 520px) !important;
     margin: 0 !important;
     padding: 0 !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+    overflow: visible !important;
     background: transparent !important;
     border-radius: 18px !important;
     transform-origin: top center !important;
@@ -16421,6 +16420,7 @@ body #page .sponsor-donation-button:hover svg {
   }
 
   body #site-navigation.toggled .main-nav > ul {
+    position: relative !important;
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     align-items: start !important;
@@ -16438,6 +16438,7 @@ body #page .sponsor-donation-button:hover svg {
   }
 
   body #site-navigation.toggled .main-nav > ul > li {
+    position: static !important;
     width: 100% !important;
     min-width: 0 !important;
   }
@@ -16453,24 +16454,28 @@ body #page .sponsor-donation-button:hover svg {
     text-align: left !important;
   }
 
-  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover,
-  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover,
-  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children:focus-within {
-    grid-column: 1 / -1 !important;
-  }
-
   body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover > ul,
   body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover > ul,
   body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children:focus-within > ul {
+    position: absolute !important;
+    z-index: 2 !important;
+    top: calc(100% + 6px) !important;
+    left: 0 !important;
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 6px !important;
     width: 100% !important;
     height: auto !important;
     max-height: none !important;
-    margin: 6px 0 0 !important;
+    margin: 0 !important;
     padding: 6px !important;
+    background: rgba(7, 17, 31, 0.98) !important;
+    border: 1px solid rgba(148, 163, 184, 0.28) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 14px 34px rgba(2, 8, 23, 0.28) !important;
     overflow: visible !important;
+    box-sizing: border-box !important;
+    backdrop-filter: blur(14px) !important;
   }
 
   body #site-navigation.toggled ul ul li a {
@@ -16484,8 +16489,11 @@ body #page .sponsor-donation-button:hover svg {
   }
 
   body #site-navigation.toggled .dropdown-menu-toggle {
+    flex: 0 0 30px !important;
+    width: 30px !important;
+    height: 38px !important;
     margin-left: auto !important;
-    padding-left: 8px !important;
+    padding: 0 !important;
   }
 
   body #site-navigation .menu-toggle .gp-icon svg {
