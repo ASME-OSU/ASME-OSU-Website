@@ -16105,6 +16105,7 @@ body #page .asme-home .ah-featured-orbit-line {
   body .main-navigation .main-nav > ul > li > a:focus-visible,
   body .nav-menu > li > a:hover,
   body .nav-menu > li > a:focus-visible {
+    background-image: linear-gradient(#ef4444, #ef4444) !important;
     background-size: calc(100% - 24px) 2px !important;
   }
 
