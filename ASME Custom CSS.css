@@ -15869,6 +15869,10 @@ body #page .asme-home .ah-featured-meta {
   margin-top: 18px !important;
 }
 
+body #page .asme-home .ah-featured-meta > br {
+  display: none !important;
+}
+
 body #page .asme-home .ah-featured-meta span {
   gap: 7px !important;
   min-height: 34px !important;
