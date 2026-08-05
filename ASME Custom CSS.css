@@ -15953,7 +15953,7 @@ body #page .asme-home .ah-featured-orbit-line {
     stroke-dashoffset: 0;
   }
   to {
-    stroke-dashoffset: -100;
+    stroke-dashoffset: var(--asme-orbit-lap, -100px);
   }
 }
 

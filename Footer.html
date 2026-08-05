@@ -287,6 +287,38 @@
       restartTimer();
     }
 
+    /* Keep one continuous featured-event runner at every card aspect ratio.
+       Measuring the rendered rectangle avoids mobile SVG implementations
+       repeating the normalized dash around tall, narrow cards. */
+    var featuredOrbit = document.querySelector('.ah-featured-orbit');
+    if (featuredOrbit) {
+      var featuredOrbitRects = featuredOrbit.querySelectorAll('rect');
+
+      function syncFeaturedOrbit() {
+        featuredOrbitRects.forEach(function (rect) {
+          var perimeter = rect.getTotalLength();
+          if (!isFinite(perimeter) || perimeter <= 0) return;
+          rect.style.setProperty(
+            'stroke-dasharray',
+            (perimeter * 0.09) + 'px ' + (perimeter * 0.91) + 'px',
+            'important'
+          );
+          rect.style.setProperty('--asme-orbit-lap', (-perimeter) + 'px');
+        });
+      }
+
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(syncFeaturedOrbit);
+      });
+
+      if ('ResizeObserver' in window) {
+        var featuredOrbitObserver = new ResizeObserver(syncFeaturedOrbit);
+        featuredOrbitObserver.observe(featuredOrbit);
+      } else {
+        window.addEventListener('resize', syncFeaturedOrbit);
+      }
+    }
+
     /* ─────────────────────────────────────────
        8. GALLERY LIGHTBOX
     ───────────────────────────────────────── */
