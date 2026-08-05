@@ -15923,7 +15923,8 @@ body #page .asme-home .ah-featured-orbit {
   pointer-events: none !important;
 }
 
-body #page .asme-home .ah-featured-orbit rect {
+body #page .asme-home .ah-featured-orbit rect,
+body #page .asme-home .ah-featured-orbit path {
   x: 1px;
   y: 1px;
   width: calc(100% - 2px);
@@ -15970,7 +15971,8 @@ body #page .asme-home .ah-featured-orbit-line {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  body #page .asme-home .ah-featured-orbit rect {
+  body #page .asme-home .ah-featured-orbit rect,
+  body #page .asme-home .ah-featured-orbit path {
     animation: asme-featured-orbit-lap 6.8s linear infinite !important;
   }
 

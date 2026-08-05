@@ -288,23 +288,53 @@
     }
 
     /* Keep one continuous featured-event runner at every card aspect ratio.
-       Measuring the rendered rectangle avoids mobile SVG implementations
-       repeating the normalized dash around tall, narrow cards. */
+       A single rounded path avoids mobile SVG implementations restarting
+       the dash on separate rectangle sides. */
     var featuredOrbit = document.querySelector('.ah-featured-orbit');
     if (featuredOrbit) {
-      var featuredOrbitRects = featuredOrbit.querySelectorAll('rect');
+      var featuredOrbitShapes = [];
+      featuredOrbit.querySelectorAll('rect').forEach(function (rect) {
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('class', rect.getAttribute('class') || '');
+        rect.parentNode.replaceChild(path, rect);
+        featuredOrbitShapes.push(path);
+      });
 
       function syncFeaturedOrbit() {
-        featuredOrbitRects.forEach(function (rect) {
-          rect.removeAttribute('pathLength');
-          var perimeter = rect.getTotalLength();
+        var width = featuredOrbit.clientWidth;
+        var height = featuredOrbit.clientHeight;
+        if (!isFinite(width) || !isFinite(height) || width <= 2 || height <= 2) return;
+
+        featuredOrbit.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+        featuredOrbit.setAttribute('preserveAspectRatio', 'none');
+
+        var inset = 1;
+        var right = width - inset;
+        var bottom = height - inset;
+        var radius = Math.min(17, (width - 2) / 2, (height - 2) / 2);
+        var pathData = [
+          'M', inset + radius, inset,
+          'H', right - radius,
+          'A', radius, radius, 0, 0, 1, right, inset + radius,
+          'V', bottom - radius,
+          'A', radius, radius, 0, 0, 1, right - radius, bottom,
+          'H', inset + radius,
+          'A', radius, radius, 0, 0, 1, inset, bottom - radius,
+          'V', inset + radius,
+          'A', radius, radius, 0, 0, 1, inset + radius, inset,
+          'Z'
+        ].join(' ');
+
+        featuredOrbitShapes.forEach(function (path) {
+          path.setAttribute('d', pathData);
+          var perimeter = path.getTotalLength();
           if (!isFinite(perimeter) || perimeter <= 0) return;
-          rect.style.setProperty(
+          path.style.setProperty(
             'stroke-dasharray',
             (perimeter * 0.09) + 'px ' + (perimeter * 0.91) + 'px',
             'important'
           );
-          rect.style.setProperty('--asme-orbit-lap', (-perimeter) + 'px');
+          path.style.setProperty('--asme-orbit-lap', (-perimeter) + 'px');
         });
       }
 
