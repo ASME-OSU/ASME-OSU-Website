@@ -294,6 +294,10 @@
     if (featuredOrbit) {
       var featuredOrbitShapes = [];
       featuredOrbit.querySelectorAll('rect').forEach(function (rect) {
+        if (!rect.classList.contains('ah-featured-orbit-line')) {
+          rect.parentNode.removeChild(rect);
+          return;
+        }
         var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.setAttribute('class', rect.getAttribute('class') || '');
         rect.parentNode.replaceChild(path, rect);
