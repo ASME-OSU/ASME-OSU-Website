@@ -16803,3 +16803,29 @@ html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > br 
   margin: 0 !important;
   padding: 0 !important;
 }
+
+/* MOBILE HOME — keep the next card visible while its content scroll-reveals. */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  body #page .asme-home .ah-about.asme-reveal,
+  html body #page .entry-content .asme-home .ah-about.asme-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  body #page .asme-home .ah-about.asme-reveal .ah-about-text,
+  html body #page .entry-content .asme-home .ah-about.asme-reveal .ah-about-text {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity var(--asme-motion-duration) var(--asme-motion-ease),
+      transform var(--asme-motion-duration) var(--asme-motion-ease);
+    will-change: opacity, transform;
+  }
+
+  body #page .asme-home .ah-about.asme-reveal.is-visible .ah-about-text,
+  html body #page .entry-content .asme-home .ah-about.asme-reveal.is-visible .ah-about-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
