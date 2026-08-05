@@ -288,41 +288,21 @@
     }
 
     /* Keep one continuous featured-event runner at every card aspect ratio.
-       A single capsule travels on a hidden rounded track so a browser can
-       never split a dashed stroke at the path seam. */
+       A single rounded path avoids mobile SVG implementations restarting
+       the dash on separate rectangle sides. */
     var featuredOrbit = document.querySelector('.ah-featured-orbit');
     if (featuredOrbit) {
-      var svgNamespace = 'http://www.w3.org/2000/svg';
-      while (featuredOrbit.firstChild) featuredOrbit.removeChild(featuredOrbit.firstChild);
-
-      var featuredOrbitTrack = document.createElementNS(svgNamespace, 'path');
-      featuredOrbitTrack.setAttribute('id', 'asmeFeaturedOrbitTrack');
-      featuredOrbitTrack.setAttribute('class', 'ah-featured-orbit-track');
-
-      var featuredOrbitRunner = document.createElementNS(svgNamespace, 'line');
-      featuredOrbitRunner.setAttribute('class', 'ah-featured-orbit-line');
-      featuredOrbitRunner.setAttribute('y1', '0');
-      featuredOrbitRunner.setAttribute('y2', '0');
-
-      if (!reduceMotion) {
-        var featuredOrbitMotion = document.createElementNS(svgNamespace, 'animateMotion');
-        featuredOrbitMotion.setAttribute('dur', '6.8s');
-        featuredOrbitMotion.setAttribute('repeatCount', 'indefinite');
-        featuredOrbitMotion.setAttribute('rotate', 'auto');
-
-        var featuredOrbitMotionPath = document.createElementNS(svgNamespace, 'mpath');
-        featuredOrbitMotionPath.setAttribute('href', '#asmeFeaturedOrbitTrack');
-        featuredOrbitMotionPath.setAttributeNS(
-          'http://www.w3.org/1999/xlink',
-          'xlink:href',
-          '#asmeFeaturedOrbitTrack'
-        );
-        featuredOrbitMotion.appendChild(featuredOrbitMotionPath);
-        featuredOrbitRunner.appendChild(featuredOrbitMotion);
-      }
-
-      featuredOrbit.appendChild(featuredOrbitTrack);
-      featuredOrbit.appendChild(featuredOrbitRunner);
+      var featuredOrbitShapes = [];
+      featuredOrbit.querySelectorAll('rect').forEach(function (rect) {
+        if (!rect.classList.contains('ah-featured-orbit-line')) {
+          rect.parentNode.removeChild(rect);
+          return;
+        }
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('class', rect.getAttribute('class') || '');
+        rect.parentNode.replaceChild(path, rect);
+        featuredOrbitShapes.push(path);
+      });
 
       function syncFeaturedOrbit() {
         var width = featuredOrbit.clientWidth;
@@ -349,20 +329,17 @@
           'Z'
         ].join(' ');
 
-        featuredOrbitTrack.setAttribute('d', pathData);
-        var perimeter = featuredOrbitTrack.getTotalLength();
-        if (!isFinite(perimeter) || perimeter <= 0) return;
-
-        var runnerLength = perimeter * 0.09;
-        featuredOrbitRunner.setAttribute('x1', (-runnerLength / 2).toFixed(3));
-        featuredOrbitRunner.setAttribute('x2', (runnerLength / 2).toFixed(3));
-
-        if (reduceMotion) {
-          featuredOrbitRunner.setAttribute(
-            'transform',
-            'translate(' + (width / 2) + ' ' + inset + ')'
+        featuredOrbitShapes.forEach(function (path) {
+          path.setAttribute('d', pathData);
+          var perimeter = path.getTotalLength();
+          if (!isFinite(perimeter) || perimeter <= 0) return;
+          path.style.setProperty(
+            'stroke-dasharray',
+            (perimeter * 0.09) + 'px ' + (perimeter * 0.91) + 'px',
+            'important'
           );
-        }
+          path.style.setProperty('--asme-orbit-lap', (-perimeter) + 'px');
+        });
       }
 
       window.requestAnimationFrame(function () {

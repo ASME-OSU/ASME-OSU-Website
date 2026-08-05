@@ -15949,19 +15949,6 @@ body #page .asme-home .ah-featured-orbit-line {
   filter: drop-shadow(0 0 4px rgba(255, 70, 70, 0.80)) !important;
 }
 
-body #page .asme-home .ah-featured-orbit .ah-featured-orbit-track {
-  fill: none !important;
-  stroke: none !important;
-  animation: none !important;
-}
-
-body #page .asme-home .ah-featured-orbit line.ah-featured-orbit-line {
-  stroke-dasharray: none !important;
-  stroke-linecap: round !important;
-  vector-effect: non-scaling-stroke !important;
-  animation: none !important;
-}
-
 @keyframes asme-featured-orbit-lap {
   from {
     stroke-dashoffset: 0;
