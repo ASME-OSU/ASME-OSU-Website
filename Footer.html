@@ -296,6 +296,7 @@
 
       function syncFeaturedOrbit() {
         featuredOrbitRects.forEach(function (rect) {
+          rect.removeAttribute('pathLength');
           var perimeter = rect.getTotalLength();
           if (!isFinite(perimeter) || perimeter <= 0) return;
           rect.style.setProperty(
