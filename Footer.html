@@ -333,9 +333,11 @@
           path.setAttribute('d', pathData);
           var perimeter = path.getTotalLength();
           if (!isFinite(perimeter) || perimeter <= 0) return;
+          var runnerFraction = width <= 768 ? 0.055 : 0.09;
           path.style.setProperty(
             'stroke-dasharray',
-            (perimeter * 0.09) + 'px ' + (perimeter * 0.91) + 'px',
+            (perimeter * runnerFraction) + 'px ' +
+              (perimeter * (1 - runnerFraction)) + 'px',
             'important'
           );
           path.style.setProperty('--asme-orbit-lap', (-perimeter) + 'px');
