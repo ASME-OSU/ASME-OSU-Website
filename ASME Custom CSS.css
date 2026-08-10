@@ -16057,6 +16057,14 @@ body #page .asme-home .ah-featured-orbit-line {
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
+
+  /* Android Chrome can leave filtered SVG animation frames behind as
+     phantom runners. Keep the mobile signal crisp and slightly wider;
+     desktop retains the original illuminated treatment. */
+  body #page .asme-home .ah-featured-orbit-line {
+    stroke-width: 3.25px !important;
+    filter: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
