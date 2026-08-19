@@ -6199,8 +6199,8 @@ body.search .site-main {
     border: 1px solid #26364f !important;
     border-radius: 15px !important;
     box-shadow: none !important;
-    transform: none !important;
-    opacity: 1 !important;
+    transform: none;
+    opacity: 1;
     visibility: visible !important;
     box-sizing: border-box !important;
   }
@@ -16421,6 +16421,17 @@ body #page .sponsor-donation-button:hover svg {
   }
 }
 
+@keyframes asme-mobile-submenu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scaleY(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
 @media (max-width: 768px) {
   body #site-navigation,
   body #site-navigation.main-navigation {
@@ -17114,6 +17125,12 @@ body #page .asme-members-page .asme-jump-nav {
 
 /* Mobile navigation becomes a focused glass layer. */
 @media (max-width: 768px) {
+  html:has(#site-navigation.toggled),
+  body:has(#site-navigation.toggled) {
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+  }
+
   body #site-navigation.toggled {
     position: relative !important;
     z-index: 120 !important;
@@ -17123,6 +17140,23 @@ body #page .asme-members-page .asme-jump-nav {
   body #site-navigation.toggled::before {
     display: none !important;
     content: none !important;
+  }
+
+  /* Preserve the compact header footprint while giving the menu/close
+     control a full 44px touch target. */
+  body #site-navigation .menu-toggle {
+    position: relative !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    margin: -5px auto !important;
+    padding: 0 !important;
+  }
+
+  body #site-navigation .menu-toggle .gp-icon,
+  body #site-navigation .menu-toggle .gp-icon svg {
+    width: 22px !important;
+    height: 22px !important;
   }
 
   /* The header itself is a filtered containing block, so a fixed veil inside
@@ -17255,12 +17289,22 @@ body #page .asme-members-page .asme-jump-nav {
       0 24px 60px rgba(2, 8, 23, 0.48),
       inset 0 -1px 0 rgba(255, 255, 255, 0.08) !important;
     overflow: visible !important;
-    transform: none !important;
-    opacity: 1 !important;
+    transform-origin: top center !important;
+    animation: asme-mobile-submenu-enter 150ms cubic-bezier(0.22, 1, 0.36, 1) both !important;
     visibility: visible !important;
     box-sizing: border-box !important;
     -webkit-backdrop-filter: blur(14px) saturate(125%) !important;
     backdrop-filter: blur(14px) saturate(125%) !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children > a .dropdown-menu-toggle svg {
+    transform: rotate(0deg) !important;
+    transition: transform 150ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover > a .dropdown-menu-toggle svg,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover > a .dropdown-menu-toggle svg {
+    transform: rotate(180deg) !important;
   }
 
   body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children > ul::before {
@@ -17314,6 +17358,17 @@ body #page .asme-members-page .asme-jump-nav {
   body #page .asme-members-page .asme-jump-nav {
     -webkit-backdrop-filter: blur(10px) saturate(125%) !important;
     backdrop-filter: blur(10px) saturate(125%) !important;
+  }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover > ul,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover > ul {
+    animation: none !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children > a .dropdown-menu-toggle svg {
+    transition: none !important;
   }
 }
 
