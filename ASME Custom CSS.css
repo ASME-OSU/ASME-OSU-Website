@@ -17146,6 +17146,7 @@ body #page .asme-members-page .asme-jump-nav {
      control a full 44px touch target. */
   body #site-navigation .menu-toggle {
     position: relative !important;
+    flex: 0 0 44px !important;
     width: 44px !important;
     height: 44px !important;
     min-height: 44px !important;
