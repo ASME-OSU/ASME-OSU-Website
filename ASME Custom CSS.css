@@ -17041,7 +17041,6 @@ body #masthead {
 
 /* Small hero accents carry the effect without reducing body-copy contrast. */
 body .asme-home .ah-status-pill,
-body .asme-home .ah-badge,
 body .asme-home .ah-btn-o,
 body #page .asme-home .ah-featured-meta span {
   box-shadow:
@@ -17052,10 +17051,21 @@ body #page .asme-home .ah-featured-meta span {
 }
 
 body .asme-home .ah-status-pill,
-body .asme-home .ah-badge,
 body .asme-home .ah-btn-o {
   background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035)) !important;
   border-color: rgba(255, 255, 255, 0.34) !important;
+}
+
+/* Keep the award glass especially clear so the hero photography reads through it. */
+body .asme-home .ah-badge {
+  background-color: rgba(255, 255, 255, 0.065) !important;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.012)) !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 10px 26px rgba(2, 8, 23, 0.10) !important;
+  -webkit-backdrop-filter: blur(3px) saturate(115%) !important;
+  backdrop-filter: blur(3px) saturate(115%) !important;
 }
 
 /* Member-page jump links get a quiet glass rail, not glass content cards. */
