@@ -17112,8 +17112,7 @@ body #page .asme-members-page .asme-jump-nav {
   }
 }
 
-/* Mobile navigation becomes a focused glass layer. The fixed veil blurs and
-   dims the page behind it; the menu itself stays dark and high contrast. */
+/* Mobile navigation becomes a focused glass layer. */
 @media (max-width: 768px) {
   body #site-navigation.toggled {
     position: relative !important;
@@ -17122,13 +17121,25 @@ body #page .asme-members-page .asme-jump-nav {
   }
 
   body #site-navigation.toggled::before {
-    position: fixed !important;
-    z-index: 0 !important;
-    inset: 0 !important;
-    content: "" !important;
-    background: rgba(4, 12, 24, 0.48) !important;
-    -webkit-backdrop-filter: blur(11px) saturate(82%) !important;
-    backdrop-filter: blur(11px) saturate(82%) !important;
+    display: none !important;
+    content: none !important;
+  }
+
+  /* The header itself is a filtered containing block, so a fixed veil inside
+     the navigation only covers the masthead. Blur the real page surfaces
+     instead so the focus treatment reaches the full screen. */
+  body:has(#site-navigation.toggled) .site-header .site-branding-container,
+  body:has(#site-navigation.toggled) #masthead .site-branding-container {
+    filter: blur(6px) brightness(0.66) !important;
+    opacity: 0.52 !important;
+  }
+
+  body:has(#site-navigation.toggled) .site-content,
+  body:has(#site-navigation.toggled) #content,
+  body:has(#site-navigation.toggled) .site-footer,
+  body:has(#site-navigation.toggled) #colophon {
+    filter: blur(8px) brightness(0.58) saturate(0.78) !important;
+    opacity: 0.62 !important;
     pointer-events: none !important;
   }
 
@@ -17150,14 +17161,14 @@ body #page .asme-members-page .asme-jump-nav {
   body #site-navigation.toggled .main-nav > ul {
     padding: 10px !important;
     background:
-      linear-gradient(155deg, rgba(18, 39, 65, 0.92), rgba(7, 20, 36, 0.86)) !important;
+      linear-gradient(155deg, rgba(18, 39, 65, 0.97), rgba(7, 20, 36, 0.95)) !important;
     border: 1px solid rgba(203, 213, 225, 0.24) !important;
     border-radius: 20px !important;
     box-shadow:
       0 24px 60px rgba(2, 8, 23, 0.48),
       inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
-    backdrop-filter: blur(24px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(125%) !important;
+    backdrop-filter: blur(14px) saturate(125%) !important;
   }
 
   body #site-navigation.toggled .main-nav > ul > li > a {
@@ -17186,6 +17197,93 @@ body #page .asme-members-page .asme-jump-nav {
     border-color: rgba(148, 163, 184, 0.20) !important;
     color: #f8fafc !important;
     text-shadow: 0 1px 2px rgba(2, 8, 23, 0.34) !important;
+  }
+
+  /* Open submenus expand inside the same sheet. The scarlet rail, compact
+     label, and indented links communicate hierarchy without a detached popup. */
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children:focus-within {
+    display: grid !important;
+    grid-column: 1 / -1 !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    padding: 5px !important;
+    background: rgba(5, 17, 32, 0.54) !important;
+    border: 1px solid rgba(148, 163, 184, 0.18) !important;
+    border-radius: 13px !important;
+    box-sizing: border-box !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover > a,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover > a,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children:focus-within > a {
+    width: 100% !important;
+    border-color: rgba(248, 113, 113, 0.32) !important;
+    box-shadow:
+      inset 3px 0 0 #bb0000,
+      inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.sfHover > ul,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children.dropdown-hover > ul,
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children:focus-within > ul {
+    position: static !important;
+    z-index: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 6px 0 0 !important;
+    padding: 8px !important;
+    background: rgba(3, 13, 26, 0.58) !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    box-shadow: inset 3px 0 0 rgba(187, 0, 0, 0.86) !important;
+    overflow: visible !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    box-sizing: border-box !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children > ul::before {
+    display: block !important;
+    grid-column: 1 / -1 !important;
+    margin: 0 4px 1px !important;
+    color: #fca5a5 !important;
+    content: "Submenu" !important;
+    font-size: 9px !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.12em !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-651 > ul::before {
+    content: "Events submenu" !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-652 > ul::before {
+    content: "Corporate submenu" !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-1036 > ul::before {
+    content: "Members submenu" !important;
+  }
+
+  body #site-navigation.toggled .main-nav > ul > li.menu-item-has-children > ul > li > a {
+    justify-content: flex-start !important;
+    padding: 0 12px !important;
+    background: rgba(30, 52, 80, 0.72) !important;
+    border-color: rgba(148, 163, 184, 0.14) !important;
+    font-size: 12.5px !important;
   }
 
   body #site-navigation.toggled .main-nav > ul > li.current-menu-item > a,
@@ -17223,7 +17321,8 @@ body #page .asme-members-page .asme-jump-nav {
   }
 
   body #site-navigation.toggled::before {
-    background: rgba(4, 12, 24, 0.76) !important;
+    display: none !important;
+    content: none !important;
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
   }
