@@ -1,6 +1,59 @@
 (function () {
   'use strict';
 
+  /* This file is loaded sitewide by the shared footer, so keep the mobile
+     navigation dismissal available even before the footer HTML is repasted. */
+  if (!window.asmeMobileNavDismissReady) {
+    window.asmeMobileNavDismissReady = true;
+
+    function getMobileNavigation() {
+      return document.getElementById('site-navigation');
+    }
+
+    function clearMobileSubmenus(navigation) {
+      navigation.querySelectorAll('.sfHover, .dropdown-hover').forEach(function (item) {
+        item.classList.remove('sfHover', 'dropdown-hover');
+      });
+
+      navigation.querySelectorAll('.dropdown-menu-toggle[aria-expanded="true"]').forEach(function (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open Sub-Menu');
+      });
+    }
+
+    function closeMobileNavigation(navigation, returnFocus) {
+      var menuToggle = navigation.querySelector('.menu-toggle');
+      if (!menuToggle || !navigation.classList.contains('toggled')) return;
+
+      menuToggle.click();
+      clearMobileSubmenus(navigation);
+
+      if (returnFocus) menuToggle.focus();
+    }
+
+    document.addEventListener('click', function (event) {
+      if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+      var navigation = getMobileNavigation();
+      if (!navigation || !navigation.classList.contains('toggled')) return;
+      if (navigation.contains(event.target)) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      closeMobileNavigation(navigation, false);
+    }, true);
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+
+      var navigation = getMobileNavigation();
+      if (!navigation || !navigation.classList.contains('toggled')) return;
+
+      event.preventDefault();
+      closeMobileNavigation(navigation, true);
+    });
+  }
+
   function start() {
     var app = document.getElementById('asmePointsApp');
     var rowsEl = document.getElementById('asmeLeaderboardRows');
