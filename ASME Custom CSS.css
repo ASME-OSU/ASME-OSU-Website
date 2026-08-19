@@ -17139,11 +17139,12 @@ body #page .asme-members-page .asme-jump-nav {
   }
 
   body #site-navigation.toggled .main-nav {
-    max-height: calc(100dvh - 116px) !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    overscroll-behavior: contain !important;
-    scrollbar-width: thin !important;
+    position: absolute !important;
+    z-index: 1 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    overscroll-behavior: auto !important;
+    scrollbar-width: auto !important;
   }
 
   body #site-navigation.toggled .main-nav > ul {
