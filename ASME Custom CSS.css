@@ -17422,8 +17422,8 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   display: flex !important;
   grid-template-columns: none !important;
   grid-template-rows: none !important;
-  align-items: stretch !important;
-  gap: 18px !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
   width: 100% !important;
   max-width: 980px !important;
   min-height: 0 !important;
@@ -17436,8 +17436,8 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   border: 1px solid rgba(10, 45, 80, 0.05) !important;
   border-radius: 24px !important;
   box-shadow:
-    0 12px 30px rgba(15, 35, 55, 0.08),
-    0 2px 8px rgba(15, 35, 55, 0.04) !important;
+    0 10px 26px rgba(23, 43, 64, 0.07),
+    0 2px 6px rgba(23, 43, 64, 0.03) !important;
   color: #073b68 !important;
   text-align: left !important;
   transform: none !important;
@@ -17470,16 +17470,18 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   position: relative !important;
   z-index: 2 !important;
   display: flex !important;
-  flex: 0 0 94px !important;
+  flex: 0 0 92px !important;
   flex-direction: column !important;
   align-items: center !important;
-  align-self: stretch !important;
-  width: 94px !important;
-  min-width: 88px !important;
-  max-width: 110px !important;
-  min-height: 286px !important;
+  align-self: flex-start !important;
+  width: 92px !important;
+  min-width: 92px !important;
+  max-width: 92px !important;
+  height: clamp(350px, 82vw, 360px) !important;
+  min-height: 0 !important;
+  max-height: 360px !important;
   margin: 0 !important;
-  padding: 28px 10px 66px !important;
+  padding: 28px 10px 45px !important;
   clip-path: polygon(0 0, 100% 0, 100% 86%, 50% 100%, 0 86%) !important;
   background: linear-gradient(180deg, #06345f 0%, #003b70 55%, #002f59 100%) !important;
   border: 0 !important;
@@ -17488,6 +17490,12 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   text-align: center !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
   box-sizing: border-box !important;
+}
+
+body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-ribbon,
+html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-ribbon {
+  height: clamp(330px, 79vw, 340px) !important;
+  max-height: 340px !important;
 }
 
 body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__tier,
@@ -17499,6 +17507,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   letter-spacing: 1.4px !important;
   line-height: 1.35 !important;
   text-transform: uppercase !important;
+  margin-bottom: 22px !important;
 }
 
 body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__divider,
@@ -17508,7 +17517,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   justify-content: center !important;
   gap: 7px !important;
   width: 100% !important;
-  margin: 24px 0 !important;
+  margin: 0 0 24px !important;
 }
 
 body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__divider span,
@@ -17558,7 +17567,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   flex-direction: column !important;
   min-width: 0 !important;
   margin: 0 !important;
-  padding: 22px 14px 24px 4px !important;
+  padding: 34px 14px 32px 4px !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
 }
@@ -17582,7 +17591,8 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
 
 body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark,
 html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark {
-  min-height: 92px !important;
+  min-height: 0 !important;
+  margin-bottom: 24px !important;
   justify-content: flex-start !important;
   background: transparent !important;
   border: 0 !important;
@@ -17605,7 +17615,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
 
 body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured,
 html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured {
-  height: clamp(95px, 25vw, 130px) !important;
+  height: 95px !important;
   justify-content: center !important;
   background: linear-gradient(135deg, #0084bd 0%, #0077ad 55%, #006ca2 100%) !important;
   border: 0 !important;
@@ -17645,14 +17655,21 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   grid-column: auto !important;
   grid-row: auto !important;
   align-self: auto !important;
-  margin: 16px 0 0 !important;
+  margin: 18px 0 0 !important;
   padding: 0 !important;
   color: #073b68 !important;
   font-family: var(--asme-font-serif, Georgia, "Times New Roman", serif) !important;
-  font-size: clamp(22px, 5.8vw, 30px) !important;
+  font-size: 21px !important;
   font-weight: 700 !important;
   line-height: 1.15 !important;
   text-align: left !important;
+}
+
+body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-card__name,
+html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-card__name {
+  margin-top: 0 !important;
+  font-size: clamp(19px, 5.1vw, 21px) !important;
+  line-height: 1.14 !important;
 }
 
 body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--editorial .sponsor-card__name,
@@ -17677,7 +17694,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   align-items: center !important;
   gap: 9px !important;
   width: 86% !important;
-  margin: 12px 0 18px !important;
+  margin: 14px 0 20px !important;
 }
 
 body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__divider span,
@@ -17706,7 +17723,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   margin: 0 !important;
   padding: 0 !important;
   color: #6f7888 !important;
-  font-size: clamp(16px, 4.2vw, 19px) !important;
+  font-size: 17px !important;
   font-weight: 400 !important;
   line-height: 1.5 !important;
   text-align: left !important;
@@ -17716,14 +17733,14 @@ body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__water
 html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__watermark {
   position: absolute !important;
   z-index: 0 !important;
-  right: -22px !important;
-  bottom: -10px !important;
+  right: -20px !important;
+  bottom: -5px !important;
   display: block !important;
-  width: 180px !important;
+  width: 140px !important;
   max-width: 72% !important;
   max-height: 180px !important;
   margin: 0 !important;
-  opacity: 0.035 !important;
+  opacity: 0.02 !important;
   object-fit: contain !important;
   pointer-events: none !important;
   transform: none !important;
@@ -17743,8 +17760,16 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
     width: 180px !important;
     min-width: 180px !important;
     max-width: 180px !important;
-    min-height: 340px !important;
-    padding: 42px 18px 84px !important;
+    height: 340px !important;
+    min-height: 0 !important;
+    max-height: 340px !important;
+    padding: 42px 18px 66px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-ribbon,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-ribbon {
+    height: 320px !important;
+    max-height: 320px !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__tier,
@@ -17755,7 +17780,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__divider,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__divider {
-    margin: 30px 0 !important;
+    margin: 0 0 28px !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__badge,
@@ -17766,12 +17791,12 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content {
     justify-content: center !important;
-    padding: 38px 34px 38px 0 !important;
+    padding: 34px 34px 34px 0 !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark {
-    min-height: 110px !important;
+    min-height: 0 !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark img,
@@ -17782,7 +17807,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured {
-    height: 160px !important;
+    height: 140px !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured img,
@@ -17803,6 +17828,13 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   }
 }
 
+@media (min-width: 390px) and (max-width: 767px) {
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured {
+    height: 100px !important;
+  }
+}
+
 @media (max-width: 767px) {
   body #page .asme-sponsors-page .sponsors-top-tier-grid:has(.sponsor-card--editorial),
   html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid:has(.sponsor-card--editorial) {
@@ -17819,6 +17851,13 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   }
 }
 
+@media (max-width: 480px) {
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__watermark,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__watermark {
+    opacity: 0.015 !important;
+  }
+}
+
 @media (max-width: 360px) {
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--editorial,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--editorial {
@@ -17832,7 +17871,16 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
     flex-basis: 78px !important;
     width: 78px !important;
     min-width: 78px !important;
-    padding: 24px 8px 56px !important;
+    max-width: 78px !important;
+    height: 310px !important;
+    max-height: 310px !important;
+    padding: 24px 8px 40px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-ribbon,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-ribbon {
+    height: 292px !important;
+    max-height: 292px !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__tier,
@@ -17844,7 +17892,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__divider,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__divider {
     gap: 5px !important;
-    margin: 20px 0 !important;
+    margin: 0 0 20px !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__badge,
@@ -17854,12 +17902,13 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content {
-    padding: 18px 8px 20px 0 !important;
+    padding: 28px 8px 26px 0 !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark,
   html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark {
-    min-height: 78px !important;
+    min-height: 0 !important;
+    margin-bottom: 18px !important;
   }
 
   body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__name,
