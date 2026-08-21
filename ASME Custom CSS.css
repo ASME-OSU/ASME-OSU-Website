@@ -17930,3 +17930,124 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
     transition: none !important;
   }
 }
+
+/* DESKTOP BRUTUS SPONSORS — larger paired cards with compact ribbons. */
+@media (min-width: 901px) {
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus:has(> .sponsor-card--editorial),
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus:has(> .sponsor-card--editorial) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 24px !important;
+    max-width: 1200px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--editorial,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--editorial {
+    align-items: flex-start !important;
+    gap: 22px !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 20px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon,
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-ribbon,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-ribbon {
+    flex: 0 0 124px !important;
+    align-self: flex-start !important;
+    width: 124px !important;
+    min-width: 124px !important;
+    max-width: 124px !important;
+    height: 280px !important;
+    min-height: 0 !important;
+    max-height: 280px !important;
+    padding: 30px 12px 44px !important;
+    border-radius: 18px 18px 0 0 !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__tier,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__tier {
+    margin-bottom: 20px !important;
+    font-size: 15px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__divider,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__divider {
+    margin: 0 0 22px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon > p:has(> .sponsor-ribbon__badge),
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon > p:has(> .sponsor-ribbon__badge),
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content > p:has(> .sponsor-card__watermark),
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content > p:has(> .sponsor-card__watermark) {
+    display: contents !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__badge,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-ribbon__badge {
+    width: 82px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content {
+    justify-content: flex-start !important;
+    padding: 28px 22px 28px 0 !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content > p:empty,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__content > p:empty,
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area > br,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area > br {
+    display: none !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark {
+    min-height: 0 !important;
+    margin-bottom: 18px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark img,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--wordmark img {
+    width: 100% !important;
+    max-height: 100px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured {
+    height: 110px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured img,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-logo-area--featured img {
+    max-height: 82px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__name,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__name {
+    margin-top: 16px !important;
+    font-size: 24px !important;
+    line-height: 1.16 !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-card__name,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card--pratt .sponsor-card__name {
+    margin-top: 0 !important;
+    font-size: 22px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__divider,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__divider {
+    width: 92% !important;
+    margin: 12px 0 18px !important;
+  }
+
+  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__description,
+  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__description {
+    max-width: 36ch !important;
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+  }
+}
