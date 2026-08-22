@@ -135,6 +135,7 @@
     function updateCurrentJumpLink() {
       jumpFrame = 0;
       if (!jumpSections.length) return;
+      if (window.matchMedia('(min-width: 1101px)').matches) return;
 
       var threshold = Math.min(180, window.innerHeight * 0.32);
       var existingLink = app.querySelector('.asme-points-jump-nav a[aria-current="location"]');
