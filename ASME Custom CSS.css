@@ -18063,6 +18063,7 @@ body #page .asme-sponsor-page .sponsor-tiers-table,
 html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-auto-rows: 1fr !important;
   align-items: stretch !important;
   gap: 24px !important;
   width: 100% !important;
@@ -18141,7 +18142,7 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card::before {
   left: 0 !important;
   display: block !important;
   width: auto !important;
-  height: 6px !important;
+  height: 18px !important;
   margin: 0 !important;
   padding: 0 !important;
   background: var(--sponsor-tier-color) !important;
