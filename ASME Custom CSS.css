@@ -18694,3 +18694,20 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponso
       0 8px 20px rgba(2, 8, 23, 0.24) !important;
   }
 }
+
+/* SPONSOR HERO — narrower numerical stack on larger screens. */
+@media (min-width: 901px) {
+  body #page .asme-sponsor-page .sponsor-hero,
+  html body #page .entry-content .asme-sponsor-page .sponsor-hero {
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.55fr) !important;
+    column-gap: 32px !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-hero-panel,
+  html body #page .entry-content .asme-sponsor-page .sponsor-hero-panel {
+    justify-self: end !important;
+    width: 100% !important;
+    max-width: 410px !important;
+    box-sizing: border-box !important;
+  }
+}
