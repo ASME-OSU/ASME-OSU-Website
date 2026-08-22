@@ -18709,14 +18709,14 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponso
     width: 100% !important;
     max-width: none !important;
     box-sizing: border-box !important;
-    gap: 10px !important;
-    padding: 18px !important;
+    gap: 9px !important;
+    padding: 16px !important;
   }
 
   body #page .asme-sponsor-page .sponsor-panel-stat,
   html body #page .entry-content .asme-sponsor-page .sponsor-panel-stat {
-    height: 92px !important;
-    min-height: 92px !important;
+    height: 83px !important;
+    min-height: 83px !important;
   }
 }
 
