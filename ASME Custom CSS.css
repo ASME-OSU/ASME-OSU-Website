@@ -18720,9 +18720,11 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponso
   }
 }
 
-/* MEMBER RESOURCES — keep the jump links as pills without a full-width rail. */
+/* MEMBER NAVIGATION — keep jump links as pills without a full-width rail. */
 body #page .asme-member-resources-page .asme-jump-nav,
-html body #page .entry-content .asme-member-resources-page .asme-jump-nav {
+html body #page .entry-content .asme-member-resources-page .asme-jump-nav,
+body #page .asme-points-page-v2 .asme-points-jump-nav,
+html body #page .entry-content .asme-points-page-v2 .asme-points-jump-nav {
   background: transparent !important;
   background-image: none !important;
   border: 0 !important;
