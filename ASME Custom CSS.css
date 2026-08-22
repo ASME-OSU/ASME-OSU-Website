@@ -18711,3 +18711,15 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponso
     box-sizing: border-box !important;
   }
 }
+
+/* MEMBER RESOURCES — keep the jump links as pills without a full-width rail. */
+body #page .asme-member-resources-page .asme-jump-nav,
+html body #page .entry-content .asme-member-resources-page .asme-jump-nav {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
