@@ -3,86 +3,92 @@
   <div class="asme-member-hero asme-points-hero-compact">
     <div class="asme-member-hero-inner">
       <div class="asme-member-hero-copy">
-        <span class="asme-member-eyebrow">ASME OSU · Members</span>
+        <div class="asme-points-hero-kicker">
+          <span class="asme-member-eyebrow">ASME OSU · Members</span>
+          <span class="asme-status-badge asme-status-badge--dev" id="asmePointsStatusBadge">Testing</span>
+        </div>
         <h1>Member Points</h1>
         <p class="asme-member-hero-desc">See the semester leaders, then search your name for points and attendance.</p>
       </div>
-      <div class="asme-member-hero-meta">
-        <span class="asme-status-badge asme-status-badge--dev" id="asmePointsStatusBadge">Testing</span>
-      </div>
     </div>
   </div>
 
-  <ul class="asme-jump-nav asme-points-jump-nav">
-    <li><a href="#leaderboard">🏆 Leaderboard</a></li>
-    <li><a href="#member-dashboard">⌕ Find My Points</a></li>
-    <li><a href="#point-values">＋ Point Values</a></li>
-    <li><a href="https://org.osu.edu/asme/member-resources/">Member Resources →</a></li>
-  </ul>
+  <nav class="asme-points-section-nav" aria-label="Member Points sections">
+    <ul class="asme-jump-nav asme-points-jump-nav">
+      <li><a href="#leaderboard" aria-current="location">🏆 Leaderboard</a></li>
+      <li><a href="#member-dashboard">⌕ Find My Points</a></li>
+      <li><a href="#point-values">＋ Point Values</a></li>
+      <li><a href="https://org.osu.edu/asme/member-resources/">Member Resources →</a></li>
+    </ul>
+  </nav>
 
-  <div class="asme-leaderboard-preview asme-leaderboard-featured" id="leaderboard">
-    <div class="asme-leaderboard-header">
-      <div>
-        <span class="asme-section-label">Top 10</span>
-        <p class="asme-leaderboard-title" id="asmeLeaderboardTitle">Semester Leaderboard</p>
-      </div>
-      <span class="asme-status-badge asme-status-badge--dev" id="asmeLeaderboardStatus">Testing</span>
-    </div>
-    <div id="asmeLeaderboardRows" class="asme-leaderboard-body" aria-live="polite" aria-busy="true">
-      <p class="asme-leaderboard-state asme-leaderboard-state--loading">Loading leaderboard…</p>
-    </div>
-    <p class="asme-leaderboard-caption" id="asmeLeaderboardCaption">Top 10 verified totals.</p>
-  </div>
-
-  <div class="asme-member-dashboard asme-member-dashboard--search" id="member-dashboard">
-    <div class="asme-member-dashboard-heading">
-      <div>
-        <span class="asme-section-label">Your semester</span>
-        <h2 class="asme-section-heading">Find Your Points</h2>
-        <p class="asme-section-desc">Search the public name you chose on the check-in form.</p>
-      </div>
-      <div class="asme-member-search-wrap">
-        <label for="asmeMemberSearch">Search by name</label>
-        <div class="asme-member-search-field">
-          <span aria-hidden="true">⌕</span>
-          <input type="search" id="asmeMemberSearch" placeholder="Start typing a name…" autocomplete="off" disabled aria-controls="asmeMemberSearchResults" aria-describedby="asmeMemberSearchHint" aria-expanded="false">
+  <div class="asme-points-primary-grid">
+    <div class="asme-leaderboard-preview asme-leaderboard-featured" id="leaderboard">
+      <div class="asme-leaderboard-header">
+        <div class="asme-leaderboard-heading">
+          <div class="asme-leaderboard-kicker">
+            <span class="asme-section-label">Top 10</span>
+            <span class="asme-status-badge asme-status-badge--dev" id="asmeLeaderboardStatus">Testing</span>
+          </div>
+          <p class="asme-leaderboard-title" id="asmeLeaderboardTitle">Semester Leaderboard</p>
         </div>
-        <div class="asme-member-search-results" id="asmeMemberSearchResults" aria-label="Matching members" hidden></div>
-        <p class="asme-member-search-hint" id="asmeMemberSearchHint">Loading public names…</p>
       </div>
+      <div id="asmeLeaderboardRows" class="asme-leaderboard-body" aria-live="polite" aria-busy="true">
+        <p class="asme-leaderboard-state asme-leaderboard-state--loading">Loading leaderboard…</p>
+      </div>
+      <p class="asme-leaderboard-caption" id="asmeLeaderboardCaption">Top 10 verified totals.</p>
     </div>
 
-    <p class="asme-member-dashboard-state" id="asmeMemberDashboardState" role="status">Loading dashboard…</p>
-
-    <div class="asme-member-dashboard-panel" id="asmeMemberDashboardPanel" aria-busy="true" hidden>
-      <div class="asme-dashboard-identity">
+    <div class="asme-member-dashboard asme-member-dashboard--search" id="member-dashboard">
+      <div class="asme-member-dashboard-heading">
         <div>
-          <p class="asme-dashboard-name" id="asmeDashboardName">—</p>
-          <p class="asme-dashboard-period" id="asmeDashboardPeriod">Current period</p>
+          <span class="asme-section-label">Your semester</span>
+          <h2 class="asme-section-heading">Find Your Points</h2>
+          <p class="asme-section-desc">Search the public name you chose on the check-in form.</p>
         </div>
-        <div class="asme-dashboard-highlight">
-          <span>Top event type</span>
-          <strong id="asmeDashboardTopType">—</strong>
+        <div class="asme-member-search-wrap">
+          <label for="asmeMemberSearch">Search by name</label>
+          <div class="asme-member-search-field">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" id="asmeMemberSearch" placeholder="Start typing a name…" autocomplete="off" disabled aria-controls="asmeMemberSearchResults" aria-describedby="asmeMemberSearchHint" aria-expanded="false">
+          </div>
+          <div class="asme-member-search-results" id="asmeMemberSearchResults" aria-label="Matching members" hidden></div>
+          <p class="asme-member-search-hint" id="asmeMemberSearchHint">Loading public names…</p>
         </div>
       </div>
 
-      <div class="asme-dashboard-kpis" aria-label="Member key performance indicators">
-        <div class="asme-dashboard-kpi"><span>Rank</span><strong id="asmeDashboardRank">—</strong></div>
-        <div class="asme-dashboard-kpi"><span>Points</span><strong id="asmeDashboardPoints">—</strong></div>
-        <div class="asme-dashboard-kpi"><span>Events</span><strong id="asmeDashboardEvents">—</strong></div>
-        <div class="asme-dashboard-kpi"><span>Status</span><strong id="asmeDashboardStatus">—</strong></div>
+      <p class="asme-member-dashboard-state" id="asmeMemberDashboardState" role="status">Loading dashboard…</p>
+
+      <div class="asme-member-dashboard-panel" id="asmeMemberDashboardPanel" aria-busy="true" hidden>
+        <div class="asme-dashboard-identity">
+          <div>
+            <p class="asme-dashboard-name" id="asmeDashboardName">—</p>
+            <p class="asme-dashboard-period" id="asmeDashboardPeriod">Current period</p>
+          </div>
+          <div class="asme-dashboard-highlight">
+            <span>Top event type</span>
+            <strong id="asmeDashboardTopType">—</strong>
+          </div>
+        </div>
+
+        <div class="asme-dashboard-kpis" aria-label="Member key performance indicators">
+          <div class="asme-dashboard-kpi"><span>Rank</span><strong id="asmeDashboardRank">—</strong></div>
+          <div class="asme-dashboard-kpi"><span>Points</span><strong id="asmeDashboardPoints">—</strong></div>
+          <div class="asme-dashboard-kpi"><span>Events</span><strong id="asmeDashboardEvents">—</strong></div>
+          <div class="asme-dashboard-kpi"><span>Status</span><strong id="asmeDashboardStatus">—</strong></div>
+        </div>
+
+        <div class="asme-dashboard-activity">
+          <div class="asme-dashboard-activity-heading">
+            <h3>Attendance Mix</h3>
+            <span>Point-earning events</span>
+          </div>
+          <div class="asme-event-type-list" id="asmeDashboardBreakdown"></div>
+        </div>
       </div>
 
-      <div class="asme-dashboard-activity">
-        <div class="asme-dashboard-activity-heading">
-          <h3>Attendance Mix</h3>
-          <span>Point-earning events</span>
-        </div>
-        <div class="asme-event-type-list" id="asmeDashboardBreakdown"></div>
-      </div>
+      <p class="asme-dashboard-privacy">Public totals only. Email and OSU name.number stay private.</p>
     </div>
-
-    <p class="asme-dashboard-privacy">Public totals only. Email and OSU name.number stay private.</p>
   </div>
 
   <details class="asme-point-values-compact" id="point-values">

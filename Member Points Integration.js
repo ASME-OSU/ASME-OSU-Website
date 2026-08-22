@@ -119,6 +119,39 @@
     var dashboardBreakdown = document.getElementById('asmeDashboardBreakdown');
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var members = [];
+    var jumpLinks = Array.prototype.slice.call(app.querySelectorAll('.asme-points-jump-nav a[href^="#"]'));
+    var jumpSections = jumpLinks.map(function (link) {
+      return { link: link, section: document.querySelector(link.getAttribute('href')) };
+    }).filter(function (item) { return item.section; });
+    var jumpFrame = 0;
+
+    function setCurrentJumpLink(activeLink) {
+      jumpLinks.forEach(function (link) {
+        if (link === activeLink) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }
+
+    function updateCurrentJumpLink() {
+      jumpFrame = 0;
+      if (!jumpSections.length) return;
+
+      var threshold = Math.min(180, window.innerHeight * 0.32);
+      var current = jumpSections[0];
+      jumpSections.forEach(function (item) {
+        if (item.section.getBoundingClientRect().top <= threshold) current = item;
+      });
+      setCurrentJumpLink(current.link);
+    }
+
+    jumpLinks.forEach(function (link) {
+      link.addEventListener('click', function () { setCurrentJumpLink(link); });
+    });
+    window.addEventListener('scroll', function () {
+      if (!jumpFrame) jumpFrame = window.requestAnimationFrame(updateCurrentJumpLink);
+    }, { passive: true });
+    window.addEventListener('hashchange', updateCurrentJumpLink);
+    window.requestAnimationFrame(updateCurrentJumpLink);
 
     var EVENT_TYPES = [
       { column: 7, label: 'General body meetings' },
