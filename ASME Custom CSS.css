@@ -19188,3 +19188,25 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-flow-compact sm
     grid-row: 2 !important;
   }
 }
+
+/* MEMBER POINTS — larger hero status at the far-right edge. */
+body #page .asme-points-page-v2 .asme-points-hero-compact .asme-member-hero-copy,
+html body #page .entry-content .asme-points-page-v2 .asme-points-hero-compact .asme-member-hero-copy {
+  max-width: none !important;
+}
+
+body #page .asme-points-page-v2 .asme-points-hero-kicker,
+html body #page .entry-content .asme-points-page-v2 .asme-points-hero-kicker {
+  width: 100% !important;
+}
+
+body #page .asme-points-page-v2 .asme-points-hero-kicker #asmePointsStatusBadge,
+html body #page .entry-content .asme-points-page-v2 .asme-points-hero-kicker #asmePointsStatusBadge {
+  min-height: 36px !important;
+  padding: 8px 17px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.07em !important;
+  box-sizing: border-box !important;
+}
