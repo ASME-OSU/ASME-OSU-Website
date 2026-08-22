@@ -137,9 +137,17 @@
       if (!jumpSections.length) return;
 
       var threshold = Math.min(180, window.innerHeight * 0.32);
+      var existingLink = app.querySelector('.asme-points-jump-nav a[aria-current="location"]');
       var current = jumpSections[0];
+      var currentTop = current.section.getBoundingClientRect().top;
       jumpSections.forEach(function (item) {
-        if (item.section.getBoundingClientRect().top <= threshold) current = item;
+        var itemTop = item.section.getBoundingClientRect().top;
+        if (itemTop > threshold) return;
+
+        if (Math.abs(itemTop - currentTop) > 8 || item.link === existingLink) {
+          current = item;
+          currentTop = itemTop;
+        }
       });
       setCurrentJumpLink(current.link);
     }
