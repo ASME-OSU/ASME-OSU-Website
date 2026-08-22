@@ -18079,7 +18079,7 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card {
   min-width: 0 !important;
   min-height: 0 !important;
   height: auto !important;
-  padding: 28px 28px 24px !important;
+  padding: 24px 24px 20px !important;
   overflow: hidden !important;
   color: #5f6878 !important;
   background: #ffffff !important;
@@ -18182,8 +18182,8 @@ body #page .asme-sponsor-page .sponsor-tier-heading,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading {
   display: block !important;
   min-height: 0 !important;
-  margin: 4px 0 10px !important;
-  padding: 0 76px 0 0 !important;
+  margin: 2px 0 8px !important;
+  padding: 0 90px 0 0 !important;
   border: 0 !important;
   background: none !important;
 }
@@ -18241,18 +18241,18 @@ body #page .asme-sponsor-page .sponsor-tier-icon,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon {
   position: absolute !important;
   z-index: 3 !important;
-  top: -8px !important;
+  top: -4px !important;
   right: -2px !important;
   display: block !important;
   box-sizing: border-box !important;
-  width: 52px !important;
-  min-width: 52px !important;
-  max-width: 52px !important;
-  height: 52px !important;
-  min-height: 52px !important;
-  max-height: 52px !important;
+  width: 65px !important;
+  min-width: 65px !important;
+  max-width: 65px !important;
+  height: 65px !important;
+  min-height: 65px !important;
+  max-height: 65px !important;
   margin: 0 !important;
-  padding: 6px !important;
+  padding: 8px !important;
   background: #ffffff !important;
   border: 1px solid rgba(10, 45, 80, 0.08) !important;
   border-radius: 14px !important;
@@ -18266,7 +18266,7 @@ body #page .asme-sponsor-page .sponsor-tier-price,
 body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-price,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-price,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-price {
-  margin: 0 0 18px !important;
+  margin: 0 0 14px !important;
   color: #073b68 !important;
   font-size: clamp(27px, 2vw, 36px) !important;
   font-weight: 700 !important;
@@ -18284,8 +18284,8 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-perks {
   display: flex !important;
   flex: 0 0 auto !important;
   flex-direction: column !important;
-  gap: 8px !important;
-  margin: 0 0 28px !important;
+  gap: 6px !important;
+  margin: 0 0 18px !important;
   padding: 0 !important;
   list-style: none !important;
 }
@@ -18341,9 +18341,9 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sp
   justify-content: center !important;
   box-sizing: border-box !important;
   width: 100% !important;
-  min-height: 46px !important;
+  min-height: 44px !important;
   margin-top: auto !important;
-  padding: 10px 18px !important;
+  padding: 9px 16px !important;
   color: #ffffff !important;
   background: #073b68 !important;
   border: 0 !important;
@@ -18440,12 +18440,12 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table > br {
   body #page .asme-sponsor-page .sponsor-tier-card,
   html body #page .entry-content .asme-sponsor-page .sponsor-tier-card {
     width: 100% !important;
-    padding: 24px 22px 22px !important;
+    padding: 22px 20px 18px !important;
   }
 
   body #page .asme-sponsor-page .sponsor-tier-heading,
   html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading {
-    padding-right: 70px !important;
+    padding-right: 86px !important;
   }
 
   body #page .asme-sponsor-page .sponsor-tier-name,
@@ -18466,14 +18466,14 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table > br {
 
   body #page .asme-sponsor-page .sponsor-tier-icon,
   html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon {
-    top: -6px !important;
+    top: -4px !important;
     right: -2px !important;
-    width: 50px !important;
-    min-width: 50px !important;
-    max-width: 50px !important;
-    height: 50px !important;
-    min-height: 50px !important;
-    max-height: 50px !important;
+    width: 63px !important;
+    min-width: 63px !important;
+    max-width: 63px !important;
+    height: 63px !important;
+    min-height: 63px !important;
+    max-height: 63px !important;
   }
 }
 
