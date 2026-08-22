@@ -18063,7 +18063,6 @@ body #page .asme-sponsor-page .sponsor-tiers-table,
 html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  grid-auto-rows: 1fr !important;
   align-items: stretch !important;
   gap: 24px !important;
   width: 100% !important;
@@ -18074,12 +18073,12 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card {
   --sponsor-tier-color: #8f959c;
   position: relative !important;
   isolation: isolate !important;
-  display: flex !important;
-  flex-direction: column !important;
+  display: grid !important;
+  grid-template-rows: auto auto 1fr auto !important;
   box-sizing: border-box !important;
   min-width: 0 !important;
   min-height: 0 !important;
-  height: 100% !important;
+  height: auto !important;
   padding: 28px 28px 24px !important;
   overflow: hidden !important;
   color: #5f6878 !important;
@@ -18407,6 +18406,17 @@ body #page .asme-sponsor-page .sponsor-tier-card > p:empty,
 body #page .asme-sponsor-page .sponsor-tier-card > br,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-card > p:empty,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-card > br {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* WordPress wpautop adds a blank paragraph after the last tier card.
+   Keep that node from creating an otherwise empty grid row. */
+body #page .asme-sponsor-page .sponsor-tiers-table > p:empty,
+body #page .asme-sponsor-page .sponsor-tiers-table > br,
+html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table > p:empty,
+html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table > br {
   display: none !important;
   margin: 0 !important;
   padding: 0 !important;
