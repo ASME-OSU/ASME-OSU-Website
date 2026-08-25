@@ -39,6 +39,8 @@ Then hard refresh the site.
 | `Member Points Integration.js` | Loaded by `Footer.html` from jsDelivr | Reads only the sanitized Website Export Google Sheet and renders point values/status/leaderboard on the Member Points page. |
 | `Leadership Page.html` | Leadership page custom HTML block | Officer/leadership layout, if maintained in WordPress. |
 | `Gallery Page.html` | Gallery page custom HTML block | Gallery layout, if maintained in WordPress. |
+| `Gallery Integration.js` | Loaded by the Gallery page from GitHub Pages | Renders the latest Instagram feed, labels archive photos, and powers gallery filters. |
+| `data/instagram-feed.json` | Public GitHub Pages data file | Cached Instagram media used by the Gallery page, with static fallback content when Instagram is unavailable. |
 | `Current Sponsors Page.html` | Sponsors page custom HTML block | Sponsor listing layout, if maintained in WordPress. |
 
 ## Update Workflow
@@ -71,6 +73,14 @@ max-width: calc(100vw - 32px);
 ```
 
 Use the existing page wrapper classes, such as `asme-home`, `asme-about-page`, `asme-join-page`, `asme-member-resources-page`, and `asme-members-page`, instead of adding one-off width rules. If a page looks edge-to-edge on mobile, fix it in the shared gutter rule rather than adding a separate page-specific patch.
+
+## Automatic Instagram Gallery
+
+The Gallery page reads `data/instagram-feed.json` through `Gallery Integration.js`. The static Instagram cards in `Gallery Page.html` remain as a resilient fallback, so the Gallery never becomes empty when the API or network is unavailable.
+
+The `Update Instagram gallery` GitHub Actions workflow refreshes the feed every six hours. To enable scheduled refreshes, add a repository Actions secret named `INSTAGRAM_ACCESS_TOKEN` containing an Instagram API access token for the `@asmeohiostate` professional account. The token is used only by GitHub Actions and must never be placed in page HTML, JavaScript, or the public JSON file.
+
+The workflow commits only when post data changes. A new commit automatically updates the GitHub Pages feed consumed by WordPress.
 
 ## WordPress Auto-Formatting (`wpautop`)
 
