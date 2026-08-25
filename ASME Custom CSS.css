@@ -19451,3 +19451,349 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-embed ifram
     color: #f8fafc !important;
   }
 }
+
+/* GALLERY — compact featured post and recent-post strip. */
+body #page .asme-gallery-page .gallery-instagram-feature--compact,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact {
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr) !important;
+  gap: clamp(24px, 4vw, 48px) !important;
+  padding: clamp(22px, 3vw, 34px) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-feature--compact > br,
+body #page .asme-gallery-page .gallery-instagram-recent > br,
+body #page .asme-gallery-page .gallery-instagram-recent-grid > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid > br {
+  display: none !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-media,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  aspect-ratio: 4 / 3 !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  background: #dfe5ec !important;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.18) !important;
+  isolation: isolate !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-media::after,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 48% 0 0 !important;
+  z-index: 1 !important;
+  background: linear-gradient(to top, rgba(3, 10, 22, 0.62), transparent) !important;
+  pointer-events: none !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-media img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  object-fit: cover !important;
+  object-position: center 58% !important;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-media:hover img,
+body #page .asme-gallery-page .gallery-instagram-media:focus-visible img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media:hover img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media:focus-visible img {
+  transform: scale(1.025) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-media-label,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media-label {
+  position: absolute !important;
+  right: 16px !important;
+  bottom: 14px !important;
+  left: 16px !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-media-label > span,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media-label > span {
+  padding: 6px 9px !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 999px !important;
+  background: rgba(5, 14, 28, 0.62) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy {
+  max-width: 560px !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy h2,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy h2 {
+  font-size: clamp(30px, 3.25vw, 44px) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-recent,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent {
+  margin: 0 0 28px !important;
+  padding: clamp(22px, 3vw, 32px) !important;
+  border: 1px solid var(--asme-line) !important;
+  border-radius: 24px !important;
+  background: var(--asme-card, #ffffff) !important;
+  box-shadow: 0 14px 36px rgba(15, 52, 96, 0.08) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-recent-header,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-header {
+  display: flex !important;
+  align-items: end !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+  margin: 0 0 20px !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-recent-header .gallery-instagram-eyebrow,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-header .gallery-instagram-eyebrow {
+  margin-bottom: 7px !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-recent-header h2,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-header h2 {
+  margin: 0 !important;
+  color: var(--asme-navy) !important;
+  font-size: clamp(27px, 3vw, 36px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-all,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-all {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  flex: 0 0 auto !important;
+  padding: 9px 13px !important;
+  border: 1px solid var(--asme-line) !important;
+  border-radius: 999px !important;
+  color: var(--asme-navy) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+  transition: border-color 180ms ease, color 180ms ease, transform 180ms ease !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-all:hover,
+body #page .asme-gallery-page .gallery-instagram-all:focus-visible,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-all:hover,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-all:focus-visible {
+  border-color: rgba(187, 0, 0, 0.4) !important;
+  color: #bb0000 !important;
+  transform: translateY(-1px) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-recent-grid,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-card,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card {
+  display: grid !important;
+  grid-template-rows: auto 1fr !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--asme-line) !important;
+  border-radius: 18px !important;
+  background: var(--asme-card-soft, #f8fafc) !important;
+  color: var(--asme-text) !important;
+  text-decoration: none !important;
+  box-shadow: 0 8px 22px rgba(15, 52, 96, 0.07) !important;
+  transition: transform 210ms cubic-bezier(0.22, 1, 0.36, 1), border-color 180ms ease, box-shadow 210ms ease !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-card:hover,
+body #page .asme-gallery-page .gallery-instagram-post-card:focus-visible,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:hover,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:focus-visible {
+  border-color: rgba(187, 0, 0, 0.34) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 14px 30px rgba(15, 52, 96, 0.13) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-image,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 4 / 3 !important;
+  overflow: hidden !important;
+  background: #e7ebf0 !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-image img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  object-fit: cover !important;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-card:hover .gallery-instagram-post-image img,
+body #page .asme-gallery-page .gallery-instagram-post-card:focus-visible .gallery-instagram-post-image img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:hover .gallery-instagram-post-image img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:focus-visible .gallery-instagram-post-image img {
+  transform: scale(1.025) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-type,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-type {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  padding: 6px 9px !important;
+  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+  border-radius: 999px !important;
+  background: rgba(5, 14, 28, 0.74) !important;
+  color: #ffffff !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-copy,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-copy {
+  display: grid !important;
+  align-content: start !important;
+  gap: 5px !important;
+  min-height: 88px !important;
+  padding: 14px 15px 16px !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-date,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-date {
+  color: var(--asme-soft) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-post-copy strong,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-copy strong {
+  color: var(--asme-navy) !important;
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+}
+
+@media (max-width: 900px) {
+  body #page .asme-gallery-page .gallery-instagram-feature--compact,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact {
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr) !important;
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  body #page .asme-gallery-page .gallery-instagram-feature--compact,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact {
+    grid-template-columns: 1fr !important;
+  }
+
+  body #page .asme-gallery-page .gallery-instagram-recent-header,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-header {
+    align-items: start !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  body #page .asme-gallery-page .gallery-instagram-recent-grid,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid {
+    display: flex !important;
+    gap: 12px !important;
+    margin-right: -4px !important;
+    padding: 0 4px 8px 0 !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: thin !important;
+  }
+
+  body #page .asme-gallery-page .gallery-instagram-post-card,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card {
+    flex: 0 0 min(78vw, 300px) !important;
+    scroll-snap-align: start !important;
+  }
+}
+
+@media (max-width: 560px) {
+  body #page .asme-gallery-page .gallery-instagram-feature--compact,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact {
+    padding: 18px !important;
+  }
+
+  body #page .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy h2,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy h2 {
+    font-size: 30px !important;
+  }
+
+  body #page .asme-gallery-page .gallery-instagram-recent,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent {
+    padding: 20px 16px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  body #page .asme-gallery-page .gallery-instagram-all,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-all {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-gallery-page .gallery-instagram-recent,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent {
+    background: var(--asme-card) !important;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.24) !important;
+  }
+
+  body #page .asme-gallery-page .gallery-instagram-post-card,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card {
+    background: #17253a !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-gallery-page .gallery-instagram-media img,
+  body #page .asme-gallery-page .gallery-instagram-post-card,
+  body #page .asme-gallery-page .gallery-instagram-post-image img,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-media img,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image img {
+    transition: none !important;
+  }
+}
