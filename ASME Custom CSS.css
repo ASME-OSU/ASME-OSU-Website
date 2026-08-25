@@ -19461,11 +19461,19 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--co
 }
 
 body #page .asme-gallery-page .gallery-instagram-feature--compact > br,
+body #page .asme-gallery-page .gallery-instagram-feature--compact > p:empty,
 body #page .asme-gallery-page .gallery-instagram-recent > br,
+body #page .asme-gallery-page .gallery-instagram-recent > p:empty,
 body #page .asme-gallery-page .gallery-instagram-recent-grid > br,
+body #page .asme-gallery-page .gallery-instagram-recent-grid > p:empty,
+body #page .asme-gallery-page .gallery-instagram-recent-header > p:empty,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact > p:empty,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-recent > br,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid > br {
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent > p:empty,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid > p:empty,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-header > p:empty {
   display: none !important;
 }
 
