@@ -20548,7 +20548,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-embed ifram
 /* GALLERY — compact featured post and recent-post strip. */
 body #page .asme-gallery-page .gallery-instagram-feature--compact,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact {
-  grid-template-columns: minmax(300px, 330px) minmax(0, 650px) !important;
+  grid-template-columns: minmax(300px, 330px) minmax(0, 780px) !important;
   justify-content: center !important;
   gap: clamp(30px, 4vw, 52px) !important;
   padding: clamp(22px, 3vw, 34px) !important;
@@ -20643,7 +20643,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-media-label
 
 body #page .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy {
-  max-width: 560px !important;
+  max-width: 780px !important;
 }
 
 body #page .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy h2,
