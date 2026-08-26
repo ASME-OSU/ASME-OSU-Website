@@ -835,8 +835,8 @@ html body #page .entry-content .asme-join-page .join-email-card > p:last-child {
   padding: 0 !important;
 }
 
-body #page .asme-join-page .join-groupme-step-copy > p:last-child,
-html body #page .entry-content .asme-join-page .join-groupme-step-copy > p:last-child {
+body #page .asme-join-page .join-groupme-card .join-groupme-step-copy > p:last-child,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-copy > p:last-child {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
@@ -846,13 +846,13 @@ html body #page .entry-content .asme-join-page .join-groupme-step-copy > p:last-
   padding: 0 !important;
 }
 
-body #page .asme-join-page .join-groupme-step-copy > p:last-child .join-groupme-button,
-html body #page .entry-content .asme-join-page .join-groupme-step-copy > p:last-child .join-groupme-button {
+body #page .asme-join-page .join-groupme-card .join-groupme-step-copy > p:last-child .join-groupme-button,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-copy > p:last-child .join-groupme-button {
   margin: 0 !important;
 }
 
-body #page .asme-join-page .join-groupme-step-copy > p:last-child small,
-html body #page .entry-content .asme-join-page .join-groupme-step-copy > p:last-child small {
+body #page .asme-join-page .join-groupme-card .join-groupme-step-copy > p:last-child small,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-copy > p:last-child small {
   margin: 0 !important;
 }
 
