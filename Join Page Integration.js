@@ -7,6 +7,11 @@
     var status = document.getElementById('asmeNewsletterStatus');
     var button = form && form.querySelector('.join-submit-button');
     var buttonLabel = button && button.querySelector('span');
+    var formCard = document.getElementById('newsletter-signup');
+    var newsletterStep = document.getElementById('joinNewsletterStep');
+    var groupMeProgress = document.getElementById('joinGroupMeProgress');
+    var groupMeStep = document.getElementById('joinGroupMeStep');
+    var groupMeButton = document.getElementById('joinGroupMeButton');
     var submitted = false;
     var responseReceived = false;
     var timeoutId = 0;
@@ -43,10 +48,31 @@
       window.clearTimeout(timeoutId);
       button.disabled = true;
       button.removeAttribute('aria-busy');
-      buttonLabel.textContent = 'You’re on the newsletter list';
+      buttonLabel.textContent = 'Step 1 complete';
       form.reset();
-      showStatus('Thanks! Your newsletter signup was received. Join the GroupMe below for quick chapter updates, too.', 'success');
+      showStatus('Thanks! Your newsletter signup was received. Continue to Step 2 below for quick chapter updates.', 'success');
+      if (formCard) formCard.classList.add('is-newsletter-complete');
+      if (newsletterStep) {
+        newsletterStep.classList.remove('is-current');
+        newsletterStep.classList.add('is-complete');
+      }
+      if (groupMeProgress) groupMeProgress.classList.add('is-current');
+      if (groupMeStep) {
+        groupMeStep.classList.add('is-ready');
+        window.setTimeout(function () {
+          groupMeStep.scrollIntoView({
+            behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            block: 'nearest'
+          });
+        }, 250);
+      }
     });
+
+    if (groupMeButton) {
+      groupMeButton.addEventListener('click', function () {
+        if (groupMeStep) groupMeStep.classList.add('is-visited');
+      });
+    }
   }
 
   if (document.readyState === 'loading') {
