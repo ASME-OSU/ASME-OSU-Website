@@ -865,6 +865,13 @@ html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-
   margin: 0 !important;
 }
 
+@media (min-width: 1121px) {
+  body #page .asme-join-page .join-groupme-card .join-groupme-step-copy > p:last-child,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-copy > p:last-child {
+    transform: translateY(14px) !important;
+  }
+}
+
 @media (max-width: 560px) {
   body #page .asme-join-page .join-flow-progress,
   html body #page .entry-content .asme-join-page .join-flow-progress {
