@@ -2,46 +2,33 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-08-26T01:47:31.033Z",
+  "updatedAt": "2026-08-26T17:18:44.792Z",
   "items": [
+    {
+      "id": "DcglbgtzcjM",
+      "permalink": "https://www.instagram.com/p/DcglbgtzcjM/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcglbgtzcjM-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-08-26T15:57:47.000Z",
+      "title": "Come join us and ExxonMobil for a recruiting session!",
+      "summary": "Next Wednesday at 4:30 PM in Scott Lab E141. Make sure to submit and bring your resume! There will be next day interviews. See you there!",
+      "caption": "Come join us and ExxonMobil for a recruiting session! Next Wednesday at 4:30 PM in Scott Lab E141. Make sure to submit and bring your resume! There will be next day interviews. See you there!",
+      "alt": "Come join us and ExxonMobil for a recruiting session!"
+    },
     {
       "id": "DcZw1nCiX_H",
       "permalink": "https://www.instagram.com/p/DcZw1nCiX_H/",
       "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZwshmJtPk-640x853.jpg",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZw1nCiX_H-640x853.jpg",
       "imageWidth": 640,
       "imageHeight": 853,
       "timestamp": "2026-08-24T00:21:30.000Z",
       "title": "Thanks to everyone who came and stopped by our table!",
       "summary": "Make sure to join the GroupMe and sign up for ASME on the website to stay up to date on events, workshops, etc!",
       "caption": "Thanks to everyone who came and stopped by our table! Make sure to join the GroupMe and sign up for ASME on the website to stay up to date on events, workshops, etc!",
-      "alt": "Thanks to everyone who came and stopped by our table!",
-      "carouselImages": [
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZwshmJtPk-640x853.jpg",
-          "imageWidth": 640,
-          "imageHeight": 853,
-          "alt": "Thanks to everyone who came and stopped by our table! — image 1 of 4"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZwso3JhI8-640x853.jpg",
-          "imageWidth": 640,
-          "imageHeight": 853,
-          "alt": "Thanks to everyone who came and stopped by our table! — image 2 of 4"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZwsyFJHIw-640x853.jpg",
-          "imageWidth": 640,
-          "imageHeight": 853,
-          "alt": "Thanks to everyone who came and stopped by our table! — image 3 of 4"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZws5ApBGt-640x853.jpg",
-          "imageWidth": 640,
-          "imageHeight": 853,
-          "alt": "Thanks to everyone who came and stopped by our table! — image 4 of 4"
-        }
-      ]
+      "alt": "Thanks to everyone who came and stopped by our table!"
     },
     {
       "id": "DcPWCTMiYHI",
@@ -94,19 +81,6 @@
       "summary": "✈️⚙️✨",
       "caption": "The student section tour is live, Hartford SLS was first, Ohio last week and Illinois this week. ✈️⚙️✨",
       "alt": "The student section tour is live, Hartford SLS was first, Ohio last week…"
-    },
-    {
-      "id": "DWxK3XcjzyY",
-      "permalink": "https://www.instagram.com/p/DWxK3XcjzyY/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DWxK3XcjzyY-640x640.jpg",
-      "imageWidth": 640,
-      "imageHeight": 640,
-      "timestamp": "2026-04-05T23:25:32.000Z",
-      "title": "Come to our meeting this Wednesday!",
-      "summary": "Required for those who are running for an exec board position. Everyone is encouraged to come regardless! See the GroupMe for more details and to stay up to date on events.",
-      "caption": "Come to our meeting this Wednesday! Required for those who are running for an exec board position. Everyone is encouraged to come regardless! See the GroupMe for more details and to stay up to date on events.",
-      "alt": "Come to our meeting this Wednesday!"
     }
   ]
 }
