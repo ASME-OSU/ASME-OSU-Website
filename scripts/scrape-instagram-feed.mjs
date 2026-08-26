@@ -22,6 +22,32 @@ const profileEndpoints = [
   `https://i.instagram.com/api/v1/users/web_profile_info/?username=${username}`
 ];
 
+function cookieHeader(response) {
+  const values = typeof response.headers.getSetCookie === 'function'
+    ? response.headers.getSetCookie()
+    : [response.headers.get('set-cookie')].filter(Boolean);
+  return values.map((value) => value.split(';', 1)[0]).join('; ');
+}
+
+async function bootstrapPublicSession() {
+  try {
+    const response = await fetch(`https://www.instagram.com/${username}/`, {
+      headers: {
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'accept-language': requestHeaders['accept-language'],
+        'user-agent': requestHeaders['user-agent']
+      },
+      redirect: 'follow',
+      signal: AbortSignal.timeout(20_000)
+    });
+    const cookie = cookieHeader(response);
+    const csrf = cookie.match(/(?:^|; )csrftoken=([^;]+)/)?.[1] || '';
+    return { cookie, csrf };
+  } catch {
+    return { cookie: '', csrf: '' };
+  }
+}
+
 function cleanCaption(value = '') {
   return value
     .replace(/https?:\/\/\S+/g, '')
@@ -97,10 +123,20 @@ function normalizePosts(user) {
 async function fetchPublicProfile() {
   const failures = [];
   for (let attempt = 1; attempt <= 2; attempt += 1) {
+    const session = await bootstrapPublicSession();
     for (const endpoint of profileEndpoints) {
       try {
+        const headers = {
+          ...requestHeaders,
+          'sec-fetch-dest': 'empty',
+          'sec-fetch-mode': 'cors',
+          'sec-fetch-site': 'same-origin',
+          'x-requested-with': 'XMLHttpRequest'
+        };
+        if (session.cookie) headers.cookie = session.cookie;
+        if (session.csrf) headers['x-csrftoken'] = session.csrf;
         const response = await fetch(endpoint, {
-          headers: requestHeaders,
+          headers,
           redirect: 'follow',
           signal: AbortSignal.timeout(20_000)
         });
