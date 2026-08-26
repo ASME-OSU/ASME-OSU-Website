@@ -20910,3 +20910,568 @@ html body #page .entry-content .asme-gallery-page .gallery .gallery-item a::afte
     transform: none !important;
   }
 }
+
+/* ============================================================
+   JOIN PAGE — approved guided onboarding layout
+   ============================================================ */
+body #page .asme-join-page,
+html body #page .entry-content .asme-join-page {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 12px clamp(20px, 4vw, 48px) 48px !important;
+}
+
+body #page .asme-join-page .join-stats-bar,
+html body #page .entry-content .asme-join-page .join-stats-bar {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  min-height: 92px !important;
+  margin: 0 0 24px !important;
+  padding: 20px 32px !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 18px !important;
+  background: #073b68 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body #page .asme-join-page .join-stats-bar > div,
+html body #page .entry-content .asme-join-page .join-stats-bar > div {
+  position: relative !important;
+  display: flex !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 24px !important;
+  text-align: center !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body #page .asme-join-page .join-stats-bar > div + div::before,
+html body #page .entry-content .asme-join-page .join-stats-bar > div + div::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 8px !important;
+  bottom: 8px !important;
+  left: 0 !important;
+  width: 1px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+body #page .asme-join-page .join-stats-bar .join-proof-stat,
+html body #page .entry-content .asme-join-page .join-stats-bar .join-proof-stat {
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+body #page .asme-join-page .join-stats-bar .join-proof-num,
+html body #page .entry-content .asme-join-page .join-stats-bar .join-proof-num {
+  color: #ffffff !important;
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-size: 27px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+}
+
+body #page .asme-join-page .join-stats-bar .join-proof-label,
+html body #page .entry-content .asme-join-page .join-stats-bar .join-proof-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.09em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+}
+
+body #page .asme-join-page .join-stats-bar .join-proof-award,
+html body #page .entry-content .asme-join-page .join-stats-bar .join-proof-award {
+  gap: 10px !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.35 !important;
+}
+
+body #page .asme-join-page .join-proof-award-icon,
+html body #page .entry-content .asme-join-page .join-proof-award-icon {
+  font-size: 20px !important;
+  line-height: 1 !important;
+}
+
+body #page .asme-join-page .join-main-layout,
+html body #page .entry-content .asme-join-page .join-main-layout {
+  display: grid !important;
+  grid-template-columns: minmax(260px, 0.32fr) minmax(0, 0.68fr) !important;
+  gap: 28px !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+body #page .asme-join-page .join-intro,
+html body #page .entry-content .asme-join-page .join-intro {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 8px 0 0 !important;
+  align-self: start !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body #page .asme-join-page .join-intro h1,
+html body #page .entry-content .asme-join-page .join-intro h1 {
+  max-width: none !important;
+  margin: 0 0 16px !important;
+  color: #073b68 !important;
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-size: clamp(34px, 2.8vw, 42px) !important;
+  font-weight: 400 !important;
+  line-height: 1.05 !important;
+}
+
+body #page .asme-join-page .join-intro > p,
+html body #page .entry-content .asme-join-page .join-intro > p {
+  max-width: 47ch !important;
+  margin: 0 !important;
+  color: #667085 !important;
+  font-size: 14px !important;
+  line-height: 1.62 !important;
+}
+
+body #page .asme-join-page .join-benefits,
+html body #page .entry-content .asme-join-page .join-benefits {
+  display: grid !important;
+  gap: 11px !important;
+  margin: 20px 0 0 !important;
+}
+
+body #page .asme-join-page .join-benefits .join-benefit-card,
+html body #page .entry-content .asme-join-page .join-benefits .join-benefit-card {
+  display: grid !important;
+  grid-template-columns: 38px minmax(0, 1fr) !important;
+  gap: 12px !important;
+  align-items: center !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 13px 15px !important;
+  border: 1px solid rgba(10, 45, 80, 0.1) !important;
+  border-left: 3px solid #ba0c2f !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body #page .asme-join-page .join-benefit-icon,
+html body #page .entry-content .asme-join-page .join-benefit-icon {
+  display: grid !important;
+  width: 38px !important;
+  height: 38px !important;
+  place-items: center !important;
+  border-radius: 10px !important;
+  background: rgba(186, 12, 47, 0.08) !important;
+  color: #ba0c2f !important;
+}
+
+body #page .asme-join-page .join-benefit-icon svg,
+html body #page .entry-content .asme-join-page .join-benefit-icon svg {
+  width: 21px !important;
+  height: 21px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+body #page .asme-join-page .join-benefit-copy,
+html body #page .entry-content .asme-join-page .join-benefit-copy {
+  display: block !important;
+  min-width: 0 !important;
+}
+
+body #page .asme-join-page .join-benefit-copy strong,
+body #page .asme-join-page .join-benefit-copy > span,
+html body #page .entry-content .asme-join-page .join-benefit-copy strong,
+html body #page .entry-content .asme-join-page .join-benefit-copy > span {
+  display: block !important;
+  margin: 0 !important;
+}
+
+body #page .asme-join-page .join-benefit-copy strong,
+html body #page .entry-content .asme-join-page .join-benefit-copy strong {
+  margin-bottom: 2px !important;
+  color: #073b68 !important;
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+}
+
+body #page .asme-join-page .join-benefit-copy > span,
+html body #page .entry-content .asme-join-page .join-benefit-copy > span {
+  color: #667085 !important;
+  font-size: 11px !important;
+  line-height: 1.42 !important;
+}
+
+body #page .asme-join-page .join-process-area,
+html body #page .entry-content .asme-join-page .join-process-area {
+  display: block !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body #page .asme-join-page .join-process-area .join-flow-progress,
+html body #page .entry-content .asme-join-page .join-process-area .join-flow-progress {
+  grid-template-columns: auto minmax(50px, 1fr) auto !important;
+  min-height: 64px !important;
+  margin: 0 0 14px !important;
+  padding: 10px 16px !important;
+  border: 1px solid #dde5ef !important;
+  border-radius: 14px !important;
+  background: #f8fafc !important;
+  box-shadow: none !important;
+}
+
+body #page .asme-join-page .join-process-content,
+html body #page .entry-content .asme-join-page .join-process-content {
+  display: grid !important;
+  grid-template-columns: minmax(0, 3fr) minmax(230px, 1fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+body #page .asme-join-page .join-email-card,
+html body #page .entry-content .asme-join-page .join-email-card {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 26px 28px !important;
+  border: 1px solid rgba(10, 45, 80, 0.1) !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body #page .asme-join-page .join-email-card .join-form-heading,
+html body #page .entry-content .asme-join-page .join-email-card .join-form-heading {
+  margin: 0 0 18px !important;
+  padding: 0 0 15px !important;
+  border-bottom: 1px solid #eef1f5 !important;
+}
+
+body #page .asme-join-page .join-email-card .join-form-heading h2,
+html body #page .entry-content .asme-join-page .join-email-card .join-form-heading h2 {
+  margin: 0 0 8px !important;
+  color: #073b68 !important;
+  font-size: 31px !important;
+}
+
+body #page .asme-join-page .join-form-purpose strong,
+html body #page .entry-content .asme-join-page .join-form-purpose strong {
+  display: block !important;
+  margin-bottom: 3px !important;
+  color: #ba0c2f !important;
+}
+
+body #page .asme-join-page .join-email-card .join-form,
+html body #page .entry-content .asme-join-page .join-email-card .join-form {
+  gap: 14px !important;
+}
+
+body #page .asme-join-page .join-email-card .join-submit-wrap,
+html body #page .entry-content .asme-join-page .join-email-card .join-submit-wrap {
+  position: static !important;
+  top: auto !important;
+  margin: 5px 0 0 !important;
+  padding: 0 !important;
+}
+
+body #page .asme-join-page .join-email-card .join-submit-button,
+html body #page .entry-content .asme-join-page .join-email-card .join-submit-button {
+  min-width: 250px !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  max-height: 52px !important;
+  padding: 0 28px !important;
+  background: #c8102e !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+body #page .asme-join-page .join-groupme-card,
+html body #page .entry-content .asme-join-page .join-groupme-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 26px 22px !important;
+  align-items: flex-start !important;
+  border: 1px solid rgba(45, 120, 215, 0.14) !important;
+  border-radius: 16px !important;
+  background: linear-gradient(180deg, #f4f8ff 0%, #eef5ff 100%) !important;
+  box-shadow: none !important;
+}
+
+body #page .asme-join-page .join-groupme-card.is-ready,
+html body #page .entry-content .asme-join-page .join-groupme-card.is-ready {
+  background: linear-gradient(180deg, #edf6ff 0%, #e5f1ff 100%) !important;
+  box-shadow: inset 0 3px 0 #2474d8 !important;
+}
+
+body #page .asme-join-page .join-groupme-card .join-groupme-step-number,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-number {
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 0 14px !important;
+}
+
+body #page .asme-join-page .join-groupme-card .join-groupme-step-icon,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-icon {
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 0 22px !important;
+}
+
+body #page .asme-join-page .join-groupme-card .join-groupme-step-copy,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-copy {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+body #page .asme-join-page .join-groupme-card .join-groupme-step-copy h3,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-copy h3 {
+  margin: 0 0 9px !important;
+  font-size: 25px !important;
+}
+
+body #page .asme-join-page .join-groupme-card .join-groupme-step-copy p,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-copy p {
+  margin: 0 0 18px !important;
+}
+
+body #page .asme-join-page .join-groupme-card .join-groupme-button,
+html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-button {
+  width: auto !important;
+  min-height: 48px !important;
+  margin-top: auto !important;
+  padding: 0 20px !important;
+  align-self: flex-start !important;
+  white-space: normal !important;
+  text-align: center !important;
+}
+
+body #page .asme-join-page .join-faq-section,
+html body #page .entry-content .asme-join-page .join-faq-section {
+  max-width: none !important;
+  margin-top: 32px !important;
+}
+
+@media (max-width: 1120px) {
+  body #page .asme-join-page .join-process-content,
+  html body #page .entry-content .asme-join-page .join-process-content {
+    grid-template-columns: 1fr !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card,
+  html body #page .entry-content .asme-join-page .join-groupme-card {
+    display: grid !important;
+    grid-template-columns: 38px 48px minmax(0, 1fr) !important;
+    gap: 14px !important;
+    height: auto !important;
+    padding: 22px 24px !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card .join-groupme-step-number,
+  body #page .asme-join-page .join-groupme-card .join-groupme-step-icon,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-number,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-icon {
+    margin: 0 !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card .join-groupme-button,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-button {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body #page .asme-join-page,
+  html body #page .entry-content .asme-join-page {
+    padding: 8px 16px 40px !important;
+  }
+
+  body #page .asme-join-page .join-main-layout,
+  html body #page .entry-content .asme-join-page .join-main-layout {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+  }
+
+  body #page .asme-join-page .join-intro,
+  html body #page .entry-content .asme-join-page .join-intro {
+    padding-top: 2px !important;
+  }
+
+  body #page .asme-join-page .join-intro h1,
+  html body #page .entry-content .asme-join-page .join-intro h1 {
+    max-width: 15ch !important;
+    font-size: clamp(34px, 10vw, 46px) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  body #page .asme-join-page .join-stats-bar,
+  html body #page .entry-content .asme-join-page .join-stats-bar {
+    min-height: 82px !important;
+    margin-bottom: 20px !important;
+    padding: 15px 6px !important;
+    border-radius: 15px !important;
+  }
+
+  body #page .asme-join-page .join-stats-bar > div,
+  html body #page .entry-content .asme-join-page .join-stats-bar > div {
+    padding: 0 8px !important;
+  }
+
+  body #page .asme-join-page .join-stats-bar .join-proof-num,
+  html body #page .entry-content .asme-join-page .join-stats-bar .join-proof-num {
+    font-size: 23px !important;
+  }
+
+  body #page .asme-join-page .join-stats-bar .join-proof-award,
+  html body #page .entry-content .asme-join-page .join-stats-bar .join-proof-award {
+    flex-direction: column !important;
+    gap: 4px !important;
+    font-size: 9px !important;
+    line-height: 1.25 !important;
+  }
+
+  body #page .asme-join-page .join-proof-award-icon,
+  html body #page .entry-content .asme-join-page .join-proof-award-icon {
+    font-size: 16px !important;
+  }
+
+  body #page .asme-join-page .join-process-area .join-flow-progress,
+  html body #page .entry-content .asme-join-page .join-process-area .join-flow-progress {
+    grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr) !important;
+    padding: 10px 11px !important;
+  }
+
+  body #page .asme-join-page .join-email-card,
+  html body #page .entry-content .asme-join-page .join-email-card {
+    padding: 23px 20px !important;
+  }
+
+  body #page .asme-join-page .join-email-card .join-field-row,
+  html body #page .entry-content .asme-join-page .join-email-card .join-field-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  body #page .asme-join-page .join-email-card .join-submit-button,
+  html body #page .entry-content .asme-join-page .join-email-card .join-submit-button {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card,
+  html body #page .entry-content .asme-join-page .join-groupme-card {
+    display: grid !important;
+    grid-template-columns: 36px minmax(0, 1fr) !important;
+    gap: 13px !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    border-radius: 16px !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card .join-groupme-step-icon,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-icon {
+    display: none !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card .join-groupme-button,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-button {
+    width: 100% !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-join-page .join-intro,
+  html body #page .entry-content .asme-join-page .join-intro {
+    background: transparent !important;
+  }
+
+  body #page .asme-join-page .join-intro h1,
+  body #page .asme-join-page .join-benefit-copy strong,
+  body #page .asme-join-page .join-email-card .join-form-heading h2,
+  html body #page .entry-content .asme-join-page .join-intro h1,
+  html body #page .entry-content .asme-join-page .join-benefit-copy strong,
+  html body #page .entry-content .asme-join-page .join-email-card .join-form-heading h2 {
+    color: #f8fafc !important;
+  }
+
+  body #page .asme-join-page .join-intro > p,
+  body #page .asme-join-page .join-benefit-copy > span,
+  html body #page .entry-content .asme-join-page .join-intro > p,
+  html body #page .entry-content .asme-join-page .join-benefit-copy > span {
+    color: #cbd5e1 !important;
+  }
+
+  body #page .asme-join-page .join-benefits .join-benefit-card,
+  body #page .asme-join-page .join-email-card,
+  html body #page .entry-content .asme-join-page .join-benefits .join-benefit-card,
+  html body #page .entry-content .asme-join-page .join-email-card {
+    border-color: #293a52 !important;
+    background: #0f1b2d !important;
+  }
+
+  body #page .asme-join-page .join-benefit-icon,
+  html body #page .entry-content .asme-join-page .join-benefit-icon {
+    background: rgba(230, 56, 89, 0.13) !important;
+    color: #ff6b85 !important;
+  }
+
+  body #page .asme-join-page .join-process-area .join-flow-progress,
+  html body #page .entry-content .asme-join-page .join-process-area .join-flow-progress {
+    border-color: #31465f !important;
+    background: #111f33 !important;
+  }
+
+  body #page .asme-join-page .join-email-card .join-form-heading,
+  html body #page .entry-content .asme-join-page .join-email-card .join-form-heading {
+    border-color: #293a52 !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card,
+  html body #page .entry-content .asme-join-page .join-groupme-card {
+    border-color: #304a67 !important;
+    background: linear-gradient(180deg, #172a42 0%, #14243a 100%) !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card.is-ready,
+  html body #page .entry-content .asme-join-page .join-groupme-card.is-ready {
+    background: linear-gradient(180deg, #17314e 0%, #142b45 100%) !important;
+  }
+}
