@@ -2,7 +2,7 @@
   "version": 2,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-08-26T01:15:48.704Z",
+  "updatedAt": "2026-08-26T01:25:31.832Z",
   "items": [
     {
       "id": "DcZw1nCiX_H",
@@ -69,28 +69,6 @@
       "summary": "Come to our meeting this Wednesday! Required for those who are running for an exec board position. Everyone is encouraged to come regardless! See the GroupMe for more details and to stay up to date on events.",
       "caption": "Come to our meeting this Wednesday! Required for those who are running for an exec board position. Everyone is encouraged to come regardless! See the GroupMe for more details and to stay up to date on events.",
       "alt": "Come to our meeting this Wednesday!"
-    },
-    {
-      "id": "DWVG-H9DB2P",
-      "permalink": "https://www.instagram.com/p/DWVG-H9DB2P/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DWVG-H9DB2P.jpg",
-      "timestamp": "2026-03-26T01:50:20.000Z",
-      "title": "Thanks to everyone that came to our meeting!",
-      "summary": "Thanks to everyone that came to our meeting! We went over the executive board positions and had a bridge building competition. ⚙️🛠️🪵 Make sure to stay tuned for our upcoming events!",
-      "caption": "Thanks to everyone that came to our meeting! We went over the executive board positions and had a bridge building competition. ⚙️🛠️🪵 Make sure to stay tuned for our upcoming events!",
-      "alt": "Thanks to everyone that came to our meeting!"
-    },
-    {
-      "id": "DWBvcxkE6ID",
-      "permalink": "https://www.instagram.com/p/DWBvcxkE6ID/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DWBvcxkE6ID.jpg",
-      "timestamp": "2026-03-18T13:21:49.000Z",
-      "title": "Come to our meeting next week!",
-      "summary": "Come to our meeting next week! We’ll have a building competition and an executive position overview! Check the GroupMe to stay up to date on upcoming events and reminders 😋🔨",
-      "caption": "Come to our meeting next week! We’ll have a building competition and an executive position overview! Check the GroupMe to stay up to date on upcoming events and reminders 😋🔨",
-      "alt": "Come to our meeting next week!"
     }
   ]
 }

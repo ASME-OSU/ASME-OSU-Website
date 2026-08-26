@@ -78,7 +78,7 @@ Use the existing page wrapper classes, such as `asme-home`, `asme-about-page`, `
 
 The Gallery page reads `data/instagram-feed.json` through `Gallery Integration.js`. The static Instagram cards in `Gallery Page.html` remain as a resilient fallback, so the Gallery never becomes empty when Instagram or the network is unavailable.
 
-The `Refresh public Instagram gallery` GitHub Actions workflow checks the public `@asmeohiostate` profile every six hours. It does not use an Instagram access token, repository secret, or browser session. The collector tries Instagram's two public web hosts, ignores pinned ordering when choosing the featured post, and copies the current post thumbnails into `assets/gallery/instagram-auto` so the live Gallery does not depend on expiring Instagram CDN URLs.
+The `Refresh public Instagram gallery` GitHub Actions workflow checks the public `@asmeohiostate` profile every six hours. It does not use an Instagram access token, repository secret, or browser session. The collector reads Instagram's official public profile embed first and keeps the two public web hosts as backup sources. It ignores pinned ordering when choosing the featured post and copies the current post thumbnails into `assets/gallery/instagram-auto` so the live Gallery does not depend on expiring Instagram CDN URLs.
 
 The workflow commits only when post data or locally stored thumbnails change. If Instagram blocks or changes its public response, the workflow fails without replacing `data/instagram-feed.json`; WordPress continues rendering the last successful feed and its static fallback content.
 

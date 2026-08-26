@@ -83,12 +83,45 @@ function mediaType(node) {
 }
 
 function imageSource(node) {
-  const resources = Array.isArray(node.thumbnail_resources) ? node.thumbnail_resources : [];
+  const resources = [
+    ...(Array.isArray(node.display_resources) ? node.display_resources : []),
+    ...(Array.isArray(node.thumbnail_resources) ? node.thumbnail_resources : [])
+  ];
   const preferred = resources
     .filter((resource) => resource?.src)
     .sort((a, b) => Number(a.config_width || 0) - Number(b.config_width || 0))
     .find((resource) => Number(resource.config_width || 0) >= 640);
   return preferred?.src || node.thumbnail_src || node.display_url || '';
+}
+
+function parseEmbedProfile(html) {
+  const match = html.match(/"contextJSON":"((?:\\.|[^"\\])*)"/);
+  if (!match) throw new Error('profile embed did not contain its public media context');
+  const serializedContext = JSON.parse(`"${match[1]}"`);
+  const context = JSON.parse(serializedContext)?.context;
+  if (context?.username?.toLowerCase() !== username || !Array.isArray(context.graphql_media)) {
+    throw new Error('profile embed did not contain the expected public account');
+  }
+  return {
+    username: context.username,
+    edge_owner_to_timeline_media: {
+      edges: context.graphql_media.map((entry) => ({ node: entry?.shortcode_media }))
+    }
+  };
+}
+
+async function fetchEmbedProfile() {
+  const response = await fetch(`https://www.instagram.com/${username}/embed/`, {
+    headers: {
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'accept-language': requestHeaders['accept-language'],
+      'user-agent': 'Mozilla/5.0'
+    },
+    redirect: 'follow',
+    signal: AbortSignal.timeout(30_000)
+  });
+  if (!response.ok) throw new Error(`profile embed returned HTTP ${response.status}`);
+  return parseEmbedProfile(await response.text());
 }
 
 function isPinned(node) {
@@ -122,6 +155,11 @@ function normalizePosts(user) {
 
 async function fetchPublicProfile() {
   const failures = [];
+  try {
+    return await fetchEmbedProfile();
+  } catch (error) {
+    failures.push(`official profile embed: ${error.message}`);
+  }
   for (let attempt = 1; attempt <= 2; attempt += 1) {
     const session = await bootstrapPublicSession();
     for (const endpoint of profileEndpoints) {
