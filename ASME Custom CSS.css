@@ -20083,7 +20083,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-copy s
 /* Keep automatic Instagram media in its native portrait rhythm. */
 body #page .asme-gallery-page .gallery-instagram-media,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-media {
-  width: min(100%, 360px) !important;
+  width: min(100%, 320px) !important;
   aspect-ratio: 4 / 5 !important;
   justify-self: center !important;
 }
@@ -20101,7 +20101,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image 
 @media (max-width: 560px) {
   body #page .asme-gallery-page .gallery-instagram-media,
   html body #page .entry-content .asme-gallery-page .gallery-instagram-media {
-    width: min(100%, 330px) !important;
+    width: min(100%, 300px) !important;
   }
 }
 
