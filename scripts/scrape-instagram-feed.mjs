@@ -108,6 +108,23 @@ function imageSource(node) {
   };
 }
 
+function carouselSources(node) {
+  const edges = node?.edge_sidecar_to_children?.edges;
+  if (!Array.isArray(edges)) return [];
+  return edges
+    .map((edge, index) => {
+      const child = edge?.node || {};
+      const image = imageSource(child);
+      return {
+        shortcode: child.shortcode || `${node.shortcode}-slide-${index + 1}`,
+        sourceImageUrl: image.url,
+        sourceWidth: image.width,
+        sourceHeight: image.height
+      };
+    })
+    .filter((item) => item.sourceImageUrl);
+}
+
 function parseEmbedProfile(html) {
   const match = html.match(/"contextJSON":"((?:\\.|[^"\\])*)"/);
   if (!match) throw new Error('profile embed did not contain its public media context');
@@ -160,6 +177,7 @@ function normalizePosts(user) {
         sourceImageUrl: image.url,
         sourceWidth: image.width,
         sourceHeight: image.height,
+        carouselSources: carouselSources(node),
         caption
       };
     })
@@ -299,31 +317,51 @@ async function main() {
       throw new Error(`Instagram returned only ${posts.length} usable public posts; the existing feed was preserved.`);
     }
 
-    const downloads = [];
-    for (const post of posts) downloads.push(await downloadImage(post, temporaryDirectory));
+    const downloadSets = [];
+    for (let index = 0; index < posts.length; index += 1) {
+      const post = posts[index];
+      const sources = index === 0 && post.carouselSources.length > 1
+        ? post.carouselSources
+        : [post];
+      const postDownloads = [];
+      for (const source of sources) postDownloads.push(await downloadImage(source, temporaryDirectory));
+      downloadSets.push(postDownloads);
+    }
+    const downloads = downloadSets.flat();
 
     const items = posts.map((post, index) => {
       const caption = cleanCaption(post.caption);
       const fallback = index === 0 ? 'Latest from ASME OSU' : 'More from the chapter';
       const title = makeTitle(caption, fallback);
-      const fileName = downloads[index].fileName;
-      return {
+      const sourceSet = index === 0 && post.carouselSources.length > 1
+        ? post.carouselSources
+        : [post];
+      const carouselImages = downloadSets[index].map((download, slideIndex) => ({
+        imageUrl: `${publicAssetBase}/${download.fileName}`,
+        imageWidth: sourceSet[slideIndex].sourceWidth,
+        imageHeight: sourceSet[slideIndex].sourceHeight,
+        alt: `${title} — image ${slideIndex + 1} of ${downloadSets[index].length}`
+      }));
+      const firstImage = carouselImages[0];
+      const item = {
         id: post.shortcode,
         permalink: `https://www.instagram.com/p/${post.shortcode}/`,
         mediaType: post.mediaType,
-        imageUrl: `${publicAssetBase}/${fileName}`,
-        imageWidth: post.sourceWidth,
-        imageHeight: post.sourceHeight,
+        imageUrl: firstImage.imageUrl,
+        imageWidth: firstImage.imageWidth,
+        imageHeight: firstImage.imageHeight,
         timestamp: new Date(post.timestamp * 1000).toISOString(),
         title,
         summary: makeSummary(caption),
         caption,
         alt: title
       };
+      if (index === 0 && carouselImages.length > 1) item.carouselImages = carouselImages;
+      return item;
     });
 
     const next = {
-      version: 3,
+      version: 4,
       account: username,
       source: 'instagram-public-profile',
       updatedAt: new Date().toISOString(),

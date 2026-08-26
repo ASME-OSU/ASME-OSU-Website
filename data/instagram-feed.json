@@ -1,21 +1,47 @@
 {
-  "version": 3,
+  "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-08-26T01:32:53.696Z",
+  "updatedAt": "2026-08-26T01:47:31.033Z",
   "items": [
     {
       "id": "DcZw1nCiX_H",
       "permalink": "https://www.instagram.com/p/DcZw1nCiX_H/",
       "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZw1nCiX_H-640x853.jpg",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZwshmJtPk-640x853.jpg",
       "imageWidth": 640,
       "imageHeight": 853,
       "timestamp": "2026-08-24T00:21:30.000Z",
       "title": "Thanks to everyone who came and stopped by our table!",
       "summary": "Make sure to join the GroupMe and sign up for ASME on the website to stay up to date on events, workshops, etc!",
       "caption": "Thanks to everyone who came and stopped by our table! Make sure to join the GroupMe and sign up for ASME on the website to stay up to date on events, workshops, etc!",
-      "alt": "Thanks to everyone who came and stopped by our table!"
+      "alt": "Thanks to everyone who came and stopped by our table!",
+      "carouselImages": [
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZwshmJtPk-640x853.jpg",
+          "imageWidth": 640,
+          "imageHeight": 853,
+          "alt": "Thanks to everyone who came and stopped by our table! — image 1 of 4"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZwso3JhI8-640x853.jpg",
+          "imageWidth": 640,
+          "imageHeight": 853,
+          "alt": "Thanks to everyone who came and stopped by our table! — image 2 of 4"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZwsyFJHIw-640x853.jpg",
+          "imageWidth": 640,
+          "imageHeight": 853,
+          "alt": "Thanks to everyone who came and stopped by our table! — image 3 of 4"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZws5ApBGt-640x853.jpg",
+          "imageWidth": 640,
+          "imageHeight": 853,
+          "alt": "Thanks to everyone who came and stopped by our table! — image 4 of 4"
+        }
+      ]
     },
     {
       "id": "DcPWCTMiYHI",

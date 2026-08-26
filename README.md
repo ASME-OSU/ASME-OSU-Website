@@ -32,6 +32,7 @@ Then hard refresh the site.
 | `Home Page.html` | Home page custom HTML block | Home hero, stats, quick links, and event preview content. |
 | `About Us Page.html` | About page custom HTML block | About ASME OSU content, mission, and pillars. |
 | `Join Page.html` | Join page custom HTML block | Join/signup content and FAQ. |
+| `Join Page Integration.js` | Loaded by the Join page from GitHub Pages | Keeps newsletter submissions on-page and renders a clear confirmation instead of the provider's raw response. |
 | `Sponsor ASME Page.html` | Sponsor ASME page custom HTML block | Corporate sponsorship information and calls to action. |
 | `Member Resources Page.html` | Member Resources page custom HTML block | Member resource hub, SVG resource cards, jump links, career links, forms, and chapter resources. |
 | `Member Points Page.html` | Member Points page custom HTML block | Live Google Sheets-backed point values, system status, privacy-safe leaderboard, and member explanation. |
@@ -76,7 +77,7 @@ Use the existing page wrapper classes, such as `asme-home`, `asme-about-page`, `
 
 ## Automatic Instagram Gallery
 
-The Gallery page reads `data/instagram-feed.json` through `Gallery Integration.js`. The static Instagram cards in `Gallery Page.html` remain as a resilient fallback, so the Gallery never becomes empty when Instagram or the network is unavailable.
+The Gallery page reads `data/instagram-feed.json` through `Gallery Integration.js`. When the featured post is a carousel, its public images rotate every six seconds and remain manually navigable; reduced-motion preferences disable automatic rotation. The static Instagram cards in `Gallery Page.html` remain as a resilient fallback, so the Gallery never becomes empty when Instagram or the network is unavailable.
 
 The `Refresh public Instagram gallery` GitHub Actions workflow checks the public `@asmeohiostate` profile every six hours. It does not use an Instagram access token, repository secret, or browser session. The collector reads Instagram's official public profile embed first and keeps the two public web hosts as backup sources. It ignores pinned ordering when choosing the featured post and copies the current post thumbnails into `assets/gallery/instagram-auto` so the live Gallery does not depend on expiring Instagram CDN URLs.
 
