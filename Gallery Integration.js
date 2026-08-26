@@ -169,6 +169,12 @@
     startRotation();
   }
 
+  function removeWordPressMediaBreaks(featuredLink) {
+    Array.prototype.slice.call(featuredLink.children).forEach(function (child) {
+      if (child.tagName === 'BR' || (child.tagName === 'P' && !child.textContent.trim())) child.remove();
+    });
+  }
+
   function renderFeed(feed) {
     if (!feed || !Array.isArray(feed.items) || feed.items.length < 1) return;
 
@@ -193,6 +199,7 @@
     featuredTitle.textContent = text(featured.title, 'Latest from ASME OSU');
     featuredCaption.textContent = text(featured.summary, text(featured.caption, 'Follow ASME OSU for chapter updates, events, and student opportunities.'));
     featuredDate.textContent = shortDate(featured.timestamp);
+    removeWordPressMediaBreaks(featuredLink);
     setupFeaturedCarousel(featured, featuredLink, featuredImage);
 
     var recent = feed.items.slice(1, 4);
