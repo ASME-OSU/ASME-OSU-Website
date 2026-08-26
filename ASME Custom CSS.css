@@ -21392,6 +21392,16 @@ html body #page .entry-content .asme-join-page .join-faq-section {
   }
 }
 
+/* Portrait tablets need the signup flow at full width. Keeping the desktop
+   split here leaves the GroupMe copy with only a narrow sliver of space. */
+@media (max-width: 960px) {
+  body #page .asme-join-page .join-main-layout,
+  html body #page .entry-content .asme-join-page .join-main-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 26px !important;
+  }
+}
+
 @media (max-width: 760px) {
   body #page .asme-join-page,
   html body #page .entry-content .asme-join-page {
