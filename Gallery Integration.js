@@ -60,6 +60,8 @@
     imageWrap.className = 'gallery-instagram-post-image';
     image.src = text(item.imageUrl, '');
     image.alt = text(item.alt, text(item.title, 'ASME OSU Instagram post'));
+    if (Number(item.imageWidth) > 0) image.width = Number(item.imageWidth);
+    if (Number(item.imageHeight) > 0) image.height = Number(item.imageHeight);
     image.loading = 'lazy';
     image.decoding = 'async';
     imageWrap.appendChild(image);
@@ -101,6 +103,8 @@
     featuredButton.href = text(featured.permalink, ACCOUNT_URL);
     featuredImage.src = text(featured.imageUrl, featuredImage.src);
     featuredImage.alt = text(featured.alt, text(featured.title, 'Latest ASME OSU Instagram post'));
+    if (Number(featured.imageWidth) > 0) featuredImage.width = Number(featured.imageWidth);
+    if (Number(featured.imageHeight) > 0) featuredImage.height = Number(featured.imageHeight);
     featuredTitle.textContent = text(featured.title, 'Latest from ASME OSU');
     featuredCaption.textContent = text(featured.summary, text(featured.caption, 'Follow ASME OSU for chapter updates, events, and student opportunities.'));
     featuredDate.textContent = shortDate(featured.timestamp);

@@ -71,9 +71,12 @@ function makeTitle(caption, fallback) {
 
 function makeSummary(caption) {
   const clean = cleanCaption(caption);
-  return clean
-    ? truncate(clean, 240)
-    : 'Follow ASME OSU for chapter updates, upcoming events, workshops, and student opportunities.';
+  if (!clean) return 'Follow ASME OSU for chapter updates, upcoming events, workshops, and student opportunities.';
+  const firstSentence = clean.split(/(?<=[.!?])\s+/)[0];
+  const remainder = clean.slice(firstSentence.length).trim();
+  return remainder
+    ? truncate(remainder, 240)
+    : 'See the full update on Instagram and follow ASME OSU for upcoming events and chapter news.';
 }
 
 function mediaType(node) {
@@ -91,7 +94,18 @@ function imageSource(node) {
     .filter((resource) => resource?.src)
     .sort((a, b) => Number(a.config_width || 0) - Number(b.config_width || 0))
     .find((resource) => Number(resource.config_width || 0) >= 640);
-  return preferred?.src || node.thumbnail_src || node.display_url || '';
+  if (preferred?.src) {
+    return {
+      url: preferred.src,
+      width: Number(preferred.config_width || 0),
+      height: Number(preferred.config_height || 0)
+    };
+  }
+  return {
+    url: node.thumbnail_src || node.display_url || '',
+    width: Number(node.dimensions?.width || 0),
+    height: Number(node.dimensions?.height || 0)
+  };
 }
 
 function parseEmbedProfile(html) {
@@ -134,15 +148,18 @@ function normalizePosts(user) {
 
   const posts = edges
     .map((edge) => edge?.node)
-    .filter((node) => node?.shortcode && node?.taken_at_timestamp && imageSource(node))
-    .map((node) => {
+    .map((node) => ({ node, image: imageSource(node || {}) }))
+    .filter(({ node, image }) => node?.shortcode && node?.taken_at_timestamp && image.url)
+    .map(({ node, image }) => {
       const caption = node.edge_media_to_caption?.edges?.[0]?.node?.text || '';
       return {
         shortcode: node.shortcode,
         timestamp: Number(node.taken_at_timestamp),
         pinned: isPinned(node),
         mediaType: mediaType(node),
-        sourceImageUrl: imageSource(node),
+        sourceImageUrl: image.url,
+        sourceWidth: image.width,
+        sourceHeight: image.height,
         caption
       };
     })
@@ -200,10 +217,10 @@ function extensionFor(contentType) {
   return '.jpg';
 }
 
-async function existingImage(shortcode) {
+async function existingImage(baseName) {
   try {
     const files = await fs.readdir(imageDirectory);
-    const fileName = files.find((file) => file.startsWith(`${shortcode}.`));
+    const fileName = files.find((file) => file.startsWith(`${baseName}.`));
     if (!fileName) return '';
     const details = await fs.stat(path.join(imageDirectory, fileName));
     return details.size >= 1_000 ? fileName : '';
@@ -213,7 +230,11 @@ async function existingImage(shortcode) {
 }
 
 async function downloadImage(post, temporaryDirectory) {
-  const current = await existingImage(post.shortcode);
+  const dimensions = post.sourceWidth > 0 && post.sourceHeight > 0
+    ? `-${post.sourceWidth}x${post.sourceHeight}`
+    : '';
+  const baseName = `${post.shortcode}${dimensions}`;
+  const current = await existingImage(baseName);
   if (current) return { fileName: current, temporaryPath: '' };
 
   const response = await fetch(post.sourceImageUrl, {
@@ -234,7 +255,7 @@ async function downloadImage(post, temporaryDirectory) {
     throw new Error(`image ${post.shortcode} had an unexpected size (${image.length} bytes)`);
   }
 
-  const fileName = `${post.shortcode}${extensionFor(contentType)}`;
+  const fileName = `${baseName}${extensionFor(contentType)}`;
   const temporaryPath = path.join(temporaryDirectory, fileName);
   await fs.writeFile(temporaryPath, image);
   return { fileName, temporaryPath };
@@ -291,6 +312,8 @@ async function main() {
         permalink: `https://www.instagram.com/p/${post.shortcode}/`,
         mediaType: post.mediaType,
         imageUrl: `${publicAssetBase}/${fileName}`,
+        imageWidth: post.sourceWidth,
+        imageHeight: post.sourceHeight,
         timestamp: new Date(post.timestamp * 1000).toISOString(),
         title,
         summary: makeSummary(caption),
@@ -300,7 +323,7 @@ async function main() {
     });
 
     const next = {
-      version: 2,
+      version: 3,
       account: username,
       source: 'instagram-public-profile',
       updatedAt: new Date().toISOString(),
