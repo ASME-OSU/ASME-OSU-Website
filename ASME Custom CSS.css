@@ -572,6 +572,15 @@ html body #page .entry-content .asme-join-page .join-flow-progress-step > span:l
   flex-direction: column !important;
 }
 
+/* WordPress may append a <br>, so do not rely on the copy span being last. */
+body #page .asme-join-page .join-flow-progress-step > span:not(.join-flow-progress-number),
+html body #page .entry-content .asme-join-page .join-flow-progress-step > span:not(.join-flow-progress-number) {
+  display: flex !important;
+  min-width: 0 !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+}
+
 body #page .asme-join-page .join-flow-progress-step strong,
 html body #page .entry-content .asme-join-page .join-flow-progress-step strong {
   color: #41566f !important;
