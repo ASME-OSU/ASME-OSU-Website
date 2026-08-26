@@ -21402,6 +21402,49 @@ html body #page .entry-content .asme-join-page .join-faq-section {
   }
 }
 
+/* On portrait tablets, keep GroupMe as the second vertical step beside the
+   newsletter form. The intro remains stacked above so both cards have room. */
+@media (min-width: 761px) and (max-width: 1024px) {
+  body #page .asme-join-page .join-process-content,
+  html body #page .entry-content .asme-join-page .join-process-content {
+    grid-template-columns: minmax(0, 1fr) minmax(210px, 0.42fr) !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card,
+  html body #page .entry-content .asme-join-page .join-groupme-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    padding: 24px 20px !important;
+    align-items: flex-start !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card .join-groupme-step-number,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-number {
+    margin: 0 0 14px !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card .join-groupme-step-icon,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-icon {
+    margin: 0 0 22px !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card .join-groupme-step-copy,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-step-copy {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+  }
+
+  body #page .asme-join-page .join-groupme-card .join-groupme-button,
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-button {
+    width: 100% !important;
+    margin-top: auto !important;
+    align-self: stretch !important;
+  }
+}
+
 @media (max-width: 760px) {
   body #page .asme-join-page,
   html body #page .entry-content .asme-join-page {
