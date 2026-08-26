@@ -1,4 +1,4 @@
-name: Update Instagram gallery
+name: Refresh public Instagram gallery
 
 on:
   schedule:
@@ -15,8 +15,6 @@ concurrency:
 jobs:
   refresh-feed:
     runs-on: ubuntu-latest
-    env:
-      INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
     steps:
       - name: Check out the website
         uses: actions/checkout@v4
@@ -26,23 +24,17 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Refresh Instagram data
-        if: env.INSTAGRAM_ACCESS_TOKEN != ''
-        run: node scripts/update-instagram-feed.mjs
-
-      - name: Explain missing configuration
-        if: env.INSTAGRAM_ACCESS_TOKEN == ''
-        run: echo 'Add INSTAGRAM_ACCESS_TOKEN as a repository Actions secret to enable scheduled Instagram refreshes.'
+      - name: Collect the public Instagram feed
+        run: node scripts/scrape-instagram-feed.mjs
 
       - name: Publish an updated feed
-        if: env.INSTAGRAM_ACCESS_TOKEN != ''
         run: |
-          if git diff --quiet -- data/instagram-feed.json; then
+          if [ -z "$(git status --porcelain -- data/instagram-feed.json assets/gallery/instagram-auto)" ]; then
             echo 'Instagram feed is already current.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/instagram-feed.json
+          git add data/instagram-feed.json assets/gallery/instagram-auto
           git commit -m 'Update Instagram gallery feed'
           git push

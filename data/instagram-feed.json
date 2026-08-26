@@ -1,51 +1,96 @@
 {
-  "version": 1,
+  "version": 2,
   "account": "asmeohiostate",
-  "updatedAt": "2026-08-25T16:45:00.000Z",
+  "source": "instagram-public-profile",
+  "updatedAt": "2026-08-26T01:15:48.704Z",
   "items": [
     {
       "id": "DcZw1nCiX_H",
-      "permalink": "https://www.instagram.com/asmeohiostate/p/DcZw1nCiX_H/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-involvement-fair.jpg",
-      "timestamp": "2026-08-23T16:00:00.000Z",
-      "title": "A great day at the Involvement Fair.",
-      "summary": "Thanks to everyone who stopped by our table. Follow ASME OSU for event recaps, upcoming meetings, workshops, and more ways to get involved.",
-      "caption": "A great day at the Involvement Fair.",
-      "alt": "ASME OSU meeting students at the 2026 Involvement Fair"
-    },
-    {
-      "id": "DcOdL8EFoRr",
-      "permalink": "https://www.instagram.com/asmeohiostate/p/DcOdL8EFoRr/",
+      "permalink": "https://www.instagram.com/p/DcZw1nCiX_H/",
       "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-exec-board.jpg",
-      "timestamp": "2026-08-19T16:00:00.000Z",
-      "title": "Meet your 2026 executive board",
-      "summary": "Meet the ASME OSU 2026 executive board.",
-      "caption": "Meet your 2026 executive board",
-      "alt": "Meet the ASME OSU 2026 executive board"
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZw1nCiX_H.jpg",
+      "timestamp": "2026-08-24T00:21:30.000Z",
+      "title": "Thanks to everyone who came and stopped by our table!",
+      "summary": "Thanks to everyone who came and stopped by our table! Make sure to join the GroupMe and sign up for ASME on the website to stay up to date on events, workshops, etc!",
+      "caption": "Thanks to everyone who came and stopped by our table! Make sure to join the GroupMe and sign up for ASME on the website to stay up to date on events, workshops, etc!",
+      "alt": "Thanks to everyone who came and stopped by our table!"
     },
     {
       "id": "DcPWCTMiYHI",
-      "permalink": "https://www.instagram.com/asmeohiostate/p/DcPWCTMiYHI/",
+      "permalink": "https://www.instagram.com/p/DcPWCTMiYHI/",
       "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-involvement-map.jpg",
-      "timestamp": "2026-08-19T15:00:00.000Z",
-      "title": "Find us at the Involvement Fair",
-      "summary": "Find ASME OSU at the 2026 Involvement Fair.",
-      "caption": "Find us at the Involvement Fair",
-      "alt": "Map showing ASME OSU's booth at the 2026 Involvement Fair"
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcPWCTMiYHI.jpg",
+      "timestamp": "2026-08-19T23:14:53.000Z",
+      "title": "Come see us at the involvement fair this Sunday from 4-7 PM!",
+      "summary": "Come see us at the involvement fair this Sunday from 4-7 PM! Our booth is 508, located in the blue section on the main oval. Stop by to find out more of what we do, sign up for ASME, or just chat! See you there 🔧",
+      "caption": "Come see us at the involvement fair this Sunday from 4-7 PM! Our booth is 508, located in the blue section on the main oval. Stop by to find out more of what we do, sign up for ASME, or just chat! See you there 🔧",
+      "alt": "Come see us at the involvement fair this Sunday from 4-7 PM!"
+    },
+    {
+      "id": "DcOdL8EFoRr",
+      "permalink": "https://www.instagram.com/p/DcOdL8EFoRr/",
+      "mediaType": "CAROUSEL_ALBUM",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcOdL8EFoRr.jpg",
+      "timestamp": "2026-08-19T14:58:08.000Z",
+      "title": "Meet your officers for 2026!",
+      "summary": "Meet your officers for 2026! We’re here to help you, so feel free to come up to any of us. Also be on the lookout for us at the involvement fair Sunday! ⚙️",
+      "caption": "Meet your officers for 2026! We’re here to help you, so feel free to come up to any of us. Also be on the lookout for us at the involvement fair Sunday! ⚙️",
+      "alt": "Meet your officers for 2026!"
     },
     {
       "id": "DXe7LFbEzdJ",
-      "permalink": "https://www.instagram.com/asmeohiostate/p/DXe7LFbEzdJ/",
+      "permalink": "https://www.instagram.com/p/DXe7LFbEzdJ/",
       "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-section-award.jpg",
-      "timestamp": "2026-04-23T16:00:00.000Z",
-      "title": "2026 Section Achievement Award",
-      "summary": "ASME OSU received the 2026 Student Section Achievement Award.",
-      "caption": "2026 Section Achievement Award",
-      "alt": "ASME Student Section Achievement Award 2026 badge"
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DXe7LFbEzdJ.jpg",
+      "timestamp": "2026-04-23T17:53:55.000Z",
+      "title": "ASME recognizes our student section with the Section Achievement Award for…",
+      "summary": "ASME recognizes our student section with the Section Achievement Award for accomplishments made in 2025-2026! Our section was awarded this for staying in contact with ASME staff and providing activities to help students on campus this…",
+      "caption": "ASME recognizes our student section with the Section Achievement Award for accomplishments made in 2025-2026! Our section was awarded this for staying in contact with ASME staff and providing activities to help students on campus this year. We’re grateful to receive this award! @asmestudents @asmealytrevino",
+      "alt": "ASME recognizes our student section with the Section Achievement Award for…"
+    },
+    {
+      "id": "DXNEcdMCaco",
+      "permalink": "https://www.instagram.com/p/DXNEcdMCaco/",
+      "mediaType": "CAROUSEL_ALBUM",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DXNEcdMCaco.jpg",
+      "timestamp": "2026-04-16T19:25:43.000Z",
+      "title": "The student section tour is live, Hartford SLS was first, Ohio last week…",
+      "summary": "The student section tour is live, Hartford SLS was first, Ohio last week and Illinois this week. ✈️⚙️✨",
+      "caption": "The student section tour is live, Hartford SLS was first, Ohio last week and Illinois this week. ✈️⚙️✨",
+      "alt": "The student section tour is live, Hartford SLS was first, Ohio last week…"
+    },
+    {
+      "id": "DWxK3XcjzyY",
+      "permalink": "https://www.instagram.com/p/DWxK3XcjzyY/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DWxK3XcjzyY.jpg",
+      "timestamp": "2026-04-05T23:25:32.000Z",
+      "title": "Come to our meeting this Wednesday!",
+      "summary": "Come to our meeting this Wednesday! Required for those who are running for an exec board position. Everyone is encouraged to come regardless! See the GroupMe for more details and to stay up to date on events.",
+      "caption": "Come to our meeting this Wednesday! Required for those who are running for an exec board position. Everyone is encouraged to come regardless! See the GroupMe for more details and to stay up to date on events.",
+      "alt": "Come to our meeting this Wednesday!"
+    },
+    {
+      "id": "DWVG-H9DB2P",
+      "permalink": "https://www.instagram.com/p/DWVG-H9DB2P/",
+      "mediaType": "CAROUSEL_ALBUM",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DWVG-H9DB2P.jpg",
+      "timestamp": "2026-03-26T01:50:20.000Z",
+      "title": "Thanks to everyone that came to our meeting!",
+      "summary": "Thanks to everyone that came to our meeting! We went over the executive board positions and had a bridge building competition. ⚙️🛠️🪵 Make sure to stay tuned for our upcoming events!",
+      "caption": "Thanks to everyone that came to our meeting! We went over the executive board positions and had a bridge building competition. ⚙️🛠️🪵 Make sure to stay tuned for our upcoming events!",
+      "alt": "Thanks to everyone that came to our meeting!"
+    },
+    {
+      "id": "DWBvcxkE6ID",
+      "permalink": "https://www.instagram.com/p/DWBvcxkE6ID/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DWBvcxkE6ID.jpg",
+      "timestamp": "2026-03-18T13:21:49.000Z",
+      "title": "Come to our meeting next week!",
+      "summary": "Come to our meeting next week! We’ll have a building competition and an executive position overview! Check the GroupMe to stay up to date on upcoming events and reminders 😋🔨",
+      "caption": "Come to our meeting next week! We’ll have a building competition and an executive position overview! Check the GroupMe to stay up to date on upcoming events and reminders 😋🔨",
+      "alt": "Come to our meeting next week!"
     }
   ]
 }

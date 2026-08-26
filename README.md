@@ -76,11 +76,11 @@ Use the existing page wrapper classes, such as `asme-home`, `asme-about-page`, `
 
 ## Automatic Instagram Gallery
 
-The Gallery page reads `data/instagram-feed.json` through `Gallery Integration.js`. The static Instagram cards in `Gallery Page.html` remain as a resilient fallback, so the Gallery never becomes empty when the API or network is unavailable.
+The Gallery page reads `data/instagram-feed.json` through `Gallery Integration.js`. The static Instagram cards in `Gallery Page.html` remain as a resilient fallback, so the Gallery never becomes empty when Instagram or the network is unavailable.
 
-The `Update Instagram gallery` GitHub Actions workflow refreshes the feed every six hours. To enable scheduled refreshes, add a repository Actions secret named `INSTAGRAM_ACCESS_TOKEN` containing an Instagram API access token for the `@asmeohiostate` professional account. The token is used only by GitHub Actions and must never be placed in page HTML, JavaScript, or the public JSON file.
+The `Refresh public Instagram gallery` GitHub Actions workflow checks the public `@asmeohiostate` profile every six hours. It does not use an Instagram access token, repository secret, or browser session. The collector tries Instagram's two public web hosts, ignores pinned ordering when choosing the featured post, and copies the current post thumbnails into `assets/gallery/instagram-auto` so the live Gallery does not depend on expiring Instagram CDN URLs.
 
-The workflow commits only when post data changes. A new commit automatically updates the GitHub Pages feed consumed by WordPress.
+The workflow commits only when post data or locally stored thumbnails change. If Instagram blocks or changes its public response, the workflow fails without replacing `data/instagram-feed.json`; WordPress continues rendering the last successful feed and its static fallback content.
 
 ## WordPress Auto-Formatting (`wpautop`)
 
