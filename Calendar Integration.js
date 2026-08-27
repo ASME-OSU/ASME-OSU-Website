@@ -3,8 +3,21 @@
 
   var IS_LOCAL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
   var FEED_URL = IS_LOCAL ? '/data/calendar-events.json' : 'https://asme-osu.github.io/ASME-OSU-Website/data/calendar-events.json';
-  var CACHE_KEY = 'asmeCalendarEventsV2';
+  var CACHE_KEY = 'asmeCalendarEventsV3';
   var TIME_ZONE = 'America/New_York';
+  var NON_CHAPTER_EVENT_TITLE_PATTERNS = [
+    /\bclasses begin\b/i,
+    /\benrollment census date\b/i,
+    /\blast day of regularly scheduled\b/i,
+    /\bfinal exams?\b/i,
+    /^(?:autumn|spring|thanksgiving) break\b/i,
+    /\bacademic winter recess\b/i,
+    /\bcommencement\b/i,
+    /\binitial fee due date\b/i,
+    /\bnew year'?s day\b/i,
+    /\bno classes\b/i,
+    /\boffices (?:closed|open)\b/i
+  ];
 
   function cleanText(value) {
     if (typeof value !== 'string') return '';
@@ -35,6 +48,14 @@
       return start && ((end && end > now) || start >= now);
     }).sort(function (a, b) {
       return safeDate(a.start) - safeDate(b.start);
+    });
+  }
+
+  function isChapterEvent(event) {
+    var title = cleanText(event && event.title);
+    if (!title) return false;
+    return !NON_CHAPTER_EVENT_TITLE_PATTERNS.some(function (pattern) {
+      return pattern.test(title);
     });
   }
 
@@ -147,7 +168,7 @@
   }
 
   function render(feed) {
-    var events = upcomingEvents(feed);
+    var events = upcomingEvents(feed).filter(isChapterEvent);
     renderHome(events);
     renderCalendarPage(events);
   }
