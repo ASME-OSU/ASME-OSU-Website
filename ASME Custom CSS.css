@@ -21392,9 +21392,9 @@ html body #page .entry-content .asme-join-page .join-faq-section {
   }
 }
 
-/* Portrait tablets need the signup flow at full width. Keeping the desktop
-   split here leaves the GroupMe copy with only a narrow sliver of space. */
-@media (max-width: 1024px) {
+/* Tablets and compact laptops need the signup flow at full width. Keeping the
+   desktop split through 1120px makes GroupMe drop below the form at 1025px. */
+@media (max-width: 1120px) {
   body #page .asme-join-page .join-main-layout,
   html body #page .entry-content .asme-join-page .join-main-layout {
     grid-template-columns: minmax(0, 1fr) !important;
@@ -21402,9 +21402,9 @@ html body #page .entry-content .asme-join-page .join-faq-section {
   }
 }
 
-/* On portrait tablets, keep GroupMe as the second vertical step beside the
-   newsletter form. The intro remains stacked above so both cards have room. */
-@media (min-width: 700px) and (max-width: 1024px) {
+/* Keep GroupMe as the second vertical step beside the newsletter form across
+   the full tablet range. The intro remains stacked above so both cards fit. */
+@media (min-width: 700px) and (max-width: 1120px) {
   body #page .asme-join-page .join-process-content,
   html body #page .entry-content .asme-join-page .join-process-content {
     grid-template-columns: minmax(0, 1fr) minmax(210px, 0.42fr) !important;
