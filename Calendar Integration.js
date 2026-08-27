@@ -198,18 +198,26 @@
     var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-calendar-mode]'));
     if (!frame || !buttons.length) return;
 
+    function setView(mode) {
+      var url = new URL(frame.src);
+      if (url.searchParams.get('mode') !== mode) {
+        url.searchParams.set('mode', mode);
+        frame.src = url.toString();
+      }
+      frame.title = mode === 'MONTH' ? 'ASME OSU monthly events calendar' : 'ASME OSU upcoming events calendar';
+      buttons.forEach(function (candidate) {
+        var active = candidate.getAttribute('data-calendar-mode') === mode;
+        candidate.classList.toggle('is-active', active);
+        candidate.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    }
+
+    setView(window.matchMedia('(max-width: 700px)').matches ? 'AGENDA' : 'MONTH');
+
     buttons.forEach(function (button) {
       button.addEventListener('click', function () {
         var mode = button.getAttribute('data-calendar-mode') || 'AGENDA';
-        var url = new URL(frame.src);
-        url.searchParams.set('mode', mode);
-        frame.src = url.toString();
-        frame.title = mode === 'MONTH' ? 'ASME OSU monthly events calendar' : 'ASME OSU upcoming events calendar';
-        buttons.forEach(function (candidate) {
-          var active = candidate === button;
-          candidate.classList.toggle('is-active', active);
-          candidate.setAttribute('aria-pressed', active ? 'true' : 'false');
-        });
+        setView(mode);
       });
     });
   }
