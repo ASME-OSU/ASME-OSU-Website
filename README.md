@@ -37,6 +37,8 @@ Then hard refresh the site.
 | `Member Resources Page.html` | Member Resources page custom HTML block | Member resource hub, SVG resource cards, jump links, career links, forms, and chapter resources. |
 | `Member Points Page.html` | Member Points page custom HTML block | Live Google Sheets-backed point values, system status, privacy-safe leaderboard, and member explanation. |
 | `Footer.html` | GeneratePress footer element/snippet | Custom footer markup and client-side scripts, if used on the WordPress site. |
+| `Calendar Integration.js` | Loaded site-wide by `Footer.html` | Renders the fast homepage featured event, Calendar page upcoming-event cards and view switch, and removes the stale Blog link from the primary navigation. |
+| `data/calendar-events.json` | Public GitHub Pages data file | Cached, recurrence-aware calendar data used by the homepage and Calendar page. |
 | `Member Points Integration.js` | Loaded by `Footer.html` from jsDelivr | Reads only the sanitized Website Export Google Sheet and renders point values/status/leaderboard on the Member Points page. |
 | `Leadership Page.html` | Leadership page custom HTML block | Officer/leadership layout, if maintained in WordPress. |
 | `Gallery Page.html` | Gallery page custom HTML block | Gallery layout, if maintained in WordPress. |
@@ -82,6 +84,14 @@ The Gallery page reads `data/instagram-feed.json` through `Gallery Integration.j
 The `Refresh public Instagram gallery` GitHub Actions workflow checks the public `@asmeohiostate` profile every six hours. It does not use an Instagram access token, repository secret, or browser session. The collector reads Instagram's official public profile embed first and keeps the two public web hosts as backup sources. It ignores pinned ordering when choosing the featured post and copies the current post thumbnails into `assets/gallery/instagram-auto` so the live Gallery does not depend on expiring Instagram CDN URLs.
 
 The workflow commits only when post data or locally stored thumbnails change. If Instagram blocks or changes its public response, the workflow fails without replacing `data/instagram-feed.json`; WordPress continues rendering the last successful feed and its static fallback content.
+
+## Automatic Calendar Feed
+
+The Calendar page defaults to a readable upcoming-events agenda and offers an optional month view. `Calendar Integration.js` also renders the next three events above the embed and the next event on the homepage.
+
+The `Refresh public calendar feed` GitHub Actions workflow reads the public Google Calendar hourly and writes recurrence-aware event data to `data/calendar-events.json`. The browser reads this same-origin static feed instead of waiting on public CORS proxies. A local cached copy is rendered immediately on repeat visits, and the page keeps useful static fallback content when the feed is unavailable.
+
+The old Blog posts remain available by their direct URLs as an archive, but Blog is intentionally removed from the primary Events navigation and current-event buttons now point to the Calendar.
 
 ## WordPress Auto-Formatting (`wpautop`)
 

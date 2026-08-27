@@ -1,55 +1,80 @@
 <div class="asme-cal-page">
 
-  <div class="acp-header">
+  <header class="acp-header">
     <div class="acp-header-left">
-      <div class="acp-eyebrow">Ohio State ASME · Stay in the Loop</div>
+      <div class="acp-eyebrow">Ohio State ASME · Plan What’s Next</div>
       <h1 class="acp-title">Events Calendar</h1>
-      <p class="acp-sub">All our upcoming info sessions, socials, general body meetings, and competitions in one place. Add events directly to your Google Calendar with one click.</p>
+      <p class="acp-sub">Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Subscribe once and new events will appear automatically in your calendar.</p>
     </div>
     <div class="acp-header-right">
       <a class="acp-subscribe-btn"
         href="https://calendar.google.com/calendar/r?cid=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com"
-        target="_blank" rel="noopener"
-        style="display:block;text-align:center;line-height:1;padding:14px 24px;">+ Subscribe to Calendar</a>
-      <p style="margin-top:0.5px;text-align:center;font-size:11px;color:#9ca3af;">Opens in Google Calendar</p>
+        target="_blank" rel="noopener noreferrer">+ Subscribe to Calendar</a>
+      <p class="acp-subscribe-note">Opens in Google Calendar</p>
     </div>
-  </div>
+  </header>
 
- <div class="acp-cal-card" style="margin-top: 40px;">
+  <section class="acp-upcoming" aria-labelledby="acp-upcoming-title">
+    <div class="acp-upcoming-heading">
+      <div>
+        <div class="acp-section-eyebrow">Coming Up</div>
+        <h2 id="acp-upcoming-title">Next ASME events</h2>
+      </div>
+      <span class="acp-live-badge"><span aria-hidden="true"></span>Synced from our calendar</span>
+    </div>
+    <div class="acp-upcoming-grid" id="asmeCalendarUpcoming" aria-live="polite" aria-busy="true">
+      <article class="acp-event-card acp-event-card--loading">
+        <div class="acp-event-date"><span>Next</span><strong>Event</strong></div>
+        <div class="acp-event-copy">
+          <h3>Loading upcoming events…</h3>
+          <p>The full calendar remains available below.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="acp-cal-card" aria-labelledby="acp-calendar-label">
     <div class="acp-cal-topbar">
-      <span class="acp-cal-dot"></span>
-      <span class="acp-cal-dot"></span>
-      <span class="acp-cal-dot"></span>
-      <span class="acp-cal-label">ASME 26–27 Events · GMT-04</span>
+      <div class="acp-cal-identity">
+        <span class="acp-cal-dot" aria-hidden="true"></span>
+        <span class="acp-cal-dot" aria-hidden="true"></span>
+        <span class="acp-cal-dot" aria-hidden="true"></span>
+        <span class="acp-cal-label" id="acp-calendar-label">ASME 2026–27 Events · Eastern Time</span>
+      </div>
+      <div class="acp-view-switch" role="group" aria-label="Calendar view">
+        <button class="acp-view-button is-active" type="button" data-calendar-mode="AGENDA" aria-pressed="true">Upcoming</button>
+        <button class="acp-view-button" type="button" data-calendar-mode="MONTH" aria-pressed="false">Month</button>
+      </div>
     </div>
     <iframe
-      src="https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&showTz=1&mode=MONTH"
-      style="border:0;display:block;width:100%;height:640px;"
+      id="asmeCalendarFrame"
+      src="https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&amp;ctz=America%2FNew_York&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=1&amp;mode=AGENDA"
+      title="ASME OSU upcoming events calendar"
       frameborder="0"
       scrolling="no">
     </iframe>
-  </div>
+  </section>
 
   <div class="acp-info-strip">
     <div class="acp-info-item">
-      <span class="acp-info-icon">📅</span>
+      <span class="acp-info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 3v4M17 3v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13H4V6a1 1 0 0 1 1-1zM8 13h3M8 17h6"/></svg></span>
       <div>
-        <div class="acp-info-title">Add to Your Calendar</div>
-        <div class="acp-info-sub">Subscribe so events appear automatically in your personal Google Calendar.</div>
+        <div class="acp-info-title">Add it once</div>
+        <div class="acp-info-sub">Subscribe so schedule changes and new events appear automatically.</div>
       </div>
     </div>
     <div class="acp-info-item">
-      <span class="acp-info-icon">📣</span>
+      <span class="acp-info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 13V9l13-5v14L4 13zm0 0 2 6h3l-1.7-5"/><path d="M20 8a6 6 0 0 1 0 6"/></svg></span>
       <div>
-        <div class="acp-info-title">Stay Updated</div>
-        <div class="acp-info-sub">Follow us on Instagram <a href="https://www.instagram.com/asmeohiostate/" target="_blank">@asmeohiostate</a> for event reminders and announcements.</div>
+        <div class="acp-info-title">Get reminders</div>
+        <div class="acp-info-sub">Follow <a href="https://www.instagram.com/asmeohiostate/" target="_blank" rel="noopener noreferrer">@asmeohiostate</a> for announcements and event-day updates.</div>
       </div>
     </div>
     <div class="acp-info-item">
-      <span class="acp-info-icon">✉️</span>
+      <span class="acp-info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg></span>
       <div>
-        <div class="acp-info-title">Questions?</div>
-        <div class="acp-info-sub">Reach out at <a href="mailto:asme@osu.edu">asme@osu.edu</a> and we'll get back to you.</div>
+        <div class="acp-info-title">Have a question?</div>
+        <div class="acp-info-sub">Email <a href="mailto:asme@osu.edu">asme@osu.edu</a> and the executive board will help.</div>
       </div>
     </div>
   </div>

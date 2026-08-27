@@ -1,0 +1,44 @@
+name: Refresh public calendar feed
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-public-calendar
+  cancel-in-progress: true
+
+jobs:
+  refresh-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the website
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install calendar parser
+        run: npm ci
+
+      - name: Collect public calendar events
+        run: npm run sync:calendar
+
+      - name: Publish an updated feed
+        run: |
+          if [ -z "$(git status --porcelain -- data/calendar-events.json)" ]; then
+            echo 'Calendar feed is already current.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/calendar-events.json
+          git commit -m 'Update public calendar feed'
+          git push

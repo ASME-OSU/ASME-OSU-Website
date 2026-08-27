@@ -1,0 +1,13 @@
+{
+  "name": "asme-osu-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync:calendar": "node scripts/sync-calendar.mjs",
+    "check": "node --check \"Calendar Integration.js\" && node --check \"Gallery Integration.js\""
+  },
+  "dependencies": {
+    "node-ical": "0.26.1"
+  }
+}

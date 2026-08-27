@@ -240,12 +240,15 @@
         link.setAttribute('aria-label', 'View photo: ' + metadata.label);
       }
       if (image && !image.alt) image.alt = metadata.label;
+      item.classList.toggle('is-last-visible', index === items.length - 1);
     });
+    if (status) status.textContent = items.length + (items.length === 1 ? ' photo' : ' photos');
 
     filters.forEach(function (button) {
       button.addEventListener('click', function () {
         var selected = button.dataset.galleryFilter || 'all';
         var visibleCount = 0;
+        var visibleItems = [];
         filters.forEach(function (filter) {
           var active = filter === button;
           filter.classList.toggle('is-active', active);
@@ -254,13 +257,18 @@
         items.forEach(function (item) {
           var visible = selected === 'all' || item.dataset.galleryCategory === selected;
           item.classList.toggle('is-filtered-out', !visible);
-          if (visible) visibleCount += 1;
+          item.classList.remove('is-last-visible');
+          if (visible) {
+            visibleCount += 1;
+            visibleItems.push(item);
+          }
         });
+        if (visibleItems.length) visibleItems[visibleItems.length - 1].classList.add('is-last-visible');
         if (status) {
           var label = button.textContent.trim().toLowerCase();
           status.textContent = selected === 'all'
-            ? 'Showing all ' + visibleCount + ' chapter photos.'
-            : 'Showing ' + visibleCount + ' ' + label + ' photos.';
+            ? visibleCount + (visibleCount === 1 ? ' photo' : ' photos')
+            : visibleCount + ' ' + label + (visibleCount === 1 ? ' photo' : ' photos');
         }
       });
     });
