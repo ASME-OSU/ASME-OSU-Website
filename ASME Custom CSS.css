@@ -21656,3 +21656,250 @@ html body #page .entry-content .asme-join-page .join-faq-section {
     background: linear-gradient(180deg, #17314e 0%, #142b45 100%) !important;
   }
 }
+
+/* ============================================================
+   MEMBER RESOURCES — accessibility, hierarchy, and scanning
+   ============================================================ */
+body #page .asme-member-resources-page .asme-sr-only,
+html body #page .entry-content .asme-member-resources-page .asme-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-jump-nav,
+html body #page .entry-content .asme-member-resources-page .asme-resource-jump-nav {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-group,
+html body #page .entry-content .asme-member-resources-page .asme-resource-group {
+  scroll-margin-top: 92px !important;
+}
+
+/* WordPress may split block-filled anchors into empty keyboard-focusable
+   duplicates. Hide those artifacts, and support the span-only card markup. */
+body #page .asme-member-resources-page .asme-member-grid > .asme-resource-card:empty,
+body #page .asme-member-resources-page .asme-member-grid > .asme-resource-card:not(:has(.asme-resource-card-title)),
+body #page .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:empty),
+body #page .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:not(:has(.asme-resource-card-title))),
+html body #page .entry-content .asme-member-resources-page .asme-member-grid > .asme-resource-card:empty,
+html body #page .entry-content .asme-member-resources-page .asme-member-grid > .asme-resource-card:not(:has(.asme-resource-card-title)),
+html body #page .entry-content .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:empty),
+html body #page .entry-content .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:not(:has(.asme-resource-card-title))) {
+  display: none !important;
+}
+
+body #page .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:not(:empty)),
+html body #page .entry-content .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:not(:empty)) {
+  display: contents !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-card > br,
+body #page .asme-member-resources-page .asme-resource-card-footer > br,
+body #page .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card) > br,
+html body #page .entry-content .asme-member-resources-page .asme-resource-card > br,
+html body #page .entry-content .asme-member-resources-page .asme-resource-card-footer > br,
+html body #page .entry-content .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card) > br {
+  display: none !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-card:focus-visible,
+body #page .asme-member-resources-page .asme-jump-nav a:focus-visible,
+body #page .asme-member-resources-page .asme-resource-card-footer--actions a:focus-visible,
+body #page .asme-member-resources-page .asme-member-grid--career-tools:focus-visible,
+html body #page .entry-content .asme-member-resources-page .asme-resource-card:focus-visible,
+html body #page .entry-content .asme-member-resources-page .asme-jump-nav a:focus-visible,
+html body #page .entry-content .asme-member-resources-page .asme-resource-card-footer--actions a:focus-visible,
+html body #page .entry-content .asme-member-resources-page .asme-member-grid--career-tools:focus-visible {
+  outline: 3px solid #3b82f6 !important;
+  outline-offset: 3px !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-subgroup,
+html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup {
+  margin: 0 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-subgroup + .asme-resource-subgroup,
+html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup + .asme-resource-subgroup {
+  margin-top: 28px !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-subgroup-header,
+html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup-header {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  margin: 0 0 12px !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-subgroup-header h3,
+html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup-header h3 {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  color: var(--m-navy, #0f3460) !important;
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-subgroup-header p,
+html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup-header p {
+  max-width: 62ch !important;
+  margin: 0 !important;
+  color: var(--m-muted, #667085) !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  text-align: right !important;
+}
+
+body #page .asme-member-resources-page .asme-resource-scroll-hint,
+html body #page .entry-content .asme-member-resources-page .asme-resource-scroll-hint {
+  display: none !important;
+}
+
+body #page .asme-member-resources-page .asme-member-grid--career-data,
+html body #page .entry-content .asme-member-resources-page .asme-member-grid--career-data {
+  max-width: 900px !important;
+}
+
+body #page .asme-member-resources-page .asme-member-cta-copy h2,
+html body #page .entry-content .asme-member-resources-page .asme-member-cta-copy h2 {
+  margin: 0 0 6px !important;
+  color: #ffffff !important;
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.2px !important;
+  line-height: 1.2 !important;
+}
+
+/* Make the two onboarding actions lead the tablet layout, followed by three
+   evenly balanced utility cards instead of an orphaned final card. */
+@media (min-width: 641px) and (max-width: 899px) {
+  body #page .asme-member-resources-page #getting-started .asme-member-grid,
+  html body #page .entry-content .asme-member-resources-page #getting-started .asme-member-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  }
+
+  body #page .asme-member-resources-page #getting-started .asme-resource-card--primary,
+  html body #page .entry-content .asme-member-resources-page #getting-started .asme-resource-card--primary {
+    grid-column: span 3 !important;
+  }
+
+  body #page .asme-member-resources-page #getting-started .asme-resource-card--secondary,
+  html body #page .entry-content .asme-member-resources-page #getting-started .asme-resource-card--secondary {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body #page .asme-member-resources-page .asme-resource-subgroup-header,
+  html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup-header {
+    display: block !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-subgroup-header p,
+  html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup-header p {
+    margin-top: 4px !important;
+    text-align: left !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-scroll-hint,
+  html body #page .entry-content .asme-member-resources-page .asme-resource-scroll-hint {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    margin: 0 0 9px !important;
+    color: var(--m-muted, #667085) !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-scroll-hint::before,
+  html body #page .entry-content .asme-member-resources-page .asme-resource-scroll-hint::before {
+    content: '↔' !important;
+    color: var(--m-scarlet, #bb0000) !important;
+    font-size: 14px !important;
+  }
+
+  body #page .asme-member-resources-page .asme-member-cta-copy h2,
+  html body #page .entry-content .asme-member-resources-page .asme-member-cta-copy h2 {
+    font-size: 18px !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-member-resources-page .asme-resource-subgroup-header h3,
+  html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup-header h3 {
+    color: #f8fafc !important;
+  }
+
+  body #page .asme-member-resources-page .asme-resource-subgroup-header p,
+  body #page .asme-member-resources-page .asme-resource-scroll-hint,
+  html body #page .entry-content .asme-member-resources-page .asme-resource-subgroup-header p,
+  html body #page .entry-content .asme-member-resources-page .asme-resource-scroll-hint {
+    color: #94a3b8 !important;
+  }
+}
+
+/* JOIN — use GroupMe's recognizable public brand mark in the connection step. */
+body #page .asme-join-page .join-groupme-step-icon,
+html body #page .entry-content .asme-join-page .join-groupme-step-icon {
+  border: 1px solid rgba(32, 108, 248, 0.18) !important;
+  background-color: #ffffff !important;
+  background-image: url('https://asme-osu.github.io/ASME-OSU-Website/assets/groupme-mark.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 30px 34px !important;
+}
+
+body #page .asme-join-page .join-groupme-step-icon svg:not(.join-groupme-logo),
+html body #page .entry-content .asme-join-page .join-groupme-step-icon svg:not(.join-groupme-logo) {
+  visibility: hidden !important;
+}
+
+body #page .asme-join-page .join-groupme-step-icon:has(.join-groupme-logo),
+html body #page .entry-content .asme-join-page .join-groupme-step-icon:has(.join-groupme-logo) {
+  background-image: none !important;
+}
+
+body #page .asme-join-page .join-groupme-step-icon .join-groupme-logo,
+html body #page .entry-content .asme-join-page .join-groupme-step-icon .join-groupme-logo {
+  visibility: visible !important;
+  width: 30px !important;
+  height: 34px !important;
+  fill: none !important;
+  stroke: none !important;
+}
+
+body #page .asme-join-page .join-groupme-button,
+html body #page .entry-content .asme-join-page .join-groupme-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+}
+
+body #page .asme-join-page .join-groupme-button::before,
+html body #page .entry-content .asme-join-page .join-groupme-button::before {
+  content: '' !important;
+  display: block !important;
+  flex: 0 0 18px !important;
+  width: 18px !important;
+  height: 21px !important;
+  background: url('https://asme-osu.github.io/ASME-OSU-Website/assets/groupme-mark.svg') center / contain no-repeat !important;
+}

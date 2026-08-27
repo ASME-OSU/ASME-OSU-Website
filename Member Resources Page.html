@@ -21,238 +21,269 @@
   </div>
 
   <!-- JUMP NAV -->
-  <ul class="asme-jump-nav">
-    <li><a href="#getting-started">🎓 Getting Started</a></li>
-    <li><a href="#events-calendar">📅 Events</a></li>
-    <li><a href="#professional-dev">🚀 Professional Dev</a></li>
-    <li><a href="#forms-admin">✉️ Contact &amp; Admin</a></li>
-    <li><a href="https://org.osu.edu/asme/member-points-page/">🏆 Member Points</a></li>
-  </ul>
+  <nav class="asme-resource-jump-nav" aria-label="Member resource sections">
+    <ul class="asme-jump-nav">
+      <li><a href="#getting-started">🎓 Getting Started</a></li>
+      <li><a href="#events-calendar">📅 Events</a></li>
+      <li><a href="#professional-dev">🚀 Professional Dev</a></li>
+      <li><a href="#forms-admin">✉️ Contact &amp; Admin</a></li>
+      <li><a href="https://org.osu.edu/asme/member-points-page/">🏆 Member Points</a></li>
+    </ul>
+  </nav>
 
   <!-- CATEGORY: Getting Started -->
-  <div class="asme-resource-group asme-resource-group--start" id="getting-started">
+  <section class="asme-resource-group asme-resource-group--start" id="getting-started" aria-labelledby="getting-started-title">
     <div class="asme-resource-group-header">
-      <p class="asme-resource-group-title">Getting Started</p>
+      <h2 class="asme-resource-group-title" id="getting-started-title">Getting Started</h2>
     </div>
     <div class="asme-member-grid">
 
-      <a href="https://www.asme.org/membership/student-membership" target="_blank" rel="noopener" class="asme-resource-card asme-resource-card--accented">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--national" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M3 8l9-4 9 4-9 4-9-4z"></path><path d="M7 10.5v4.2c0 1.7 2.2 3.3 5 3.3s5-1.6 5-3.3v-4.2"></path><path d="M21 8v5"></path></svg></div>
-        <p class="asme-resource-card-title">Join ASME National</p>
-        <p class="asme-resource-card-desc">Freshmen and first-year students receive their first year free. Enter your expected graduation date accurately during signup. All other students can use code <strong>SECTION</strong> at checkout for 25% off.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--featured">First Year Free</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+      <a href="https://www.asme.org/membership/student-membership" target="_blank" rel="noopener" class="asme-resource-card asme-resource-card--accented asme-resource-card--primary">
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--national" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M3 8l9-4 9 4-9 4-9-4z"></path><path d="M7 10.5v4.2c0 1.7 2.2 3.3 5 3.3s5-1.6 5-3.3v-4.2"></path><path d="M21 8v5"></path></svg></span>
+        <span class="asme-resource-card-title">Join ASME National</span>
+        <span class="asme-resource-card-desc">Freshmen and first-year students receive their first year free. Enter your expected graduation date accurately during signup. All other students can use code <strong>SECTION</strong> at checkout for 25% off.</span>
+        <span class="asme-resource-card-footer">
+          <span class="asme-status-badge asme-status-badge--featured">Join National</span>
+          <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+          <span class="asme-sr-only">Opens in a new tab</span>
+        </span>
       </a>
 
-      <a href="https://org.osu.edu/asme/join/" class="asme-resource-card asme-resource-card--accented">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--chapter" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M16 11a4 4 0 1 0-8 0"></path><path d="M5 20a7 7 0 0 1 14 0"></path><path d="M19 10a3 3 0 0 1 2 2.8"></path><path d="M3 12.8A3 3 0 0 1 5 10"></path></svg></div>
-        <p class="asme-resource-card-title">Join OSU Chapter</p>
-        <p class="asme-resource-card-desc">Sign up for ASME OSU's mailing list and chapter roster to get event invites, newsletters, and announcements.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--resource">Sign Up</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+      <a href="https://org.osu.edu/asme/join/" class="asme-resource-card asme-resource-card--accented asme-resource-card--primary">
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--chapter" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M16 11a4 4 0 1 0-8 0"></path><path d="M5 20a7 7 0 0 1 14 0"></path><path d="M19 10a3 3 0 0 1 2 2.8"></path><path d="M3 12.8A3 3 0 0 1 5 10"></path></svg></span>
+        <span class="asme-resource-card-title">Join OSU Chapter</span>
+        <span class="asme-resource-card-desc">Sign up for ASME OSU's mailing list and chapter roster to get event invites, newsletters, and announcements.</span>
+        <span class="asme-resource-card-footer">
+          <span class="asme-status-badge asme-status-badge--resource">Join Chapter</span>
+          <span class="asme-resource-card-arrow" aria-hidden="true">→</span>
+        </span>
       </a>
 
-      <a href="https://asme-osu.github.io/ASME-Career-Packet/" target="_blank" rel="noopener" class="asme-resource-card asme-resource-card--accented">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"></path><path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"></path><path d="M4 13h16"></path><path d="M12 12v2"></path></svg></div>
-        <p class="asme-resource-card-title">Career Packet</p>
-        <p class="asme-resource-card-desc">ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--resource">Resource</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+      <a href="https://asme-osu.github.io/ASME-Career-Packet/" target="_blank" rel="noopener" class="asme-resource-card asme-resource-card--accented asme-resource-card--secondary">
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"></path><path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"></path><path d="M4 13h16"></path><path d="M12 12v2"></path></svg></span>
+        <span class="asme-resource-card-title">Career Packet</span>
+        <span class="asme-resource-card-desc">ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students.</span>
+        <span class="asme-resource-card-footer">
+          <span class="asme-status-badge asme-status-badge--resource">Open Career Guide</span>
+          <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+          <span class="asme-sr-only">Opens in a new tab</span>
+        </span>
       </a>
 
-      <a href="https://org.osu.edu/asme/member-points-page/" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--osu-career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 4h8v3a4 4 0 0 1-4 4 4 4 0 0 1-4-4V4z"></path><path d="M8 5H5a2 2 0 0 0 2 4"></path><path d="M16 5h3a2 2 0 0 1-2 4"></path><path d="M12 11v3"></path><path d="M9 18h6"></path><path d="M10 14h4l1 4H9z"></path></svg></div>
-        <p class="asme-resource-card-title">Member Points</p>
-        <p class="asme-resource-card-desc">Earn points for attending events, volunteering, and contributing to the chapter — then track your standing on the semester leaderboard.</p>
-        <div class="asme-resource-card-footer">
+      <a href="https://org.osu.edu/asme/member-points-page/" class="asme-resource-card asme-resource-card--secondary">
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--osu-career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 4h8v3a4 4 0 0 1-4 4 4 4 0 0 1-4-4V4z"></path><path d="M8 5H5a2 2 0 0 0 2 4"></path><path d="M16 5h3a2 2 0 0 1-2 4"></path><path d="M12 11v3"></path><path d="M9 18h6"></path><path d="M10 14h4l1 4H9z"></path></svg></span>
+        <span class="asme-resource-card-title">Member Points</span>
+        <span class="asme-resource-card-desc">Earn points for attending events, volunteering, and contributing to the chapter — then track your standing on the semester leaderboard.</span>
+        <span class="asme-resource-card-footer">
           <span class="asme-status-badge asme-status-badge--resource">View Points</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+          <span class="asme-resource-card-arrow" aria-hidden="true">→</span>
+        </span>
       </a>
 
-      <a href="https://org.osu.edu/asme/leadership/" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--engineering" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9" cy="8" r="3"></circle><path d="M3 19a6 6 0 0 1 12 0"></path><path d="M15 8a3 3 0 1 1 0 6"></path><path d="M16 13a6 6 0 0 1 5 6"></path></svg></div>
-        <p class="asme-resource-card-title">Chapter Leadership</p>
-        <p class="asme-resource-card-desc">Meet the 2026–2027 executive board and committee chairs — your point of contact for events, projects, and questions.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--resource">Officers</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+      <a href="https://org.osu.edu/asme/leadership/" class="asme-resource-card asme-resource-card--secondary">
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--engineering" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="9" cy="8" r="3"></circle><path d="M3 19a6 6 0 0 1 12 0"></path><path d="M15 8a3 3 0 1 1 0 6"></path><path d="M16 13a6 6 0 0 1 5 6"></path></svg></span>
+        <span class="asme-resource-card-title">Chapter Leadership</span>
+        <span class="asme-resource-card-desc">Meet the 2026–2027 executive board and committee chairs — your point of contact for events, projects, and questions.</span>
+        <span class="asme-resource-card-footer">
+          <span class="asme-status-badge asme-status-badge--resource">Meet Officers</span>
+          <span class="asme-resource-card-arrow" aria-hidden="true">→</span>
+        </span>
       </a>
 
     </div>
-  </div>
+  </section>
 
   <!-- CATEGORY: Events & Calendar -->
-  <div class="asme-resource-group" id="events-calendar">
+  <section class="asme-resource-group" id="events-calendar" aria-labelledby="events-calendar-title">
     <div class="asme-resource-group-header">
-      <p class="asme-resource-group-title">Events &amp; Calendar</p>
+      <h2 class="asme-resource-group-title" id="events-calendar-title">Events &amp; Calendar</h2>
     </div>
     <div class="asme-member-grid asme-member-grid--3col">
 
       <div class="asme-resource-card asme-resource-card--actions">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--calendar" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 3v4"></path><path d="M17 3v4"></path><path d="M4 8h16"></path><path d="M5 5h14a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"></path><path d="M8 13h3"></path><path d="M8 17h6"></path></svg></div>
-        <p class="asme-resource-card-title">Event Calendar</p>
-        <p class="asme-resource-card-desc">All upcoming ASME OSU events. Add to your Google Calendar with one click so you never miss an info session or GBM.</p>
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--calendar" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 3v4"></path><path d="M17 3v4"></path><path d="M4 8h16"></path><path d="M5 5h14a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"></path><path d="M8 13h3"></path><path d="M8 17h6"></path></svg></span>
+        <span class="asme-resource-card-title">Event Calendar</span>
+        <span class="asme-resource-card-desc">All upcoming ASME OSU events. Add to your Google Calendar with one click so you never miss an info session or GBM.</span>
         <div class="asme-resource-card-footer asme-resource-card-footer--actions">
           <a href="https://org.osu.edu/asme/calendar/" class="asme-status-badge asme-status-badge--resource">Open Calendar</a>
-          <a href="https://calendar.google.com/calendar/r?cid=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com" target="_blank" rel="noopener" class="asme-status-badge asme-status-badge--external">Subscribe ↗</a>
+          <a href="https://calendar.google.com/calendar/r?cid=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com" target="_blank" rel="noopener" class="asme-status-badge asme-status-badge--external" aria-label="Subscribe in Google Calendar, opens in a new tab">Subscribe ↗</a>
         </div>
       </div>
 
       <a href="https://org.osu.edu/asme/blog/" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--blog" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 4h14v16H5z"></path><path d="M8 8h8"></path><path d="M8 12h8"></path><path d="M8 16h5"></path></svg></div>
-        <p class="asme-resource-card-title">Event Recaps</p>
-        <p class="asme-resource-card-desc">Photos and writeups from past ASME OSU events, info sessions, competitions, and community activities.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--resource">Blog</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--blog" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 4h14v16H5z"></path><path d="M8 8h8"></path><path d="M8 12h8"></path><path d="M8 16h5"></path></svg></span>
+        <span class="asme-resource-card-title">Event Recaps</span>
+        <span class="asme-resource-card-desc">Photos and writeups from past ASME OSU events, info sessions, competitions, and community activities.</span>
+        <span class="asme-resource-card-footer">
+          <span class="asme-status-badge asme-status-badge--resource">Read Recaps</span>
+          <span class="asme-resource-card-arrow" aria-hidden="true">→</span>
+        </span>
       </a>
 
       <a href="https://mae.osu.edu/events" target="_blank" rel="noopener" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--engineering" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 3v4"></path><path d="M17 3v4"></path><path d="M4 8h16"></path><path d="M5 5h14a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"></path><path d="M8 13h3"></path><path d="M8 17h6"></path></svg></div>
-        <p class="asme-resource-card-title">OSU MAE Events</p>
-        <p class="asme-resource-card-desc">Department seminars, research talks, career events, workshops, and other Mechanical and Aerospace Engineering programs at Ohio State.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--external">Department Events ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--engineering" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 3v4"></path><path d="M17 3v4"></path><path d="M4 8h16"></path><path d="M5 5h14a1 1 0 0 1 1 1v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1z"></path><path d="M8 13h3"></path><path d="M8 17h6"></path></svg></span>
+        <span class="asme-resource-card-title">OSU MAE Events</span>
+        <span class="asme-resource-card-desc">Department seminars, research talks, career events, workshops, and other Mechanical and Aerospace Engineering programs at Ohio State.</span>
+        <span class="asme-resource-card-footer">
+          <span class="asme-status-badge asme-status-badge--external">View MAE Events</span>
+          <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+          <span class="asme-sr-only">Opens in a new tab</span>
+        </span>
       </a>
 
     </div>
-  </div>
+  </section>
 
   <!-- CATEGORY: Professional Development -->
-  <div class="asme-resource-group" id="professional-dev">
+  <section class="asme-resource-group" id="professional-dev" aria-labelledby="professional-dev-title">
     <div class="asme-resource-group-header">
-      <p class="asme-resource-group-title">Professional Development</p>
+      <h2 class="asme-resource-group-title" id="professional-dev-title">Professional Development</h2>
     </div>
-    <div class="asme-member-grid asme-member-grid--scrollbar">
 
-      <a href="https://forms.cloud.microsoft/r/vY6XuhxK1n" target="_blank" rel="noopener" class="asme-resource-card asme-resource-card--accented">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4"></path><path d="M9 11h6"></path><path d="M9 15h6"></path><path d="M9 7h2"></path></svg></div>
-        <p class="asme-resource-card-title">Submit to the Résumé Book</p>
-        <p class="asme-resource-card-desc">Share your résumé with ASME OSU for inclusion in the chapter résumé book provided to participating sponsors and recruiting partners.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--featured">Submit Résumé ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
-      </a>
+    <div class="asme-resource-subgroup">
+      <div class="asme-resource-subgroup-header">
+        <h3>Career tools</h3>
+        <p>Start with the resources members use most for résumés, recruiting, and internships.</p>
+      </div>
+      <p class="asme-resource-scroll-hint" aria-hidden="true">Swipe to explore six career tools</p>
+      <div class="asme-member-grid asme-member-grid--scrollbar asme-member-grid--career-tools" role="region" aria-label="Career tools, horizontally scrollable on small screens" tabindex="0">
 
-      <a href="https://www.asme.org/get-involved/student-opportunities-and-resources" target="_blank" rel="noopener" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--early-career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 17l6-6 4 4 6-8"></path><path d="M15 7h5v5"></path><path d="M4 20h16"></path></svg></div>
-        <p class="asme-resource-card-title">ASME Student Resources</p>
-        <p class="asme-resource-card-desc">National ASME student opportunities — career resources, competitions, scholarships, and early career programs.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--external">External ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
-      </a>
+        <a href="https://forms.cloud.microsoft/r/vY6XuhxK1n" target="_blank" rel="noopener" class="asme-resource-card asme-resource-card--accented">
+          <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M6 3h9l3 3v15H6z"></path><path d="M15 3v4h4"></path><path d="M9 11h6"></path><path d="M9 15h6"></path><path d="M9 7h2"></path></svg></span>
+          <span class="asme-resource-card-title">Submit to the Résumé Book</span>
+          <span class="asme-resource-card-desc">Share your résumé with ASME OSU for inclusion in the chapter résumé book provided to participating sponsors and recruiting partners.</span>
+          <span class="asme-resource-card-footer">
+            <span class="asme-status-badge asme-status-badge--featured">Submit Résumé</span>
+            <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+            <span class="asme-sr-only">Opens in a new tab</span>
+          </span>
+        </a>
 
-      <a href="https://ecs.osu.edu/students/meet-career-advisor" target="_blank" rel="noopener" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--osu-career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M3 10l9-6 9 6"></path><path d="M5 10h14v10H5z"></path><path d="M9 20v-6h6v6"></path></svg></div>
-        <p class="asme-resource-card-title">ECS Career Advising</p>
-        <p class="asme-resource-card-desc">Engineering Career Services advising for resumes, cover letters, LinkedIn, Handshake, interviews, and career fair prep.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--external">External ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
-      </a>
+        <a href="https://ecs.osu.edu/students/meet-career-advisor" target="_blank" rel="noopener" class="asme-resource-card">
+          <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--osu-career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M3 10l9-6 9 6"></path><path d="M5 10h14v10H5z"></path><path d="M9 20v-6h6v6"></path></svg></span>
+          <span class="asme-resource-card-title">ECS Career Advising</span>
+          <span class="asme-resource-card-desc">Engineering Career Services advising for resumes, cover letters, LinkedIn, Handshake, interviews, and career fair prep.</span>
+          <span class="asme-resource-card-footer">
+            <span class="asme-status-badge asme-status-badge--external">Book Advising</span>
+            <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+            <span class="asme-sr-only">Opens in a new tab</span>
+          </span>
+        </a>
 
-      <a href="https://ecs.osu.edu/students/co-ops-and-internships" target="_blank" rel="noopener" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--engineering" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"></path><path d="M12 2v3"></path><path d="M12 19v3"></path><path d="M4.9 4.9l2.1 2.1"></path><path d="M17 17l2.1 2.1"></path><path d="M2 12h3"></path><path d="M19 12h3"></path><path d="M4.9 19.1 7 17"></path><path d="M17 7l2.1-2.1"></path></svg></div>
-        <p class="asme-resource-card-title">Co-ops &amp; Internships</p>
-        <p class="asme-resource-card-desc">ECS resources for engineering co-ops, internships, research experience, and the Professional Experience Program.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--external">External ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
-      </a>
+        <a href="https://osu.joinhandshake.com/" target="_blank" rel="noopener" class="asme-resource-card">
+          <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"></path><path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"></path><path d="M4 13h16"></path><path d="M12 12v2"></path></svg></span>
+          <span class="asme-resource-card-title">Handshake</span>
+          <span class="asme-resource-card-desc">Ohio State's job and career-fair platform for internship postings, on-campus interviews, employer events, and recruiting updates.</span>
+          <span class="asme-resource-card-footer">
+            <span class="asme-status-badge asme-status-badge--external">Open Handshake</span>
+            <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+            <span class="asme-sr-only">Opens in a new tab</span>
+          </span>
+        </a>
 
-      <a href="https://dataviz.rae.osu.edu/t/public/views/CoEAnnualReport-CareerEmploymentStartingSalaries/CoE-CareerEmploymentStartingSalaries" target="_blank" rel="noopener" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--osu-career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M8 15v-4"></path><path d="M12 15V8"></path><path d="M16 15v-6"></path><path d="M8 11l4-3 4 1 4-4"></path></svg></div>
-        <p class="asme-resource-card-title">Career Employment &amp; Starting Salaries</p>
-        <p class="asme-resource-card-desc">College of Engineering career outcomes and starting salary dashboard, provided by OSU Career Services.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--external">OSU Data ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
-      </a>
+        <a href="https://ecs.osu.edu/students/co-ops-and-internships" target="_blank" rel="noopener" class="asme-resource-card">
+          <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--engineering" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"></path><path d="M12 2v3"></path><path d="M12 19v3"></path><path d="M4.9 4.9l2.1 2.1"></path><path d="M17 17l2.1 2.1"></path><path d="M2 12h3"></path><path d="M19 12h3"></path><path d="M4.9 19.1 7 17"></path><path d="M17 7l2.1-2.1"></path></svg></span>
+          <span class="asme-resource-card-title">Co-ops &amp; Internships</span>
+          <span class="asme-resource-card-desc">ECS resources for engineering co-ops, internships, research experience, and the Professional Experience Program.</span>
+          <span class="asme-resource-card-footer">
+            <span class="asme-status-badge asme-status-badge--external">Explore Co-ops</span>
+            <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+            <span class="asme-sr-only">Opens in a new tab</span>
+          </span>
+        </a>
 
-      <a href="https://dataviz.rae.osu.edu/t/public/views/CoEAnnualReport-CooperativeEducationandInternshipHourlyWages/CoE-Co-opInternHourlyWages" target="_blank" rel="noopener" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 6h14v12H5z"></path><path d="M8 10h8"></path><path d="M8 14h4"></path><path d="M16 14h.01"></path><path d="M9 3v3"></path><path d="M15 3v3"></path></svg></div>
-        <p class="asme-resource-card-title">Co-op &amp; Internship Hourly Wages</p>
-        <p class="asme-resource-card-desc">Hourly wage data for engineering co-ops and internships, provided by OSU Career Services.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--external">OSU Data ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
-      </a>
+        <a href="https://www.asme.org/get-involved/student-opportunities-and-resources" target="_blank" rel="noopener" class="asme-resource-card">
+          <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--early-career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 17l6-6 4 4 6-8"></path><path d="M15 7h5v5"></path><path d="M4 20h16"></path></svg></span>
+          <span class="asme-resource-card-title">ASME Student Resources</span>
+          <span class="asme-resource-card-desc">National ASME student opportunities — career resources, competitions, scholarships, and early career programs.</span>
+          <span class="asme-resource-card-footer">
+            <span class="asme-status-badge asme-status-badge--external">Explore ASME</span>
+            <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+            <span class="asme-sr-only">Opens in a new tab</span>
+          </span>
+        </a>
 
-      <a href="https://osu.joinhandshake.com/" target="_blank" rel="noopener" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M9 7V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"></path><path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"></path><path d="M4 13h16"></path><path d="M12 12v2"></path></svg></div>
-        <p class="asme-resource-card-title">Handshake</p>
-        <p class="asme-resource-card-desc">Ohio State's job and career-fair platform for internship postings, on-campus interviews, employer events, and recruiting updates.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--external">External ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
-      </a>
+        <a href="https://www.linkedin.com/company/asme-osu/" target="_blank" rel="noopener" class="asme-resource-card">
+          <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--linkedin" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 9h4v10H5z"></path><path d="M5 5.5h4"></path><path d="M13 9h4v2a4 4 0 0 1 4 4v4h-4v-4a2 2 0 0 0-4 0v4h-4V9z"></path></svg></span>
+          <span class="asme-resource-card-title">ASME OSU LinkedIn</span>
+          <span class="asme-resource-card-desc">Follow the chapter LinkedIn for event announcements, member spotlights, and to show your ASME affiliation to recruiters.</span>
+          <span class="asme-resource-card-footer">
+            <span class="asme-status-badge asme-status-badge--external">Follow Chapter</span>
+            <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+            <span class="asme-sr-only">Opens in a new tab</span>
+          </span>
+        </a>
 
-      <a href="https://www.linkedin.com/company/asme-osu/" target="_blank" rel="noopener" class="asme-resource-card">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--linkedin" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 9h4v10H5z"></path><path d="M5 5.5h4"></path><path d="M13 9h4v2a4 4 0 0 1 4 4v4h-4v-4a2 2 0 0 0-4 0v4h-4V9z"></path></svg></div>
-        <p class="asme-resource-card-title">ASME OSU LinkedIn</p>
-        <p class="asme-resource-card-desc">Follow the chapter LinkedIn for event announcements, member spotlights, and to show your ASME affiliation to recruiters.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--external">External ↗</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
-      </a>
-
+      </div>
     </div>
-  </div>
+
+    <div class="asme-resource-subgroup asme-resource-subgroup--data">
+      <div class="asme-resource-subgroup-header">
+        <h3>Career data</h3>
+        <p>Use Ohio State outcomes and wage data to benchmark offers and plan your search.</p>
+      </div>
+      <div class="asme-member-grid asme-member-grid--2col asme-member-grid--career-data">
+
+        <a href="https://dataviz.rae.osu.edu/t/public/views/CoEAnnualReport-CareerEmploymentStartingSalaries/CoE-CareerEmploymentStartingSalaries" target="_blank" rel="noopener" class="asme-resource-card">
+          <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--osu-career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M8 15v-4"></path><path d="M12 15V8"></path><path d="M16 15v-6"></path><path d="M8 11l4-3 4 1 4-4"></path></svg></span>
+          <span class="asme-resource-card-title">Career Employment &amp; Starting Salaries</span>
+          <span class="asme-resource-card-desc">College of Engineering career outcomes and starting salary dashboard, provided by OSU Career Services.</span>
+          <span class="asme-resource-card-footer">
+            <span class="asme-status-badge asme-status-badge--external">View Salary Data</span>
+            <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+            <span class="asme-sr-only">Opens in a new tab</span>
+          </span>
+        </a>
+
+        <a href="https://dataviz.rae.osu.edu/t/public/views/CoEAnnualReport-CooperativeEducationandInternshipHourlyWages/CoE-Co-opInternHourlyWages" target="_blank" rel="noopener" class="asme-resource-card">
+          <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--career" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 6h14v12H5z"></path><path d="M8 10h8"></path><path d="M8 14h4"></path><path d="M16 14h.01"></path><path d="M9 3v3"></path><path d="M15 3v3"></path></svg></span>
+          <span class="asme-resource-card-title">Co-op &amp; Internship Hourly Wages</span>
+          <span class="asme-resource-card-desc">Hourly wage data for engineering co-ops and internships, provided by OSU Career Services.</span>
+          <span class="asme-resource-card-footer">
+            <span class="asme-status-badge asme-status-badge--external">View Wage Data</span>
+            <span class="asme-resource-card-arrow" aria-hidden="true">↗</span>
+            <span class="asme-sr-only">Opens in a new tab</span>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
 
   <!-- CATEGORY: Contact & Admin -->
-  <div class="asme-resource-group" id="forms-admin">
+  <section class="asme-resource-group" id="forms-admin" aria-labelledby="forms-admin-title">
     <div class="asme-resource-group-header">
-      <p class="asme-resource-group-title">Contact &amp; Chapter Admin</p>
+      <h2 class="asme-resource-group-title" id="forms-admin-title">Contact &amp; Chapter Admin</h2>
     </div>
     <div class="asme-member-grid asme-member-grid--2col">
 
       <a href="mailto:asme@osu.edu" class="asme-resource-card asme-resource-card--scarlet">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--email" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 6h16v12H4z"></path><path d="M4 7l8 6 8-6"></path></svg></div>
-        <p class="asme-resource-card-title">Contact the Board</p>
-        <p class="asme-resource-card-desc">Questions about membership, events, or partnerships? Email the executive board directly at asme@osu.edu.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--resource">Email</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--email" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 6h16v12H4z"></path><path d="M4 7l8 6 8-6"></path></svg></span>
+        <span class="asme-resource-card-title">Contact the Board</span>
+        <span class="asme-resource-card-desc">Questions about membership, events, or partnerships? Email the executive board directly at asme@osu.edu.</span>
+        <span class="asme-resource-card-footer">
+          <span class="asme-status-badge asme-status-badge--resource">Email Board</span>
+          <span class="asme-resource-card-arrow" aria-hidden="true">→</span>
+        </span>
       </a>
 
       <a href="https://org.osu.edu/asme/join/" class="asme-resource-card asme-resource-card--scarlet">
-        <div class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--blog" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 4h14v16H5z"></path><path d="M8 8h8"></path><path d="M8 12h8"></path><path d="M8 16h5"></path></svg></div>
-        <p class="asme-resource-card-title">Chapter Newsletter</p>
-        <p class="asme-resource-card-desc">ASME OSU's bi-weekly newsletter — recaps, upcoming events, and chapter updates delivered to your inbox every other week.</p>
-        <div class="asme-resource-card-footer">
-          <span class="asme-status-badge asme-status-badge--resource">Subscribe</span>
-          <span class="asme-resource-card-arrow">→</span>
-        </div>
+        <span class="asme-resource-card-icon asme-resource-svg-icon asme-resource-svg-icon--blog" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 4h14v16H5z"></path><path d="M8 8h8"></path><path d="M8 12h8"></path><path d="M8 16h5"></path></svg></span>
+        <span class="asme-resource-card-title">Chapter Newsletter</span>
+        <span class="asme-resource-card-desc">ASME OSU's bi-weekly newsletter — recaps, upcoming events, and chapter updates delivered to your inbox every other week.</span>
+        <span class="asme-resource-card-footer">
+          <span class="asme-status-badge asme-status-badge--resource">Join Newsletter</span>
+          <span class="asme-resource-card-arrow" aria-hidden="true">→</span>
+        </span>
       </a>
 
     </div>
-  </div>
+  </section>
 
   <!-- CTA -->
   <div class="asme-member-cta">
     <div class="asme-member-cta-copy">
-      <h3>Questions about membership?</h3>
+      <h2>Questions about membership?</h2>
       <p>Reach out to the board or check our FAQ on the Join page.</p>
     </div>
     <div class="asme-member-cta-actions">

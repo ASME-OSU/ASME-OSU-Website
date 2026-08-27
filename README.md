@@ -31,7 +31,7 @@ Then hard refresh the site.
 | `ASME Custom CSS.css` | Header stylesheet link from GitHub/jsDelivr | Site-wide styling, responsive fixes, dark mode, navigation, footer, and page-specific polish. |
 | `Home Page.html` | Home page custom HTML block | Home hero, stats, quick links, and event preview content. |
 | `About Us Page.html` | About page custom HTML block | About ASME OSU content, mission, and pillars. |
-| `Join Page.html` | Join page custom HTML block | Join/signup content and FAQ. |
+| `Join Page.html` | Join page custom HTML block | Join/signup content, GroupMe connection step, and FAQ. |
 | `Join Page Integration.js` | Loaded by the Join page from GitHub Pages | Keeps newsletter submissions on-page and renders a clear confirmation instead of the provider's raw response. |
 | `Sponsor ASME Page.html` | Sponsor ASME page custom HTML block | Corporate sponsorship information and calls to action. |
 | `Member Resources Page.html` | Member Resources page custom HTML block | Member resource hub, SVG resource cards, jump links, career links, forms, and chapter resources. |
@@ -118,18 +118,19 @@ For the Current Sponsors page, the relevant protection is near the end of `ASME 
 
 ## Member Pages
 
-The member pages are sensitive to GeneratePress heading defaults. For compact section labels, use classed paragraph tags such as:
+The member pages are sensitive to GeneratePress heading defaults. Member Resources uses semantic `h2` section headings with the scoped `.asme-resource-group-title` reset:
 
 ```html
-<p class="asme-resource-group-title">Getting Started</p>
+<h2 class="asme-resource-group-title" id="getting-started-title">Getting Started</h2>
 ```
 
-Avoid `h2`, `h3`, and `h4` for small component labels unless the CSS override is scoped with `body #page`. GeneratePress applies heading margins that can push the count badges out of line.
+Do not add unclassed headings inside compact member components. GeneratePress applies heading margins that can push labels out of line.
 
 For Member Resources:
 
 - Keep resource card icons as inline SVG inside `.asme-resource-svg-icon`; do not depend on Flaticon, emoji, or an external icon CDN.
 - Keep the resource jump links in `.asme-jump-nav`.
+- Keep anchor-based card content in inline `span` elements. Block children inside a card link cause WordPress to generate duplicate empty links and keyboard tab stops.
 - Use `.asme-member-grid--2col` for two-card groups so the cards do not stretch awkwardly across a three-column grid.
 
 For Member Points:
