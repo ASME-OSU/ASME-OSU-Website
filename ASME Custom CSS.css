@@ -21688,19 +21688,18 @@ html body #page .entry-content .asme-member-resources-page .asme-resource-group 
 
 /* WordPress may split block-filled anchors into empty keyboard-focusable
    duplicates. Hide those artifacts, and support the span-only card markup. */
-body #page .asme-member-resources-page .asme-member-grid > .asme-resource-card:empty,
 body #page .asme-member-resources-page .asme-member-grid > .asme-resource-card:not(:has(.asme-resource-card-title)),
-body #page .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:empty),
-body #page .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:not(:has(.asme-resource-card-title))),
-html body #page .entry-content .asme-member-resources-page .asme-member-grid > .asme-resource-card:empty,
+body #page .asme-member-resources-page .asme-member-grid > p > .asme-resource-card:not(:has(.asme-resource-card-title)),
 html body #page .entry-content .asme-member-resources-page .asme-member-grid > .asme-resource-card:not(:has(.asme-resource-card-title)),
-html body #page .entry-content .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:empty),
-html body #page .entry-content .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:not(:has(.asme-resource-card-title))) {
+html body #page .entry-content .asme-member-resources-page .asme-member-grid > p > .asme-resource-card:not(:has(.asme-resource-card-title)) {
   display: none !important;
 }
 
-body #page .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:not(:empty)),
-html body #page .entry-content .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card:not(:empty)) {
+/* wpautop can also wrap both the real card and its duplicate in paragraphs.
+   Flatten every direct card wrapper; the artifact anchor rule above then
+   removes the whitespace-only duplicate without leaving an empty grid item. */
+body #page .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card),
+html body #page .entry-content .asme-member-resources-page .asme-member-grid > p:has(> .asme-resource-card) {
   display: contents !important;
 }
 
