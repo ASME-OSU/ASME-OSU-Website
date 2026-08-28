@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T20:26:22.558Z",
+  "generatedAt": "2026-08-28T05:28:43.480Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
@@ -16,10 +16,10 @@
       "updated": "2026-08-22T08:14:01.000Z"
     },
     {
-      "id": "2kqpla9fgqapum8pgff0pds4p7@google.com::2026-08-25T04:00:00.000Z",
+      "id": "2kqpla9fgqapum8pgff0pds4p7@google.com::2026-08-25T00:00:00.000Z",
       "title": "Semester and First-Session Classes Begin",
-      "start": "2026-08-25T04:00:00.000Z",
-      "end": "2026-08-26T04:00:00.000Z",
+      "start": "2026-08-25T00:00:00.000Z",
+      "end": "2026-08-26T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -60,10 +60,10 @@
       "updated": "2026-08-25T16:05:36.000Z"
     },
     {
-      "id": "18setca6i4pdhco59a9grgrhkr@google.com::2026-09-03T04:00:00.000Z",
+      "id": "18setca6i4pdhco59a9grgrhkr@google.com::2026-09-03T00:00:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
-      "start": "2026-09-03T04:00:00.000Z",
-      "end": "2026-09-04T04:00:00.000Z",
+      "start": "2026-09-03T00:00:00.000Z",
+      "end": "2026-09-04T00:00:00.000Z",
       "allDay": true,
       "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
       "description": "",
@@ -71,10 +71,10 @@
       "updated": "2026-06-29T23:42:03.000Z"
     },
     {
-      "id": "7ub756b9mou34cr1kri3t0kh0d@google.com::2026-09-07T04:00:00.000Z",
+      "id": "7ub756b9mou34cr1kri3t0kh0d@google.com::2026-09-07T00:00:00.000Z",
       "title": "Labor Day - no classes, offices closed",
-      "start": "2026-09-07T04:00:00.000Z",
-      "end": "2026-09-08T04:00:00.000Z",
+      "start": "2026-09-07T00:00:00.000Z",
+      "end": "2026-09-08T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -82,10 +82,10 @@
       "updated": "2026-07-09T22:46:22.000Z"
     },
     {
-      "id": "0mgjtc75f9i5ob6ekgh6rm7chc@google.com::2026-09-08T04:00:00.000Z",
+      "id": "0mgjtc75f9i5ob6ekgh6rm7chc@google.com::2026-09-08T00:00:00.000Z",
       "title": "Enrollment Census Date (semester, first-session)",
-      "start": "2026-09-08T04:00:00.000Z",
-      "end": "2026-09-09T04:00:00.000Z",
+      "start": "2026-09-08T00:00:00.000Z",
+      "end": "2026-09-09T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -214,10 +214,10 @@
       "updated": "2026-07-13T22:59:13.000Z"
     },
     {
-      "id": "1c22bg1hi1lfavvlu35o540gbn@google.com::2026-10-12T04:00:00.000Z",
+      "id": "1c22bg1hi1lfavvlu35o540gbn@google.com::2026-10-12T00:00:00.000Z",
       "title": "Last day of regularly scheduled first-session classes",
-      "start": "2026-10-12T04:00:00.000Z",
-      "end": "2026-10-13T04:00:00.000Z",
+      "start": "2026-10-12T00:00:00.000Z",
+      "end": "2026-10-13T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -225,10 +225,10 @@
       "updated": "2026-07-09T22:48:52.000Z"
     },
     {
-      "id": "6uiqq5qfabjdik8lnrtfgcu364@google.com::2026-10-13T04:00:00.000Z",
+      "id": "6uiqq5qfabjdik8lnrtfgcu364@google.com::2026-10-13T00:00:00.000Z",
       "title": "Final exams for first-session classes",
-      "start": "2026-10-13T04:00:00.000Z",
-      "end": "2026-10-14T04:00:00.000Z",
+      "start": "2026-10-13T00:00:00.000Z",
+      "end": "2026-10-14T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -236,10 +236,10 @@
       "updated": "2026-07-09T22:50:03.000Z"
     },
     {
-      "id": "3801j0b0sj6pi26eqoluvffcl5@google.com::2026-10-14T04:00:00.000Z",
+      "id": "3801j0b0sj6pi26eqoluvffcl5@google.com::2026-10-14T00:00:00.000Z",
       "title": "Final exams for first-session classes",
-      "start": "2026-10-14T04:00:00.000Z",
-      "end": "2026-10-15T04:00:00.000Z",
+      "start": "2026-10-14T00:00:00.000Z",
+      "end": "2026-10-15T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -247,10 +247,10 @@
       "updated": "2026-07-09T22:50:38.000Z"
     },
     {
-      "id": "6b6r3vahedesilnk814v81q811@google.com::2026-10-15T04:00:00.000Z",
+      "id": "6b6r3vahedesilnk814v81q811@google.com::2026-10-15T00:00:00.000Z",
       "title": "Autumn Break - no classes, offices open",
-      "start": "2026-10-15T04:00:00.000Z",
-      "end": "2026-10-17T04:00:00.000Z",
+      "start": "2026-10-15T00:00:00.000Z",
+      "end": "2026-10-17T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -269,10 +269,10 @@
       "updated": "2026-06-30T00:28:17.000Z"
     },
     {
-      "id": "5n4j886meo63ojjrbue0b56i19@google.com::2026-10-19T04:00:00.000Z",
+      "id": "5n4j886meo63ojjrbue0b56i19@google.com::2026-10-19T00:00:00.000Z",
       "title": "Second-session classes begin",
-      "start": "2026-10-19T04:00:00.000Z",
-      "end": "2026-10-20T04:00:00.000Z",
+      "start": "2026-10-19T00:00:00.000Z",
+      "end": "2026-10-20T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -313,10 +313,10 @@
       "updated": "2026-07-13T22:59:59.000Z"
     },
     {
-      "id": "4o94ugad0fu7c42nu4j2huli1j@google.com::2026-11-02T05:00:00.000Z",
+      "id": "4o94ugad0fu7c42nu4j2huli1j@google.com::2026-11-02T00:00:00.000Z",
       "title": "Enrollment Census Date (second-session)",
-      "start": "2026-11-02T05:00:00.000Z",
-      "end": "2026-11-03T05:00:00.000Z",
+      "start": "2026-11-02T00:00:00.000Z",
+      "end": "2026-11-03T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -335,10 +335,10 @@
       "updated": "2026-07-13T23:00:18.000Z"
     },
     {
-      "id": "6007o04v43b5pioguflhf7p4qk@google.com::2026-11-11T05:00:00.000Z",
+      "id": "6007o04v43b5pioguflhf7p4qk@google.com::2026-11-11T00:00:00.000Z",
       "title": "Veterans Day observed - no classes, offices closed",
-      "start": "2026-11-11T05:00:00.000Z",
-      "end": "2026-11-12T05:00:00.000Z",
+      "start": "2026-11-11T00:00:00.000Z",
+      "end": "2026-11-12T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -368,10 +368,10 @@
       "updated": "2026-07-13T23:00:54.000Z"
     },
     {
-      "id": "58pheu7tqvdrjtnuoj7e3punhq@google.com::2026-11-25T05:00:00.000Z",
+      "id": "58pheu7tqvdrjtnuoj7e3punhq@google.com::2026-11-25T00:00:00.000Z",
       "title": "Thanksgiving Break begins - no classes",
-      "start": "2026-11-25T05:00:00.000Z",
-      "end": "2026-11-27T05:00:00.000Z",
+      "start": "2026-11-25T00:00:00.000Z",
+      "end": "2026-11-27T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -379,10 +379,10 @@
       "updated": "2026-07-09T22:58:42.000Z"
     },
     {
-      "id": "4f5cqobo57scvsmjmglroaor7a@google.com::2026-11-27T05:00:00.000Z",
+      "id": "4f5cqobo57scvsmjmglroaor7a@google.com::2026-11-27T00:00:00.000Z",
       "title": "Indigenous People's Day/ Columbus Day observed no classes, offices closed",
-      "start": "2026-11-27T05:00:00.000Z",
-      "end": "2026-11-28T05:00:00.000Z",
+      "start": "2026-11-27T00:00:00.000Z",
+      "end": "2026-11-28T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -401,10 +401,10 @@
       "updated": "2026-07-13T23:01:07.000Z"
     },
     {
-      "id": "34m9rksc9kq64c7v1fp02jsrnv@google.com::2026-12-09T05:00:00.000Z",
+      "id": "34m9rksc9kq64c7v1fp02jsrnv@google.com::2026-12-09T00:00:00.000Z",
       "title": "Last day of regularly scheduled semester and second-session classes",
-      "start": "2026-12-09T05:00:00.000Z",
-      "end": "2026-12-10T05:00:00.000Z",
+      "start": "2026-12-09T00:00:00.000Z",
+      "end": "2026-12-10T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -423,10 +423,10 @@
       "updated": "2026-07-13T23:01:30.000Z"
     },
     {
-      "id": "52hdmisc6qjpuclsurg5fkbd6c@google.com::2026-12-11T05:00:00.000Z",
+      "id": "52hdmisc6qjpuclsurg5fkbd6c@google.com::2026-12-11T00:00:00.000Z",
       "title": "Final exams for semester and second-session classes",
-      "start": "2026-12-11T05:00:00.000Z",
-      "end": "2026-12-12T05:00:00.000Z",
+      "start": "2026-12-11T00:00:00.000Z",
+      "end": "2026-12-12T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -434,10 +434,10 @@
       "updated": "2026-07-09T23:07:03.000Z"
     },
     {
-      "id": "15q2fhdjkltnmh94tu26h6i4te@google.com::2026-12-14T05:00:00.000Z",
+      "id": "15q2fhdjkltnmh94tu26h6i4te@google.com::2026-12-14T00:00:00.000Z",
       "title": "Final exams for semester and second-session classes",
-      "start": "2026-12-14T05:00:00.000Z",
-      "end": "2026-12-18T05:00:00.000Z",
+      "start": "2026-12-14T00:00:00.000Z",
+      "end": "2026-12-18T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -445,10 +445,10 @@
       "updated": "2026-07-09T23:07:33.000Z"
     },
     {
-      "id": "5v98qp1tmubev9pu2f4i6hcter@google.com::2026-12-20T05:00:00.000Z",
+      "id": "5v98qp1tmubev9pu2f4i6hcter@google.com::2026-12-20T00:00:00.000Z",
       "title": "Autumn Commencement",
-      "start": "2026-12-20T05:00:00.000Z",
-      "end": "2026-12-21T05:00:00.000Z",
+      "start": "2026-12-20T00:00:00.000Z",
+      "end": "2026-12-21T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -456,10 +456,10 @@
       "updated": "2026-07-09T23:07:49.000Z"
     },
     {
-      "id": "69n260ucpg7egi1r48mgcppb38@google.com::2026-12-24T05:00:00.000Z",
+      "id": "69n260ucpg7egi1r48mgcppb38@google.com::2026-12-24T00:00:00.000Z",
       "title": "President's Day Observed - offices closed",
-      "start": "2026-12-24T05:00:00.000Z",
-      "end": "2026-12-25T05:00:00.000Z",
+      "start": "2026-12-24T00:00:00.000Z",
+      "end": "2026-12-25T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -467,10 +467,10 @@
       "updated": "2026-07-09T23:08:27.000Z"
     },
     {
-      "id": "2ddh0v5kl4airldnge5gnipank@google.com::2026-12-25T05:00:00.000Z",
+      "id": "2ddh0v5kl4airldnge5gnipank@google.com::2026-12-25T00:00:00.000Z",
       "title": "Christmas - offices closed",
-      "start": "2026-12-25T05:00:00.000Z",
-      "end": "2026-12-26T05:00:00.000Z",
+      "start": "2026-12-25T00:00:00.000Z",
+      "end": "2026-12-26T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -478,10 +478,10 @@
       "updated": "2026-07-09T23:08:43.000Z"
     },
     {
-      "id": "4iv6j350dbd1fda87s5mii63d1@google.com::2026-12-28T05:00:00.000Z",
+      "id": "4iv6j350dbd1fda87s5mii63d1@google.com::2026-12-28T00:00:00.000Z",
       "title": "Academic Winter Recess",
-      "start": "2026-12-28T05:00:00.000Z",
-      "end": "2027-01-01T05:00:00.000Z",
+      "start": "2026-12-28T00:00:00.000Z",
+      "end": "2027-01-01T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -489,10 +489,10 @@
       "updated": "2026-07-09T23:09:23.000Z"
     },
     {
-      "id": "27ammh97n9us8eb8cfi07rs47u@google.com::2027-01-01T05:00:00.000Z",
+      "id": "27ammh97n9us8eb8cfi07rs47u@google.com::2027-01-01T00:00:00.000Z",
       "title": "New Year's Day",
-      "start": "2027-01-01T05:00:00.000Z",
-      "end": "2027-01-02T05:00:00.000Z",
+      "start": "2027-01-01T00:00:00.000Z",
+      "end": "2027-01-02T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -500,10 +500,10 @@
       "updated": "2026-07-09T23:11:38.000Z"
     },
     {
-      "id": "5mdepjeq9ajchmilcokqhb3bn2@google.com::2027-01-04T05:00:00.000Z",
+      "id": "5mdepjeq9ajchmilcokqhb3bn2@google.com::2027-01-04T00:00:00.000Z",
       "title": "Initial Fee Due Date",
-      "start": "2027-01-04T05:00:00.000Z",
-      "end": "2027-01-05T05:00:00.000Z",
+      "start": "2027-01-04T00:00:00.000Z",
+      "end": "2027-01-05T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -522,10 +522,10 @@
       "updated": "2026-07-13T23:01:48.000Z"
     },
     {
-      "id": "52h2drdkkab14hmqinu4v3vm27@google.com::2027-01-11T05:00:00.000Z",
+      "id": "52h2drdkkab14hmqinu4v3vm27@google.com::2027-01-11T00:00:00.000Z",
       "title": "Semester and first-session classes begin",
-      "start": "2027-01-11T05:00:00.000Z",
-      "end": "2027-01-12T05:00:00.000Z",
+      "start": "2027-01-11T00:00:00.000Z",
+      "end": "2027-01-12T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -544,10 +544,10 @@
       "updated": "2026-06-30T00:28:17.000Z"
     },
     {
-      "id": "2237k0f4g28l9eg531iohnvv3p@google.com::2027-01-18T05:00:00.000Z",
+      "id": "2237k0f4g28l9eg531iohnvv3p@google.com::2027-01-18T00:00:00.000Z",
       "title": "Martin Luther King Jr. Day - no classes, offices closed ",
-      "start": "2027-01-18T05:00:00.000Z",
-      "end": "2027-01-19T05:00:00.000Z",
+      "start": "2027-01-18T00:00:00.000Z",
+      "end": "2027-01-19T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -566,10 +566,10 @@
       "updated": "2026-06-30T00:28:17.000Z"
     },
     {
-      "id": "2ibngirqgqnkqe10109demuih9@google.com::2027-01-25T05:00:00.000Z",
+      "id": "2ibngirqgqnkqe10109demuih9@google.com::2027-01-25T00:00:00.000Z",
       "title": "Enrollment Census Date (semester, first-session)",
-      "start": "2027-01-25T05:00:00.000Z",
-      "end": "2027-01-26T05:00:00.000Z",
+      "start": "2027-01-25T00:00:00.000Z",
+      "end": "2027-01-26T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -632,10 +632,10 @@
       "updated": "2026-06-30T00:28:17.000Z"
     },
     {
-      "id": "7sf557vmfcd89ev17vmqqopeu8@google.com::2027-02-26T05:00:00.000Z",
+      "id": "7sf557vmfcd89ev17vmqqopeu8@google.com::2027-02-26T00:00:00.000Z",
       "title": "Last day of regularly scheduled first-session classes",
-      "start": "2027-02-26T05:00:00.000Z",
-      "end": "2027-02-27T05:00:00.000Z",
+      "start": "2027-02-26T00:00:00.000Z",
+      "end": "2027-02-27T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -643,10 +643,10 @@
       "updated": "2026-07-09T23:28:59.000Z"
     },
     {
-      "id": "4oiq1uqkalio31r5ute40sh9en@google.com::2027-03-01T05:00:00.000Z",
+      "id": "4oiq1uqkalio31r5ute40sh9en@google.com::2027-03-01T00:00:00.000Z",
       "title": "Final exams for first-session classes",
-      "start": "2027-03-01T05:00:00.000Z",
-      "end": "2027-03-03T05:00:00.000Z",
+      "start": "2027-03-01T00:00:00.000Z",
+      "end": "2027-03-03T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -654,10 +654,10 @@
       "updated": "2026-07-09T23:30:00.000Z"
     },
     {
-      "id": "6tnq8ocldfa3assevoso9bloem@google.com::2027-03-03T05:00:00.000Z",
+      "id": "6tnq8ocldfa3assevoso9bloem@google.com::2027-03-03T00:00:00.000Z",
       "title": "Second-session classes begin",
-      "start": "2027-03-03T05:00:00.000Z",
-      "end": "2027-03-04T05:00:00.000Z",
+      "start": "2027-03-03T00:00:00.000Z",
+      "end": "2027-03-04T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -687,10 +687,10 @@
       "updated": "2026-06-30T00:28:17.000Z"
     },
     {
-      "id": "6k4oc41rhl7kb3e1u8g996rql4@google.com::2027-03-15T04:00:00.000Z",
+      "id": "6k4oc41rhl7kb3e1u8g996rql4@google.com::2027-03-15T00:00:00.000Z",
       "title": "Spring Break",
-      "start": "2027-03-15T04:00:00.000Z",
-      "end": "2027-03-20T04:00:00.000Z",
+      "start": "2027-03-15T00:00:00.000Z",
+      "end": "2027-03-20T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -698,10 +698,10 @@
       "updated": "2026-07-09T23:31:12.000Z"
     },
     {
-      "id": "7gsqms8a4i1e4l2vkio6ke0iu0@google.com::2027-03-17T04:00:00.000Z",
+      "id": "7gsqms8a4i1e4l2vkio6ke0iu0@google.com::2027-03-17T00:00:00.000Z",
       "title": "Enrollment Census Date (second-session)",
-      "start": "2027-03-17T04:00:00.000Z",
-      "end": "2027-03-18T04:00:00.000Z",
+      "start": "2027-03-17T00:00:00.000Z",
+      "end": "2027-03-18T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -775,10 +775,10 @@
       "updated": "2026-06-30T00:28:17.000Z"
     },
     {
-      "id": "6dc3t8dsoigno2t2eqp8fc2tj2@google.com::2027-04-26T04:00:00.000Z",
+      "id": "6dc3t8dsoigno2t2eqp8fc2tj2@google.com::2027-04-26T00:00:00.000Z",
       "title": "Last day of regularly scheduled semester and second-session classes",
-      "start": "2027-04-26T04:00:00.000Z",
-      "end": "2027-04-27T04:00:00.000Z",
+      "start": "2027-04-26T00:00:00.000Z",
+      "end": "2027-04-27T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -786,10 +786,10 @@
       "updated": "2026-07-09T23:32:36.000Z"
     },
     {
-      "id": "6gfnpld5mplfs469vkqitl36fj@google.com::2027-04-28T04:00:00.000Z",
+      "id": "6gfnpld5mplfs469vkqitl36fj@google.com::2027-04-28T00:00:00.000Z",
       "title": "Final exams for semester and second-session classes",
-      "start": "2027-04-28T04:00:00.000Z",
-      "end": "2027-05-01T04:00:00.000Z",
+      "start": "2027-04-28T00:00:00.000Z",
+      "end": "2027-05-01T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -808,10 +808,10 @@
       "updated": "2026-06-30T00:28:17.000Z"
     },
     {
-      "id": "199q9qp7dm8l2e5fiag05fn1uq@google.com::2027-05-03T04:00:00.000Z",
+      "id": "199q9qp7dm8l2e5fiag05fn1uq@google.com::2027-05-03T00:00:00.000Z",
       "title": "Final exams for semester and second-session classes",
-      "start": "2027-05-03T04:00:00.000Z",
-      "end": "2027-05-05T04:00:00.000Z",
+      "start": "2027-05-03T00:00:00.000Z",
+      "end": "2027-05-05T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
@@ -819,10 +819,10 @@
       "updated": "2026-07-09T23:34:10.000Z"
     },
     {
-      "id": "570rrqed9bijmmciul3tdp47al@google.com::2027-05-09T04:00:00.000Z",
+      "id": "570rrqed9bijmmciul3tdp47al@google.com::2027-05-09T00:00:00.000Z",
       "title": "Spring Commencement",
-      "start": "2027-05-09T04:00:00.000Z",
-      "end": "2027-05-10T04:00:00.000Z",
+      "start": "2027-05-09T00:00:00.000Z",
+      "end": "2027-05-10T00:00:00.000Z",
       "allDay": true,
       "location": "",
       "description": "",
