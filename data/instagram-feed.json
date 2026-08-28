@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-08-26T17:18:44.792Z",
+  "updatedAt": "2026-08-28T22:20:41.166Z",
   "items": [
+    {
+      "id": "Dclxy3iTx2S",
+      "permalink": "https://www.instagram.com/p/Dclxy3iTx2S/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Dclxy3iTx2S-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-08-28T16:24:01.000Z",
+      "title": "Come to our introductory meeting for this year!",
+      "summary": "It will be a general body meeting and an ice cream social on Thursday, September 3rd. Make sure to join the GroupMe and sign up for ASME if you haven’t already! 🍦⚙️",
+      "caption": "Come to our introductory meeting for this year! It will be a general body meeting and an ice cream social on Thursday, September 3rd. Make sure to join the GroupMe and sign up for ASME if you haven’t already! 🍦⚙️",
+      "alt": "Come to our introductory meeting for this year!"
+    },
     {
       "id": "DcglbgtzcjM",
       "permalink": "https://www.instagram.com/p/DcglbgtzcjM/",
@@ -68,19 +81,6 @@
       "summary": "Our section was awarded this for staying in contact with ASME staff and providing activities to help students on campus this year. We’re grateful to receive this award! @asmestudents @asmealytrevino",
       "caption": "ASME recognizes our student section with the Section Achievement Award for accomplishments made in 2025-2026! Our section was awarded this for staying in contact with ASME staff and providing activities to help students on campus this year. We’re grateful to receive this award! @asmestudents @asmealytrevino",
       "alt": "ASME recognizes our student section with the Section Achievement Award for…"
-    },
-    {
-      "id": "DXNEcdMCaco",
-      "permalink": "https://www.instagram.com/p/DXNEcdMCaco/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DXNEcdMCaco-640x853.jpg",
-      "imageWidth": 640,
-      "imageHeight": 853,
-      "timestamp": "2026-04-16T19:25:43.000Z",
-      "title": "The student section tour is live, Hartford SLS was first, Ohio last week…",
-      "summary": "✈️⚙️✨",
-      "caption": "The student section tour is live, Hartford SLS was first, Ohio last week and Illinois this week. ✈️⚙️✨",
-      "alt": "The student section tour is live, Hartford SLS was first, Ohio last week…"
     }
   ]
 }
