@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T14:30:19.224Z",
+  "generatedAt": "2026-08-31T20:11:56.598Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
@@ -98,10 +98,10 @@
       "start": "2026-09-16T21:30:00.000Z",
       "end": "2026-09-16T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E100",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-19T04:21:54.000Z"
+      "updated": "2026-08-31T14:42:14.000Z"
     },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-09-17T21:30:00.000Z",
@@ -120,10 +120,10 @@
       "start": "2026-09-21T21:30:00.000Z",
       "end": "2026-09-21T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E100",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-07T08:26:23.000Z"
+      "updated": "2026-08-31T14:40:28.000Z"
     },
     {
       "id": "4n32e7as58n00rtnhesgcfv5c3@google.com::2026-09-22T22:00:00.000Z",
@@ -148,15 +148,37 @@
       "updated": "2026-08-04T21:33:40.000Z"
     },
     {
+      "id": "65c02gtb27867qt19c2o8sb8fo@google.com::2026-09-23T22:30:00.000Z",
+      "title": "LyondellBasell Info Session",
+      "start": "2026-09-23T22:30:00.000Z",
+      "end": "2026-09-24T00:00:00.000Z",
+      "allDay": false,
+      "location": "",
+      "description": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-08-31T17:37:30.000Z"
+    },
+    {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-09-24T21:30:00.000Z",
-      "title": "ASME Interview Prep",
+      "title": "Caterpillar Inc. Interview Prep",
       "start": "2026-09-24T21:30:00.000Z",
       "end": "2026-09-24T22:30:00.000Z",
       "allDay": false,
       "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
       "description": "Interview Prep",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T22:58:25.000Z"
+      "updated": "2026-08-31T19:18:55.000Z"
+    },
+    {
+      "id": "70mbp8b82jdvcbcjbc8aj0a8ap@google.com::2026-09-28T22:00:00.000Z",
+      "title": "HRST Inc. Info Session",
+      "start": "2026-09-28T22:00:00.000Z",
+      "end": "2026-09-28T23:00:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "description": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-08-31T14:48:27.000Z"
     },
     {
       "id": "7rn8i8uc29jjmuub707qedlnfd@google.com::2026-09-30T23:00:00.000Z",
