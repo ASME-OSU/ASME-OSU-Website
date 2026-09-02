@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-08-31T20:11:56.598Z",
+  "generatedAt": "2026-09-02T00:19:45.700Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "2kqpla9fgqapum8pgff0pds4p7@google.com::2026-08-25T12:00:00.000Z",
-      "title": "Semester and First-Session Classes Begin",
-      "start": "2026-08-25T12:00:00.000Z",
-      "end": "2026-08-26T12:00:00.000Z",
-      "allDay": true,
-      "location": "",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-09T22:45:05.000Z"
-    },
     {
       "id": "05rj687noigo5jjgv681sn7vms@google.com::2026-08-27T17:00:00.000Z",
       "title": "MAE Welcome Back Open House",
