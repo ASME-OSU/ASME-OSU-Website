@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T00:19:45.700Z",
+  "generatedAt": "2026-09-02T04:46:52.253Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
@@ -47,6 +47,17 @@
       "description": "Ice Cream Social",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
       "updated": "2026-08-25T16:05:51.000Z"
+    },
+    {
+      "id": "5e419pq1kkfco5i7bhvuvg9gak@google.com::2026-09-04T21:00:00.000Z",
+      "title": "EWB x ASME Oldfields Trivia Night",
+      "start": "2026-09-04T21:00:00.000Z",
+      "end": "2026-09-05T01:00:00.000Z",
+      "allDay": false,
+      "location": "Oldfield's North Fourth Tavern, 1571 N 4th St, Columbus, OH 43201, USA",
+      "description": "Trivia starts at 6:00 p.m. sharp. All ages are welcome!!",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-02T03:32:45.000Z"
     },
     {
       "id": "7ub756b9mou34cr1kri3t0kh0d@google.com::2026-09-07T12:00:00.000Z",
