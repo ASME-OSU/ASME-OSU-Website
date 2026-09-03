@@ -1,31 +1,9 @@
 {
-  "generatedAt": "2026-09-02T04:46:52.253Z",
+  "generatedAt": "2026-09-03T21:45:24.524Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "05rj687noigo5jjgv681sn7vms@google.com::2026-08-27T17:00:00.000Z",
-      "title": "MAE Welcome Back Open House",
-      "start": "2026-08-27T17:00:00.000Z",
-      "end": "2026-08-27T19:00:00.000Z",
-      "allDay": false,
-      "location": "201 W 19th Ave, Columbus, OH 43210, USA",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-30T23:58:49.000Z"
-    },
-    {
-      "id": "2uruu7vhkvo9bk4kthdr7vhqg5@google.com::2026-08-27T18:30:00.000Z",
-      "title": "ASME Lemonade Stand ",
-      "start": "2026-08-27T18:30:00.000Z",
-      "end": "2026-08-27T20:00:00.000Z",
-      "allDay": false,
-      "location": "",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-29T23:33:17.000Z"
-    },
     {
       "id": "7vve9qi4bj55nlelmh3vrlm19l@google.com::2026-09-02T21:30:00.000Z",
       "title": "ExxonMobil Recruiting Session",
