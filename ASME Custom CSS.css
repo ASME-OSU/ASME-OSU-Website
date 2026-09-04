@@ -23087,33 +23087,38 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step:nth-child(
   background: #f7f7f8 !important;
 }
 
-body #page .asme-points-page-v2 .asme-points-step-icon,
-html body #page .entry-content .asme-points-page-v2 .asme-points-step-icon {
+body #page .asme-points-page-v2 #how-it-works .asme-points-step .asme-points-step-icon,
+html body #page .entry-content .asme-points-page-v2 #how-it-works .asme-points-step .asme-points-step-icon {
   position: relative;
   display: grid !important;
-  width: 64px;
-  height: 64px;
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px !important;
+  min-height: 64px !important;
   place-items: center;
-  border: 1px solid #f2bdc5;
-  border-radius: 50%;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid #f2bdc5 !important;
+  border-radius: 50% !important;
   background: #fde2e6 !important;
   color: var(--asme-scarlet, #ba0c2f) !important;
-  box-shadow: 0 7px 18px rgba(159, 0, 26, 0.10);
+  overflow: visible !important;
+  box-shadow: 0 7px 18px rgba(159, 0, 26, 0.10) !important;
 }
 
-body #page .asme-points-page-v2 .asme-points-step:first-child .asme-points-step-icon,
-html body #page .entry-content .asme-points-page-v2 .asme-points-step:first-child .asme-points-step-icon {
-  border-color: var(--asme-scarlet, #ba0c2f);
+body #page .asme-points-page-v2 #how-it-works .asme-points-step:first-child .asme-points-step-icon,
+html body #page .entry-content .asme-points-page-v2 #how-it-works .asme-points-step:first-child .asme-points-step-icon {
+  border-color: var(--asme-scarlet, #ba0c2f) !important;
   background: var(--asme-scarlet, #ba0c2f) !important;
   color: #ffffff !important;
-  box-shadow: 0 8px 20px rgba(159, 0, 26, 0.20);
+  box-shadow: 0 8px 20px rgba(159, 0, 26, 0.20) !important;
 }
 
-body #page .asme-points-page-v2 .asme-points-step-icon svg,
-html body #page .entry-content .asme-points-page-v2 .asme-points-step-icon svg {
+body #page .asme-points-page-v2 #how-it-works .asme-points-step-icon svg,
+html body #page .entry-content .asme-points-page-v2 #how-it-works .asme-points-step-icon svg {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 32px !important;
+  height: 32px !important;
 }
 
 body #page .asme-points-page-v2 .asme-points-step-number,
@@ -23193,16 +23198,18 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
   }
 
-  body #page .asme-points-page-v2 .asme-points-step-icon,
-  html body #page .entry-content .asme-points-page-v2 .asme-points-step-icon {
-    width: 58px;
-    height: 58px;
+  body #page .asme-points-page-v2 #how-it-works .asme-points-step .asme-points-step-icon,
+  html body #page .entry-content .asme-points-page-v2 #how-it-works .asme-points-step .asme-points-step-icon {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
   }
 
-  body #page .asme-points-page-v2 .asme-points-step-icon svg,
-  html body #page .entry-content .asme-points-page-v2 .asme-points-step-icon svg {
-    width: 29px;
-    height: 29px;
+  body #page .asme-points-page-v2 #how-it-works .asme-points-step-icon svg,
+  html body #page .entry-content .asme-points-page-v2 #how-it-works .asme-points-step-icon svg {
+    width: 29px !important;
+    height: 29px !important;
   }
 }
 
@@ -23224,17 +23231,17 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
     background: #172232 !important;
   }
 
-  body #page .asme-points-page-v2 .asme-points-step-icon,
-  html body #page .entry-content .asme-points-page-v2 .asme-points-step-icon {
-    border-color: #713846;
+  body #page .asme-points-page-v2 #how-it-works .asme-points-step .asme-points-step-icon,
+  html body #page .entry-content .asme-points-page-v2 #how-it-works .asme-points-step .asme-points-step-icon {
+    border-color: #713846 !important;
     background: #3a202a !important;
     color: #ff899b !important;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24) !important;
   }
 
-  body #page .asme-points-page-v2 .asme-points-step:first-child .asme-points-step-icon,
-  html body #page .entry-content .asme-points-page-v2 .asme-points-step:first-child .asme-points-step-icon {
-    border-color: #e0445c;
+  body #page .asme-points-page-v2 #how-it-works .asme-points-step:first-child .asme-points-step-icon,
+  html body #page .entry-content .asme-points-page-v2 #how-it-works .asme-points-step:first-child .asme-points-step-icon {
+    border-color: #e0445c !important;
     background: #c8102e !important;
     color: #ffffff !important;
   }
