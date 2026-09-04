@@ -11,7 +11,7 @@ The live site runs on WordPress with GeneratePress. CSS is loaded from this GitH
 WordPress should load the main stylesheet from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ASME-OSU/ASME-OSU-Website@main/ASME%20Custom%20CSS.css?v=20260827-3">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ASME-OSU/ASME-OSU-Website@main/ASME%20Custom%20CSS.css?v=20260904-stepper2">
 ```
 
 The `v=` value is only a cache-buster. Increment it when the live site keeps showing stale CSS.
