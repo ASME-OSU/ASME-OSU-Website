@@ -23068,9 +23068,11 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step {
   align-items: center !important;
   margin: 0 !important;
   padding: 24px 34px 24px 56px !important;
+  border-radius: 14px;
   color: var(--asme-text, #172033) !important;
   background: #f4f6f9 !important;
   clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 50%, calc(100% - 24px) 100%, 0 100%, 24px 50%);
+  clip-path: polygon(round 10px, 0 0, calc(100% - 24px) 0, 100% 50%, calc(100% - 24px) 100%, 0 100%, 24px 50%);
   filter: drop-shadow(2px 0 0 #e6aab5);
   transition: background-color 160ms ease, filter 160ms ease;
 }
@@ -23080,6 +23082,7 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step:first-chil
   padding-left: 32px !important;
   background: #fff0f2 !important;
   clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 50%, calc(100% - 24px) 100%, 0 100%);
+  clip-path: polygon(round 10px, 0 0, calc(100% - 24px) 0, 100% 50%, calc(100% - 24px) 100%, 0 100%);
 }
 
 body #page .asme-points-page-v2 .asme-points-step:nth-child(2),
