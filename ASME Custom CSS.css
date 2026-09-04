@@ -22679,3 +22679,340 @@ html body #page .entry-content .asme-gallery-page .gallery-archive-status {
     font-size: 10px !important;
   }
 }
+
+/* MEMBER POINTS — ranked top five, browser-local movement, and live pulse. */
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row {
+  position: relative !important;
+  grid-template-columns: 32px 32px minmax(76px, 1fr) minmax(54px, auto) minmax(50px, auto) !important;
+  gap: 12px !important;
+  min-height: 58px !important;
+  padding: 12px 16px !important;
+  border-left: 3px solid transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transform: none !important;
+  transition: background-color 0.15s ease !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--has-trend,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--has-trend {
+  grid-template-columns: 32px 32px minmax(76px, 1fr) minmax(34px, auto) minmax(54px, auto) minmax(50px, auto) !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:hover,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:hover {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:focus-visible,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:focus-visible {
+  outline: 2px solid #4a7dc4 !important;
+  outline-offset: -2px !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1 {
+  border-left-color: #d4a017 !important;
+  background: #fff8e6 !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1:hover,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1:focus-visible,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1:hover,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1:focus-visible {
+  background: #fcf0cc !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3 {
+  border-left-color: #9a9a94 !important;
+  background: #f7f7f5 !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2:hover,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3:hover,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2:focus-visible,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3:focus-visible,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2:hover,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3:hover,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2:focus-visible,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3:focus-visible {
+  background: #efefec !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5 {
+  border-left-color: #4a7dc4 !important;
+  background: #edf3fc !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4:hover,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5:hover,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4:focus-visible,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5:focus-visible,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4:hover,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5:hover,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4:focus-visible,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5:focus-visible {
+  background: #dde9f9 !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-rank,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-rank {
+  display: inline-grid !important;
+  width: 32px !important;
+  height: 32px !important;
+  place-items: center !important;
+  flex-shrink: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1 .asme-leaderboard-rank,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1 .asme-leaderboard-rank {
+  background: #d4a017 !important;
+  color: #3d2b00 !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2 .asme-leaderboard-rank,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2 .asme-leaderboard-rank {
+  background: #9a9a94 !important;
+  color: #2c2c2a !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3 .asme-leaderboard-rank,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3 .asme-leaderboard-rank {
+  background: #b8763f !important;
+  color: #3a2210 !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4 .asme-leaderboard-rank,
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5 .asme-leaderboard-rank,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4 .asme-leaderboard-rank,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5 .asme-leaderboard-rank {
+  background: #4a7dc4 !important;
+  color: #0c2a4d !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-rank--crown svg,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-rank--crown svg {
+  display: block !important;
+  width: 17px !important;
+  height: 17px !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-member,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-member {
+  display: flex !important;
+  min-width: 0 !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 3px !important;
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-tier,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-tier {
+  display: inline-block !important;
+  width: fit-content !important;
+  padding: 2px 8px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #d4a017 !important;
+  color: #3d2b00 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+}
+
+body #page .asme-points-page-v2 .asme-rank-trend,
+html body #page .entry-content .asme-points-page-v2 .asme-rank-trend {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  min-width: 30px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+body #page .asme-points-page-v2 .asme-rank-trend--up,
+html body #page .entry-content .asme-points-page-v2 .asme-rank-trend--up {
+  color: #2e7d32 !important;
+}
+
+body #page .asme-points-page-v2 .asme-rank-trend--down,
+html body #page .entry-content .asme-points-page-v2 .asme-rank-trend--down {
+  color: #c62828 !important;
+}
+
+body #page .asme-points-page-v2 .asme-rank-trend--same,
+html body #page .entry-content .asme-points-page-v2 .asme-rank-trend--same {
+  color: #9a9a94 !important;
+}
+
+body #page .asme-points-page-v2 .asme-live-indicator,
+html body #page .entry-content .asme-points-page-v2 .asme-live-indicator {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+body #page .asme-points-page-v2 .asme-live-dot,
+html body #page .entry-content .asme-points-page-v2 .asme-live-dot {
+  width: 7px !important;
+  height: 7px !important;
+  flex: 0 0 7px !important;
+  border-radius: 50% !important;
+  background: #2e7d32 !important;
+  animation: asme-live-pulse 1.6s ease-in-out infinite !important;
+}
+
+@keyframes asme-live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+body #page .asme-points-page-v2 .asme-leaderboard-tie-note,
+html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-tie-note {
+  display: block !important;
+  margin-top: 4px !important;
+  color: #6b6b66 !important;
+  font-size: 12px !important;
+  font-style: italic !important;
+}
+
+@media (max-width: 520px) {
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row {
+    grid-template-columns: 32px 28px minmax(72px, 1fr) minmax(50px, auto) !important;
+    gap: 8px !important;
+    padding-right: 14px !important;
+    padding-left: 11px !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--has-trend,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--has-trend {
+    grid-template-columns: 32px 28px minmax(70px, 1fr) 30px minmax(50px, auto) !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-meta,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-meta {
+    display: none !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-tier,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-tier {
+    padding: 2px 6px !important;
+    font-size: 10px !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row {
+    background: transparent !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:hover,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:hover {
+    background: #172941 !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1 {
+    border-left-color: #e0b83f !important;
+    background: rgba(212, 160, 23, 0.17) !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1:hover,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1:focus-visible,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1:hover,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-1:focus-visible {
+    background: rgba(212, 160, 23, 0.25) !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3 {
+    border-left-color: #a8a8a2 !important;
+    background: rgba(154, 154, 148, 0.11) !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2:hover,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3:hover,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2:focus-visible,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3:focus-visible,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2:hover,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3:hover,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-2:focus-visible,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-3:focus-visible {
+    background: rgba(154, 154, 148, 0.18) !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5 {
+    border-left-color: #6c9bdd !important;
+    background: rgba(74, 125, 196, 0.15) !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4:hover,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5:hover,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4:focus-visible,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5:focus-visible,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4:hover,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5:hover,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-4:focus-visible,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row--rank-5:focus-visible {
+    background: rgba(74, 125, 196, 0.24) !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-rank-trend--up,
+  html body #page .entry-content .asme-points-page-v2 .asme-rank-trend--up {
+    color: #6fcf74 !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-rank-trend--down,
+  html body #page .entry-content .asme-points-page-v2 .asme-rank-trend--down {
+    color: #ff7b7b !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-rank-trend--same,
+  body #page .asme-points-page-v2 .asme-leaderboard-tie-note,
+  html body #page .entry-content .asme-points-page-v2 .asme-rank-trend--same,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-tie-note {
+    color: #aab4c3 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-points-page-v2 .asme-live-dot,
+  html body #page .entry-content .asme-points-page-v2 .asme-live-dot {
+    animation: none !important;
+  }
+
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row {
+    transition: none !important;
+  }
+}

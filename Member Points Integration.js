@@ -118,6 +118,7 @@
     var dashboardTopType = document.getElementById('asmeDashboardTopType');
     var dashboardBreakdown = document.getElementById('asmeDashboardBreakdown');
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var RANK_SNAPSHOT_KEY = 'asmeLeaderboardRankSnapshotsV1';
     var members = [];
     var jumpLinks = Array.prototype.slice.call(app.querySelectorAll('.asme-points-jump-nav a[href^="#"]'));
     var jumpSections = jumpLinks.map(function (link) {
@@ -218,11 +219,121 @@
       var label = clean === 'LIVE' ? 'Live' : clean === 'PAUSED' ? 'Paused' : 'Testing';
       [statusBadge, leaderboardBadge].forEach(function (el) {
         if (!el) return;
-        el.textContent = label;
+        el.textContent = '';
         el.classList.remove('asme-status-badge--dev', 'asme-status-badge--resource', 'asme-status-badge--coming-soon');
+        el.classList.toggle('asme-live-indicator', clean === 'LIVE');
         el.classList.add(clean === 'LIVE' ? 'asme-status-badge--resource' : 'asme-status-badge--dev');
+        if (clean === 'LIVE') {
+          var dot = document.createElement('span');
+          dot.className = 'asme-live-dot';
+          dot.setAttribute('aria-hidden', 'true');
+          el.appendChild(dot);
+        }
+        var statusText = document.createElement('span');
+        statusText.textContent = label;
+        el.appendChild(statusText);
       });
       return clean;
+    }
+
+    function rankSnapshotMemberKey(member) {
+      return String(member && member.name || '').trim().toLowerCase();
+    }
+
+    function getPreviousRankSnapshot(currentMembers) {
+      var firstMember = currentMembers[0];
+      var currentUpdated = firstMember && firstMember.updated ? String(firstMember.updated) : '';
+      var currentPeriod = firstMember && firstMember.period ? String(firstMember.period) : '';
+      if (!currentUpdated) return null;
+
+      var currentRanks = {};
+      var duplicateKeys = {};
+      currentMembers.forEach(function (member) {
+        var key = rankSnapshotMemberKey(member);
+        if (!key || !Number.isFinite(member.rank) || member.rank <= 0 || duplicateKeys[key]) return;
+        if (Object.prototype.hasOwnProperty.call(currentRanks, key)) {
+          delete currentRanks[key];
+          duplicateKeys[key] = true;
+          return;
+        }
+        currentRanks[key] = member.rank;
+      });
+
+      var stored = null;
+      try {
+        stored = JSON.parse(window.localStorage.getItem(RANK_SNAPSHOT_KEY) || 'null');
+      } catch (error) {
+        stored = null;
+      }
+
+      var previous = null;
+      if (stored && stored.current) {
+        if (stored.current.updated === currentUpdated && stored.current.period === currentPeriod) {
+          previous = stored.previous || null;
+        } else if (stored.current.period === currentPeriod) {
+          previous = stored.current;
+        }
+      }
+      if (previous && previous.ranks) {
+        Object.keys(duplicateKeys).forEach(function (key) { delete previous.ranks[key]; });
+      }
+
+      try {
+        window.localStorage.setItem(RANK_SNAPSHOT_KEY, JSON.stringify({
+          current: { updated: currentUpdated, period: currentPeriod, ranks: currentRanks },
+          previous: previous
+        }));
+      } catch (error) {
+        return null;
+      }
+
+      return previous && previous.ranks ? previous.ranks : null;
+    }
+
+    function createCrownIcon() {
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 24 24');
+      svg.setAttribute('width', '16');
+      svg.setAttribute('height', '16');
+      svg.setAttribute('fill', 'none');
+      svg.setAttribute('stroke', 'currentColor');
+      svg.setAttribute('stroke-width', '2');
+      svg.setAttribute('stroke-linecap', 'round');
+      svg.setAttribute('stroke-linejoin', 'round');
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+      var crown = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      crown.setAttribute('d', 'm2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z');
+      var baseLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      baseLine.setAttribute('d', 'M5 20h14');
+      svg.appendChild(crown);
+      svg.appendChild(baseLine);
+      return svg;
+    }
+
+    function createRankTrend(member, previousRanks) {
+      var key = rankSnapshotMemberKey(member);
+      if (!previousRanks || !Object.prototype.hasOwnProperty.call(previousRanks, key)) return null;
+
+      var previousRank = Number(previousRanks[key]);
+      if (!Number.isFinite(previousRank) || !Number.isFinite(member.rank)) return null;
+      var change = previousRank - member.rank;
+      var trend = document.createElement('span');
+      trend.className = 'asme-rank-trend ' + (change > 0 ? 'asme-rank-trend--up' : change < 0 ? 'asme-rank-trend--down' : 'asme-rank-trend--same');
+      trend.setAttribute('aria-label', change > 0 ? 'Up ' + change + (change === 1 ? ' place' : ' places') : change < 0 ? 'Down ' + Math.abs(change) + (change === -1 ? ' place' : ' places') : 'No rank change');
+
+      var arrow = document.createElement('span');
+      arrow.className = 'asme-rank-trend-icon';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = change > 0 ? '↑' : change < 0 ? '↓' : '—';
+      trend.appendChild(arrow);
+      if (change !== 0) {
+        var amount = document.createElement('span');
+        amount.setAttribute('aria-hidden', 'true');
+        amount.textContent = String(Math.abs(change));
+        trend.appendChild(amount);
+      }
+      return trend;
     }
 
     function animateNumber(el, target, prefix, suffix, duration) {
@@ -424,7 +535,9 @@
       }
       if (title && members[0] && members[0].period) title.textContent = 'Semester Leaderboard — ' + members[0].period;
       if (!members.length) { var empty = document.createElement('p'); empty.className = 'asme-leaderboard-state'; empty.textContent = 'No public totals yet.'; rowsEl.appendChild(empty); return; }
-      members.slice(0, 10).forEach(function (member, index) {
+      var visibleMembers = members.slice(0, 10);
+      var previousRanks = getPreviousRankSnapshot(members);
+      visibleMembers.forEach(function (member, index) {
         var memberRank = Number.isFinite(member.rank) && member.rank > 0 ? member.rank : null;
         var row = document.createElement('div'); row.className = 'asme-leaderboard-row asme-data-enter'; row.tabIndex = 0; row.setAttribute('role', 'button'); row.setAttribute('aria-label', (memberRank ? 'Rank ' + memberRank + ', ' : '') + member.name + ', ' + member.points + ' points, ' + member.events + (member.events === 1 ? ' event' : ' events') + '. View member dashboard.');
         if (memberRank && memberRank <= 5) {
@@ -432,23 +545,48 @@
           row.setAttribute('data-rank', String(memberRank));
         }
         row.style.setProperty('--asme-data-delay', Math.min(index * 45, 360) + 'ms');
-        var rank = document.createElement('span'); rank.className = 'asme-leaderboard-rank'; rank.textContent = memberRank ? String(memberRank) : '—';
+        var rank = document.createElement('span'); rank.className = 'asme-leaderboard-rank';
+        if (memberRank === 1) {
+          rank.classList.add('asme-leaderboard-rank--crown');
+          rank.appendChild(createCrownIcon());
+        } else {
+          rank.textContent = memberRank ? String(memberRank) : '—';
+        }
         var avatar = document.createElement('span'); avatar.className = 'asme-leaderboard-avatar'; avatar.setAttribute('aria-hidden', 'true'); avatar.textContent = (member.name[0] || '?').toUpperCase();
         var memberCell = document.createElement('span'); memberCell.className = 'asme-leaderboard-member';
         var name = document.createElement('span'); name.className = 'asme-leaderboard-name'; name.textContent = member.name;
         memberCell.appendChild(name);
-        if (memberRank && memberRank <= 5) {
-          var rankLabels = { 1: 'Champion', 2: '2nd place', 3: '3rd place', 4: 'Top five', 5: 'Top five' };
-          var rankLabel = document.createElement('span'); rankLabel.className = 'asme-leaderboard-tier'; rankLabel.textContent = rankLabels[memberRank];
+        if (memberRank === 1) {
+          var rankLabel = document.createElement('span'); rankLabel.className = 'asme-leaderboard-tier'; rankLabel.textContent = 'Champion';
           memberCell.appendChild(rankLabel);
         }
+        var trend = createRankTrend(member, previousRanks);
+        if (trend) row.classList.add('asme-leaderboard-row--has-trend');
         var meta = document.createElement('span'); meta.className = 'asme-leaderboard-meta'; meta.textContent = member.events + (member.events === 1 ? ' event' : ' events');
         var score = document.createElement('strong'); score.className = 'asme-leaderboard-score'; score.textContent = member.points + ' pts';
-        row.appendChild(rank); row.appendChild(avatar); row.appendChild(memberCell); row.appendChild(meta); row.appendChild(score); rowsEl.appendChild(row);
+        row.appendChild(rank); row.appendChild(avatar); row.appendChild(memberCell); if (trend) row.appendChild(trend); row.appendChild(meta); row.appendChild(score); rowsEl.appendChild(row);
         row.addEventListener('click', function () { chooseMember(member, true); });
         row.addEventListener('keydown', function (event) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); chooseMember(member, true); } });
       });
-      if (caption) caption.textContent = updatedLabel(members[0] && members[0].updated) + ' · Select a row to view details.';
+      if (caption) {
+        caption.textContent = '';
+        var captionText = document.createElement('span');
+        captionText.textContent = updatedLabel(members[0] && members[0].updated) + ' · Select a row to view details.';
+        caption.appendChild(captionText);
+        var pointTotals = {};
+        var hasTie = visibleMembers.some(function (member) {
+          var pointKey = String(member.points);
+          if (pointTotals[pointKey]) return true;
+          pointTotals[pointKey] = true;
+          return false;
+        });
+        if (hasTie) {
+          var tieNote = document.createElement('span');
+          tieNote.className = 'asme-leaderboard-tie-note';
+          tieNote.textContent = 'Tied point totals follow the sheet’s configured tie-break order.';
+          caption.appendChild(tieNote);
+        }
+      }
     }
 
     Promise.all([

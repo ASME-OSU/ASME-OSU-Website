@@ -149,6 +149,7 @@ For Member Points:
 - Keep the dark footer transition rule near the bottom of `ASME Custom CSS.css`; it prevents the WordPress footer shell from showing a light band between the page and footer in dark mode.
 - The page reads only the sanitized Website Export Sheet: `Leaderboard_Public!A:G`, `Point_Values_Public!A:F`, and `System_Status!A:B`. The private master workbook, roster, form responses, emails, and name.number values must never be linked from the website.
 - The export must be status-gated so it contains headers/blank rows while `System_Status` is `TESTING` or `PAUSED`. The page also hides names unless status is `LIVE`.
+- Rank trend arrows compare the current export timestamp with the prior distinct snapshot stored in that visitor's browser. They stay hidden until the browser has seen two snapshots from the same semester; only the already-public display names and ranks are stored locally.
 - Before launch, make only the sanitized Website Export Sheet viewable by link, paste the updated `Member Points Page.html` into WordPress, paste the updated `Footer.html` into the GeneratePress footer element, push the JS/CSS files, purge jsDelivr, and hard refresh.
 
 If a Claude/Codex handoff includes a full CSS dump, do not paste it over the live stylesheet. Cherry-pick the specific rules needed, then run the CSS checks and verify the affected page.

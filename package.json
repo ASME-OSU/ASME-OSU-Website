@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "sync:calendar": "node scripts/sync-calendar.mjs",
-    "check": "node --check \"Calendar Integration.js\" && node --check \"Gallery Integration.js\""
+    "check": "node --check \"Calendar Integration.js\" && node --check \"Gallery Integration.js\" && node --check \"Member Points Integration.js\""
   },
   "dependencies": {
     "node-ical": "0.26.1"
