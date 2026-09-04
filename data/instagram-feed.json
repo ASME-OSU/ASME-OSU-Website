@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-08-31T22:50:57.975Z",
+  "updatedAt": "2026-09-04T20:45:55.198Z",
   "items": [
+    {
+      "id": "Dc4JZGjv5MO",
+      "permalink": "https://www.instagram.com/p/Dc4JZGjv5MO/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Dc4JZGjv5MO-640x640.jpg",
+      "imageWidth": 640,
+      "imageHeight": 640,
+      "timestamp": "2026-09-04T19:33:19.000Z",
+      "title": "Think you've got what it takes to dominate trivia night?",
+      "summary": "Join EWB, SWE, MSE, ASME, IISE, EES, and D90 for Oldfields Trivia Night TONIGHT! Grab some friends, build your team, and put your random knowledge to the test! Friday, September 4th 5-9 PM | Trivia starts at 6 PM SHARP Oldfields - 1571 N…",
+      "caption": "Think you've got what it takes to dominate trivia night? Join EWB, SWE, MSE, ASME, IISE, EES, and D90 for Oldfields Trivia Night TONIGHT! Grab some friends, build your team, and put your random knowledge to the test! Friday, September 4th 5-9 PM | Trivia starts at 6 PM SHARP Oldfields - 1571 N 4th St, Columbus, OH 43201 All ages welcome! Come hang out, meet fellow engineers, and see which team takes the trivia crown!",
+      "alt": "Think you've got what it takes to dominate trivia night?"
+    },
     {
       "id": "Dct5FXFPobX",
       "permalink": "https://www.instagram.com/p/Dct5FXFPobX/",
@@ -68,19 +81,6 @@
       "summary": "We’re here to help you, so feel free to come up to any of us. Also be on the lookout for us at the involvement fair Sunday! ⚙️",
       "caption": "Meet your officers for 2026! We’re here to help you, so feel free to come up to any of us. Also be on the lookout for us at the involvement fair Sunday! ⚙️",
       "alt": "Meet your officers for 2026!"
-    },
-    {
-      "id": "DXe7LFbEzdJ",
-      "permalink": "https://www.instagram.com/p/DXe7LFbEzdJ/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DXe7LFbEzdJ-640x746.jpg",
-      "imageWidth": 640,
-      "imageHeight": 746,
-      "timestamp": "2026-04-23T17:53:55.000Z",
-      "title": "ASME recognizes our student section with the Section Achievement Award for…",
-      "summary": "Our section was awarded this for staying in contact with ASME staff and providing activities to help students on campus this year. We’re grateful to receive this award! @asmestudents @asmealytrevino",
-      "caption": "ASME recognizes our student section with the Section Achievement Award for accomplishments made in 2025-2026! Our section was awarded this for staying in contact with ASME staff and providing activities to help students on campus this year. We’re grateful to receive this award! @asmestudents @asmealytrevino",
-      "alt": "ASME recognizes our student section with the Section Achievement Award for…"
     }
   ]
 }
