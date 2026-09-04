@@ -425,14 +425,26 @@
       if (title && members[0] && members[0].period) title.textContent = 'Semester Leaderboard — ' + members[0].period;
       if (!members.length) { var empty = document.createElement('p'); empty.className = 'asme-leaderboard-state'; empty.textContent = 'No public totals yet.'; rowsEl.appendChild(empty); return; }
       members.slice(0, 10).forEach(function (member, index) {
-        var row = document.createElement('div'); row.className = 'asme-leaderboard-row asme-data-enter'; row.tabIndex = 0; row.setAttribute('role', 'button'); row.setAttribute('aria-label', 'View dashboard for ' + member.name);
+        var memberRank = Number.isFinite(member.rank) && member.rank > 0 ? member.rank : null;
+        var row = document.createElement('div'); row.className = 'asme-leaderboard-row asme-data-enter'; row.tabIndex = 0; row.setAttribute('role', 'button'); row.setAttribute('aria-label', (memberRank ? 'Rank ' + memberRank + ', ' : '') + member.name + ', ' + member.points + ' points, ' + member.events + (member.events === 1 ? ' event' : ' events') + '. View member dashboard.');
+        if (memberRank && memberRank <= 5) {
+          row.classList.add('asme-leaderboard-row--rank-' + memberRank);
+          row.setAttribute('data-rank', String(memberRank));
+        }
         row.style.setProperty('--asme-data-delay', Math.min(index * 45, 360) + 'ms');
-        var rank = document.createElement('span'); rank.className = 'asme-leaderboard-rank'; rank.textContent = Number.isFinite(member.rank) && member.rank > 0 ? String(member.rank) : '—';
+        var rank = document.createElement('span'); rank.className = 'asme-leaderboard-rank'; rank.textContent = memberRank ? String(memberRank) : '—';
         var avatar = document.createElement('span'); avatar.className = 'asme-leaderboard-avatar'; avatar.setAttribute('aria-hidden', 'true'); avatar.textContent = (member.name[0] || '?').toUpperCase();
+        var memberCell = document.createElement('span'); memberCell.className = 'asme-leaderboard-member';
         var name = document.createElement('span'); name.className = 'asme-leaderboard-name'; name.textContent = member.name;
+        memberCell.appendChild(name);
+        if (memberRank && memberRank <= 5) {
+          var rankLabels = { 1: 'Champion', 2: '2nd place', 3: '3rd place', 4: 'Top five', 5: 'Top five' };
+          var rankLabel = document.createElement('span'); rankLabel.className = 'asme-leaderboard-tier'; rankLabel.textContent = rankLabels[memberRank];
+          memberCell.appendChild(rankLabel);
+        }
         var meta = document.createElement('span'); meta.className = 'asme-leaderboard-meta'; meta.textContent = member.events + (member.events === 1 ? ' event' : ' events');
         var score = document.createElement('strong'); score.className = 'asme-leaderboard-score'; score.textContent = member.points + ' pts';
-        row.appendChild(rank); row.appendChild(avatar); row.appendChild(name); row.appendChild(meta); row.appendChild(score); rowsEl.appendChild(row);
+        row.appendChild(rank); row.appendChild(avatar); row.appendChild(memberCell); row.appendChild(meta); row.appendChild(score); rowsEl.appendChild(row);
         row.addEventListener('click', function () { chooseMember(member, true); });
         row.addEventListener('keydown', function (event) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); chooseMember(member, true); } });
       });
