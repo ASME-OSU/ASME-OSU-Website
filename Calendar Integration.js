@@ -1,101 +1,271 @@
 (function () {
   'use strict';
-  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  var FEED_URL = local ? '/data/calendar-events.json' : 'https://asme-osu.github.io/ASME-OSU-Website/data/calendar-events.json';
-  var CACHE_KEY = 'asmeCalendarEventsV4';
+
+  var IS_LOCAL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+  var FEED_URL = IS_LOCAL ? '/data/calendar-events.json' : 'https://asme-osu.github.io/ASME-OSU-Website/data/calendar-events.json';
+  var CACHE_KEY = 'asmeCalendarEventsV3';
   var TIME_ZONE = 'America/New_York';
-  var MAX_AGE = 3 * 60 * 60 * 1000;
-  var lastFeed = null, lastState = 'loading', shown = 3;
-  var NON_CHAPTER = /classes begin|enrollment census date|last day of regularly scheduled|final exams?|^(?:autumn|spring|thanksgiving) break|academic winter recess|commencement|initial fee due date|new year.?s day|no classes|offices (?:closed|open)/i;
-  function clean(value) { return typeof value === 'string' ? value.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim() : ''; }
-  function date(value) { var d = new Date(value); return Number.isNaN(d.getTime()) ? null : d; }
-  function upcoming(feed, chapterOnly) {
-    return feed.events.filter(function (e) { var start = date(e.start), end = date(e.end); return start && (end ? end > new Date() : start >= new Date()) && (!chapterOnly || !NON_CHAPTER.test(clean(e.title))); }).sort(function (a,b) { return new Date(a.start) - new Date(b.start); });
+  var NON_CHAPTER_EVENT_TITLE_PATTERNS = [
+    /\bclasses begin\b/i,
+    /\benrollment census date\b/i,
+    /\blast day of regularly scheduled\b/i,
+    /\bfinal exams?\b/i,
+    /^(?:autumn|spring|thanksgiving) break\b/i,
+    /\bacademic winter recess\b/i,
+    /\bcommencement\b/i,
+    /\binitial fee due date\b/i,
+    /\bnew year'?s day\b/i,
+    /\bno classes\b/i,
+    /\boffices (?:closed|open)\b/i
+  ];
+
+  function cleanText(value) {
+    if (typeof value !== 'string') return '';
+    return value
+      .replace(/<br\s*\/?>/gi, ' ')
+      .replace(/<[^>]*>/g, ' ')
+      .replace(/&nbsp;/gi, ' ')
+      .replace(/&amp;/gi, '&')
+      .replace(/&lt;/gi, '<')
+      .replace(/&gt;/gi, '>')
+      .replace(/&quot;/gi, '"')
+      .replace(/&#39;/gi, "'")
+      .replace(/\s+/g, ' ')
+      .trim();
   }
-  function format(e) {
-    var start = date(e.start), end = date(e.end);
-    var text = start.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', timeZone:TIME_ZONE });
-    if (e.allDay) return text + ' · All day';
-    var options = { hour:'numeric', minute:'2-digit', timeZone:TIME_ZONE };
-    return text + ' · ' + start.toLocaleTimeString('en-US', options) + (end ? '–' + end.toLocaleTimeString('en-US', options) : '') + ' ET';
+
+  function safeDate(value) {
+    var date = new Date(value);
+    return Number.isNaN(date.getTime()) ? null : date;
   }
-  function googleEvent(e) {
-    function stamp(v) { return date(v).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
-    var start = stamp(e.start), end = date(e.end) ? stamp(e.end) : start;
-    if (e.allDay) { start = start.slice(0,8); end = end.slice(0,8); }
-    var url = new URL('https://calendar.google.com/calendar/render');
-    url.search = new URLSearchParams({ action:'TEMPLATE', text:clean(e.title), dates:start+'/'+end, details:clean(e.description)+'\nCheck https://org.osu.edu/asme/calendar/ for schedule changes.', location:clean(e.location), ctz:TIME_ZONE }).toString();
-    return url.href;
+
+  function upcomingEvents(feed) {
+    var now = new Date();
+    if (!feed || !Array.isArray(feed.events)) return [];
+    return feed.events.filter(function (event) {
+      var start = safeDate(event.start);
+      var end = safeDate(event.end);
+      return start && ((end && end > now) || start >= now);
+    }).sort(function (a, b) {
+      return safeDate(a.start) - safeDate(b.start);
+    });
   }
-  function link(text, href) { var a=document.createElement('a'); a.textContent=text; a.href=href; a.target='_blank'; a.rel='noopener noreferrer'; return a; }
-  function actions(e) {
-    var wrap=document.createElement('div'); wrap.className='asme-event-actions';
-    wrap.appendChild(link('Add this event',googleEvent(e)));
-    if (clean(e.location)) wrap.appendChild(link('Directions', 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(clean(e.location))));
-    return wrap;
+
+  function isChapterEvent(event) {
+    var title = cleanText(event && event.title);
+    if (!title) return false;
+    return !NON_CHAPTER_EVENT_TITLE_PATTERNS.some(function (pattern) {
+      return pattern.test(title);
+    });
   }
-  function details(e) {
-    var el=document.createElement('details'); el.className='asme-event-details';
-    var summary=document.createElement('summary'); summary.textContent='Event details';
-    var p=document.createElement('p'); p.textContent=clean(e.description)||'Additional details have not been published. Check the full calendar or chapter announcements before attending.';
-    el.append(summary,p,actions(e));
-    var note=document.createElement('small'); note.textContent='Adding one event saves a copy. Subscribe to the chapter calendar for automatic schedule updates.'; el.appendChild(note);
-    return el;
+
+  function monthLabel(date) {
+    return date.toLocaleDateString('en-US', { month: 'short', timeZone: TIME_ZONE });
   }
-  function card(e) {
-    var el=document.createElement('article'); el.className='acp-event-card';
-    var day=document.createElement('div'); day.className='acp-event-date';
-    var month=document.createElement('span'), num=document.createElement('strong');
-    month.textContent=date(e.start).toLocaleDateString('en-US',{month:'short',timeZone:TIME_ZONE}); num.textContent=date(e.start).toLocaleDateString('en-US',{day:'numeric',timeZone:TIME_ZONE}); day.append(month,num);
-    var copy=document.createElement('div'); copy.className='acp-event-copy';
-    var title=document.createElement('h3'); title.textContent=clean(e.title)||'ASME event';
-    var meta=document.createElement('p'); meta.className='acp-event-meta'; meta.textContent=format(e);
-    var where=document.createElement('p'); where.className='acp-event-location'; where.textContent=clean(e.location)||'Location TBA';
-    copy.append(title,meta,where,details(e));el.append(day,copy);return el;
+
+  function dayLabel(date) {
+    return date.toLocaleDateString('en-US', { day: 'numeric', timeZone: TIME_ZONE });
   }
-  function statusText(feed,state) {
-    if (state==='error') return 'Upcoming events could not be loaded. The full Google Calendar is available below.';
-    var generated=feed&&date(feed.generatedAt);
-    var updated=generated?'Last refreshed '+generated.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:TIME_ZONE})+' ET.':'';
-    if (state==='stale') return 'Showing saved events. '+updated+' Check the full calendar for recent changes.';
-    return updated || 'Schedule loaded from the chapter calendar.';
+
+  function formatEventDate(event) {
+    var start = safeDate(event.start);
+    var end = safeDate(event.end);
+    if (!start) return 'Date to be announced';
+
+    var dateText = start.toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      timeZone: TIME_ZONE
+    });
+    if (event.allDay) return dateText + ' · All day';
+
+    var startTime = start.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZone: TIME_ZONE
+    });
+    var endTime = end ? end.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZone: TIME_ZONE
+    }) : '';
+    return dateText + ' · ' + startTime + (endTime ? '–' + endTime : '');
   }
-  function render(feed,state) {
-    lastFeed=feed;lastState=state;
-    var valid=feed&&Array.isArray(feed.events);
-    var chapter=valid?upcoming(feed,true):[];
-    var title=document.getElementById('asmeFeaturedTitle');
-    if(title) {
-      var description=document.getElementById('asmeFeaturedDescription'), when=document.getElementById('asmeFeaturedDate'), where=document.getElementById('asmeFeaturedLocation'), controls=document.getElementById('asmeFeaturedActions');
-      var event=chapter[0];
-      if(event) { title.textContent=clean(event.title);description.textContent=clean(event.description)||'Explore the details and join the chapter at our next event.';when.textContent=format(event);where.textContent=clean(event.location)||'Location TBA';if(controls) {controls.replaceChildren(details(event));controls.appendChild(link('Full calendar →','https://org.osu.edu/asme/calendar/'));} }
-      else {title.textContent=state==='error'?'Check the chapter calendar':'More chapter events are on the way';description.textContent=state==='error'?'We could not load the event preview. Open the calendar for the latest schedule.':'Subscribe to hear when new chapter events are announced.';when.textContent='';where.textContent='';if(controls)controls.replaceChildren(link('View calendar →','https://org.osu.edu/asme/calendar/'));}
-      var homeStatus=document.getElementById('asmeFeaturedStatus');if(!homeStatus){homeStatus=document.createElement('p');homeStatus.id='asmeFeaturedStatus';homeStatus.className='asme-calendar-status';description.after(homeStatus);} homeStatus.textContent=state==='stale'||state==='error'?statusText(feed,state):'';
+
+  function renderHome(events) {
+    var title = document.getElementById('asmeFeaturedTitle');
+    var description = document.getElementById('asmeFeaturedDescription');
+    var date = document.getElementById('asmeFeaturedDate');
+    var location = document.getElementById('asmeFeaturedLocation');
+    if (!title || !description || !date || !location) return;
+
+    if (!events.length) {
+      title.textContent = 'Explore the ASME calendar';
+      description.textContent = 'New meetings, company sessions, socials, and competitions are added throughout the semester.';
+      date.textContent = 'Calendar available';
+      location.textContent = 'ASME OSU';
+      return;
     }
-    var grid=document.getElementById('asmeCalendarUpcoming');if(!grid)return;
-    grid.replaceChildren();grid.setAttribute('aria-busy','false');
-    var include=document.getElementById('asmeIncludeAcademicDates');
-    var events=valid?upcoming(feed,!(include&&include.checked)):[];
-    if(!events.length){var empty=document.createElement('p');empty.className='acp-event-empty';empty.textContent=state==='error'?'The event list is unavailable. Please use the full calendar below.':'No upcoming events are currently listed in this view.';grid.appendChild(empty);}
-    events.slice(0,shown).forEach(function(e){grid.appendChild(card(e));});
-    var status=document.getElementById('asmeCalendarStatus');if(status)status.textContent=statusText(feed,state);
-    var more=document.getElementById('asmeMoreEvents');if(more)more.hidden=events.length<=shown;
+
+    var event = events[0];
+    title.textContent = cleanText(event.title) || 'Upcoming ASME Event';
+    description.textContent = cleanText(event.description) || 'Join ASME OSU for our next chapter event. Check the full calendar for details and updates.';
+    date.textContent = formatEventDate(event);
+    location.textContent = cleanText(event.location) || 'Location TBA';
   }
-  function readCache() {try{var cache=JSON.parse(localStorage.getItem(CACHE_KEY));return cache&&cache.feed&&Array.isArray(cache.feed.events)?cache:null;}catch(e){return null;} }
-  function stateFor(feed,savedAt) {var generated=date(feed.generatedAt);return Date.now()-(generated?generated.getTime():savedAt)>MAX_AGE?'stale':'ready';}
-  function load() {
-    var cached=readCache();if(cached)render(cached.feed,stateFor(cached.feed,cached.savedAt));
-    var controller=new AbortController();var timer=setTimeout(function(){controller.abort();},7000);
-    fetch(FEED_URL+'?hour='+Math.floor(Date.now()/3600000),{cache:'no-store',credentials:'omit',signal:controller.signal}).then(function(response){if(!response.ok)throw new Error('Unavailable');return response.json();}).then(function(feed){if(!feed||!Array.isArray(feed.events))throw new Error('Invalid feed');try{localStorage.setItem(CACHE_KEY,JSON.stringify({savedAt:Date.now(),feed:feed}));}catch(e){}render(feed,stateFor(feed,Date.now()));}).catch(function(){render(cached?cached.feed:null,cached?'stale':'error');}).finally(function(){clearTimeout(timer);});
+
+  function buildEventCard(event, index) {
+    var start = safeDate(event.start);
+    var card = document.createElement('article');
+    var dateBlock = document.createElement('div');
+    var month = document.createElement('span');
+    var day = document.createElement('strong');
+    var copy = document.createElement('div');
+    var title = document.createElement('h3');
+    var meta = document.createElement('p');
+    var location = document.createElement('p');
+
+    card.className = 'acp-event-card' + (index === 0 ? ' acp-event-card--next' : '');
+    dateBlock.className = 'acp-event-date';
+    month.textContent = start ? monthLabel(start) : 'TBA';
+    day.textContent = start ? dayLabel(start) : '—';
+    dateBlock.appendChild(month);
+    dateBlock.appendChild(day);
+
+    copy.className = 'acp-event-copy';
+    title.textContent = cleanText(event.title) || 'Upcoming ASME event';
+    meta.className = 'acp-event-meta';
+    meta.textContent = formatEventDate(event);
+    location.className = 'acp-event-location';
+    location.textContent = cleanText(event.location) || 'Location TBA';
+    copy.appendChild(title);
+    copy.appendChild(meta);
+    copy.appendChild(location);
+
+    card.appendChild(dateBlock);
+    card.appendChild(copy);
+    return card;
   }
+
+  function renderCalendarPage(events) {
+    var grid = document.getElementById('asmeCalendarUpcoming');
+    if (!grid) return;
+    grid.replaceChildren();
+    grid.setAttribute('aria-busy', 'false');
+
+    if (!events.length) {
+      var empty = document.createElement('div');
+      empty.className = 'acp-event-empty';
+      empty.innerHTML = '<strong>No upcoming events are published yet.</strong><span>Subscribe or check the full calendar below for the latest schedule.</span>';
+      grid.appendChild(empty);
+      return;
+    }
+
+    events.slice(0, 3).forEach(function (event, index) {
+      grid.appendChild(buildEventCard(event, index));
+    });
+  }
+
+  function render(feed) {
+    var events = upcomingEvents(feed).filter(isChapterEvent);
+    renderHome(events);
+    renderCalendarPage(events);
+  }
+
+  function readCache() {
+    try {
+      var cached = JSON.parse(window.localStorage.getItem(CACHE_KEY));
+      return cached && cached.feed ? cached.feed : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeCache(feed) {
+    try {
+      window.localStorage.setItem(CACHE_KEY, JSON.stringify({ savedAt: Date.now(), feed: feed }));
+    } catch (error) {}
+  }
+
+  function loadFeed() {
+    var cached = readCache();
+    var controller = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = window.setTimeout(function () {
+      if (controller) controller.abort();
+    }, 4500);
+
+    if (cached) render(cached);
+
+    fetch(FEED_URL + '?hour=' + Math.floor(Date.now() / 3600000), {
+      cache: 'no-store',
+      credentials: 'omit',
+      signal: controller ? controller.signal : undefined
+    }).then(function (response) {
+      window.clearTimeout(timer);
+      if (!response.ok) throw new Error('Calendar feed request failed');
+      return response.json();
+    }).then(function (feed) {
+      writeCache(feed);
+      render(feed);
+    }).catch(function () {
+      window.clearTimeout(timer);
+      if (!cached) render({ events: [] });
+    });
+  }
+
+  function initViewSwitch() {
+    var frame = document.getElementById('asmeCalendarFrame');
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-calendar-mode]'));
+    if (!frame || !buttons.length) return;
+
+    function setView(mode) {
+      var url = new URL(frame.src);
+      if (url.searchParams.get('mode') !== mode) {
+        url.searchParams.set('mode', mode);
+        frame.src = url.toString();
+      }
+      frame.title = mode === 'MONTH' ? 'ASME OSU monthly events calendar' : 'ASME OSU upcoming events calendar';
+      buttons.forEach(function (candidate) {
+        var active = candidate.getAttribute('data-calendar-mode') === mode;
+        candidate.classList.toggle('is-active', active);
+        candidate.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    }
+
+    setView(window.matchMedia('(max-width: 700px)').matches ? 'AGENDA' : 'MONTH');
+
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var mode = button.getAttribute('data-calendar-mode') || 'AGENDA';
+        setView(mode);
+      });
+    });
+  }
+
+  function removeBlogFromNavigation() {
+    Array.prototype.slice.call(document.querySelectorAll('.main-navigation a[href]')).forEach(function (link) {
+      try {
+        var url = new URL(link.href, window.location.href);
+        if (url.pathname.replace(/\/+$/, '') === '/asme/blog') {
+          var item = link.closest('li');
+          if (item) item.remove();
+        }
+      } catch (error) {}
+    });
+  }
+
   function init() {
-    if(document.documentElement.dataset.asmeCalendarReady)return;document.documentElement.dataset.asmeCalendarReady='true';
-    var frame=document.getElementById('asmeCalendarFrame');var buttons=Array.from(document.querySelectorAll('[data-calendar-mode]'));
-    function setView(mode){if(!frame)return;var url=new URL(frame.src);if(url.searchParams.get('mode')!==mode){url.searchParams.set('mode',mode);frame.src=url.href;}frame.title=mode==='MONTH'?'ASME full monthly calendar':'ASME full upcoming calendar';buttons.forEach(function(b){var active=b.dataset.calendarMode===mode;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});}
-    setView(matchMedia('(max-width: 700px)').matches?'AGENDA':'MONTH');buttons.forEach(function(b){b.addEventListener('click',function(){setView(b.dataset.calendarMode);});});
-    var academic=document.getElementById('asmeIncludeAcademicDates');if(academic)academic.addEventListener('change',function(){shown=3;render(lastFeed,lastState);});
-    var more=document.getElementById('asmeMoreEvents');if(more)more.addEventListener('click',function(){shown+=3;render(lastFeed,lastState);});
-    if(document.getElementById('asmeFeaturedTitle')||document.getElementById('asmeCalendarUpcoming'))load();
+    if (document.documentElement.getAttribute('data-asme-calendar-ready') === 'true') return;
+    document.documentElement.setAttribute('data-asme-calendar-ready', 'true');
+    removeBlogFromNavigation();
+    initViewSwitch();
+    if (document.getElementById('asmeFeaturedTitle') || document.getElementById('asmeCalendarUpcoming')) loadFeed();
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

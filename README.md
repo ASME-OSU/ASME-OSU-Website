@@ -1,66 +1,68 @@
 # Ohio State ASME Website
 
-This repository is the source of truth for the custom HTML, CSS, and JavaScript used on the Ohio State ASME WordPress site:
+This repository is the source of truth for the custom HTML and CSS used on the Ohio State ASME WordPress site:
 
 https://org.osu.edu/asme/
 
-The live site runs on WordPress with GeneratePress. Page HTML is copied into the matching WordPress Code editor; assets are published through GitHub Pages. The current release is `2026-09-05-audit`.
+The live site runs on WordPress with GeneratePress. CSS is loaded from this GitHub repository. Page HTML files are still copy/paste blocks that must be pasted into the matching WordPress page editor.
 
-## Build and release
+## Live CSS
 
-Edit `styles/legacy.css` for established components and `styles/refinements.css` for the audited navigation, homepage, Join, event actions, and sponsorship refinements. `ASME Custom CSS.css` is generated; do not edit it directly.
-
-```bash
-npm ci
-npm run build
-npm run check
-npm test
-npm run preview
-```
-
-The build preserves cascade order and different-value browser fallbacks, removes only identical earlier declarations for the same selector in the same context, and minifies the deployed stylesheet. Shared site and sponsor behavior live in `Site Integration.js` and `Sponsor Integration.js` rather than duplicated inline snippets.
-
-`releases/2026-09-05-audit/` contains matched CSS, scripts, page HTML, a printable sponsorship overview, and a SHA-256 manifest. Before each future release, update the release identifier in `scripts/build.mjs` and the matching asset URLs in `Footer.html`. Keep completed release directories immutable after deployment.
-
-The WordPress stylesheet link for this release is:
+WordPress should load the main stylesheet from jsDelivr:
 
 ```html
-<link rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/releases/2026-09-05-audit/site.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ASME-OSU/ASME-OSU-Website@main/ASME%20Custom%20CSS.css?v=20260904-stepper2">
 ```
 
-### Publishing
+The `v=` value is only a cache-buster. Increment it when the live site keeps showing stale CSS.
 
-1. Build and run checks/tests, then inspect desktop and mobile previews.
-2. Commit and push the coordinated source and generated release; wait for GitHub Pages to serve its assets.
-3. Back up the live WordPress editor content and footer. Paste updated page HTML in Code mode, with **Disable wpautop** checked for these self-contained custom HTML pages.
-4. In **Settings → Advanced Settings → Additional code**, replace the Footer code with the release's `Footer.html` and update only the stylesheet link in the Header code. Preserve the verification, manifest, theme-color, and structured-data code. Appearance → Footer Content is only a placeholder and must remain so. Verify the saved page content and live layouts, menu, forms, event details, and points loading.
-5. Record deployed pages and asset version in `DEPLOYMENT.md`. Roll back by restoring the backed-up page/footer content and previous stylesheet URL together.
+After pushing CSS changes, purge jsDelivr:
 
-The hosted Brevo iframe owns newsletter validation and confirmation. `Join Page Integration.js` is intentionally a harmless compatibility file: iframe loading must never imply successful signup. Sponsor inquiries explicitly open email drafts; the website does not transmit an inquiry or claim delivery.
+```bash
+curl -sS --connect-timeout 10 "https://purge.jsdelivr.net/gh/ASME-OSU/ASME-OSU-Website@main/ASME%20Custom%20CSS.css"
+```
 
-Event locations are unchanged by this audit release. Calendar cards use the existing source values and distinguish fresh, stale, unavailable, and successfully empty data.
+Then hard refresh the site.
 
 ## Files
 
 | File | WordPress location | Purpose |
 | --- | --- | --- |
-| `ASME Custom CSS.css` | Header stylesheet link from GitHub Pages | Site-wide styling, responsive fixes, dark mode, navigation, footer, and page-specific polish. |
+| `ASME Custom CSS.css` | Header stylesheet link from GitHub/jsDelivr | Site-wide styling, responsive fixes, dark mode, navigation, footer, and page-specific polish. |
 | `Home Page.html` | Home page custom HTML block | Home hero, stats, quick links, and event preview content. |
 | `About Us Page.html` | About page custom HTML block | About ASME OSU content, mission, and pillars. |
 | `Join Page.html` | Join page custom HTML block | Join/signup content, GroupMe connection step, and FAQ. |
-| `Join Page Integration.js` | Loaded by the Join page from GitHub Pages | Compatibility placeholder; the embedded provider form owns validation and confirmation. |
+| `Join Page Integration.js` | Loaded by the Join page from GitHub Pages | Keeps newsletter submissions on-page and renders a clear confirmation instead of the provider's raw response. |
 | `Sponsor ASME Page.html` | Sponsor ASME page custom HTML block | Corporate sponsorship information and calls to action. |
 | `Member Resources Page.html` | Member Resources page custom HTML block | Member resource hub, SVG resource cards, jump links, career links, forms, and chapter resources. |
 | `Member Points Page.html` | Member Points page custom HTML block | Live Google Sheets-backed point values, system status, privacy-safe leaderboard, and member explanation. |
-| `Footer.html` | Settings → Advanced Settings → Additional code → Footer | Custom footer markup and shared client-side scripts. |
+| `Footer.html` | GeneratePress footer element/snippet | Custom footer markup and client-side scripts, if used on the WordPress site. |
 | `Calendar Integration.js` | Loaded site-wide by `Footer.html` | Renders the fast homepage featured event, Calendar page upcoming-event cards and view switch, and removes the stale Blog link from the primary navigation. |
 | `data/calendar-events.json` | Public GitHub Pages data file | Cached, recurrence-aware calendar data used by the homepage and Calendar page. |
-| `Member Points Integration.js` | Loaded by `Footer.html` from the GitHub Pages release | Reads only the sanitized Website Export Google Sheet and renders point values/status/leaderboard on the Member Points page. |
+| `Member Points Integration.js` | Loaded by `Footer.html` from jsDelivr | Reads only the sanitized Website Export Google Sheet and renders point values/status/leaderboard on the Member Points page. |
 | `Leadership Page.html` | Leadership page custom HTML block | Officer/leadership layout, if maintained in WordPress. |
 | `Gallery Page.html` | Gallery page custom HTML block | Gallery layout, if maintained in WordPress. |
 | `Gallery Integration.js` | Loaded by the Gallery page from GitHub Pages | Renders the latest Instagram feed, labels archive photos, and powers gallery filters. |
 | `data/instagram-feed.json` | Public GitHub Pages data file | Cached Instagram media used by the Gallery page, with static fallback content when Instagram is unavailable. |
 | `Current Sponsors Page.html` | Sponsors page custom HTML block | Sponsor listing layout, if maintained in WordPress. |
+
+## Update Workflow
+
+1. Edit the file in this repo.
+2. Commit the change.
+3. Push to `main`.
+4. If CSS changed, purge jsDelivr.
+5. If HTML changed, paste the updated HTML file into the matching WordPress page editor.
+6. Hard refresh the browser.
+
+Example:
+
+```bash
+git add "ASME Custom CSS.css" "Member Resources Page.html"
+git commit -m "Update member resources page"
+git push origin main
+curl -sS --connect-timeout 10 "https://purge.jsdelivr.net/gh/ASME-OSU/ASME-OSU-Website@main/ASME%20Custom%20CSS.css"
+```
 
 ## Mobile Gutters
 
@@ -148,13 +150,13 @@ For Member Points:
 - The page reads only the sanitized Website Export Sheet: `Leaderboard_Public!A:G`, `Point_Values_Public!A:F`, and `System_Status!A:B`. The private master workbook, roster, form responses, emails, and name.number values must never be linked from the website.
 - The export must be status-gated so it contains headers/blank rows while `System_Status` is `TESTING` or `PAUSED`. The page also hides names unless status is `LIVE`.
 - Rank trend arrows compare the current export timestamp with the prior distinct snapshot stored in that visitor's browser. They stay hidden until the browser has seen two snapshots from the same semester; only the already-public display names and ranks are stored locally.
-- Before launch, make only the sanitized Website Export Sheet viewable by link, paste the updated `Member Points Page.html` into WordPress, publish the coordinated release and update `Footer.html` under Settings → Advanced Settings → Additional code, then verify the live page.
+- Before launch, make only the sanitized Website Export Sheet viewable by link, paste the updated `Member Points Page.html` into WordPress, paste the updated `Footer.html` into the GeneratePress footer element, push the JS/CSS files, purge jsDelivr, and hard refresh.
 
 If a Claude/Codex handoff includes a full CSS dump, do not paste it over the live stylesheet. Cherry-pick the specific rules needed, then run the CSS checks and verify the affected page.
 
 ## Notes
 
-- Publish the matched versioned CSS and scripts with their WordPress HTML as described above.
+- CSS updates go live from GitHub/jsDelivr after push and cache purge.
 - HTML updates do not automatically deploy to WordPress.
 - The Member Resources page uses inline SVG icons. If the live site shows letter badges instead of icons, the WordPress HTML is stale and needs the latest `Member Resources Page.html` pasted into the editor.
 - The Member Resources page includes links for ASME student membership, ASME OSU chapter signup, the ASME OSU Career Packet, ECS advising, co-ops/internships, Handshake, LinkedIn, events, and board contact.
