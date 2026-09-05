@@ -63,7 +63,7 @@
             <p class="join-form-purpose"><strong>This form signs you up for the ASME OSU email newsletter.</strong> You'll receive event announcements, chapter news, and opportunities in your inbox.</p>
           </div>
 
-          <form class="join-form" id="asmeNewsletterForm" method="POST" target="asmeNewsletterSubmission" action="https://4feb02eb.sibforms.com/serve/MUIFAIVgiRJdwrCatly2u3YwFNvTDqwxg6DZsZzxnF24o1z8gCDmG57LsJtx0IcnRxy65JAS00NPIkQqHgwhlzVEAa1EX4WL9XLMbHR8a-SbrmJDzxGyqfZOQ0x2i7eimtAmvDpAVxb6ziTDKCNr32FBDZrn__CpuUXGIgDImm3p_fz9a9goMXx1FlUfLPRacNRYi36oYJTcXh5Wqw==">
+          <form class="join-form" id="asmeNewsletterForm" method="POST" action="https://4feb02eb.sibforms.com/serve/MUIFAIVgiRJdwrCatly2u3YwFNvTDqwxg6DZsZzxnF24o1z8gCDmG57LsJtx0IcnRxy65JAS00NPIkQqHgwhlzVEAa1EX4WL9XLMbHR8a-SbrmJDzxGyqfZOQ0x2i7eimtAmvDpAVxb6ziTDKCNr32FBDZrn__CpuUXGIgDImm3p_fz9a9goMXx1FlUfLPRacNRYi36oYJTcXh5Wqw==">
             <div class="join-field-row">
               <div class="join-field">
                 <label for="FIRSTNAME">First Name *</label>
@@ -94,7 +94,7 @@
             </div>
 
             <div class="join-submit-wrap">
-              <button type="submit" class="join-submit-button">
+              <button type="submit" class="join-submit-button" disabled>
                 <span>Complete step 1</span>
               </button>
             </div>
@@ -103,9 +103,8 @@
 
             <input type="text" name="email_address_check" value="" class="join-hidden-field">
             <input type="hidden" name="locale" value="en">
-            <input type="hidden" name="html_type" value="simple">
           </form>
-          <iframe class="join-submission-frame" id="asmeNewsletterSubmission" name="asmeNewsletterSubmission" title="Newsletter signup response" hidden></iframe>
+          <noscript><p>Please enable JavaScript to sign up here, or email <a href="mailto:asme@osu.edu">asme@osu.edu</a> for help.</p></noscript>
         </div>
 
         <aside class="join-groupme-step join-groupme-card" id="joinGroupMeStep">
@@ -169,4 +168,4 @@
 
 </div>
 
-<script src="https://asme-osu.github.io/ASME-OSU-Website/Join%20Page%20Integration.js" defer></script>
+<script src="https://asme-osu.github.io/ASME-OSU-Website/Join%20Page%20Integration.js?v=20260905-inline-confirmation" defer></script>

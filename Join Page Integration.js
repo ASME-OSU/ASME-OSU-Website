@@ -3,7 +3,6 @@
 
   function initNewsletterForm() {
     var form = document.getElementById('asmeNewsletterForm');
-    var frame = document.getElementById('asmeNewsletterSubmission');
     var status = document.getElementById('asmeNewsletterStatus');
     var button = form && form.querySelector('.join-submit-button');
     var buttonLabel = button && button.querySelector('span');
@@ -12,11 +11,13 @@
     var groupMeProgress = document.getElementById('joinGroupMeProgress');
     var groupMeStep = document.getElementById('joinGroupMeStep');
     var groupMeButton = document.getElementById('joinGroupMeButton');
-    var submitted = false;
-    var responseReceived = false;
-    var timeoutId = 0;
+    var submitting = false;
+    var complete = false;
 
-    if (!form || !frame || !status || !button || !buttonLabel) return;
+    if (!form || !status || !button || !buttonLabel || form.dataset.newsletterReady) return;
+    form.dataset.newsletterReady = 'true';
+    // All submissions stay on this page, including when the provider returns JSON.
+    form.removeAttribute('target');
 
     function showStatus(message, state) {
       status.hidden = false;
@@ -24,33 +25,72 @@
       status.textContent = message;
     }
 
-    form.addEventListener('submit', function () {
-      submitted = true;
-      responseReceived = false;
+    form.addEventListener('input', function (event) {
+      if (event.target.setCustomValidity) event.target.setCustomValidity('');
+    });
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      if (submitting || complete || !form.reportValidity()) return;
+      submitting = true;
       button.disabled = true;
       button.setAttribute('aria-busy', 'true');
       buttonLabel.textContent = 'Signing you up…';
       showStatus('Submitting your newsletter signup…', 'pending');
 
-      window.clearTimeout(timeoutId);
-      timeoutId = window.setTimeout(function () {
-        if (responseReceived) return;
-        button.disabled = false;
+      var controller = new AbortController();
+      var timeoutId = window.setTimeout(function () { controller.abort(); }, 15000);
+      try {
+        // Brevo's own HTML embed uses this endpoint and checks response.success.
+        var url = new URL(form.action);
+        url.searchParams.set('isAjax', '1');
+        var data = new FormData(form);
+        data.delete('html_type');
+        var response = await fetch(url.href, {
+          method: 'POST', body: data, mode: 'cors', credentials: 'omit',
+          signal: controller.signal
+        });
+        var result = await response.json();
+        if (response.ok && result && result.success === true) {
+          complete = true;
+          finishSignup();
+        } else if (result && result.success === false) {
+          var errors = result.errors && typeof result.errors === 'object' ? result.errors : {};
+          var firstInvalid;
+          Object.keys(errors).forEach(function (name) {
+            var field = form.elements.namedItem(name);
+            if (field && field.setCustomValidity && typeof errors[name] === 'string') {
+              field.setCustomValidity(errors[name]);
+              if (!firstInvalid) firstInvalid = field;
+            }
+          });
+          showStatus(firstInvalid
+            ? 'Please correct the highlighted field and try again. Your information has been kept.'
+            : 'Your signup could not be confirmed. Please check your details and try again, or email asme@osu.edu.', 'error');
+          if (firstInvalid) firstInvalid.reportValidity();
+        } else {
+          throw new Error('Unrecognized newsletter response');
+        }
+      } catch (error) {
+        // A network error or timeout cannot establish whether Brevo accepted it.
+        showStatus('We could not confirm your signup. Your details are still here. Check your inbox before trying again, or email asme@osu.edu.', 'error');
+      } finally {
+        window.clearTimeout(timeoutId);
+        submitting = false;
         button.removeAttribute('aria-busy');
-        buttonLabel.textContent = 'Try the newsletter signup again';
-        showStatus('The signup is taking longer than expected. Please try again or email asme@osu.edu.', 'error');
-      }, 15000);
+        if (!complete) {
+          button.disabled = false;
+          buttonLabel.textContent = 'Try newsletter signup again';
+        }
+      }
     });
 
-    frame.addEventListener('load', function () {
-      if (!submitted) return;
-      responseReceived = true;
-      window.clearTimeout(timeoutId);
+    function finishSignup() {
       button.disabled = true;
       button.removeAttribute('aria-busy');
       buttonLabel.textContent = 'Step 1 complete';
       form.reset();
-      showStatus('Thanks! Your newsletter signup was received. Continue to Step 2 below for quick chapter updates.', 'success');
+      showStatus('Thanks! Your newsletter signup was received. Check your inbox for any confirmation email, then continue to Step 2 below for quick chapter updates.', 'success');
       if (formCard) formCard.classList.add('is-newsletter-complete');
       if (newsletterStep) {
         newsletterStep.classList.remove('is-current');
@@ -66,7 +106,9 @@
           });
         }, 250);
       }
-    });
+    }
+
+    button.disabled = false;
 
     if (groupMeButton) {
       groupMeButton.addEventListener('click', function () {

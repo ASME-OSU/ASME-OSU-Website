@@ -1,5 +1,13 @@
 # Ohio State ASME Website
 
+## Newsletter confirmation
+
+The existing custom Join form submits in place to its Brevo action with `?isAjax=1`, matching Brevo's HTML embed protocol. `Join Page Integration.js` completes Step 1 only after an HTTP-successful JSON response containing `success: true`. Rejections, malformed responses, and timeouts keep entered values and show an inline error. The integration does not navigate to the provider response or follow provider redirects. Any email confirmation required by Brevo remains a separate step.
+
+Run `npm ci`, `npm run check`, and `npm test` when changing this flow. The behavioral tests mock acceptance and failures; they do not create subscribers. On September 5, 2026, an empty-field request to the live provider returned `success: false` and allowed the `https://org.osu.edu` origin. Successful newsletter delivery was not tested with a real address.
+
+The focused September 5 update preserves the stylesheet and signup wrapper, moves the existing featured event directly after the homepage hero, and renames both sponsor email links to “Open email draft.” Publish only Home (527), Join (69), and Sponsor ASME (660), preserving their existing WordPress formatting settings. No shared footer or stylesheet update is needed.
+
 This repository is the source of truth for the custom HTML and CSS used on the Ohio State ASME WordPress site:
 
 https://org.osu.edu/asme/
