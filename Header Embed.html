@@ -1,0 +1,30 @@
+<!-- Menu destinations and logo are populated from the existing WordPress header. -->
+<template id="asme-header-template">
+  <header id="asme-site-header" aria-label="ASME Ohio State">
+    <a class="asme-hd-brand" aria-label="ASME Ohio State home">
+      <span class="asme-hd-logo"></span>
+      <span class="asme-hd-brand-copy">
+        <span class="asme-hd-title">American Society of Mechanical Engineers</span>
+        <span class="asme-hd-subtitle">At the Ohio State University</span>
+      </span>
+    </a>
+    <nav class="asme-hd-nav" id="asme-header-navigation" aria-label="Primary">
+      <ul class="asme-hd-links"></ul>
+    </nav>
+    <div class="asme-hd-actions">
+      <button class="asme-hd-icon-button asme-hd-search-toggle" type="button" aria-label="Search the ASME website" aria-controls="asme-header-search" aria-expanded="false"></button>
+      <a class="asme-hd-join">Join ASME <span aria-hidden="true">→</span></a>
+      <button class="asme-hd-icon-button asme-hd-menu-toggle" type="button" aria-label="Open navigation" aria-controls="asme-header-navigation" aria-expanded="false"></button>
+    </div>
+    <form id="asme-header-search" class="asme-hd-search" role="search" method="get" hidden>
+      <label for="asme-header-query">Search ASME Ohio State</label>
+      <div class="asme-hd-search-row">
+        <input id="asme-header-query" name="s" type="search" placeholder="Events, resources, and more…" required>
+        <button type="submit">Search</button>
+      </div>
+    </form>
+  </header>
+</template>
+
+<link id="asme-header-styles" rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/Header.css?v=20260905-header1">
+<script src="https://asme-osu.github.io/ASME-OSU-Website/Header%20Integration.js?v=20260905-header1" defer></script>
