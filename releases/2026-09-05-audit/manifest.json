@@ -1,0 +1,25 @@
+{
+  "release": "2026-09-05-audit",
+  "createdAt": "2026-09-05",
+  "eventLocations": "Unchanged; room bookings remain in progress.",
+  "files": {
+    "About Us Page.html": "89ee227b5256391fa83fa8956cd5ad83f127dbf06374c3d08f862384e35edc29",
+    "Calendar Page.html": "ce0b2b11c4e7f4035b7a28539e873e90ab8916ccf6cb2293820d35bba90e69e5",
+    "Current Sponsors Page.html": "18fa9702d97025d348ef665fd593fab6652d6b424dc2c2b2f4375e0fc7c735d0",
+    "Footer.html": "0e910561366814274b76c6b4b90739ccc80157afc2c15d4c13b187ffebad8317",
+    "Gallery Page.html": "d899d9607dc70a4b22b09a3d941fca233b9bd130506eb7b1eeb8e84c27c6d495",
+    "Home Page.html": "e28a521b7c83f174dfbd3f10e82bed7d352236dcd8941e3528cef76ad8a4f9b2",
+    "Join Page.html": "d9eb181330ce5516c577c6b9bc38235e0c84ff0ce215412ba1a2cd400da91ed6",
+    "Leadership Page.html": "8e4325fc754178984be062783f4dc2700d3ddc083051af2518fc4a946ecb4871",
+    "Member Points Page.html": "9e481f18bc5fd0e1422b80e1e7a0e1dede2a68114e8c7927685edad8b2763c25",
+    "Member Resources Page.html": "fb07a0cf9cfd78936facc612c695c8bf140d37ef96c366b8cc67491ffd2eaef1",
+    "Sponsor ASME Page.html": "629c89aa8788cb84341f99a5cb892ee44e089acb87f9e5a1bf6fb254e7918df1",
+    "calendar.js": "3b8a9401544e0fa889f684f015555d2112c04fbd4470ec372c6bfce654e119c1",
+    "gallery.js": "eb565c24439d1d13012de3b49f65df8846565aa8f4ff4aaa71859e84af84f4ef",
+    "points.js": "67411a2b30df144bb8362a098604dc607d1f28ab80054a0ad0ae21a5ca663d24",
+    "site.css": "801dc68983b16698728ad5f3c1a0fca1d938c727f63234559995eb15c2d07dd7",
+    "site.js": "c8be325e4df75e709e53df5a37e9b30390a28b0f0d2f0a98dbcfc12f66abf1f4",
+    "sponsor.js": "4c37adc5d4c3d13ee01d1eb335cb2f2cb27660a36f0459e6f6bb9c650b067e61",
+    "sponsorship-overview.html": "c309e0c415fcf8d7be6b17ddb14df9e0585ffcabcf84a9c207565b25dfbb664f"
+  }
+}

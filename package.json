@@ -5,9 +5,16 @@
   "type": "module",
   "scripts": {
     "sync:calendar": "node scripts/sync-calendar.mjs",
-    "check": "node --check \"Calendar Integration.js\" && node --check \"Gallery Integration.js\" && node --check \"Member Points Integration.js\""
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "preview": "node scripts/preview.mjs"
   },
   "dependencies": {
     "node-ical": "0.26.1"
+  },
+  "devDependencies": {
+    "css-tree": "^3.2.1",
+    "jsdom": "^28.1.0"
   }
 }
