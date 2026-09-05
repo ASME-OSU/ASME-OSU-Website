@@ -1,20 +1,24 @@
 /* Isolated header component. No page-content or global typography overrides. */
 html body #masthead[data-asme-header-replaced] { display:none!important; }
+html body #asme-header-spacer {display:block;flex:none;pointer-events:none;}
 html body #asme-site-header {
   --asme-header-ready:1;
   --asme-admin-offset:0px;
+  --asme-header-space:36px;
   box-sizing:border-box;
   display:flex;
   flex-flow:row nowrap;
   align-items:center;
   gap:24px;
-  position:sticky;
+  position:fixed;
   top:calc(12px + var(--asme-admin-offset));
+  left:50%;
+  transform:translateX(-50%);
   z-index:1000;
   width:calc(100% - 64px);
   max-width:1288px;
   min-height:94px;
-  margin:12px auto 24px;
+  margin:0;
   padding:17px 28px;
   background:#fff;
   color:#1f1f1f;
@@ -91,7 +95,7 @@ html body #asme-site-header {
   #asme-site-header .asme-hd-search {width:100%;}
 }
 @media (max-width:600px) {
-  html body #asme-site-header {min-height:76px;padding:12px 14px;gap:10px;margin-top:8px;margin-bottom:20px;top:calc(8px + var(--asme-admin-offset));border-radius:14px;}
+  html body #asme-site-header {--asme-header-space:28px;min-height:76px;padding:12px 14px;gap:10px;top:calc(8px + var(--asme-admin-offset));border-radius:14px;}
   #asme-site-header .asme-hd-brand {flex:1;}
   #asme-site-header .asme-hd-brand-copy {display:none;}
   #asme-site-header .asme-hd-logo {flex-basis:70px;}
@@ -101,4 +105,4 @@ html body #asme-site-header {
   #asme-site-header .asme-hd-icon-button {width:36px;flex-basis:36px;}
 }
 @media (prefers-reduced-motion:reduce) {#asme-site-header * {transition:none!important;}}
-@media print {html body #asme-site-header {position:static;box-shadow:none;}#asme-site-header .asme-hd-nav,#asme-site-header .asme-hd-actions,#asme-site-header .asme-hd-search {display:none!important;}}
+@media print {html body #asme-site-header {position:static;transform:none;margin:auto;box-shadow:none;}#asme-header-spacer,#asme-site-header .asme-hd-nav,#asme-site-header .asme-hd-actions,#asme-site-header .asme-hd-search {display:none!important;}}

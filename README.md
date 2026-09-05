@@ -8,6 +8,8 @@ The header shows Home, About, Join, Events, Gallery, Leadership, and Members in 
 
 Desktop navigation fits on one row; below 980px it becomes a disclosure menu. Search submits the standard WordPress `s` query to the site's home URL. Keyboard controls support Tab, Enter, Arrow Down for Members, and Escape with focus return. Current-page states use WordPress metadata and the actual page URL.
 
+The component uses a fixed bar plus a measured header spacer because the theme's existing overflow containers prevent native sticky positioning. It accounts for the signed-in WordPress toolbar and resizes its reserved space without changing page content or global overflow rules.
+
 To deploy, push the component assets to GitHub Pages, wait for deployment, then append `Header Embed.html` to **Settings → Advanced Settings → Additional code → Footer code** (inside the `ASME HEADER COMPONENT START/END` comments). Preserve all existing shared code and the original stylesheet link. No page editor changes are needed. To revert the header alone, remove that marked block; the native WordPress header remains available as its fallback.
 
 For a local visual preview, save the public homepage to `/private/tmp/asme-header-live.html`, then run `npm run preview:header`. The preview uses that saved page with the component appended; it does not modify WordPress.

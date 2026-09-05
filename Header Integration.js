@@ -124,6 +124,15 @@
     // If the stylesheet fails to load, leave the original WordPress menu usable.
     if (getComputedStyle(header).getPropertyValue('--asme-header-ready').trim() !== '1') { header.remove(); return; }
     original.setAttribute('data-asme-header-replaced', 'true'); original.hidden = true;
+    // GeneratePress's overflow containers prevent position:sticky from following
+    // the viewport. Reserve the header's space and fix only this component.
+    var spacer = document.createElement('div');
+    spacer.id = 'asme-header-spacer'; spacer.setAttribute('aria-hidden', 'true'); header.before(spacer);
+    function reserveSpace() {
+      spacer.style.height = (header.getBoundingClientRect().height + parseFloat(getComputedStyle(header).getPropertyValue('--asme-header-space'))) + 'px';
+    }
+    reserveSpace(); window.addEventListener('resize', reserveSpace);
+    if (window.ResizeObserver) new ResizeObserver(reserveSpace).observe(header);
     var admin = document.getElementById('wpadminbar');
     if (admin) {
       var ticking = false;
