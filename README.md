@@ -2,15 +2,15 @@
 
 ## Reusable header component
 
-`Header.html` provides the semantic template, `Header.css` contains scoped desktop/tablet/mobile styles, and `Header Integration.js` populates the component from the existing WordPress logo and primary menu. Run `npm run build:header` to generate `Header Embed.html` and update only the marked component block at the end of `Footer.html`. Run `npm run check` and `npm test` before deployment.
+`Header.html` provides the semantic template, `Header.css` contains scoped desktop/tablet/mobile styles, and `Header Integration.js` populates the component from the existing WordPress logo and primary menu. Run `npm run build:header` to generate `Header Embed.html`, `Header Bootstrap.html`, and update only the marked component block at the end of `Footer.html`. Run `npm run check` and `npm test` before deployment.
 
 The header shows Home, About, Join, Events, Gallery, Leadership, and Members in that order. It reads their destinations from the CMS menu and preserves Members' submenu links. Events points to the CMS Calendar child. Corporate is omitted from the new top bar to follow this seven-item layout; existing sponsor pages and footer links remain available. Keep these primary menu labels when managing links in WordPress. Missing source markup or unavailable component CSS leaves the original theme header visible.
 
-Desktop navigation fits on one row; below 980px it becomes a disclosure menu. Search submits the standard WordPress `s` query to the site's home URL. Keyboard controls support Tab, Enter, Arrow Down for Members, and Escape with focus return. Current-page states use WordPress metadata and the actual page URL.
+Desktop navigation fits on one row; below 980px it becomes a disclosure menu. Search matches the chapter's public pages, events, and resources without exposing legacy WordPress posts. Keyboard controls support Tab, Enter, Arrow Down for Members, and Escape with focus return. Current-page states use WordPress metadata and the actual page URL.
 
 The component uses a fixed bar plus a measured header spacer because the theme's existing overflow containers prevent native sticky positioning. It accounts for the signed-in WordPress toolbar and resizes its reserved space without changing page content or global overflow rules.
 
-To deploy, push the component assets to GitHub Pages, wait for deployment, then append `Header Embed.html` to **Settings → Advanced Settings → Additional code → Footer code** (inside the `ASME HEADER COMPONENT START/END` comments). Preserve all existing shared code and the original stylesheet link. No page editor changes are needed. To revert the header alone, remove that marked block; the native WordPress header remains available as its fallback.
+To deploy, push the component assets to GitHub Pages, wait for deployment, then append `Header Bootstrap.html` to **Settings → Advanced Settings → Additional code → Header Tag (high priority)** and append `Header Embed.html` to **Footer code** (inside the `ASME HEADER COMPONENT START/END` comments). Preserve all existing shared code and the original stylesheet link. The bootstrap prevents the original WordPress header flashing during fast navigation and restores it after 3.5 seconds if the component cannot load. No page editor changes are needed. To revert the header alone, remove both marked blocks; the native WordPress header remains available as its fallback.
 
 For a local visual preview, save the public homepage to `/private/tmp/asme-header-live.html`, then run `npm run preview:header`. The preview uses that saved page with the component appended; it does not modify WordPress.
 

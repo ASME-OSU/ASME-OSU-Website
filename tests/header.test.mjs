@@ -49,6 +49,9 @@ test('site search focuses input, returns public pages, and closes on Escape',()=
 test('keeps the original CMS header usable if component CSS is unavailable',()=>{
   const s=setup({styles:false});assert.equal(s.d.querySelector('#asme-site-header'),null);assert.equal(s.d.querySelector('#masthead').hidden,false);s.close();
 });
+test('restores the original header when an early bootstrap has hidden it and component CSS is unavailable',()=>{
+  const s=setup({styles:false,prepare(d){d.documentElement.classList.add('asme-header-pending');}});assert.equal(s.d.querySelector('#asme-site-header'),null);assert.equal(s.d.documentElement.classList.contains('asme-header-pending'),false);assert.equal(s.d.querySelector('#masthead').hidden,false);s.close();
+});
 test('highlights Members on a member page instead of Home',()=>{
   const s=setup({url:'https://org.osu.edu/asme/member-points-page/',prepare(d){d.querySelector('[aria-current="page"]').removeAttribute('aria-current');}});
   assert.deepEqual([...s.d.querySelectorAll('.asme-hd-link.is-active')].map(a=>a.textContent),['Members']);assert.equal(s.d.querySelector('#asme-header-members [aria-current="page"]').textContent,'Member Points Page');s.close();

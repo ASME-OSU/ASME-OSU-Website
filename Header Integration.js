@@ -23,21 +23,32 @@
     copy.querySelectorAll('.dropdown-menu-toggle, svg').forEach(function (node) { node.remove(); });
     return copy.textContent.trim();
   }
+  function restoreOriginalHeader() {
+    var original = document.getElementById('masthead');
+    document.documentElement.classList.remove('asme-header-pending');
+    if (original) {
+      original.hidden = false;
+      original.removeAttribute('data-asme-header-replaced');
+    }
+  }
   function init() {
-    if (document.getElementById('asme-site-header')) return;
+    if (document.getElementById('asme-site-header')) {
+      document.documentElement.classList.remove('asme-header-pending');
+      return;
+    }
     var original = document.getElementById('masthead');
     var menu = original && original.querySelector('#site-navigation .main-nav > ul');
     var template = document.getElementById('asme-header-template');
     var logo = original && original.querySelector('.site-logo img');
     var home = original && original.querySelector('.site-logo a');
-    if (!menu || !template || !logo || !home) return;
+    if (!menu || !template || !logo || !home) { restoreOriginalHeader(); return; }
     var entries = new Map();
     Array.from(menu.children).forEach(function (li) {
       var a = li.querySelector(':scope > a');
       if (a) entries.set(label(a), { li:li, link:a });
     });
     var order = ['Home', 'About', 'Join', 'Events', 'Gallery', 'Leadership', 'Members'];
-    if (!order.every(function (name) { return entries.has(name); })) return;
+    if (!order.every(function (name) { return entries.has(name); })) { restoreOriginalHeader(); return; }
     var header = template.content.firstElementChild.cloneNode(true);
     var brand = header.querySelector('.asme-hd-brand');
     brand.href = home.href;
@@ -172,8 +183,9 @@
     });
     original.before(header);
     // If the stylesheet fails to load, leave the original WordPress menu usable.
-    if (getComputedStyle(header).getPropertyValue('--asme-header-ready').trim() !== '1') { header.remove(); return; }
+    if (getComputedStyle(header).getPropertyValue('--asme-header-ready').trim() !== '1') { header.remove(); restoreOriginalHeader(); return; }
     original.setAttribute('data-asme-header-replaced', 'true'); original.hidden = true;
+    document.documentElement.classList.remove('asme-header-pending');
     // Some legacy page styles set their own wide-screen caps. Keep every
     // primary page aligned to the shared header container after those styles load.
     var wide = window.matchMedia('(min-width:1920px)');
