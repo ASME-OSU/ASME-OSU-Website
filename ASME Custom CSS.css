@@ -1968,6 +1968,29 @@ body {
   font-family: 'DM Sans', sans-serif !important;
 }
 
+/* Keep light mode on the same continuous canvas used by dark mode. Theme
+   wrappers should not form a square white sheet behind rounded content cards. */
+.site,
+#page,
+.site-content,
+#content,
+#content.site-content,
+.site-content .wrap,
+.content-sidebar-wrap,
+#primary,
+.content-area,
+#main,
+.site-main,
+.inside-article,
+.page .inside-article,
+.page article.page,
+article.page,
+.entry-content,
+.separate-containers .inside-article,
+.one-container .site-content {
+  background: var(--asme-bg) !important;
+}
+
 *,
 *::before,
 *::after {
