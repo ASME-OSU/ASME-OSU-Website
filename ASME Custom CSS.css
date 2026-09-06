@@ -18266,6 +18266,31 @@ html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > br 
   }
 }
 
+/* JOIN PAGE — use the same usable frame as the site header on desktop.
+   The FAQ card can span the page frame without leaving a second oversized
+   gutter around the accordion content. */
+@media (min-width: 981px) {
+  body #page .asme-join-page,
+  html body #page .entry-content .asme-join-page {
+    padding-right: 28px !important;
+    padding-left: 28px !important;
+  }
+
+  body #page .asme-join-page .join-faq-section,
+  html body #page .entry-content .asme-join-page .join-faq-section {
+    padding-right: 28px !important;
+    padding-left: 28px !important;
+  }
+
+  body #page .asme-join-page .join-faq-heading,
+  html body #page .entry-content .asme-join-page .join-faq-heading,
+  body #page .asme-join-page .join-faq-list,
+  html body #page .entry-content .asme-join-page .join-faq-list {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+
 /* ============================================================
    FOOTER V2 — compact chapter footer
    This stays last so it wins over the legacy footer declarations above.
