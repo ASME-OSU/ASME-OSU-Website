@@ -18454,7 +18454,31 @@ body .asme-footer-v2 .asme-footer-connect li a {
   text-align: left !important;
 }
 
+/* Connect links are plain rows on desktop and tablet; cards are reserved for mobile. */
+@media (min-width: 721px) {
+  body .asme-footer-v2 .asme-footer-connect li a {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+body .asme-footer-v2 .asme-footer-linkedin svg {
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+body .asme-footer-v2 .asme-footer-groupme-icon {
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: 22px !important;
+  height: 22px !important;
+  object-fit: contain !important;
+}
+
 body .asme-footer-v2 .asme-footer-bottom {
+  position: relative !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -18466,6 +18490,28 @@ body .asme-footer-v2 .asme-footer-bottom {
   border-top: 1px solid #d7dee8 !important;
   color: #526b92 !important;
   text-align: center !important;
+}
+
+body .asme-footer-v2 .asme-footer-login { display: none !important; }
+
+@media (min-width: 1920px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-login {
+    display: grid !important;
+    place-items: center !important;
+    position: absolute !important;
+    top: 50% !important;
+    right: 0 !important;
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translateY(-50%) !important;
+    color: inherit !important;
+    opacity: .42 !important;
+  }
+  body .asme-footer-v2 .asme-footer-login:hover,
+  body .asme-footer-v2 .asme-footer-login:focus-visible { opacity: 1 !important; }
+  body .asme-footer-v2 .asme-footer-login svg { width: 17px !important; height: 17px !important; }
 }
 
 body .asme-footer-v2 .asme-footer-bottom span {
@@ -18487,12 +18533,13 @@ body .asme-footer-v2 .asme-footer-bottom span {
   body .asme-footer-v2 .asme-footer-connect ul { grid-template-columns: repeat(4, max-content) !important; gap: 24px !important; }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 720px) {
   .site-footer:has(.asme-footer-v2),
   #colophon:has(.asme-footer-v2) { margin-top: 28px !important; }
   body .asme-footer-inner.asme-footer-v2 { width: min(100% - 40px, 480px) !important; padding-top: 42px !important; }
   body .asme-footer-v2 .asme-footer-grid { display: block !important; }
   body .asme-footer-v2 .asme-footer-col { padding: 32px 0 0 !important; border-left: 0 !important; border-top: 1px solid #d7dee8 !important; }
+  body .asme-footer-v2 .asme-footer-col + .asme-footer-col { border-left: 0 !important; }
   body .asme-footer-v2 .asme-footer-brand { padding-top: 0 !important; border-top: 0 !important; }
   body .asme-footer-v2 h3 { margin-bottom: 20px !important; font-size: 29px !important; }
   body .asme-footer-v2 .asme-footer-logo { margin-bottom: 20px !important; }
@@ -18504,6 +18551,7 @@ body .asme-footer-v2 .asme-footer-bottom span {
   body .asme-footer-v2 .asme-footer-connect ul { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
   body .asme-footer-v2 .asme-footer-connect li a { display: flex !important; flex-direction: column !important; justify-content: center !important; gap: 9px !important; width: 100% !important; min-height: 98px !important; padding: 15px 10px !important; border: 1px solid #d7dee8 !important; border-radius: 8px !important; text-align: center !important; }
   body .asme-footer-v2 .asme-footer-connect li a svg { width: 25px !important; height: 25px !important; }
+  body .asme-footer-v2 .asme-footer-groupme-icon { width: 25px !important; height: 25px !important; }
   body .asme-footer-v2 .asme-footer-bottom { min-height: 0 !important; margin-top: 40px !important; padding: 25px 8px 30px !important; }
   body .asme-footer-v2 .asme-footer-bottom span { max-width: 330px !important; font-size: 13px !important; }
 }
@@ -18521,6 +18569,9 @@ body .asme-footer-v2 .asme-footer-bottom span {
   body .asme-footer-v2 a,
   body .asme-footer-v2 .asme-footer-bottom { color: #c8d8ef !important; }
   body .asme-footer-v2 .asme-footer-logo img { filter: brightness(0) invert(1) !important; }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 720px) {
   body .asme-footer-v2 .asme-footer-connect li a { border-color: #2a4262 !important; background: #0f1b2d !important; }
 }
 

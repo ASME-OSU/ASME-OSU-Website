@@ -22,6 +22,10 @@ test('upgrades the legacy footer while retaining destinations and adding GroupMe
   assert.equal(footer.querySelector('.asme-footer-links a').href, 'https://example.test/join');
   assert.equal(footer.querySelectorAll('.asme-footer-connect a').length, 4);
   assert.equal(footer.querySelector('.asme-footer-connect a[aria-label$="GroupMe"]').href, 'https://groupme.com/join_group/95825283/iaBgk5Ld');
+  assert.match(footer.querySelector('.asme-footer-contact').textContent, /Scott Laboratory/);
+  assert.ok(footer.querySelector('.asme-footer-groupme-icon'));
+  assert.ok(footer.querySelector('.asme-footer-linkedin svg'));
+  assert.ok(footer.querySelector('.asme-footer-login'));
   assert.equal(footer.querySelector('.asme-footer-bottom').textContent.trim(), '© 2026 ASME Ohio State University Chapter. All rights reserved.');
   dom.window.close();
 });
