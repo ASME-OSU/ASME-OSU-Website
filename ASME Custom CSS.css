@@ -6986,28 +6986,41 @@ body .sponsors-grid-partners .sponsor-card h3 a {
   margin-top: 0 !important;
 }
 
-/* Homepage looked good with the stronger pull */
+/* Shared visible gap below the fixed header (27px at the desktop frame).
+   Each page keeps its own measured offset because its first card has different
+   internal padding. This makes the first visible card line up with Home. */
 .asme-home {
   padding-top: 0 !important;
   margin-top: -38px !important;
 }
 
-/* Other custom pages need less pull so they don't crowd the header */
+/* About's hero starts 8px inside its page wrapper. */
 .asme-about-page,
-.asme-join-page,
-.asme-sponsors-page,
-.asme-sponsor-page,
-.asme-gallery-page,
-.asme-cal-page,
-.leadership-board {
+.asme-sponsor-page {
   padding-top: 0 !important;
-  margin-top: -16px !important;
+  margin-top: -37px !important;
 }
 
-/* Events and search need a little more breathing room under the header */
+/* Join and Members have the deepest first-card inset. */
+.asme-join-page,
+.asme-members-page {
+  padding-top: 0 !important;
+  margin-top: -41px !important;
+}
+
+/* The calendar header has a 32px internal top inset. */
 .asme-cal-page,
 .search .content-sidebar-wrap {
-  margin-top: 8px !important;
+  padding-top: 0 !important;
+  margin-top: 3px !important;
+}
+
+/* These first cards sit flush with their page wrappers. */
+.asme-gallery-page,
+.asme-sponsors-page,
+.leadership-board {
+  padding-top: 0 !important;
+  margin-top: -13px !important;
 }
 
 /* Blog/archive/search: force more space below header */
