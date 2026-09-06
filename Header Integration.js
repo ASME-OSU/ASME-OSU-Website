@@ -89,11 +89,13 @@
     searchButton.appendChild(icon('search')); menuButton.appendChild(icon('menu'));
     function setMembers(open) { if (!submenu) return; submenu.hidden = !open; disclosure.setAttribute('aria-expanded', String(open)); }
     function setMenu(open) {
+      header.classList.remove('asme-header-hidden');
       header.classList.toggle('is-menu-open', open);
       menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); menuButton.replaceChildren(icon(open ? 'close' : 'menu'));
       if (!open) setMembers(false);
     }
     function setSearch(open) {
+      header.classList.remove('asme-header-hidden');
       search.hidden = !open; searchButton.setAttribute('aria-expanded', String(open));
       if (open) { setMenu(false); setMembers(false); search.querySelector('input').focus(); }
     }
@@ -133,6 +135,21 @@
     }
     reserveSpace(); window.addEventListener('resize', reserveSpace);
     if (window.ResizeObserver) new ResizeObserver(reserveSpace).observe(header);
+    var lastScroll = window.scrollY || 0;
+    var scrollTicking = false;
+    function updateScrollState() {
+      var current = window.scrollY || 0;
+      var delta = current - lastScroll;
+      var interacting = header.classList.contains('is-menu-open') || !search.hidden || header.contains(document.activeElement);
+      header.classList.toggle('asme-header-interacting', interacting);
+      if (Math.abs(delta) > 4 && current > 80 && !interacting) header.classList.toggle('asme-header-hidden', delta > 0);
+      if (current <= 80 || delta < 0) header.classList.remove('asme-header-hidden');
+      lastScroll = current;
+      scrollTicking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!scrollTicking) { scrollTicking = true; requestAnimationFrame(updateScrollState); }
+    }, { passive:true });
     var admin = document.getElementById('wpadminbar');
     if (admin) {
       var ticking = false;
