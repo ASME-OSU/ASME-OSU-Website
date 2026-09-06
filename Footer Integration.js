@@ -3,7 +3,6 @@
 
   var home = 'https://org.osu.edu/asme/';
   var groupMe = 'https://groupme.com/join_group/95825283/iaBgk5Ld';
-  var groupMeIcon = 'https://asme-osu.github.io/ASME-OSU-Website/assets/groupme-mark.svg';
   var fallbackLogo = 'https://org.osu.edu/asme/files/2026/05/asme_osu_logo_horizontal_black.png';
 
   function svg(markup) {
@@ -18,7 +17,7 @@
   }
 
   function socialIcon(name, markup) {
-    if (name === 'GroupMe') return '<img class="asme-footer-groupme-icon" src="' + groupMeIcon + '" alt="" aria-hidden="true">';
+    if (name === 'GroupMe') return '<span class="asme-footer-groupme-icon" aria-hidden="true"></span>';
     return svg(markup);
   }
 
