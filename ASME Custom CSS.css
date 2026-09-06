@@ -18199,49 +18199,36 @@ html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > br 
     margin-left: auto !important;
   }
 
+  /* Keep every primary page on the same wide-screen grid as the header. */
   body #page .asme-home,
   html body #page .entry-content .asme-home,
   body #page .asme-gallery-page,
-  html body #page .entry-content .asme-gallery-page {
-    width: 100% !important;
-    max-width: min(2100px, calc(100vw - 160px)) !important;
-  }
-
+  html body #page .entry-content .asme-gallery-page,
   body #page .asme-about-page,
   html body #page .entry-content .asme-about-page,
   body #page .asme-sponsors-page,
   html body #page .entry-content .asme-sponsors-page,
   body #page .asme-sponsor-page,
   html body #page .entry-content .asme-sponsor-page,
-  body .leadership-board {
-    width: 100% !important;
-    max-width: min(2000px, calc(100vw - 160px)) !important;
-  }
-
+  body .leadership-board,
   body #page .asme-cal-page,
-  html body #page .entry-content .asme-cal-page {
-    width: 100% !important;
-    max-width: min(1800px, calc(100vw - 200px)) !important;
-  }
-
-  body #page .asme-cal-page .acp-header {
-    max-width: 1500px !important;
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
-
+  html body #page .entry-content .asme-cal-page,
   body #page .asme-join-page,
   html body #page .entry-content .asme-join-page {
     width: 100% !important;
-    max-width: min(1600px, calc(100vw - 240px)) !important;
-    padding-right: 48px !important;
-    padding-left: 48px !important;
+    max-width: min(2100px, calc(100vw - 160px)) !important;
+  }
+
+  body #page .asme-cal-page .acp-header {
+    max-width: none !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
   }
 
   body #page .asme-join-page .join-hero,
   body #page .asme-join-page .join-faq-section {
     width: 100% !important;
-    max-width: 1500px !important;
+    max-width: none !important;
     margin-right: auto !important;
     margin-left: auto !important;
   }
