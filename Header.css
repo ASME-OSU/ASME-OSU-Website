@@ -159,6 +159,16 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
 @media (min-width:1600px) {
   html body #asme-site-header {width:calc(100% - 160px);}
 }
+
+/* On ultra-wide displays the one-line organization name needs a real column
+   of its own. The navigation then uses the open center-right space instead of
+   beginning over the end of the brand title. */
+@media (min-width:1800px) {
+  html body #asme-site-header {gap:36px;}
+  #asme-site-header .asme-hd-brand {flex:0 0 540px;}
+  #asme-site-header .asme-hd-nav {margin-left:auto;}
+  #asme-site-header .asme-hd-links {gap:clamp(16px, 1.15vw, 26px);}
+}
 @media (max-width:768px) {
   html body #asme-site-header {width:calc(95% - 30.4px);}
   html body #page .entry-content .asme-home .ah-hero {margin-bottom:12px!important;}
