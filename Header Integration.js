@@ -130,23 +130,13 @@
     // the viewport. Reserve the header's space and fix only this component.
     var spacer = document.createElement('div');
     spacer.id = 'asme-header-spacer'; spacer.setAttribute('aria-hidden', 'true'); header.before(spacer);
-    var content = document.querySelector('.asme-home') || document.querySelector('.entry-content');
     function reserveSpace() {
-      if (content) {
-        var bounds = content.getBoundingClientRect();
-        if (bounds.width > 0) {
-          header.style.width = bounds.width + 'px';
-          header.style.maxWidth = 'none';
-          header.style.left = (bounds.left + bounds.width / 2) + 'px';
-        }
-      }
       spacer.style.height = (header.getBoundingClientRect().height + parseFloat(getComputedStyle(header).getPropertyValue('--asme-header-space'))) + 'px';
     }
     reserveSpace(); window.addEventListener('resize', reserveSpace);
     if (window.ResizeObserver) {
       var observer = new ResizeObserver(reserveSpace);
       observer.observe(header);
-      if (content) observer.observe(content);
     }
     header.addEventListener('focusin', function () { header.classList.remove('asme-header-hidden'); });
     var lastScroll = window.scrollY || 0;
