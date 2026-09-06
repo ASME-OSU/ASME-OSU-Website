@@ -23735,3 +23735,12 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
     max-width: none !important;
   }
 }
+
+/* JOIN PAGE FRAME — final desktop override, kept after all component rules. */
+@media (min-width: 981px) {
+  body #page .asme-join-page,
+  html body #page .entry-content .asme-join-page {
+    padding-right: 28px !important;
+    padding-left: 28px !important;
+  }
+}
