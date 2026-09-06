@@ -845,6 +845,7 @@ html body #page .entry-content .asme-join-page .join-flow-progress-step.is-curre
 
 body #page .asme-join-page .join-flow-progress-step.is-complete .join-flow-progress-number,
 html body #page .entry-content .asme-join-page .join-flow-progress-step.is-complete .join-flow-progress-number {
+  position: relative !important;
   border-color: #16824b !important;
   background: #16824b !important;
   color: transparent !important;
@@ -852,9 +853,14 @@ html body #page .entry-content .asme-join-page .join-flow-progress-step.is-compl
 
 body #page .asme-join-page .join-flow-progress-step.is-complete .join-flow-progress-number::after,
 html body #page .entry-content .asme-join-page .join-flow-progress-step.is-complete .join-flow-progress-number::after {
+  position: absolute !important;
+  inset: 0 !important;
+  display: grid !important;
+  place-items: center !important;
   content: '✓' !important;
   color: #ffffff !important;
   font-size: 15px !important;
+  line-height: 1 !important;
 }
 
 body #page .asme-join-page .join-flow-progress-line,

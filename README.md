@@ -16,7 +16,7 @@ For a local visual preview, save the public homepage to `/private/tmp/asme-heade
 
 ## Newsletter confirmation
 
-The existing custom Join form submits in place to its Brevo action with `?isAjax=1`, matching Brevo's HTML embed protocol. `Join Page Integration.js` completes Step 1 only after an HTTP-successful JSON response containing `success: true`. Rejections, malformed responses, and timeouts keep entered values and show an inline error. The integration does not navigate to the provider response or follow provider redirects. Any email confirmation required by Brevo remains a separate step.
+The existing custom Join form submits in place to its Brevo action with `?isAjax=1`, matching Brevo's HTML embed protocol. `Join Page Integration.js` completes Step 1 only after an HTTP-successful JSON response containing `success: true`. Rejections, malformed responses, and timeouts keep entered values and show an inline error. The integration does not navigate to the provider response or follow provider redirects.
 
 Run `npm ci`, `npm run check`, and `npm test` when changing this flow. The behavioral tests mock acceptance and failures; they do not create subscribers. On September 5, 2026, an empty-field request to the live provider returned `success: false` and allowed the `https://org.osu.edu` origin. Successful newsletter delivery was not tested with a real address.
 

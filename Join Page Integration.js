@@ -73,7 +73,7 @@
         }
       } catch (error) {
         // A network error or timeout cannot establish whether Brevo accepted it.
-        showStatus('We could not confirm your signup. Your details are still here. Check your inbox before trying again, or email asme@osu.edu.', 'error');
+        showStatus('We could not confirm your signup. Your details are still here. Please try again, or email asme@osu.edu.', 'error');
       } finally {
         window.clearTimeout(timeoutId);
         submitting = false;
@@ -90,7 +90,7 @@
       button.removeAttribute('aria-busy');
       buttonLabel.textContent = 'Step 1 complete';
       form.reset();
-      showStatus('Thanks! Your newsletter signup was received. Check your inbox for any confirmation email, then continue to Step 2 below for quick chapter updates.', 'success');
+      showStatus('You have been successfully added to the newsletter list.', 'success');
       if (formCard) formCard.classList.add('is-newsletter-complete');
       if (newsletterStep) {
         newsletterStep.classList.remove('is-current');

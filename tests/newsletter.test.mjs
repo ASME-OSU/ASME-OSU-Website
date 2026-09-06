@@ -34,6 +34,7 @@ test('confirmed acceptance stays inline and advances the existing wrapper once',
   assert.equal(s.submit(), false, 'native form navigation is canceled');
   await tick();
   assert.match(s.status.className, /--success/);
+  assert.equal(s.status.textContent, 'You have been successfully added to the newsletter list.');
   assert.equal(s.form.elements.EMAIL.value, '');
   assert.equal(s.w.location.href, 'https://org.osu.edu/asme/join/');
   assert.equal(s.form.hasAttribute('target'), false);

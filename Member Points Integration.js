@@ -215,8 +215,8 @@
     }
 
     function setStatus(status) {
-      var clean = (status || 'TESTING').toUpperCase();
-      var label = clean === 'LIVE' ? 'Live' : clean === 'PAUSED' ? 'Paused' : 'Testing';
+      var clean = (status || 'LOADING').toUpperCase();
+      var label = clean === 'LIVE' ? 'Live' : clean === 'PAUSED' ? 'Paused' : clean === 'LOADING' ? 'Loading' : 'Testing';
       [statusBadge, leaderboardBadge].forEach(function (el) {
         if (!el) return;
         el.textContent = '';
@@ -588,6 +588,8 @@
         }
       }
     }
+
+    setStatus('LOADING');
 
     Promise.all([
       jsonp('System_Status', 'select A,B where A is not null'),
