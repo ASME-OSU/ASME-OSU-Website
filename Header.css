@@ -72,6 +72,7 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
 #asme-site-header .asme-hd-icon-button {display:flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;height:44px;padding:0;border:0;border-radius:9px;background:transparent;color:var(--hd-nav);box-shadow:none;}
 #asme-site-header .asme-hd-icon-button:hover, #asme-site-header .asme-hd-icon-button[aria-expanded="true"] {color:var(--hd-accent);background:var(--hd-hover);}
 #asme-site-header .asme-hd-join {display:flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 18px;border:1px solid #bb0000;border-radius:9px;background:#bb0000;color:#fff;font-size:13px;font-weight:700;white-space:nowrap;box-shadow:0 2px 5px rgb(187 0 0 / 12%);}
+#asme-site-header .asme-hd-join-mobile {display:none;}
 #asme-site-header .asme-hd-join:hover {background:#990000;border-color:#990000;color:#fff;}
 #asme-site-header .asme-hd-menu-toggle {display:none;}
 #asme-site-header .asme-hd-submenu {position:absolute;top:calc(100% + 10px);right:0;width:220px;margin:0;padding:8px;list-style:none;border:1px solid var(--hd-border);border-radius:12px;background:var(--hd-surface);box-shadow:0 10px 25px rgb(31 31 31 / 10%);}
@@ -116,7 +117,7 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
   #asme-site-header .asme-hd-join {padding:0 12px;font-size:12px;}
 }
 @media (max-width:979px) {
-  html body #asme-site-header {min-height:86px;padding:14px 20px;gap:16px;}
+  html body #asme-site-header {width:calc(100% - 40px);min-height:86px;padding:14px 20px;gap:16px;}
   #asme-site-header .asme-hd-menu-toggle {display:flex;}
   #asme-site-header .asme-hd-actions::before {display:none;}
   #asme-site-header .asme-hd-nav {display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;max-height:calc(100dvh - var(--asme-admin-offset) - 130px);overflow-y:auto;overscroll-behavior:contain;padding:12px;border:1px solid var(--hd-border);border-radius:14px;background:var(--hd-surface);box-shadow:0 10px 25px rgb(31 31 31 / 10%);}
@@ -129,21 +130,54 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
   #asme-site-header .asme-hd-submenu {position:static;width:auto;margin:0 0 8px 42px;padding:0;border:0;border-left:1px solid var(--hd-border);border-radius:0;box-shadow:none;}
   #asme-site-header .asme-hd-search {width:100%;}
 }
-@media (max-width:600px) {
-  html body #asme-site-header {--asme-header-space:12px;min-height:76px;padding:12px 14px;gap:10px;top:calc(8px + var(--asme-admin-offset));border-radius:14px;}
-  #asme-site-header .asme-hd-brand {flex:1;}
+@media (max-width:767px) {
+  html body #asme-site-header {
+    --asme-header-space:10px;
+    --hd-surface:#0b1a2e;
+    --hd-text:#f8fafc;
+    --hd-nav:#f8fafc;
+    --hd-muted:#b8c5d7;
+    --hd-border:#3a516e;
+    --hd-accent:#ff8585;
+    --hd-hover:#162b45;
+    --hd-active:#263852;
+    width:calc(100% - 24px);
+    min-height:76px;
+    padding:12px 14px;
+    gap:10px;
+    top:calc(8px + var(--asme-admin-offset));
+    border-radius:20px;
+    background:linear-gradient(135deg,#0c1d32 0%,#0a1728 100%);
+    border-color:#3a516e;
+    box-shadow:0 10px 28px rgb(2 8 23 / 34%), inset 0 1px 0 rgb(255 255 255 / 5%);
+    color-scheme:dark;
+  }
+  #asme-site-header .asme-hd-brand {flex:1 1 auto;min-width:0;}
   #asme-site-header .asme-hd-brand-copy {display:none;}
-  #asme-site-header .asme-hd-logo {flex-basis:70px;}
-  #asme-site-header .asme-hd-logo img {width:70px;height:44px;}
-  #asme-site-header .asme-hd-actions {gap:6px;}
-  #asme-site-header .asme-hd-join {padding:0 12px;font-size:12px;gap:8px;}
-  #asme-site-header .asme-hd-icon-button {width:36px;flex-basis:36px;}
+  #asme-site-header .asme-hd-logo {flex-basis:84px;}
+  #asme-site-header .asme-hd-logo img {width:84px;height:50px;filter:brightness(0) invert(1);transform:scale(1.08);}
+  #asme-site-header .asme-hd-actions {gap:8px;}
+  #asme-site-header .asme-hd-join {flex:0 0 82px;min-height:46px;padding:0;border-radius:15px;font-size:16px;font-weight:750;box-shadow:0 6px 16px rgb(187 0 0 / 26%);}
+  #asme-site-header .asme-hd-join-desktop {display:none;}
+  #asme-site-header .asme-hd-join-mobile {display:inline;}
+  #asme-site-header .asme-hd-icon-button {flex:0 0 46px;width:46px;height:46px;border:1px solid #3a516e;border-radius:15px;background:#152740;color:#f8fafc;box-shadow:inset 0 1px 0 rgb(255 255 255 / 4%);}
+  #asme-site-header .asme-hd-icon-button:hover, #asme-site-header .asme-hd-icon-button[aria-expanded="true"] {color:#fff;background:#203650;border-color:#52708f;}
+  #asme-site-header .asme-hd-icon-button .asme-hd-icon {width:24px;height:24px;stroke-width:2;}
+  #asme-site-header .asme-hd-nav,
+  #asme-site-header .asme-hd-search {top:calc(100% + 10px);border-color:#3a516e;background:#0d1d31;box-shadow:0 14px 30px rgb(2 8 23 / 38%);}
+  #asme-site-header .asme-hd-nav {padding:12px;border-radius:18px;}
+  #asme-site-header .asme-hd-search {padding:16px;border-radius:18px;}
+  #asme-site-header .asme-hd-search input {background:#152740;border-color:#3a516e;color:#f8fafc;}
+  #asme-site-header .asme-hd-search-result {border-color:#314761;color:#f8fafc;}
+  #asme-site-header .asme-hd-search-result span {color:#b8c5d7;}
 }
 @media (max-width:359px) {
-  html body #asme-site-header {padding:10px;gap:6px;}
-  #asme-site-header .asme-hd-logo, #asme-site-header .asme-hd-logo img {width:54px;flex-basis:54px;}
-  #asme-site-header .asme-hd-actions {gap:3px;}
-  #asme-site-header .asme-hd-join {padding:0 9px;gap:4px;}
+  html body #asme-site-header {width:calc(100% - 16px);padding:10px;gap:6px;border-radius:18px;}
+  #asme-site-header .asme-hd-logo, #asme-site-header .asme-hd-logo img {width:72px;flex-basis:72px;}
+  #asme-site-header .asme-hd-logo img {height:44px;}
+  #asme-site-header .asme-hd-actions {gap:5px;}
+  #asme-site-header .asme-hd-join {flex-basis:72px;min-height:42px;font-size:14px;}
+  #asme-site-header .asme-hd-icon-button {flex-basis:42px;width:42px;height:42px;border-radius:13px;}
 }
 @media (prefers-color-scheme:dark) {
   html body #asme-site-header {
@@ -179,7 +213,6 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
   #asme-site-header .asme-hd-links {gap:clamp(16px, 1.15vw, 26px);}
 }
 @media (max-width:768px) {
-  html body #asme-site-header {width:calc(95% - 30.4px);}
   html body #page .entry-content .asme-home .ah-hero {margin-bottom:12px!important;}
   html body #page .entry-content .asme-home .ah-hero + .ah-featured-event {margin-top:0!important;}
 }
