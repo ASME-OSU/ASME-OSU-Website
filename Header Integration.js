@@ -173,8 +173,13 @@
       else return;
       event.preventDefault();
     });
-    header.addEventListener('focusout', function (event) {
-      if (event.relatedTarget && !header.contains(event.relatedTarget)) { setSearch(false); setMenu(false); setMembers(false); }
+    header.addEventListener('focusout', function () {
+      // Moving focus from the menu button to its first link is part of opening
+      // the mobile navigation. Check after that handoff completes so a quick
+      // tap cannot immediately close the panel again.
+      window.setTimeout(function () {
+        if (!header.contains(document.activeElement)) { setSearch(false); setMenu(false); setMembers(false); }
+      }, 0);
     });
     document.addEventListener('click', function (event) { if(!header.contains(event.target)) { setSearch(false); setMenu(false); setMembers(false); } });
     narrow.addEventListener('change', function () {
