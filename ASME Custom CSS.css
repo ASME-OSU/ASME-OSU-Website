@@ -23653,6 +23653,22 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
 @media (min-width: 981px) {
   body .asme-footer-inner.asme-footer-v2 { position: relative !important; }
   body .asme-footer-v2 .asme-footer-grid { align-items: stretch !important; }
+
+  body .asme-footer-v2 .asme-footer-col { text-align: center !important; }
+  body .asme-footer-v2 .asme-footer-logo { justify-content: center !important; }
+  body .asme-footer-v2 h3 { text-align: center !important; }
+  body .asme-footer-v2 h3::after { left: 50% !important; transform: translateX(-50%) !important; }
+  body .asme-footer-v2 .asme-footer-contact { justify-items: center !important; }
+  body .asme-footer-v2 .asme-footer-contact p { justify-content: center !important; text-align: center !important; }
+  body .asme-footer-v2 .asme-footer-links li a,
+  body .asme-footer-v2 .asme-footer-connect li a { justify-content: center !important; }
+
+  /* The footer frame is centered and width-constrained. Offset this subtle
+     control by its outer gutter so it reaches the true page corner. */
+  body .asme-footer-v2 .asme-footer-login {
+    right: calc((100vw - 100%) / -2 + 4px) !important;
+    bottom: 4px !important;
+  }
 }
 
 @media (min-width: 1920px) {
