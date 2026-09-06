@@ -93,7 +93,7 @@
       { title:'Home', href:home.href, copy:'ASME Ohio State chapter news, upcoming events, industry connections, and student community.' },
       { title:'About ASME OSU', href:entries.get('About').link.href, copy:'Learn about the chapter, member experience, professional growth, and community.' },
       { title:'Join ASME', href:entries.get('Join').link.href, copy:'Join the ASME OSU newsletter and GroupMe for chapter updates and opportunities.' },
-      { title:'Events Calendar', href:entries.get('Events').link.href, copy:'Upcoming meetings, company sessions, socials, competitions, and career events.' },
+      { title:'Events Calendar', href:new URL('calendar/', home.href).href, copy:'Upcoming meetings, company sessions, socials, competitions, and career events.' },
       { title:'Gallery', href:entries.get('Gallery').link.href, copy:'Photos and recent chapter moments from ASME OSU events and activities.' },
       { title:'Leadership', href:entries.get('Leadership').link.href, copy:'Meet the executive board and learn about leadership opportunities.' },
       { title:'Member Resources', href:new URL('member-resources/', home.href).href, copy:'National membership, career tools, forms, professional development, and chapter resources.' },
