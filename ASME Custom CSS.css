@@ -23647,6 +23647,23 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
   }
 }
 
+/* FOOTER ALIGNMENT — the transformed footer is a direct body child on this
+   theme. Keep the wide frame genuinely centered, give both dividers the same
+   run, and anchor the low-contrast admin control to the page corner. */
+@media (min-width: 981px) {
+  body:has(> .asme-footer-v2) { position: relative !important; }
+  body .asme-footer-inner.asme-footer-v2 { position: static !important; }
+  body .asme-footer-v2 .asme-footer-grid { align-items: stretch !important; }
+}
+
+@media (min-width: 1920px) {
+  body .asme-footer-inner.asme-footer-v2 {
+    left: auto !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+}
+
 /* WIDE DESKTOP — all primary pages follow one shared visual container. */
 @media (min-width: 1920px) {
   body #page .asme-home,
