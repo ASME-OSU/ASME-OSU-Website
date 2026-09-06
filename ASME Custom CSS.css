@@ -18597,6 +18597,16 @@ body .asme-footer-v2 .asme-footer-bottom span {
   body .asme-footer-v2 .asme-footer-connect li a { border-color: #2a4262 !important; background: #0f1b2d !important; }
 }
 
+/* This comes after the dark palette so its generic column border cannot return
+   on tablet or on a Fold cover screen. */
+@media (max-width: 980px) {
+  body .asme-footer-v2 .asme-footer-col.asme-footer-connect { border-left: 0 !important; }
+}
+
+@media (max-width: 720px) {
+  body .asme-footer-v2 .asme-footer-col.asme-footer-col { border: 0 !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body .asme-footer-v2 a,
   body .asme-footer-v2 .asme-footer-links li a svg { transition: none !important; }
