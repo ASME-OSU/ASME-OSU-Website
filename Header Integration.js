@@ -89,13 +89,13 @@
     searchButton.appendChild(icon('search')); menuButton.appendChild(icon('menu'));
     function setMembers(open) { if (!submenu) return; submenu.hidden = !open; disclosure.setAttribute('aria-expanded', String(open)); }
     function setMenu(open) {
-      header.classList.remove('asme-header-hidden');
+      if (open) header.classList.remove('asme-header-hidden');
       header.classList.toggle('is-menu-open', open);
       menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); menuButton.replaceChildren(icon(open ? 'close' : 'menu'));
       if (!open) setMembers(false);
     }
     function setSearch(open) {
-      header.classList.remove('asme-header-hidden');
+      if (open) header.classList.remove('asme-header-hidden');
       search.hidden = !open; searchButton.setAttribute('aria-expanded', String(open));
       if (open) { setMenu(false); setMembers(false); search.querySelector('input').focus(); }
     }
@@ -130,20 +130,40 @@
     // the viewport. Reserve the header's space and fix only this component.
     var spacer = document.createElement('div');
     spacer.id = 'asme-header-spacer'; spacer.setAttribute('aria-hidden', 'true'); header.before(spacer);
+    var content = document.querySelector('.asme-home') || document.querySelector('.entry-content');
     function reserveSpace() {
+      if (content) {
+        var bounds = content.getBoundingClientRect();
+        if (bounds.width > 0) {
+          header.style.width = bounds.width + 'px';
+          header.style.maxWidth = 'none';
+          header.style.left = (bounds.left + bounds.width / 2) + 'px';
+        }
+      }
       spacer.style.height = (header.getBoundingClientRect().height + parseFloat(getComputedStyle(header).getPropertyValue('--asme-header-space'))) + 'px';
     }
     reserveSpace(); window.addEventListener('resize', reserveSpace);
-    if (window.ResizeObserver) new ResizeObserver(reserveSpace).observe(header);
+    if (window.ResizeObserver) {
+      var observer = new ResizeObserver(reserveSpace);
+      observer.observe(header);
+      if (content) observer.observe(content);
+    }
+    header.addEventListener('focusin', function () { header.classList.remove('asme-header-hidden'); });
     var lastScroll = window.scrollY || 0;
+    var travel = 0;
+    var direction = 0;
     var scrollTicking = false;
     function updateScrollState() {
-      var current = window.scrollY || 0;
+      // Clamp elastic overscroll and accumulate slow trackpad/touch movement.
+      var current = Math.max(0, Math.min(window.scrollY || 0, Math.max(0, document.documentElement.scrollHeight - window.innerHeight)));
       var delta = current - lastScroll;
-      var interacting = header.classList.contains('is-menu-open') || !search.hidden || header.contains(document.activeElement);
-      header.classList.toggle('asme-header-interacting', interacting);
-      if (Math.abs(delta) > 4 && current > 80 && !interacting) header.classList.toggle('asme-header-hidden', delta > 0);
-      if (current <= 80 || delta < 0) header.classList.remove('asme-header-hidden');
+      var nextDirection = Math.sign(delta);
+      if (nextDirection && nextDirection !== direction) travel = 0;
+      if (nextDirection) direction = nextDirection;
+      travel += Math.abs(delta);
+      var interacting = header.classList.contains('is-menu-open') || !search.hidden || (submenu && !submenu.hidden) || header.contains(document.activeElement);
+      if (current <= 80 || interacting) header.classList.remove('asme-header-hidden');
+      else if (travel >= (direction > 0 ? 12 : 6)) header.classList.toggle('asme-header-hidden', direction > 0);
       lastScroll = current;
       scrollTicking = false;
     }

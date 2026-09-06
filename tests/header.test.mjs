@@ -8,7 +8,7 @@ const css=fs.readFileSync('Header.css','utf8');
 const script=fs.readFileSync('Header Integration.js','utf8');
 function setup({url='https://org.osu.edu/asme/',styles=true,prepare=()=>{}}={}) {
   const dom=new JSDOM('<!doctype html><html><head>'+(styles?'<style>'+css+'</style>':'')+'</head><body>'+fixture+'<main id="content"><h1>Existing page</h1><p>Preserved content.</p></main>'+template+'</body></html>',{url,runScripts:'outside-only'});
-  const w=dom.window;w.matchMedia=()=>({matches:true,addEventListener(){}});prepare(w.document);
+  const w=dom.window;w.requestAnimationFrame=cb=>{cb();};w.matchMedia=()=>({matches:true,addEventListener(){}});prepare(w.document);
   w.eval(script);w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
   return {dom,w,d:w.document,close:()=>w.close()};
 }
@@ -50,4 +50,19 @@ test('keeps the original CMS header usable if component CSS is unavailable',()=>
 test('highlights Members on a member page instead of Home',()=>{
   const s=setup({url:'https://org.osu.edu/asme/member-points-page/',prepare(d){d.querySelector('[aria-current="page"]').removeAttribute('aria-current');}});
   assert.deepEqual([...s.d.querySelectorAll('.asme-hd-link.is-active')].map(a=>a.textContent),['Members']);assert.equal(s.d.querySelector('#asme-header-members [aria-current="page"]').textContent,'Member Points Page');s.close();
+});
+
+test('slow scrolling hides the header, reversal shows it, and keyboard focus reveals it',()=>{
+  const s=setup();const header=s.d.querySelector('#asme-site-header');
+  Object.defineProperty(s.d.documentElement,'scrollHeight',{value:4000});
+  const scroll=y=>{s.w.scrollY=y;s.w.dispatchEvent(new s.w.Event('scroll'));};
+  for(let y=0;y<=120;y+=2) scroll(y);
+  assert.equal(header.classList.contains('asme-header-hidden'),true);
+  scroll(118);assert.equal(header.classList.contains('asme-header-hidden'),true);
+  scroll(114);assert.equal(header.classList.contains('asme-header-hidden'),false);
+  scroll(140);assert.equal(header.classList.contains('asme-header-hidden'),true);
+  s.d.querySelector('.asme-hd-brand').focus();
+  assert.equal(header.classList.contains('asme-header-hidden'),false);
+  scroll(180);assert.equal(header.classList.contains('asme-header-hidden'),false);
+  s.close();
 });

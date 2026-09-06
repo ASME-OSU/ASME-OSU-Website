@@ -182,3 +182,5 @@ If a Claude/Codex handoff includes a full CSS dump, do not paste it over the liv
 - HTML updates do not automatically deploy to WordPress.
 - The Member Resources page uses inline SVG icons. If the live site shows letter badges instead of icons, the WordPress HTML is stale and needs the latest `Member Resources Page.html` pasted into the editor.
 - The Member Resources page includes links for ASME student membership, ASME OSU chapter signup, the ASME OSU Career Packet, ECS advising, co-ops/internships, Handshake, LinkedIn, events, and board contact.
+
+Header validation: the bar measures the content container so its edges remain aligned on wide screens and at mobile breakpoints. Scroll direction uses accumulated movement to avoid jitter and handles elastic overscroll; keyboard focus and open panels keep navigation available. The header follows the system dark-mode preference with contrasting text, logo, controls, and panels. Preview `/?light` or `/?dark` forces the matching CSS media rules locally for visual comparison.
