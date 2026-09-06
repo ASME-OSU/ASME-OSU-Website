@@ -20,6 +20,7 @@ test('renders ordered CMS links, active Home, and unchanged page content',()=>{
   assert.equal(links[3].href,'https://org.osu.edu/asme/calendar/');
   assert.equal(s.d.querySelector('#content').innerHTML,'<h1>Existing page</h1><p>Preserved content.</p>');
   assert.equal(s.d.querySelector('#masthead').hidden,true);
+  assert.equal(s.d.querySelector('#asme-header-spacer').nextElementSibling.id,'asme-site-header');
   s.w.eval(script);assert.equal(s.d.querySelectorAll('#asme-site-header').length,1);s.close();
 });
 test('uses CMS destinations for Join and for new member submenu entries',()=>{

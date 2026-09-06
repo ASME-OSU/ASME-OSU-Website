@@ -184,6 +184,11 @@
     original.before(header);
     // If the stylesheet fails to load, leave the original WordPress menu usable.
     if (getComputedStyle(header).getPropertyValue('--asme-header-ready').trim() !== '1') { header.remove(); restoreOriginalHeader(); return; }
+    // Take over the original header's exact layout space before hiding it. This
+    // keeps the document from jumping up and down while the fixed bar initializes.
+    var spacer = document.createElement('div');
+    spacer.id = 'asme-header-spacer'; spacer.setAttribute('aria-hidden', 'true'); header.before(spacer);
+    spacer.style.height = original.getBoundingClientRect().height + 'px';
     original.setAttribute('data-asme-header-replaced', 'true'); original.hidden = true;
     document.documentElement.classList.remove('asme-header-pending');
     // Some legacy page styles set their own wide-screen caps. Keep every
@@ -211,9 +216,7 @@
     wide.addEventListener('change', syncWidePageContainer);
     window.addEventListener('resize', syncWidePageContainer);
     // GeneratePress's overflow containers prevent position:sticky from following
-    // the viewport. Reserve the header's space and fix only this component.
-    var spacer = document.createElement('div');
-    spacer.id = 'asme-header-spacer'; spacer.setAttribute('aria-hidden', 'true'); header.before(spacer);
+    // the viewport. Keep the reserved space synchronized with the fixed bar.
     function reserveSpace() {
       spacer.style.height = (header.getBoundingClientRect().height + parseFloat(getComputedStyle(header).getPropertyValue('--asme-header-space'))) + 'px';
     }
