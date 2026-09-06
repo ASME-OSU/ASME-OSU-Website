@@ -82,11 +82,52 @@
     });
     var searchButton = header.querySelector('.asme-hd-search-toggle');
     var search = header.querySelector('.asme-hd-search');
+    var searchInput = search.querySelector('input');
+    var searchResults = header.querySelector('#asme-header-search-results');
     var menuButton = header.querySelector('.asme-hd-menu-toggle');
     var nav = header.querySelector('.asme-hd-nav');
     var narrow = window.matchMedia('(max-width:979px)');
     search.action = home.href;
     searchButton.appendChild(icon('search')); menuButton.appendChild(icon('menu'));
+    var siteSearchIndex = [
+      { title:'Home', href:home.href, copy:'ASME Ohio State chapter news, upcoming events, industry connections, and student community.' },
+      { title:'About ASME OSU', href:entries.get('About').link.href, copy:'Learn about the chapter, member experience, professional growth, and community.' },
+      { title:'Join ASME', href:entries.get('Join').link.href, copy:'Join the ASME OSU newsletter and GroupMe for chapter updates and opportunities.' },
+      { title:'Events Calendar', href:entries.get('Events').link.href, copy:'Upcoming meetings, company sessions, socials, competitions, and career events.' },
+      { title:'Gallery', href:entries.get('Gallery').link.href, copy:'Photos and recent chapter moments from ASME OSU events and activities.' },
+      { title:'Leadership', href:entries.get('Leadership').link.href, copy:'Meet the executive board and learn about leadership opportunities.' },
+      { title:'Member Resources', href:new URL('member-resources/', home.href).href, copy:'National membership, career tools, forms, professional development, and chapter resources.' },
+      { title:'Member Points', href:new URL('member-points-page/', home.href).href, copy:'Find semester points, the leaderboard, attendance totals, and point values.' },
+      { title:'Sponsor ASME', href:new URL('sponsor-asme/', home.href).href, copy:'Sponsorship tiers, corporate partnerships, recruiting access, and support options.' },
+      { title:'Sponsors & Partners', href:new URL('current-sponsors/', home.href).href, copy:'Current ASME OSU sponsors, partners, and company supporters.' }
+    ];
+    function searchTerms(value) { return value.toLowerCase().trim().split(/\s+/).filter(Boolean); }
+    function clearSearchResults() { searchResults.hidden = true; searchResults.replaceChildren(); }
+    function renderSearchResults(value) {
+      var terms = searchTerms(value);
+      if (!terms.length) { clearSearchResults(); return []; }
+      var matches = siteSearchIndex.map(function (entry) {
+        var haystack = (entry.title + ' ' + entry.copy).toLowerCase();
+        var score = terms.reduce(function (total, term) {
+          return total + (entry.title.toLowerCase().indexOf(term) !== -1 ? 3 : 0) + (entry.copy.toLowerCase().indexOf(term) !== -1 ? 1 : 0);
+        }, 0);
+        return { entry:entry, score:score, matches:terms.every(function (term) { return haystack.indexOf(term) !== -1; }) };
+      }).filter(function (result) { return result.matches; }).sort(function (a, b) { return b.score - a.score || a.entry.title.localeCompare(b.entry.title); });
+      searchResults.replaceChildren();
+      if (!matches.length) {
+        var empty = document.createElement('p'); empty.textContent = 'No matching ASME OSU pages. Try “events,” “resources,” or “sponsor.”'; searchResults.appendChild(empty);
+      } else {
+        var list = document.createElement('ul');
+        matches.forEach(function (result) {
+          var item = document.createElement('li'); var link = document.createElement('a'); var title = document.createElement('strong'); var copy = document.createElement('span');
+          link.className = 'asme-hd-search-result'; link.href = result.entry.href; title.textContent = result.entry.title; copy.textContent = result.entry.copy;
+          link.append(title, copy); item.appendChild(link); list.appendChild(item);
+        });
+        searchResults.appendChild(list);
+      }
+      searchResults.hidden = false;
+      return matches;
+    }
     function setMembers(open) { if (!submenu) return; submenu.hidden = !open; disclosure.setAttribute('aria-expanded', String(open)); }
     function setMenu(open) {
       if (open) header.classList.remove('asme-header-hidden');
@@ -97,8 +138,15 @@
     function setSearch(open) {
       if (open) header.classList.remove('asme-header-hidden');
       search.hidden = !open; searchButton.setAttribute('aria-expanded', String(open));
-      if (open) { setMenu(false); setMembers(false); search.querySelector('input').focus(); }
+      if (open) { setMenu(false); setMembers(false); searchInput.focus(); }
+      else { searchInput.value = ''; clearSearchResults(); }
     }
+    searchInput.addEventListener('input', function () { renderSearchResults(searchInput.value); });
+    search.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var matches = renderSearchResults(searchInput.value);
+      if (matches.length === 1) window.location.assign(matches[0].entry.href);
+    });
     menuButton.addEventListener('click', function () {
       setSearch(false);
       var open = menuButton.getAttribute('aria-expanded') !== 'true';

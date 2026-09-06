@@ -39,9 +39,11 @@ test('mobile toggle focuses navigation and Escape closes it',()=>{
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
   assert.equal(button.getAttribute('aria-expanded'),'false');assert.equal(s.d.activeElement,button);s.close();
 });
-test('search uses WordPress search parameters, focuses input, and closes on Escape',()=>{
+test('site search focuses input, returns public pages, and closes on Escape',()=>{
   const s=setup();const button=s.d.querySelector('.asme-hd-search-toggle');button.click();const form=s.d.querySelector('#asme-header-search');
   assert.equal(form.hidden,false);assert.equal(form.action,'https://org.osu.edu/asme/');assert.equal(form.method,'get');assert.equal(s.d.activeElement.name,'s');
+  s.d.activeElement.value='points';s.d.activeElement.dispatchEvent(new s.w.Event('input',{bubbles:true}));
+  assert.deepEqual([...s.d.querySelectorAll('.asme-hd-search-result strong')].map(x=>x.textContent),['Member Points']);
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(form.hidden,true);assert.equal(s.d.activeElement,button);s.close();
 });
 test('keeps the original CMS header usable if component CSS is unavailable',()=>{

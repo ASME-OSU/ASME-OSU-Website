@@ -19,9 +19,10 @@
     <form id="asme-header-search" class="asme-hd-search" role="search" method="get" hidden>
       <label for="asme-header-query">Search ASME Ohio State</label>
       <div class="asme-hd-search-row">
-        <input id="asme-header-query" name="s" type="search" placeholder="Events, resources, and more…" required>
-        <button type="submit">Search</button>
+        <input id="asme-header-query" name="s" type="search" placeholder="Pages, events, and resources…" autocomplete="off" required>
+        <button type="submit">Search site</button>
       </div>
+      <div id="asme-header-search-results" class="asme-hd-search-results" aria-live="polite" hidden></div>
     </form>
   </header>
 </template>
