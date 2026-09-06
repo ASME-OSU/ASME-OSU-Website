@@ -23747,18 +23747,21 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
 
 /* At the two-column breakpoint, finish both membership columns on one line. */
 @media (min-width: 1121px) {
-  body #page .asme-join-page .join-intro,
-  html body #page .entry-content .asme-join-page .join-intro {
-    padding-top: 0 !important;
+  body #page .asme-join-page .join-main-layout,
+  html body #page .entry-content .asme-join-page .join-main-layout {
+    align-items: stretch !important;
   }
 
-  body #page .asme-join-page .join-intro h1,
-  html body #page .entry-content .asme-join-page .join-intro h1 {
-    margin-bottom: 12px !important;
+  body #page .asme-join-page .join-intro,
+  html body #page .entry-content .asme-join-page .join-intro {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    align-self: stretch !important;
   }
 
   body #page .asme-join-page .join-benefits,
   html body #page .entry-content .asme-join-page .join-benefits {
-    margin-top: 14px !important;
+    margin-top: auto !important;
   }
 }
