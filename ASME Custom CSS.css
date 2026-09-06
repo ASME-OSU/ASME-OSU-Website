@@ -23552,6 +23552,18 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
   }
 }
 
+/* Keep the redesigned footer aligned with the shared wide-page grid. */
+@media (min-width: 1920px) {
+  body .asme-footer-inner.asme-footer-v2 {
+    position: relative !important;
+    left: calc(50vw - 50%) !important;
+    width: min(2100px, calc(100vw - 160px)) !important;
+    max-width: min(2100px, calc(100vw - 160px)) !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
 /* WIDE DESKTOP — all primary pages follow one shared visual container. */
 @media (min-width: 1920px) {
   body #page .asme-home,
