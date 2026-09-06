@@ -25,7 +25,7 @@ html body #asme-site-header {
   transform:translateX(-50%);
   z-index:1000;
   width:calc(100% - 152px);
-  max-width:2048px;
+  max-width:2100px;
   min-height:94px;
   margin:0;
   padding:17px 28px;
