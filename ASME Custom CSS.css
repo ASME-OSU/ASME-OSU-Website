@@ -18267,6 +18267,269 @@ html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > br 
 }
 
 /* ============================================================
+   FOOTER V2 — compact chapter footer
+   This stays last so it wins over the legacy footer declarations above.
+   ============================================================ */
+.site-footer:has(.asme-footer-v2),
+#colophon:has(.asme-footer-v2) {
+  margin-top: 44px !important;
+  padding: 0 !important;
+  background: #f8fafc !important;
+  border-top: 3px solid #bb0000 !important;
+  color: #17345f !important;
+}
+
+body .asme-footer-inner.asme-footer-v2 {
+  width: min(1440px, calc(100vw - 64px)) !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  padding: 56px 0 0 !important;
+  color: #17345f !important;
+}
+
+body .asme-footer-v2 .asme-footer-grid {
+  display: grid !important;
+  grid-template-columns: 1.2fr 1fr 0.88fr !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: start !important;
+  justify-items: stretch !important;
+}
+
+body .asme-footer-v2 .asme-footer-col {
+  display: block !important;
+  min-width: 0 !important;
+  padding: 0 42px !important;
+  text-align: left !important;
+}
+
+body .asme-footer-v2 .asme-footer-col + .asme-footer-col {
+  border-left: 1px solid #d7dee8 !important;
+}
+
+body .asme-footer-v2 .asme-footer-brand { padding-left: 0 !important; }
+body .asme-footer-v2 .asme-footer-connect { padding-right: 0 !important; }
+
+body .asme-footer-v2 h3 {
+  position: relative !important;
+  margin: 0 0 25px !important;
+  padding: 0 0 13px !important;
+  color: #113d7a !important;
+  font-family: 'DM Serif Display', Georgia, serif !important;
+  font-size: 28px !important;
+  font-weight: 400 !important;
+  line-height: 1.08 !important;
+  text-align: left !important;
+}
+
+body .asme-footer-v2 h3::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 52px !important;
+  height: 3px !important;
+  border-radius: 99px !important;
+  background: #bb0000 !important;
+}
+
+body .asme-footer-v2 .asme-footer-logo {
+  display: inline-flex !important;
+  width: auto !important;
+  margin: 0 0 17px !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+}
+
+body .asme-footer-v2 .asme-footer-logo img {
+  display: block !important;
+  width: 168px !important;
+  height: auto !important;
+  max-height: 84px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+}
+
+body .asme-footer-v2 .asme-footer-brand h3 { margin-bottom: 21px !important; }
+
+body .asme-footer-v2 .asme-footer-contact {
+  display: grid !important;
+  gap: 13px !important;
+}
+
+body .asme-footer-v2 .asme-footer-contact p {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 13px !important;
+  width: auto !important;
+  margin: 0 !important;
+  color: #38516f !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+body .asme-footer-v2 svg {
+  display: block !important;
+  flex: 0 0 auto !important;
+  width: 22px !important;
+  height: 22px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+body .asme-footer-v2 .asme-footer-contact svg { margin-top: 1px !important; }
+
+body .asme-footer-v2 a {
+  color: #38516f !important;
+  text-decoration: none !important;
+  transition: color .18s ease, transform .18s ease !important;
+}
+
+body .asme-footer-v2 a:hover { color: #bb0000 !important; }
+body .asme-footer-v2 a:focus-visible { outline: 3px solid #bb0000 !important; outline-offset: 4px !important; border-radius: 3px !important; }
+
+body .asme-footer-v2 .asme-footer-contact a {
+  display: inline !important;
+  width: auto !important;
+  margin: 0 !important;
+  font: inherit !important;
+  text-align: inherit !important;
+}
+
+body .asme-footer-v2 ul {
+  display: grid !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+body .asme-footer-v2 li { margin: 0 !important; padding: 0 !important; }
+
+body .asme-footer-v2 .asme-footer-links li a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  width: 100% !important;
+  min-height: 34px !important;
+  margin: 0 !important;
+  padding: 3px 0 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  text-align: left !important;
+}
+
+body .asme-footer-v2 .asme-footer-links li a svg {
+  width: 17px !important;
+  height: 17px !important;
+  color: #71839d !important;
+  transition: transform .18s ease !important;
+}
+
+body .asme-footer-v2 .asme-footer-links li a:hover svg,
+body .asme-footer-v2 .asme-footer-links li a:focus-visible svg { transform: translateX(3px) !important; }
+
+body .asme-footer-v2 .asme-footer-connect ul { gap: 11px !important; }
+
+body .asme-footer-v2 .asme-footer-connect li a {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  width: auto !important;
+  min-height: 30px !important;
+  margin: 0 !important;
+  padding: 1px 0 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  text-align: left !important;
+}
+
+body .asme-footer-v2 .asme-footer-bottom {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 86px !important;
+  margin: 46px 0 0 !important;
+  padding: 22px 16px !important;
+  border-top: 1px solid #d7dee8 !important;
+  color: #526b92 !important;
+  text-align: center !important;
+}
+
+body .asme-footer-v2 .asme-footer-bottom span {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  color: inherit !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  text-align: center !important;
+}
+
+@media (max-width: 980px) {
+  body .asme-footer-inner.asme-footer-v2 { width: min(960px, calc(100vw - 48px)) !important; }
+  body .asme-footer-v2 .asme-footer-grid { grid-template-columns: 1.12fr 0.88fr !important; row-gap: 42px !important; }
+  body .asme-footer-v2 .asme-footer-connect { grid-column: 1 / -1 !important; padding-left: 0 !important; border-left: 0 !important; }
+  body .asme-footer-v2 .asme-footer-connect ul { grid-template-columns: repeat(4, max-content) !important; gap: 24px !important; }
+}
+
+@media (max-width: 640px) {
+  .site-footer:has(.asme-footer-v2),
+  #colophon:has(.asme-footer-v2) { margin-top: 28px !important; }
+  body .asme-footer-inner.asme-footer-v2 { width: min(100% - 40px, 480px) !important; padding-top: 42px !important; }
+  body .asme-footer-v2 .asme-footer-grid { display: block !important; }
+  body .asme-footer-v2 .asme-footer-col { padding: 32px 0 0 !important; border-left: 0 !important; border-top: 1px solid #d7dee8 !important; }
+  body .asme-footer-v2 .asme-footer-brand { padding-top: 0 !important; border-top: 0 !important; }
+  body .asme-footer-v2 h3 { margin-bottom: 20px !important; font-size: 29px !important; }
+  body .asme-footer-v2 .asme-footer-logo { margin-bottom: 20px !important; }
+  body .asme-footer-v2 .asme-footer-logo img { width: 190px !important; max-height: 92px !important; }
+  body .asme-footer-v2 .asme-footer-contact { gap: 12px !important; }
+  body .asme-footer-v2 .asme-footer-contact p { font-size: 15px !important; }
+  body .asme-footer-v2 .asme-footer-links ul { gap: 0 !important; }
+  body .asme-footer-v2 .asme-footer-links li a { min-height: 52px !important; padding: 9px 2px !important; border-bottom: 1px solid #d7dee8 !important; }
+  body .asme-footer-v2 .asme-footer-connect ul { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+  body .asme-footer-v2 .asme-footer-connect li a { display: flex !important; flex-direction: column !important; justify-content: center !important; gap: 9px !important; width: 100% !important; min-height: 98px !important; padding: 15px 10px !important; border: 1px solid #d7dee8 !important; border-radius: 8px !important; text-align: center !important; }
+  body .asme-footer-v2 .asme-footer-connect li a svg { width: 25px !important; height: 25px !important; }
+  body .asme-footer-v2 .asme-footer-bottom { min-height: 0 !important; margin-top: 40px !important; padding: 25px 8px 30px !important; }
+  body .asme-footer-v2 .asme-footer-bottom span { max-width: 330px !important; font-size: 13px !important; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-footer:has(.asme-footer-v2),
+  #colophon:has(.asme-footer-v2) { background: #07111f !important; border-top-color: #bb0000 !important; color: #e8f0fb !important; }
+  body .asme-footer-inner.asme-footer-v2 { color: #e8f0fb !important; }
+  body .asme-footer-v2 .asme-footer-col + .asme-footer-col,
+  body .asme-footer-v2 .asme-footer-bottom,
+  body .asme-footer-v2 .asme-footer-col,
+  body .asme-footer-v2 .asme-footer-links li a { border-color: #2a4262 !important; }
+  body .asme-footer-v2 h3 { color: #ffffff !important; }
+  body .asme-footer-v2 .asme-footer-contact p,
+  body .asme-footer-v2 a,
+  body .asme-footer-v2 .asme-footer-bottom { color: #c8d8ef !important; }
+  body .asme-footer-v2 .asme-footer-logo img { filter: brightness(0) invert(1) !important; }
+  body .asme-footer-v2 .asme-footer-connect li a { border-color: #2a4262 !important; background: #0f1b2d !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .asme-footer-v2 a,
+  body .asme-footer-v2 .asme-footer-links li a svg { transition: none !important; }
+}
+
+/* ============================================================
    CURRENT SPONSORS — MOBILE BRUTUS BADGE ALIGNMENT
    Keep the premium tier badge beside the sponsor name instead of
    letting the card's layered positioning push it to the bottom.
