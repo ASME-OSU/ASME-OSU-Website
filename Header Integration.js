@@ -126,6 +126,30 @@
     // If the stylesheet fails to load, leave the original WordPress menu usable.
     if (getComputedStyle(header).getPropertyValue('--asme-header-ready').trim() !== '1') { header.remove(); return; }
     original.setAttribute('data-asme-header-replaced', 'true'); original.hidden = true;
+    // Some legacy page styles set their own wide-screen caps. Keep every
+    // primary page aligned to the shared header container after those styles load.
+    var wide = window.matchMedia('(min-width:1920px)');
+    var widePages = '.asme-home,.asme-about-page,.asme-join-page,.asme-cal-page,.asme-gallery-page,.asme-sponsors-page,.asme-sponsor-page,.asme-members-page,.leadership-board';
+    function syncWidePageContainer() {
+      document.querySelectorAll(widePages).forEach(function (page) {
+        if (wide.matches) {
+          page.style.setProperty('width', '100%', 'important');
+          page.style.setProperty('max-width', 'min(2100px, calc(100vw - 160px))', 'important');
+          page.style.setProperty('margin-right', 'auto', 'important');
+          page.style.setProperty('margin-left', 'auto', 'important');
+        } else {
+          page.style.removeProperty('width'); page.style.removeProperty('max-width');
+          page.style.removeProperty('margin-right'); page.style.removeProperty('margin-left');
+        }
+      });
+      document.querySelectorAll('.asme-cal-page .acp-header,.asme-join-page .join-faq-section').forEach(function (section) {
+        if (wide.matches) section.style.setProperty('max-width', 'none', 'important');
+        else section.style.removeProperty('max-width');
+      });
+    }
+    syncWidePageContainer();
+    wide.addEventListener('change', syncWidePageContainer);
+    window.addEventListener('resize', syncWidePageContainer);
     // GeneratePress's overflow containers prevent position:sticky from following
     // the viewport. Reserve the header's space and fix only this component.
     var spacer = document.createElement('div');
