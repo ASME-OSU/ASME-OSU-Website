@@ -23282,3 +23282,35 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
     transition: none;
   }
 }
+
+/* WIDE DESKTOP — all primary pages follow one shared visual container. */
+@media (min-width: 1920px) {
+  body #page .asme-home,
+  html body #page .entry-content .asme-home,
+  body #page .asme-about-page,
+  html body #page .entry-content .asme-about-page,
+  body #page .asme-join-page,
+  html body #page .entry-content .asme-join-page,
+  body #page .asme-cal-page,
+  html body #page .entry-content .asme-cal-page,
+  body #page .asme-gallery-page,
+  html body #page .entry-content .asme-gallery-page,
+  body #page .asme-sponsors-page,
+  html body #page .entry-content .asme-sponsors-page,
+  body #page .asme-sponsor-page,
+  html body #page .entry-content .asme-sponsor-page,
+  body #page .asme-members-page,
+  html body #page .entry-content .asme-members-page,
+  body .leadership-board {
+    width: 100% !important;
+    max-width: min(2100px, calc(100vw - 160px)) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  body #page .asme-cal-page .acp-header,
+  body #page .asme-join-page .join-faq-section {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
