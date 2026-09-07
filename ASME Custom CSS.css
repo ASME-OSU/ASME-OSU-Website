@@ -23309,6 +23309,24 @@ html body #page .entry-content .asme-cal-page {
   margin-top: -5px !important;
 }
 
+/* Match the fixed header's desktop frame so calendar sections share its edges. */
+@media (min-width: 980px) {
+  body #page .asme-cal-page,
+  html body #page .entry-content .asme-cal-page {
+    width: calc(100vw - 152px) !important;
+    max-width: 2100px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  body #page .asme-cal-page,
+  html body #page .entry-content .asme-cal-page {
+    width: calc(100vw - 160px) !important;
+  }
+}
+
 body #page .asme-gallery-page,
 html body #page .entry-content .asme-gallery-page,
 body #page .asme-sponsors-page,

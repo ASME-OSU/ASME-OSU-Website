@@ -483,6 +483,11 @@
         if (searchHint) searchHint.textContent = 'Type at least one letter.';
         return;
       }
+      var exactMatch = members.find(function (member) { return member.name.toLowerCase() === clean.toLowerCase(); });
+      if (exactMatch) {
+        chooseMember(exactMatch, false);
+        return;
+      }
       var matches = matchingMembers(clean);
       if (!matches.length) {
         var noMatch = document.createElement('p'); noMatch.className = 'asme-member-search-empty'; noMatch.textContent = 'No public name matches “' + clean + '”.'; searchResults.appendChild(noMatch);
