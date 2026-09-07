@@ -1,0 +1,33 @@
+name: Validate website source
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check syntax and generated sponsor/navigation embeds
+        run: npm run check
+      - name: Run behavior tests
+        run: npm test
+      - name: Verify all generated assets are current
+        run: |
+          npm run build
+          git diff --exit-code -- 'Header Embed.html' 'Header Bootstrap.html' 'Footer.html' 'Sponsor ASME Page.html' 'Member Points Integration.js'

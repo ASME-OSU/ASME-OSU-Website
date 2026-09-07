@@ -184,3 +184,32 @@ If a Claude/Codex handoff includes a full CSS dump, do not paste it over the liv
 - The Member Resources page includes links for ASME student membership, ASME OSU chapter signup, the ASME OSU Career Packet, ECS advising, co-ops/internships, Handshake, LinkedIn, events, and board contact.
 
 Header validation: the bar uses the same responsive container on every page, with a 5% inset at mobile widths, so page-specific wrappers cannot change its size. Scroll direction uses accumulated movement to avoid jitter and handles elastic overscroll; keyboard focus and open panels keep navigation available. The header follows the system dark-mode preference with contrasting text, logo, controls, and panels. Preview `/?light` or `/?dark` forces the matching CSS media rules locally for visual comparison.
+
+## Sponsor integration maintenance
+
+Maintain sponsor inquiry and modal behavior in `Sponsor Integration.js`. Run
+`npm run build:sponsor` to regenerate its marked inline blocks in `Footer.html`
+and `Sponsor ASME Page.html`. These generated copies preserve WordPress's existing
+script timing and do not require an additional asset request. Do not edit the
+marked blocks directly. `npm run check` verifies JavaScript syntax and confirms
+that both embeds match their source. The obsolete single-form `Sponsor Inquiry Footer Script.html` was retired after
+checking WordPress Advanced Settings and Footer Content on September 6, 2026.
+Both locations use the current shared implementation or defer to Advanced Settings.
+
+## Mobile navigation maintenance and automated validation
+
+Maintain the original WordPress menu dismissal behavior in `Mobile Navigation.js`.
+Run `npm run build:navigation` to regenerate the marked blocks in `Footer.html`
+and `Member Points Integration.js`. Both existing delivery paths remain
+self-contained; the shared readiness guard prevents duplicate listeners in
+either load order. Do not edit the generated navigation blocks directly.
+
+`npm run build` refreshes the header, sponsor, and navigation embeds.
+The `Validate website source` workflow runs on pull requests, pushes to main,
+and manual dispatch. It installs the locked dependencies, runs syntax and
+behavior checks, and fails if rebuilding changes a tracked generated file.
+
+`Footer Integration.js` remains active: WordPress's high-priority header setting
+loads it to upgrade the older footer HTML stored in Advanced Settings. Its use
+was verified on September 6, 2026. Removing it before migrating the live footer
+markup would change the site's appearance.

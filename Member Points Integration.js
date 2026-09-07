@@ -1,16 +1,16 @@
 (function () {
   'use strict';
 
-  /* This file is loaded sitewide by the shared footer, so keep the mobile
-     navigation dismissal available even before the footer HTML is repasted. */
-  if (!window.asmeMobileNavDismissReady) {
+  /* ASME MOBILE NAVIGATION START */
+  (function () {
+    if (window.asmeMobileNavDismissReady) return;
     window.asmeMobileNavDismissReady = true;
 
-    function getMobileNavigation() {
+    function getNavigation() {
       return document.getElementById('site-navigation');
     }
 
-    function clearMobileSubmenus(navigation) {
+    function clearSubmenus(navigation) {
       navigation.querySelectorAll('.sfHover, .dropdown-hover').forEach(function (item) {
         item.classList.remove('sfHover', 'dropdown-hover');
       });
@@ -21,7 +21,7 @@
       });
     }
 
-    function closeMobileSubmenu(item) {
+    function closeSubmenu(item) {
       item.classList.remove('sfHover', 'dropdown-hover');
 
       var link = item.firstElementChild;
@@ -32,12 +32,12 @@
       }
     }
 
-    function closeSiblingMobileSubmenus(navigation, activeItem) {
+    function closeSiblingSubmenus(navigation, activeItem) {
       navigation.querySelectorAll(
         '.main-nav > ul > .menu-item-has-children.sfHover, ' +
         '.main-nav > ul > .menu-item-has-children.dropdown-hover'
       ).forEach(function (item) {
-        if (item !== activeItem) closeMobileSubmenu(item);
+        if (item !== activeItem) closeSubmenu(item);
       });
     }
 
@@ -46,7 +46,7 @@
       if (!menuToggle || !navigation.classList.contains('toggled')) return;
 
       menuToggle.click();
-      clearMobileSubmenus(navigation);
+      clearSubmenus(navigation);
 
       if (returnFocus) menuToggle.focus();
     }
@@ -54,7 +54,7 @@
     document.addEventListener('click', function (event) {
       if (!window.matchMedia('(max-width: 768px)').matches) return;
 
-      var navigation = getMobileNavigation();
+      var navigation = getNavigation();
       if (!navigation || !navigation.classList.contains('toggled')) return;
       if (navigation.contains(event.target)) return;
 
@@ -70,27 +70,26 @@
       var dropdownToggle = target && target.closest('#site-navigation .dropdown-menu-toggle');
       if (!dropdownToggle) return;
 
-      var navigation = getMobileNavigation();
+      var navigation = getNavigation();
       var activeItem = dropdownToggle.closest('.menu-item-has-children');
       if (!navigation || !activeItem || !navigation.classList.contains('toggled')) return;
 
-      /* Run after the theme's own dropdown click handler has updated the
-         active item, then collapse only its top-level siblings. */
       window.setTimeout(function () {
-        closeSiblingMobileSubmenus(navigation, activeItem);
+        closeSiblingSubmenus(navigation, activeItem);
       }, 0);
     });
 
     document.addEventListener('keydown', function (event) {
       if (event.key !== 'Escape') return;
 
-      var navigation = getMobileNavigation();
+      var navigation = getNavigation();
       if (!navigation || !navigation.classList.contains('toggled')) return;
 
       event.preventDefault();
       closeMobileNavigation(navigation, true);
     });
-  }
+  })();
+  /* ASME MOBILE NAVIGATION END */
 
   function start() {
     var app = document.getElementById('asmePointsApp');

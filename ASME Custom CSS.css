@@ -24,8 +24,7 @@
    - Keep the final MOBILE block at the bottom of the CSS.
    - Remove older duplicate mobile/menu override blocks from v9.
    - Sections marked “MUST BE LAST” should stay below their related base sections.
-   
-   
+
    ============================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
@@ -266,26 +265,9 @@ html body #page .entry-content .asme-sponsor-page .sponsor-donation-note b {
   }
 }
 
-
 /* ============================================================
    GALLERY — automatic Instagram feed and photo archive controls
    ============================================================ */
-body #page .asme-gallery-page .gallery-instagram-media,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-media {
-  width: min(100%, 360px) !important;
-  aspect-ratio: 4 / 5 !important;
-  justify-self: center !important;
-}
-
-body #page .asme-gallery-page .gallery-instagram-media img,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-media img {
-  object-position: center !important;
-}
-
-body #page .asme-gallery-page .gallery-instagram-post-image,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image {
-  aspect-ratio: 4 / 5 !important;
-}
 
 body #page .asme-gallery-page .gallery-instagram-follow,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-follow {
@@ -396,14 +378,6 @@ html body #page .entry-content .asme-gallery-page .gallery-archive-filter.is-act
 
 body #page .asme-gallery-page .gallery-archive-status,
 html body #page .entry-content .asme-gallery-page .gallery-archive-status {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
   border: 0 !important;
 }
 
@@ -420,12 +394,8 @@ html body #page .entry-content .asme-gallery-page .gallery .gallery-item a {
 
 body #page .asme-gallery-page .gallery .gallery-item a::before,
 html body #page .entry-content .asme-gallery-page .gallery .gallery-item a::before {
-  content: '' !important;
   position: absolute !important;
-  inset: 45% 0 0 !important;
-  z-index: 1 !important;
   border-radius: inherit !important;
-  background: linear-gradient(to top, rgba(3, 10, 22, 0.76), transparent) !important;
   opacity: 0 !important;
   transition: opacity 220ms ease !important;
   pointer-events: none !important;
@@ -433,17 +403,9 @@ html body #page .entry-content .asme-gallery-page .gallery .gallery-item a::befo
 
 body #page .asme-gallery-page .gallery .gallery-item a::after,
 html body #page .entry-content .asme-gallery-page .gallery .gallery-item a::after {
-  content: attr(data-gallery-label) !important;
   position: absolute !important;
-  right: 14px !important;
-  bottom: 13px !important;
-  left: 14px !important;
   z-index: 2 !important;
-  color: #ffffff !important;
-  font-size: 12px !important;
   font-weight: 800 !important;
-  line-height: 1.3 !important;
-  text-align: left !important;
   opacity: 0 !important;
   transform: translateY(7px) !important;
   transition: opacity 220ms ease, transform 220ms ease !important;
@@ -501,10 +463,6 @@ html body #page .entry-content .asme-gallery-page .gallery .gallery-item a:focus
 }
 
 @media (max-width: 560px) {
-  body #page .asme-gallery-page .gallery-instagram-media,
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-media {
-    width: min(100%, 330px) !important;
-  }
 
   body #page .asme-gallery-page .gallery-instagram-follow,
   html body #page .entry-content .asme-gallery-page .gallery-instagram-follow {
@@ -730,16 +688,6 @@ html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-row--rank-
   }
 }
 
-@media (hover: none) {
-  body #page .asme-gallery-page .gallery .gallery-item a::before,
-  body #page .asme-gallery-page .gallery .gallery-item a::after,
-  html body #page .entry-content .asme-gallery-page .gallery .gallery-item a::before,
-  html body #page .entry-content .asme-gallery-page .gallery .gallery-item a::after {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
 /* GALLERY — keep carousel controls quiet until pointer or keyboard interaction. */
 @media (hover: hover) and (pointer: fine) {
   body #page .asme-gallery-page .gallery-instagram-media-shell .gallery-instagram-carousel-button,
@@ -958,10 +906,7 @@ html body #page .entry-content .asme-join-page .join-groupme-step-copy p {
 
 body #page .asme-join-page .join-groupme-button,
 html body #page .entry-content .asme-join-page .join-groupme-button {
-  display: inline-flex !important;
   min-height: 40px !important;
-  align-items: center !important;
-  justify-content: center !important;
   padding: 10px 18px !important;
   border: 1px solid #2474d8 !important;
   border-radius: 999px !important;
@@ -1179,7 +1124,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-media img {
   position: absolute !important;
   inset: 0 !important;
   opacity: 1 !important;
-  transition: opacity 180ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
 body #page .asme-gallery-page .gallery-instagram-media img.is-changing,
@@ -1261,9 +1205,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-carousel-st
 /* JOIN — clearly separate newsletter signup from real-time GroupMe updates. */
 body #page .asme-join-page .join-form-purpose strong,
 html body #page .entry-content .asme-join-page .join-form-purpose strong {
-  display: block !important;
-  margin-bottom: 5px !important;
-  color: var(--asme-scarlet, #ba0c2f) !important;
   font-weight: 800 !important;
 }
 
@@ -2078,8 +2019,6 @@ a:hover {
 #masthead {
   background: #ffffff !important;
   border-bottom: 1px solid var(--asme-line) !important;
-  border-radius: 0 0 20px 20px !important;
-  box-shadow: 0 2px 16px rgba(15, 52, 96, 0.07) !important;
   padding: 0 32px !important;
   position: relative !important;
   z-index: 100 !important;
@@ -2434,7 +2373,6 @@ a:hover {
 }
 
 .ah-sub {
-  max-width: 600px !important;
   margin-bottom: 22px;
   color: rgba(255,255,255,0.74);
   font-size: 17px !important;
@@ -2460,7 +2398,6 @@ a:hover {
 
 .ah-btn-p {
   background: #ffffff;
-  color: var(--asme-navy) !important;
 }
 
 .ah-btn-o {
@@ -2479,7 +2416,6 @@ a:hover {
 
 .ah-badge {
   min-width: 260px !important;
-  padding: 28px 30px !important;
   background: rgba(255,255,255,0.1);
   border: 1px solid rgba(255,255,255,0.22);
   border-radius: 18px;
@@ -2488,8 +2424,6 @@ a:hover {
 
 .ah-badge img {
   display: block;
-  width: 165px !important;
-  height: 165px !important;
   margin: 0 auto 10px;
   border-radius: 10px;
   object-fit: contain;
@@ -3296,9 +3230,6 @@ a:hover {
    ============================================= */
 
 /* More space between top-level nav items */
-.main-navigation .main-nav > ul > li {
-  margin: 0 0px !important;
-}
 
 /* Keep parent menu buttons compact, including Events */
 .main-navigation .main-nav > ul > li > a,
@@ -3308,8 +3239,6 @@ a:hover {
   gap: 6px !important;
   width: auto !important;
   min-width: 0 !important;
-  padding: 7px 14px !important;
-  line-height: 1.2 !important;
   border-radius: 999px !important;
 }
 
@@ -3328,7 +3257,6 @@ a:hover {
   width: max-content !important;
   min-width: 0 !important;
   max-width: calc(100vw - 32px) !important;
-  padding: 8px !important;
   background: #ffffff !important;
   border: 1px solid var(--asme-line) !important;
   border-radius: 14px !important;
@@ -3337,19 +3265,13 @@ a:hover {
 }
 
 /* Dropdown items */
-.main-navigation ul ul li {
-  margin: 0 0 4px !important;
-}
 
 .main-navigation ul ul li a {
-  width: 100% !important;
-  padding: 9px 14px !important;
   border-radius: 10px !important;
   color: #374151 !important;
   background: transparent !important;
   font-size: 14px !important;
   line-height: 1.25 !important;
-  white-space: nowrap !important;
 }
 
 /* Dropdown hover/current item */
@@ -3976,21 +3898,16 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 }
 
 .asme-footer-inner {
-  max-width: 1440px !important;
   margin: 0 auto !important;
   padding: 0 !important;
   color: var(--asme-text) !important;
 }
 
 .asme-footer-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 32px !important;
   margin: 0 auto !important;
   padding: 0 !important;
   border-bottom: none !important;
-  justify-items: center !important;
-  align-items: start !important;
 }
 
 .asme-footer-col {
@@ -4008,12 +3925,10 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 .asme-footer-col p,
 .asme-footer-col a {
   display: block !important;
-  width: fit-content !important;
   margin: 0 auto 8px !important;
   color: #374151 !important;
   font-size: 14px !important;
   line-height: 1.7 !important;
-  text-align: center !important;
   text-decoration: none !important;
 }
 
@@ -4022,7 +3937,6 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 }
 
 .asme-footer-bottom {
-  display: block !important;
   width: 100% !important;
   max-width: none !important;
   margin: 28px 0 0 !important;
@@ -4032,13 +3946,9 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 }
 
 .asme-footer-bottom span {
-  display: block !important;
-  width: 100% !important;
   max-width: none !important;
-  margin: 0 auto !important;
   color: var(--asme-navy) !important;
   opacity: 1 !important;
-  text-align: center !important;
   font-size: 13px !important;
 }
 
@@ -4073,22 +3983,10 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
 }
 
 @media (max-width: 768px) {
-  :root {
-    --asme-gutter: 12px;
-  }
-
-  .site-header,
-  #masthead {
-    padding: 0 14px !important;
-  }
 
   .site-title,
   .site-title a {
     font-size: 14px !important;
-  }
-
-  .site-description {
-    display: none !important;
   }
 
   .ah-hero,
@@ -4579,7 +4477,6 @@ html body #page .entry-content .asme-sponsors-page > .sponsors-divider {
   }
 }
 
-
 /* Gallery lightbox modal. */
 .asme-lightbox-open-body {
   overflow: hidden !important;
@@ -4830,12 +4727,6 @@ html body #page .entry-content .asme-sponsors-page > .sponsors-divider {
   margin-left: auto !important;
   margin-right: auto !important;
   text-align: center !important;
-}
-
-.asme-footer-bottom {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
 }
 
 .asme-footer-bottom span {
@@ -5365,7 +5256,6 @@ html body #page .entry-content .asme-sponsors-page > .sponsors-divider {
 }
 
 .sponsor-card-primary {
-  position: relative !important;
   background: #fff !important;
   border: 2px solid #0f3460 !important;
   border-radius: 20px !important;
@@ -5419,7 +5309,6 @@ html body #page .entry-content .asme-sponsors-page > .sponsors-divider {
   margin: 0 0 8px !important;
   color: #0f3460 !important;
   font-family: 'DM Serif Display', serif !important;
-  font-size: 17px !important;
   font-weight: 400 !important;
 }
 
@@ -5686,10 +5575,6 @@ body .sponsors-grid-partners .sponsor-card h3 a {
   background: linear-gradient(135deg, #BB0000 0%, #7a0000 100%) !important;
 }
 
-.ah-hero {
-  background: linear-gradient(135deg, #0f3460 0%, #1a1a3e 60%, #3d0a0a 100%) !important;
-}
-
 .about-pillar {
   border-top: 3px solid var(--osu-scarlet) !important;
 }
@@ -5856,29 +5741,12 @@ body .sponsors-grid-partners .sponsor-card h3 a {
 
 @media (min-width: 901px) {
   .asme-home .ah-hero {
-    height: 500px !important;
-    min-height: 0 !important;
-    max-height: 500px !important;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
     align-content: center !important;
     overflow: hidden !important;
   }
 
-  .asme-home .ah-title {
-    font-size: 38px !important;
-    line-height: 1.02 !important;
-    margin-bottom: 8px !important;
-  }
-
   .asme-home .ah-eyebrow {
     margin-bottom: 8px !important;
-  }
-
-  .asme-home .ah-sub {
-    font-size: 16px !important;
-    line-height: 1.4 !important;
-    margin-bottom: 14px !important;
   }
 
   .asme-home .ah-btns {
@@ -5888,10 +5756,6 @@ body .sponsors-grid-partners .sponsor-card h3 a {
   .asme-home .ah-btn-p,
   .asme-home .ah-btn-o {
     padding: 10px 22px !important;
-  }
-
-  .asme-home .ah-stats {
-    margin-top: 12px !important;
   }
 
   .asme-home .ah-stat {
@@ -5907,22 +5771,6 @@ body .sponsors-grid-partners .sponsor-card h3 a {
     font-size: 7px !important;
   }
 
-  .asme-home .ah-badge {
-    width: 280px !important;
-    max-width: 280px !important;
-    padding: 12px 16px !important;
-  }
-
-  .asme-home .ah-badge img {
-    width: 165px !important;
-    height: 165px !important;
-    margin-bottom: 5px !important;
-  }
-
-  .asme-home .ah-badge-name {
-    font-size: 17px !important;
-    line-height: 1.05 !important;
-  }
 }
 
 /* =============================================
@@ -5985,8 +5833,6 @@ body .sponsors-grid-partners .sponsor-card h3 a {
   }
 
   .asme-home .ah-badge {
-    width: 320px !important;
-    max-width: 320px !important;
     min-width: 0 !important;
     margin: 0 !important;
   }
@@ -7075,7 +6921,6 @@ body.search .site-main {
   margin-top: 0 !important;
 }
 
-
 /* =============================================
    JOIN PAGE — FAQ section
    Stable full-width accordion
@@ -7335,7 +7180,6 @@ body.search .site-main {
   /* Header */
   body .site-header,
   body #masthead {
-    padding: 16px 8px 18px !important;
     min-height: 0 !important;
     text-align: center !important;
   }
@@ -7392,12 +7236,8 @@ body.search .site-main {
 
   body .site-description {
     display: block !important;
-    margin: 6px auto 0 !important;
     color: var(--asme-soft) !important;
-    font-size: 12px !important;
     font-weight: 700 !important;
-    line-height: 1.1 !important;
-    letter-spacing: 0.06em !important;
     text-align: center !important;
     text-transform: uppercase !important;
   }
@@ -7412,7 +7252,6 @@ body.search .site-main {
   body #site-navigation.main-navigation {
     display: block !important;
     width: 100% !important;
-    margin: 8px auto 0 !important;
     padding: 0 !important;
     min-height: 0 !important;
     background: transparent !important;
@@ -7453,28 +7292,15 @@ body.search .site-main {
   body #site-navigation.toggled .main-nav {
     display: block !important;
     width: 100% !important;
-    margin: 8px auto 0 !important;
-    padding: 0 0 14px !important;
-    background: transparent !important;
   }
 
   body #site-navigation.toggled .main-nav > ul {
-    display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
-    gap: 8px !important;
-    width: min(84vw, 360px) !important;
-    max-width: 360px !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    background: transparent !important;
     text-align: center !important;
   }
 
   body #site-navigation.toggled .main-nav > ul > li {
     display: block !important;
-    position: static !important;
-    width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
     min-height: 0 !important;
@@ -7487,20 +7313,10 @@ body.search .site-main {
   body #site-navigation.toggled .main-nav > ul > li > a {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
     width: 100% !important;
-    height: 42px !important;
-    min-height: 42px !important;
     margin: 0 !important;
-    padding: 0 14px !important;
-    background: #111f33 !important;
     border: 1px solid #26364f !important;
-    border-radius: 15px !important;
-    color: #dbe4f0 !important;
-    font-size: 18px !important;
-    font-weight: 750 !important;
     line-height: 1 !important;
-    text-align: center !important;
     box-sizing: border-box !important;
   }
 
@@ -7521,10 +7337,7 @@ body.search .site-main {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: auto !important;
-    height: auto !important;
     margin: 0 !important;
-    padding: 0 0 0 8px !important;
     color: inherit !important;
     line-height: 1 !important;
     transform: translateY(1px) !important;
@@ -7551,16 +7364,10 @@ body.search .site-main {
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 6px !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
     height: auto !important;
     margin: 6px 0 0 !important;
-    padding: 7px !important;
-    background: #0b1626 !important;
     border: 1px solid #26364f !important;
     border-radius: 15px !important;
-    box-shadow: none !important;
     transform: none;
     opacity: 1;
     visibility: visible !important;
@@ -7578,20 +7385,10 @@ body.search .site-main {
   body #site-navigation.toggled ul ul li a {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    height: 38px !important;
-    min-height: 38px !important;
     margin: 0 !important;
-    padding: 0 12px !important;
-    background: #111f33 !important;
     border: 1px solid #26364f !important;
-    border-radius: 12px !important;
-    color: #dbe4f0 !important;
-    font-size: 15px !important;
     font-weight: 750 !important;
     line-height: 1 !important;
-    text-align: center !important;
     box-sizing: border-box !important;
   }
 
@@ -7607,26 +7404,15 @@ body.search .site-main {
   body .asme-home .ah-hero {
     width: 100% !important;
     max-width: 100% !important;
-    height: 500px !important;
-    max-height: 500px !important;
     margin: 10px auto 18px !important;
-    padding: 20px 14px !important;
     border-radius: 22px !important;
-    display: grid !important;
     place-items: center !important;
     overflow: hidden !important;
-    text-align: center !important;
   }
 
   body .asme-home .ah-hero-left {
-    width: 100% !important;
-    max-width: 560px !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
     align-self: center !important;
     justify-self: center !important;
-    text-align: center !important;
-    transform: translateY(-125px) !important;
   }
 
   body .asme-home .ah-eyebrow,
@@ -7646,20 +7432,6 @@ body.search .site-main {
     margin-bottom: 8px !important;
   }
 
-  body .asme-home .ah-title {
-    max-width: 11ch !important;
-    font-size: clamp(36px, 10vw, 48px) !important;
-    line-height: 0.98 !important;
-    margin-bottom: 10px !important;
-  }
-
-  body .asme-home .ah-sub {
-    max-width: 24ch !important;
-    font-size: 19px !important;
-    line-height: 1.32 !important;
-    margin-bottom: 16px !important;
-  }
-
   body .asme-home .ah-btns {
     gap: 9px !important;
     margin: 0 !important;
@@ -7671,18 +7443,11 @@ body.search .site-main {
     font-size: 13px !important;
   }
 
-  body .asme-home .ah-hero-dots {
-    bottom: 12px !important;
-  }
-
   body .asme-home .ah-hero-slide {
     background-position: center center !important;
   }
 
   /* Calendar mobile header */
-  body .asme-cal-page {
-    padding-top: 10px !important;
-  }
 
   body .asme-cal-page .acp-header {
     display: grid !important;
@@ -7690,7 +7455,6 @@ body.search .site-main {
     justify-items: center !important;
     align-items: start !important;
     gap: 12px !important;
-    margin-bottom: 14px !important;
     text-align: center !important;
   }
 
@@ -8086,7 +7850,6 @@ body .nav-menu ul li.current_page_item > a {
 
   body #site-navigation.toggled ul ul li a {
     width: 100% !important;
-    justify-content: center !important;
     white-space: normal !important;
   }
 }
@@ -8100,7 +7863,6 @@ body .nav-menu ul li.current_page_item > a {
 body .asme-home > .ah-impact-section {
   display: none !important;
 }
-
 
 /* Small current-status chips for the home hero. */
 body .asme-home .ah-status-row {
@@ -8159,14 +7921,7 @@ body .asme-home .ah-status-pill::before {
 
 /* About block: compact text with stat chips underneath. */
 body .asme-home .ah-about {
-  display: block !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  margin: 0 0 14px !important;
-  padding: 15px 28px 16px !important;
   border-radius: 16px !important;
-  overflow: visible !important;
 }
 
 body .asme-home .ah-about-img {
@@ -8174,7 +7929,6 @@ body .asme-home .ah-about-img {
 }
 
 body .asme-home .ah-about-text {
-  display: block !important;
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
@@ -8335,10 +8089,6 @@ body .asme-home .ah-featured-button:hover {
     border-color: var(--asme-line, #26364f) !important;
   }
 
-  body .asme-home .ah-impact-mini strong {
-    color: #ffffff !important;
-  }
-
   body .asme-home .ah-featured-event {
     background: var(--asme-card, #0f1b2d) !important;
     border-color: var(--asme-line, #26364f) !important;
@@ -8362,8 +8112,6 @@ body .asme-home .ah-featured-button:hover {
   }
 }
 
-
-
 /* =============================================
    HOME — dark-mode contrast and spacing repair
    MUST STAY AFTER HOME IMPACT STYLES
@@ -8374,9 +8122,6 @@ body .asme-home .ah-featured-button:hover {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
     padding-top: 18px !important;
     padding-bottom: 18px !important;
   }
@@ -8544,7 +8289,6 @@ body .asme-home .ah-featured-button:hover {
     min-height: 0 !important;
     max-height: none !important;
     margin: 0 0 16px !important;
-    padding: 16px 16px 18px !important;
     border-radius: 16px !important;
     overflow: visible !important;
     text-align: center !important;
@@ -8642,8 +8386,6 @@ body .asme-home .ah-featured-button:hover {
     stroke: #ffffff !important;
   }
 }
-
-
 
 /* =============================================
    HOME ABOUT — final content-height lock
@@ -9094,7 +8836,6 @@ body #page .asme-cal-page .acp-header {
    Add near the bottom of ASME Custom CSS.css
    ============================================================ */
 
-
 /* ── 1. CSS VARIABLES (members palette) ─────────────────────
    Extends existing site variables. Override per-element as
    needed rather than globally changing existing variables.
@@ -9122,7 +8863,6 @@ body #page .asme-cal-page .acp-header {
   --m-shadow-hover: 0 4px 12px rgba(15,52,96,0.12), 0 8px 28px rgba(15,52,96,0.08);
 }
 
-
 /* ── 2. PAGE WRAPPER ─────────────────────────────────────────
    Scopes all members styles. Add class to WordPress page body
    via GeneratePress or page wrapper div.
@@ -9139,7 +8879,6 @@ body #page .asme-cal-page .acp-header {
 .asme-members-page *::after {
   box-sizing: border-box;
 }
-
 
 /* ── 3. HERO / PAGE HEADER ───────────────────────────────────
    Used at the top of both member pages.
@@ -9231,7 +8970,6 @@ body #page .asme-cal-page .acp-header {
   padding-top: 4px;
 }
 
-
 /* ── 4. STATUS BADGES ────────────────────────────────────────
    Inline labels: Coming Soon, In Development, Resource, etc.
    Use inside heroes, cards, or standalone.
@@ -9296,7 +9034,6 @@ body #page .asme-cal-page .acp-header {
   border-color: rgba(255,255,255,0.2);
 }
 
-
 /* ── 5. SECTION LABELS ───────────────────────────────────────
    Small uppercase label above section headings.
    ─────────────────────────────────────────────────────────── */
@@ -9327,7 +9064,6 @@ body #page .asme-cal-page .acp-header {
   margin: 0 0 24px;
   max-width: 600px;
 }
-
 
 /* ── 6. RESOURCE CARD GRID ───────────────────────────────────
    Used on Member Resources page.
@@ -9503,7 +9239,6 @@ body #page .asme-cal-page .acp-header {
   line-height: 1.45;
 }
 
-
 /* ── 9. POINTS LEADERBOARD SKELETON ─────────────────────────
    Placeholder rows to suggest what the leaderboard will look
    like. Pure CSS shimmer animation, no JS needed.
@@ -9606,7 +9341,6 @@ body #page .asme-cal-page .acp-header {
   margin-left: auto;
   flex-shrink: 0;
 }
-
 
 /* ── 10. CONTACT / CTA STRIP ─────────────────────────────────
    Simple full-width CTA block for both member pages.
@@ -9723,7 +9457,6 @@ body #page .asme-cal-page .acp-header {
 .asme-info-banner strong {
   font-weight: 700;
 }
-
 
 /* ── 12. RESPONSIVE ──────────────────────────────────────────
    Tablet and mobile adjustments.
@@ -9953,7 +9686,6 @@ body #page .asme-member-resources-page .asme-resource-group-header {
   padding: 0 !important;
   overflow: hidden !important;
 }
-
 
 /* ── FIX 3: Dark mode for the entire members section ────────
    Adapts cards, banners, leaderboard, hero, badges, and buttons
@@ -10192,7 +9924,6 @@ body:has(.asme-member-resources-page) .asme-resource-group {
    MEMBERS SECTION — VISUAL & ALIGNMENT IMPROVEMENTS
    ============================================================ */
 
-
 /* ── Outer page spacing ──────────────────────────────────────
    Push the entire members page away from the WordPress header
    and give consistent bottom breathing room.
@@ -10202,7 +9933,6 @@ body #page .asme-members-page {
   margin-top: 8px !important;
   margin-bottom: 32px !important;
 }
-
 
 /* ── Hero improvements ───────────────────────────────────────
    Tighten line-height on h1, add bottom margin to hero,
@@ -10225,7 +9955,6 @@ body #page .asme-member-hero h1 {
   }
 }
 
-
 /* ── Info banner → first group spacing ──────────────────────
    Give the first resource group more room after the banner.
    ─────────────────────────────────────────────────────────── */
@@ -10237,7 +9966,6 @@ body #page .asme-members-page .asme-info-banner {
 body #page .asme-members-page .asme-resource-group:first-of-type {
   margin-top: 4px !important;
 }
-
 
 /* ── Group header refinements ────────────────────────────────
    Add top margin between groups so they breathe better.
@@ -10267,7 +9995,6 @@ body #page .asme-members-page .asme-resource-group:last-of-type .asme-member-gri
   max-width: 640px !important;
 }
 
-
 /* ── Card visual polish ──────────────────────────────────────
    Equal card heights via flex, cleaner footer alignment,
    more restrained hover shadow.
@@ -10295,7 +10022,6 @@ body #page .asme-members-page .asme-resource-card:not(.asme-resource-card--accen
   background: #f0f4f8 !important;
 }
 
-
 /* ── CTA heading font ────────────────────────────────────────
    Match other heading styles on the page.
    ─────────────────────────────────────────────────────────── */
@@ -10307,14 +10033,12 @@ body #page .asme-members-page .asme-member-cta-copy h3 {
   letter-spacing: -0.2px !important;
 }
 
-
 /* ── Leaderboard skeleton spacing ────────────────────────────
    Give skeleton name bars more visual room.
    ─────────────────────────────────────────────────────────── */
 
 body #page .asme-members-page .asme-leaderboard-row {
   padding: 14px 20px !important;
-  gap: 12px !important;
 }
 
 body #page .asme-members-page .asme-skeleton-name {
@@ -10324,7 +10048,6 @@ body #page .asme-members-page .asme-skeleton-name {
 body #page .asme-members-page .asme-leaderboard-preview {
   margin-bottom: 32px !important;
 }
-
 
 /* ── Points feature grid ─────────────────────────────────────
    More consistent spacing on the planned features tiles.
@@ -10342,7 +10065,6 @@ body #page .asme-members-page .asme-points-feature {
 body #page .asme-members-page .asme-points-preview-body {
   padding: 28px 32px 24px !important;
 }
-
 
 /* ── Mobile adjustments ──────────────────────────────────────
    Stack things properly at narrow widths.
@@ -10383,7 +10105,6 @@ body #page .asme-members-page .asme-points-preview-body {
    points page dark mode, priority copy.
    Append to END of ASME Custom CSS.css after all other rules.
    ============================================================ */
-
 
 /* ── DARK MODE — RESOURCES PAGE (HIGH SPECIFICITY) ───────────
    All rules prefixed with body #page to beat existing
@@ -10518,7 +10239,6 @@ body #page .asme-members-page .asme-points-preview-body {
     color: #94a3b8 !important;
   }
 
-
   /* ── 3. DARK MODE — POINTS PAGE SPECIFIC ──────────────────
      Points page uses .asme-members-page but NOT
      .asme-member-resources-page so needs its own rules.
@@ -10595,7 +10315,6 @@ body #page .asme-members-page .asme-points-preview-body {
 
 }
 
-
 /* ── 4. LEADERBOARD HEADER H3 MARGIN RESET ───────────────────
    GeneratePress sets h3 margin in .entry-content which
    pushes the leaderboard header out of alignment.
@@ -10620,7 +10339,6 @@ body #page .asme-members-page .asme-section-heading {
   margin-bottom: 10px !important;
 }
 
-
 /* ── 5. CARD ICON ALIGNMENT ON POINTS PAGE ───────────────────
    The emoji icons on the "How Points Work" and feature cards
    need consistent sizing and no default line-height offset.
@@ -10631,7 +10349,6 @@ body #page .asme-members-page .asme-points-feature-icon {
   line-height: 1 !important;
   margin-bottom: 8px !important;
 }
-
 
 /* ── 6. ENTRY HEADER SUPPRESSION — BOTH PAGES ────────────────
    Stronger selector than the previous :has() approach since
@@ -10772,9 +10489,6 @@ body #page .asme-member-resources-page .asme-resource-card-footer {
 body #page .asme-member-resources-page .asme-resource-card-arrow {
   color: #9ca3af !important;
 }
-
-
-
 
 body #page .asme-member-resources-page .asme-status-badge--coming-soon {
   background: #fffbeb !important;
@@ -11340,9 +11054,7 @@ body #page .asme-members-page .asme-leaderboard-header {
 
 body #page .asme-members-page .asme-leaderboard-row {
   display: grid !important;
-  grid-template-columns: 24px 32px minmax(80px, 1fr) 48px !important;
   align-items: center !important;
-  gap: 14px !important;
 }
 
 body #page .asme-members-page .asme-skeleton-name,
@@ -12296,44 +12008,14 @@ body.archive #page .content-sidebar-wrap {
 }
 
 .sponsor-card--brutus {
-  border: 2px solid #0f3460 !important;
-  box-shadow: 0 4px 24px rgba(15,52,96,0.12) !important;
   position: relative !important;
 }
 
-.sponsor-card--brutus::before {
-  background: linear-gradient(135deg, #0f3460, #1a4a7a) !important;
-}
-
 /* Block O — single card, medium prominence */
-.sponsor-card--blocko {
-  border: 2px solid #1a1a1a !important;
-  box-shadow: 0 3px 16px rgba(0,0,0,0.10) !important;
-}
-
-.sponsor-card--blocko::before {
-  background: #1a1a1a !important;
-}
 
 /* Scarlet tier cards */
-.sponsor-card--scarlet-tier {
-  border: 2px solid #bb0000 !important;
-  box-shadow: 0 2px 10px rgba(187,0,0,0.08) !important;
-}
-
-.sponsor-card--scarlet-tier::before {
-  background: #bb0000 !important;
-  content: 'Scarlet Sponsor' !important;
-}
 
 /* Override the generic ::before for each tier */
-.sponsor-card--brutus::before {
-  content: 'Brutus Sponsor' !important;
-}
-
-.sponsor-card--blocko::before {
-  content: 'Block O Sponsor' !important;
-}
 
 /* Sponsor name divider inside h3 */
 .sponsor-name-divider {
@@ -12478,8 +12160,6 @@ body.archive #page .content-sidebar-wrap {
 
 /* Brutus — dark navy fill, white text, biggest card */
 .sponsor-tier-card--brutus {
-  background: linear-gradient(160deg, #0f3460, #16213e) !important;
-  border-color: #0f3460 !important;
   box-shadow: 0 8px 32px rgba(15,52,96,0.22) !important;
 }
 
@@ -12491,45 +12171,19 @@ body.archive #page .content-sidebar-wrap {
   color: #93c5fd !important;
 }
 
-.sponsor-tier-card--brutus .sponsor-tier-perks li {
-  color: rgba(255,255,255,0.8) !important;
-}
-
-.sponsor-tier-card--brutus .sponsor-tier-perks li::before {
-  color: #93c5fd !important;
-}
-
-.sponsor-tier-card--brutus .sponsor-tier-cta {
-  background: #ffffff !important;
-  color: #0f3460 !important;
-}
-
 .sponsor-tier-card--brutus .sponsor-tier-cta:hover {
   background: #e8f0fb !important;
 }
 
 /* Custom — scarlet fill */
-.sponsor-tier-card--custom {
-  background: linear-gradient(160deg, #bb0000, #7f0000) !important;
-  border-color: #bb0000 !important;
-}
 
 .sponsor-tier-card--custom .sponsor-tier-name,
 .sponsor-tier-card--custom .sponsor-tier-price {
   color: #ffffff !important;
 }
 
-.sponsor-tier-card--custom .sponsor-tier-perks li {
-  color: rgba(255,255,255,0.85) !important;
-}
-
 .sponsor-tier-card--custom .sponsor-tier-perks li::before {
   color: #fca5a5 !important;
-}
-
-.sponsor-tier-card--custom .sponsor-tier-cta {
-  background: #ffffff !important;
-  color: #bb0000 !important;
 }
 
 @media (max-width: 900px) {
@@ -12613,8 +12267,6 @@ body.archive #page .content-sidebar-wrap {
 
 /* ── BRUTUS card — full width, biggest logo, navy premium ── */
 .sponsor-card--brutus {
-  border: 2px solid #0f3460 !important;
-  box-shadow: 0 6px 28px rgba(15, 52, 96, 0.13) !important;
   max-width: 100% !important;
 }
 
@@ -12636,7 +12288,6 @@ body.archive #page .content-sidebar-wrap {
 /* ── BLOCK O card — dark border, elevated feel ── */
 .sponsor-card--blocko {
   border: 2px solid #1c1c1c !important;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12) !important;
 }
 
 .sponsor-card--blocko::before {
@@ -12656,7 +12307,6 @@ body.archive #page .content-sidebar-wrap {
 /* ── SCARLET tier cards — scarlet border/pill ── */
 .sponsor-card--scarlet-tier {
   border: 2px solid #bb0000 !important;
-  box-shadow: 0 3px 12px rgba(187, 0, 0, 0.09) !important;
 }
 
 .sponsor-card--scarlet-tier::before {
@@ -12672,7 +12322,6 @@ body.archive #page .content-sidebar-wrap {
 /* Brutus hover — bigger lift for biggest sponsor */
 .sponsor-card--brutus:hover {
   transform: translateY(-6px) !important;
-  box-shadow: 0 16px 40px rgba(15, 52, 96, 0.18) !important;
 }
 
 /* CTA → sponsor tiers page instead of just email */
@@ -12805,8 +12454,7 @@ body.archive #page .content-sidebar-wrap {
 .sponsor-tier-card:nth-child(2) { border-left-color: #bb0000 !important; } /* Scarlet */
 .sponsor-tier-card:nth-child(3) { border-left-color: #b45309 !important; } /* Buckeye */
 .sponsor-tier-card:nth-child(4) { border-left-color: #1c1c1c !important; } /* Block O */
-.sponsor-tier-card--brutus      { border-left-color: #93c5fd !important; padding: 28px 24px 24px !important; } /* Brutus — bigger */
-.sponsor-tier-card--custom      { border-left-color: rgba(255,255,255,0.35) !important; }
+.sponsor-tier-card--brutus      {  padding: 28px 24px 24px !important; } /* Brutus — bigger */
 
 .sponsor-form-submit {
   width: 100% !important;
@@ -12987,10 +12635,6 @@ body #page .asme-sponsor-page .sponsor-tier-cta {
   padding: 9px 14px !important;
 }
 
-body #page .asme-sponsors-page .sponsors-tier-block {
-  margin-bottom: 14px !important;
-}
-
 body #page .asme-sponsors-page .sponsors-tier-block::before {
   gap: 0 !important;
   padding: 5px 12px !important;
@@ -13010,22 +12654,13 @@ body #page .asme-sponsors-page .sponsors-tier-block--scarlet::before {
   content: 'Scarlet Sponsors' !important;
 }
 
-body #page .asme-sponsors-page .sponsors-grid-scarlet {
-  gap: 14px !important;
-}
-
 body #page .asme-sponsors-page .sponsor-card-primary {
   display: grid !important;
-  grid-template-columns: 136px minmax(0, 1fr) !important;
   grid-template-rows: auto auto !important;
-  column-gap: 18px !important;
   row-gap: 4px !important;
   align-items: center !important;
-  padding: 16px 18px !important;
   border-radius: 14px !important;
   text-align: left !important;
-  min-height: 0 !important;
-  max-width: 980px !important;
 }
 
 body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-link {
@@ -13035,15 +12670,8 @@ body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-link {
 }
 
 body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame {
-  width: 136px !important;
-  height: 86px !important;
   margin: 0 !important;
-  padding: 12px !important;
   border-radius: 12px !important;
-}
-
-body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame img {
-  max-height: 64px !important;
 }
 
 body #page .asme-sponsors-page .sponsor-card-primary h3 {
@@ -13051,7 +12679,6 @@ body #page .asme-sponsors-page .sponsor-card-primary h3 {
   grid-row: 1 !important;
   align-self: end !important;
   margin: 0 0 5px !important;
-  font-size: 18px !important;
   line-height: 1.2 !important;
 }
 
@@ -13059,8 +12686,6 @@ body #page .asme-sponsors-page .sponsor-card-primary p {
   grid-column: 2 !important;
   grid-row: 2 !important;
   align-self: start !important;
-  max-width: 680px !important;
-  font-size: 13px !important;
   line-height: 1.45 !important;
 }
 
@@ -13094,7 +12719,6 @@ body #page .asme-sponsors-page .sponsor-card--brutus:hover {
   }
 
   body #page .asme-sponsors-page .sponsor-card-primary {
-    grid-template-columns: 92px minmax(0, 1fr) !important;
     gap: 12px !important;
     padding: 14px !important;
   }
@@ -13818,10 +13442,6 @@ html body #page .entry-content .asme-sponsors-page .sponsor-card-tier-badge {
    ============================================================ */
 
 /* Fix hero gap: align-self stretch was overriding align-items. */
-body #page .asme-sponsor-page .sponsor-hero-panel,
-html body #page .entry-content .asme-sponsor-page .sponsor-hero-panel {
-  align-self: start !important;
-}
 
 /* Compact, dark-mode appropriate sponsor contact composer. */
 body #page .asme-sponsor-page .sponsor-contact {
@@ -14060,7 +13680,6 @@ html body #page .entry-content .asme-sponsor-page .sponsor-form-group textarea {
 
   body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form,
   html body #page .entry-content .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
-    background: #ffffff !important;
     border-left-color: rgba(255, 255, 255, 0.10) !important;
   }
 
@@ -14098,11 +13717,6 @@ html body #page .entry-content .asme-sponsor-page .sponsor-hero-panel {
   padding: 24px !important;
 }
 
-body #page .asme-sponsor-page .sponsor-stat-inner,
-html body #page .entry-content .asme-sponsor-page .sponsor-stat-inner {
-  transform: none !important;
-}
-
 /* WordPress can auto-insert empty paragraphs inside Custom HTML blocks.
    A stray direct <p> in the stats panel creates the visible bottom gap. */
 body #page .asme-sponsor-page .sponsor-hero-panel > p,
@@ -14122,18 +13736,9 @@ html body #page .entry-content .asme-sponsor-page .sponsor-hero-panel > br {
 
 body #page .asme-sponsor-page .sponsor-tier-card,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-card {
-  position: relative !important;
-  display: flex !important;
   flex-direction: column !important;
-  min-height: 0 !important;
-  padding: 24px 22px 22px !important;
   padding-right: 78px !important;
-  border: 1px solid #e5e7eb !important;
   border-left: 4px solid #9ca3af !important;
-  border-radius: 14px !important;
-  background: #ffffff !important;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06) !important;
-  overflow: hidden !important;
 }
 
 body #page .asme-sponsor-page .sponsor-tier-card--gray,
@@ -14164,40 +13769,18 @@ body #page .asme-sponsor-page .sponsor-tier-card--brutus,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus {
   border-color: rgba(187, 0, 0, 0.48) !important;
   border-left-color: transparent !important;
-  background: linear-gradient(160deg, #c70000 0%, #bb0000 48%, #7f0000 100%) !important;
-  box-shadow: 0 20px 44px rgba(187, 0, 0, 0.24), 0 0 42px rgba(187, 0, 0, 0.18) !important;
 }
 
 body #page .asme-sponsor-page .sponsor-tier-card--custom,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom {
   border-color: rgba(147, 197, 253, 0.34) !important;
   border-left-color: transparent !important;
-  background: linear-gradient(160deg, #0f3460 0%, #123963 42%, #16213e 100%) !important;
   box-shadow: 0 18px 42px rgba(15, 52, 96, 0.22), 0 0 34px rgba(147, 197, 253, 0.12) !important;
 }
 
 body #page .asme-sponsor-page .sponsor-tier-heading,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading {
-  display: block !important;
-  min-height: 0 !important;
-  margin: 0 0 16px !important;
   padding-right: 0 !important;
-}
-
-body #page .asme-sponsor-page .sponsor-tier-icon,
-html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon {
-  position: absolute !important;
-  top: 18px !important;
-  right: 18px !important;
-  display: block !important;
-  width: 44px !important;
-  height: 44px !important;
-  margin: 0 !important;
-  padding: 4px !important;
-  border-radius: 10px !important;
-  background: #ffffff !important;
-  object-fit: contain !important;
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(15, 23, 42, 0.08) !important;
 }
 
 body #page .asme-sponsor-page .sponsor-tier-name,
@@ -14257,12 +13840,6 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-cta {
   line-height: 1.2 !important;
 }
 
-body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-cta,
-html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-cta {
-  background: #ffffff !important;
-  color: #bb0000 !important;
-}
-
 body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-cta,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-cta {
   background: #ffffff !important;
@@ -14291,7 +13868,6 @@ html body #page .entry-content .asme-sponsor-page .sponsor-modal {
   z-index: 9999 !important;
   display: grid !important;
   place-items: center !important;
-  padding: 24px !important;
 }
 
 body #page .asme-sponsor-page .sponsor-modal-backdrop,
@@ -14306,7 +13882,6 @@ body #page .asme-sponsor-page .sponsor-modal-dialog,
 html body #page .entry-content .asme-sponsor-page .sponsor-modal-dialog {
   position: relative !important;
   z-index: 1 !important;
-  width: min(920px, 100%) !important;
   max-height: min(90vh, 820px) !important;
   overflow: auto !important;
   border-radius: 18px !important;
@@ -14327,8 +13902,6 @@ html body #page .entry-content .asme-sponsor-page .sponsor-modal-close {
   background: #f1f5f9 !important;
   color: #123963 !important;
   cursor: pointer !important;
-  font-size: 24px !important;
-  line-height: 1 !important;
 }
 
 body #page .asme-sponsor-page .sponsor-modal-header,
@@ -14381,13 +13954,7 @@ html.sponsor-modal-open body {
 @media (max-width: 700px) {
   body #page .asme-sponsor-page .sponsor-tier-card,
   html body #page .entry-content .asme-sponsor-page .sponsor-tier-card {
-    padding: 20px 18px !important;
     padding-right: 72px !important;
-  }
-
-  body #page .asme-sponsor-page .sponsor-modal,
-  html body #page .entry-content .asme-sponsor-page .sponsor-modal {
-    padding: 12px !important;
   }
 
   body #page .asme-sponsor-page .sponsor-modal-header,
@@ -14544,13 +14111,10 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
   body #page .asme-sponsors-page .sponsors-lower-tier-row,
   html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row {
     align-items: stretch !important;
-    grid-auto-rows: 190px !important;
   }
 
   body #page .asme-sponsors-page .sponsors-lower-tier-row > .sponsor-card-primary,
   html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row > .sponsor-card-primary {
-    min-height: 190px !important;
-    height: 190px !important;
     align-self: stretch !important;
   }
 }
@@ -14562,28 +14126,6 @@ html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .spo
    ============================================================ */
 
 @media (prefers-color-scheme: dark) {
-  body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),
-  html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) {
-    background: #ffffff !important;
-    color: #123963 !important;
-  }
-
-  body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-name,
-  body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-price,
-  html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-name,
-  html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-price {
-    color: #123963 !important;
-  }
-
-  body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li,
-  html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li {
-    color: #6b7280 !important;
-  }
-
-  body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li::before,
-  html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li::before {
-    color: #123963 !important;
-  }
 
   body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form,
   html body #page .entry-content .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form,
@@ -17802,16 +17344,12 @@ body #page .sponsor-donation-button:hover svg {
   }
 
   body #site-navigation.toggled .main-nav {
-    position: absolute !important;
-    z-index: 10000 !important;
     top: calc(100% + 6px) !important;
     left: 50% !important;
     width: min(calc(100vw - 24px), 420px) !important;
     max-width: 420px !important;
-    max-height: min(68vh, 520px) !important;
     margin: 0 !important;
     padding: 0 !important;
-    overflow: visible !important;
     background: transparent !important;
     border-radius: 18px !important;
     transform-origin: top center !important;
@@ -17828,13 +17366,7 @@ body #page .sponsor-donation-button:hover svg {
     width: 100% !important;
     max-width: none !important;
     margin: 0 !important;
-    padding: 10px !important;
-    background: rgba(7, 17, 31, 0.98) !important;
-    border: 1px solid rgba(148, 163, 184, 0.28) !important;
-    border-radius: 18px !important;
-    box-shadow: 0 18px 44px rgba(2, 8, 23, 0.32) !important;
     box-sizing: border-box !important;
-    backdrop-filter: blur(14px) !important;
   }
 
   body #site-navigation.toggled .main-nav > ul > li {
@@ -18187,11 +17719,6 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
     gap: 16px !important;
   }
 
-  body #page .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card-tier-badge,
-  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card-tier-badge {
-    width: 44px !important;
-    height: 44px !important;
-  }
 }
 
 body #page .asme-sponsors-page .sponsors-top-tier-grid > p,
@@ -18314,11 +17841,6 @@ html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > br 
    The FAQ card can span the page frame without leaving a second oversized
    gutter around the accordion content. */
 @media (min-width: 981px) {
-  body #page .asme-join-page,
-  html body #page .entry-content .asme-join-page {
-    padding-right: 28px !important;
-    padding-left: 28px !important;
-  }
 
   body #page .asme-join-page .join-faq-section,
   html body #page .entry-content .asme-join-page .join-faq-section {
@@ -20464,7 +19986,6 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-hero-compact .a
 body #page .asme-points-page-v2 .asme-points-hero-compact .asme-member-hero-copy,
 html body #page .entry-content .asme-points-page-v2 .asme-points-hero-compact .asme-member-hero-copy {
   width: 100% !important;
-  max-width: 660px !important;
 }
 
 body #page .asme-points-page-v2 .asme-points-hero-kicker,
@@ -20597,9 +20118,6 @@ html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .
 
 body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row,
 html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row {
-  grid-template-columns: 22px 32px minmax(76px, 1fr) minmax(54px, auto) minmax(50px, auto) !important;
-  gap: 8px !important;
-  min-height: 58px !important;
   padding-right: 16px !important;
   padding-left: 16px !important;
 }
@@ -20822,11 +20340,6 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-flow-compact sm
   html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-header {
     border-bottom-color: #30435f !important;
     background: linear-gradient(105deg, #152740 0%, #122237 100%) !important;
-  }
-
-  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:hover,
-  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:hover {
-    background: #172941 !important;
   }
 
   body #page .asme-points-page-v2 .asme-member-dashboard-heading .asme-section-desc,
@@ -21202,9 +20715,7 @@ body #page .asme-gallery-page .gallery-instagram-media,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-media {
   position: relative !important;
   display: block !important;
-  width: 100% !important;
   min-width: 0 !important;
-  aspect-ratio: 4 / 3 !important;
   overflow: hidden !important;
   border-radius: 18px !important;
   background: #dfe5ec !important;
@@ -21230,7 +20741,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-media img {
   margin: 0 !important;
   border: 0 !important;
   object-fit: cover !important;
-  object-position: center 58% !important;
   transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
@@ -21373,7 +20883,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image 
   position: relative !important;
   display: block !important;
   width: 100% !important;
-  aspect-ratio: 4 / 3 !important;
   overflow: hidden !important;
   background: #e7ebf0 !important;
 }
@@ -23708,11 +23217,8 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
 @media (min-width: 1920px) {
   body .asme-footer-inner.asme-footer-v2 {
     position: relative !important;
-    left: calc(50vw - 50%) !important;
     width: min(2100px, calc(100vw - 160px)) !important;
     max-width: min(2100px, calc(100vw - 160px)) !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
   }
 }
 
