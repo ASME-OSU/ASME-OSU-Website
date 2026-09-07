@@ -21025,6 +21025,74 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-media img {
   object-position: center !important;
 }
 
+/* GALLERY — reserve the featured post's space while its current media loads. */
+body #page .asme-gallery-page .gallery-instagram-feature.is-loading .gallery-instagram-media,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature.is-loading .gallery-instagram-media {
+  pointer-events: none !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-feature.is-loading .gallery-instagram-media img,
+body #page .asme-gallery-page .gallery-instagram-feature.is-unavailable .gallery-instagram-media img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature.is-loading .gallery-instagram-media img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature.is-unavailable .gallery-instagram-media img {
+  visibility: hidden !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-loading-art,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-loading-art {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  background: linear-gradient(135deg, #e8eef6 0%, #d9e3ef 48%, #edf2f7 100%) !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-loading-art::before,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-loading-art::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: -45% !important;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.72) 50%, transparent 62%) !important;
+  animation: asme-instagram-placeholder 1.5s ease-in-out infinite !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-loading-art > span,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-loading-art > span {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 42px !important;
+  height: 42px !important;
+  border: 3px solid rgba(15, 52, 96, 0.2) !important;
+  border-top-color: #bb0000 !important;
+  border-radius: 50% !important;
+  animation: asme-instagram-spinner 800ms linear infinite !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-feature:not(.is-loading) .gallery-instagram-loading-art,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-feature:not(.is-loading) .gallery-instagram-loading-art {
+  display: none !important;
+}
+
+@keyframes asme-instagram-placeholder {
+  from { transform: translateX(-18%); }
+  to { transform: translateX(18%); }
+}
+
+@keyframes asme-instagram-spinner {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-gallery-page .gallery-instagram-loading-art::before,
+  body #page .asme-gallery-page .gallery-instagram-loading-art > span,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-loading-art::before,
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-loading-art > span {
+    animation: none !important;
+  }
+}
+
 body #page .asme-gallery-page .gallery-instagram-post-image,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image {
   aspect-ratio: 4 / 5 !important;

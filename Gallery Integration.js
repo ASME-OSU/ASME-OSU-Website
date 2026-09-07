@@ -175,6 +175,104 @@
     });
   }
 
+  function showFeedLoading(featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate) {
+    var feature = document.querySelector('[data-gallery-instagram-feed]');
+    var loadingArt;
+    if (!feature) return;
+
+    feature.classList.remove('is-unavailable');
+    feature.classList.add('is-loading');
+    feature.setAttribute('aria-busy', 'true');
+    featuredLink.href = ACCOUNT_URL;
+    featuredLink.setAttribute('aria-label', 'Loading the latest ASME OSU Instagram post');
+    featuredLink.setAttribute('aria-disabled', 'true');
+    featuredLink.setAttribute('tabindex', '-1');
+    featuredImage.removeAttribute('src');
+    featuredImage.alt = '';
+    featuredButton.href = ACCOUNT_URL;
+    featuredButton.textContent = 'Loading latest post';
+    featuredTitle.textContent = 'Loading the latest post…';
+    featuredCaption.textContent = 'Checking @asmeohiostate for the newest chapter update.';
+    featuredDate.textContent = 'Loading';
+
+    if (!featuredLink.querySelector('.gallery-instagram-loading-art')) {
+      loadingArt = document.createElement('span');
+      loadingArt.className = 'gallery-instagram-loading-art';
+      loadingArt.setAttribute('aria-hidden', 'true');
+      loadingArt.appendChild(document.createElement('span'));
+      featuredLink.insertBefore(loadingArt, featuredImage);
+    }
+  }
+
+  function showFeedUnavailable(featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate) {
+    var feature = document.querySelector('[data-gallery-instagram-feed]');
+    if (feature) {
+      feature.classList.remove('is-loading');
+      feature.classList.add('is-unavailable');
+      feature.setAttribute('aria-busy', 'false');
+    }
+    featuredLink.href = ACCOUNT_URL;
+    featuredLink.setAttribute('aria-label', 'Visit ASME OSU on Instagram');
+    featuredLink.removeAttribute('aria-disabled');
+    featuredLink.removeAttribute('tabindex');
+    featuredImage.removeAttribute('src');
+    featuredImage.alt = '';
+    featuredButton.href = ACCOUNT_URL;
+    featuredButton.textContent = 'Visit @asmeohiostate';
+    featuredTitle.textContent = 'See the latest on Instagram.';
+    featuredCaption.textContent = 'The current post could not be loaded. Visit @asmeohiostate for chapter updates, events, and student opportunities.';
+    featuredDate.textContent = 'Instagram';
+  }
+
+  function revealFeatured(featured, featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate) {
+    var feature = document.querySelector('[data-gallery-instagram-feed]');
+    var imageUrl = text(featured.imageUrl, '');
+    var preload;
+
+    if (!imageUrl) {
+      showFeedUnavailable(featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate);
+      return;
+    }
+
+    preload = new Image();
+    preload.onload = function () {
+      var revealed = false;
+      function finishReveal() {
+        if (revealed) return;
+        revealed = true;
+        if (feature) {
+          feature.classList.remove('is-loading');
+          feature.setAttribute('aria-busy', 'false');
+        }
+        setupFeaturedCarousel(featured, featuredLink, featuredImage);
+      }
+
+      featuredLink.href = text(featured.permalink, ACCOUNT_URL);
+      featuredLink.setAttribute('aria-label', text(featured.title, 'View the latest ASME OSU Instagram post'));
+      featuredLink.removeAttribute('aria-disabled');
+      featuredLink.removeAttribute('tabindex');
+      featuredButton.href = text(featured.permalink, ACCOUNT_URL);
+      featuredButton.textContent = 'View featured post';
+      featuredImage.alt = text(featured.alt, text(featured.title, 'Latest ASME OSU Instagram post'));
+      if (Number(featured.imageWidth) > 0) featuredImage.width = Number(featured.imageWidth);
+      if (Number(featured.imageHeight) > 0) featuredImage.height = Number(featured.imageHeight);
+      featuredTitle.textContent = text(featured.title, 'Latest from ASME OSU');
+      featuredCaption.textContent = text(featured.summary, text(featured.caption, 'Follow ASME OSU for chapter updates, events, and student opportunities.'));
+      featuredDate.textContent = shortDate(featured.timestamp);
+      removeWordPressMediaBreaks(featuredLink);
+      featuredImage.addEventListener('load', finishReveal, { once: true });
+      featuredImage.addEventListener('error', function () {
+        showFeedUnavailable(featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate);
+      }, { once: true });
+      featuredImage.src = imageUrl;
+      if (featuredImage.complete && featuredImage.naturalWidth > 0) finishReveal();
+    };
+    preload.onerror = function () {
+      showFeedUnavailable(featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate);
+    };
+    preload.src = imageUrl;
+  }
+
   function renderFeed(feed) {
     if (!feed || !Array.isArray(feed.items) || feed.items.length < 1) return;
 
@@ -189,18 +287,7 @@
 
     if (!featuredLink || !featuredButton || !featuredImage || !featuredTitle || !featuredCaption || !featuredDate || !recentGrid) return;
 
-    featuredLink.href = text(featured.permalink, ACCOUNT_URL);
-    featuredLink.setAttribute('aria-label', text(featured.title, 'View the latest ASME OSU Instagram post'));
-    featuredButton.href = text(featured.permalink, ACCOUNT_URL);
-    featuredImage.src = text(featured.imageUrl, featuredImage.src);
-    featuredImage.alt = text(featured.alt, text(featured.title, 'Latest ASME OSU Instagram post'));
-    if (Number(featured.imageWidth) > 0) featuredImage.width = Number(featured.imageWidth);
-    if (Number(featured.imageHeight) > 0) featuredImage.height = Number(featured.imageHeight);
-    featuredTitle.textContent = text(featured.title, 'Latest from ASME OSU');
-    featuredCaption.textContent = text(featured.summary, text(featured.caption, 'Follow ASME OSU for chapter updates, events, and student opportunities.'));
-    featuredDate.textContent = shortDate(featured.timestamp);
-    removeWordPressMediaBreaks(featuredLink);
-    setupFeaturedCarousel(featured, featuredLink, featuredImage);
+    revealFeatured(featured, featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate);
 
     var recent = feed.items.slice(1, 4);
     if (!recent.length) return;
@@ -211,7 +298,17 @@
   }
 
   function loadInstagramFeed() {
+    var featuredLink = document.getElementById('galleryInstagramFeaturedLink');
+    var featuredButton = document.getElementById('galleryInstagramFeaturedButton');
+    var featuredImage = document.getElementById('galleryInstagramFeaturedImage');
+    var featuredTitle = document.getElementById('gallery-instagram-title');
+    var featuredCaption = document.getElementById('galleryInstagramFeaturedCaption');
+    var featuredDate = document.getElementById('galleryInstagramFeaturedDate');
+
     if (!document.querySelector('[data-gallery-instagram-feed]')) return;
+    if (featuredLink && featuredButton && featuredImage && featuredTitle && featuredCaption && featuredDate) {
+      showFeedLoading(featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate);
+    }
     fetch(FEED_URL, { cache: 'no-store', credentials: 'omit' })
       .then(function (response) {
         if (!response.ok) throw new Error('Instagram feed request failed');
@@ -219,7 +316,9 @@
       })
       .then(renderFeed)
       .catch(function () {
-        /* The static WordPress content is the intentional offline fallback. */
+        if (featuredLink && featuredButton && featuredImage && featuredTitle && featuredCaption && featuredDate) {
+          showFeedUnavailable(featuredLink, featuredButton, featuredImage, featuredTitle, featuredCaption, featuredDate);
+        }
       });
   }
 
