@@ -21031,6 +21031,28 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-feature.is-
   pointer-events: none !important;
 }
 
+/* Hide the legacy WordPress fallback before the integration script can replace it. */
+body #page .asme-gallery-page .gallery-instagram-media[href*="DcZw1nCiX_H"] img,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media[href*="DcZw1nCiX_H"] img {
+  visibility: hidden !important;
+}
+
+body #page .asme-gallery-page .gallery-instagram-media[href*="DcZw1nCiX_H"]::before,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-media[href*="DcZw1nCiX_H"]::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 3 !important;
+  width: 42px !important;
+  height: 42px !important;
+  margin: -21px 0 0 -21px !important;
+  border: 3px solid rgba(15, 52, 96, 0.2) !important;
+  border-top-color: #bb0000 !important;
+  border-radius: 50% !important;
+  animation: asme-instagram-spinner 800ms linear infinite !important;
+}
+
 body #page .asme-gallery-page .gallery-instagram-feature.is-loading .gallery-instagram-media img,
 body #page .asme-gallery-page .gallery-instagram-feature.is-unavailable .gallery-instagram-media img,
 html body #page .entry-content .asme-gallery-page .gallery-instagram-feature.is-loading .gallery-instagram-media img,
