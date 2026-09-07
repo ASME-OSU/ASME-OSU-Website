@@ -41,6 +41,12 @@ test('mobile toggle focuses navigation and Escape closes it',()=>{
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
   assert.equal(button.getAttribute('aria-expanded'),'false');assert.equal(s.d.activeElement,button);s.close();
 });
+test('pointer activation keeps focus on the mobile toggle while the menu remains open',()=>{
+  const s=setup();const button=s.d.querySelector('.asme-hd-menu-toggle');button.focus();
+  button.dispatchEvent(new s.w.MouseEvent('click',{bubbles:true,detail:1}));
+  assert.equal(button.getAttribute('aria-expanded'),'true');assert.equal(s.d.activeElement,button);
+  assert.equal(s.d.querySelector('#asme-site-header').classList.contains('is-menu-open'),true);s.close();
+});
 test('site search focuses input, returns public pages, and closes on Escape',()=>{
   const s=setup();const button=s.d.querySelector('.asme-hd-search-toggle');button.click();const form=s.d.querySelector('#asme-header-search');
   assert.equal(form.hidden,false);assert.equal(form.action,'https://org.osu.edu/asme/');assert.equal(form.method,'get');assert.equal(s.d.activeElement.name,'s');

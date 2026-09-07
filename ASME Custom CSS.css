@@ -22405,6 +22405,13 @@ html body #page .entry-content .asme-cal-page .acp-info-icon svg {
 }
 
 @media (prefers-color-scheme: dark) {
+  body #page .asme-cal-page .acp-view-button.is-active,
+  html body #page .entry-content .asme-cal-page .acp-view-button.is-active {
+    background: #2563eb !important;
+    color: #ffffff !important;
+    box-shadow: 0 5px 12px rgba(37, 99, 235, 0.32) !important;
+  }
+
   body #page .asme-cal-page .acp-header,
   html body #page .entry-content .asme-cal-page .acp-header {
     background:
@@ -22798,6 +22805,13 @@ html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-tie-note {
 }
 
 @media (prefers-color-scheme: dark) {
+  body #page .asme-points-page-v2 .asme-leaderboard-kicker .asme-section-label,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-kicker .asme-section-label,
+  body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-score,
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-score {
+    color: #fda4af !important;
+  }
+
   body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row,
   html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row {
     background: transparent !important;

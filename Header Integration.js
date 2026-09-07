@@ -158,11 +158,14 @@
       var matches = renderSearchResults(searchInput.value);
       if (matches.length === 1) window.location.assign(matches[0].entry.href);
     });
-    menuButton.addEventListener('click', function () {
+    menuButton.addEventListener('click', function (event) {
       setSearch(false);
       var open = menuButton.getAttribute('aria-expanded') !== 'true';
       setMenu(open);
-      if (open) nav.querySelector('a, button').focus();
+      // Touch browsers can blur a link focused from a tap, which triggers the
+      // focusout cleanup below and closes the newly opened panel. Keep pointer
+      // focus on the toggle; keyboard users still enter the navigation directly.
+      if (open && event.detail === 0) nav.querySelector('a, button').focus();
     });
     searchButton.addEventListener('click', function () { setSearch(search.hidden); });
     header.addEventListener('keydown', function (event) {
@@ -181,7 +184,10 @@
         if (!header.contains(document.activeElement)) { setSearch(false); setMenu(false); setMembers(false); }
       }, 0);
     });
-    document.addEventListener('click', function (event) { if(!header.contains(event.target)) { setSearch(false); setMenu(false); setMembers(false); } });
+    function eventIsInsideHeader(event) {
+      return event.composedPath ? event.composedPath().includes(header) : header.contains(event.target);
+    }
+    document.addEventListener('click', function (event) { if(!eventIsInsideHeader(event)) { setSearch(false); setMenu(false); setMembers(false); } });
     narrow.addEventListener('change', function () {
       if (narrow.matches && nav.contains(document.activeElement)) menuButton.focus();
       setMenu(false); setSearch(false);

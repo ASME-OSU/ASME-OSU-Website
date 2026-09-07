@@ -119,6 +119,7 @@
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var RANK_SNAPSHOT_KEY = 'asmeLeaderboardRankSnapshotsV1';
     var members = [];
+    var selectedMember = null;
     var jumpLinks = Array.prototype.slice.call(app.querySelectorAll('.asme-points-jump-nav a[href^="#"]'));
     var jumpSections = jumpLinks.map(function (link) {
       return { link: link, section: document.querySelector(link.getAttribute('href')) };
@@ -394,6 +395,11 @@
 
     function setDashboardState(message, isError) {
       if (!dashboardState) return;
+      if (selectedMember && dashboard && !dashboard.hidden) {
+        dashboardState.hidden = true;
+        dashboardState.textContent = '';
+        return;
+      }
       dashboardState.hidden = false;
       dashboardState.textContent = message;
       dashboardState.classList.toggle('asme-member-dashboard-state--error', Boolean(isError));
@@ -451,6 +457,7 @@
 
     function chooseMember(member, scrollToDashboard) {
       if (!member) return;
+      selectedMember = member;
       if (searchInput) searchInput.value = member.name;
       if (searchHint) searchHint.textContent = 'Showing ' + member.name + ' · Rank #' + member.rank;
       hideSearchResults();
