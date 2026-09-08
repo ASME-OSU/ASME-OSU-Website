@@ -46,19 +46,43 @@
     /* ─────────────────────────────────────────
        1. GALLERY ORIENTATION CLASSES
     ───────────────────────────────────────── */
-    document.querySelectorAll('.asme-gallery-page .gallery-item img, .gallery .gallery-item img').forEach(function (img) {
-      function classifyImage() {
-        var item = img.closest('.gallery-item');
-        if (!item || !img.naturalWidth || !img.naturalHeight) return;
-        var ratio = img.naturalWidth / img.naturalHeight;
-        item.classList.remove('is-portrait', 'is-landscape', 'is-panorama', 'is-square');
-        if (ratio >= 1.75) item.classList.add('is-panorama');
-        else if (ratio >= 1.15) item.classList.add('is-landscape');
-        else if (ratio <= 0.85) item.classList.add('is-portrait');
-        else item.classList.add('is-square');
-      }
-      if (img.complete) classifyImage();
-      else img.addEventListener('load', classifyImage);
+    var galleryRevealObserver = null;
+
+    function classifyGalleryImage(img) {
+      var item = img.closest('.gallery-item');
+      if (!item || !img.naturalWidth || !img.naturalHeight) return;
+      var ratio = img.naturalWidth / img.naturalHeight;
+      item.classList.remove('is-portrait', 'is-landscape', 'is-panorama', 'is-square');
+      if (ratio >= 1.75) item.classList.add('is-panorama');
+      else if (ratio >= 1.15) item.classList.add('is-landscape');
+      else if (ratio <= 0.85) item.classList.add('is-portrait');
+      else item.classList.add('is-square');
+    }
+
+    function initializeGalleryItems(nodes) {
+      var galleryItems = nodes ? Array.prototype.slice.call(nodes) : Array.prototype.slice.call(document.querySelectorAll('.asme-gallery-page .gallery-item, .gallery .gallery-item'));
+      galleryItems.forEach(function (item) {
+        if (!item || !item.matches || !item.matches('.gallery-item')) return;
+        Array.prototype.forEach.call(item.querySelectorAll('img'), function (img) {
+          if (img.dataset.asmeGalleryOrientationReady !== 'true') {
+            img.dataset.asmeGalleryOrientationReady = 'true';
+            img.addEventListener('load', function () { classifyGalleryImage(img); }, { once: true });
+          }
+          if (img.complete) classifyGalleryImage(img);
+        });
+        if (item.dataset.asmeGalleryRevealReady === 'true') return;
+        item.dataset.asmeGalleryRevealReady = 'true';
+        var siblings = Array.prototype.filter.call(item.parentElement ? item.parentElement.children : [], function (sibling) { return sibling.classList && sibling.classList.contains('gallery-item'); });
+        item.classList.add('asme-animate', 'asme-reveal');
+        item.style.setProperty('--asme-delay', Math.min(Math.max(siblings.indexOf(item), 0) * 70, 350) + 'ms');
+        if (reduceMotion || !galleryRevealObserver) item.classList.add('is-visible');
+        else galleryRevealObserver.observe(item);
+      });
+    }
+
+    window.asmeInitializeGalleryItems = initializeGalleryItems;
+    window.addEventListener('asme:gallery-items-added', function (event) {
+      initializeGalleryItems(event.detail && event.detail.items);
     });
 
     /* ─────────────────────────────────────────
@@ -116,7 +140,6 @@
       '.sponsor-section',
       '.sponsor-contact',
       '.gallery-hero',
-      '.asme-gallery-page .gallery-item',
       '.leadership-year',
       '.leader-card',
       '.acp-header',
@@ -152,6 +175,8 @@
       }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
       revealTargets.forEach(function (el) { observer.observe(el); });
     }
+    if (!reduceMotion && 'IntersectionObserver' in window) galleryRevealObserver = observer;
+    initializeGalleryItems();
 
     /* ─────────────────────────────────────────
        4. COUNT-UP ANIMATION

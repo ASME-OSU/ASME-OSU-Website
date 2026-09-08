@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
-import { parseAlbumHtml, reconcile, validateEnumeration } from '../scripts/sync-google-photos.mjs';
+import { parseAlbumHtml, reconcile, requestedImageUrl, validateEnumeration } from '../scripts/sync-google-photos.mjs';
 
 const url = 'https://photos.google.com/share/demo?key=x';
 const fixture = (name) => fs.readFile(path.join('tests/fixtures', name), 'utf8');
@@ -43,4 +43,11 @@ test('reconciliation is stable by source ID and only removes managed records', a
   const changedItems = validateEnumeration(changed, [{ uid: 'first', posterUrl: 'https://lh3.googleusercontent.com/demo/first-new', width: 640, height: 480 }]);
   assert.deepEqual(reconcile({ items: fullItems }, fullItems), { additions: [], removals: [], unchanged: ['first', 'second'] });
   assert.deepEqual(reconcile({ items: fullItems }, changedItems), { additions: [], removals: ['second'], unchanged: ['first'] });
+});
+
+test('downloader requests a bounded full-size representation instead of the default preview', () => {
+  const base = 'https://lh3.googleusercontent.com/pw/example';
+  assert.equal(requestedImageUrl(base, 4000, 3000), `${base}=w2000-h2000`);
+  assert.equal(requestedImageUrl(base, 512, 384), `${base}=w512-h384`);
+  assert.throws(() => requestedImageUrl('https://example.com/not-google', 4000, 3000), /safe sized image URL/);
 });

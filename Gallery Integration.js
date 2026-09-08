@@ -334,6 +334,7 @@
     if (!item || typeof item.id !== 'string' || !safeImageUrl(item.thumbnailUrl) || !safeImageUrl(item.imageUrl)) return;
     if (Array.prototype.some.call(gallery.querySelectorAll('[data-gallery-source="google-photos"]'), function (node) { return node.dataset.galleryId === item.id; })) return;
     var galleryItem = document.createElement('figure');
+    var icon = document.createElement('div');
     var link = document.createElement('a');
     var image = document.createElement('img');
     var label = text(item.alt, 'ASME OSU chapter photo');
@@ -351,8 +352,11 @@
     if (Number(item.width) > 0) image.width = Number(item.width);
     if (Number(item.height) > 0) image.height = Number(item.height);
     link.appendChild(image);
-    galleryItem.appendChild(link);
+    icon.className = 'gallery-icon landscape';
+    icon.appendChild(link);
+    galleryItem.appendChild(icon);
     gallery.appendChild(galleryItem);
+    return galleryItem;
   }
 
   function loadGooglePhotos(gallery, refresh) {
@@ -360,7 +364,11 @@
       .then(function (response) { if (!response.ok) throw new Error('Google Photos feed request failed'); return response.json(); })
       .then(function (feed) {
         if (!feed || feed.schemaVersion !== 1 || !Array.isArray(feed.items)) return;
-        feed.items.forEach(function (item) { addGooglePhoto(item, gallery); });
+        var inserted = feed.items.map(function (item) { return addGooglePhoto(item, gallery); }).filter(Boolean);
+        if (inserted.length) {
+          if (typeof window.asmeInitializeGalleryItems === 'function') window.asmeInitializeGalleryItems(inserted);
+          window.dispatchEvent(new CustomEvent('asme:gallery-items-added', { detail: { items: inserted } }));
+        }
         refresh();
       })
       .catch(function () { /* Archive remains the intentional feed-failure fallback. */ });

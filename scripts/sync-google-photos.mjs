@@ -11,6 +11,9 @@ const OUTPUT = path.resolve('data/google-photos-feed.json');
 const ASSET_DIRECTORY = path.resolve('assets/gallery/google-photos-auto');
 const ASSET_BASE = 'https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto';
 const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
+const LARGE_MAX_DIMENSION = 2000;
+const THUMB_MAX_WIDTH = 640;
+const TRANSFORM_VERSION = 'google-sized-source-webp-v2';
 const USER_AGENT = 'Mozilla/5.0 (compatible; ASME-OSU-gallery-sync/1.0; +https://github.com/ASME-OSU/ASME-OSU-Website)';
 
 function fail(message) { throw new Error(`Google Photos sync: ${message}`); }
@@ -20,6 +23,16 @@ function allowedImageUrl(value) {
     const url = new URL(value);
     return url.protocol === 'https:' && /(^|\.)googleusercontent\.com$/i.test(url.hostname);
   } catch { return false; }
+}
+
+/** Request Google's durable base URL at a bounded, source-appropriate size.
+ * The collector intentionally returns a small preview unless dimensions are
+ * appended, so resize only after downloading this larger representation. */
+export function requestedImageUrl(baseUrl, sourceWidth, sourceHeight) {
+  if (!allowedImageUrl(baseUrl) || !Number.isFinite(sourceWidth) || !Number.isFinite(sourceHeight) || sourceWidth <= 0 || sourceHeight <= 0) fail('could not construct a safe sized image URL.');
+  const width = Math.min(Math.floor(sourceWidth), LARGE_MAX_DIMENSION);
+  const height = Math.min(Math.floor(sourceHeight), LARGE_MAX_DIMENSION);
+  return `${baseUrl}=w${width}-h${height}`;
 }
 
 function jsonValueEnd(text, start) {
@@ -151,19 +164,20 @@ async function buildSnapshot(album, temporaryDirectory) {
   await fs.mkdir(stagedAssets, { recursive: true });
   const items = [];
   for (const source of album.items) {
-    const input = await imageBuffer(source.sourceImageUrl);
-    const hash = crypto.createHash('sha256').update(input).digest('hex').slice(0, 16);
+    const input = await imageBuffer(requestedImageUrl(source.sourceImageUrl, source.width, source.height));
+    const hash = crypto.createHash('sha256').update(TRANSFORM_VERSION).update(input).digest('hex').slice(0, 16);
     const image = sharp(input, { limitInputPixels: 40_000_000, failOn: 'error' }).rotate();
     const metadata = await image.metadata();
     if (!metadata.width || !metadata.height) fail(`photo ${source.id} has invalid dimensions.`);
     const base = `${source.id}-${hash}`;
     const thumb = `${base}-thumb.webp`;
     const large = `${base}-large.webp`;
-    await Promise.all([
-      image.clone().resize({ width: 640, withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(stagedAssets, thumb)),
-      image.clone().resize({ width: 2000, withoutEnlargement: true }).webp({ quality: 88 }).toFile(path.join(stagedAssets, large))
+    const [thumbResult, largeResult] = await Promise.all([
+      image.clone().resize({ width: THUMB_MAX_WIDTH, withoutEnlargement: true }).webp({ quality: 82 }).toFile(path.join(stagedAssets, thumb)),
+      image.clone().resize({ width: LARGE_MAX_DIMENSION, withoutEnlargement: true }).webp({ quality: 88 }).toFile(path.join(stagedAssets, large))
     ]);
-    items.push({ id: source.id, thumbnailUrl: `${ASSET_BASE}/${thumb}`, imageUrl: `${ASSET_BASE}/${large}`, width: metadata.width, height: metadata.height, alt: 'ASME OSU chapter photo', category: 'general', order: source.order });
+    if (!largeResult.width || !largeResult.height || !thumbResult.width || !thumbResult.height) fail(`photo ${source.id} could not be rendered.`);
+    items.push({ id: source.id, thumbnailUrl: `${ASSET_BASE}/${thumb}`, imageUrl: `${ASSET_BASE}/${large}`, width: largeResult.width, height: largeResult.height, alt: 'ASME OSU chapter photo', category: 'general', order: source.order });
   }
   return { stagedAssets, manifest: { schemaVersion: 1, source: 'Google Photos public shared album', albumUrl: SHARE_URL, generatedAt: new Date().toISOString(), items } };
 }
