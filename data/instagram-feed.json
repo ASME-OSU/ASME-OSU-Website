@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-09-04T20:45:55.198Z",
+  "updatedAt": "2026-09-08T21:10:01.287Z",
   "items": [
+    {
+      "id": "DdCYwvBj1xx",
+      "permalink": "https://www.instagram.com/p/DdCYwvBj1xx/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdCYwvBj1xx-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-09-08T18:59:58.000Z",
+      "title": "Ready to strengthen your resume before recruiting season?",
+      "summary": "Join ASME this Thursday for our Resume Review Workshop! Get expert feedback on your resume, ask career-related questions, and learn how to better prepare for internships, co-ops, and full-time opportunities. 📅 Thursday, September 10 ⏰…",
+      "caption": "Ready to strengthen your resume before recruiting season? Join ASME this Thursday for our Resume Review Workshop! Get expert feedback on your resume, ask career-related questions, and learn how to better prepare for internships, co-ops, and full-time opportunities. 📅 Thursday, September 10 ⏰ 5:30–6:30 PM 📍 Scott Lab E141 Bring your resume and come ready to make it stronger. All majors are welcome!",
+      "alt": "Ready to strengthen your resume before recruiting season?"
+    },
     {
       "id": "Dc4JZGjv5MO",
       "permalink": "https://www.instagram.com/p/Dc4JZGjv5MO/",
@@ -68,19 +81,6 @@
       "summary": "Our booth is 508, located in the blue section on the main oval. Stop by to find out more of what we do, sign up for ASME, or just chat! See you there 🔧",
       "caption": "Come see us at the involvement fair this Sunday from 4-7 PM! Our booth is 508, located in the blue section on the main oval. Stop by to find out more of what we do, sign up for ASME, or just chat! See you there 🔧",
       "alt": "Come see us at the involvement fair this Sunday from 4-7 PM!"
-    },
-    {
-      "id": "DcOdL8EFoRr",
-      "permalink": "https://www.instagram.com/p/DcOdL8EFoRr/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcOdL8EFoRr-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-08-19T14:58:08.000Z",
-      "title": "Meet your officers for 2026!",
-      "summary": "We’re here to help you, so feel free to come up to any of us. Also be on the lookout for us at the involvement fair Sunday! ⚙️",
-      "caption": "Meet your officers for 2026! We’re here to help you, so feel free to come up to any of us. Also be on the lookout for us at the involvement fair Sunday! ⚙️",
-      "alt": "Meet your officers for 2026!"
     }
   ]
 }
