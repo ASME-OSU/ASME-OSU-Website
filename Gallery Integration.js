@@ -332,7 +332,17 @@
 
   function addGooglePhoto(item, gallery) {
     if (!item || typeof item.id !== 'string' || !safeImageUrl(item.thumbnailUrl) || !safeImageUrl(item.imageUrl)) return;
-    if (Array.prototype.some.call(gallery.querySelectorAll('[data-gallery-source="google-photos"]'), function (node) { return node.dataset.galleryId === item.id; })) return;
+    var existing = Array.prototype.filter.call(gallery.querySelectorAll('[data-gallery-source="google-photos"]'), function (node) { return node.dataset.galleryId === item.id; })[0];
+    if (existing) {
+      var existingLink = existing.querySelector(':scope > a');
+      if (existingLink) {
+        var existingIcon = document.createElement('div');
+        existingIcon.className = 'gallery-icon landscape';
+        existing.replaceChild(existingIcon, existingLink);
+        existingIcon.appendChild(existingLink);
+      }
+      return existing;
+    }
     var galleryItem = document.createElement('figure');
     var icon = document.createElement('div');
     var link = document.createElement('a');
@@ -374,7 +384,6 @@
           var fragment = document.createDocumentFragment();
           inserted.forEach(function (item) { fragment.appendChild(item); });
           gallery.insertBefore(fragment, gallery.firstChild);
-          if (typeof window.asmeInitializeGalleryItems === 'function') window.asmeInitializeGalleryItems(inserted);
           window.dispatchEvent(new CustomEvent('asme:gallery-items-added', { detail: { items: inserted } }));
         }
         refresh();
