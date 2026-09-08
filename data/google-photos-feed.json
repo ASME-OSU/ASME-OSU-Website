@@ -2,6 +2,47 @@
   "schemaVersion": 1,
   "source": "Google Photos public shared album",
   "albumUrl": "https://photos.app.goo.gl/33pfCCghnJbXPzho9",
-  "generatedAt": null,
-  "items": []
+  "generatedAt": "2026-09-08T12:55:04.582Z",
+  "items": [
+    {
+      "id": "AF1QipNAAAAcACeFq79paEBhtdTF20Fbz41PhxtT2JDX",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipNAAAAcACeFq79paEBhtdTF20Fbz41PhxtT2JDX-9807cc6fd2bc3f00-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipNAAAAcACeFq79paEBhtdTF20Fbz41PhxtT2JDX-9807cc6fd2bc3f00-large.webp",
+      "width": 512,
+      "height": 384,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "order": 1
+    },
+    {
+      "id": "AF1QipOKhSFaqgscwCt-ecWLGBWISkv3Q9dsC2J473CK",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOKhSFaqgscwCt-ecWLGBWISkv3Q9dsC2J473CK-8e17d8aa250067c2-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOKhSFaqgscwCt-ecWLGBWISkv3Q9dsC2J473CK-8e17d8aa250067c2-large.webp",
+      "width": 512,
+      "height": 384,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "order": 2
+    },
+    {
+      "id": "AF1QipPdAPEg1yMxvEiob7JGteqwkhHSGCOWSsEppegR",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipPdAPEg1yMxvEiob7JGteqwkhHSGCOWSsEppegR-b6b48ab165d9c243-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipPdAPEg1yMxvEiob7JGteqwkhHSGCOWSsEppegR-b6b48ab165d9c243-large.webp",
+      "width": 512,
+      "height": 384,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "order": 3
+    },
+    {
+      "id": "AF1QipOVHctZbz7GkYNPTvX2EQUrHpuOYpDuvAAIxqPg",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOVHctZbz7GkYNPTvX2EQUrHpuOYpDuvAAIxqPg-c76141dfe85e828e-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOVHctZbz7GkYNPTvX2EQUrHpuOYpDuvAAIxqPg-c76141dfe85e828e-large.webp",
+      "width": 512,
+      "height": 384,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "order": 4
+    }
+  ]
 }
