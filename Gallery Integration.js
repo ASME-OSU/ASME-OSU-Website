@@ -339,6 +339,12 @@
     var image = document.createElement('img');
     var label = text(item.alt, 'ASME OSU chapter photo');
     galleryItem.className = 'gallery-item gallery-item--google-photos';
+    var width = Number(item.width);
+    var height = Number(item.height);
+    if (width > 0 && height > 0) {
+      var ratio = width / height;
+      galleryItem.classList.add(ratio >= 1.75 ? 'is-panorama' : ratio >= 1.15 ? 'is-landscape' : ratio <= 0.85 ? 'is-portrait' : 'is-square');
+    }
     galleryItem.dataset.gallerySource = 'google-photos';
     galleryItem.dataset.galleryId = item.id;
     galleryItem.dataset.galleryCategory = text(item.category, 'general').toLowerCase();
@@ -349,13 +355,12 @@
     image.alt = label;
     image.loading = 'lazy';
     image.decoding = 'async';
-    if (Number(item.width) > 0) image.width = Number(item.width);
-    if (Number(item.height) > 0) image.height = Number(item.height);
+    if (width > 0) image.width = width;
+    if (height > 0) image.height = height;
     link.appendChild(image);
     icon.className = 'gallery-icon landscape';
     icon.appendChild(link);
     galleryItem.appendChild(icon);
-    gallery.appendChild(galleryItem);
     return galleryItem;
   }
 
@@ -366,6 +371,9 @@
         if (!feed || feed.schemaVersion !== 1 || !Array.isArray(feed.items)) return;
         var inserted = feed.items.map(function (item) { return addGooglePhoto(item, gallery); }).filter(Boolean);
         if (inserted.length) {
+          var fragment = document.createDocumentFragment();
+          inserted.forEach(function (item) { fragment.appendChild(item); });
+          gallery.insertBefore(fragment, gallery.firstChild);
           if (typeof window.asmeInitializeGalleryItems === 'function') window.asmeInitializeGalleryItems(inserted);
           window.dispatchEvent(new CustomEvent('asme:gallery-items-added', { detail: { items: inserted } }));
         }
@@ -417,8 +425,7 @@
       }
     }
 
-    items().forEach(function (item, index) {
-      if (item.dataset.gallerySource === 'google-photos') return;
+    items().filter(function (item) { return item.dataset.gallerySource !== 'google-photos'; }).forEach(function (item, index) {
       var metadata = archiveItems[index] || { label: 'ASME OSU chapter photo', category: 'outreach' };
       var link = item.querySelector('a');
       var image = item.querySelector('img');

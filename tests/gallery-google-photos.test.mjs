@@ -18,9 +18,9 @@ test('Google Photos feed joins archive asynchronously without relabeling archive
   await new Promise((resolve) => setTimeout(resolve, 0));
   const items = window.document.querySelectorAll('.gallery-item');
   assert.equal(items.length, 14);
-  assert.equal(items[0].dataset.gallerySource, 'wordpress');
-  assert.equal(items[13].dataset.galleryId, 'stable-photo');
-  assert.ok(items[13].querySelector(':scope > .gallery-icon > a > img'), 'imported photo uses the same wrapper contract as a WordPress gallery item');
+  assert.equal(items[0].dataset.galleryId, 'stable-photo');
+  assert.equal(items[1].dataset.gallerySource, 'wordpress');
+  assert.ok(items[0].querySelector(':scope > .gallery-icon > a > img'), 'imported photo uses the same wrapper contract as a WordPress gallery item');
   assert.equal(window.document.querySelector('[data-gallery-filter="general"]').textContent, 'General');
   window.document.querySelector('[data-gallery-filter="general"]').click();
   assert.equal(window.document.querySelectorAll('.gallery-item:not(.is-filtered-out)').length, 1);
@@ -43,5 +43,6 @@ test('delayed Google Photos insertion is wrapper-correct and initializes each ne
   assert.equal(imported.querySelectorAll(':scope > .gallery-icon').length, 1);
   assert.equal(imported.querySelectorAll(':scope > .gallery-icon > a > img').length, 1);
   assert.equal(initialized.length, 1);
+  assert.equal(window.document.querySelector('.gallery-item').dataset.galleryId, 'new', 'newer album images lead the archive while the Instagram sections remain outside it');
   assert.equal(window.document.querySelectorAll('[data-gallery-id="new"]').length, 1, 'a repeated insertion never duplicates the source ID');
 });
