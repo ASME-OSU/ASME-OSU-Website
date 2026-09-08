@@ -180,6 +180,15 @@ async function publishSnapshot(snapshot, temporaryDirectory) {
   for (const file of await fs.readdir(ASSET_DIRECTORY)) if (!referenced.has(file)) await fs.rm(path.join(ASSET_DIRECTORY, file));
 }
 
+function snapshotContent(snapshot) {
+  return JSON.stringify({
+    schemaVersion: snapshot.schemaVersion,
+    source: snapshot.source,
+    albumUrl: snapshot.albumUrl,
+    items: snapshot.items
+  });
+}
+
 export async function main(argv = process.argv.slice(2)) {
   const dryRun = argv.includes('--dry-run');
   const album = await fetchAlbum();
@@ -192,7 +201,14 @@ export async function main(argv = process.argv.slice(2)) {
     if (confirmation.items.map((item) => item.id).join(',') !== album.items.map((item) => item.id).join(',')) fail('second complete read did not confirm the unusual removal; preserving the snapshot.');
   }
   const temporaryDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'asme-google-photos-'));
-  try { await publishSnapshot(await buildSnapshot(album, temporaryDirectory), temporaryDirectory); }
+  try {
+    const snapshot = await buildSnapshot(album, temporaryDirectory);
+    if (snapshotContent(snapshot.manifest) === snapshotContent(previous)) {
+      console.log('Google Photos gallery content is already current; no snapshot files changed.');
+      return;
+    }
+    await publishSnapshot(snapshot, temporaryDirectory);
+  }
   finally { await fs.rm(temporaryDirectory, { recursive: true, force: true }); }
   console.log(`Published ${album.items.length} photo(s): ${changes.additions.length} added, ${changes.removals.length} removed.`);
 }
