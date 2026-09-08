@@ -356,19 +356,22 @@
        8. GALLERY LIGHTBOX
     ───────────────────────────────────────── */
     (function () {
-      var galleryItems = Array.prototype.slice.call(document.querySelectorAll([
+      function currentGalleryItems() {
+        return Array.prototype.slice.call(document.querySelectorAll([
         '.asme-gallery-page .gallery-item a',
         '.asme-gallery-page .gallery-icon a',
         '.gallery .gallery-item a',
         '.gallery .gallery-icon a',
         '.wp-block-gallery a[href]',
         '.wp-block-image a[href]'
-      ].join(','))).filter(function (link) {
+        ].join(','))).filter(function (link) {
         var href = link.getAttribute('href') || '';
         var hasImage = !!link.querySelector('img');
         var isImageFile = /\.(jpe?g|png|gif|webp|avif|heic)(\?.*)?$/i.test(href);
         return hasImage && isImageFile;
-      });
+        });
+      }
+      var galleryItems = currentGalleryItems();
 
       if (!galleryItems.length) return;
 
@@ -403,8 +406,12 @@
       var contentPanel = lightbox.querySelector('.asme-lightbox-content');
       var currentIndex = 0;
       var imageRequestId = 0;
+      var returnFocus = null;
 
       function updateImage(index, direction) {
+        galleryItems = currentGalleryItems().filter(function (link) {
+          return !link.closest('.gallery-item') || !link.closest('.gallery-item').classList.contains('is-filtered-out');
+        });
         if (index < 0 || index >= galleryItems.length) return;
         currentIndex = index;
         var requestId  = ++imageRequestId;
@@ -467,19 +474,28 @@
         preloader.src = imgUrl;
       }
 
-      galleryItems.forEach(function (link, index) {
-        link.addEventListener('click', function (e) {
-          e.preventDefault();
-          updateImage(index, 0);
-          lightbox.classList.add('active');
-          document.body.classList.add('asme-lightbox-open-body');
-          closeBtn.focus();
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest && e.target.closest('.asme-gallery-page .gallery-item a, .asme-gallery-page .gallery-icon a, .gallery .gallery-item a, .gallery .gallery-icon a, .wp-block-gallery a[href], .wp-block-image a[href]');
+        if (!link || !link.querySelector('img')) return;
+        var href = link.getAttribute('href') || '';
+        if (!/\.(jpe?g|png|gif|webp|avif|heic)(\?.*)?$/i.test(href)) return;
+        galleryItems = currentGalleryItems().filter(function (candidate) {
+          return !candidate.closest('.gallery-item') || !candidate.closest('.gallery-item').classList.contains('is-filtered-out');
         });
+        var index = galleryItems.indexOf(link);
+        if (index < 0) return;
+        e.preventDefault();
+        returnFocus = link;
+        updateImage(index, 0);
+        lightbox.classList.add('active');
+        document.body.classList.add('asme-lightbox-open-body');
+        closeBtn.focus();
       });
 
       function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.classList.remove('asme-lightbox-open-body');
+        if (returnFocus && document.contains(returnFocus)) returnFocus.focus();
       }
 
       closeBtn.addEventListener('click', closeLightbox);

@@ -2,6 +2,7 @@
   'use strict';
 
   var FEED_URL = 'https://asme-osu.github.io/ASME-OSU-Website/data/instagram-feed.json';
+  var GOOGLE_PHOTOS_FEED_URL = 'https://asme-osu.github.io/ASME-OSU-Website/data/google-photos-feed.json';
   var ACCOUNT_URL = 'https://www.instagram.com/asmeohiostate/';
 
   var archiveItems = [
@@ -322,14 +323,94 @@
       });
   }
 
+  function safeImageUrl(value) {
+    try {
+      var url = new URL(value, window.location.href);
+      return url.protocol === 'https:' && /(^|\.)github\.io$/i.test(url.hostname);
+    } catch (error) { return false; }
+  }
+
+  function addGooglePhoto(item, gallery) {
+    if (!item || typeof item.id !== 'string' || !safeImageUrl(item.thumbnailUrl) || !safeImageUrl(item.imageUrl)) return;
+    if (Array.prototype.some.call(gallery.querySelectorAll('[data-gallery-source="google-photos"]'), function (node) { return node.dataset.galleryId === item.id; })) return;
+    var galleryItem = document.createElement('figure');
+    var link = document.createElement('a');
+    var image = document.createElement('img');
+    var label = text(item.alt, 'ASME OSU chapter photo');
+    galleryItem.className = 'gallery-item gallery-item--google-photos';
+    galleryItem.dataset.gallerySource = 'google-photos';
+    galleryItem.dataset.galleryId = item.id;
+    galleryItem.dataset.galleryCategory = text(item.category, 'general').toLowerCase();
+    link.href = item.imageUrl;
+    link.dataset.galleryLabel = label;
+    link.setAttribute('aria-label', 'View photo: ' + label);
+    image.src = item.thumbnailUrl;
+    image.alt = label;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    if (Number(item.width) > 0) image.width = Number(item.width);
+    if (Number(item.height) > 0) image.height = Number(item.height);
+    link.appendChild(image);
+    galleryItem.appendChild(link);
+    gallery.appendChild(galleryItem);
+  }
+
+  function loadGooglePhotos(gallery, refresh) {
+    fetch(GOOGLE_PHOTOS_FEED_URL, { cache: 'no-store', credentials: 'omit' })
+      .then(function (response) { if (!response.ok) throw new Error('Google Photos feed request failed'); return response.json(); })
+      .then(function (feed) {
+        if (!feed || feed.schemaVersion !== 1 || !Array.isArray(feed.items)) return;
+        feed.items.forEach(function (item) { addGooglePhoto(item, gallery); });
+        refresh();
+      })
+      .catch(function () { /* Archive remains the intentional feed-failure fallback. */ });
+  }
+
   function initArchive() {
     var gallery = document.querySelector('.asme-gallery-page .gallery');
     var filters = Array.prototype.slice.call(document.querySelectorAll('[data-gallery-filter]'));
     var status = document.getElementById('galleryArchiveStatus');
     if (!gallery) return;
 
-    var items = Array.prototype.slice.call(gallery.querySelectorAll('.gallery-item'));
-    items.forEach(function (item, index) {
+    var activeFilter = 'all';
+    function items() { return Array.prototype.slice.call(gallery.querySelectorAll('.gallery-item')); }
+    function update(selected) {
+      activeFilter = selected || activeFilter;
+      var currentItems = items();
+      var visibleItems = [];
+      var hasGeneral = currentItems.some(function (item) { return item.dataset.galleryCategory === 'general'; });
+      var general = document.querySelector('[data-gallery-filter="general"]');
+      if (hasGeneral && !general) {
+        general = document.createElement('button');
+        general.className = 'gallery-archive-filter';
+        general.type = 'button';
+        general.dataset.galleryFilter = 'general';
+        general.setAttribute('aria-pressed', 'false');
+        general.textContent = 'General';
+        if (filters[0] && filters[0].parentNode) filters[0].parentNode.appendChild(general);
+        filters.push(general);
+        general.addEventListener('click', function () { update('general'); });
+      }
+      currentItems.forEach(function (item) {
+        var visible = activeFilter === 'all' || item.dataset.galleryCategory === activeFilter;
+        item.classList.toggle('is-filtered-out', !visible);
+        item.classList.remove('is-last-visible');
+        if (visible) visibleItems.push(item);
+      });
+      if (visibleItems.length) visibleItems[visibleItems.length - 1].classList.add('is-last-visible');
+      filters.forEach(function (button) {
+        var selectedButton = button.dataset.galleryFilter === activeFilter;
+        button.classList.toggle('is-active', selectedButton);
+        button.setAttribute('aria-pressed', selectedButton ? 'true' : 'false');
+      });
+      if (status) {
+        var label = activeFilter === 'all' ? '' : ' ' + activeFilter;
+        status.textContent = visibleItems.length + label + (visibleItems.length === 1 ? ' photo' : ' photos');
+      }
+    }
+
+    items().forEach(function (item, index) {
+      if (item.dataset.gallerySource === 'google-photos') return;
       var metadata = archiveItems[index] || { label: 'ASME OSU chapter photo', category: 'outreach' };
       var link = item.querySelector('a');
       var image = item.querySelector('img');
@@ -339,38 +420,15 @@
         link.setAttribute('aria-label', 'View photo: ' + metadata.label);
       }
       if (image && !image.alt) image.alt = metadata.label;
-      item.classList.toggle('is-last-visible', index === items.length - 1);
+      item.dataset.gallerySource = 'wordpress';
     });
-    if (status) status.textContent = items.length + (items.length === 1 ? ' photo' : ' photos');
-
     filters.forEach(function (button) {
       button.addEventListener('click', function () {
-        var selected = button.dataset.galleryFilter || 'all';
-        var visibleCount = 0;
-        var visibleItems = [];
-        filters.forEach(function (filter) {
-          var active = filter === button;
-          filter.classList.toggle('is-active', active);
-          filter.setAttribute('aria-pressed', active ? 'true' : 'false');
-        });
-        items.forEach(function (item) {
-          var visible = selected === 'all' || item.dataset.galleryCategory === selected;
-          item.classList.toggle('is-filtered-out', !visible);
-          item.classList.remove('is-last-visible');
-          if (visible) {
-            visibleCount += 1;
-            visibleItems.push(item);
-          }
-        });
-        if (visibleItems.length) visibleItems[visibleItems.length - 1].classList.add('is-last-visible');
-        if (status) {
-          var label = button.textContent.trim().toLowerCase();
-          status.textContent = selected === 'all'
-            ? visibleCount + (visibleCount === 1 ? ' photo' : ' photos')
-            : visibleCount + ' ' + label + (visibleCount === 1 ? ' photo' : ' photos');
-        }
+        update(button.dataset.galleryFilter || 'all');
       });
     });
+    update('all');
+    loadGooglePhotos(gallery, function () { update(activeFilter); });
   }
 
   function init() {
