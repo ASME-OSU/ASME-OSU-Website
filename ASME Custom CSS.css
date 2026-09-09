@@ -23593,3 +23593,18 @@ html body #page .entry-content .asme-sponsor-page {
     margin-top: -12px !important;
   }
 }
+
+/* Keep the Google Calendar note directly beneath the subscribe button at every breakpoint. */
+body #page .asme-cal-page .acp-header-right,
+html body #page .entry-content .asme-cal-page .acp-header-right {
+  align-items: center !important;
+  text-align: center !important;
+}
+
+body #page .asme-cal-page .acp-subscribe-note,
+html body #page .entry-content .asme-cal-page .acp-subscribe-note {
+  align-self: center !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center !important;
+}
