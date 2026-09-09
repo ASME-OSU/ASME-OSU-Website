@@ -23328,7 +23328,12 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
     align-items: center !important;
     justify-content: center !important;
   }
-  body .asme-footer-v2 .asme-footer-links li a > span { grid-column: 2 !important; text-align: center !important; }
+  body .asme-footer-v2 .asme-footer-links li a > span {
+    grid-column: 2 !important;
+    min-width: max-content !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+  }
   body .asme-footer-v2 .asme-footer-links li a > svg { grid-column: 3 !important; }
   body .asme-footer-v2 .asme-footer-connect li a {
     display: grid !important;
