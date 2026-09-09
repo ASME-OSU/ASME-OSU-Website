@@ -30,3 +30,19 @@ test('upgrades the legacy footer while retaining destinations and adding GroupMe
   assert.equal(footer.querySelector('.asme-footer-bottom').textContent.trim(), '© 2026 ASME Ohio State University Chapter. All rights reserved.');
   dom.window.close();
 });
+
+test('normalizes pre-existing v2 Quick Link labels for centered layout', () => {
+  const dom = new JSDOM(`
+    <footer><div class="asme-footer-inner asme-footer-v2"><nav class="asme-footer-links"><ul>
+      <li><a href="https://example.test/join">Join ASME <svg viewBox="0 0 24 24" aria-hidden="true"></svg></a></li>
+    </ul></nav></div></footer>`, { url: 'https://org.osu.edu/asme/', runScripts: 'outside-only' });
+  const { window } = dom;
+  window.eval(script);
+  window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
+
+  const link = window.document.querySelector('.asme-footer-links a');
+  assert.equal(link.querySelector(':scope > span').textContent, 'Join ASME');
+  assert.equal(link.firstChild, link.querySelector('span'));
+  assert.equal(link.lastChild.tagName.toLowerCase(), 'svg');
+  dom.window.close();
+});

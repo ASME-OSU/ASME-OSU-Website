@@ -21,9 +21,31 @@
     return svg(markup);
   }
 
+  function normalizeQuickLinkLabels(root) {
+    Array.prototype.forEach.call(root.querySelectorAll('.asme-footer-links li a'), function (anchor) {
+      if (Array.prototype.some.call(anchor.children, function (child) { return child.tagName === 'SPAN'; })) return;
+      var icon = Array.prototype.find.call(anchor.children, function (child) { return child.tagName.toLowerCase() === 'svg'; });
+      if (!icon) return;
+      var label = Array.prototype.reduce.call(anchor.childNodes, function (text, node) {
+        return text + (node.nodeType === 3 ? node.textContent : '');
+      }, '').trim();
+      if (!label) return;
+      var labelElement = document.createElement('span');
+      labelElement.textContent = label;
+      anchor.insertBefore(labelElement, icon);
+      Array.prototype.forEach.call(anchor.childNodes, function (node) {
+        if (node.nodeType === 3) anchor.removeChild(node);
+      });
+    });
+  }
+
   function start() {
     var root = document.querySelector('.asme-footer-inner');
-    if (!root || root.classList.contains('asme-footer-v2')) return;
+    if (!root) return;
+    if (root.classList.contains('asme-footer-v2')) {
+      normalizeQuickLinkLabels(root);
+      return;
+    }
 
     var headerLogo = document.querySelector('#masthead .site-logo img, #asme-site-header .asme-hd-logo img');
     var logo = root.querySelector('img');
