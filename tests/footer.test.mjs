@@ -20,6 +20,7 @@ test('upgrades the legacy footer while retaining destinations and adding GroupMe
   assert.ok(footer);
   assert.equal(footer.querySelector('.asme-footer-logo img').src, 'https://example.test/logo.png');
   assert.equal(footer.querySelector('.asme-footer-links a').href, 'https://example.test/join');
+  assert.equal(footer.querySelector('.asme-footer-links a > span').textContent, 'Join ASME');
   assert.equal(footer.querySelectorAll('.asme-footer-connect a').length, 4);
   assert.equal(footer.querySelector('.asme-footer-connect a[aria-label$="GroupMe"]').href, 'https://groupme.com/join_group/95825283/iaBgk5Ld');
   assert.match(footer.querySelector('.asme-footer-contact').textContent, /Scott Laboratory/);
