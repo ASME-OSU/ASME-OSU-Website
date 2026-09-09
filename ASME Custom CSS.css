@@ -23312,29 +23312,30 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
   body .asme-footer-v2 .asme-footer-contact { justify-items: center !important; }
   body .asme-footer-v2 .asme-footer-contact p {
     display: grid !important;
-    grid-template-columns: 22px minmax(0, 1fr) 22px !important;
+    grid-template-columns: 22px minmax(0, max-content) 22px !important;
     column-gap: 13px !important;
     align-items: start !important;
+    justify-content: center !important;
     width: 100% !important;
     text-align: center !important;
   }
   body .asme-footer-v2 .asme-footer-contact p > :first-child { grid-column: 1 !important; }
-  body .asme-footer-v2 .asme-footer-contact p > :nth-child(2) { grid-column: 2 !important; }
+  body .asme-footer-v2 .asme-footer-contact p > :nth-child(2) { grid-column: 2 !important; min-width: 0 !important; }
   body .asme-footer-v2 .asme-footer-links li a {
     display: grid !important;
-    grid-template-columns: 17px minmax(0, 1fr) 17px !important;
+    grid-template-columns: 17px max-content 17px !important;
     column-gap: 16px !important;
     align-items: center !important;
-    justify-content: normal !important;
+    justify-content: center !important;
   }
   body .asme-footer-v2 .asme-footer-links li a > span { grid-column: 2 !important; text-align: center !important; }
   body .asme-footer-v2 .asme-footer-links li a > svg { grid-column: 3 !important; }
   body .asme-footer-v2 .asme-footer-connect li a {
     display: grid !important;
-    grid-template-columns: 22px minmax(0, 1fr) 22px !important;
+    grid-template-columns: 22px minmax(0, max-content) 22px !important;
     column-gap: 14px !important;
     align-items: center !important;
-    justify-content: normal !important;
+    justify-content: center !important;
     width: 100% !important;
   }
   body .asme-footer-v2 .asme-footer-connect li a > :first-child { grid-column: 1 !important; }
