@@ -12843,6 +12843,84 @@ body #page .asme-sponsors-page .sponsors-grid-scarlet {
   }
 }
 
+/* WORDPRESS MOBILE SPACING DEFENSES
+   The Classic Editor's wpautop pass can inject empty paragraphs and breaks
+   directly into component grids and flex stacks.  Those nodes become layout
+   items on the public page, even though they are absent from the source HTML.
+   Keep this list intentionally explicit: content paragraphs, inline address
+   breaks, card padding, and horizontal swipe rails must remain untouched. */
+body #page .asme-about-page .about-pillars > p:empty,
+body #page .asme-about-page .about-photo-strip > p:empty,
+body #page .asme-about-page .about-stats-strip > p:empty,
+body #page .asme-about-page .about-semester-grid > p:empty,
+body #page .asme-about-page .about-award-inner > p:empty,
+body #page .asme-about-page .about-section-heading > p:empty,
+body #page .asme-about-page .about-hero-actions > br,
+body #page .asme-about-page .about-hero-badges > br,
+body #page .asme-about-page .about-cta-buttons > br,
+body #page .asme-home .ah-cards-grid > p:empty,
+body #page .asme-home .ah-status-row > br,
+body #page .asme-home .ah-btns > br,
+body #page .asme-home .ah-stats > p:empty,
+body #page .asme-cal-page .acp-info-strip > p:empty,
+body #page .asme-cal-page .acp-header-right > p:empty,
+body #page .asme-cal-page .acp-info-item > p:empty,
+body #page .asme-cal-page .acp-cal-identity > br,
+body #page .asme-cal-page .acp-view-switch > br,
+body #page .asme-gallery-page .gallery-instagram-actions > br,
+body #page .asme-gallery-page .gallery-instagram-copy > p:empty,
+body #page .asme-gallery-page .gallery-archive-filters > br,
+body #page .asme-gallery-page .gallery-instagram-post-card > br,
+body #page .asme-gallery-page .gallery-instagram-post-copy > br,
+body #page .asme-gallery-page .gallery-instagram-post-image > br,
+body #page .asme-sponsor-page .sponsor-form-row > p:empty,
+body #page .asme-sponsor-page .sponsor-form-group > br,
+body #page .asme-sponsor-page .sponsor-tier-heading > p:empty,
+body #page .asme-members-page .asme-member-cta-actions > br,
+body #page .asme-sponsors-page .sponsors-section-header > p:empty,
+body #page .asme-sponsors-page .sponsors-tier-block--brutus > p:empty,
+html body #page .entry-content .asme-about-page .about-pillars > p:empty,
+html body #page .entry-content .asme-about-page .about-photo-strip > p:empty,
+html body #page .entry-content .asme-about-page .about-stats-strip > p:empty,
+html body #page .entry-content .asme-about-page .about-semester-grid > p:empty,
+html body #page .entry-content .asme-about-page .about-award-inner > p:empty,
+html body #page .entry-content .asme-about-page .about-section-heading > p:empty,
+html body #page .entry-content .asme-about-page .about-hero-actions > br,
+html body #page .entry-content .asme-about-page .about-hero-badges > br,
+html body #page .entry-content .asme-about-page .about-cta-buttons > br,
+html body #page .entry-content .asme-home .ah-cards-grid > p:empty,
+html body #page .entry-content .asme-home .ah-status-row > br,
+html body #page .entry-content .asme-home .ah-btns > br,
+html body #page .entry-content .asme-home .ah-stats > p:empty,
+html body #page .entry-content .asme-cal-page .acp-info-strip > p:empty,
+html body #page .entry-content .asme-cal-page .acp-header-right > p:empty,
+html body #page .entry-content .asme-cal-page .acp-info-item > p:empty,
+html body #page .entry-content .asme-cal-page .acp-cal-identity > br,
+html body #page .entry-content .asme-cal-page .acp-view-switch > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-actions > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-copy > p:empty,
+html body #page .entry-content .asme-gallery-page .gallery-archive-filters > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-copy > br,
+html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image > br,
+html body #page .entry-content .asme-sponsor-page .sponsor-form-row > p:empty,
+html body #page .entry-content .asme-sponsor-page .sponsor-form-group > br,
+html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading > p:empty,
+html body #page .entry-content .asme-members-page .asme-member-cta-actions > br,
+html body #page .entry-content .asme-sponsors-page .sponsors-section-header > p:empty,
+html body #page .entry-content .asme-sponsors-page .sponsors-tier-block--brutus > p:empty {
+  display: none !important;
+}
+
+/* The public Sponsor ASME form kept two narrow columns at phone widths after
+   a later page-specific rule overrode the older generic mobile declaration. */
+@media (max-width: 600px) {
+  body #page .asme-sponsor-page .sponsor-form-row,
+  html body #page .entry-content .asme-sponsor-page .sponsor-form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 640px) {
   body #page .asme-sponsors-page .sponsor-card-primary {
     grid-template-columns: 92px minmax(0, 1fr) !important;
