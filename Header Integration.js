@@ -5,6 +5,7 @@
     About: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.1"/>',
     Join: '<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m3-13v6m-3-3h6"/>',
     Events: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/>',
+    Corporate: '<rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18m-11 0v2h4v-2"/>',
     Gallery: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="m21 15-5-5L5 21"/>',
     Leadership: '<path d="M8 3h8v7a4 4 0 0 1-8 0Zm0 2H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v5m-5 2h10"/>',
     Members: '<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/>',
@@ -47,7 +48,7 @@
       var a = li.querySelector(':scope > a');
       if (a) entries.set(label(a), { li:li, link:a });
     });
-    var order = ['Home', 'About', 'Join', 'Events', 'Gallery', 'Leadership', 'Members'];
+    var order = ['Home', 'About', 'Join', 'Events', 'Corporate', 'Gallery', 'Leadership', 'Members'];
     if (!order.every(function (name) { return entries.has(name); })) { restoreOriginalHeader(); return; }
     var header = template.content.firstElementChild.cloneNode(true);
     var brand = header.querySelector('.asme-hd-brand');
@@ -58,8 +59,7 @@
     header.querySelector('.asme-hd-logo').appendChild(image);
     header.querySelector('.asme-hd-join').href = entries.get('Join').link.href;
     var list = header.querySelector('.asme-hd-links');
-    var disclosure;
-    var submenu;
+    var openSubmenu;
     var path = window.location.pathname.replace(/\/$/, '') || '/';
     function isCurrent(link) { return link.getAttribute('aria-current') === 'page' || ((new URL(link.href).pathname.replace(/\/$/, '') || '/') === path && !link.getAttribute('href').startsWith('#')); }
     order.forEach(function (name) {
@@ -67,24 +67,26 @@
       var destination = entry.link;
       if (name === 'Events') destination = Array.from(entry.li.querySelectorAll('ul a')).find(function (a) { return label(a) === 'Calendar'; }) || destination;
       var childList = entry.li.querySelector(':scope > ul');
-      var children = name === 'Members' && childList ? Array.from(childList.querySelectorAll('a')) : [];
+      var children = (name === 'Corporate' || name === 'Members') && childList ? Array.from(childList.querySelectorAll('a')) : [];
       var item = document.createElement('li'); item.className = 'asme-hd-item';
       var control = document.createElement(children.length ? 'button' : 'a');
       control.className = 'asme-hd-link';
       control.appendChild(icon(name));
       var text = document.createElement('span'); text.className = 'asme-hd-link-label'; text.textContent = name; control.appendChild(text);
       if (children.length) {
-        control.type = 'button'; control.setAttribute('aria-expanded', 'false'); control.setAttribute('aria-controls', 'asme-header-members'); text.appendChild(icon('chevron'));
-        submenu = document.createElement('ul'); submenu.id = 'asme-header-members'; submenu.className = 'asme-hd-submenu'; submenu.hidden = true;
+        var submenuId = 'asme-header-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        control.type = 'button'; control.setAttribute('aria-expanded', 'false'); control.setAttribute('aria-controls', submenuId); text.appendChild(icon('chevron'));
+        var submenu = document.createElement('ul'); submenu.id = submenuId; submenu.className = 'asme-hd-submenu'; submenu.hidden = true;
         children.forEach(function (link) {
           var li = document.createElement('li'), a = document.createElement('a');
           a.href = link.href; a.textContent = label(link);
           if (isCurrent(link)) { a.setAttribute('aria-current', 'page'); control.classList.add('is-active'); }
           li.appendChild(a); submenu.appendChild(li);
         });
-        disclosure = control;
-        control.addEventListener('click', function () { setMembers(submenu.hidden); });
-        control.addEventListener('keydown', function (event) { if(event.key === 'ArrowDown') { event.preventDefault(); setMembers(true); submenu.querySelector('a').focus(); } });
+        (function (control, submenu) {
+          control.addEventListener('click', function () { setSubmenu(control, submenu, submenu.hidden); });
+          control.addEventListener('keydown', function (event) { if(event.key === 'ArrowDown') { event.preventDefault(); setSubmenu(control, submenu, true); submenu.querySelector('a').focus(); } });
+        }(control, submenu));
       } else {
         control.href = destination.href;
         if (isCurrent(destination)) { control.classList.add('is-active'); control.setAttribute('aria-current', 'page'); }
@@ -139,17 +141,27 @@
       searchResults.hidden = false;
       return matches;
     }
-    function setMembers(open) { if (!submenu) return; submenu.hidden = !open; disclosure.setAttribute('aria-expanded', String(open)); }
+    function setSubmenu(control, submenu, open) {
+      if (!submenu) return;
+      if (open && openSubmenu && openSubmenu.submenu !== submenu) {
+        openSubmenu.submenu.hidden = true;
+        openSubmenu.control.setAttribute('aria-expanded', 'false');
+      }
+      submenu.hidden = !open;
+      control.setAttribute('aria-expanded', String(open));
+      openSubmenu = open ? { control:control, submenu:submenu } : (openSubmenu && openSubmenu.submenu === submenu ? null : openSubmenu);
+    }
+    function closeSubmenus() { if (openSubmenu) setSubmenu(openSubmenu.control, openSubmenu.submenu, false); }
     function setMenu(open) {
       if (open) header.classList.remove('asme-header-hidden');
       header.classList.toggle('is-menu-open', open);
       menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); menuButton.replaceChildren(icon(open ? 'close' : 'menu'));
-      if (!open) setMembers(false);
+      if (!open) closeSubmenus();
     }
     function setSearch(open) {
       if (open) header.classList.remove('asme-header-hidden');
       search.hidden = !open; searchButton.setAttribute('aria-expanded', String(open));
-      if (open) { setMenu(false); setMembers(false); searchInput.focus(); }
+      if (open) { setMenu(false); closeSubmenus(); searchInput.focus(); }
       else { searchInput.value = ''; clearSearchResults(); }
     }
     searchInput.addEventListener('input', function () { renderSearchResults(searchInput.value); });
@@ -171,7 +183,7 @@
     header.addEventListener('keydown', function (event) {
       if (event.key !== 'Escape') return;
       if (!search.hidden) { setSearch(false); searchButton.focus(); }
-      else if (submenu && !submenu.hidden) { setMembers(false); disclosure.focus(); }
+      else if (openSubmenu) { var activeSubmenu = openSubmenu; setSubmenu(activeSubmenu.control, activeSubmenu.submenu, false); activeSubmenu.control.focus(); }
       else if (header.classList.contains('is-menu-open')) { setMenu(false); menuButton.focus(); }
       else return;
       event.preventDefault();
@@ -181,13 +193,13 @@
       // the mobile navigation. Check after that handoff completes so a quick
       // tap cannot immediately close the panel again.
       window.setTimeout(function () {
-        if (!header.contains(document.activeElement)) { setSearch(false); setMenu(false); setMembers(false); }
+        if (!header.contains(document.activeElement)) { setSearch(false); setMenu(false); closeSubmenus(); }
       }, 0);
     });
     function eventIsInsideHeader(event) {
       return event.composedPath ? event.composedPath().includes(header) : header.contains(event.target);
     }
-    document.addEventListener('click', function (event) { if(!eventIsInsideHeader(event)) { setSearch(false); setMenu(false); setMembers(false); } });
+    document.addEventListener('click', function (event) { if(!eventIsInsideHeader(event)) { setSearch(false); setMenu(false); closeSubmenus(); } });
     narrow.addEventListener('change', function () {
       if (narrow.matches && nav.contains(document.activeElement)) menuButton.focus();
       setMenu(false); setSearch(false);
@@ -249,7 +261,7 @@
       if (nextDirection && nextDirection !== direction) travel = 0;
       if (nextDirection) direction = nextDirection;
       travel += Math.abs(delta);
-      var interacting = header.classList.contains('is-menu-open') || !search.hidden || (submenu && !submenu.hidden) || header.contains(document.activeElement);
+      var interacting = header.classList.contains('is-menu-open') || !search.hidden || !!openSubmenu || header.contains(document.activeElement);
       if (current <= 80 || interacting) header.classList.remove('asme-header-hidden');
       else if (travel >= (direction > 0 ? 12 : 6)) header.classList.toggle('asme-header-hidden', direction > 0);
       lastScroll = current;
