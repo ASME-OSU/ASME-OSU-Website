@@ -19112,9 +19112,10 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
 @media (max-width: 767px) {
   body #page .asme-sponsors-page .sponsors-top-tier-grid:has(.sponsor-card--editorial),
   html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid:has(.sponsor-card--editorial) {
-    width: calc(100% + 44px) !important;
-    max-width: calc(100% + 44px) !important;
-    margin-left: -22px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
   }
 }
 
