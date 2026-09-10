@@ -104,6 +104,7 @@
     var valuesGrid = document.getElementById('asmePointValuesGrid');
     var title = document.getElementById('asmeLeaderboardTitle');
     var searchInput = document.getElementById('asmeMemberSearch');
+    var searchLabel = document.querySelector('label[for="asmeMemberSearch"]');
     var searchResults = document.getElementById('asmeMemberSearchResults');
     var searchHint = document.getElementById('asmeMemberSearchHint');
     var dashboard = document.getElementById('asmeMemberDashboardPanel');
@@ -125,6 +126,11 @@
       return { link: link, section: document.querySelector(link.getAttribute('href')) };
     }).filter(function (item) { return item.section; });
     var jumpFrame = 0;
+
+    function updateSearchLabel() {
+      if (!searchLabel) return;
+      searchLabel.hidden = Boolean(selectedMember && searchInput && searchInput.value === selectedMember.name);
+    }
 
     function setCurrentJumpLink(activeLink) {
       jumpLinks.forEach(function (link) {
@@ -459,6 +465,7 @@
       if (!member) return;
       selectedMember = member;
       if (searchInput) searchInput.value = member.name;
+      updateSearchLabel();
       if (searchHint) searchHint.textContent = 'Showing ' + member.name + ' · Rank #' + member.rank;
       hideSearchResults();
       renderMember(member);
@@ -526,7 +533,11 @@
       searchInput.placeholder = 'Start typing a name…';
       if (searchHint) searchHint.textContent = members.length + ' public ' + (members.length === 1 ? 'member' : 'members') + ' searchable.';
       setDashboardState('Search your name above to open your dashboard.');
-      searchInput.addEventListener('input', function () { renderSearchResults(searchInput.value); });
+      searchInput.addEventListener('input', function () {
+        if (selectedMember && searchInput.value !== selectedMember.name) selectedMember = null;
+        updateSearchLabel();
+        renderSearchResults(searchInput.value);
+      });
       searchInput.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') hideSearchResults();
         if (event.key === 'Enter') {
