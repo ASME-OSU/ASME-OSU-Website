@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-09-03T21:45:24.524Z",
+  "generatedAt": "2026-09-10T00:19:10.191Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "7vve9qi4bj55nlelmh3vrlm19l@google.com::2026-09-02T21:30:00.000Z",
-      "title": "ExxonMobil Recruiting Session",
-      "start": "2026-09-02T21:30:00.000Z",
-      "end": "2026-09-02T23:30:00.000Z",
-      "allDay": false,
-      "location": "Scott Lab E141",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-25T16:05:36.000Z"
-    },
     {
       "id": "18setca6i4pdhco59a9grgrhkr@google.com::2026-09-03T21:30:00.000Z",
       "title": "ASME Ice Cream Social",
