@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T21:41:41.564Z",
+  "generatedAt": "2026-09-11T18:38:54.183Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
@@ -57,7 +57,7 @@
       "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
       "description": "ECS Showcase / interview and resume review",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T22:58:03.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "5he5s2hloqhcf0u269aru7ri7g@google.com::2026-09-16T21:30:00.000Z",
@@ -76,10 +76,10 @@
       "start": "2026-09-17T21:30:00.000Z",
       "end": "2026-09-17T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Casino Night",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T22:58:14.000Z"
+      "updated": "2026-09-11T15:10:49.000Z"
     },
     {
       "id": "040gnn2783gthupf4m50v7qdet@google.com::2026-09-21T21:30:00.000Z",
@@ -109,10 +109,10 @@
       "start": "2026-09-23T17:00:00.000Z",
       "end": "2026-09-23T21:00:00.000Z",
       "allDay": false,
-      "location": "",
+      "location": "Ohio Union, 1739 N High St, Columbus, OH 43210, USA",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-04T21:33:40.000Z"
+      "updated": "2026-09-11T17:18:33.000Z"
     },
     {
       "id": "65c02gtb27867qt19c2o8sb8fo@google.com::2026-09-23T22:30:00.000Z",
@@ -120,21 +120,32 @@
       "start": "2026-09-23T22:30:00.000Z",
       "end": "2026-09-24T00:00:00.000Z",
       "allDay": false,
-      "location": "",
+      "location": "Scott Lab e141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-31T17:37:30.000Z"
+      "updated": "2026-09-11T15:08:29.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-09-24T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-09-24T21:30:00.000Z",
       "title": "Caterpillar Inc. Interview Prep",
       "start": "2026-09-24T21:30:00.000Z",
       "end": "2026-09-24T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Interview Prep",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-31T19:18:55.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
+    },
+    {
+      "id": "49jb5ro956ej33a65ch0npnd52@google.com::2026-09-25T22:00:00.000Z",
+      "title": "TSMC X MSE x ASME Joint Info Session",
+      "start": "2026-09-25T22:00:00.000Z",
+      "end": "2026-09-25T23:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory E100",
+      "description": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-11T15:12:45.000Z"
     },
     {
       "id": "70mbp8b82jdvcbcjbc8aj0a8ap@google.com::2026-09-28T22:00:00.000Z",
@@ -142,10 +153,10 @@
       "start": "2026-09-28T22:00:00.000Z",
       "end": "2026-09-28T23:00:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E100",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-31T14:48:27.000Z"
+      "updated": "2026-09-11T15:13:04.000Z"
     },
     {
       "id": "7rn8i8uc29jjmuub707qedlnfd@google.com::2026-09-30T23:00:00.000Z",
@@ -159,15 +170,15 @@
       "updated": "2026-06-29T23:20:26.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-10-01T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-01T21:30:00.000Z",
       "title": "ASME Sports Night @ The Oval",
       "start": "2026-10-01T21:30:00.000Z",
       "end": "2026-10-01T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Sports Night Oval",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T22:58:48.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "60850uej1ri6dnrgo0ameob0me@google.com::2026-10-07T21:00:00.000Z",
@@ -181,15 +192,15 @@
       "updated": "2026-08-04T01:28:57.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-10-08T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-08T21:30:00.000Z",
       "title": "ASME Project Teams Introduction",
       "start": "2026-10-08T21:30:00.000Z",
       "end": "2026-10-08T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Start Project Teams",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T22:59:13.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "1c22bg1hi1lfavvlu35o540gbn@google.com::2026-10-12T12:00:00.000Z",
@@ -236,15 +247,15 @@
       "updated": "2026-07-09T22:51:31.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-10-15T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-15T21:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2026-10-15T21:30:00.000Z",
       "end": "2026-10-15T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Mini Golf",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "5n4j886meo63ojjrbue0b56i19@google.com::2026-10-19T12:00:00.000Z",
@@ -258,15 +269,15 @@
       "updated": "2026-07-09T22:51:54.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-10-22T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-22T21:30:00.000Z",
       "title": "ASME MATLAB Info Session",
       "start": "2026-10-22T21:30:00.000Z",
       "end": "2026-10-22T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Matlab info session",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T22:59:43.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "51ktvdb5pj9l342194d7ance14@google.com::2026-10-23T22:30:00.000Z",
@@ -280,15 +291,15 @@
       "updated": "2026-06-29T23:28:00.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-10-29T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-29T21:30:00.000Z",
       "title": "ASME Scheduling/BuckeyeLink Tour",
       "start": "2026-10-29T21:30:00.000Z",
       "end": "2026-10-29T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Scheduling / Buckeye link tour",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T22:59:59.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "4o94ugad0fu7c42nu4j2huli1j@google.com::2026-11-02T12:00:00.000Z",
@@ -302,15 +313,15 @@
       "updated": "2026-07-09T22:54:00.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-11-05T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-11-05T22:30:00.000Z",
       "title": "ASME Bridge Building Competition",
       "start": "2026-11-05T22:30:00.000Z",
       "end": "2026-11-05T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Bridge Building + Lesson",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T23:00:18.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "6007o04v43b5pioguflhf7p4qk@google.com::2026-11-11T12:00:00.000Z",
@@ -324,26 +335,26 @@
       "updated": "2026-07-09T22:54:33.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-11-12T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-11-12T22:30:00.000Z",
       "title": "ASME Pratt & Whitney Event",
       "start": "2026-11-12T22:30:00.000Z",
       "end": "2026-11-12T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Pratt and Whitney",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T23:00:41.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-11-19T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-11-19T22:30:00.000Z",
       "title": "ASME Friendsgiving",
       "start": "2026-11-19T22:30:00.000Z",
       "end": "2026-11-19T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Friendsgiving",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T23:00:54.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "58pheu7tqvdrjtnuoj7e3punhq@google.com::2026-11-25T12:00:00.000Z",
@@ -368,15 +379,15 @@
       "updated": "2026-07-09T23:06:03.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-12-03T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-12-03T22:30:00.000Z",
       "title": "ASME Sweets with SWE",
       "start": "2026-12-03T22:30:00.000Z",
       "end": "2026-12-03T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Sweets with SWE",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T23:01:07.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "34m9rksc9kq64c7v1fp02jsrnv@google.com::2026-12-09T12:00:00.000Z",
@@ -390,15 +401,15 @@
       "updated": "2026-07-09T23:06:39.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-12-10T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-12-10T22:30:00.000Z",
       "title": "ASME Study Tables",
       "start": "2026-12-10T22:30:00.000Z",
       "end": "2026-12-10T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Study tables for upcoming finals!",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T23:01:30.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "52hdmisc6qjpuclsurg5fkbd6c@google.com::2026-12-11T12:00:00.000Z",
@@ -489,15 +500,15 @@
       "updated": "2026-07-09T23:18:31.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-01-07T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-01-07T22:30:00.000Z",
       "title": "ASME Ice Skating Event",
       "start": "2027-01-07T22:30:00.000Z",
       "end": "2027-01-07T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "Ice Skating",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-13T23:01:48.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "52h2drdkkab14hmqinu4v3vm27@google.com::2027-01-11T12:00:00.000Z",
@@ -511,15 +522,15 @@
       "updated": "2026-07-09T23:19:46.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-01-14T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-01-14T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-01-14T22:30:00.000Z",
       "end": "2027-01-14T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "2237k0f4g28l9eg531iohnvv3p@google.com::2027-01-18T12:00:00.000Z",
@@ -533,15 +544,15 @@
       "updated": "2026-07-09T23:22:23.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-01-21T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-01-21T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-01-21T22:30:00.000Z",
       "end": "2027-01-21T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "2ibngirqgqnkqe10109demuih9@google.com::2027-01-25T12:00:00.000Z",
@@ -555,59 +566,59 @@
       "updated": "2026-07-09T23:23:24.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-01-28T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-01-28T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-01-28T22:30:00.000Z",
       "end": "2027-01-28T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-02-04T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-02-04T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-02-04T22:30:00.000Z",
       "end": "2027-02-04T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-02-11T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-02-11T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-02-11T22:30:00.000Z",
       "end": "2027-02-11T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-02-18T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-02-18T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-02-18T22:30:00.000Z",
       "end": "2027-02-18T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-02-25T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-02-25T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-02-25T22:30:00.000Z",
       "end": "2027-02-25T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "7sf557vmfcd89ev17vmqqopeu8@google.com::2027-02-26T12:00:00.000Z",
@@ -643,26 +654,26 @@
       "updated": "2026-07-09T23:30:55.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-03-04T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-03-04T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-03-04T22:30:00.000Z",
       "end": "2027-03-04T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-03-11T22:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-03-11T22:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-03-11T22:30:00.000Z",
       "end": "2027-03-11T23:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "6k4oc41rhl7kb3e1u8g996rql4@google.com::2027-03-15T12:00:00.000Z",
@@ -687,70 +698,70 @@
       "updated": "2026-07-09T23:31:43.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-03-18T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-03-18T21:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-03-18T21:30:00.000Z",
       "end": "2027-03-18T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-03-25T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-03-25T21:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-03-25T21:30:00.000Z",
       "end": "2027-03-25T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-04-01T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-04-01T21:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-04-01T21:30:00.000Z",
       "end": "2027-04-01T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-04-08T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-04-08T21:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-04-08T21:30:00.000Z",
       "end": "2027-04-08T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-04-15T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-04-15T21:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-04-15T21:30:00.000Z",
       "end": "2027-04-15T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-04-22T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-04-22T21:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-04-22T21:30:00.000Z",
       "end": "2027-04-22T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "6dc3t8dsoigno2t2eqp8fc2tj2@google.com::2027-04-26T12:00:00.000Z",
@@ -775,15 +786,15 @@
       "updated": "2026-07-09T23:33:44.000Z"
     },
     {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2027-04-29T21:30:00.000Z",
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2027-04-29T21:30:00.000Z",
       "title": "ASME Weekly Chapter Meeting ",
       "start": "2027-04-29T21:30:00.000Z",
       "end": "2027-04-29T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "location": "Scott Laboratory E141",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-30T00:28:17.000Z"
+      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "199q9qp7dm8l2e5fiag05fn1uq@google.com::2027-05-03T12:00:00.000Z",
