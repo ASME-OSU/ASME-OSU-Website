@@ -73,13 +73,20 @@ export function isLiveSystemStatus(rows) {
 
 export function nextSnapshot(previousDocument, current) {
   const priorCurrent = previousDocument && previousDocument.current;
+  if (priorCurrent && priorCurrent.period === current.period && current.version < priorCurrent.version) {
+    fail('refusing to replace a newer published snapshot with an older export.');
+  }
+  const sameRanks = priorCurrent && priorCurrent.period === current.period &&
+    Object.keys(priorCurrent.ranks).length === Object.keys(current.ranks).length &&
+    Object.keys(current.ranks).every((key) => priorCurrent.ranks[key] === current.ranks[key]);
   if (priorCurrent && priorCurrent.version === current.version && priorCurrent.period === current.period) {
+    if (!sameRanks) fail('rank data changed without a new export version.');
     return { schemaVersion: 1, current: priorCurrent, previous: previousDocument.previous || null };
   }
   return {
     schemaVersion: 1,
     current,
-    previous: priorCurrent && priorCurrent.period === current.period ? priorCurrent : null
+    previous: sameRanks ? previousDocument.previous || null : priorCurrent && priorCurrent.period === current.period ? priorCurrent : null
   };
 }
 
@@ -117,4 +124,4 @@ export async function publishSnapshot({
   return { published: true, snapshot: next };
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) publishSnapshot().catch((error) => { console.error(error.message); process.exitCode = 1; });
+if (process.argv[1] === fileURLToPath(import.meta.url)) publishSnapshot({ dryRun: process.argv.includes('--dry-run') }).catch((error) => { console.error(error.message); process.exitCode = 1; });

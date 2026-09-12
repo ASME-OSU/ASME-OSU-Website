@@ -253,7 +253,7 @@
       var firstMember = currentMembers[0];
       var currentUpdated = firstMember && firstMember.updated ? String(firstMember.updated) : '';
       var currentPeriod = firstMember && firstMember.period ? String(firstMember.period) : '';
-      if (!currentUpdated || !currentPeriod || !snapshot || !snapshot.current || !snapshot.previous) return null;
+      if (!currentUpdated || !currentPeriod || !snapshot || snapshot.schemaVersion !== 1 || !snapshot.current) return null;
 
       var currentRanks = {};
       var duplicateKeys = {};
@@ -268,19 +268,30 @@
         currentRanks[key] = member.rank;
       });
 
-      /* Refuse to compare a sheet response with a stale published snapshot.
-         That makes a fresh desktop, mobile, and returning visitor agree: no
-         movement is better than invented movement. */
-      if (snapshot.current.version !== currentUpdated || snapshot.current.period !== currentPeriod ||
-          snapshot.previous.period !== currentPeriod || snapshot.previous.version === currentUpdated ||
-          !snapshot.current.ranks || !snapshot.previous.ranks) return null;
+      /* The sheet refreshes more often than the scheduled publisher. An older
+         published rank map is a valid shared baseline, not a loading failure.
+         Never compare an older sheet response with a future snapshot. */
+      var published = snapshot.current;
+      var versionPattern = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
+      if (published.period !== currentPeriod || !published.ranks ||
+          !versionPattern.test(currentUpdated) || !versionPattern.test(published.version) ||
+          currentUpdated < published.version) return null;
 
-      var snapshotKeys = Object.keys(currentRanks);
-      if (snapshotKeys.some(function (key) { return Number(snapshot.current.ranks[key]) !== currentRanks[key]; })) return null;
+      var currentKeys = Object.keys(currentRanks);
+      var sameRanks = currentKeys.length === Object.keys(published.ranks).length &&
+        currentKeys.every(function (key) { return Number(published.ranks[key]) === currentRanks[key]; });
+      var baseline = null;
+      if (sameRanks && snapshot.previous && snapshot.previous.period === currentPeriod &&
+          versionPattern.test(snapshot.previous.version) && snapshot.previous.version < published.version && snapshot.previous.ranks) {
+        baseline = snapshot.previous;
+      } else if (currentUpdated > published.version) {
+        baseline = published;
+      }
+      if (!baseline) return null;
 
       var previousRanks = {};
-      Object.keys(snapshot.previous.ranks).forEach(function (key) {
-        if (!duplicateKeys[key]) previousRanks[key] = snapshot.previous.ranks[key];
+      Object.keys(baseline.ranks).forEach(function (key) {
+        if (!duplicateKeys[key] && Number.isInteger(baseline.ranks[key]) && baseline.ranks[key] > 0) previousRanks[key] = baseline.ranks[key];
       });
       return previousRanks;
     }
@@ -593,6 +604,14 @@
         var captionText = document.createElement('span');
         captionText.textContent = updatedLabel(members[0] && members[0].updated) + ' · Select a row to view details.';
         caption.appendChild(captionText);
+        if (!previousRanks || !visibleMembers.some(function (member) {
+          return Object.prototype.hasOwnProperty.call(previousRanks, rankSnapshotMemberKey(member));
+        })) {
+          var historyNote = document.createElement('span');
+          historyNote.className = 'asme-leaderboard-tie-note asme-rank-history-note';
+          historyNote.textContent = 'Rank changes will appear once comparison history is available.';
+          caption.appendChild(historyNote);
+        }
         var pointTotals = {};
         var hasTie = visibleMembers.some(function (member) {
           var pointKey = String(member.points);

@@ -27,6 +27,17 @@ test('same version does not advance the comparison baseline and period rollover 
   assert.equal(nextSnapshot(prior, spring).previous, null);
 });
 
+test('timestamp-only refresh preserves movement and out-of-order exports are rejected', () => {
+  const old = { version: '2026-09-01 09:00', period: 'Fall 2026', ranks: { alex: 5 } };
+  const current = { version: '2026-09-08 09:00', period: 'Fall 2026', ranks: { alex: 3 } };
+  const state = { schemaVersion: 1, current, previous: old };
+  const refreshed = nextSnapshot(state, { ...current, version: '2026-09-08 10:00' });
+  assert.deepEqual(refreshed.previous, old);
+  assert.equal(refreshed.current.version, '2026-09-08 10:00');
+  assert.throws(() => nextSnapshot(state, old), /older export/);
+  assert.throws(() => nextSnapshot(state, { ...current, ranks: { alex: 2 } }), /without a new export version/);
+});
+
 test('duplicate public names are excluded instead of being matched by row index', () => {
   const snapshot = buildCurrentSnapshot([
     row(1, 'Alex A.', 'Fall 2026', '2026-09-08 09:00'),
