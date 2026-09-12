@@ -13,7 +13,9 @@ const QUERY = 'select A,B,C,G where B is not null';
 const DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(DIRECTORY, '..', 'data', 'leaderboard-rank-snapshots.json');
 const URL = `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=Leaderboard_Public&tqx=out:json&tq=${encodeURIComponent(QUERY)}`;
-const STATUS_URL = `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=System_Status&tqx=out:json&tq=${encodeURIComponent('select A,B where A is not null')}`;
+/* Match the browser's authoritative status request exactly. Google can serve
+   a stale/incomplete result when this sheet is queried without headers=1. */
+const STATUS_URL = `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=System_Status&headers=1&tqx=out:json&tq=${encodeURIComponent('select A,B where A is not null')}`;
 
 function fail(message) {
   throw new Error(`Leaderboard snapshot: ${message}`);
