@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-09-11T18:38:54.183Z",
+  "generatedAt": "2026-09-12T00:22:41.305Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "18setca6i4pdhco59a9grgrhkr@google.com::2026-09-03T12:00:00.000Z",
-      "title": "ASME Weekly Chapter Meeting ",
-      "start": "2026-09-03T12:00:00.000Z",
-      "end": "2026-09-04T12:00:00.000Z",
-      "allDay": true,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-29T23:42:03.000Z"
-    },
     {
       "id": "5e419pq1kkfco5i7bhvuvg9gak@google.com::2026-09-04T21:00:00.000Z",
       "title": "EWB x ASME Oldfields Trivia Night",
