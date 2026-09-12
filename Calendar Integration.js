@@ -255,10 +255,21 @@
     });
   }
 
+  function removeWordPressInfoArtifacts() {
+    /* wpautop can nest blank paragraphs inside the copy wrapper.  Do not touch
+       paragraphs with text or meaningful descendants such as the email/link. */
+    Array.prototype.slice.call(document.querySelectorAll('.asme-cal-page .acp-info-copy > p')).forEach(function (paragraph) {
+      if (!paragraph.textContent.trim() && !paragraph.querySelector('a, button, input, select, textarea, img, svg, iframe')) {
+        paragraph.hidden = true;
+      }
+    });
+  }
+
   function init() {
     if (document.documentElement.getAttribute('data-asme-calendar-ready') === 'true') return;
     document.documentElement.setAttribute('data-asme-calendar-ready', 'true');
     removeBlogFromNavigation();
+    removeWordPressInfoArtifacts();
     initViewSwitch();
     if (document.getElementById('asmeFeaturedTitle') || document.getElementById('asmeCalendarUpcoming')) loadFeed();
   }

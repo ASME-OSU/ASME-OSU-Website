@@ -20198,6 +20198,14 @@ html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state
   box-sizing: border-box !important;
 }
 
+/* `hidden` is semantic state, not a styling suggestion.  The component uses
+   flex while visible, so restore the native hidden contract with the same
+   cascade weight as the declaration above. */
+body #page .asme-points-page-v2 .asme-member-dashboard-state[hidden],
+html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state[hidden] {
+  display: none !important;
+}
+
 body #page .asme-points-page-v2 .asme-member-dashboard-state::before,
 html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state::before {
   content: '⌕' !important;
@@ -23607,4 +23615,70 @@ html body #page .entry-content .asme-cal-page .acp-subscribe-note {
   margin-right: auto !important;
   margin-left: auto !important;
   text-align: center !important;
+}
+
+/* Final component overrides: these follow the legacy layered sponsor rules. */
+body #page .asme-sponsor-page .sponsor-benefit-card h3,
+html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card h3 {
+  color: #ffffff !important;
+}
+
+body #page .asme-sponsor-page .sponsor-tier-heading,
+html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 65px !important;
+  align-items: start !important;
+  column-gap: 10px !important;
+  padding-right: 0 !important;
+}
+
+body #page .asme-sponsor-page .sponsor-tier-name,
+html body #page .entry-content .asme-sponsor-page .sponsor-tier-name {
+  grid-column: 1 !important;
+  min-width: 0 !important;
+}
+
+body #page .asme-sponsor-page .sponsor-tier-icon,
+html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon {
+  position: static !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  width: 65px !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: 65px !important;
+  min-height: 0 !important;
+  max-height: none !important;
+}
+
+body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-heading::after,
+html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-heading::after {
+  grid-column: 1 / -1 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  white-space: normal !important;
+}
+
+body #page .asme-cal-page .acp-info-copy > p:empty,
+body #page .asme-cal-page .acp-info-copy > p[hidden],
+html body #page .entry-content .asme-cal-page .acp-info-copy > p:empty,
+html body #page .entry-content .asme-cal-page .acp-info-copy > p[hidden] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 360px) {
+  body #page .asme-sponsor-page .sponsor-tier-heading,
+  html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading {
+    grid-template-columns: minmax(0, 1fr) 58px !important;
+    column-gap: 8px !important;
+  }
+
+  body #page .asme-sponsor-page .sponsor-tier-icon,
+  html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon {
+    width: 58px !important;
+    height: 58px !important;
+  }
 }

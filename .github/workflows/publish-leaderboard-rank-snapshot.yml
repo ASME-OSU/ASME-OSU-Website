@@ -1,0 +1,37 @@
+name: Publish public leaderboard rank snapshot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Build the public comparison snapshot
+        run: node scripts/publish-leaderboard-rank-snapshot.mjs
+      - name: Commit a changed public snapshot
+        run: |
+          git add data/leaderboard-rank-snapshots.json
+          git diff --cached --quiet || git -c user.name='ASME Website Bot' -c user.email='asme-website-bot@users.noreply.github.com' commit -m 'Update public leaderboard rank snapshot'
+          git push
+      - name: Request GitHub Pages source deployment
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl --fail-with-body --retry 3 --retry-delay 3 \
+            --request POST \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/pages/builds"

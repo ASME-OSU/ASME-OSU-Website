@@ -118,7 +118,10 @@
     var dashboardTopType = document.getElementById('asmeDashboardTopType');
     var dashboardBreakdown = document.getElementById('asmeDashboardBreakdown');
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var RANK_SNAPSHOT_KEY = 'asmeLeaderboardRankSnapshotsV1';
+    /* This file is published by the public-export workflow. It contains only
+       public display names and ranks; browser storage is never the authority
+       for rank movement. */
+    var SHARED_RANK_SNAPSHOT_URL = 'https://asme-osu.github.io/ASME-OSU-Website/data/leaderboard-rank-snapshots.json';
     var members = [];
     var selectedMember = null;
     var jumpLinks = Array.prototype.slice.call(app.querySelectorAll('.asme-points-jump-nav a[href^="#"]'));
@@ -246,11 +249,11 @@
       return String(member && member.name || '').trim().toLowerCase();
     }
 
-    function getPreviousRankSnapshot(currentMembers) {
+    function getPreviousRankSnapshot(currentMembers, snapshot) {
       var firstMember = currentMembers[0];
       var currentUpdated = firstMember && firstMember.updated ? String(firstMember.updated) : '';
       var currentPeriod = firstMember && firstMember.period ? String(firstMember.period) : '';
-      if (!currentUpdated) return null;
+      if (!currentUpdated || !currentPeriod || !snapshot || !snapshot.current || !snapshot.previous) return null;
 
       var currentRanks = {};
       var duplicateKeys = {};
@@ -265,35 +268,30 @@
         currentRanks[key] = member.rank;
       });
 
-      var stored = null;
-      try {
-        stored = JSON.parse(window.localStorage.getItem(RANK_SNAPSHOT_KEY) || 'null');
-      } catch (error) {
-        stored = null;
-      }
+      /* Refuse to compare a sheet response with a stale published snapshot.
+         That makes a fresh desktop, mobile, and returning visitor agree: no
+         movement is better than invented movement. */
+      if (snapshot.current.version !== currentUpdated || snapshot.current.period !== currentPeriod ||
+          snapshot.previous.period !== currentPeriod || snapshot.previous.version === currentUpdated ||
+          !snapshot.current.ranks || !snapshot.previous.ranks) return null;
 
-      var previous = null;
-      if (stored && stored.current) {
-        if (stored.current.updated === currentUpdated && stored.current.period === currentPeriod) {
-          previous = stored.previous || null;
-        } else if (stored.current.period === currentPeriod) {
-          previous = stored.current;
-        }
-      }
-      if (previous && previous.ranks) {
-        Object.keys(duplicateKeys).forEach(function (key) { delete previous.ranks[key]; });
-      }
+      var snapshotKeys = Object.keys(currentRanks);
+      if (snapshotKeys.some(function (key) { return Number(snapshot.current.ranks[key]) !== currentRanks[key]; })) return null;
 
-      try {
-        window.localStorage.setItem(RANK_SNAPSHOT_KEY, JSON.stringify({
-          current: { updated: currentUpdated, period: currentPeriod, ranks: currentRanks },
-          previous: previous
-        }));
-      } catch (error) {
+      var previousRanks = {};
+      Object.keys(snapshot.previous.ranks).forEach(function (key) {
+        if (!duplicateKeys[key]) previousRanks[key] = snapshot.previous.ranks[key];
+      });
+      return previousRanks;
+    }
+
+    function loadSharedRankSnapshot() {
+      return fetch(SHARED_RANK_SNAPSHOT_URL, { cache: 'no-store', credentials: 'omit' }).then(function (response) {
+        if (!response.ok) throw new Error('Rank snapshot request failed');
+        return response.json();
+      }).catch(function () {
         return null;
-      }
-
-      return previous && previous.ranks ? previous.ranks : null;
+      });
     }
 
     function createCrownIcon() {
@@ -547,7 +545,7 @@
       });
     }
 
-    function renderLeaderboard(status) {
+    function renderLeaderboard(status, sharedRankSnapshot) {
       rowsEl.textContent = '';
       rowsEl.setAttribute('aria-busy', 'false');
       if (status !== 'LIVE') {
@@ -558,7 +556,7 @@
       if (title && members[0] && members[0].period) title.textContent = 'Semester Leaderboard — ' + members[0].period;
       if (!members.length) { var empty = document.createElement('p'); empty.className = 'asme-leaderboard-state'; empty.textContent = 'No public totals yet.'; rowsEl.appendChild(empty); return; }
       var visibleMembers = members.slice(0, 10);
-      var previousRanks = getPreviousRankSnapshot(members);
+      var previousRanks = getPreviousRankSnapshot(members, sharedRankSnapshot);
       visibleMembers.forEach(function (member, index) {
         var memberRank = Number.isFinite(member.rank) && member.rank > 0 ? member.rank : null;
         var row = document.createElement('div'); row.className = 'asme-leaderboard-row asme-data-enter'; row.tabIndex = 0; row.setAttribute('role', 'button'); row.setAttribute('aria-label', (memberRank ? 'Rank ' + memberRank + ', ' : '') + member.name + ', ' + member.points + ' points, ' + member.events + (member.events === 1 ? ' event' : ' events') + '. View member dashboard.');
@@ -615,7 +613,8 @@
 
     Promise.all([
       jsonp('System_Status', 'select A,B where A is not null'),
-      jsonp('Point_Values_Public', 'select A,B,C,D,E,F where B is not null')
+      jsonp('Point_Values_Public', 'select A,B,C,D,E,F where B is not null'),
+      loadSharedRankSnapshot()
     ]).then(function (results) {
       var statusTable = table(results[0]);
       var status = 'TESTING';
@@ -626,11 +625,11 @@
         return jsonp('Leaderboard_Public', 'select A,B,C,D,E,F,G,H,I,J,K,L,M,N,O where B is not null').then(function (d) {
           members = parseMembers(table(d));
           renderDashboard(status);
-          renderLeaderboard(status);
+          renderLeaderboard(status, results[2]);
         });
       }
       renderDashboard(status);
-      renderLeaderboard(status);
+      renderLeaderboard(status, results[2]);
     }).catch(function () {
       if (valuesGrid) { valuesGrid.textContent = 'Point values are temporarily unavailable.'; valuesGrid.setAttribute('aria-busy', 'false'); }
       rowsEl.textContent = ''; rowsEl.setAttribute('aria-busy', 'false');

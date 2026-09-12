@@ -6,7 +6,7 @@
   "scripts": {
     "sync:calendar": "node scripts/sync-calendar.mjs",
     "sync:google-photos": "node scripts/sync-google-photos.mjs",
-    "check": "node --check \"Calendar Integration.js\" && node --check \"Gallery Integration.js\" && node --check scripts/sync-google-photos.mjs && node --check \"Member Points Integration.js\" && node --check \"Join Page Integration.js\" && node --check \"Header Integration.js\" && node --check \"Footer Integration.js\" && node --check \"Sponsor Integration.js\" && node scripts/build-sponsor.mjs --check && node --check \"Mobile Navigation.js\" && node scripts/build-navigation.mjs --check",
+    "check": "node --check \"Calendar Integration.js\" && node --check \"Gallery Integration.js\" && node --check scripts/sync-google-photos.mjs && node --check scripts/publish-leaderboard-rank-snapshot.mjs && node --check \"Member Points Integration.js\" && node --check \"Join Page Integration.js\" && node --check \"Header Integration.js\" && node --check \"Footer Integration.js\" && node --check \"Sponsor Integration.js\" && node scripts/build-sponsor.mjs --check && node --check \"Mobile Navigation.js\" && node scripts/build-navigation.mjs --check",
     "test": "node --test tests/*.test.mjs",
     "build:header": "node scripts/build-header.mjs",
     "preview:header": "node scripts/preview-header.mjs",
