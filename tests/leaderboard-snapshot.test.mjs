@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { buildCurrentSnapshot, nextSnapshot } from '../scripts/publish-leaderboard-rank-snapshot.mjs';
+import { buildCurrentSnapshot, isLiveSystemStatus, nextSnapshot } from '../scripts/publish-leaderboard-rank-snapshot.mjs';
 
 function row(rank, name, period, version) {
   return { c: [{ v: rank }, { v: name }, { v: period }, { v: version, f: version }] };
@@ -34,4 +34,10 @@ test('duplicate public names are excluded instead of being matched by row index'
     row(3, 'Blair B.', 'Fall 2026', '2026-09-08 09:00')
   ]);
   assert.deepEqual(snapshot.ranks, { 'blair b.': 3 });
+});
+
+test('publisher accepts only an explicit LIVE public-system status', () => {
+  assert.equal(isLiveSystemStatus([{ c: [{ v: 'system_status' }, { v: 'LIVE' }] }]), true);
+  assert.equal(isLiveSystemStatus([{ c: [{ v: 'system_status' }, { v: 'PAUSED' }] }]), false);
+  assert.equal(isLiveSystemStatus([{ c: [{ v: 'other_status' }, { v: 'LIVE' }] }]), false);
 });

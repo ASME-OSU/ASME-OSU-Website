@@ -14,10 +14,13 @@ function setup({url='https://org.osu.edu/asme/',styles=true,prepare=()=>{}}={}) 
 }
 test('renders ordered CMS links, active Home, and unchanged page content',()=>{
   const s=setup();const links=[...s.d.querySelectorAll('.asme-hd-link')];
-  assert.deepEqual(links.map(x=>x.textContent),['Home','About','Join','Events','Gallery','Leadership','Members']);
+  assert.deepEqual(links.map(x=>x.textContent),['Home','About','Join','Events','Corporate','Gallery','Leadership','Members']);
   assert.equal(links[0].getAttribute('aria-current'),'page');
   assert.equal(s.d.querySelectorAll('.asme-hd-link.is-active').length,1);
   assert.equal(links[3].href,'https://org.osu.edu/asme/calendar/');
+  const corporate=[...s.d.querySelectorAll('#asme-header-corporate a')];
+  assert.deepEqual(corporate.map(a=>a.textContent),['Current Sponsors','Sponsor ASME']);
+  assert.deepEqual(corporate.map(a=>a.href),['https://org.osu.edu/asme/current-sponsors/','https://org.osu.edu/asme/sponsor-asme/']);
   assert.equal(s.d.querySelector('#content').innerHTML,'<h1>Existing page</h1><p>Preserved content.</p>');
   assert.equal(s.d.querySelector('#masthead').hidden,true);
   assert.equal(s.d.querySelector('#asme-header-spacer').nextElementSibling.id,'asme-site-header');
@@ -34,6 +37,12 @@ test('Members disclosure supports keyboard entry and Escape with focus return',(
   assert.equal(button.getAttribute('aria-expanded'),'true');assert.equal(s.d.activeElement.textContent,'Member Resources');
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
   assert.equal(s.d.querySelector('#asme-header-members').hidden,true);assert.equal(s.d.activeElement,button);s.close();
+});
+test('Corporate disclosure exposes both destinations and supports keyboard entry and Escape',()=>{
+  const s=setup();const button=s.d.querySelector('[aria-controls="asme-header-corporate"]');button.focus();button.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));
+  assert.equal(button.getAttribute('aria-expanded'),'true');assert.equal(s.d.activeElement.textContent,'Current Sponsors');
+  s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
+  assert.equal(s.d.querySelector('#asme-header-corporate').hidden,true);assert.equal(s.d.activeElement,button);s.close();
 });
 test('mobile toggle focuses navigation and Escape closes it',()=>{
   const s=setup();const button=s.d.querySelector('.asme-hd-menu-toggle');button.click();

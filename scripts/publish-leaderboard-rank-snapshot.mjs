@@ -13,6 +13,7 @@ const QUERY = 'select A,B,C,G where B is not null';
 const DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(DIRECTORY, '..', 'data', 'leaderboard-rank-snapshots.json');
 const URL = `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=Leaderboard_Public&tqx=out:json&tq=${encodeURIComponent(QUERY)}`;
+const STATUS_URL = `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=System_Status&tqx=out:json&tq=${encodeURIComponent('select A,B where A is not null')}`;
 
 function fail(message) {
   throw new Error(`Leaderboard snapshot: ${message}`);
@@ -64,6 +65,10 @@ export function buildCurrentSnapshot(rows) {
   return { version, period, ranks };
 }
 
+export function isLiveSystemStatus(rows) {
+  return rows.some((row) => cell(row, 0).toLowerCase() === 'system_status' && cell(row, 1).toUpperCase() === 'LIVE');
+}
+
 export function nextSnapshot(previousDocument, current) {
   const priorCurrent = previousDocument && previousDocument.current;
   if (priorCurrent && priorCurrent.version === current.version && priorCurrent.period === current.period) {
@@ -77,6 +82,12 @@ export function nextSnapshot(previousDocument, current) {
 }
 
 async function main() {
+  const statusResponse = await fetch(STATUS_URL, { headers: { accept: 'application/json' } });
+  if (!statusResponse.ok) fail(`system-status request failed with ${statusResponse.status}.`);
+  if (!isLiveSystemStatus(parseResponse(await statusResponse.text()))) {
+    console.log('Leaderboard snapshot not published because the public point system is not LIVE.');
+    return;
+  }
   const response = await fetch(URL, { headers: { accept: 'application/json' } });
   if (!response.ok) fail(`public export request failed with ${response.status}.`);
   const current = buildCurrentSnapshot(parseResponse(await response.text()));
