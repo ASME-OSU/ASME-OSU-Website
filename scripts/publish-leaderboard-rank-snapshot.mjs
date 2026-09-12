@@ -19,7 +19,7 @@ function fail(message) {
   throw new Error(`Leaderboard snapshot: ${message}`);
 }
 
-function parseResponse(body) {
+export function parseResponse(body) {
   const match = String(body).match(/setResponse\((.*)\);\s*$/s);
   if (!match) fail('Google export did not return a visualization response.');
   const payload = JSON.parse(match[1]);
@@ -81,27 +81,38 @@ export function nextSnapshot(previousDocument, current) {
   };
 }
 
-async function main() {
-  const statusResponse = await fetch(STATUS_URL, { headers: { accept: 'application/json' } });
+export async function publishSnapshot({
+  fetchFn = fetch,
+  readFile = fs.readFile,
+  writeFile = fs.writeFile,
+  output = OUTPUT,
+  dryRun = false
+} = {}) {
+  const statusResponse = await fetchFn(STATUS_URL, { headers: { accept: 'application/json' } });
   if (!statusResponse.ok) fail(`system-status request failed with ${statusResponse.status}.`);
   if (!isLiveSystemStatus(parseResponse(await statusResponse.text()))) {
     console.log('Leaderboard snapshot not published because the public point system is not LIVE.');
-    return;
+    return { published: false, reason: 'not-live' };
   }
-  const response = await fetch(URL, { headers: { accept: 'application/json' } });
+  const response = await fetchFn(URL, { headers: { accept: 'application/json' } });
   if (!response.ok) fail(`public export request failed with ${response.status}.`);
   const current = buildCurrentSnapshot(parseResponse(await response.text()));
   let existing = null;
-  try { existing = JSON.parse(await fs.readFile(OUTPUT, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  try { existing = JSON.parse(await readFile(output, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
   const next = nextSnapshot(existing, current);
   const serialized = `${JSON.stringify(next, null, 2)}\n`;
   const old = existing ? `${JSON.stringify(existing, null, 2)}\n` : '';
   if (serialized === old) {
     console.log('Leaderboard snapshot is already current.');
-    return;
+    return { published: false, reason: 'unchanged', snapshot: next };
   }
-  await fs.writeFile(OUTPUT, serialized);
+  if (dryRun) {
+    console.log(`Dry run: would publish ${next.current.period} ${next.current.version}; ${next.previous ? 'comparison baseline retained.' : 'no prior baseline yet.'}`);
+    return { published: false, reason: 'dry-run', snapshot: next };
+  }
+  await writeFile(output, serialized);
   console.log(`Published ${next.current.period} ${next.current.version}; ${next.previous ? 'comparison baseline retained.' : 'no prior baseline yet.'}`);
+  return { published: true, snapshot: next };
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) main().catch((error) => { console.error(error.message); process.exitCode = 1; });
+if (process.argv[1] === fileURLToPath(import.meta.url)) publishSnapshot().catch((error) => { console.error(error.message); process.exitCode = 1; });
