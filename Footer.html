@@ -824,12 +824,3 @@
 <link id="asme-header-styles" rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/Header.css?v=20260906-header14">
 <script src="https://asme-osu.github.io/ASME-OSU-Website/Header%20Integration.js?v=20260906-header14" defer></script>
 <!-- ASME HEADER COMPONENT END -->
-<script>
-/* Cache-busted gallery repair loader; scoped so it cannot affect other pages. */
-if (/\/pictures\/?$/.test(location.pathname)) {
-  var asmeGalleryRepair = document.createElement('script');
-  asmeGalleryRepair.src = 'https://asme-osu.github.io/ASME-OSU-Website/Gallery%20Integration.js?v=b3b83e1';
-  asmeGalleryRepair.defer = true;
-  document.head.appendChild(asmeGalleryRepair);
-}
-</script>

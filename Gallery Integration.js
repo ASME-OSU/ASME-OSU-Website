@@ -465,6 +465,9 @@
   }
 
   function init() {
+    var page = document.querySelector('.asme-gallery-page');
+    if (!page || page.dataset.asmeGalleryIntegrationReady === 'true') return;
+    page.dataset.asmeGalleryIntegrationReady = 'true';
     loadInstagramFeed();
     initArchive();
   }

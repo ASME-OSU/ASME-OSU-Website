@@ -75,6 +75,12 @@ test('archive orders by date taken, with stable ties and undated photos last', a
   await new Promise((resolve) => window.addEventListener('asme:gallery-items-added', resolve, { once: true }));
   const ids = () => [...window.document.querySelectorAll('.gallery-item')].map(e => e.dataset.galleryId || e.id);
   assert.deepEqual(ids(), ['new-a', 'new-b', 'old', 'undated', 'invalid', 'archive']);
+  let repeatRequests = 0;
+  window.fetch = async () => { repeatRequests += 1; throw new Error('duplicate initialization'); };
+  window.eval(script);
+  window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
+  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.equal(repeatRequests, 0, 'a duplicate loader or ready event cannot initialize the gallery again');
   window.document.querySelector('[data-gallery-filter="general"]').click();
   assert.deepEqual(ids(), ['new-a', 'new-b', 'old', 'undated', 'invalid', 'archive'], 'filtering preserves chronological order');
 });
