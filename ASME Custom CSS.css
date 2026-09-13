@@ -23663,11 +23663,20 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus .sp
 
 body #page .asme-cal-page .acp-info-copy > p:empty,
 body #page .asme-cal-page .acp-info-copy > p[hidden],
+body #page .asme-cal-page .acp-info-item > p[hidden],
 html body #page .entry-content .asme-cal-page .acp-info-copy > p:empty,
-html body #page .entry-content .asme-cal-page .acp-info-copy > p[hidden] {
+html body #page .entry-content .asme-cal-page .acp-info-copy > p[hidden],
+html body #page .entry-content .asme-cal-page .acp-info-item > p[hidden] {
   display: none !important;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+/* Event copy already resets paragraph margins. Do not retain the former
+   desktop minimum height, which created a blank row beneath short events. */
+body #page .asme-cal-page .acp-event-card,
+html body #page .entry-content .asme-cal-page .acp-event-card {
+  min-height: 0 !important;
 }
 
 @media (max-width: 360px) {

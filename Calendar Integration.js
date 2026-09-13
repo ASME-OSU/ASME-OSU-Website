@@ -256,9 +256,10 @@
   }
 
   function removeWordPressInfoArtifacts() {
-    /* wpautop can nest blank paragraphs inside the copy wrapper.  Do not touch
-       paragraphs with text or meaningful descendants such as the email/link. */
-    Array.prototype.slice.call(document.querySelectorAll('.asme-cal-page .acp-info-copy > p')).forEach(function (paragraph) {
+    /* wpautop can place blank paragraphs beside or inside the copy wrapper.
+       Do not touch paragraphs with text or meaningful descendants such as the
+       email/link. A whitespace-only or br-only paragraph is formatting only. */
+    Array.prototype.slice.call(document.querySelectorAll('.asme-cal-page .acp-info-item > p, .asme-cal-page .acp-info-copy > p')).forEach(function (paragraph) {
       if (!paragraph.textContent.trim() && !paragraph.querySelector('a, button, input, select, textarea, img, svg, iframe')) {
         paragraph.hidden = true;
       }
