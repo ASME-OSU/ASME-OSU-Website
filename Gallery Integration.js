@@ -357,6 +357,7 @@
     }
     galleryItem.dataset.gallerySource = 'google-photos';
     galleryItem.dataset.galleryId = item.id;
+    if (typeof item.takenAt === 'string' && Number.isFinite(Date.parse(item.takenAt))) galleryItem.dataset.galleryTakenAt = item.takenAt;
     galleryItem.dataset.galleryCategory = text(item.category, 'general').toLowerCase();
     link.href = item.imageUrl;
     link.dataset.galleryLabel = label;
@@ -379,7 +380,15 @@
       .then(function (response) { if (!response.ok) throw new Error('Google Photos feed request failed'); return response.json(); })
       .then(function (feed) {
         if (!feed || feed.schemaVersion !== 1 || !Array.isArray(feed.items)) return;
-        var inserted = feed.items.map(function (item) { return addGooglePhoto(item, gallery); }).filter(Boolean);
+        // Dates, not upload order or the album's manually chosen arrangement.
+        // Undated legacy entries keep their relative order after dated photos.
+        var ordered = feed.items.map(function (item, index) { return { item: item, index: index }; })
+          .sort(function (a, b) {
+            var aDate = a.item && typeof a.item.takenAt === 'string' ? Date.parse(a.item.takenAt) : NaN;
+            var bDate = b.item && typeof b.item.takenAt === 'string' ? Date.parse(b.item.takenAt) : NaN;
+            return (Number.isFinite(bDate) ? bDate : 0) - (Number.isFinite(aDate) ? aDate : 0) || a.index - b.index;
+          });
+        var inserted = ordered.map(function (entry) { return addGooglePhoto(entry.item, gallery); }).filter(Boolean);
         if (inserted.length) {
           var fragment = document.createDocumentFragment();
           inserted.forEach(function (item) { fragment.appendChild(item); });

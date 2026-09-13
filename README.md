@@ -109,6 +109,12 @@ The workflow commits only when post data or locally stored thumbnails change. If
 
 ## Google Photos gallery (prepared, not live)
 
+### Photo order
+
+Google Photos imports sort newest first by the photo date displayed in Google Photos, not the time added to the shared album. The collector exposes this value as `imageUpdateDate`; the feed persists it as ISO `takenAt`. This mapping was verified against all four public album photo dates on September 12, 2026. Equal dates retain their source order; missing/invalid dates go after dated imports. The manually curated WordPress archive remains after the imports. The browser also sorts dated feed items defensively, and the grid uses normal row placement so older items cannot backfill gaps above newer ones. The daily gallery sync applies the same ordering to future additions.
+
+The delayed-insertion test loads the real shared-footer event listener. Gallery Integration dispatches `asme:gallery-items-added`; it does not directly call a stubbed initializer. Regression coverage verifies delayed arrival, correct wrappers, one-time reveal initialization, chronology, date ties, missing dates, and filter stability.
+
 `Gallery Integration.js` can merge `data/google-photos-feed.json` into the existing WordPress archive grid. Imported photos use locally hosted WebP thumbnail and large variants, work with the archive filters/lightbox, and never alter the 13 WordPress attachments or the Instagram section. The manifest starts empty, so installing the Gallery HTML/JS has no visible effect until a verified snapshot is published.
 
 The intended daily workflow is **Refresh public Google Photos gallery** at 09:37 UTC, with manual dispatch available in GitHub Actions. This repository's Pages site is verified as the legacy `main` branch/root source; after a changed snapshot is pushed, the workflow explicitly requests a Pages source build instead of relying on a bot commit to trigger another workflow. Officers should inspect the workflow result after any Google Photos UI change or GitHub inactivity; GitHub can delay schedules and disables scheduled workflows on inactive public repositories. A successful run and a public `data/google-photos-feed.json` check are required before calling this integration live.

@@ -30,6 +30,19 @@ test('collector rejects incomplete enumeration and unavailable public responses'
   assert.throws(() => parseAlbumHtml(unavailable, url), /expected album/);
 });
 
+test('collector sorts by photo date rather than album order or add date', () => {
+  const photo = (uid, imageUpdateDate, albumAddDate = 1790000000000) => ({ uid, imageUpdateDate, albumAddDate, posterUrl: `https://lh3.googleusercontent.com/${uid}`, width: 640, height: 480 });
+  const items = validateEnumeration({ expectedCount: 5 }, [
+    photo('undated', NaN), photo('older-new-upload', Date.parse('2026-09-02T21:36:11Z')),
+    photo('newest', Date.parse('2026-09-03T21:43:15Z'), 1700000000000),
+    photo('same-date', Date.parse('2026-09-03T21:43:15Z')), photo('invalid', Infinity)
+  ]);
+  assert.deepEqual(items.map(item => item.id), ['newest', 'same-date', 'older-new-upload', 'undated', 'invalid']);
+  assert.equal(items[0].takenAt, '2026-09-03T21:43:15.000Z');
+  assert.equal(items[3].takenAt, null);
+  assert.deepEqual(items.map(item => item.order), [1, 2, 3, 4, 5]);
+});
+
 test('explicit bootstrap count confirms an empty album without a synthetic marker', async () => {
   const empty = parseAlbumHtml(await fixture('google-photos-empty.html'), url);
   assert.equal(empty.expectedCount, 0);

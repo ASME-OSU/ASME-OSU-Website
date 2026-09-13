@@ -4331,7 +4331,8 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   display: grid !important;
   grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
   grid-auto-rows: 64px !important;
-  grid-auto-flow: dense !important;
+  /* Keep visual order chronological; dense backfilling can lift older photos. */
+  grid-auto-flow: row !important;
   gap: 12px !important;
   margin: 0 !important;
 }

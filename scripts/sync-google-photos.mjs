@@ -110,10 +110,16 @@ export function validateEnumeration(album, media) {
       fail('collector returned invalid, duplicate, or unsafe media metadata.');
     }
     seen.add(item.uid);
-    return { id: item.uid, sourceImageUrl: item.posterUrl || item.url, width: item.width, height: item.height, isVideo: Boolean(item.isVideo), order: index + 1 };
+    // The collector names the public Google Photos photo-date field
+    // imageUpdateDate. Verified against the album's displayed photo dates;
+    // albumAddDate is the upload/add-to-album time and must not control order.
+    const photoDate = Number.isFinite(item.imageUpdateDate) && item.imageUpdateDate > 0 ? new Date(item.imageUpdateDate) : null;
+    const takenAt = photoDate && Number.isFinite(photoDate.getTime()) ? photoDate.toISOString() : null;
+    return { id: item.uid, sourceImageUrl: item.posterUrl || item.url, width: item.width, height: item.height, isVideo: Boolean(item.isVideo), takenAt, order: index + 1 };
   });
   if (items.length !== album.expectedCount) fail(`collector enumerated ${items.length} media item(s), but the bootstrap advertised ${album.expectedCount}.`);
-  return items;
+  return items.sort((a, b) => (Date.parse(b.takenAt) || 0) - (Date.parse(a.takenAt) || 0) || a.order - b.order)
+    .map((item, index) => ({ ...item, order: index + 1 }));
 }
 
 export function reconcile(previous, current) {
@@ -177,7 +183,7 @@ async function buildSnapshot(album, temporaryDirectory) {
       image.clone().resize({ width: LARGE_MAX_DIMENSION, withoutEnlargement: true }).webp({ quality: 88 }).toFile(path.join(stagedAssets, large))
     ]);
     if (!largeResult.width || !largeResult.height || !thumbResult.width || !thumbResult.height) fail(`photo ${source.id} could not be rendered.`);
-    items.push({ id: source.id, thumbnailUrl: `${ASSET_BASE}/${thumb}`, imageUrl: `${ASSET_BASE}/${large}`, width: largeResult.width, height: largeResult.height, alt: 'ASME OSU chapter photo', category: 'general', order: source.order });
+    items.push({ id: source.id, thumbnailUrl: `${ASSET_BASE}/${thumb}`, imageUrl: `${ASSET_BASE}/${large}`, width: largeResult.width, height: largeResult.height, alt: 'ASME OSU chapter photo', category: 'general', takenAt: source.takenAt, order: source.order });
   }
   return { stagedAssets, manifest: { schemaVersion: 1, source: 'Google Photos public shared album', albumUrl: SHARE_URL, generatedAt: new Date().toISOString(), items } };
 }
