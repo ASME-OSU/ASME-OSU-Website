@@ -2,8 +2,34 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-09-08T21:10:01.287Z",
+  "updatedAt": "2026-09-15T16:22:46.471Z",
   "items": [
+    {
+      "id": "DdUGDgezAIS",
+      "permalink": "https://www.instagram.com/p/DdUGDgezAIS/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdUGDgezAIS-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-09-15T16:04:26.000Z",
+      "title": "Come to ASME’s Casino Night this Thursday!",
+      "summary": "There will be fun casino activities and networking with other members. See details below: 🗓️ Thursday, September 17th 🕦 5:30 - 6:30 PM 📍 Scott Lab E141",
+      "caption": "Come to ASME’s Casino Night this Thursday! There will be fun casino activities and networking with other members. See details below: 🗓️ Thursday, September 17th 🕦 5:30 - 6:30 PM 📍 Scott Lab E141",
+      "alt": "Come to ASME’s Casino Night this Thursday!"
+    },
+    {
+      "id": "DdT8p6eTonR",
+      "permalink": "https://www.instagram.com/p/DdT8p6eTonR/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdT8p6eTonR-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-09-15T14:41:54.000Z",
+      "title": "Join us for an info session and one-on-one with a recruiter from CMTA this…",
+      "summary": "Feel free to bring your resume and any question you have. See you there!",
+      "caption": "Join us for an info session and one-on-one with a recruiter from CMTA this Wednesday from 5:30 to 6:30 PM in Scott Lab E100! Feel free to bring your resume and any question you have. See you there!",
+      "alt": "Join us for an info session and one-on-one with a recruiter from CMTA this…"
+    },
     {
       "id": "DdCYwvBj1xx",
       "permalink": "https://www.instagram.com/p/DdCYwvBj1xx/",
@@ -55,32 +81,6 @@
       "summary": "Please note the correct time is 5:30 PM at Scott Lab E141 this Wednesday. See you there!",
       "caption": "Come to our ExxonMobil recruiting session! Please note the correct time is 5:30 PM at Scott Lab E141 this Wednesday. See you there!",
       "alt": "Come to our ExxonMobil recruiting session!"
-    },
-    {
-      "id": "DcZw1nCiX_H",
-      "permalink": "https://www.instagram.com/p/DcZw1nCiX_H/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcZw1nCiX_H-640x853.jpg",
-      "imageWidth": 640,
-      "imageHeight": 853,
-      "timestamp": "2026-08-24T00:21:30.000Z",
-      "title": "Thanks to everyone who came and stopped by our table!",
-      "summary": "Make sure to join the GroupMe and sign up for ASME on the website to stay up to date on events, workshops, etc!",
-      "caption": "Thanks to everyone who came and stopped by our table! Make sure to join the GroupMe and sign up for ASME on the website to stay up to date on events, workshops, etc!",
-      "alt": "Thanks to everyone who came and stopped by our table!"
-    },
-    {
-      "id": "DcPWCTMiYHI",
-      "permalink": "https://www.instagram.com/p/DcPWCTMiYHI/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DcPWCTMiYHI-640x411.jpg",
-      "imageWidth": 640,
-      "imageHeight": 411,
-      "timestamp": "2026-08-19T23:14:53.000Z",
-      "title": "Come see us at the involvement fair this Sunday from 4-7 PM!",
-      "summary": "Our booth is 508, located in the blue section on the main oval. Stop by to find out more of what we do, sign up for ASME, or just chat! See you there 🔧",
-      "caption": "Come see us at the involvement fair this Sunday from 4-7 PM! Our booth is 508, located in the blue section on the main oval. Stop by to find out more of what we do, sign up for ASME, or just chat! See you there 🔧",
-      "alt": "Come see us at the involvement fair this Sunday from 4-7 PM!"
     }
   ]
 }
