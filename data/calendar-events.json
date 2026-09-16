@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-09-15T01:33:51.336Z",
+  "generatedAt": "2026-09-16T00:29:42.727Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "0mgjtc75f9i5ob6ekgh6rm7chc@google.com::2026-09-08T12:00:00.000Z",
-      "title": "Enrollment Census Date (semester, first-session)",
-      "start": "2026-09-08T12:00:00.000Z",
-      "end": "2026-09-09T12:00:00.000Z",
-      "allDay": true,
-      "location": "",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-09T22:47:08.000Z"
-    },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-09-10T21:30:00.000Z",
       "title": "ASME ECS Showcase/Interview & Resume Review",
