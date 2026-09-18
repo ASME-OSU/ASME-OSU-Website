@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-09-16T00:29:42.727Z",
+  "generatedAt": "2026-09-18T06:01:55.643Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-09-10T21:30:00.000Z",
-      "title": "ASME ECS Showcase/Interview & Resume Review",
-      "start": "2026-09-10T21:30:00.000Z",
-      "end": "2026-09-10T22:30:00.000Z",
-      "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
-      "description": "ECS Showcase / interview and resume review",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:09:34.000Z"
-    },
     {
       "id": "5he5s2hloqhcf0u269aru7ri7g@google.com::2026-09-16T21:30:00.000Z",
       "title": "CMTA Info Session",
