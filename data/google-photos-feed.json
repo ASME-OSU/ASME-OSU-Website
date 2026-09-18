@@ -2,8 +2,41 @@
   "schemaVersion": 1,
   "source": "Google Photos public shared album",
   "albumUrl": "https://photos.app.goo.gl/33pfCCghnJbXPzho9",
-  "generatedAt": "2026-09-16T14:20:55.633Z",
+  "generatedAt": "2026-09-18T20:44:42.780Z",
   "items": [
+    {
+      "id": "AF1QipP2Ai8CJT2lzunN2fXngAOaR634vvdOeqbSUNnw",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipP2Ai8CJT2lzunN2fXngAOaR634vvdOeqbSUNnw-d022d8aa50fbe47d-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipP2Ai8CJT2lzunN2fXngAOaR634vvdOeqbSUNnw-d022d8aa50fbe47d-large.webp",
+      "width": 2000,
+      "height": 1500,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "takenAt": "2026-09-17T22:35:20.172Z",
+      "order": 1
+    },
+    {
+      "id": "AF1QipM6nRAjQsx-VI2UwtSceD2IeOtZ2NwL5cLaUeHs",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipM6nRAjQsx-VI2UwtSceD2IeOtZ2NwL5cLaUeHs-92446a49fbf07054-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipM6nRAjQsx-VI2UwtSceD2IeOtZ2NwL5cLaUeHs-92446a49fbf07054-large.webp",
+      "width": 1500,
+      "height": 2000,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "takenAt": "2026-09-17T22:16:48.325Z",
+      "order": 2
+    },
+    {
+      "id": "AF1QipPOYKhNGtBfRmpLdOpakPKyQXLvSvemeCrs6PGK",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipPOYKhNGtBfRmpLdOpakPKyQXLvSvemeCrs6PGK-ced1dcd417fc99cc-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipPOYKhNGtBfRmpLdOpakPKyQXLvSvemeCrs6PGK-ced1dcd417fc99cc-large.webp",
+      "width": 2000,
+      "height": 1500,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "takenAt": "2026-09-17T22:13:50.503Z",
+      "order": 3
+    },
     {
       "id": "AF1QipOVHctZbz7GkYNPTvX2EQUrHpuOYpDuvAAIxqPg",
       "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOVHctZbz7GkYNPTvX2EQUrHpuOYpDuvAAIxqPg-a0d8edc22eab1227-thumb.webp",
@@ -13,29 +46,7 @@
       "alt": "ASME OSU chapter photo",
       "category": "general",
       "takenAt": "2026-09-03T21:43:15.139Z",
-      "order": 1
-    },
-    {
-      "id": "AF1QipPdAPEg1yMxvEiob7JGteqwkhHSGCOWSsEppegR",
-      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipPdAPEg1yMxvEiob7JGteqwkhHSGCOWSsEppegR-e161afd5f5a5dbb4-thumb.webp",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipPdAPEg1yMxvEiob7JGteqwkhHSGCOWSsEppegR-e161afd5f5a5dbb4-large.webp",
-      "width": 2000,
-      "height": 1500,
-      "alt": "ASME OSU chapter photo",
-      "category": "general",
-      "takenAt": "2026-09-03T21:33:23.395Z",
-      "order": 2
-    },
-    {
-      "id": "AF1QipOKhSFaqgscwCt-ecWLGBWISkv3Q9dsC2J473CK",
-      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOKhSFaqgscwCt-ecWLGBWISkv3Q9dsC2J473CK-6df6ae7f677764f6-thumb.webp",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOKhSFaqgscwCt-ecWLGBWISkv3Q9dsC2J473CK-6df6ae7f677764f6-large.webp",
-      "width": 2000,
-      "height": 1500,
-      "alt": "ASME OSU chapter photo",
-      "category": "general",
-      "takenAt": "2026-09-02T21:36:48.218Z",
-      "order": 3
+      "order": 4
     },
     {
       "id": "AF1QipNAAAAcACeFq79paEBhtdTF20Fbz41PhxtT2JDX",
@@ -46,7 +57,7 @@
       "alt": "ASME OSU chapter photo",
       "category": "general",
       "takenAt": "2026-09-02T21:36:11.905Z",
-      "order": 4
+      "order": 5
     }
   ]
 }
