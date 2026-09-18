@@ -2,8 +2,59 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-09-15T16:22:46.471Z",
+  "updatedAt": "2026-09-18T20:45:25.852Z",
   "items": [
+    {
+      "id": "Ddb8Pl_lmg9",
+      "permalink": "https://www.instagram.com/p/Ddb8Pl_lmg9/",
+      "mediaType": "CAROUSEL_ALBUM",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MnazQ1l-640x791.jpg",
+      "imageWidth": 640,
+      "imageHeight": 791,
+      "timestamp": "2026-09-18T17:11:02.000Z",
+      "title": "A preview of our events next week!",
+      "summary": "See the GroupMe for more details!",
+      "caption": "A preview of our events next week! See the GroupMe for more details!",
+      "alt": "A preview of our events next week!",
+      "carouselImages": [
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MnazQ1l-640x791.jpg",
+          "imageWidth": 640,
+          "imageHeight": 791,
+          "alt": "A preview of our events next week! — image 1 of 6"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8Mn8zshJ-640x791.jpg",
+          "imageWidth": 640,
+          "imageHeight": 791,
+          "alt": "A preview of our events next week! — image 2 of 6"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MnrzgFL-640x791.jpg",
+          "imageWidth": 640,
+          "imageHeight": 791,
+          "alt": "A preview of our events next week! — image 3 of 6"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MoFzMhx-640x791.jpg",
+          "imageWidth": 640,
+          "imageHeight": 791,
+          "alt": "A preview of our events next week! — image 4 of 6"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8Mo5Tm4h-640x791.jpg",
+          "imageWidth": 640,
+          "imageHeight": 791,
+          "alt": "A preview of our events next week! — image 5 of 6"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MqETBDU-640x791.jpg",
+          "imageWidth": 640,
+          "imageHeight": 791,
+          "alt": "A preview of our events next week! — image 6 of 6"
+        }
+      ]
+    },
     {
       "id": "DdUGDgezAIS",
       "permalink": "https://www.instagram.com/p/DdUGDgezAIS/",
@@ -68,19 +119,6 @@
       "summary": "The correct time will be 5:30 - 6:30 PM this Thursday in Scott Lab E141. Ice cream will be provided. See you soon! 🍦🍦",
       "caption": "Come to our first introductory general body meeting! The correct time will be 5:30 - 6:30 PM this Thursday in Scott Lab E141. Ice cream will be provided. See you soon! 🍦🍦",
       "alt": "Come to our first introductory general body meeting!"
-    },
-    {
-      "id": "Dct2heNv8mi",
-      "permalink": "https://www.instagram.com/p/Dct2heNv8mi/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Dct2heNv8mi-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-08-31T19:37:22.000Z",
-      "title": "Come to our ExxonMobil recruiting session!",
-      "summary": "Please note the correct time is 5:30 PM at Scott Lab E141 this Wednesday. See you there!",
-      "caption": "Come to our ExxonMobil recruiting session! Please note the correct time is 5:30 PM at Scott Lab E141 this Wednesday. See you there!",
-      "alt": "Come to our ExxonMobil recruiting session!"
     }
   ]
 }
