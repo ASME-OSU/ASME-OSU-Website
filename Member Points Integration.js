@@ -611,6 +611,14 @@
           historyNote.className = 'asme-leaderboard-tie-note asme-rank-history-note';
           historyNote.textContent = 'Rank changes will appear once comparison history is available.';
           caption.appendChild(historyNote);
+        } else if (visibleMembers.every(function (member) {
+          var key = rankSnapshotMemberKey(member);
+          return Object.prototype.hasOwnProperty.call(previousRanks, key) && previousRanks[key] === member.rank;
+        })) {
+          var unchangedNote = document.createElement('span');
+          unchangedNote.className = 'asme-leaderboard-tie-note asme-rank-history-note';
+          unchangedNote.textContent = 'No change in the top 10 since the latest rank comparison.';
+          caption.appendChild(unchangedNote);
         }
         var pointTotals = {};
         var hasTie = visibleMembers.some(function (member) {

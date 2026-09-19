@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
-import { parseAlbumHtml, reconcile, requestedImageUrl, validateEnumeration } from '../scripts/sync-google-photos.mjs';
+import { parseAlbumHtml, photoTitle, reconcile, requestedImageUrl, validateEnumeration } from '../scripts/sync-google-photos.mjs';
 
 const url = 'https://photos.google.com/share/demo?key=x';
 const fixture = (name) => fs.readFile(path.join('tests/fixtures', name), 'utf8');
@@ -63,4 +63,13 @@ test('downloader requests a bounded full-size representation instead of the defa
   assert.equal(requestedImageUrl(base, 4000, 3000), `${base}=w2000-h2000`);
   assert.equal(requestedImageUrl(base, 512, 384), `${base}=w512-h384`);
   assert.throws(() => requestedImageUrl('https://example.com/not-google', 4000, 3000), /safe sized image URL/);
+});
+
+test('photo descriptions take precedence over stable-ID title overrides and generic fallback', () => {
+  const photo = { id: 'first', description: '  Honda company visit  ' };
+  assert.equal(photoTitle(photo, { first: 'Old title' }), 'Honda company visit');
+  assert.equal(photoTitle({ id: 'first' }, { first: 'Bridge building' }), 'Bridge building');
+  assert.equal(photoTitle({ id: 'second' }), 'ASME OSU chapter photo');
+  const [item] = validateEnumeration({ expectedCount: 1 }, [{ uid: 'first', posterUrl: 'https://lh3.googleusercontent.com/demo/first', width: 640, height: 480, description: '  Chapter picnic  ' }]);
+  assert.equal(item.description, 'Chapter picnic');
 });

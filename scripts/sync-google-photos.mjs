@@ -8,6 +8,7 @@ import { fetchImageUrls } from '@marcus5914/google-photos-album-image-url-fetch'
 const SHARE_URL = 'https://photos.app.goo.gl/33pfCCghnJbXPzho9';
 const ALBUM_TITLE = 'Public Website ASME Photos';
 const OUTPUT = path.resolve('data/google-photos-feed.json');
+const TITLES = path.resolve('data/google-photos-titles.json');
 const ASSET_DIRECTORY = path.resolve('assets/gallery/google-photos-auto');
 const ASSET_BASE = 'https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto';
 const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
@@ -115,7 +116,8 @@ export function validateEnumeration(album, media) {
     // albumAddDate is the upload/add-to-album time and must not control order.
     const photoDate = Number.isFinite(item.imageUpdateDate) && item.imageUpdateDate > 0 ? new Date(item.imageUpdateDate) : null;
     const takenAt = photoDate && Number.isFinite(photoDate.getTime()) ? photoDate.toISOString() : null;
-    return { id: item.uid, sourceImageUrl: item.posterUrl || item.url, width: item.width, height: item.height, isVideo: Boolean(item.isVideo), takenAt, order: index + 1 };
+    return { id: item.uid, sourceImageUrl: item.posterUrl || item.url, width: item.width, height: item.height, isVideo: Boolean(item.isVideo), takenAt, order: index + 1,
+      description: typeof item.description === 'string' ? item.description.trim() : '' };
   });
   if (items.length !== album.expectedCount) fail(`collector enumerated ${items.length} media item(s), but the bootstrap advertised ${album.expectedCount}.`);
   return items.sort((a, b) => (Date.parse(b.takenAt) || 0) - (Date.parse(a.takenAt) || 0) || a.order - b.order)
@@ -154,6 +156,21 @@ async function readManifest() {
   catch (error) { if (error.code === 'ENOENT') return { items: [] }; throw error; }
 }
 
+async function readTitles() {
+  try {
+    const titles = JSON.parse(await fs.readFile(TITLES, 'utf8'));
+    if (!titles || Array.isArray(titles) || typeof titles !== 'object' || Object.values(titles).some((value) => typeof value !== 'string')) fail('photo title overrides must map photo IDs to strings.');
+    return titles;
+  } catch (error) { if (error.code === 'ENOENT') return {}; throw error; }
+}
+
+export function photoTitle(source, overrides = {}) {
+  // The public album collector currently returns no descriptions. A title
+  // override keyed by stable photo ID works today; prefer source metadata if
+  // the collector exposes it in the future.
+  return (source.description || overrides[source.id] || '').trim().slice(0, 180) || 'ASME OSU chapter photo';
+}
+
 async function imageBuffer(url) {
   const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': USER_AGENT }, signal: AbortSignal.timeout(30_000) });
   if (!response.ok || !allowedImageUrl(response.url)) fail(`image download was rejected (${response.status}).`);
@@ -164,7 +181,7 @@ async function imageBuffer(url) {
   return buffer;
 }
 
-async function buildSnapshot(album, temporaryDirectory) {
+async function buildSnapshot(album, temporaryDirectory, titles) {
   const { default: sharp } = await import('sharp');
   const stagedAssets = path.join(temporaryDirectory, 'assets');
   await fs.mkdir(stagedAssets, { recursive: true });
@@ -183,7 +200,7 @@ async function buildSnapshot(album, temporaryDirectory) {
       image.clone().resize({ width: LARGE_MAX_DIMENSION, withoutEnlargement: true }).webp({ quality: 88 }).toFile(path.join(stagedAssets, large))
     ]);
     if (!largeResult.width || !largeResult.height || !thumbResult.width || !thumbResult.height) fail(`photo ${source.id} could not be rendered.`);
-    items.push({ id: source.id, thumbnailUrl: `${ASSET_BASE}/${thumb}`, imageUrl: `${ASSET_BASE}/${large}`, width: largeResult.width, height: largeResult.height, alt: 'ASME OSU chapter photo', category: 'general', takenAt: source.takenAt, order: source.order });
+    items.push({ id: source.id, thumbnailUrl: `${ASSET_BASE}/${thumb}`, imageUrl: `${ASSET_BASE}/${large}`, width: largeResult.width, height: largeResult.height, alt: photoTitle(source, titles), category: 'general', takenAt: source.takenAt, order: source.order });
   }
   return { stagedAssets, manifest: { schemaVersion: 1, source: 'Google Photos public shared album', albumUrl: SHARE_URL, generatedAt: new Date().toISOString(), items } };
 }
@@ -222,7 +239,7 @@ export async function main(argv = process.argv.slice(2)) {
   }
   const temporaryDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'asme-google-photos-'));
   try {
-    const snapshot = await buildSnapshot(album, temporaryDirectory);
+    const snapshot = await buildSnapshot(album, temporaryDirectory, await readTitles());
     if (snapshotContent(snapshot.manifest) === snapshotContent(previous)) {
       console.log('Google Photos gallery content is already current; no snapshot files changed.');
       return;
