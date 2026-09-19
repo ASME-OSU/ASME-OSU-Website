@@ -20010,20 +20010,19 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-jump-nav {
   backdrop-filter: none !important;
 }
 
-/* Imported photos have varied aspect ratios. Keep their thumbnails in the
-   archive's regular rhythm; the full photo is available in the lightbox. */
+/* Keep all archive thumbnails in a regular rhythm regardless of orientation;
+   the full uncropped photo remains available in the lightbox. */
 @media (min-width: 901px) {
-  body #page .asme-gallery-page .gallery .gallery-item--google-photos,
-  body #page .asme-gallery-page .gallery .gallery-item--google-photos:nth-last-child(-n + 3),
-  html body #page .entry-content .asme-gallery-page .gallery .gallery-item--google-photos {
+  body #page .asme-gallery-page .gallery .gallery-item,
+  html body #page .entry-content .asme-gallery-page .gallery .gallery-item {
     grid-column: span 4 !important;
     grid-row: span 4 !important;
   }
 }
 
 @media (min-width: 561px) and (max-width: 900px) {
-  body #page .asme-gallery-page .gallery .gallery-item--google-photos,
-  html body #page .entry-content .asme-gallery-page .gallery .gallery-item--google-photos {
+  body #page .asme-gallery-page .gallery .gallery-item,
+  html body #page .entry-content .asme-gallery-page .gallery .gallery-item {
     grid-column: span 3 !important;
     grid-row: span 4 !important;
   }
@@ -22747,13 +22746,13 @@ html body #page .entry-content .asme-gallery-page .gallery-archive-status {
     aspect-ratio: 16 / 9 !important;
   }
 
-  body #page .asme-gallery-page .gallery-item--google-photos.is-last-visible,
-  html body #page .entry-content .asme-gallery-page .gallery-item--google-photos.is-last-visible {
+  body #page .asme-gallery-page .gallery-item.is-last-visible,
+  html body #page .entry-content .asme-gallery-page .gallery-item.is-last-visible {
     grid-column: auto !important;
   }
 
-  body #page .asme-gallery-page .gallery-item--google-photos.is-last-visible img,
-  html body #page .entry-content .asme-gallery-page .gallery-item--google-photos.is-last-visible img {
+  body #page .asme-gallery-page .gallery-item.is-last-visible img,
+  html body #page .entry-content .asme-gallery-page .gallery-item.is-last-visible img {
     aspect-ratio: 1 / 1 !important;
   }
 

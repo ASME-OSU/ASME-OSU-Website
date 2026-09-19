@@ -20,6 +20,7 @@ test('Google Photos feed joins archive asynchronously without relabeling archive
   await new Promise((resolve) => setTimeout(resolve, 0));
   const items = window.document.querySelectorAll('.gallery-item');
   assert.equal(items.length, 14);
+  assert.equal(window.document.querySelectorAll('#asme-gallery-uniform-tiles').length, 1, 'the live integration installs a single responsive uniform-grid rule');
   assert.equal(items[0].dataset.galleryId, 'stable-photo');
   assert.equal(items[1].dataset.gallerySource, 'wordpress');
   assert.ok(items[0].querySelector(':scope > .gallery-icon > a > img'), 'imported photo uses the same wrapper contract as a WordPress gallery item');

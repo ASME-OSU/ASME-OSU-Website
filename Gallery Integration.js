@@ -406,6 +406,26 @@
     var status = document.getElementById('galleryArchiveStatus');
     if (!gallery) return;
 
+    // WordPress hosts the archive CSS separately from this Pages script. Keep
+    // every tile in one predictable rhythm even when the theme's mosaic rules
+    // give individual landscape/portrait items oversized spans.
+    if (!document.getElementById('asme-gallery-uniform-tiles')) {
+      var uniformTiles = document.createElement('style');
+      uniformTiles.id = 'asme-gallery-uniform-tiles';
+      uniformTiles.textContent =
+        '@media (min-width: 901px) {' +
+          'body #page .asme-gallery-page .gallery .gallery-item { grid-column: span 4 !important; grid-row: span 4 !important; }' +
+        '}' +
+        '@media (min-width: 561px) and (max-width: 900px) {' +
+          'body #page .asme-gallery-page .gallery .gallery-item { grid-column: span 3 !important; grid-row: span 4 !important; }' +
+        '}' +
+        '@media (max-width: 560px) {' +
+          'body #page .asme-gallery-page .gallery .gallery-item.is-last-visible { grid-column: auto !important; }' +
+          'body #page .asme-gallery-page .gallery .gallery-item.is-last-visible img { aspect-ratio: 1 / 1 !important; }' +
+        '}';
+      document.head.appendChild(uniformTiles);
+    }
+
     var activeFilter = 'all';
     function items() { return Array.prototype.slice.call(gallery.querySelectorAll('.gallery-item')); }
     function update(selected) {
