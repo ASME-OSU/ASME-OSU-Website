@@ -63,10 +63,10 @@ function htmlTitle(html) {
   return match?.[1].replace(/&amp;/g, '&').trim() || '';
 }
 
-function parseBootstrapData(html) {
-  const callback = html.indexOf("key: 'ds:1'");
+function parseBootstrapData(html, key = 'ds:1') {
+  const callback = html.indexOf(`AF_initDataCallback({key: '${key}'`);
   const dataStart = callback < 0 ? -1 : html.indexOf('data:', callback) + 5;
-  if (dataStart < 5 || html[dataStart] !== '[') fail('public bootstrap data block ds:1 was not found.');
+  if (dataStart < 5 || html[dataStart] !== '[') fail(`public bootstrap data block ${key} was not found.`);
   const dataEnd = jsonValueEnd(html, dataStart);
   if (dataEnd < 0) fail('public bootstrap data block was truncated.');
   try { return JSON.parse(html.slice(dataStart, dataEnd)); }
@@ -101,6 +101,25 @@ export function parseAlbumHtml(html, finalUrl) {
     seen.add(id);
   });
   return { albumUrl: page.href, albumId, authKey, expectedCount, initialCount: initialItems.length };
+}
+
+/** A public photo page includes its own media record in ds:0. Unlike the
+ * album listing, this record carries the description shown in the info pane.
+ * This is an undocumented Google page format, so bind it to the expected
+ * album/photo identity and never execute page JavaScript. */
+export function parsePhotoHtml(html, finalUrl, album, photoId) {
+  const page = new URL(finalUrl);
+  if (page.protocol !== 'https:' || page.hostname !== 'photos.google.com' ||
+      page.pathname !== `/share/${album.albumId}/photo/${encodeURIComponent(photoId)}` ||
+      page.searchParams.get('key') !== album.authKey) fail(`photo ${photoId} did not resolve inside the expected public album.`);
+  const record = parseBootstrapData(html, 'ds:0')?.[0];
+  if (!Array.isArray(record) || record[0] !== photoId) fail(`photo ${photoId} did not match its public detail record.`);
+  const metadata = record[10];
+  if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) fail(`photo ${photoId} has no valid public detail metadata.`);
+  const field = metadata['396644657'];
+  if (field === undefined || field === null) return '';
+  if (!Array.isArray(field) || field.length !== 1 || typeof field[0] !== 'string') fail(`photo ${photoId} has an unexpected description format.`);
+  return field[0].trim();
 }
 
 export function validateEnumeration(album, media) {
@@ -164,11 +183,34 @@ async function readTitles() {
   } catch (error) { if (error.code === 'ENOENT') return {}; throw error; }
 }
 
-export function photoTitle(source, overrides = {}) {
-  // The public album collector currently returns no descriptions. A title
-  // override keyed by stable photo ID works today; prefer source metadata if
-  // the collector exposes it in the future.
-  return (source.description || overrides[source.id] || '').trim().slice(0, 180) || 'ASME OSU chapter photo';
+export function photoTitle(source, overrides = {}, previousTitle = '') {
+  // Preserve the last published label only when Google detail reading failed.
+  // An intentional empty description instead falls back to the curated title.
+  return (source.description || (source.descriptionUnavailable ? previousTitle : '') || overrides[source.id] || '').trim().slice(0, 180) || 'ASME OSU chapter photo';
+}
+
+export async function fetchPhotoDescriptions(album, items, { fetchFn = fetch, warn = console.warn } = {}) {
+  const described = [];
+  for (let index = 0; index < items.length; index += 4) {
+    const batch = await Promise.all(items.slice(index, index + 4).map(async (item) => {
+      const page = new URL(album.albumUrl);
+      page.pathname += `/photo/${encodeURIComponent(item.id)}`;
+      try {
+        const response = await fetchFn(page, {
+          redirect: 'follow',
+          headers: { accept: 'text/html,application/xhtml+xml', 'accept-language': 'en-US,en;q=0.9', 'user-agent': USER_AGENT },
+          signal: AbortSignal.timeout(30_000)
+        });
+        if (!response.ok || !(response.headers.get('content-type') || '').includes('text/html')) fail(`photo ${item.id} returned an invalid detail response.`);
+        return { ...item, description: parsePhotoHtml(await response.text(), response.url, album, item.id), descriptionUnavailable: false };
+      } catch (error) {
+        warn(`Google Photos description unavailable for ${item.id}: ${error.message}`);
+        return { ...item, descriptionUnavailable: true };
+      }
+    }));
+    described.push(...batch);
+  }
+  return described;
 }
 
 async function imageBuffer(url) {
@@ -181,11 +223,12 @@ async function imageBuffer(url) {
   return buffer;
 }
 
-async function buildSnapshot(album, temporaryDirectory, titles) {
+async function buildSnapshot(album, temporaryDirectory, titles, previous) {
   const { default: sharp } = await import('sharp');
   const stagedAssets = path.join(temporaryDirectory, 'assets');
   await fs.mkdir(stagedAssets, { recursive: true });
   const items = [];
+  const previousTitles = new Map((previous.items || []).map((item) => [item.id, item.alt]));
   for (const source of album.items) {
     const input = await imageBuffer(requestedImageUrl(source.sourceImageUrl, source.width, source.height));
     const hash = crypto.createHash('sha256').update(TRANSFORM_VERSION).update(input).digest('hex').slice(0, 16);
@@ -200,7 +243,7 @@ async function buildSnapshot(album, temporaryDirectory, titles) {
       image.clone().resize({ width: LARGE_MAX_DIMENSION, withoutEnlargement: true }).webp({ quality: 88 }).toFile(path.join(stagedAssets, large))
     ]);
     if (!largeResult.width || !largeResult.height || !thumbResult.width || !thumbResult.height) fail(`photo ${source.id} could not be rendered.`);
-    items.push({ id: source.id, thumbnailUrl: `${ASSET_BASE}/${thumb}`, imageUrl: `${ASSET_BASE}/${large}`, width: largeResult.width, height: largeResult.height, alt: photoTitle(source, titles), category: 'general', takenAt: source.takenAt, order: source.order });
+    items.push({ id: source.id, thumbnailUrl: `${ASSET_BASE}/${thumb}`, imageUrl: `${ASSET_BASE}/${large}`, width: largeResult.width, height: largeResult.height, alt: photoTitle(source, titles, previousTitles.get(source.id)), category: 'general', takenAt: source.takenAt, order: source.order });
   }
   return { stagedAssets, manifest: { schemaVersion: 1, source: 'Google Photos public shared album', albumUrl: SHARE_URL, generatedAt: new Date().toISOString(), items } };
 }
@@ -229,8 +272,9 @@ function snapshotContent(snapshot) {
 export async function main(argv = process.argv.slice(2)) {
   const dryRun = argv.includes('--dry-run');
   const album = await fetchAlbum();
-  console.log(`Google Photos album: ${album.items.length} still photo(s), ${album.skippedVideos} video(s) skipped; completion evidence: ${album.evidence}.`);
   const previous = await readManifest();
+  album.items = await fetchPhotoDescriptions(album, album.items);
+  console.log(`Google Photos album: ${album.items.length} still photo(s), ${album.skippedVideos} video(s) skipped; ${album.items.filter((item) => item.description).length} public description(s) found; completion evidence: ${album.evidence}.`);
   const changes = reconcile(previous, album.items);
   if (dryRun) { console.log(JSON.stringify(changes)); return; }
   if (changes.removals.length && (album.items.length === 0 || changes.removals.length > Math.max(2, previous.items.length / 2))) {
@@ -239,7 +283,7 @@ export async function main(argv = process.argv.slice(2)) {
   }
   const temporaryDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'asme-google-photos-'));
   try {
-    const snapshot = await buildSnapshot(album, temporaryDirectory, await readTitles());
+    const snapshot = await buildSnapshot(album, temporaryDirectory, await readTitles(), previous);
     if (snapshotContent(snapshot.manifest) === snapshotContent(previous)) {
       console.log('Google Photos gallery content is already current; no snapshot files changed.');
       return;

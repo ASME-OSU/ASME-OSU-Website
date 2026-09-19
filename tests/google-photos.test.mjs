@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
-import { parseAlbumHtml, photoTitle, reconcile, requestedImageUrl, validateEnumeration } from '../scripts/sync-google-photos.mjs';
+import { fetchPhotoDescriptions, parseAlbumHtml, parsePhotoHtml, photoTitle, reconcile, requestedImageUrl, validateEnumeration } from '../scripts/sync-google-photos.mjs';
 
 const url = 'https://photos.google.com/share/demo?key=x';
 const fixture = (name) => fs.readFile(path.join('tests/fixtures', name), 'utf8');
@@ -72,4 +72,44 @@ test('photo descriptions take precedence over stable-ID title overrides and gene
   assert.equal(photoTitle({ id: 'second' }), 'ASME OSU chapter photo');
   const [item] = validateEnumeration({ expectedCount: 1 }, [{ uid: 'first', posterUrl: 'https://lh3.googleusercontent.com/demo/first', width: 640, height: 480, description: '  Chapter picnic  ' }]);
   assert.equal(item.description, 'Chapter picnic');
+  assert.equal(photoTitle({ id: 'second', descriptionUnavailable: true }, {}, 'Previously published title'), 'Previously published title');
+  assert.equal(photoTitle({ id: 'second', descriptionUnavailable: true }, { second: 'Older override' }, 'Previously published title'), 'Previously published title');
+  assert.equal(photoTitle({ id: 'second', descriptionUnavailable: false }, {}, 'Previously published title'), 'ASME OSU chapter photo');
+});
+
+test('public photo detail description is tied to the requested album, key, and photo ID', () => {
+  const album = { albumId: 'demo', authKey: 'x' };
+  const detailUrl = 'https://photos.google.com/share/demo/photo/first?key=x';
+  const record = Array(11).fill(null);
+  record[0] = 'first';
+  record[10] = { '396644657': ['  Casino Night  '] };
+  const html = `<html><script>AF_initDataCallback({key: 'ds:0', data:${JSON.stringify([record, '', [], [], {}])}});</script></html>`;
+  assert.equal(parsePhotoHtml(html, detailUrl, album, 'first'), 'Casino Night');
+  assert.throws(() => parsePhotoHtml(html, detailUrl.replace('key=x', 'key=wrong'), album, 'first'), /expected public album/);
+  assert.throws(() => parsePhotoHtml(html, detailUrl, album, 'second'), /expected public album/);
+  assert.throws(() => parsePhotoHtml(html.replace('"first"', '"other"'), detailUrl, album, 'first'), /did not match/);
+  delete record[10]['396644657'];
+  assert.equal(parsePhotoHtml(`<script>AF_initDataCallback({key: 'ds:0', data:${JSON.stringify([record])}});</script>`, detailUrl, album, 'first'), '');
+  assert.throws(() => parsePhotoHtml('<html>Sign in</html>', detailUrl, album, 'first'), /ds:0/);
+});
+
+test('description fetch keeps prior labels available after a page failure', async () => {
+  const album = { albumUrl: url, albumId: 'demo', authKey: 'x' };
+  const record = Array(11).fill(null);
+  record[0] = 'first';
+  record[10] = { '396644657': ['Casino Night'] };
+  const html = `<script>AF_initDataCallback({key: 'ds:0', data:${JSON.stringify([record])}});</script>`;
+  const warnings = [];
+  const items = await fetchPhotoDescriptions(album, [{ id: 'first', description: '' }, { id: 'second', description: '' }], {
+    fetchFn: async (page) => {
+      if (page.pathname.endsWith('/second')) throw new Error('temporary outage');
+      return { ok: true, url: page.href, headers: { get: () => 'text/html' }, text: async () => html };
+    },
+    warn: (message) => warnings.push(message)
+  });
+  assert.equal(items[0].description, 'Casino Night');
+  assert.equal(items[0].descriptionUnavailable, false);
+  assert.equal(items[1].descriptionUnavailable, true);
+  assert.equal(photoTitle(items[1], {}, 'Earlier caption'), 'Earlier caption');
+  assert.equal(warnings.length, 1);
 });
