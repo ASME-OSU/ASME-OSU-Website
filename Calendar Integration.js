@@ -259,9 +259,12 @@
     /* wpautop can place blank paragraphs beside or inside the copy wrapper.
        Do not touch paragraphs with text or meaningful descendants such as the
        email/link. A whitespace-only or br-only paragraph is formatting only. */
-    Array.prototype.slice.call(document.querySelectorAll('.asme-cal-page .acp-info-item > p, .asme-cal-page .acp-info-copy > p')).forEach(function (paragraph) {
+    Array.prototype.slice.call(document.querySelectorAll('.asme-cal-page .acp-info-item p')).forEach(function (paragraph) {
       if (!paragraph.textContent.trim() && !paragraph.querySelector('a, button, input, select, textarea, img, svg, iframe')) {
         paragraph.hidden = true;
+        // The live WordPress markup wraps copy in an extra div; its empty p
+        // retains a theme margin unless display is explicitly reset.
+        paragraph.style.setProperty('display', 'none', 'important');
       }
     });
   }
