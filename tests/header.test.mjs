@@ -43,13 +43,25 @@ test('Members dropdown keeps only its two existing CMS links with leading icons'
   const links=[...s.d.querySelectorAll('#asme-header-members > li > a')];
   assert.deepEqual(links.map(a=>a.textContent),['Member Resources','Member Points Page']);
   assert.deepEqual(links.map(a=>a.href),['https://org.osu.edu/asme/member-resources/','https://org.osu.edu/asme/member-points-page/']);
-  assert.equal(links.every(a=>a.querySelector('svg.asme-hd-members-link-icon[aria-hidden="true"]')),true);
-  assert.match(css,/@media \(min-width:980px\) \{[\s\S]*?\.asme-hd-members-submenu \{[^}]*width:232px/);
-  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-members-link-icon \{display:none;\}/);
+  assert.equal(links.every(a=>a.querySelector('svg.asme-hd-dropdown-link-icon[aria-hidden="true"]')),true);
+  assert.match(css,/@media \(min-width:980px\) \{[\s\S]*?\.asme-hd-dropdown-submenu \{[^}]*width:232px/);
+  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-dropdown-link-icon \{display:none;\}/);
+  s.close();
+});
+test('Corporate uses the same compact dropdown without changing its CMS links',()=>{
+  const s=setup({prepare(d){
+    d.querySelector('#menu-item-652 > ul > li > a').href='https://org.osu.edu/asme/custom-sponsors/';
+  }});
+  const links=[...s.d.querySelectorAll('#asme-header-corporate > li > a')];
+  assert.deepEqual(links.map(a=>a.textContent),['Current Sponsors','Sponsor ASME']);
+  assert.deepEqual(links.map(a=>a.href),['https://org.osu.edu/asme/custom-sponsors/','https://org.osu.edu/asme/sponsor-asme/']);
+  assert.equal(links.every(a=>a.querySelector('svg.asme-hd-dropdown-link-icon[aria-hidden="true"]')),true);
+  assert.equal(s.d.querySelector('#asme-header-corporate').classList.contains('asme-hd-dropdown-submenu'),true);
+  assert.equal(s.d.querySelector('[aria-controls="asme-header-corporate"]').classList.contains('asme-hd-dropdown-trigger'),true);
   s.close();
 });
 test('Members click opens the dropdown and an outside click closes it',()=>{
-  const s=setup();const trigger=s.d.querySelector('.asme-hd-members-trigger');const submenu=s.d.querySelector('#asme-header-members');
+  const s=setup();const trigger=s.d.querySelector('[aria-controls="asme-header-members"]');const submenu=s.d.querySelector('#asme-header-members');
   trigger.click();assert.equal(trigger.getAttribute('aria-expanded'),'true');assert.equal(submenu.hidden,false);
   s.d.querySelector('#content').click();assert.equal(trigger.getAttribute('aria-expanded'),'false');assert.equal(submenu.hidden,true);
   s.close();
