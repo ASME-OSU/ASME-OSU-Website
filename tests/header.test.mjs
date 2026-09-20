@@ -46,6 +46,7 @@ test('Members dropdown keeps only its two existing CMS links with leading icons'
   assert.equal(links.every(a=>a.querySelector('svg.asme-hd-dropdown-link-icon[aria-hidden="true"]')),true);
   assert.match(css,/@media \(min-width:980px\) \{[\s\S]*?\.asme-hd-dropdown-submenu \{[^}]*width:232px/);
   assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-submenu \{[^}]*border-radius:12px/);
+  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-submenu \{[^}]*margin:4px 0 10px;/);
   assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-submenu \.asme-hd-dropdown-link \{[^}]*min-height:46px/);
   assert.doesNotMatch(css,/\.asme-hd-dropdown-link-icon \{display:none;\}/);
   s.close();
