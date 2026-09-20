@@ -9,6 +9,8 @@
     Gallery: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="m21 15-5-5L5 21"/>',
     Leadership: '<path d="M8 3h8v7a4 4 0 0 1-8 0Zm0 2H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v5m-5 2h10"/>',
     Members: '<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/>',
+    memberResources: '<path d="M6 3h9l4 4v14H6zM15 3v4h4M9 11h6M9 15h6"/>',
+    memberPoints: '<path d="M4 20h16M6 16v-5h3v5M11 16V7h3v9M16 16V4h3v12"/>',
     search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
     menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
     close: '<path d="m6 6 12 12M6 18 18 6"/>',
@@ -68,18 +70,31 @@
       if (name === 'Events') destination = Array.from(entry.li.querySelectorAll('ul a')).find(function (a) { return label(a) === 'Calendar'; }) || destination;
       var childList = entry.li.querySelector(':scope > ul');
       var children = (name === 'Corporate' || name === 'Members') && childList ? Array.from(childList.querySelectorAll('a')) : [];
+      if (name === 'Members') {
+        var memberLinks = new Map(children.map(function (link) { return [label(link), link]; }));
+        children = ['Member Resources', 'Member Points Page'].map(function (text) { return memberLinks.get(text); }).filter(Boolean);
+      }
       var item = document.createElement('li'); item.className = 'asme-hd-item';
       var control = document.createElement(children.length ? 'button' : 'a');
       control.className = 'asme-hd-link';
+      if (name === 'Members') control.classList.add('asme-hd-members-trigger');
       control.appendChild(icon(name));
       var text = document.createElement('span'); text.className = 'asme-hd-link-label'; text.textContent = name; control.appendChild(text);
       if (children.length) {
         var submenuId = 'asme-header-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         control.type = 'button'; control.setAttribute('aria-expanded', 'false'); control.setAttribute('aria-controls', submenuId); text.appendChild(icon('chevron'));
         var submenu = document.createElement('ul'); submenu.id = submenuId; submenu.className = 'asme-hd-submenu'; submenu.hidden = true;
+        if (name === 'Members') submenu.classList.add('asme-hd-members-submenu');
         children.forEach(function (link) {
           var li = document.createElement('li'), a = document.createElement('a');
-          a.href = link.href; a.textContent = label(link);
+          a.href = link.href;
+          if (name === 'Members') {
+            a.className = 'asme-hd-members-link';
+            var linkIcon = icon(label(link) === 'Member Resources' ? 'memberResources' : 'memberPoints');
+            linkIcon.classList.add('asme-hd-members-link-icon');
+            var linkText = document.createElement('span'); linkText.textContent = label(link);
+            a.append(linkIcon, linkText);
+          } else a.textContent = label(link);
           if (isCurrent(link)) { a.setAttribute('aria-current', 'page'); control.classList.add('is-active'); }
           li.appendChild(a); submenu.appendChild(li);
         });

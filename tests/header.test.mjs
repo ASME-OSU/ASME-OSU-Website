@@ -30,10 +30,29 @@ test('renders ordered CMS links, active Home, and unchanged page content',()=>{
   assert.equal(s.d.querySelector('.asme-hd-join-mobile').textContent,'Join');
   s.w.eval(script);assert.equal(s.d.querySelectorAll('#asme-site-header').length,1);s.close();
 });
-test('uses CMS destinations for Join and for new member submenu entries',()=>{
+test('uses CMS destinations for Join while excluding unrelated member submenu entries',()=>{
   const s=setup({prepare(d){d.querySelector('#menu-item-579 > a').href='https://org.osu.edu/asme/custom-join/';const a=d.createElement('a');a.href='https://org.osu.edu/asme/member-guide/';a.textContent='Member guide';const li=d.createElement('li');li.append(a);d.querySelector('#menu-item-1036 > ul').append(li);}});
   assert.equal(s.d.querySelector('.asme-hd-join').href,'https://org.osu.edu/asme/custom-join/');
-  assert.deepEqual([...s.d.querySelectorAll('#asme-header-members a')].map(a=>a.textContent),['Member Resources','Member Points Page','Member guide']);s.close();
+  assert.deepEqual([...s.d.querySelectorAll('#asme-header-members a')].map(a=>a.textContent),['Member Resources','Member Points Page']);s.close();
+});
+test('Members dropdown keeps only its two existing CMS links with leading icons',()=>{
+  const s=setup({prepare(d){
+    const submenu=d.querySelector('#menu-item-1036 > ul');
+    const extra=d.createElement('li');extra.innerHTML='<a href="https://org.osu.edu/asme/unrelated/">Unrelated</a>';submenu.append(extra);
+  }});
+  const links=[...s.d.querySelectorAll('#asme-header-members > li > a')];
+  assert.deepEqual(links.map(a=>a.textContent),['Member Resources','Member Points Page']);
+  assert.deepEqual(links.map(a=>a.href),['https://org.osu.edu/asme/member-resources/','https://org.osu.edu/asme/member-points-page/']);
+  assert.equal(links.every(a=>a.querySelector('svg.asme-hd-members-link-icon[aria-hidden="true"]')),true);
+  assert.match(css,/@media \(min-width:980px\) \{[\s\S]*?\.asme-hd-members-submenu \{[^}]*width:232px/);
+  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-members-link-icon \{display:none;\}/);
+  s.close();
+});
+test('Members click opens the dropdown and an outside click closes it',()=>{
+  const s=setup();const trigger=s.d.querySelector('.asme-hd-members-trigger');const submenu=s.d.querySelector('#asme-header-members');
+  trigger.click();assert.equal(trigger.getAttribute('aria-expanded'),'true');assert.equal(submenu.hidden,false);
+  s.d.querySelector('#content').click();assert.equal(trigger.getAttribute('aria-expanded'),'false');assert.equal(submenu.hidden,true);
+  s.close();
 });
 test('Members disclosure supports keyboard entry and Escape with focus return',()=>{
   const s=setup();const button=s.d.querySelector('[aria-controls="asme-header-members"]');button.focus();button.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));
