@@ -91,10 +91,19 @@
   })();
   /* ASME MOBILE NAVIGATION END */
 
+  function removeRedundantPointsCopy(app) {
+    // WordPress still hosts an older page HTML block; remove these two
+    // nonessential notes there as well as in the repository source.
+    app.querySelectorAll('#asmeMemberSearchHint, .asme-dashboard-privacy').forEach(function (note) { note.remove(); });
+    var input = app.querySelector('#asmeMemberSearch');
+    if (input) input.removeAttribute('aria-describedby');
+  }
+
   function start() {
     var app = document.getElementById('asmePointsApp');
     var rowsEl = document.getElementById('asmeLeaderboardRows');
     if (!app || !rowsEl) return;
+    removeRedundantPointsCopy(app);
 
     var EXPORT_ID = '1otAJV_pDkj6xWCVBHbhXPq99sT9L33ZFOdQU59uKXLg';
     var base = 'https://docs.google.com/spreadsheets/d/' + EXPORT_ID + '/gviz/tq';
@@ -106,7 +115,6 @@
     var searchInput = document.getElementById('asmeMemberSearch');
     var searchLabel = document.querySelector('label[for="asmeMemberSearch"]');
     var searchResults = document.getElementById('asmeMemberSearchResults');
-    var searchHint = document.getElementById('asmeMemberSearchHint');
     var dashboard = document.getElementById('asmeMemberDashboardPanel');
     var dashboardState = document.getElementById('asmeMemberDashboardState');
     var dashboardName = document.getElementById('asmeDashboardName');
@@ -475,7 +483,6 @@
       selectedMember = member;
       if (searchInput) searchInput.value = member.name;
       updateSearchLabel();
-      if (searchHint) searchHint.textContent = 'Showing ' + member.name + ' · Rank #' + member.rank;
       hideSearchResults();
       renderMember(member);
       if (scrollToDashboard) {
@@ -496,7 +503,6 @@
       var clean = String(query || '').trim();
       if (!clean) {
         hideSearchResults();
-        if (searchHint) searchHint.textContent = 'Type at least one letter.';
         return;
       }
       var exactMatch = members.find(function (member) { return member.name.toLowerCase() === clean.toLowerCase(); });
@@ -520,7 +526,6 @@
       }
       searchResults.hidden = false;
       searchInput.setAttribute('aria-expanded', 'true');
-      if (searchHint) searchHint.textContent = matches.length ? matches.length + (matches.length === 1 ? ' match' : ' matches') : 'Try a different spelling.';
     }
 
     function renderDashboard(status) {
@@ -528,19 +533,16 @@
       if (status !== 'LIVE') {
         searchInput.disabled = true;
         searchInput.placeholder = 'Dashboard unavailable';
-        if (searchHint) searchHint.textContent = 'The system is ' + status.toLowerCase() + '.';
         setDashboardState('Member dashboards appear when the point system is live.');
         return;
       }
       if (!members.length) {
         searchInput.disabled = true;
-        if (searchHint) searchHint.textContent = 'No public names yet.';
         setDashboardState('No public member totals are available yet.');
         return;
       }
       searchInput.disabled = false;
       searchInput.placeholder = 'Start typing a name…';
-      if (searchHint) searchHint.textContent = members.length + ' public ' + (members.length === 1 ? 'member' : 'members') + ' searchable.';
       setDashboardState('Search your name above to open your dashboard.');
       searchInput.addEventListener('input', function () {
         if (selectedMember && searchInput.value !== selectedMember.name) selectedMember = null;
@@ -604,35 +606,6 @@
         var captionText = document.createElement('span');
         captionText.textContent = updatedLabel(members[0] && members[0].updated) + ' · Select a row to view details.';
         caption.appendChild(captionText);
-        if (!previousRanks || !visibleMembers.some(function (member) {
-          return Object.prototype.hasOwnProperty.call(previousRanks, rankSnapshotMemberKey(member));
-        })) {
-          var historyNote = document.createElement('span');
-          historyNote.className = 'asme-leaderboard-tie-note asme-rank-history-note';
-          historyNote.textContent = 'Rank changes will appear once comparison history is available.';
-          caption.appendChild(historyNote);
-        } else if (visibleMembers.every(function (member) {
-          var key = rankSnapshotMemberKey(member);
-          return Object.prototype.hasOwnProperty.call(previousRanks, key) && previousRanks[key] === member.rank;
-        })) {
-          var unchangedNote = document.createElement('span');
-          unchangedNote.className = 'asme-leaderboard-tie-note asme-rank-history-note';
-          unchangedNote.textContent = 'No change in the top 10 since the latest rank comparison.';
-          caption.appendChild(unchangedNote);
-        }
-        var pointTotals = {};
-        var hasTie = visibleMembers.some(function (member) {
-          var pointKey = String(member.points);
-          if (pointTotals[pointKey]) return true;
-          pointTotals[pointKey] = true;
-          return false;
-        });
-        if (hasTie) {
-          var tieNote = document.createElement('span');
-          tieNote.className = 'asme-leaderboard-tie-note';
-          tieNote.textContent = 'Tied point totals follow the sheet’s configured tie-break order.';
-          caption.appendChild(tieNote);
-        }
       }
     }
 
@@ -663,7 +636,6 @@
       var error = document.createElement('p'); error.className = 'asme-leaderboard-state asme-leaderboard-state--error'; error.textContent = 'Points are temporarily unavailable.'; rowsEl.appendChild(error);
       if (caption) caption.textContent = 'Please try again later.';
       if (searchInput) searchInput.disabled = true;
-      if (searchHint) searchHint.textContent = 'Search unavailable.';
       setDashboardState('The member dashboard is temporarily unavailable.', true);
     });
   }
