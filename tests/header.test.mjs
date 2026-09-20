@@ -45,7 +45,9 @@ test('Members dropdown keeps only its two existing CMS links with leading icons'
   assert.deepEqual(links.map(a=>a.href),['https://org.osu.edu/asme/member-resources/','https://org.osu.edu/asme/member-points-page/']);
   assert.equal(links.every(a=>a.querySelector('svg.asme-hd-dropdown-link-icon[aria-hidden="true"]')),true);
   assert.match(css,/@media \(min-width:980px\) \{[\s\S]*?\.asme-hd-dropdown-submenu \{[^}]*width:232px/);
-  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-dropdown-link-icon \{display:none;\}/);
+  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-submenu \{[^}]*border-radius:12px/);
+  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-submenu \.asme-hd-dropdown-link \{[^}]*min-height:46px/);
+  assert.doesNotMatch(css,/\.asme-hd-dropdown-link-icon \{display:none;\}/);
   s.close();
 });
 test('Corporate uses the same compact dropdown without changing its CMS links',()=>{
@@ -83,6 +85,17 @@ test('mobile toggle focuses navigation and Escape closes it',()=>{
   assert.equal(button.getAttribute('aria-expanded'),'true');assert.equal(s.d.activeElement.textContent,'Home');
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
   assert.equal(button.getAttribute('aria-expanded'),'false');assert.equal(s.d.activeElement,button);s.close();
+});
+test('mobile submenus remain independently expandable with keyboard dismissal',()=>{
+  const s=setup();s.d.querySelector('.asme-hd-menu-toggle').click();
+  const corporate=s.d.querySelector('[aria-controls="asme-header-corporate"]');
+  const members=s.d.querySelector('[aria-controls="asme-header-members"]');
+  corporate.click();assert.equal(s.d.querySelector('#asme-header-corporate').hidden,false);
+  members.click();assert.equal(s.d.querySelector('#asme-header-corporate').hidden,true);
+  assert.equal(s.d.querySelector('#asme-header-members').hidden,false);
+  members.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
+  assert.equal(s.d.querySelector('#asme-header-members').hidden,true);
+  assert.equal(s.d.activeElement,members);s.close();
 });
 test('pointer activation keeps focus on the mobile toggle while the menu remains open',()=>{
   const s=setup();const button=s.d.querySelector('.asme-hd-menu-toggle');button.focus();
