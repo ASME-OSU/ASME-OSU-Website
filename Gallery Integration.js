@@ -400,34 +400,121 @@
       .catch(function () { /* Archive remains the intentional feed-failure fallback. */ });
   }
 
+  function galleryAspect(item) {
+    var image = item.querySelector('img');
+    var width = image && (image.naturalWidth || Number(image.getAttribute('width')));
+    var height = image && (image.naturalHeight || Number(image.getAttribute('height')));
+    if (width > 0 && height > 0) return Math.max(0.55, Math.min(2.6, width / height));
+    return item.classList.contains('is-panorama') ? 2.1 : item.classList.contains('is-landscape') ? 1.5 : item.classList.contains('is-portrait') ? 0.72 : 1;
+  }
+
+  function gallerySpans(ratios) {
+    if (ratios.length === 1) return [12];
+    var sum = ratios.reduce(function (total, ratio) { return total + ratio; }, 0);
+    var spans = ratios.map(function () { return 2; });
+    var left = 12 - spans.length * 2;
+    while (left > 0) {
+      var best = 0;
+      ratios.forEach(function (ratio, index) {
+        if (spans[index] >= 8) return;
+        if (spans[best] >= 8 || 12 * ratio / sum - spans[index] > 12 * ratios[best] / sum - spans[best]) best = index;
+      });
+      spans[best] += 1;
+      left -= 1;
+    }
+    return spans;
+  }
+
+  // Justified rows: choose contiguous groups of photos whose natural ratios
+  // fit the available width, then divide all 12 columns between them. Unlike
+  // grid-auto-flow:dense, no older photo moves ahead of a newer one.
+  function planGalleryRows(ratios, width, gap) {
+    if (!ratios.length) return [];
+    var mobile = width <= 560;
+    var target = mobile ? 195 : width <= 900 ? 250 : 295;
+    var minimum = mobile ? 145 : 175;
+    var maximum = mobile ? 280 : 380;
+    var maxItems = mobile ? 2 : width <= 900 ? 3 : 4;
+    var costs = Array(ratios.length + 1).fill(Infinity);
+    var choices = [];
+    costs[ratios.length] = 0;
+    for (var start = ratios.length - 1; start >= 0; start -= 1) {
+      for (var count = 1; count <= maxItems && start + count <= ratios.length; count += 1) {
+        var group = ratios.slice(start, start + count);
+        var ratioSum = group.reduce(function (total, ratio) { return total + ratio; }, 0);
+        var naturalHeight = (width - gap * (count - 1)) / ratioSum;
+        var height = Math.round(Math.max(minimum, Math.min(maximum, naturalHeight)));
+        var spans = gallerySpans(group);
+        var column = (width + gap) / 12;
+        var distortion = group.reduce(function (total, ratio, index) {
+          var renderedRatio = (column * spans[index] - gap) / height;
+          return total + Math.pow(Math.log(renderedRatio / ratio), 2);
+        }, 0);
+        var cost = 2 * Math.pow(Math.log(naturalHeight / target), 2) + distortion * 3 + 0.12 +
+          (count === 1 && ratios.length > 1 ? 1.8 : 0) + costs[start + count];
+        if (cost < costs[start]) {
+          costs[start] = cost;
+          choices[start] = { count: count, height: height, spans: spans };
+        }
+      }
+    }
+    var rows = [];
+    for (var cursor = 0; cursor < ratios.length;) {
+      rows.push(choices[cursor]);
+      cursor += choices[cursor].count;
+    }
+    return rows;
+  }
+
+  function layoutGallery(gallery, visibleItems) {
+    var width = gallery.getBoundingClientRect().width || gallery.clientWidth || window.innerWidth || 1024;
+    var gap = parseFloat(window.getComputedStyle(gallery).columnGap) || 12;
+    var rows = planGalleryRows(visibleItems.map(galleryAspect), width, gap);
+    gallery.classList.add('asme-gallery-justified');
+    gallery.style.setProperty('grid-template-columns', 'repeat(12, minmax(0, 1fr))', 'important');
+    gallery.style.setProperty('grid-auto-rows', 'auto', 'important');
+    gallery.style.setProperty('grid-template-rows', rows.map(function (row) { return row.height + 'px'; }).join(' '), 'important');
+    var offset = 0;
+    rows.forEach(function (row, rowIndex) {
+      var start = 1;
+      for (var index = 0; index < row.count; index += 1) {
+        var item = visibleItems[offset + index];
+        var span = row.spans[index];
+        item.style.setProperty('grid-column', start + ' / span ' + span, 'important');
+        item.style.setProperty('grid-row', String(rowIndex + 1), 'important');
+        start += span;
+      }
+      offset += row.count;
+    });
+  }
+
   function initArchive() {
     var gallery = document.querySelector('.asme-gallery-page .gallery');
     var filters = Array.prototype.slice.call(document.querySelectorAll('[data-gallery-filter]'));
     var status = document.getElementById('galleryArchiveStatus');
     if (!gallery) return;
 
-    // WordPress hosts the archive CSS separately from this Pages script. Keep
-    // every tile in one predictable rhythm even when the theme's mosaic rules
-    // give individual landscape/portrait items oversized spans.
-    if (!document.getElementById('asme-gallery-uniform-tiles')) {
-      var uniformTiles = document.createElement('style');
-      uniformTiles.id = 'asme-gallery-uniform-tiles';
-      uniformTiles.textContent =
-        '@media (min-width: 901px) {' +
-          'body #page .asme-gallery-page .gallery .gallery-item { grid-column: span 4 !important; grid-row: span 4 !important; }' +
-        '}' +
-        '@media (min-width: 561px) and (max-width: 900px) {' +
-          'body #page .asme-gallery-page .gallery .gallery-item { grid-column: span 3 !important; grid-row: span 4 !important; }' +
-        '}' +
-        '@media (max-width: 560px) {' +
-          'body #page .asme-gallery-page .gallery .gallery-item.is-last-visible { grid-column: auto !important; }' +
-          'body #page .asme-gallery-page .gallery .gallery-item.is-last-visible img { aspect-ratio: 1 / 1 !important; }' +
-        '}';
-      document.head.appendChild(uniformTiles);
+    // WordPress hosts archive CSS separately. This scoped rule also neutralizes
+    // its mobile square-image rule once the ratio-aware layout is active.
+    if (!document.getElementById('asme-gallery-justified-images')) {
+      var justifiedImages = document.createElement('style');
+      justifiedImages.id = 'asme-gallery-justified-images';
+      justifiedImages.textContent = 'body #page .asme-gallery-page .gallery.asme-gallery-justified .gallery-item img {' +
+        'width: 100% !important; height: 100% !important; aspect-ratio: auto !important; object-fit: cover !important; }';
+      document.head.appendChild(justifiedImages);
     }
 
     var activeFilter = 'all';
     function items() { return Array.prototype.slice.call(gallery.querySelectorAll('.gallery-item')); }
+    var pendingLayout = false;
+    function scheduleLayout() {
+      if (pendingLayout) return;
+      pendingLayout = true;
+      (window.requestAnimationFrame || window.setTimeout).call(window, function () {
+        pendingLayout = false;
+        layoutGallery(gallery, items().filter(function (item) { return !item.classList.contains('is-filtered-out'); }));
+      });
+    }
     function update(selected) {
       activeFilter = selected || activeFilter;
       var currentItems = items();
@@ -452,6 +539,14 @@
         if (visible) visibleItems.push(item);
       });
       if (visibleItems.length) visibleItems[visibleItems.length - 1].classList.add('is-last-visible');
+      visibleItems.forEach(function (item) {
+        var image = item.querySelector('img');
+        if (image && image.dataset.asmeGalleryLayoutReady !== 'true') {
+          image.dataset.asmeGalleryLayoutReady = 'true';
+          image.addEventListener('load', scheduleLayout);
+        }
+      });
+      layoutGallery(gallery, visibleItems);
       filters.forEach(function (button) {
         var selectedButton = button.dataset.galleryFilter === activeFilter;
         button.classList.toggle('is-active', selectedButton);
@@ -481,6 +576,7 @@
       });
     });
     update('all');
+    window.addEventListener('resize', scheduleLayout);
     loadGooglePhotos(gallery, function () { update(activeFilter); });
   }
 

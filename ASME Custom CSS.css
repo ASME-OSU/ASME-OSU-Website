@@ -4376,20 +4376,6 @@ body .asme-sponsor-page .sponsor-stat-inner > span {
   grid-row: span 5 !important;
 }
 
-/* Keep desktop mosaic rows complete when the orientation mix leaves
-   unusable one- or two-column holes in the 12-column grid. */
-@media (min-width: 901px) {
-  body #page .asme-gallery-page .gallery-item.is-square {
-    grid-column: span 6 !important;
-    grid-row: span 6 !important;
-  }
-
-  body #page .asme-gallery-page .gallery-item:nth-last-child(-n + 3) {
-    grid-column: span 4 !important;
-    grid-row: span 7 !important;
-  }
-}
-
 /* Avoid stacking the featured section's bottom margin with the
    divider margins. WordPress-inserted empty paragraphs are already
    hidden inside the sponsor grid and do not contribute spacing. */
@@ -20010,24 +19996,6 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-jump-nav {
   backdrop-filter: none !important;
 }
 
-/* Keep all archive thumbnails in a regular rhythm regardless of orientation;
-   the full uncropped photo remains available in the lightbox. */
-@media (min-width: 901px) {
-  body #page .asme-gallery-page .gallery .gallery-item,
-  html body #page .entry-content .asme-gallery-page .gallery .gallery-item {
-    grid-column: span 4 !important;
-    grid-row: span 4 !important;
-  }
-}
-
-@media (min-width: 561px) and (max-width: 900px) {
-  body #page .asme-gallery-page .gallery .gallery-item,
-  html body #page .entry-content .asme-gallery-page .gallery .gallery-item {
-    grid-column: span 3 !important;
-    grid-row: span 4 !important;
-  }
-}
-
 /* MEMBER POINTS — cohesive dashboard refinement. */
 body #page .asme-points-page-v2 .asme-points-hero-compact .asme-member-hero-inner,
 html body #page .entry-content .asme-points-page-v2 .asme-points-hero-compact .asme-member-hero-inner {
@@ -22744,16 +22712,6 @@ html body #page .entry-content .asme-gallery-page .gallery-archive-status {
   body #page .asme-gallery-page .gallery-item.is-last-visible img,
   html body #page .entry-content .asme-gallery-page .gallery-item.is-last-visible img {
     aspect-ratio: 16 / 9 !important;
-  }
-
-  body #page .asme-gallery-page .gallery-item.is-last-visible,
-  html body #page .entry-content .asme-gallery-page .gallery-item.is-last-visible {
-    grid-column: auto !important;
-  }
-
-  body #page .asme-gallery-page .gallery-item.is-last-visible img,
-  html body #page .entry-content .asme-gallery-page .gallery-item.is-last-visible img {
-    aspect-ratio: 1 / 1 !important;
   }
 
   body #page .asme-gallery-page .gallery .gallery-item a::after,

@@ -20,14 +20,62 @@ test('Google Photos feed joins archive asynchronously without relabeling archive
   await new Promise((resolve) => setTimeout(resolve, 0));
   const items = window.document.querySelectorAll('.gallery-item');
   assert.equal(items.length, 14);
-  assert.equal(window.document.querySelectorAll('#asme-gallery-uniform-tiles').length, 1, 'the live integration installs a single responsive uniform-grid rule');
+  assert.equal(window.document.querySelectorAll('#asme-gallery-justified-images').length, 1, 'the live integration installs a single scoped thumbnail rule');
   assert.equal(items[0].dataset.galleryId, 'stable-photo');
   assert.equal(items[1].dataset.gallerySource, 'wordpress');
   assert.ok(items[0].querySelector(':scope > .gallery-icon > a > img'), 'imported photo uses the same wrapper contract as a WordPress gallery item');
   assert.equal(window.document.querySelector('[data-gallery-filter="general"]').textContent, 'General');
   window.document.querySelector('[data-gallery-filter="general"]').click();
   assert.equal(window.document.querySelectorAll('.gallery-item:not(.is-filtered-out)').length, 1);
+  assert.equal(items[0].style.gridColumn, '1 / span 12', 'a singleton filter still occupies its complete row');
   assert.match(window.document.getElementById('galleryArchiveStatus').textContent, /1 general photo/);
+});
+
+test('orientation-aware rows fill each row in source order and repack on filters and resize', async (t) => {
+  const dimensions = [[1800, 700], [700, 1200], [1200, 800], [900, 900], [700, 1100], [1600, 900], [800, 800]];
+  const archive = dimensions.map(([width, height], index) => `<figure class="gallery-item" id="photo-${index}"><a><img width="${width}" height="${height}"></a></figure>`).join('');
+  const dom = new JSDOM(`<div class="asme-gallery-page"><div class="gallery">${archive}</div><button data-gallery-filter="all">All</button><button data-gallery-filter="outreach">Outreach</button></div>`, { runScripts: 'outside-only', url: 'https://org.osu.edu/asme/pictures/' });
+  const { window } = dom;
+  t.after(() => window.close());
+  const gallery = window.document.querySelector('.gallery');
+  let width = 1200;
+  gallery.getBoundingClientRect = () => ({ width });
+  window.fetch = async () => { throw new Error('offline feed'); };
+  window.eval(script);
+  window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
+
+  function verifyRows() {
+    const visible = [...gallery.querySelectorAll('.gallery-item:not(.is-filtered-out)')];
+    const rows = new Map();
+    visible.forEach((item) => {
+      const row = Number(item.style.gridRow);
+      const [start, span] = item.style.gridColumn.match(/\d+/g).map(Number);
+      if (!rows.has(row)) rows.set(row, []);
+      rows.get(row).push({ start, span });
+    });
+    [...rows.values()].forEach((cells) => {
+      let next = 1;
+      cells.forEach(({ start, span }) => { assert.equal(start, next); next += span; });
+      assert.equal(next, 13, 'every row fills all 12 columns without holes');
+    });
+    assert.deepEqual([...rows.keys()], [...rows.keys()].map((_, index) => index + 1));
+    return { visible, rows };
+  }
+
+  const desktop = verifyRows();
+  assert.ok(desktop.rows.size > 1);
+  assert.ok(new Set(desktop.visible.map((item) => item.style.gridColumn)).size > 1, 'mixed image ratios create mixed tile widths');
+  assert.deepEqual(desktop.visible.map((item) => item.id), dimensions.map((_, index) => `photo-${index}`));
+
+  window.document.querySelector('[data-gallery-filter="outreach"]').click();
+  verifyRows();
+  window.document.querySelector('[data-gallery-filter="all"]').click();
+  width = 390;
+  window.dispatchEvent(new window.Event('resize'));
+  await new Promise((resolve) => window.setTimeout(resolve, 10));
+  const mobile = verifyRows();
+  assert.ok([...mobile.rows.values()].every((cells) => cells.length <= 2));
+  assert.deepEqual(mobile.visible.map((item) => item.id), desktop.visible.map((item) => item.id));
 });
 
 test('delayed Google Photos insertion reaches the real footer event listener exactly once', async (t) => {
