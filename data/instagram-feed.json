@@ -2,58 +2,47 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-09-18T20:52:37.247Z",
+  "updatedAt": "2026-09-21T21:58:41.686Z",
   "items": [
+    {
+      "id": "DdjrJksFo_3",
+      "permalink": "https://www.instagram.com/p/DdjrJksFo_3/",
+      "mediaType": "CAROUSEL_ALBUM",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddjq7WLzgZ6-640x826.jpg",
+      "imageWidth": 640,
+      "imageHeight": 826,
+      "timestamp": "2026-09-21T17:15:35.000Z",
+      "title": "Career Week starts strong with ExxonMobil!",
+      "summary": "⚙️🔴 Join ASME at Ohio State & ExxonMobil TODAY to learn about internship, co-op, and full-time engineering opportunities — and get the chance to be considered for same-week interviews! 📅 Monday, September 21 ⏰ 5:30–7:00 PM 📍 Scott Lab…",
+      "caption": "Career Week starts strong with ExxonMobil! ⚙️🔴 Join ASME at Ohio State & ExxonMobil TODAY to learn about internship, co-op, and full-time engineering opportunities — and get the chance to be considered for same-week interviews! 📅 Monday, September 21 ⏰ 5:30–7:00 PM 📍 Scott Lab E100 👔 Business casual 🍴 Food provided Bring your resume, come ready to connect with ExxonMobil engineers and recruiters, and make the most of Career Week! EngineeringCareers CareerWeek Internships EngineeringJobs",
+      "alt": "Career Week starts strong with ExxonMobil!",
+      "carouselImages": [
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddjq7WLzgZ6-640x826.jpg",
+          "imageWidth": 640,
+          "imageHeight": 826,
+          "alt": "Career Week starts strong with ExxonMobil! — image 1 of 2"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddjq7Y7TIKB-640x826.jpg",
+          "imageWidth": 640,
+          "imageHeight": 826,
+          "alt": "Career Week starts strong with ExxonMobil! — image 2 of 2"
+        }
+      ]
+    },
     {
       "id": "Ddb8Pl_lmg9",
       "permalink": "https://www.instagram.com/p/Ddb8Pl_lmg9/",
       "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MnazQ1l-640x791.jpg",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8Pl_lmg9-640x791.jpg",
       "imageWidth": 640,
       "imageHeight": 791,
       "timestamp": "2026-09-18T17:11:02.000Z",
       "title": "Get ready for a full week of career opportunities with ASME at Ohio State!",
       "summary": "Join us September 21–28 for Company Info Sessions featuring ExxonMobil, RTX, LyondellBasell, Caterpillar, TSMC, and HRST. Meet engineers and recruiters, learn about internship and full-time opportunities, and make valuable industry…",
       "caption": "Get ready for a full week of career opportunities with ASME at Ohio State! Join us September 21–28 for Company Info Sessions featuring ExxonMobil, RTX, LyondellBasell, Caterpillar, TSMC, and HRST. Meet engineers and recruiters, learn about internship and full-time opportunities, and make valuable industry connections. All events will be held in Scott Lab, with times and rooms varying by event. Check our individual posts for full details. Bring your resume, come with questions, and get ready to connect! CareerFair Internships",
-      "alt": "Get ready for a full week of career opportunities with ASME at Ohio State!",
-      "carouselImages": [
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MnazQ1l-640x791.jpg",
-          "imageWidth": 640,
-          "imageHeight": 791,
-          "alt": "Get ready for a full week of career opportunities with ASME at Ohio State! — image 1 of 6"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8Mn8zshJ-640x791.jpg",
-          "imageWidth": 640,
-          "imageHeight": 791,
-          "alt": "Get ready for a full week of career opportunities with ASME at Ohio State! — image 2 of 6"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MnrzgFL-640x791.jpg",
-          "imageWidth": 640,
-          "imageHeight": 791,
-          "alt": "Get ready for a full week of career opportunities with ASME at Ohio State! — image 3 of 6"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MoFzMhx-640x791.jpg",
-          "imageWidth": 640,
-          "imageHeight": 791,
-          "alt": "Get ready for a full week of career opportunities with ASME at Ohio State! — image 4 of 6"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8Mo5Tm4h-640x791.jpg",
-          "imageWidth": 640,
-          "imageHeight": 791,
-          "alt": "Get ready for a full week of career opportunities with ASME at Ohio State! — image 5 of 6"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddb8MqETBDU-640x791.jpg",
-          "imageWidth": 640,
-          "imageHeight": 791,
-          "alt": "Get ready for a full week of career opportunities with ASME at Ohio State! — image 6 of 6"
-        }
-      ]
+      "alt": "Get ready for a full week of career opportunities with ASME at Ohio State!"
     },
     {
       "id": "DdUGDgezAIS",
@@ -106,19 +95,6 @@
       "summary": "Join EWB, SWE, MSE, ASME, IISE, EES, and D90 for Oldfields Trivia Night TONIGHT! Grab some friends, build your team, and put your random knowledge to the test! Friday, September 4th 5-9 PM | Trivia starts at 6 PM SHARP Oldfields - 1571 N…",
       "caption": "Think you've got what it takes to dominate trivia night? Join EWB, SWE, MSE, ASME, IISE, EES, and D90 for Oldfields Trivia Night TONIGHT! Grab some friends, build your team, and put your random knowledge to the test! Friday, September 4th 5-9 PM | Trivia starts at 6 PM SHARP Oldfields - 1571 N 4th St, Columbus, OH 43201 All ages welcome! Come hang out, meet fellow engineers, and see which team takes the trivia crown!",
       "alt": "Think you've got what it takes to dominate trivia night?"
-    },
-    {
-      "id": "Dct5FXFPobX",
-      "permalink": "https://www.instagram.com/p/Dct5FXFPobX/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Dct5FXFPobX-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-08-31T19:58:58.000Z",
-      "title": "Come to our first introductory general body meeting!",
-      "summary": "The correct time will be 5:30 - 6:30 PM this Thursday in Scott Lab E141. Ice cream will be provided. See you soon! 🍦🍦",
-      "caption": "Come to our first introductory general body meeting! The correct time will be 5:30 - 6:30 PM this Thursday in Scott Lab E141. Ice cream will be provided. See you soon! 🍦🍦",
-      "alt": "Come to our first introductory general body meeting!"
     }
   ]
 }
