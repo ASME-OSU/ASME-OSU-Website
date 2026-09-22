@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T06:01:55.643Z",
+  "generatedAt": "2026-09-22T21:28:10.220Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
@@ -116,14 +116,14 @@
     },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-01T21:30:00.000Z",
-      "title": "ASME Sports Night @ The Oval",
+      "title": " ASME Project Teams Introduction",
       "start": "2026-10-01T21:30:00.000Z",
       "end": "2026-10-01T22:30:00.000Z",
       "allDay": false,
       "location": "Scott Laboratory E141",
-      "description": "Sports Night Oval",
+      "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:09:34.000Z"
+      "updated": "2026-09-22T19:28:01.000Z"
     },
     {
       "id": "60850uej1ri6dnrgo0ameob0me@google.com::2026-10-07T21:00:00.000Z",
@@ -138,14 +138,14 @@
     },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-08T21:30:00.000Z",
-      "title": "ASME Project Teams Introduction",
+      "title": "ASME Pickleball @ RPAC",
       "start": "2026-10-08T21:30:00.000Z",
       "end": "2026-10-08T22:30:00.000Z",
       "allDay": false,
-      "location": "Scott Laboratory E141",
-      "description": "Start Project Teams",
+      "location": "RPAC Tennis Courts",
+      "description": "Pickleball with provided equipment at the RPAC",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:09:34.000Z"
+      "updated": "2026-09-22T19:28:48.000Z"
     },
     {
       "id": "1c22bg1hi1lfavvlu35o540gbn@google.com::2026-10-12T12:00:00.000Z",
