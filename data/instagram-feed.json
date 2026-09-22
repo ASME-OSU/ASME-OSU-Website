@@ -2,34 +2,47 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-09-21T21:58:41.686Z",
+  "updatedAt": "2026-09-22T21:19:36.558Z",
   "items": [
+    {
+      "id": "Ddmm1Wrjzac",
+      "permalink": "https://www.instagram.com/p/Ddmm1Wrjzac/",
+      "mediaType": "CAROUSEL_ALBUM",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddmmvv9PLjZ-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-09-22T20:35:36.000Z",
+      "title": "Career Week continues with LyondellBasell (LYB)!",
+      "summary": "🧪⚙️ Join ASME at Ohio State & LyondellBasell tomorrow to learn more about LYB, connect with engineers and recruiters, and explore their 2027 engineering co-op opportunities! 📅 Wednesday, September 23 ⏰ 6:30–8:00 PM 📍 Scott Lab E141 LYB…",
+      "caption": "Career Week continues with LyondellBasell (LYB)! 🧪⚙️ Join ASME at Ohio State & LyondellBasell tomorrow to learn more about LYB, connect with engineers and recruiters, and explore their 2027 engineering co-op opportunities! 📅 Wednesday, September 23 ⏰ 6:30–8:00 PM 📍 Scott Lab E141 LYB is currently recruiting co-ops in Mechanical, Chemical, Electrical, Environmental, and Health & Safety Engineering, so come ready to ask questions and learn more about opportunities with the company! MechanicalEngineering EngineeringCareers CareerWeek EngineeringCoop EngineeringStudents",
+      "alt": "Career Week continues with LyondellBasell (LYB)!",
+      "carouselImages": [
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddmmvv9PLjZ-640x800.jpg",
+          "imageWidth": 640,
+          "imageHeight": 800,
+          "alt": "Career Week continues with LyondellBasell (LYB)! — image 1 of 2"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdmmvxIPDTg-640x800.jpg",
+          "imageWidth": 640,
+          "imageHeight": 800,
+          "alt": "Career Week continues with LyondellBasell (LYB)! — image 2 of 2"
+        }
+      ]
+    },
     {
       "id": "DdjrJksFo_3",
       "permalink": "https://www.instagram.com/p/DdjrJksFo_3/",
       "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddjq7WLzgZ6-640x826.jpg",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdjrJksFo_3-640x826.jpg",
       "imageWidth": 640,
       "imageHeight": 826,
       "timestamp": "2026-09-21T17:15:35.000Z",
       "title": "Career Week starts strong with ExxonMobil!",
       "summary": "⚙️🔴 Join ASME at Ohio State & ExxonMobil TODAY to learn about internship, co-op, and full-time engineering opportunities — and get the chance to be considered for same-week interviews! 📅 Monday, September 21 ⏰ 5:30–7:00 PM 📍 Scott Lab…",
       "caption": "Career Week starts strong with ExxonMobil! ⚙️🔴 Join ASME at Ohio State & ExxonMobil TODAY to learn about internship, co-op, and full-time engineering opportunities — and get the chance to be considered for same-week interviews! 📅 Monday, September 21 ⏰ 5:30–7:00 PM 📍 Scott Lab E100 👔 Business casual 🍴 Food provided Bring your resume, come ready to connect with ExxonMobil engineers and recruiters, and make the most of Career Week! EngineeringCareers CareerWeek Internships EngineeringJobs",
-      "alt": "Career Week starts strong with ExxonMobil!",
-      "carouselImages": [
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddjq7WLzgZ6-640x826.jpg",
-          "imageWidth": 640,
-          "imageHeight": 826,
-          "alt": "Career Week starts strong with ExxonMobil! — image 1 of 2"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddjq7Y7TIKB-640x826.jpg",
-          "imageWidth": 640,
-          "imageHeight": 826,
-          "alt": "Career Week starts strong with ExxonMobil! — image 2 of 2"
-        }
-      ]
+      "alt": "Career Week starts strong with ExxonMobil!"
     },
     {
       "id": "Ddb8Pl_lmg9",
@@ -82,19 +95,6 @@
       "summary": "Join ASME this Thursday for our Resume Review Workshop! Get expert feedback on your resume, ask career-related questions, and learn how to better prepare for internships, co-ops, and full-time opportunities. 📅 Thursday, September 10 ⏰…",
       "caption": "Ready to strengthen your resume before recruiting season? Join ASME this Thursday for our Resume Review Workshop! Get expert feedback on your resume, ask career-related questions, and learn how to better prepare for internships, co-ops, and full-time opportunities. 📅 Thursday, September 10 ⏰ 5:30–6:30 PM 📍 Scott Lab E141 Bring your resume and come ready to make it stronger. All majors are welcome!",
       "alt": "Ready to strengthen your resume before recruiting season?"
-    },
-    {
-      "id": "Dc4JZGjv5MO",
-      "permalink": "https://www.instagram.com/p/Dc4JZGjv5MO/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Dc4JZGjv5MO-640x640.jpg",
-      "imageWidth": 640,
-      "imageHeight": 640,
-      "timestamp": "2026-09-04T19:33:19.000Z",
-      "title": "Think you've got what it takes to dominate trivia night?",
-      "summary": "Join EWB, SWE, MSE, ASME, IISE, EES, and D90 for Oldfields Trivia Night TONIGHT! Grab some friends, build your team, and put your random knowledge to the test! Friday, September 4th 5-9 PM | Trivia starts at 6 PM SHARP Oldfields - 1571 N…",
-      "caption": "Think you've got what it takes to dominate trivia night? Join EWB, SWE, MSE, ASME, IISE, EES, and D90 for Oldfields Trivia Night TONIGHT! Grab some friends, build your team, and put your random knowledge to the test! Friday, September 4th 5-9 PM | Trivia starts at 6 PM SHARP Oldfields - 1571 N 4th St, Columbus, OH 43201 All ages welcome! Come hang out, meet fellow engineers, and see which team takes the trivia crown!",
-      "alt": "Think you've got what it takes to dominate trivia night?"
     }
   ]
 }
