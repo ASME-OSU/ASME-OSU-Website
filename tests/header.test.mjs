@@ -9,6 +9,14 @@ const script=fs.readFileSync('Header Integration.js','utf8');
 test('ultra-wide header cap matches the inner WordPress content frame',()=>{
   assert.match(css,/width:calc\(100% - 152px\);\s*\/\*[^*]*\*\/\s*max-width:2048px;/);
 });
+test('desktop dropdown colors follow the light and dark header palettes',()=>{
+  assert.match(css,/--hd-dropdown-surface:#fff;/);
+  assert.match(css,/\.asme-hd-dropdown-submenu \{[^}]*background:var\(--hd-dropdown-surface\)/);
+  assert.match(css,/\.asme-hd-dropdown-submenu::before \{[^}]*background:var\(--hd-dropdown-surface\)/);
+  assert.match(css,/@media \(prefers-color-scheme:dark\) \{[\s\S]*?--hd-dropdown-surface:#132238;/);
+  assert.match(css,/@media \(prefers-color-scheme:dark\) \{[\s\S]*?--hd-dropdown-text:#f8fafc;/);
+  assert.match(css,/@media \(prefers-color-scheme:dark\) \{[\s\S]*?--hd-dropdown-border:#3a516e;/);
+});
 function setup({url='https://org.osu.edu/asme/',styles=true,prepare=()=>{}}={}) {
   const dom=new JSDOM('<!doctype html><html><head>'+(styles?'<style>'+css+'</style>':'')+'</head><body>'+fixture+'<main id="content"><h1>Existing page</h1><p>Preserved content.</p></main>'+template+'</body></html>',{url,runScripts:'outside-only'});
   const w=dom.window;w.requestAnimationFrame=cb=>{cb();};w.matchMedia=()=>({matches:true,addEventListener(){}});prepare(w.document);
