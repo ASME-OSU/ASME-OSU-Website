@@ -2,34 +2,47 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-09-22T21:19:36.558Z",
+  "updatedAt": "2026-09-23T16:59:22.498Z",
   "items": [
+    {
+      "id": "DdoiNhllrJi",
+      "permalink": "https://www.instagram.com/p/DdoiNhllrJi/",
+      "mediaType": "CAROUSEL_ALBUM",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdoiJjFTHZA-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-09-23T14:33:41.000Z",
+      "title": "Latest from ASME OSU",
+      "summary": "Follow ASME OSU for chapter updates, upcoming events, workshops, and student opportunities.",
+      "caption": "",
+      "alt": "Latest from ASME OSU",
+      "carouselImages": [
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdoiJjFTHZA-640x800.jpg",
+          "imageWidth": 640,
+          "imageHeight": 800,
+          "alt": "Latest from ASME OSU — image 1 of 2"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdoiJmZTJum-640x800.jpg",
+          "imageWidth": 640,
+          "imageHeight": 800,
+          "alt": "Latest from ASME OSU — image 2 of 2"
+        }
+      ]
+    },
     {
       "id": "Ddmm1Wrjzac",
       "permalink": "https://www.instagram.com/p/Ddmm1Wrjzac/",
       "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddmmvv9PLjZ-640x800.jpg",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddmm1Wrjzac-640x800.jpg",
       "imageWidth": 640,
       "imageHeight": 800,
       "timestamp": "2026-09-22T20:35:36.000Z",
       "title": "Career Week continues with LyondellBasell (LYB)!",
       "summary": "🧪⚙️ Join ASME at Ohio State & LyondellBasell tomorrow to learn more about LYB, connect with engineers and recruiters, and explore their 2027 engineering co-op opportunities! 📅 Wednesday, September 23 ⏰ 6:30–8:00 PM 📍 Scott Lab E141 LYB…",
       "caption": "Career Week continues with LyondellBasell (LYB)! 🧪⚙️ Join ASME at Ohio State & LyondellBasell tomorrow to learn more about LYB, connect with engineers and recruiters, and explore their 2027 engineering co-op opportunities! 📅 Wednesday, September 23 ⏰ 6:30–8:00 PM 📍 Scott Lab E141 LYB is currently recruiting co-ops in Mechanical, Chemical, Electrical, Environmental, and Health & Safety Engineering, so come ready to ask questions and learn more about opportunities with the company! MechanicalEngineering EngineeringCareers CareerWeek EngineeringCoop EngineeringStudents",
-      "alt": "Career Week continues with LyondellBasell (LYB)!",
-      "carouselImages": [
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddmmvv9PLjZ-640x800.jpg",
-          "imageWidth": 640,
-          "imageHeight": 800,
-          "alt": "Career Week continues with LyondellBasell (LYB)! — image 1 of 2"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdmmvxIPDTg-640x800.jpg",
-          "imageWidth": 640,
-          "imageHeight": 800,
-          "alt": "Career Week continues with LyondellBasell (LYB)! — image 2 of 2"
-        }
-      ]
+      "alt": "Career Week continues with LyondellBasell (LYB)!"
     },
     {
       "id": "DdjrJksFo_3",
@@ -82,19 +95,6 @@
       "summary": "Feel free to bring your resume and any question you have. See you there!",
       "caption": "Join us for an info session and one-on-one with a recruiter from CMTA this Wednesday from 5:30 to 6:30 PM in Scott Lab E100! Feel free to bring your resume and any question you have. See you there!",
       "alt": "Join us for an info session and one-on-one with a recruiter from CMTA this…"
-    },
-    {
-      "id": "DdCYwvBj1xx",
-      "permalink": "https://www.instagram.com/p/DdCYwvBj1xx/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdCYwvBj1xx-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-09-08T18:59:58.000Z",
-      "title": "Ready to strengthen your resume before recruiting season?",
-      "summary": "Join ASME this Thursday for our Resume Review Workshop! Get expert feedback on your resume, ask career-related questions, and learn how to better prepare for internships, co-ops, and full-time opportunities. 📅 Thursday, September 10 ⏰…",
-      "caption": "Ready to strengthen your resume before recruiting season? Join ASME this Thursday for our Resume Review Workshop! Get expert feedback on your resume, ask career-related questions, and learn how to better prepare for internships, co-ops, and full-time opportunities. 📅 Thursday, September 10 ⏰ 5:30–6:30 PM 📍 Scott Lab E141 Bring your resume and come ready to make it stronger. All majors are welcome!",
-      "alt": "Ready to strengthen your resume before recruiting season?"
     }
   ]
 }
