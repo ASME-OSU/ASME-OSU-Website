@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-09-24T05:02:57.355Z",
+  "generatedAt": "2026-09-24T22:30:59.624Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-09-17T21:30:00.000Z",
-      "title": "ASME Casino Night",
-      "start": "2026-09-17T21:30:00.000Z",
-      "end": "2026-09-17T22:30:00.000Z",
-      "allDay": false,
-      "location": "Scott Laboratory E141",
-      "description": "Casino Night",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:10:49.000Z"
-    },
     {
       "id": "040gnn2783gthupf4m50v7qdet@google.com::2026-09-21T21:30:00.000Z",
       "title": "ExxonMobil Career Fair Prep",
