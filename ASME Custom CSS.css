@@ -23676,3 +23676,160 @@ html body #page .entry-content .asme-cal-page .acp-event-card {
     height: 58px !important;
   }
 }
+
+
+/* =============================================
+   HOME HERO SPOTLIGHT — award + career guide
+   ============================================= */
+.asme-home .ah-spotlight {
+  width: 300px !important;
+  min-width: 300px !important;
+}
+
+.asme-home .ah-spotlight-track {
+  position: relative !important;
+  width: 300px !important;
+  min-height: 310px !important;
+}
+
+.asme-home .ah-spotlight-slide {
+  position: absolute !important;
+  inset: 0 !important;
+  box-sizing: border-box !important;
+  width: 300px !important;
+  min-width: 300px !important;
+  min-height: 310px !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(6px) scale(0.985) !important;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0s linear 0.35s !important;
+}
+
+.asme-home .ah-spotlight-slide.is-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) scale(1) !important;
+  transition-delay: 0s !important;
+}
+
+.asme-home .ah-career-guide {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 22px 24px 18px !important;
+  text-decoration: none !important;
+}
+
+.asme-home .ah-career-guide:hover,
+.asme-home .ah-career-guide:focus-visible {
+  background: rgba(255,255,255,0.14) !important;
+  border-color: rgba(255,255,255,0.38) !important;
+  text-decoration: none !important;
+}
+
+.asme-home .ah-career-guide-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 118px !important;
+  height: 118px !important;
+  margin: 2px auto 14px !important;
+  background: rgba(255,255,255,0.12) !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  border-radius: 28px !important;
+}
+
+.asme-home .ah-career-guide-icon svg {
+  width: 64px !important;
+  height: 64px !important;
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 1.7 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.asme-home .ah-career-guide .ah-badge-name {
+  margin: 6px 0 8px !important;
+  font-size: 24px !important;
+  line-height: 1.05 !important;
+  text-align: center !important;
+}
+
+.asme-home .ah-career-guide-copy {
+  max-width: 245px !important;
+  margin: 0 auto 14px !important;
+  color: rgba(255,255,255,0.76) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  text-align: center !important;
+}
+
+.asme-home .ah-career-guide-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 9px 15px !important;
+  background: #ffffff !important;
+  color: var(--asme-navy) !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.asme-home .ah-spotlight-dots {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin-top: 10px !important;
+}
+
+.asme-home .ah-spotlight-dot {
+  width: 8px !important;
+  height: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: rgba(255,255,255,0.34) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transition: width 0.2s ease, background 0.2s ease !important;
+}
+
+.asme-home .ah-spotlight-dot.is-active {
+  width: 22px !important;
+  background: #ffffff !important;
+}
+
+.asme-home .ah-spotlight-dot:focus-visible {
+  outline: 2px solid #ffffff !important;
+  outline-offset: 3px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asme-home .ah-spotlight-slide,
+  .asme-home .ah-spotlight-dot {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .asme-home .ah-spotlight,
+  .asme-home .ah-spotlight-track,
+  .asme-home .ah-spotlight-slide {
+    width: min(300px, calc(100vw - 64px)) !important;
+    min-width: 0 !important;
+  }
+
+  .asme-home .ah-hero-right {
+    width: 100% !important;
+  }
+}
