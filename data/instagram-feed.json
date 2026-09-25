@@ -2,34 +2,47 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-09-23T16:59:22.498Z",
+  "updatedAt": "2026-09-25T17:11:40.570Z",
   "items": [
+    {
+      "id": "DdtskSdlnwi",
+      "permalink": "https://www.instagram.com/p/DdtskSdlnwi/",
+      "mediaType": "CAROUSEL_ALBUM",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdtskIrFiXL-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-09-25T14:40:23.000Z",
+      "title": "Only 2 events left in ASME Career Week!",
+      "summary": "🔥 Today, we’re wrapping up the week with TSMC × MSE × ASME! Come learn about the semiconductor industry, hear what it’s like to work as a process engineer, and explore full-time & Summer 2027 internship opportunities at TSMC’s Phoenix,…",
+      "caption": "Only 2 events left in ASME Career Week! 🔥 Today, we’re wrapping up the week with TSMC × MSE × ASME! Come learn about the semiconductor industry, hear what it’s like to work as a process engineer, and explore full-time & Summer 2027 internship opportunities at TSMC’s Phoenix, Arizona site. 💻⚙️ 📅 TODAY — Friday, September 25 ⏰ 6:00–7:30 PM 📍 Scott Lab E100 📄 Bring a physical + electronic copy of your resume 🍽️ Food & refreshments provided TSMC will also be collecting resumes, so this is a great chance to connect directly with the team and learn about opportunities in semiconductor manufacturing. And then just ONE final Career Week event on Monday! 👀",
+      "alt": "Only 2 events left in ASME Career Week!",
+      "carouselImages": [
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdtskIrFiXL-640x800.jpg",
+          "imageWidth": 640,
+          "imageHeight": 800,
+          "alt": "Only 2 events left in ASME Career Week! — image 1 of 2"
+        },
+        {
+          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdtskI1FsbV-640x800.jpg",
+          "imageWidth": 640,
+          "imageHeight": 800,
+          "alt": "Only 2 events left in ASME Career Week! — image 2 of 2"
+        }
+      ]
+    },
     {
       "id": "DdoiNhllrJi",
       "permalink": "https://www.instagram.com/p/DdoiNhllrJi/",
       "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdoiJjFTHZA-640x800.jpg",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdoiNhllrJi-640x800.jpg",
       "imageWidth": 640,
       "imageHeight": 800,
       "timestamp": "2026-09-23T14:33:41.000Z",
-      "title": "Latest from ASME OSU",
+      "title": "More from the chapter",
       "summary": "Follow ASME OSU for chapter updates, upcoming events, workshops, and student opportunities.",
       "caption": "",
-      "alt": "Latest from ASME OSU",
-      "carouselImages": [
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdoiJjFTHZA-640x800.jpg",
-          "imageWidth": 640,
-          "imageHeight": 800,
-          "alt": "Latest from ASME OSU — image 1 of 2"
-        },
-        {
-          "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdoiJmZTJum-640x800.jpg",
-          "imageWidth": 640,
-          "imageHeight": 800,
-          "alt": "Latest from ASME OSU — image 2 of 2"
-        }
-      ]
+      "alt": "More from the chapter"
     },
     {
       "id": "Ddmm1Wrjzac",
@@ -82,19 +95,6 @@
       "summary": "There will be fun casino activities and networking with other members. See details below: 🗓️ Thursday, September 17th 🕦 5:30 - 6:30 PM 📍 Scott Lab E141",
       "caption": "Come to ASME’s Casino Night this Thursday! There will be fun casino activities and networking with other members. See details below: 🗓️ Thursday, September 17th 🕦 5:30 - 6:30 PM 📍 Scott Lab E141",
       "alt": "Come to ASME’s Casino Night this Thursday!"
-    },
-    {
-      "id": "DdT8p6eTonR",
-      "permalink": "https://www.instagram.com/p/DdT8p6eTonR/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdT8p6eTonR-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-09-15T14:41:54.000Z",
-      "title": "Join us for an info session and one-on-one with a recruiter from CMTA this…",
-      "summary": "Feel free to bring your resume and any question you have. See you there!",
-      "caption": "Join us for an info session and one-on-one with a recruiter from CMTA this Wednesday from 5:30 to 6:30 PM in Scott Lab E100! Feel free to bring your resume and any question you have. See you there!",
-      "alt": "Join us for an info session and one-on-one with a recruiter from CMTA this…"
     }
   ]
 }
