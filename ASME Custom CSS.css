@@ -23887,3 +23887,56 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
   background: var(--osu-scarlet, #bb0000) !important;
   color: #ffffff !important;
 }
+
+
+/* =============================================
+   HOME SPOTLIGHT — vertical balance
+   Keep the hero copy untouched; only normalize the rotating card.
+   ============================================= */
+@media (min-width: 901px) {
+  body #page .asme-home .ah-spotlight,
+  html body #page .entry-content .asme-home .ah-spotlight {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  body #page .asme-home .ah-spotlight-track,
+  html body #page .entry-content .asme-home .ah-spotlight-track {
+    height: 310px !important;
+    min-height: 310px !important;
+  }
+
+  body #page .asme-home .ah-spotlight-slide,
+  html body #page .entry-content .asme-home .ah-spotlight-slide {
+    height: 310px !important;
+    min-height: 310px !important;
+    max-height: 310px !important;
+  }
+
+  body #page .asme-home .ah-career-guide,
+  html body #page .entry-content .asme-home .ah-career-guide {
+    justify-content: center !important;
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+  }
+
+  body #page .asme-home .ah-career-guide-icon,
+  html body #page .entry-content .asme-home .ah-career-guide-icon {
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+  }
+
+  body #page .asme-home .ah-career-guide .ah-badge-name,
+  html body #page .entry-content .asme-home .ah-career-guide .ah-badge-name {
+    margin-top: 5px !important;
+    margin-bottom: 7px !important;
+  }
+
+  body #page .asme-home .ah-career-guide-copy,
+  html body #page .entry-content .asme-home .ah-career-guide-copy {
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+  }
+}
