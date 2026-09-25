@@ -23940,3 +23940,12 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
     margin-bottom: 12px !important;
   }
 }
+
+
+/* HOME SPOTLIGHT — desktop vertical centering correction */
+@media (min-width: 901px) {
+  body #page .asme-home .ah-spotlight,
+  html body #page .entry-content .asme-home .ah-spotlight {
+    transform: translateY(48px) !important;
+  }
+}
