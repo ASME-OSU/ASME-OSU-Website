@@ -327,7 +327,8 @@
         spotlightSlides.forEach(function (slide, i) {
           slide.classList.toggle('is-active', i === spotlightCurrent);
           slide.setAttribute('aria-hidden', i === spotlightCurrent ? 'false' : 'true');
-          if (slide.tagName === 'A') slide.tabIndex = i === spotlightCurrent ? 0 : -1;
+          var slideLink = slide.matches('a') ? slide : slide.querySelector('a');
+          if (slideLink) slideLink.tabIndex = i === spotlightCurrent ? 0 : -1;
         });
 
         spotlightDots.forEach(function (dot, i) {

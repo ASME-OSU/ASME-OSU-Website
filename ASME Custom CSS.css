@@ -23833,3 +23833,57 @@ html body #page .entry-content .asme-cal-page .acp-event-card {
     width: 100% !important;
   }
 }
+
+
+/* Career Guide spotlight hardening: keep the panel independent of theme link styles. */
+body #page .asme-home .ah-career-guide,
+html body #page .entry-content .asme-home .ah-career-guide {
+  background-color: rgba(255,255,255,0.065) !important;
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.012)) !important;
+  border-color: rgba(255,255,255,0.26) !important;
+  color: #ffffff !important;
+}
+
+body #page .asme-home .ah-career-guide .ah-badge-name,
+html body #page .entry-content .asme-home .ah-career-guide .ah-badge-name {
+  color: #ffffff !important;
+}
+
+body #page .asme-home .ah-career-guide .ah-badge-label,
+html body #page .entry-content .asme-home .ah-career-guide .ah-badge-label {
+  color: var(--osu-gold, #c8aa6e) !important;
+}
+
+body #page .asme-home .ah-career-guide .ah-career-guide-copy,
+html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-copy {
+  color: rgba(255,255,255,0.76) !important;
+}
+
+body #page .asme-home .ah-career-guide .ah-career-guide-link,
+body #page .asme-home .ah-career-guide .ah-career-guide-link:link,
+body #page .asme-home .ah-career-guide .ah-career-guide-link:visited,
+html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link,
+html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link:link,
+html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link:visited {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 9px 15px !important;
+  background: #ffffff !important;
+  color: #0f3460 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+body #page .asme-home .ah-career-guide .ah-career-guide-link:hover,
+body #page .asme-home .ah-career-guide .ah-career-guide-link:focus-visible,
+html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link:hover,
+html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link:focus-visible {
+  background: var(--osu-scarlet, #bb0000) !important;
+  color: #ffffff !important;
+}
