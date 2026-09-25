@@ -23949,3 +23949,13 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
     transform: translateY(48px) !important;
   }
 }
+
+
+/* HOME SPOTLIGHT — desktop right-edge alignment */
+@media (min-width: 901px) {
+  body #page .asme-home .ah-spotlight,
+  html body #page .entry-content .asme-home .ah-spotlight {
+    position: relative !important;
+    right: -28px !important;
+  }
+}
