@@ -308,6 +308,72 @@
       restartTimer();
     }
 
+    /* ─────────────────────────────────────────
+       8. HOME HERO SPOTLIGHT
+       Rotates between the chapter award and Career Guide.
+    ───────────────────────────────────────── */
+    var spotlight = document.getElementById('ahSpotlight');
+
+    if (spotlight) {
+      var spotlightSlides = Array.prototype.slice.call(spotlight.querySelectorAll('[data-spotlight-slide]'));
+      var spotlightDots = Array.prototype.slice.call(spotlight.querySelectorAll('[data-spotlight-dot]'));
+      var spotlightCurrent = 0;
+      var spotlightTimer = null;
+
+      function showSpotlight(index) {
+        if (!spotlightSlides.length) return;
+        spotlightCurrent = (index + spotlightSlides.length) % spotlightSlides.length;
+
+        spotlightSlides.forEach(function (slide, i) {
+          slide.classList.toggle('is-active', i === spotlightCurrent);
+          slide.setAttribute('aria-hidden', i === spotlightCurrent ? 'false' : 'true');
+          if (slide.tagName === 'A') slide.tabIndex = i === spotlightCurrent ? 0 : -1;
+        });
+
+        spotlightDots.forEach(function (dot, i) {
+          var active = i === spotlightCurrent;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-selected', active ? 'true' : 'false');
+          dot.tabIndex = active ? 0 : -1;
+        });
+      }
+
+      function stopSpotlight() {
+        if (spotlightTimer) {
+          clearInterval(spotlightTimer);
+          spotlightTimer = null;
+        }
+      }
+
+      function startSpotlight() {
+        stopSpotlight();
+        if (!reduceMotion && spotlightSlides.length > 1) {
+          spotlightTimer = setInterval(function () {
+            if (!document.hidden) showSpotlight(spotlightCurrent + 1);
+          }, 6500);
+        }
+      }
+
+      spotlightDots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () {
+          showSpotlight(i);
+          startSpotlight();
+        });
+      });
+
+      spotlight.addEventListener('mouseenter', stopSpotlight);
+      spotlight.addEventListener('mouseleave', startSpotlight);
+      spotlight.addEventListener('focusin', stopSpotlight);
+      spotlight.addEventListener('focusout', function () {
+        window.setTimeout(function () {
+          if (!spotlight.contains(document.activeElement)) startSpotlight();
+        }, 0);
+      });
+
+      showSpotlight(0);
+      startSpotlight();
+    }
+
     /* Keep one continuous featured-event runner at every card aspect ratio.
        A single rounded path avoids mobile SVG implementations restarting
        the dash on separate rectangle sides. */
