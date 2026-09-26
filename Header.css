@@ -264,3 +264,11 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
   html body #page .entry-content .asme-home .ah-hero {margin-bottom:12px!important;}
   html body #page .entry-content .asme-home .ah-hero + .ah-featured-event {margin-top:0!important;}
 }
+
+
+/* Final mobile width: keep the header on the same 12px-per-side gutter as page content. */
+@media (max-width:768px) {
+  html body #asme-site-header {
+    width:calc(100% - 24px);
+  }
+}
