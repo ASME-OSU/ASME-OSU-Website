@@ -24006,3 +24006,79 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
     margin-left: 0 !important;
   }
 }
+
+
+/* =============================================
+   SHARED DESKTOP FRAME — structural centering fix
+   Put the site gutter on the outer WordPress content container exactly once.
+   Nested WordPress wrappers and custom pages then fill that centered frame.
+   ============================================= */
+@media (min-width: 981px) {
+  body.page #content.site-content,
+  body.page .site-content {
+    box-sizing: border-box !important;
+    width: calc(100% - 80px) !important;
+    max-width: 2100px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body.page #content.site-content > .content-sidebar-wrap,
+  body.page .site-content > .content-sidebar-wrap,
+  body.page .content-sidebar-wrap,
+  body.page #primary,
+  body.page .content-area,
+  body.page #main,
+  body.page .site-main,
+  body.page article.page,
+  body.page .inside-article,
+  body.page .entry-content {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body #page .asme-home,
+  html body #page .entry-content .asme-home,
+  body #page .asme-about-page,
+  html body #page .entry-content .asme-about-page,
+  body #page .asme-join-page,
+  html body #page .entry-content .asme-join-page,
+  body #page .asme-cal-page,
+  html body #page .entry-content .asme-cal-page,
+  body #page .asme-gallery-page,
+  html body #page .entry-content .asme-gallery-page,
+  body #page .asme-sponsors-page,
+  html body #page .entry-content .asme-sponsors-page,
+  body #page .asme-sponsor-page,
+  html body #page .entry-content .asme-sponsor-page,
+  body #page .asme-members-page,
+  html body #page .entry-content .asme-members-page,
+  body #page .asme-member-resources-page,
+  html body #page .entry-content .asme-member-resources-page,
+  body .leadership-board {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  body #page .asme-cal-page .acp-header,
+  html body #page .entry-content .asme-cal-page .acp-header,
+  body #page .asme-join-page .join-faq-section,
+  html body #page .entry-content .asme-join-page .join-faq-section {
+    width: 100% !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
