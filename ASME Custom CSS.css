@@ -35,7 +35,7 @@
 :root {
   --asme-page-width: 2200px;
   --asme-content-width: 1700px;
-  --asme-gutter: 24px;
+  --asme-gutter: 12px;
   --asme-sidebar-width: 320px;
   --asme-gap: 16px;
 
@@ -17789,8 +17789,8 @@ html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > br 
   body .site-header .inside-header,
   body #masthead .inside-header,
   body .asme-footer-inner {
-    width: min(2100px, calc(100vw - 160px)) !important;
-    max-width: min(2100px, calc(100vw - 160px)) !important;
+    width: min(2100px, calc(100vw - 80px)) !important;
+    max-width: min(2100px, calc(100vw - 80px)) !important;
     margin-right: auto !important;
     margin-left: auto !important;
   }
@@ -17812,7 +17812,7 @@ html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid > br 
   body #page .asme-join-page,
   html body #page .entry-content .asme-join-page {
     width: 100% !important;
-    max-width: min(2100px, calc(100vw - 160px)) !important;
+    max-width: min(2100px, calc(100vw - 80px)) !important;
   }
 
   body #page .asme-cal-page .acp-header {
@@ -23349,8 +23349,8 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
 @media (min-width: 1920px) {
   body .asme-footer-inner.asme-footer-v2 {
     position: relative !important;
-    width: min(2100px, calc(100vw - 160px)) !important;
-    max-width: min(2100px, calc(100vw - 160px)) !important;
+    width: min(2100px, calc(100vw - 80px)) !important;
+    max-width: min(2100px, calc(100vw - 80px)) !important;
   }
 }
 
@@ -23460,7 +23460,7 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-step-descriptio
   html body #page .entry-content .asme-members-page,
   body .leadership-board {
     width: 100% !important;
-    max-width: min(2100px, calc(100vw - 160px)) !important;
+    max-width: min(2100px, calc(100vw - 80px)) !important;
     margin-right: auto !important;
     margin-left: auto !important;
   }
@@ -23531,7 +23531,7 @@ html body #page .entry-content .asme-cal-page {
 @media (min-width: 980px) {
   body #page .asme-cal-page,
   html body #page .entry-content .asme-cal-page {
-    width: calc(100vw - 152px) !important;
+    width: calc(100vw - 76px) !important;
     max-width: 2100px !important;
     margin-right: auto !important;
     margin-left: auto !important;
@@ -23541,7 +23541,7 @@ html body #page .entry-content .asme-cal-page {
 @media (min-width: 1600px) {
   body #page .asme-cal-page,
   html body #page .entry-content .asme-cal-page {
-    width: calc(100vw - 160px) !important;
+    width: calc(100vw - 80px) !important;
   }
 }
 
