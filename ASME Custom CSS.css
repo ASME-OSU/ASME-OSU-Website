@@ -23959,3 +23959,50 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
     right: -28px !important;
   }
 }
+
+
+/* =============================================
+   SHARED DESKTOP PAGE FRAME — final authority
+   Header.css uses the same 40px/side, 2100px-cap frame.
+   Keep this at the end so legacy page-specific widths cannot diverge.
+   ============================================= */
+@media (min-width: 981px) {
+  body #page .asme-home,
+  html body #page .entry-content .asme-home,
+  body #page .asme-about-page,
+  html body #page .entry-content .asme-about-page,
+  body #page .asme-join-page,
+  html body #page .entry-content .asme-join-page,
+  body #page .asme-cal-page,
+  html body #page .entry-content .asme-cal-page,
+  body #page .asme-gallery-page,
+  html body #page .entry-content .asme-gallery-page,
+  body #page .asme-sponsors-page,
+  html body #page .entry-content .asme-sponsors-page,
+  body #page .asme-sponsor-page,
+  html body #page .entry-content .asme-sponsor-page,
+  body #page .asme-members-page,
+  html body #page .entry-content .asme-members-page,
+  body #page .asme-member-resources-page,
+  html body #page .entry-content .asme-member-resources-page,
+  body .leadership-board {
+    box-sizing: border-box !important;
+    width: calc(100vw - 80px) !important;
+    max-width: 2100px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* These legacy page sections should fill their now-unified outer wrapper. */
+  body #page .asme-cal-page .acp-header,
+  html body #page .entry-content .asme-cal-page .acp-header,
+  body #page .asme-join-page .join-faq-section,
+  html body #page .entry-content .asme-join-page .join-faq-section {
+    width: 100% !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
