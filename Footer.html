@@ -319,6 +319,17 @@
       var spotlightDots = Array.prototype.slice.call(spotlight.querySelectorAll('[data-spotlight-dot]'));
       var spotlightCurrent = 0;
       var spotlightTimer = null;
+      var spotlightHovered = false;
+
+      spotlightSlides.forEach(function (slide, i) {
+        slide.id = 'ahSpotlightPanel' + i;
+        slide.setAttribute('role', 'tabpanel');
+        if (spotlightDots[i]) {
+          spotlightDots[i].id = 'ahSpotlightTab' + i;
+          spotlightDots[i].setAttribute('aria-controls', slide.id);
+          slide.setAttribute('aria-labelledby', spotlightDots[i].id);
+        }
+      });
 
       function showSpotlight(index) {
         if (!spotlightSlides.length) return;
@@ -348,7 +359,7 @@
 
       function startSpotlight() {
         stopSpotlight();
-        if (!reduceMotion && spotlightSlides.length > 1) {
+        if (!reduceMotion && spotlightSlides.length > 1 && !spotlightHovered && !spotlight.contains(document.activeElement)) {
           spotlightTimer = setInterval(function () {
             if (!document.hidden) showSpotlight(spotlightCurrent + 1);
           }, 6500);
@@ -360,10 +371,28 @@
           showSpotlight(i);
           startSpotlight();
         });
+        dot.addEventListener('keydown', function (event) {
+          var next;
+          if (event.key === 'ArrowRight') next = (i + 1) % spotlightDots.length;
+          else if (event.key === 'ArrowLeft') next = (i + spotlightDots.length - 1) % spotlightDots.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = spotlightDots.length - 1;
+          else return;
+          event.preventDefault();
+          stopSpotlight();
+          showSpotlight(next);
+          spotlightDots[next].focus();
+        });
       });
 
-      spotlight.addEventListener('mouseenter', stopSpotlight);
-      spotlight.addEventListener('mouseleave', startSpotlight);
+      spotlight.addEventListener('mouseenter', function () {
+        spotlightHovered = true;
+        stopSpotlight();
+      });
+      spotlight.addEventListener('mouseleave', function () {
+        spotlightHovered = false;
+        startSpotlight();
+      });
       spotlight.addEventListener('focusin', stopSpotlight);
       spotlight.addEventListener('focusout', function () {
         window.setTimeout(function () {

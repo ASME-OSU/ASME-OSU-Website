@@ -247,11 +247,6 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
 @media (prefers-reduced-motion:reduce) {#asme-site-header, #asme-site-header * {transition:none!important;}}
 @media print {html body #asme-site-header {position:static;transform:none;margin:auto;box-shadow:none;}#asme-header-spacer,#asme-site-header .asme-hd-nav,#asme-site-header .asme-hd-actions,#asme-site-header .asme-hd-search {display:none!important;}}
 
-/* One shared container on every page; slightly inset on phones/tablets. */
-@media (min-width:1600px) {
-  html body #asme-site-header {width:calc(100% - 160px);}
-}
-
 /* On ultra-wide displays the one-line organization name needs a real column
    of its own. The navigation then uses the open center-right space instead of
    beginning over the end of the brand title. */

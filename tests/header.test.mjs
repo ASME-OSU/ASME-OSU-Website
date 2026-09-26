@@ -7,7 +7,20 @@ const template=fs.readFileSync('Header.html','utf8');
 const css=fs.readFileSync('Header.css','utf8');
 const script=fs.readFileSync('Header Integration.js','utf8');
 test('ultra-wide header cap matches the inner WordPress content frame',()=>{
-  assert.match(css,/width:calc\(100% - 152px\);\s*\/\*[^*]*\*\/\s*max-width:2048px;/);
+  assert.match(css,/width:calc\(100% - 80px\);\s*\/\*[^*]*\*\/\s*max-width:2100px;/);
+});
+test('wide desktop rules preserve the shared header frame',()=>{
+  const document = new JSDOM('<style>'+css+'</style>').window.document;
+  for (const rule of document.styleSheets[0].cssRules) {
+    if (rule.conditionText && /min-width:\s*(1600|1800)px/.test(rule.conditionText)) {
+      for (const child of rule.cssRules) {
+        if (child.selectorText === 'html body #asme-site-header') {
+          assert.equal(child.style.getPropertyValue('width'), '', 'wide layouts inherit the shared width');
+          assert.equal(child.style.getPropertyValue('max-width'), '', 'wide layouts inherit the shared cap');
+        }
+      }
+    }
+  }
 });
 test('desktop dropdown colors follow the light and dark header palettes',()=>{
   assert.match(css,/--hd-dropdown-surface:#fff;/);
