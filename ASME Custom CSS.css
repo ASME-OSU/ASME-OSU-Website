@@ -24242,3 +24242,14 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
     margin-left: 0 !important;
   }
 }
+
+
+/* HOME — larger tablet portrait keeps the three primary cards side by side. */
+@media (min-width: 820px) and (max-width: 980px) {
+  body #page .asme-home .ah-cards-grid,
+  html body #page .entry-content .asme-home .ah-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+}
