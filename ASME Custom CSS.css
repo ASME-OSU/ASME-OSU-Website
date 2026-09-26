@@ -24174,3 +24174,38 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
     gap: 14px !important;
   }
 }
+
+
+/* =============================================
+   SHARED MOBILE GUTTER — final authority
+   Restore a visible 12px-per-side gutter on mobile.
+   ============================================= */
+@media (max-width: 768px) {
+  body #page .asme-home,
+  html body #page .entry-content .asme-home,
+  body #page .asme-about-page,
+  html body #page .entry-content .asme-about-page,
+  body #page .asme-join-page,
+  html body #page .entry-content .asme-join-page,
+  body #page .asme-cal-page,
+  html body #page .entry-content .asme-cal-page,
+  body #page .asme-gallery-page,
+  html body #page .entry-content .asme-gallery-page,
+  body #page .asme-sponsors-page,
+  html body #page .entry-content .asme-sponsors-page,
+  body #page .asme-sponsor-page,
+  html body #page .entry-content .asme-sponsor-page,
+  body #page .asme-members-page,
+  html body #page .entry-content .asme-members-page,
+  body #page .asme-member-resources-page,
+  html body #page .entry-content .asme-member-resources-page,
+  body .leadership-board {
+    box-sizing: border-box !important;
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
