@@ -264,11 +264,3 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
   html body #page .entry-content .asme-home .ah-hero {margin-bottom:12px!important;}
   html body #page .entry-content .asme-home .ah-hero + .ah-featured-event {margin-top:0!important;}
 }
-
-
-/* Final mobile frame: match the shared 6px-per-side page gutter, including 768px. */
-@media (max-width:768px) {
-  html body #asme-site-header {
-    width:calc(100% - 12px);
-  }
-}
