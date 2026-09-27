@@ -6,19 +6,21 @@
   "scripts": {
     "sync:calendar": "node scripts/sync-calendar.mjs",
     "sync:google-photos": "node scripts/sync-google-photos.mjs",
-    "check": "node --check \"Calendar Integration.js\" && node --check \"Gallery Integration.js\" && node --check scripts/sync-google-photos.mjs && node --check scripts/publish-leaderboard-rank-snapshot.mjs && node --check \"Member Points Integration.js\" && node --check \"Join Page Integration.js\" && node --check \"Header Integration.js\" && node --check \"Footer Integration.js\" && node --check \"Sponsor Integration.js\" && node scripts/build-sponsor.mjs --check && node --check \"Mobile Navigation.js\" && node scripts/build-navigation.mjs --check",
+    "check": "node --check \"Calendar Integration.js\" && node --check \"Gallery Integration.js\" && node --check scripts/sync-google-photos.mjs && node --check scripts/publish-leaderboard-rank-snapshot.mjs && node --check \"Member Points Integration.js\" && node --check \"Join Page Integration.js\" && node --check \"Header Integration.js\" && node --check \"Footer Integration.js\" && node --check \"Sponsor Integration.js\" && node scripts/build-sponsor.mjs --check && node --check \"Mobile Navigation.js\" && node scripts/build-navigation.mjs --check && node scripts/build-styles.mjs --check",
     "test": "node --test tests/*.test.mjs",
     "build:header": "node scripts/build-header.mjs",
     "preview:header": "node scripts/preview-header.mjs",
     "build:sponsor": "node scripts/build-sponsor.mjs",
     "build:navigation": "node scripts/build-navigation.mjs",
-    "build": "npm run build:header && npm run build:sponsor && npm run build:navigation"
+    "build": "npm run build:header && npm run build:sponsor && npm run build:navigation && npm run build:styles",
+    "build:styles": "node scripts/build-styles.mjs"
   },
   "dependencies": {
     "@marcus5914/google-photos-album-image-url-fetch": "1.1.0",
     "node-ical": "0.26.1"
   },
   "devDependencies": {
+    "css-tree": "3.2.1",
     "jsdom": "^28.1.0",
     "sharp": "^0.34.4"
   }

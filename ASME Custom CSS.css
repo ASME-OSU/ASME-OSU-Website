@@ -24209,3 +24209,154 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
     padding-left: 0 !important;
   }
 }
+
+/* ASME SHARED DESIGN SYSTEM START */
+/* Shared expressive design language. Keep page-specific layouts and color treatments. */
+:root {
+  --asme-font-sans: 'DM Sans', system-ui, sans-serif;
+  --asme-font-serif: 'DM Serif Display', Georgia, serif;
+  --asme-radius-card: 20px;
+  --asme-radius-control: 12px;
+  --asme-space-card: clamp(20px, 2.5vw, 32px);
+  --asme-shadow-card: 0 6px 24px rgb(15 34 58 / 8%);
+  --asme-focus: #0067b1;
+}
+html body #page .entry-content :is(.asme-home, .asme-about-page, .asme-join-page, .asme-cal-page, .asme-gallery-page, .asme-sponsors-page, .asme-sponsor-page, .asme-members-page, .leadership-board) {
+  font-family: var(--asme-font-sans) !important;
+}
+html body #page .entry-content :is(.asme-home, .asme-about-page, .asme-join-page, .asme-cal-page, .asme-gallery-page, .asme-sponsors-page, .asme-sponsor-page, .asme-members-page, .leadership-board) h1 {
+  font-family: var(--asme-font-serif) !important;
+  font-weight: 400 !important;
+  font-size: clamp(32px, 3.5vw, 56px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.025em !important;
+  text-wrap: balance;
+}
+html body #page .entry-content :is(.ah-section-title, .asme-resource-group-title, .join-faq-section h2, .acp-upcoming-heading h2) {
+  font-family: var(--asme-font-serif) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.015em !important;
+}
+html body #page .entry-content :is(.ah-eyebrow, .ah-eyebrow-dark, .about-eyebrow, .join-eyebrow, .acp-eyebrow, .acp-section-eyebrow, .gallery-eyebrow, .sponsor-eyebrow, .sponsors-eyebrow, .asme-member-eyebrow) {
+  font-family: var(--asme-font-sans) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  line-height: 1.5 !important;
+}
+html body #page .entry-content :is(.asme-home, .asme-about-page, .asme-join-page, .asme-cal-page, .asme-gallery-page, .asme-sponsors-page, .asme-sponsor-page, .asme-members-page, .leadership-board) :is(.ah-card, .join-email-card, .join-groupme-card, .acp-cal-card, .acp-event-card, .asme-resource-card, .sponsor-benefit-card, .sponsor-tier-card, .sponsor-card-primary, .leader-card, .gallery-instagram-post-card) {
+  border-radius: var(--asme-radius-card) !important;
+  box-shadow: var(--asme-shadow-card) !important;
+}
+html body #page .entry-content :is(.ah-card, .join-email-card, .join-groupme-card, .sponsor-benefit-card) {
+  padding: var(--asme-space-card) !important;
+}
+/* Preserve primary, outline, and dark-panel color variants; unify their geometry. */
+html body #page .entry-content :is(.asme-home, .asme-about-page, .asme-join-page, .asme-cal-page, .asme-gallery-page, .asme-sponsors-page, .asme-sponsor-page, .asme-members-page) :is(.ah-btn-p, .ah-btn-o, .ah-featured-button, .ah-card-button, .about-cta-btn, .join-submit-button, .join-groupme-button, .acp-subscribe-btn, .gallery-instagram-button, .sponsors-cta-button, .sponsor-primary-button, .sponsor-donation-button, .asme-btn) {
+  min-height: 44px !important;
+  box-sizing: border-box !important;
+  border-radius: var(--asme-radius-control) !important;
+  padding: 12px 20px !important;
+  font-family: var(--asme-font-sans) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0 !important;
+  text-align: center;
+  white-space: normal !important;
+}
+/* A two-tone focus ring remains visible on light, scarlet, and dark surfaces. */
+html body :is(#page, #asme-site-header, .asme-footer-inner, .asme-lightbox) :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--asme-focus, #0067b1) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 3px #fff !important;
+}
+html body #page .entry-content :is(h1, h2, h3, section, [id]) { scroll-margin-top: 130px; }
+html body #page .entry-content .asme-home :is(.ah-hero-dot, .ah-spotlight-dot) {
+  position: relative !important;
+  display: inline-flex !important;
+  flex: 0 0 44px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: transparent !important;
+  transform: none !important;
+}
+html body #page .entry-content .asme-home :is(.ah-hero-dot, .ah-spotlight-dot)::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #fff;
+  opacity: 0.6;
+}
+html body #page .entry-content .asme-home :is(.ah-hero-dot.active, .ah-spotlight-dot.is-active)::after { width: 22px; opacity: 1; }
+html body #page .entry-content .asme-home :is(.ah-hero-dots, .ah-spotlight-dots) {
+  gap: 0 !important;
+  align-items: center !important;
+}
+html body #page .entry-content .asme-home .ah-hero-dots { bottom: 6px !important; }
+html body #page .entry-content .asme-home .asme-rotation-toggle {
+  min-height: 44px !important;
+  padding: 8px 12px !important;
+  border: 1px solid rgb(255 255 255 / 55%) !important;
+  border-radius: 12px !important;
+  background: #132238 !important;
+  color: #fff !important;
+  font: 700 12px/1.2 var(--asme-font-sans) !important;
+  white-space: nowrap;
+  cursor: pointer;
+}
+/* Let both panels contribute their natural height, including at increased text size. */
+html body #page .entry-content .asme-home .ah-spotlight-track { display: grid !important; height: auto !important; }
+html body #page .entry-content .asme-home .ah-spotlight-slide {
+  position: relative !important;
+  inset: auto !important;
+  grid-area: 1 / 1;
+  height: auto !important;
+  max-height: none !important;
+}
+html body #page .entry-content .asme-home .ah-spotlight { transform: none !important; right: auto !important; }
+html body #page .entry-content .asme-home .ah-spotlight-dots > br,
+html body #page .entry-content .asme-home .ah-spotlight > p:empty,
+html body #page .entry-content .asme-home .ah-spotlight-track > p:empty { display: none !important; }
+html body #page .entry-content .asme-home .ah-spotlight-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+html body #page .entry-content .asme-home .ah-spotlight-dots { margin-top: 0 !important; }
+html body #page .entry-content .asme-home .ah-hero {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 440px !important;
+  padding-bottom: 72px !important;
+}
+html body #page .entry-content .asme-home :is(.ah-hero-left, .ah-hero-right) { transform: none !important; }
+html body .asme-lightbox[hidden] { display: none !important; }
+@media (prefers-color-scheme: dark) {
+  :root { --asme-shadow-card: 0 6px 24px rgb(0 0 0 / 20%); --asme-focus: #79c5ff; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  html body :is(#page, #asme-site-header, .asme-footer-inner, .asme-lightbox) *,
+  html body :is(#page, #asme-site-header, .asme-footer-inner, .asme-lightbox) *::before,
+  html body :is(#page, #asme-site-header, .asme-footer-inner, .asme-lightbox) *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Secondary copy must remain readable on the signup page's dark surfaces. */
+@media (prefers-color-scheme: dark) {
+  html body #page .entry-content .asme-join-page .join-form-purpose strong { color: #ffb4b4 !important; }
+  html body #page .entry-content .asme-join-page .join-groupme-card .join-eyebrow { color: #cbd5e1 !important; }
+}
+/* ASME SHARED DESIGN SYSTEM END */

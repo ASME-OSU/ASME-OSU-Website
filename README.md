@@ -235,3 +235,28 @@ behavior checks, and fails if rebuilding changes a tracked generated file.
 loads it to upgrade the older footer HTML stored in Advanced Settings. Its use
 was verified on September 6, 2026. Removing it before migrating the live footer
 markup would change the site's appearance.
+
+## Shared visual system and performance build
+
+Edit `styles/design-system.css` for shared typography, card shapes, action sizes,
+focus indicators, and motion preferences. It preserves the existing expressive
+scarlet/navy theme and serif headings. `npm run build:styles` updates the marked
+block in `ASME Custom CSS.css` and generates `ASME Custom CSS.min.css`. Do not edit
+the generated block or minified asset directly. The minifier preserves rule order;
+it does not remove or reorder legacy overrides. `npm run check` verifies both
+outputs, and CI checks generated files after a rebuild.
+
+For deployment, replace the existing WordPress main stylesheet URL with
+`https://asme-osu.github.io/ASME-OSU-Website/ASME%20Custom%20CSS.min.css?v=20260926-design1`
+(keep only one main stylesheet link). Update the existing shared footer interaction
+script from `Footer.html` and the homepage HTML from `Home Page.html`, preserving
+unrelated WordPress settings. The footer adds pause/play controls, keyboard focus
+containment for the gallery viewer, and deferred background slideshow images.
+The homepage adds native lazy loading for its below-fold calendar embed.
+Repository HTML changes do not automatically publish to WordPress.
+
+Verification: run `npm run build`, `npm run check`, and `npm test`; inspect Home,
+Join, Calendar, Gallery, and member pages on phone/tablet/desktop in light and dark
+mode. Confirm visible focus, Escape/Tab behavior in the gallery, and reduced-motion
+playback defaults. The local preview checks do not replace testing the published
+WordPress DOM, which can insert extra paragraphs and line breaks.
