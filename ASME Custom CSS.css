@@ -24272,32 +24272,24 @@ html body :is(#page, #asme-site-header, .asme-footer-inner, .asme-lightbox) :is(
   box-shadow: 0 0 0 3px #fff !important;
 }
 html body #page .entry-content :is(h1, h2, h3, section, [id]) { scroll-margin-top: 130px; }
+/* Compact carousel dots retain keyboard selection and separate pause controls. */
 html body #page .entry-content .asme-home :is(.ah-hero-dot, .ah-spotlight-dot) {
-  position: relative !important;
-  display: inline-flex !important;
-  flex: 0 0 44px !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 44px !important;
-  height: 44px !important;
-  min-width: 44px !important;
+  flex: 0 0 auto !important;
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  border-radius: 12px !important;
-  background: transparent !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.6) !important;
   transform: none !important;
 }
-html body #page .entry-content .asme-home :is(.ah-hero-dot, .ah-spotlight-dot)::after {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #fff;
-  opacity: 0.6;
+html body #page .entry-content .asme-home :is(.ah-hero-dot.active, .ah-spotlight-dot.is-active) {
+  width: 22px !important;
+  background: #fff !important;
 }
-html body #page .entry-content .asme-home :is(.ah-hero-dot.active, .ah-spotlight-dot.is-active)::after { width: 22px; opacity: 1; }
 html body #page .entry-content .asme-home :is(.ah-hero-dots, .ah-spotlight-dots) {
-  gap: 0 !important;
+  gap: 8px !important;
   align-items: center !important;
 }
 html body #page .entry-content .asme-home .ah-hero-dots { bottom: 6px !important; }
