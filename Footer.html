@@ -244,7 +244,11 @@
     ───────────────────────────────────────── */
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
       link.addEventListener('click', function (e) {
-        var target = document.querySelector(link.getAttribute('href'));
+        var fragment = link.getAttribute('href');
+        if (!fragment || fragment === '#') return;
+        var id;
+        try { id = decodeURIComponent(fragment.slice(1)); } catch (_) { return; }
+        var target = document.getElementById(id);
         if (!target) return;
         e.preventDefault();
         target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
@@ -269,11 +273,14 @@
       var slides  = [];
       var dots    = [];
       var timer   = null;
+      var heroPaused = reduceMotion;
+      var heroHovered = false;
+      var hero = container.closest('.ah-hero');
 
       ahSlides.forEach(function (s, i) {
         var el = document.createElement('div');
         el.className = 'ah-hero-slide';
-        el.style.backgroundImage   = 'url(' + s.url + ')';
+        if (i === 0) el.style.backgroundImage = 'url(' + s.url + ')';
         el.style.backgroundPosition = s.focus || 'center center';
         if (i === 0) el.classList.add('active');
         container.appendChild(el);
@@ -283,28 +290,54 @@
         dot.className = 'ah-hero-dot' + (i === 0 ? ' active' : '');
         dot.type = 'button';
         dot.setAttribute('aria-label', 'Show slide ' + (i + 1));
+        dot.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
         dot.addEventListener('click', function () { goTo(i); restartTimer(); });
         dotsContainer.appendChild(dot);
         dots.push(dot);
       });
 
+      var heroToggle = document.createElement('button');
+      heroToggle.type = 'button';
+      heroToggle.className = 'asme-rotation-toggle';
+      function updateHeroToggle() {
+        heroToggle.textContent = heroPaused ? 'Play' : 'Pause';
+        heroToggle.setAttribute('aria-label', (heroPaused ? 'Play' : 'Pause') + ' background slideshow');
+      }
+      updateHeroToggle();
+      dotsContainer.appendChild(heroToggle);
+      heroToggle.addEventListener('click', function () {
+        heroPaused = !heroPaused;
+        updateHeroToggle();
+        restartTimer();
+      });
+
       function goTo(n) {
+        dots[current].setAttribute('aria-pressed', 'false');
         slides[current].classList.remove('active');
         dots[current].classList.remove('active');
         current = (n + slides.length) % slides.length;
+        slides[current].style.backgroundImage = 'url(' + ahSlides[current].url + ')';
+        dots[current].setAttribute('aria-pressed', 'true');
         slides[current].classList.add('active');
         dots[current].classList.add('active');
       }
 
       function restartTimer() {
         if (timer) clearInterval(timer);
-        if (!reduceMotion) {
+        timer = null;
+        if (!heroPaused && !heroHovered && !(hero && hero.contains(document.activeElement))) {
           timer = setInterval(function () {
             if (!document.hidden) goTo(current + 1);
           }, 5000);
         }
       }
 
+      if (hero) {
+        hero.addEventListener('mouseenter', function () { heroHovered = true; restartTimer(); });
+        hero.addEventListener('mouseleave', function () { heroHovered = false; restartTimer(); });
+        hero.addEventListener('focusin', restartTimer);
+        hero.addEventListener('focusout', function () { window.setTimeout(restartTimer, 0); });
+      }
       restartTimer();
     }
 
@@ -320,6 +353,26 @@
       var spotlightCurrent = 0;
       var spotlightTimer = null;
       var spotlightHovered = false;
+      var spotlightPaused = reduceMotion;
+      var spotlightToggle = document.createElement('button');
+      spotlightToggle.type = 'button';
+      spotlightToggle.className = 'asme-rotation-toggle';
+      function updateSpotlightToggle() {
+        spotlightToggle.textContent = spotlightPaused ? 'Play' : 'Pause';
+        spotlightToggle.setAttribute('aria-label', (spotlightPaused ? 'Play' : 'Pause') + ' ASME highlights');
+      }
+      updateSpotlightToggle();
+      var spotlightControls = document.createElement('div');
+      spotlightControls.className = 'ah-spotlight-controls';
+      var spotlightTablist = spotlight.querySelector('.ah-spotlight-dots');
+      spotlight.appendChild(spotlightControls);
+      if (spotlightTablist) spotlightControls.appendChild(spotlightTablist);
+      spotlightControls.appendChild(spotlightToggle);
+      spotlightToggle.addEventListener('click', function () {
+        spotlightPaused = !spotlightPaused;
+        updateSpotlightToggle();
+        startSpotlight();
+      });
 
       spotlightSlides.forEach(function (slide, i) {
         slide.id = 'ahSpotlightPanel' + i;
@@ -359,7 +412,7 @@
 
       function startSpotlight() {
         stopSpotlight();
-        if (!reduceMotion && spotlightSlides.length > 1 && !spotlightHovered && !spotlight.contains(document.activeElement)) {
+        if (!spotlightPaused && spotlightSlides.length > 1 && !spotlightHovered && !spotlight.contains(document.activeElement)) {
           spotlightTimer = setInterval(function () {
             if (!document.hidden) showSpotlight(spotlightCurrent + 1);
           }, 6500);
@@ -500,6 +553,7 @@
       lightbox.className = 'asme-lightbox';
       lightbox.setAttribute('role', 'dialog');
       lightbox.setAttribute('aria-modal', 'true');
+      lightbox.hidden = true;
       lightbox.setAttribute('aria-label', 'Gallery image viewer');
       lightbox.innerHTML =
         '<button class="asme-lightbox-close" aria-label="Close">&times;</button>' +
@@ -608,6 +662,7 @@
         e.preventDefault();
         returnFocus = link;
         updateImage(index, 0);
+        lightbox.hidden = false;
         lightbox.classList.add('active');
         document.body.classList.add('asme-lightbox-open-body');
         closeBtn.focus();
@@ -615,6 +670,7 @@
 
       function closeLightbox() {
         lightbox.classList.remove('active');
+        lightbox.hidden = true;
         document.body.classList.remove('asme-lightbox-open-body');
         if (returnFocus && document.contains(returnFocus)) returnFocus.focus();
       }
@@ -638,6 +694,16 @@
 
       document.addEventListener('keydown', function (e) {
         if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Tab') {
+          var focusable = [closeBtn, prevBtn, nextBtn, downloadLink, openLink];
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.shiftKey && (document.activeElement === first || !lightbox.contains(document.activeElement))) {
+            e.preventDefault(); last.focus();
+          } else if (!e.shiftKey && (document.activeElement === last || !lightbox.contains(document.activeElement))) {
+            e.preventDefault(); first.focus();
+          }
+        }
         if (e.key === 'Escape')      closeLightbox();
         else if (e.key === 'ArrowLeft')  prevBtn.click();
         else if (e.key === 'ArrowRight') nextBtn.click();
