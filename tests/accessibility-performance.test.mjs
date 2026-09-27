@@ -16,22 +16,17 @@ function setup(html, reducedMotion = true) {
   w.eval(script); w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
   return { w, d: w.document, intervals, close: () => w.close() };
 }
-test('hero loads only the first image initially and exposes deliberate playback for reduced motion', () => {
+test('hero loads only the first image initially and keeps reduced motion manual without playback buttons', () => {
   const s = setup('<div class="ah-hero"><div id="ahSlides"></div><div id="ahDots"></div></div>');
   try {
     const slides = [...s.d.querySelectorAll('.ah-hero-slide')];
     assert.equal(slides.filter(x => x.style.backgroundImage).length, 1);
     assert.equal(s.intervals.size, 0);
-    const play = s.d.querySelector('[aria-label="Play background slideshow"]');
-    assert.ok(play);
-    play.click();
-    assert.equal(play.getAttribute('aria-label'), 'Pause background slideshow');
-    assert.equal(s.intervals.size, 1);
-    [...s.intervals.values()][0]();
+    assert.equal(s.d.querySelector('.asme-rotation-toggle'), null);
+    s.d.querySelectorAll('.ah-hero-dot')[1].click();
     assert.ok(slides[1].style.backgroundImage);
     assert.equal(slides.filter(x => x.style.backgroundImage).length, 2);
     assert.equal(s.d.querySelectorAll('.ah-hero-dot[aria-pressed="true"]').length, 1);
-    play.click();
     assert.equal(s.intervals.size, 0);
   } finally { s.close(); }
 });
@@ -43,9 +38,7 @@ test('hero pauses on keyboard focus and exposes manual controls even when autopl
     dot.focus(); dot.click();
     assert.equal(s.intervals.size, 0);
     assert.equal(dot.getAttribute('aria-pressed'), 'true');
-    const pause = s.d.querySelector('.asme-rotation-toggle');
-    pause.click();
-    assert.equal(pause.textContent, 'Play');
+    assert.equal(s.d.querySelector('.asme-rotation-toggle'), null);
     s.d.querySelector('.ah-hero').dispatchEvent(new s.w.MouseEvent('mouseleave'));
     assert.equal(s.intervals.size, 0);
   } finally { s.close(); }

@@ -296,21 +296,6 @@
         dots.push(dot);
       });
 
-      var heroToggle = document.createElement('button');
-      heroToggle.type = 'button';
-      heroToggle.className = 'asme-rotation-toggle';
-      function updateHeroToggle() {
-        heroToggle.textContent = heroPaused ? 'Play' : 'Pause';
-        heroToggle.setAttribute('aria-label', (heroPaused ? 'Play' : 'Pause') + ' background slideshow');
-      }
-      updateHeroToggle();
-      dotsContainer.appendChild(heroToggle);
-      heroToggle.addEventListener('click', function () {
-        heroPaused = !heroPaused;
-        updateHeroToggle();
-        restartTimer();
-      });
-
       function goTo(n) {
         dots[current].setAttribute('aria-pressed', 'false');
         slides[current].classList.remove('active');
@@ -354,26 +339,6 @@
       var spotlightTimer = null;
       var spotlightHovered = false;
       var spotlightPaused = reduceMotion;
-      var spotlightToggle = document.createElement('button');
-      spotlightToggle.type = 'button';
-      spotlightToggle.className = 'asme-rotation-toggle';
-      function updateSpotlightToggle() {
-        spotlightToggle.textContent = spotlightPaused ? 'Play' : 'Pause';
-        spotlightToggle.setAttribute('aria-label', (spotlightPaused ? 'Play' : 'Pause') + ' ASME highlights');
-      }
-      updateSpotlightToggle();
-      var spotlightControls = document.createElement('div');
-      spotlightControls.className = 'ah-spotlight-controls';
-      var spotlightTablist = spotlight.querySelector('.ah-spotlight-dots');
-      spotlight.appendChild(spotlightControls);
-      if (spotlightTablist) spotlightControls.appendChild(spotlightTablist);
-      spotlightControls.appendChild(spotlightToggle);
-      spotlightToggle.addEventListener('click', function () {
-        spotlightPaused = !spotlightPaused;
-        updateSpotlightToggle();
-        startSpotlight();
-      });
-
       spotlightSlides.forEach(function (slide, i) {
         slide.id = 'ahSpotlightPanel' + i;
         slide.setAttribute('role', 'tabpanel');
