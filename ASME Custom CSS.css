@@ -24312,4 +24312,28 @@ html body .asme-lightbox[hidden] { display: none !important; }
   html body #page .entry-content .asme-join-page .join-form-purpose strong { color: #ffb4b4 !important; }
   html body #page .entry-content .asme-join-page .join-groupme-card .join-eyebrow { color: #cbd5e1 !important; }
 }
+
+/* Give the About introduction room to breathe on wide desktop displays. */
+@media (min-width: 1600px) {
+  html body #page .entry-content .asme-about-page .about-hero-copy {
+    padding: 48px !important;
+  }
+  html body #page .entry-content .asme-about-page .about-hero-copy h1 {
+    max-width: none !important;
+    margin-bottom: 24px !important;
+  }
+  html body #page .entry-content .asme-about-page .about-hero-copy > p {
+    max-width: 68ch !important;
+    font-size: 17px !important;
+    line-height: 1.7 !important;
+  }
+  html body #page .entry-content .asme-about-page .about-hero-actions {
+    gap: 14px !important;
+    margin-top: 28px !important;
+  }
+  html body #page .entry-content .asme-about-page .about-hero-badges {
+    gap: 12px !important;
+    margin-top: 20px !important;
+  }
+}
 /* ASME SHARED DESIGN SYSTEM END */
