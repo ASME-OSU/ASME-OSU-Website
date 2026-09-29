@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-09-24T22:30:59.624Z",
+  "generatedAt": "2026-09-29T02:03:53.446Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "040gnn2783gthupf4m50v7qdet@google.com::2026-09-21T21:30:00.000Z",
-      "title": "ExxonMobil Career Fair Prep",
-      "start": "2026-09-21T21:30:00.000Z",
-      "end": "2026-09-21T23:30:00.000Z",
-      "allDay": false,
-      "location": "Scott Laboratory E100",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-31T14:40:28.000Z"
-    },
     {
       "id": "4n32e7as58n00rtnhesgcfv5c3@google.com::2026-09-22T22:00:00.000Z",
       "title": "RTX Information Session",
@@ -82,15 +71,15 @@
       "updated": "2026-09-11T15:13:04.000Z"
     },
     {
-      "id": "7rn8i8uc29jjmuub707qedlnfd@google.com::2026-09-30T23:00:00.000Z",
+      "id": "7rn8i8uc29jjmuub707qedlnfd@google.com::2026-09-30T22:30:00.000Z",
       "title": "Study Tables with NSBE",
-      "start": "2026-09-30T23:00:00.000Z",
+      "start": "2026-09-30T22:30:00.000Z",
       "end": "2026-10-01T00:00:00.000Z",
       "allDay": false,
-      "location": "",
+      "location": "OSU CBEC Building 120 & 130",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-06-29T23:20:26.000Z"
+      "updated": "2026-09-29T00:10:21.000Z"
     },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-01T21:30:00.000Z",
