@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-09-30T00:34:00.989Z",
+  "generatedAt": "2026-09-30T23:57:20.410Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "7ej54q9i476u0e47mhr9asb07g@google.com::2026-09-23T17:00:00.000Z",
-      "title": "Career Fair",
-      "start": "2026-09-23T17:00:00.000Z",
-      "end": "2026-09-23T21:00:00.000Z",
-      "allDay": false,
-      "location": "Ohio Union, 1739 N High St, Columbus, OH 43210, USA",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T17:18:33.000Z"
-    },
     {
       "id": "65c02gtb27867qt19c2o8sb8fo@google.com::2026-09-23T22:30:00.000Z",
       "title": "LyondellBasell Info Session",
