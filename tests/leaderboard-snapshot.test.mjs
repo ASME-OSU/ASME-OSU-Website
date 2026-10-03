@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
 import { buildCurrentSnapshot, isLiveSystemStatus, nextSnapshot, parseResponse, publishSnapshot } from '../scripts/publish-leaderboard-rank-snapshot.mjs';
 
 function row(rank, name, period, version) {
@@ -62,21 +65,19 @@ test('missing or malformed status never writes a snapshot', async () => {
   const existing = '{"schemaVersion":1,"current":{"version":"old","period":"Fall 2026","ranks":{}},"previous":null}\n';
   let writes = 0;
   const common = { readFile: async () => existing, writeFile: async () => { writes += 1; } };
-  const missing = await publishSnapshot({ ...common, fetchFn: async () => response([{ c: [{ v: 'last_updated_et' }, { v: '2026-09-12' }] }]) });
-  assert.deepEqual(missing, { published: false, reason: 'not-live' });
+  await assert.rejects(() => publishSnapshot({ ...common, fetchFn: async () => response([{ c: [{ v: 'last_updated_et' }, { v: '2026-09-12' }] }]) }), /missing or ambiguous/);
   await assert.rejects(() => publishSnapshot({ ...common, fetchFn: async () => ({ ok: true, text: async () => 'not a visualization response' }) }), /visualization response/);
   assert.equal(writes, 0);
 });
 
-test('non-LIVE status and a malformed leaderboard preserve the last valid snapshot', async () => {
+test('malformed leaderboard and failed status preserve the last valid snapshot', async () => {
   const existing = '{"schemaVersion":1,"current":{"version":"old","period":"Fall 2026","ranks":{}},"previous":null}\n';
   let writes = 0;
-  const nonLive = await publishSnapshot({
-    fetchFn: async () => response([{ c: [{ v: 'system_status' }, { v: 'PAUSED' }] }]),
+  await assert.rejects(() => publishSnapshot({
+    fetchFn: async () => ({ ok: false, status: 503 }),
     readFile: async () => existing,
     writeFile: async () => { writes += 1; }
-  });
-  assert.equal(nonLive.reason, 'not-live');
+  }), /system-status request failed with 503/);
   let calls = 0;
   await assert.rejects(() => publishSnapshot({
     fetchFn: async () => (++calls === 1
@@ -86,6 +87,68 @@ test('non-LIVE status and a malformed leaderboard preserve the last valid snapsh
     writeFile: async () => { writes += 1; }
   }), /visualization response/);
   assert.equal(writes, 0);
+});
+
+test('TESTING and PAUSED clear both public baselines on disk without reading member rows', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'asme-rank-suppression-'));
+  const output = path.join(directory, 'snapshot.json');
+  try {
+    for (const status of ['TESTING', 'PAUSED']) {
+      await fs.writeFile(output, JSON.stringify({ schemaVersion: 1,
+        current: { version: '2026-09-12 10:00', period: 'Fall 2026', ranks: { 'alex a.': 1 } },
+        previous: { version: '2026-09-11 10:00', period: 'Fall 2026', ranks: { 'blair b.': 2 } }
+      }));
+      let calls = 0;
+      const result = await publishSnapshot({ output, fetchFn: async () => {
+        calls += 1;
+        return response([{ c: [{ v: 'system_status' }, { v: status }] }]);
+      } });
+      assert.equal(calls, 1);
+      assert.equal(result.published, true);
+      assert.equal(result.reason, 'not-live');
+      assert.deepEqual(JSON.parse(await fs.readFile(output, 'utf8')), { schemaVersion: 1, current: null, previous: null });
+      assert.doesNotMatch(await fs.readFile(output, 'utf8'), /alex|blair/);
+    }
+  } finally { await fs.rm(directory, { recursive: true, force: true }); }
+});
+
+test('repeated non-LIVE checks leave an already empty projection unchanged', async () => {
+  const blank = { schemaVersion: 1, current: null, previous: null };
+  let writes = 0;
+  const result = await publishSnapshot({
+    fetchFn: async () => response([{ c: [{ v: 'system_status' }, { v: 'PAUSED' }] }]),
+    readFile: async () => `${JSON.stringify(blank, null, 2)}\n`,
+    writeFile: async () => { writes += 1; }
+  });
+  assert.equal(result.reason, 'unchanged');
+  assert.equal(writes, 0);
+});
+
+test('non-LIVE dry run previews suppression while preserving the existing artifact', async () => {
+  let writes = 0;
+  const result = await publishSnapshot({
+    fetchFn: async () => response([{ c: [{ v: 'system_status' }, { v: 'TESTING' }] }]),
+    readFile: async () => '{"current":{"ranks":{"alex a.":1}}}',
+    writeFile: async () => { writes += 1; }, dryRun: true
+  });
+  assert.equal(result.reason, 'dry-run');
+  assert.deepEqual(result.snapshot, { schemaVersion: 1, current: null, previous: null });
+  assert.equal(writes, 0);
+});
+
+test('LIVE resumes after suppression without restoring a previous public baseline', async () => {
+  let calls = 0;
+  let written = '';
+  const result = await publishSnapshot({
+    fetchFn: async () => (++calls === 1
+      ? response([{ c: [{ v: 'system_status' }, { v: 'LIVE' }] }])
+      : response([row(1, 'Alex A.', 'Fall 2026', '2026-09-12 10:00')])),
+    readFile: async () => '{"schemaVersion":1,"current":null,"previous":null}',
+    writeFile: async (_, content) => { written = content; }
+  });
+  assert.equal(result.published, true);
+  assert.deepEqual(JSON.parse(written).current.ranks, { 'alex a.': 1 });
+  assert.equal(JSON.parse(written).previous, null);
 });
 
 test('explicit LIVE dry run returns a public-only baseline without writing it', async () => {

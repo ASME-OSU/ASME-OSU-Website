@@ -99,29 +99,37 @@ export async function publishSnapshot({
 } = {}) {
   const statusResponse = await fetchFn(STATUS_URL, { headers: { accept: 'application/json' } });
   if (!statusResponse.ok) fail(`system-status request failed with ${statusResponse.status}.`);
-  if (!isLiveSystemStatus(parseResponse(await statusResponse.text()))) {
-    console.log('Leaderboard snapshot not published because the public point system is not LIVE.');
-    return { published: false, reason: 'not-live' };
+  const statusRows = parseResponse(await statusResponse.text());
+  const statusValues = statusRows.filter((row) => cell(row, 0).toLowerCase() === 'system_status');
+  if (statusValues.length !== 1 || !cell(statusValues[0], 1)) fail('system status is missing or ambiguous.');
+  const live = isLiveSystemStatus(statusRows);
+  let current = null;
+  if (live) {
+    const response = await fetchFn(URL, { headers: { accept: 'application/json' } });
+    if (!response.ok) fail(`public export request failed with ${response.status}.`);
+    current = buildCurrentSnapshot(parseResponse(await response.text()));
   }
-  const response = await fetchFn(URL, { headers: { accept: 'application/json' } });
-  if (!response.ok) fail(`public export request failed with ${response.status}.`);
-  const current = buildCurrentSnapshot(parseResponse(await response.text()));
-  let existing = null;
-  try { existing = JSON.parse(await readFile(output, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
-  const next = nextSnapshot(existing, current);
+  let old = '';
+  try { old = await readFile(output, 'utf8'); } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  // A public file remains directly readable when the website hides its UI.
+  // Publish an empty projection on non-LIVE status so both retained baselines
+  // disappear from the current public artifact without reading member rows.
+  const next = live ? nextSnapshot(old ? JSON.parse(old) : null, current)
+    : { schemaVersion: 1, current: null, previous: null };
   const serialized = `${JSON.stringify(next, null, 2)}\n`;
-  const old = existing ? `${JSON.stringify(existing, null, 2)}\n` : '';
   if (serialized === old) {
     console.log('Leaderboard snapshot is already current.');
     return { published: false, reason: 'unchanged', snapshot: next };
   }
   if (dryRun) {
-    console.log(`Dry run: would publish ${next.current.period} ${next.current.version}; ${next.previous ? 'comparison baseline retained.' : 'no prior baseline yet.'}`);
+    console.log(live ? `Dry run: would publish ${next.current.period} ${next.current.version}; ${next.previous ? 'comparison baseline retained.' : 'no prior baseline yet.'}`
+      : 'Dry run: would clear both public rank baselines because the point system is not LIVE.');
     return { published: false, reason: 'dry-run', snapshot: next };
   }
   await writeFile(output, serialized);
-  console.log(`Published ${next.current.period} ${next.current.version}; ${next.previous ? 'comparison baseline retained.' : 'no prior baseline yet.'}`);
-  return { published: true, snapshot: next };
+  console.log(live ? `Published ${next.current.period} ${next.current.version}; ${next.previous ? 'comparison baseline retained.' : 'no prior baseline yet.'}`
+    : 'Cleared both public rank baselines because the point system is not LIVE.');
+  return { published: true, reason: live ? 'live' : 'not-live', snapshot: next };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) publishSnapshot({ dryRun: process.argv.includes('--dry-run') }).catch((error) => { console.error(error.message); process.exitCode = 1; });
