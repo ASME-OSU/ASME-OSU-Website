@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T02:05:52.167Z",
+  "generatedAt": "2026-10-04T07:01:15.581Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
@@ -36,17 +36,6 @@
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
       "updated": "2026-09-22T19:28:01.000Z"
-    },
-    {
-      "id": "60850uej1ri6dnrgo0ameob0me@google.com::2026-10-07T21:00:00.000Z",
-      "title": "RTX: Pratt & Whitney/Raytheon ",
-      "start": "2026-10-07T21:00:00.000Z",
-      "end": "2026-10-07T23:30:00.000Z",
-      "allDay": false,
-      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-08-04T01:28:57.000Z"
     },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-08T21:30:00.000Z",
@@ -102,17 +91,6 @@
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
       "updated": "2026-07-09T22:51:31.000Z"
-    },
-    {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-15T21:30:00.000Z",
-      "title": "ASME Weekly Chapter Meeting ",
-      "start": "2026-10-15T21:30:00.000Z",
-      "end": "2026-10-15T22:30:00.000Z",
-      "allDay": false,
-      "location": "Scott Laboratory E141",
-      "description": "Mini Golf",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "5n4j886meo63ojjrbue0b56i19@google.com::2026-10-19T12:00:00.000Z",
