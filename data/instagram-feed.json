@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-09-30T22:16:23.228Z",
+  "updatedAt": "2026-10-06T00:03:41.640Z",
   "items": [
+    {
+      "id": "DeIOFLZPUZ-",
+      "permalink": "https://www.instagram.com/p/DeIOFLZPUZ-/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DeIOFLZPUZ--640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-10-05T21:54:59.000Z",
+      "title": "Join us for our pickleball night!",
+      "summary": "Compete with other members on the court! Equipment will be provided. Thursday, October 8th 5:30 - 6:30 PM RPAC Courts",
+      "caption": "Join us for our pickleball night! Compete with other members on the court! Equipment will be provided. Thursday, October 8th 5:30 - 6:30 PM RPAC Courts",
+      "alt": "Join us for our pickleball night!"
+    },
     {
       "id": "Dd62UnOltDh",
       "permalink": "https://www.instagram.com/p/Dd62UnOltDh/",
@@ -68,19 +81,6 @@
       "summary": "Follow ASME OSU for chapter updates, upcoming events, workshops, and student opportunities.",
       "caption": "",
       "alt": "More from the chapter"
-    },
-    {
-      "id": "Ddmm1Wrjzac",
-      "permalink": "https://www.instagram.com/p/Ddmm1Wrjzac/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Ddmm1Wrjzac-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-09-22T20:35:36.000Z",
-      "title": "Career Week continues with LyondellBasell (LYB)!",
-      "summary": "🧪⚙️ Join ASME at Ohio State & LyondellBasell tomorrow to learn more about LYB, connect with engineers and recruiters, and explore their 2027 engineering co-op opportunities! 📅 Wednesday, September 23 ⏰ 6:30–8:00 PM 📍 Scott Lab E141 LYB…",
-      "caption": "Career Week continues with LyondellBasell (LYB)! 🧪⚙️ Join ASME at Ohio State & LyondellBasell tomorrow to learn more about LYB, connect with engineers and recruiters, and explore their 2027 engineering co-op opportunities! 📅 Wednesday, September 23 ⏰ 6:30–8:00 PM 📍 Scott Lab E141 LYB is currently recruiting co-ops in Mechanical, Chemical, Electrical, Environmental, and Health & Safety Engineering, so come ready to ask questions and learn more about opportunities with the company! MechanicalEngineering EngineeringCareers CareerWeek EngineeringCoop EngineeringStudents",
-      "alt": "Career Week continues with LyondellBasell (LYB)!"
     }
   ]
 }
