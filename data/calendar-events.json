@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-10-04T07:01:15.581Z",
+  "generatedAt": "2026-10-06T03:07:13.689Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "70mbp8b82jdvcbcjbc8aj0a8ap@google.com::2026-09-28T22:00:00.000Z",
-      "title": "HRST Inc. Info Session",
-      "start": "2026-09-28T22:00:00.000Z",
-      "end": "2026-09-28T23:00:00.000Z",
-      "allDay": false,
-      "location": "Scott Laboratory E100",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:13:04.000Z"
-    },
     {
       "id": "7rn8i8uc29jjmuub707qedlnfd@google.com::2026-09-30T22:30:00.000Z",
       "title": "Study Tables with NSBE",
