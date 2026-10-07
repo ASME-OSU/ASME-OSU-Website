@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-10-06T00:03:41.640Z",
+  "updatedAt": "2026-10-07T06:00:13.088Z",
   "items": [
+    {
+      "id": "DeK7UCZFs7i",
+      "permalink": "https://www.instagram.com/p/DeK7UCZFs7i/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DeK7UCZFs7i-640x640.jpg",
+      "imageWidth": 640,
+      "imageHeight": 640,
+      "timestamp": "2026-10-06T23:07:13.000Z",
+      "title": "ASME Pickleball Night is this Thursday from 5:30–6:30 PM at the RPAC…",
+      "summary": "Come out for an hour of pickleball with ASME. All skill levels are welcome. Scan the QR code to sign up. See you there.",
+      "caption": "ASME Pickleball Night is this Thursday from 5:30–6:30 PM at the RPAC Outdoor Courts. Come out for an hour of pickleball with ASME. All skill levels are welcome. Scan the QR code to sign up. See you there.",
+      "alt": "ASME Pickleball Night is this Thursday from 5:30–6:30 PM at the RPAC…"
+    },
     {
       "id": "DeIOFLZPUZ-",
       "permalink": "https://www.instagram.com/p/DeIOFLZPUZ-/",
@@ -68,19 +81,6 @@
       "summary": "🔥 Today, we’re wrapping up the week with TSMC × MSE × ASME! Come learn about the semiconductor industry, hear what it’s like to work as a process engineer, and explore full-time & Summer 2027 internship opportunities at TSMC’s Phoenix,…",
       "caption": "Only 2 events left in ASME Career Week! 🔥 Today, we’re wrapping up the week with TSMC × MSE × ASME! Come learn about the semiconductor industry, hear what it’s like to work as a process engineer, and explore full-time & Summer 2027 internship opportunities at TSMC’s Phoenix, Arizona site. 💻⚙️ 📅 TODAY — Friday, September 25 ⏰ 6:00–7:30 PM 📍 Scott Lab E100 📄 Bring a physical + electronic copy of your resume 🍽️ Food & refreshments provided TSMC will also be collecting resumes, so this is a great chance to connect directly with the team and learn about opportunities in semiconductor manufacturing. And then just ONE final Career Week event on Monday! 👀",
       "alt": "Only 2 events left in ASME Career Week!"
-    },
-    {
-      "id": "DdoiNhllrJi",
-      "permalink": "https://www.instagram.com/p/DdoiNhllrJi/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdoiNhllrJi-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-09-23T14:33:41.000Z",
-      "title": "More from the chapter",
-      "summary": "Follow ASME OSU for chapter updates, upcoming events, workshops, and student opportunities.",
-      "caption": "",
-      "alt": "More from the chapter"
     }
   ]
 }
