@@ -20,8 +20,19 @@
         <div class="acp-section-eyebrow">Coming Up</div>
         <h2 id="acp-upcoming-title">Next ASME events</h2>
       </div>
-      <span class="acp-live-badge"><span aria-hidden="true"></span>Synced from our calendar</span>
+      <span class="acp-live-badge"><span aria-hidden="true"></span>Generated calendar snapshot</span>
     </div>
+    <div class="acp-preview-controls">
+      <label for="asmeCalendarYear">Academic year (August–July)</label>
+      <input id="asmeCalendarYear" placeholder="2027-2028" pattern="[0-9]{4}-[0-9]{4}" aria-describedby="asmeCalendarPreviewHelp">
+      <button id="asmeCalendarPreview" type="button">Preview year</button>
+      <button id="asmeCalendarUpcomingView" type="button">Upcoming dates</button>
+      <button id="asmeCalendarRefresh" type="button">Refresh chapter snapshot</button>
+      <button id="asmeCalendarFictional" type="button">Load fictional Fall/Spring</button>
+      <button id="asmeCalendarClearFictional" type="button" hidden>Remove fictional events</button>
+    </div>
+    <p id="asmeCalendarPreviewHelp">Preview changes this browser only. Fictional events are local and never added to Google. Refresh rereads generated JSON; the hourly job reads Google. The embedded calendar remains a separate live Google view.</p>
+    <p id="asmeCalendarStatus" role="status" aria-live="polite">Reading generated calendar snapshot…</p>
     <div class="acp-upcoming-grid" id="asmeCalendarUpcoming" aria-live="polite" aria-busy="true">
       <article class="acp-event-card acp-event-card--loading">
         <div class="acp-event-date"><span>Next</span><strong>Event</strong></div>
@@ -39,7 +50,7 @@
         <span class="acp-cal-dot" aria-hidden="true"></span>
         <span class="acp-cal-dot" aria-hidden="true"></span>
         <span class="acp-cal-dot" aria-hidden="true"></span>
-        <span class="acp-cal-label" id="acp-calendar-label">ASME 2026–27 Events · Eastern Time</span>
+        <span class="acp-cal-label" id="acp-calendar-label">ASME Events · Eastern Time</span>
       </div>
       <div class="acp-view-switch" role="group" aria-label="Calendar view">
         <button class="acp-view-button" type="button" data-calendar-mode="AGENDA" aria-pressed="false">Upcoming</button>

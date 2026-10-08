@@ -109,7 +109,8 @@ async function main() {
   const parsed = await ical.async.fromURL(ICAL_URL);
   const now = new Date();
   const from = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-  const to = new Date(now.getTime() + 400 * 24 * 60 * 60 * 1000);
+  const academicStartYear = now.getUTCMonth() >= 7 ? now.getUTCFullYear() : now.getUTCFullYear() - 1;
+  const to = new Date(Date.UTC(academicStartYear + 3, 7, 1));
   const events = [];
 
   for (const component of Object.values(parsed)) {
@@ -142,6 +143,10 @@ async function main() {
     .sort((a, b) => a.start.localeCompare(b.start));
   const next = {
     generatedAt: new Date().toISOString(),
+    checkedAt: new Date().toISOString(),
+    windowStart: from.toISOString(),
+    windowEnd: to.toISOString(),
+    calendarId: CALENDAR_ID,
     calendarName: "ASME Public",
     timeZone: TIME_ZONE,
     sourceUrl: EMBED_URL,
@@ -152,7 +157,7 @@ async function main() {
     const previous = JSON.parse(await fs.readFile(OUTPUT, "utf8"));
     if (JSON.stringify(previous.events) === JSON.stringify(next.events)) {
       console.log(`Calendar is unchanged (${uniqueEvents.length} upcoming events).`);
-      return;
+      next.generatedAt = previous.generatedAt || next.generatedAt;
     }
   } catch (error) {
     if (error.code !== "ENOENT") console.warn(`Existing calendar feed could not be read: ${error.message}`);
