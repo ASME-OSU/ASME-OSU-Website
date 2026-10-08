@@ -1,20 +1,9 @@
 {
-  "generatedAt": "2026-10-06T03:07:13.689Z",
+  "generatedAt": "2026-10-08T02:03:47.111Z",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "7rn8i8uc29jjmuub707qedlnfd@google.com::2026-09-30T22:30:00.000Z",
-      "title": "Study Tables with NSBE",
-      "start": "2026-09-30T22:30:00.000Z",
-      "end": "2026-10-01T00:00:00.000Z",
-      "allDay": false,
-      "location": "OSU CBEC Building 120 & 130",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-29T00:10:21.000Z"
-    },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-01T21:30:00.000Z",
       "title": " ASME Project Teams Introduction",
