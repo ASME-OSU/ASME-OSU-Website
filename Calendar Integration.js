@@ -5,6 +5,7 @@
   var FEED_URL = IS_LOCAL ? '/data/calendar-events.json' : 'https://asme-osu.github.io/ASME-OSU-Website/data/calendar-events.json';
   var CACHE_KEY = 'asmeCalendarEventsV3';
   var TIME_ZONE = 'America/New_York';
+  var previewYear = '', activeFeed = null, fictionalSource = false, loadGeneration = 0;
   var NON_CHAPTER_EVENT_TITLE_PATTERNS = [
     /\bclasses begin\b/i,
     /\benrollment census date\b/i,
@@ -39,16 +40,37 @@
     return Number.isNaN(date.getTime()) ? null : date;
   }
 
+  function calendarDateKey(event) {
+    var date = safeDate(event.start);
+    if (!date) return '';
+    var parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: event.allDay ? 'UTC' : TIME_ZONE }).formatToParts(date).map(function (part) { return [part.type, part.value]; }));
+    return parts.year + '-' + parts.month + '-' + parts.day;
+  }
+
+  function validatePreviewYear(year) {
+    var match = year.match(/^(\d{4})-(\d{4})$/);
+    if (!match || Number(match[2]) !== Number(match[1]) + 1) throw new Error('Enter consecutive academic years, such as 2027-2028.');
+    return match;
+  }
+
   function upcomingEvents(feed) {
     var now = new Date();
     if (!feed || !Array.isArray(feed.events)) return [];
+    var bounds = previewYear ? validatePreviewYear(previewYear) : null;
     return feed.events.filter(function (event) {
-      var start = safeDate(event.start);
-      var end = safeDate(event.end);
-      return start && ((end && end > now) || start >= now);
-    }).sort(function (a, b) {
-      return safeDate(a.start) - safeDate(b.start);
-    });
+      var start = safeDate(event.start), end = safeDate(event.end);
+      if (!start) return false;
+      if (bounds) { var key = calendarDateKey(event); return key >= bounds[1] + '-08-01' && key < bounds[2] + '-08-01'; }
+      return (end && end > now) || start >= now;
+    }).sort(function (a, b) { return safeDate(a.start) - safeDate(b.start); });
+  }
+
+  function fictionalFeed(year) {
+    var bounds = validatePreviewYear(year), start = Number(bounds[1]);
+    return { generatedAt: new Date().toISOString(), events: [
+      { id: 'fictional-fall-' + year, title: 'TEST ONLY — Fall workshop — DO NOT PUBLISH', start: start + '-09-15T22:00:00.000Z', end: start + '-09-15T23:00:00.000Z', location: 'Fictional training room' },
+      { id: 'fictional-spring-' + year, title: 'TEST ONLY — Spring workshop — DO NOT PUBLISH', start: (start + 1) + '-01-15T23:00:00.000Z', end: (start + 1) + '-01-16T00:00:00.000Z', location: 'Fictional training room' }
+    ] };
   }
 
   function isChapterEvent(event) {
@@ -59,12 +81,12 @@
     });
   }
 
-  function monthLabel(date) {
-    return date.toLocaleDateString('en-US', { month: 'short', timeZone: TIME_ZONE });
+  function monthLabel(date, allDay) {
+    return date.toLocaleDateString('en-US', { month: 'short', timeZone: allDay ? 'UTC' : TIME_ZONE });
   }
 
-  function dayLabel(date) {
-    return date.toLocaleDateString('en-US', { day: 'numeric', timeZone: TIME_ZONE });
+  function dayLabel(date, allDay) {
+    return date.toLocaleDateString('en-US', { day: 'numeric', timeZone: allDay ? 'UTC' : TIME_ZONE });
   }
 
   function formatEventDate(event) {
@@ -76,7 +98,7 @@
       weekday: 'short',
       month: 'short',
       day: 'numeric',
-      timeZone: TIME_ZONE
+      timeZone: event.allDay ? 'UTC' : TIME_ZONE
     });
     if (event.allDay) return dateText + ' · All day';
 
@@ -128,8 +150,8 @@
 
     card.className = 'acp-event-card' + (index === 0 ? ' acp-event-card--next' : '');
     dateBlock.className = 'acp-event-date';
-    month.textContent = start ? monthLabel(start) : 'TBA';
-    day.textContent = start ? dayLabel(start) : '—';
+    month.textContent = start ? monthLabel(start, event.allDay) : 'TBA';
+    day.textContent = start ? dayLabel(start, event.allDay) : '—';
     dateBlock.appendChild(month);
     dateBlock.appendChild(day);
 
@@ -157,7 +179,7 @@
     if (!events.length) {
       var empty = document.createElement('div');
       empty.className = 'acp-event-empty';
-      empty.innerHTML = '<strong>No upcoming events are published yet.</strong><span>Subscribe or check the full calendar below for the latest schedule.</span>';
+      empty.innerHTML = '<strong>No events are available for this view.</strong><span>Check the chapter calendar and snapshot coverage for the latest schedule.</span>';
       grid.appendChild(empty);
       return;
     }
@@ -168,9 +190,44 @@
   }
 
   function render(feed) {
+    activeFeed = feed;
     var events = upcomingEvents(feed).filter(isChapterEvent);
     renderHome(events);
     renderCalendarPage(events);
+    var status = document.getElementById('asmeCalendarStatus');
+    var coverage = fictionalSource ? '' : feed.windowStart && feed.windowEnd ? ' Snapshot coverage ' + feed.windowStart.slice(0, 10) + ' through ' + feed.windowEnd.slice(0, 10) + '; dates outside this range are unavailable.' : ' Snapshot coverage is not supplied; check the full chapter calendar for missing dates.';
+    if (status) status.textContent = (fictionalSource ? 'FICTIONAL REHEARSAL — no Google events. ' : 'Chapter generated snapshot. ') + events.length + ' event(s) for ' + (previewYear || 'upcoming dates') + ' · generated ' + (feed.generatedAt || 'time unavailable') + (feed.checkedAt ? ' · source checked ' + feed.checkedAt : '') + ' · read ' + new Date().toLocaleString() + '. Refresh rereads JSON; the hourly job reads Google.' + coverage;
+    var clear = document.getElementById('asmeCalendarClearFictional');
+    if (clear) clear.hidden = !fictionalSource;
+    var label = document.getElementById('acp-calendar-label');
+    if (label) label.textContent = previewYear ? 'Chapter calendar — ' + previewYear.replace('-', '–') + ' preview · Eastern Time' : 'ASME Events · Eastern Time';
+    var frame = document.getElementById('asmeCalendarFrame');
+    if (frame) {
+      frame.hidden = fictionalSource;
+      if (previewYear && !fictionalSource) {
+        var url = new URL(frame.src), start = previewYear.slice(0, 4), end = previewYear.slice(5);
+        url.searchParams.set('dates', start + '0801/' + end + '0731'); frame.src = url.toString();
+      } else if (!fictionalSource) { var sourceUrl = new URL(frame.src); sourceUrl.searchParams.delete('dates'); frame.src = sourceUrl.toString(); }
+    }
+  }
+
+  function initPreviewControls() {
+    var input = document.getElementById('asmeCalendarYear');
+    if (!input) return;
+    function apply() {
+      try { var selectedYear = input.value.trim(); if (selectedYear) validatePreviewYear(selectedYear); previewYear = selectedYear; render(activeFeed || { events: [] }); }
+      catch (error) { document.getElementById('asmeCalendarStatus').textContent = error.message; }
+    }
+    document.getElementById('asmeCalendarPreview').addEventListener('click', apply);
+    document.getElementById('asmeCalendarUpcomingView').addEventListener('click', function () { input.value = ''; previewYear = ''; render(activeFeed || { events: [] }); });
+    document.getElementById('asmeCalendarRefresh').addEventListener('click', function () { fictionalSource = false; loadFeed(); });
+    document.getElementById('asmeCalendarFictional').addEventListener('click', function () {
+      var year = input.value.trim();
+      if (!year) { var now = new Date(), start = now.getMonth() >= 7 ? now.getFullYear() : now.getFullYear() - 1; year = start + '-' + (start + 1); input.value = year; }
+      try { var feed = fictionalFeed(year); loadGeneration++; previewYear = year; fictionalSource = true; render(feed); }
+      catch (error) { document.getElementById('asmeCalendarStatus').textContent = error.message; }
+    });
+    document.getElementById('asmeCalendarClearFictional').addEventListener('click', function () { if (fictionalSource) render(Object.assign({}, activeFeed, { events: [] })); });
   }
 
   function readCache() {
@@ -189,6 +246,7 @@
   }
 
   function loadFeed() {
+    var generation = ++loadGeneration;
     var cached = readCache();
     var controller = typeof AbortController === 'function' ? new AbortController() : null;
     var timer = window.setTimeout(function () {
@@ -196,6 +254,8 @@
     }, 4500);
 
     if (cached) render(cached);
+    var status = document.getElementById("asmeCalendarStatus");
+    if (status) status.textContent = "Reading generated chapter snapshot…";
 
     fetch(FEED_URL + '?hour=' + Math.floor(Date.now() / 3600000), {
       cache: 'no-store',
@@ -206,11 +266,16 @@
       if (!response.ok) throw new Error('Calendar feed request failed');
       return response.json();
     }).then(function (feed) {
+      if (generation !== loadGeneration) return;
+      if (!feed || !Array.isArray(feed.events)) throw new Error("Malformed calendar snapshot");
+      fictionalSource = false;
       writeCache(feed);
       render(feed);
     }).catch(function () {
       window.clearTimeout(timer);
+      if (generation !== loadGeneration) return;
       if (!cached) render({ events: [] });
+      if (status) status.textContent = cached ? "Snapshot request failed; showing cached chapter events. Retry Refresh chapter snapshot." : "Calendar snapshot unavailable. Open the chapter calendar or retry Refresh chapter snapshot.";
     });
   }
 
@@ -275,6 +340,7 @@
     removeBlogFromNavigation();
     removeWordPressInfoArtifacts();
     initViewSwitch();
+    initPreviewControls();
     if (document.getElementById('asmeFeaturedTitle') || document.getElementById('asmeCalendarUpcoming')) loadFeed();
   }
 

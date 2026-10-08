@@ -123,3 +123,9 @@ html body .asme-lightbox[hidden] { display: none !important; }
     margin-top: 20px !important;
   }
 }
+
+/* Calendar year preview and isolated rehearsal controls. */
+.asme-cal-page .acp-preview-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-block: 1rem; }
+.asme-cal-page .acp-preview-controls input { max-width: 10rem; padding: 0.5rem; }
+.asme-cal-page .acp-preview-controls button { padding: 0.5rem 0.75rem; border-radius: 0.4rem; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
+.asme-cal-page #asmeCalendarPreviewHelp, .asme-cal-page #asmeCalendarStatus { font-size: 0.875rem; line-height: 1.5; }

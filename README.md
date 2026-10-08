@@ -261,3 +261,13 @@ Join, Calendar, Gallery, and member pages on phone/tablet/desktop in light and d
 mode. Confirm visible focus, Escape/Tab behavior in the gallery, and reduced-motion
 playback defaults. The local preview checks do not replace testing the published
 WordPress DOM, which can insert extra paragraphs and line breaks.
+
+## Calendar year preview and isolated rehearsal
+
+The Calendar source block now offers **Academic year (August–July)**, **Preview year**, **Upcoming dates**, **Refresh chapter snapshot**, **Load fictional Fall/Spring** and **Remove fictional events**. Year filtering uses Eastern calendar dates and source all-day dates. The chapter iframe is a separate live Google view; year preview adjusts its display dates only. Fictional mode hides that iframe and renders two TEST ONLY/DO NOT PUBLISH browser records without Google events or network writes. Refresh chapter snapshot restores the chapter JSON source.
+
+The hourly `update-calendar-feed.yml` job reads the same approved chapter public iCal ID. `data/calendar-events.json` now records `calendarId`, `windowStart`, `windowEnd` and `checkedAt`; `generatedAt` retains the last event-list change when only a successful check occurs. Refresh rereads generated JSON and never triggers that Google fetch. The generated future horizon covers the next complete academic year. Status distinguishes unavailable/cached sources, read time and coverage. Hub annual settings do not change this source.
+
+Publish source JavaScript/CSS through the repository's normal release, then update the Calendar WordPress HTML block through an authorized unpublished draft → reload → Preview → approval/publish workflow. A Git push does not replace CMS HTML. Test a fictional Fall/Spring preview and removal locally before publishing; real calendar edits use Google Calendar, with calendar selection verified before Save and rehearsal guests empty.
+
+Chapter count changes remain pending content-owner verification. Matching numbers in repository source do not prove current WordPress pages have matching values or approved definitions. The separate remediation drafts label 2027–2028 counts under review; do not publish them as approved facts.
