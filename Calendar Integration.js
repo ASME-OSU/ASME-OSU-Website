@@ -5,7 +5,7 @@
   var FEED_URL = IS_LOCAL ? '/data/calendar-events.json' : 'https://asme-osu.github.io/ASME-OSU-Website/data/calendar-events.json';
   var CACHE_KEY = 'asmeCalendarEventsV3';
   var TIME_ZONE = 'America/New_York';
-  var previewYear = '', activeFeed = null, fictionalSource = false, loadGeneration = 0;
+  var previewYear = '', activeFeed = null, chapterFeed = null, loadNotice = '', loadPending = false, fictionalSource = false, loadGeneration = 0;
   var NON_CHAPTER_EVENT_TITLE_PATTERNS = [
     /\bclasses begin\b/i,
     /\benrollment census date\b/i,
@@ -48,8 +48,9 @@
   }
 
   function validatePreviewYear(year) {
+    if (/^\d{4}$/.test(year)) year += '-' + String(Number(year) + 1).padStart(4, '0');
     var match = year.match(/^(\d{4})-(\d{4})$/);
-    if (!match || Number(match[2]) !== Number(match[1]) + 1) throw new Error('Enter consecutive academic years, such as 2027-2028.');
+    if (!match || Number(match[2]) !== Number(match[1]) + 1) throw new Error('Enter a start year such as 2027, or consecutive academic years such as 2027-2028.');
     return match;
   }
 
@@ -174,7 +175,7 @@
     var grid = document.getElementById('asmeCalendarUpcoming');
     if (!grid) return;
     grid.replaceChildren();
-    grid.setAttribute('aria-busy', 'false');
+    grid.setAttribute('aria-busy', String(loadPending));
 
     if (!events.length) {
       var empty = document.createElement('div');
@@ -196,7 +197,7 @@
     renderCalendarPage(events);
     var status = document.getElementById('asmeCalendarStatus');
     var coverage = fictionalSource ? '' : feed.windowStart && feed.windowEnd ? ' Snapshot coverage ' + feed.windowStart.slice(0, 10) + ' through ' + feed.windowEnd.slice(0, 10) + '; dates outside this range are unavailable.' : ' Snapshot coverage is not supplied; check the full chapter calendar for missing dates.';
-    if (status) status.textContent = (fictionalSource ? 'FICTIONAL REHEARSAL — no Google events. ' : 'Chapter generated snapshot. ') + events.length + ' event(s) for ' + (previewYear || 'upcoming dates') + ' · generated ' + (feed.generatedAt || 'time unavailable') + (feed.checkedAt ? ' · source checked ' + feed.checkedAt : '') + ' · read ' + new Date().toLocaleString() + '. Refresh rereads JSON; the hourly job reads Google.' + coverage;
+    if (status) status.textContent = loadNotice + (fictionalSource ? 'FICTIONAL REHEARSAL — no Google events. ' : 'Chapter generated snapshot. ') + events.length + ' event(s) for ' + (previewYear || 'upcoming dates') + ' · generated ' + (feed.generatedAt || 'time unavailable') + (feed.checkedAt ? ' · source checked ' + feed.checkedAt : '') + ' · read ' + new Date().toLocaleString() + '. Refresh rereads JSON; the hourly job reads Google.' + coverage;
     var clear = document.getElementById('asmeCalendarClearFictional');
     if (clear) clear.hidden = !fictionalSource;
     var label = document.getElementById('acp-calendar-label');
@@ -215,19 +216,19 @@
     var input = document.getElementById('asmeCalendarYear');
     if (!input) return;
     function apply() {
-      try { var selectedYear = input.value.trim(); if (selectedYear) validatePreviewYear(selectedYear); previewYear = selectedYear; render(activeFeed || { events: [] }); }
+      try { var selectedYear = input.value.trim(); if (selectedYear) selectedYear = validatePreviewYear(selectedYear)[0]; previewYear = selectedYear; input.value = selectedYear; render(activeFeed || { events: [] }); }
       catch (error) { document.getElementById('asmeCalendarStatus').textContent = error.message; }
     }
     document.getElementById('asmeCalendarPreview').addEventListener('click', apply);
     document.getElementById('asmeCalendarUpcomingView').addEventListener('click', function () { input.value = ''; previewYear = ''; render(activeFeed || { events: [] }); });
-    document.getElementById('asmeCalendarRefresh').addEventListener('click', function () { fictionalSource = false; loadFeed(); });
+    document.getElementById('asmeCalendarRefresh').addEventListener('click', function () { loadFeed(); });
     document.getElementById('asmeCalendarFictional').addEventListener('click', function () {
       var year = input.value.trim();
       if (!year) { var now = new Date(), start = now.getMonth() >= 7 ? now.getFullYear() : now.getFullYear() - 1; year = start + '-' + (start + 1); input.value = year; }
-      try { var feed = fictionalFeed(year); loadGeneration++; previewYear = year; fictionalSource = true; render(feed); }
+      try { year = validatePreviewYear(year)[0]; var feed = fictionalFeed(year); input.value = year; loadGeneration++; loadPending = false; loadNotice = ''; previewYear = year; fictionalSource = true; render(feed); }
       catch (error) { document.getElementById('asmeCalendarStatus').textContent = error.message; }
     });
-    document.getElementById('asmeCalendarClearFictional').addEventListener('click', function () { if (fictionalSource) render(Object.assign({}, activeFeed, { events: [] })); });
+    document.getElementById('asmeCalendarClearFictional').addEventListener('click', function () { if (fictionalSource) loadFeed(true); });
   }
 
   function readCache() {
@@ -245,19 +246,19 @@
     } catch (error) {}
   }
 
-  function loadFeed() {
+  function loadFeed(removed) {
     var generation = ++loadGeneration;
-    var cached = readCache();
+    var cached = chapterFeed || readCache();
     var controller = typeof AbortController === 'function' ? new AbortController() : null;
     var timer = window.setTimeout(function () {
       if (controller) controller.abort();
     }, 4500);
 
-    if (cached) render(cached);
-    var status = document.getElementById("asmeCalendarStatus");
-    if (status) status.textContent = "Reading generated chapter snapshot…";
+    fictionalSource = false; loadPending = true;
+    loadNotice = (removed ? 'Fictional events removed. ' : '') + 'Reading generated chapter snapshot… ';
+    render(cached || { events: [] });
 
-    fetch(FEED_URL + '?hour=' + Math.floor(Date.now() / 3600000), {
+    return fetch(FEED_URL + '?hour=' + Math.floor(Date.now() / 3600000), {
       cache: 'no-store',
       credentials: 'omit',
       signal: controller ? controller.signal : undefined
@@ -268,14 +269,15 @@
     }).then(function (feed) {
       if (generation !== loadGeneration) return;
       if (!feed || !Array.isArray(feed.events)) throw new Error("Malformed calendar snapshot");
-      fictionalSource = false;
+      chapterFeed = feed; fictionalSource = false; loadPending = false; loadNotice = removed ? 'Fictional events removed. ' : '';
       writeCache(feed);
       render(feed);
     }).catch(function () {
       window.clearTimeout(timer);
       if (generation !== loadGeneration) return;
-      if (!cached) render({ events: [] });
-      if (status) status.textContent = cached ? "Snapshot request failed; showing cached chapter events. Retry Refresh chapter snapshot." : "Calendar snapshot unavailable. Open the chapter calendar or retry Refresh chapter snapshot.";
+      loadPending = false;
+      loadNotice = (removed ? 'Fictional events removed. ' : '') + (cached ? "Snapshot request failed; showing cached chapter events. Retry Refresh chapter snapshot. " : "Calendar snapshot unavailable. Open the chapter calendar or retry Refresh chapter snapshot. ");
+      render(cached || { events: [] });
     });
   }
 

@@ -24,14 +24,14 @@
     </div>
     <div class="acp-preview-controls">
       <label for="asmeCalendarYear">Academic year (August–July)</label>
-      <input id="asmeCalendarYear" placeholder="2027-2028" pattern="[0-9]{4}-[0-9]{4}" aria-describedby="asmeCalendarPreviewHelp">
+      <input id="asmeCalendarYear" placeholder="2027-2028" pattern="[0-9]{4}(-[0-9]{4})?" aria-describedby="asmeCalendarPreviewHelp">
       <button id="asmeCalendarPreview" type="button">Preview year</button>
       <button id="asmeCalendarUpcomingView" type="button">Upcoming dates</button>
       <button id="asmeCalendarRefresh" type="button">Refresh chapter snapshot</button>
       <button id="asmeCalendarFictional" type="button">Load fictional Fall/Spring</button>
       <button id="asmeCalendarClearFictional" type="button" hidden>Remove fictional events</button>
     </div>
-    <p id="asmeCalendarPreviewHelp">Preview changes this browser only. Fictional events are local and never added to Google. Refresh rereads generated JSON; the hourly job reads Google. The embedded calendar remains a separate live Google view.</p>
+    <p id="asmeCalendarPreviewHelp">Enter 2027 or 2027-2028 for the same academic year. Preview changes this browser only. Remove fictional events restores the chapter snapshot. Fictional events are local and never added to Google. Refresh rereads generated JSON; the hourly job reads Google. The embedded calendar remains a separate live Google view.</p>
     <p id="asmeCalendarStatus" role="status" aria-live="polite">Reading generated calendar snapshot…</p>
     <div class="acp-upcoming-grid" id="asmeCalendarUpcoming" aria-live="polite" aria-busy="true">
       <article class="acp-event-card acp-event-card--loading">
