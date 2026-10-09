@@ -271,3 +271,7 @@ The hourly `update-calendar-feed.yml` job reads the same approved chapter public
 Publish source JavaScript/CSS through the repository's normal release, then update the Calendar WordPress HTML block through an authorized unpublished draft → reload → Preview → approval/publish workflow. A Git push does not replace CMS HTML. Test a fictional Fall/Spring preview and removal locally before publishing; real calendar edits use Google Calendar, with calendar selection verified before Save and rehearsal guests empty.
 
 Chapter count changes remain pending content-owner verification. Matching numbers in repository source do not prove current WordPress pages have matching values or approved definitions. The separate remediation drafts label 2027–2028 counts under review; do not publish them as approved facts.
+
+## Practice calendar cleanup
+
+The preview accepts either a starting year such as `2027` or its complete academic year, `2027-2028`. **Remove fictional events** leaves fictional mode immediately, restores the chapter source and refreshes its generated JSON. Loading and failure messages remain visible; a failed refresh keeps any available chapter snapshot. Choose **Upcoming dates** in the generated event list afterward to clear the year filter. The embedded Google calendar has a separate **Upcoming** button; it is restored when fictional mode ends. These controls do not add or remove Google events.

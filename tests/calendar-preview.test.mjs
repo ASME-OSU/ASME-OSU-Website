@@ -26,7 +26,8 @@ test('actual website Calendar script filters Eastern and all-day dates, rehearse
   const { window } = dom;
   try {
     await flush();
-    window.document.getElementById('asmeCalendarYear').value = '2027-2028'; click(window, 'asmeCalendarPreview');
+    window.document.getElementById('asmeCalendarYear').value = '2027'; click(window, 'asmeCalendarPreview');
+    assert.equal(window.document.getElementById('asmeCalendarYear').value, '2027-2028');
     const cards = window.document.getElementById('asmeCalendarUpcoming').textContent;
     assert.match(cards, /All day August 1/); assert.match(cards, /Fall official fixture/); assert.match(cards, /Spring official fixture/);
     assert.doesNotMatch(cards, /Previous academic year|Next academic year/);
@@ -38,8 +39,8 @@ test('actual website Calendar script filters Eastern and all-day dates, rehearse
     assert.match(window.document.getElementById('asmeCalendarUpcoming').textContent, /TEST ONLY.*Fall.*TEST ONLY.*Spring/);
     assert.equal((window.document.getElementById('asmeCalendarUpcoming').textContent.match(/6:00 PM/g) || []).length, 2);
     assert.match(window.document.getElementById('asmeCalendarStatus').textContent, /FICTIONAL REHEARSAL/);
-    click(window, 'asmeCalendarClearFictional'); assert.match(window.document.getElementById('asmeCalendarStatus').textContent, /0 event/);
-    click(window, 'asmeCalendarRefresh'); await flush();
+    click(window, 'asmeCalendarClearFictional'); assert.match(window.document.getElementById('asmeCalendarStatus').textContent, /Fictional events removed.*Reading/);
+    await flush();
     assert.equal(requests, before + 1); assert.equal(frame.hidden, false);
     assert.match(window.document.getElementById('asmeCalendarUpcoming').textContent, /Fall official fixture/);
     assert.doesNotMatch(window.document.getElementById('asmeCalendarStatus').textContent, /FICTIONAL/);
@@ -66,5 +67,53 @@ test('late generated snapshot cannot overwrite browser fictional source; failed 
     window.fetch = async () => ({ ok: false }); click(window, 'asmeCalendarRefresh'); await flush();
     assert.match(window.document.getElementById('asmeCalendarStatus').textContent, /failed.*cached chapter events/);
     assert.doesNotMatch(window.document.getElementById('asmeCalendarUpcoming').textContent, /TEST ONLY/);
+  } finally { window.close(); }
+});
+
+
+test('remove then Upcoming dates restores chapter source after async refresh, ignores stale requests and reports failures', async () => {
+  let answer;
+  const dom = page(() => new Promise(resolve => { answer = resolve; }));
+  const { window } = dom;
+  const status = () => window.document.getElementById('asmeCalendarStatus').textContent;
+  const cards = () => window.document.getElementById('asmeCalendarUpcoming').textContent;
+  try {
+    const originalResponse = answer;
+    window.document.getElementById('asmeCalendarYear').value = '2027'; click(window, 'asmeCalendarFictional');
+    assert.equal(window.document.getElementById('asmeCalendarYear').value, '2027-2028');
+    click(window, 'asmeCalendarClearFictional'); const restorationResponse = answer;
+    click(window, 'asmeCalendarUpcomingView');
+    assert.match(status(), /Fictional events removed.*Reading/);
+    assert.doesNotMatch(cards(), /TEST ONLY/);
+    assert.equal(window.document.getElementById('asmeCalendarFrame').hidden, false);
+    assert.equal(window.document.getElementById('asmeCalendarClearFictional').hidden, true);
+    assert.equal(window.document.getElementById('asmeCalendarUpcoming').getAttribute('aria-busy'), 'true');
+    originalResponse({ ok: true, json: async () => ({ events: [{ ...feed.events[0], title: 'Stale response' }] }) }); await flush();
+    assert.match(status(), /Reading/);
+    restorationResponse({ ok: true, json: async () => feed }); await flush();
+    assert.match(status(), /Fictional events removed.*Chapter generated snapshot.*upcoming dates/);
+    assert.match(cards(), /Fall official fixture/); assert.doesNotMatch(cards(), /TEST ONLY|Stale response/);
+    assert.equal(window.document.getElementById('asmeCalendarUpcoming').getAttribute('aria-busy'), 'false');
+    click(window, 'asmeCalendarFictional'); window.fetch = async () => { throw new Error('Offline'); };
+    click(window, 'asmeCalendarClearFictional'); click(window, 'asmeCalendarUpcomingView'); await flush();
+    click(window, 'asmeCalendarUpcomingView');
+    assert.match(status(), /Fictional events removed.*failed.*cached chapter events/);
+    assert.doesNotMatch(status(), /FICTIONAL REHEARSAL/);
+    assert.match(cards(), /Fall official fixture/); assert.doesNotMatch(cards(), /TEST ONLY/);
+    window.fetch = async () => ({ ok: true, json: async () => feed }); click(window, 'asmeCalendarRefresh'); await flush();
+    assert.doesNotMatch(status(), /failed|Reading|FICTIONAL REHEARSAL/);
+  } finally { window.close(); }
+});
+
+test('failed removal without a cache restores normal unavailable status, with feedback retained on Upcoming dates', async () => {
+  const dom = page(async () => { throw new Error('Offline'); });
+  const { window } = dom;
+  try {
+    await flush(); window.document.getElementById('asmeCalendarYear').value = '2027'; click(window, 'asmeCalendarFictional');
+    click(window, 'asmeCalendarClearFictional'); await flush(); click(window, 'asmeCalendarUpcomingView');
+    assert.match(window.document.getElementById('asmeCalendarStatus').textContent, /Fictional events removed.*unavailable.*retry Refresh/);
+    assert.doesNotMatch(window.document.getElementById('asmeCalendarStatus').textContent, /FICTIONAL REHEARSAL/);
+    assert.doesNotMatch(window.document.getElementById('asmeCalendarUpcoming').textContent, /TEST ONLY/);
+    assert.equal(window.document.getElementById('asmeCalendarFrame').hidden, false);
   } finally { window.close(); }
 });
