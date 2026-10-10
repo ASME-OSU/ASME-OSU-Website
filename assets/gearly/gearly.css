@@ -177,3 +177,5 @@ html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#292427; --g
 .gearly-launcher-greeting::after { content:''; position:absolute; right:22px; bottom:-5px; width:8px; height:8px; background:var(--gearly-bg); border-right:1px solid var(--gearly-hero-border); border-bottom:1px solid var(--gearly-hero-border); transform:rotate(45deg); }
 .gearly-launcher[aria-expanded=false]:hover .gearly-launcher-greeting,.gearly-launcher[aria-expanded=false]:focus-visible .gearly-launcher-greeting { opacity:1; visibility:visible; }
 @media(prefers-reduced-motion:reduce) { .gearly-launcher-greeting { transition:none; } }
+
+.gearly-root .gearly-launcher .gearly-avatar-image { width:76px; height:76px; left:-4px; bottom:-1px; }
