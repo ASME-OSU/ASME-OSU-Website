@@ -21,7 +21,7 @@ test('clearing during a live request prevents stale answers reappearing',async()
 test('fresh welcome shortcuts, context, tour, and topic browsing work without sending a query',async()=>{
  const dom=await start({...raw,pages:[{id:'home',title:'Home',url:'https://org.osu.edu/asme/'}]});const w=dom.window;
  assert.match(w.document.querySelector('.gearly-context').textContent,/Helping with: Home/);
- assert.equal(w.document.querySelector('.gearly-welcome-sprite').alt,'Gearly waving hello');
+ assert.equal(w.document.querySelector('.gearly-welcome-sprite').alt,'Gearly peeking over the welcome card');
  assert.equal(w.document.querySelectorAll('.gearly-shortcut').length,4);
  let toured=0;w.GearlyTour={start:()=>toured++};Array.from(w.document.querySelectorAll('.gearly-shortcut')).find(b=>b.textContent==='Take a tour').click();assert.equal(toured,1);assert.equal(w.document.querySelector('.gearly-panel').hidden,true);
  w.Gearly.open();Array.from(w.document.querySelectorAll('.gearly-text-button')).find(b=>b.textContent.includes('Browse')).click();assert.equal(w.document.querySelector('.gearly-welcome'),null);assert.match(w.document.querySelector('.gearly-chips').textContent,/Member points/);assert.equal(w.document.querySelectorAll('.gearly-user').length,0);dom.window.close();
@@ -57,4 +57,11 @@ test('mascot reactions work with keyboard and pointer, and pending sprites clear
  const pending=w.Gearly.ask('events');assert.match(w.document.querySelector('.gearly-activity-sprite').src,/thinking-chin/);
  w.document.querySelector('[aria-label="Clear chat"]').click();resolve({text:'Stale response'});await pending;
  assert.equal(w.document.querySelector('.gearly-activity-sprite'),null);assert.equal(w.document.querySelector('.gearly-reply-sprite'),null);dom.window.close();
+});
+
+test('edge-specific poses are used for the welcome and tour card',async()=>{
+ const dom=await start();const doc=dom.window.document;
+ assert.match(doc.querySelector('.gearly-welcome-sprite').src,/gearly-peeking-banner/);
+ const tour=doc.querySelector('.gearly-shortcut-peek');assert.equal(tour.getAttribute('aria-label'),'Take a tour');assert.match(tour.querySelector('img').src,/gearly-peeking-thumbs-up/);
+ tour.focus();assert.match(tour.querySelector('img').src,/gearly-peeking-banner/);dom.window.close();
 });

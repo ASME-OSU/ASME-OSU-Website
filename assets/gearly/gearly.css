@@ -142,3 +142,29 @@ html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#292427; --g
 @keyframes gearly-ponder { 0%,100% { transform:rotate(0); } 50% { transform:rotate(-5deg) translateY(-2px); } }
 @keyframes gearly-type { 0%,100% { transform:translateY(0); } 35% { transform:translateY(-2px) rotate(1deg); } 70% { transform:rotate(-1deg); } }
 @media(prefers-reduced-motion:reduce) { .gearly-root * { animation:none!important; transition:none!important; transform:none!important; } }
+
+/* Let the edge-specific artwork rest on the card border rather than in an icon cell. */
+.gearly-welcome-hero { overflow:visible; margin-top:48px; }
+.gearly-welcome-sprite { top:-70px; bottom:auto; right:8px; width:125px; height:100px; pointer-events:none; animation:gearly-peek-in .7s ease-out 1; }
+.gearly-welcome-hero:hover .gearly-welcome-sprite { animation:gearly-edge-wave .8s ease-in-out 1; }
+.gearly-welcome-copy { width:100%; padding-right:18px; }
+.gearly-shortcuts { row-gap:18px; }
+.gearly-root .gearly-shortcut-peek { position:relative; padding-left:56px; overflow:visible; }
+.gearly-shortcut-peek .gearly-shortcut-sprite { position:absolute; top:-15px; left:5px; width:46px; height:60px; pointer-events:none; }
+.gearly-root .gearly-place-card { position:relative; grid-template-columns:1fr; width:calc(100% - 12px); margin-left:12px; padding-left:48px; overflow:visible; }
+.gearly-place-sprite { position:absolute; left:-24px; top:8px; width:62px; height:92px; pointer-events:none; }
+.gearly-place-card:hover .gearly-place-sprite,.gearly-place-card:focus-visible .gearly-place-sprite { animation:gearly-edge-wave .8s ease-in-out 1; }
+.gearly-launcher { overflow:visible; }
+.gearly-launcher::before { content:''; position:absolute; inset:-5px; border:2px solid var(--gearly-hero-border); border-radius:26px; opacity:0; pointer-events:none; }
+.gearly-launcher:hover::before,.gearly-launcher:focus-visible::before { animation:gearly-hover-ring .8s ease-out 1; }
+.gearly-launcher:hover .gearly-avatar-image,.gearly-launcher:focus-visible .gearly-avatar-image { animation:gearly-launcher-hello .8s ease-in-out 1; }
+@keyframes gearly-peek-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes gearly-edge-wave { 0%,100% { transform:translateY(0) rotate(0); } 35% { transform:translateY(-4px) rotate(-4deg); } 70% { transform:rotate(3deg); } }
+@keyframes gearly-launcher-hello { 0%,100% { transform:translateY(0) rotate(0); } 30% { transform:translateY(-5px) rotate(-7deg); } 65% { transform:translateY(-2px) rotate(5deg); } }
+@keyframes gearly-hover-ring { 0% { opacity:0; transform:scale(.95); } 30% { opacity:.75; } 100% { opacity:0; transform:scale(1.16); } }
+@media(prefers-reduced-motion:reduce) { .gearly-root *, .gearly-launcher::before { animation:none!important; transform:none!important; transition:none!important; } }
+.gearly-welcome-caption { max-width:65%; text-align:left; margin-bottom:0; }
+.gearly-welcome-hero { min-height:104px; margin-top:42px; }
+.gearly-welcome-copy { max-width:300px; padding:18px 14px; }
+.gearly-welcome-sprite { top:-64px; height:90px; }
+.gearly-root .gearly-place-card { min-height:112px; }
