@@ -275,3 +275,13 @@ Chapter count changes remain pending content-owner verification. Matching number
 ## Practice calendar cleanup
 
 The preview accepts either a starting year such as `2027` or its complete academic year, `2027-2028`. **Remove fictional events** leaves fictional mode immediately, restores the chapter source and refreshes its generated JSON. Loading and failure messages remain visible; a failed refresh keeps any available chapter snapshot. Choose **Upcoming dates** in the generated event list afterward to clear the year filter. The embedded Google calendar has a separate **Upcoming** button; it is restored when fictional mode ends. These controls do not add or remove Google events.
+
+## Gearly website guide
+
+Gearly is a rule-based, free browser assistant. Its answers and page directory live in `assets/gearly/gearly-data.json`, its named character artwork lives in `assets/gearly/sprites/`, and its live adapter reuses the existing public calendar, Instagram, Google Photos, and sanitized member-points exports. It displays source freshness; scheduled feeds are snapshots and are not instant updates. It never accesses the private member workbook or uses an AI service.
+
+Run `npm run test:gearly`, `npm run check`, and `npm test` before reviewing changes. Run `npm run preview:gearly` for a local page preview. See `docs/gearly-recon.md` for source details and `docs/gearly-content-guide.md` for content editing and limitations.
+
+First-time visitors receive an optional spotlight walkthrough with Skip, Back, and Next controls. Website tour replays the visible-page highlights. Page-specific quick prompts and Clear chat keep the guide useful across visits. Unknown questions can search an index of ten approved public page sources; run `npm run build:gearly` after editing those pages. Set `meta.enabled` to `false` in the data file to disable the guide. The frozen regression corpus and separate holdout corpus report accuracy and wrong confident answers independently.
+
+After the PR is merged and GitHub Pages has deployed, append `Gearly Embed.html` to the CampusPress shared Footer code, or replace the existing shared Footer with the updated `Footer.html` while preserving any site-only customizations. Repository HTML changes require a manual WordPress paste; a PR alone does not activate Gearly on WordPress. Remove only the `ASME GEARLY START/END` block to disable it. The pinned Fuse.js dependency is optional: blocked CDN access falls back to deterministic keyword matching. Bump all Gearly asset version strings in the embed and footer when deploying a new engine or stylesheet.

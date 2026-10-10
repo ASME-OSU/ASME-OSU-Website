@@ -1,0 +1,1133 @@
+{
+  "cases": [
+    {
+      "text": "how do i join",
+      "intent": "join",
+      "kind": "answer"
+    },
+    {
+      "text": "become a member",
+      "intent": "join",
+      "kind": "answer"
+    },
+    {
+      "text": "sign me up",
+      "intent": "join",
+      "kind": "answer"
+    },
+    {
+      "text": "join asme",
+      "intent": "join",
+      "kind": "answer"
+    },
+    {
+      "text": "is there a membership fee",
+      "intent": "dues",
+      "kind": "answer"
+    },
+    {
+      "text": "how much are dues",
+      "intent": "dues",
+      "kind": "answer"
+    },
+    {
+      "text": "does joining cost money",
+      "intent": "dues",
+      "kind": "answer"
+    },
+    {
+      "text": "is the chapter free",
+      "intent": "dues",
+      "kind": "answer"
+    },
+    {
+      "text": "can other majors join",
+      "intent": "eligibility",
+      "kind": "answer"
+    },
+    {
+      "text": "do i need to be mechanical engineering",
+      "intent": "eligibility",
+      "kind": "answer"
+    },
+    {
+      "text": "can a freshman join",
+      "intent": "eligibility",
+      "kind": "answer"
+    },
+    {
+      "text": "who can join",
+      "intent": "eligibility",
+      "kind": "answer"
+    },
+    {
+      "text": "subscribe to the newsletter",
+      "intent": "newsletter",
+      "kind": "answer"
+    },
+    {
+      "text": "email newsletter signup",
+      "intent": "newsletter",
+      "kind": "answer"
+    },
+    {
+      "text": "how do i get announcements",
+      "intent": "newsletter",
+      "kind": "answer"
+    },
+    {
+      "text": "mailing list",
+      "intent": "newsletter",
+      "kind": "answer"
+    },
+    {
+      "text": "where is the groupme",
+      "intent": "groupme",
+      "kind": "answer"
+    },
+    {
+      "text": "join the group chat",
+      "intent": "groupme",
+      "kind": "answer"
+    },
+    {
+      "text": "groupme link",
+      "intent": "groupme",
+      "kind": "answer"
+    },
+    {
+      "text": "quick reminders",
+      "intent": "groupme",
+      "kind": "answer"
+    },
+    {
+      "text": "what events are coming up",
+      "intent": "events",
+      "kind": "answer"
+    },
+    {
+      "text": "upcoming events",
+      "intent": "events",
+      "kind": "answer"
+    },
+    {
+      "text": "any events next week",
+      "intent": "events",
+      "kind": "answer"
+    },
+    {
+      "text": "events today",
+      "intent": "events",
+      "kind": "answer"
+    },
+    {
+      "text": "evnts",
+      "intent": "events",
+      "kind": "answer"
+    },
+    {
+      "text": "when are meetings",
+      "intent": "meetings",
+      "kind": "answer"
+    },
+    {
+      "text": "next meeting",
+      "intent": "meetings",
+      "kind": "answer"
+    },
+    {
+      "text": "meeting times",
+      "intent": "meetings",
+      "kind": "answer"
+    },
+    {
+      "text": "any gbm this week",
+      "intent": "meetings",
+      "kind": "answer"
+    },
+    {
+      "text": "any company sessions",
+      "intent": "company-sessions",
+      "kind": "answer"
+    },
+    {
+      "text": "company info sessions",
+      "intent": "company-sessions",
+      "kind": "answer"
+    },
+    {
+      "text": "employer presentations",
+      "intent": "company-sessions",
+      "kind": "answer"
+    },
+    {
+      "text": "recruiting events",
+      "intent": "company-sessions",
+      "kind": "answer"
+    },
+    {
+      "text": "upcoming socials",
+      "intent": "social-events",
+      "kind": "answer"
+    },
+    {
+      "text": "social events",
+      "intent": "social-events",
+      "kind": "answer"
+    },
+    {
+      "text": "any social this month",
+      "intent": "social-events",
+      "kind": "answer"
+    },
+    {
+      "text": "hang out with members",
+      "intent": "social-events",
+      "kind": "answer"
+    },
+    {
+      "text": "technical workshops",
+      "intent": "workshops",
+      "kind": "answer"
+    },
+    {
+      "text": "upcoming workshops",
+      "intent": "workshops",
+      "kind": "answer"
+    },
+    {
+      "text": "workshop schedule",
+      "intent": "workshops",
+      "kind": "answer"
+    },
+    {
+      "text": "technical talks",
+      "intent": "workshops",
+      "kind": "answer"
+    },
+    {
+      "text": "what projects do you offer",
+      "intent": "projects",
+      "kind": "answer"
+    },
+    {
+      "text": "competitions and projects",
+      "intent": "projects",
+      "kind": "answer"
+    },
+    {
+      "text": "engineering competitions",
+      "intent": "projects",
+      "kind": "answer"
+    },
+    {
+      "text": "hands on activities",
+      "intent": "projects",
+      "kind": "answer"
+    },
+    {
+      "text": "who are the officers",
+      "intent": "officer",
+      "kind": "answer"
+    },
+    {
+      "text": "executive board",
+      "intent": "officer",
+      "kind": "answer"
+    },
+    {
+      "text": "show leadership",
+      "intent": "officer",
+      "kind": "answer"
+    },
+    {
+      "text": "current officers",
+      "intent": "officer",
+      "kind": "answer"
+    },
+    {
+      "text": "who is the pres",
+      "intent": "president",
+      "kind": "answer"
+    },
+    {
+      "text": "contact the president",
+      "intent": "president",
+      "kind": "answer"
+    },
+    {
+      "text": "president email",
+      "intent": "president",
+      "kind": "answer"
+    },
+    {
+      "text": "who is matthew allen",
+      "intent": "president",
+      "kind": "answer"
+    },
+    {
+      "text": "who is the vp",
+      "intent": "vice-president",
+      "kind": "answer"
+    },
+    {
+      "text": "contact the vice president / corporate liaison",
+      "intent": "vice-president",
+      "kind": "answer"
+    },
+    {
+      "text": "vice president / corporate liaison email",
+      "intent": "vice-president",
+      "kind": "answer"
+    },
+    {
+      "text": "who is jessica wilson",
+      "intent": "vice-president",
+      "kind": "answer"
+    },
+    {
+      "text": "who is the treasurer",
+      "intent": "treasurer",
+      "kind": "answer"
+    },
+    {
+      "text": "contact the treasurer",
+      "intent": "treasurer",
+      "kind": "answer"
+    },
+    {
+      "text": "treasurer email",
+      "intent": "treasurer",
+      "kind": "answer"
+    },
+    {
+      "text": "who is aliyah beitzel",
+      "intent": "treasurer",
+      "kind": "answer"
+    },
+    {
+      "text": "who is the administrator",
+      "intent": "administrator",
+      "kind": "answer"
+    },
+    {
+      "text": "contact the administrator",
+      "intent": "administrator",
+      "kind": "answer"
+    },
+    {
+      "text": "administrator email",
+      "intent": "administrator",
+      "kind": "answer"
+    },
+    {
+      "text": "who is kasper szymczak",
+      "intent": "administrator",
+      "kind": "answer"
+    },
+    {
+      "text": "who is the social chair",
+      "intent": "social-chair",
+      "kind": "answer"
+    },
+    {
+      "text": "contact the social chair",
+      "intent": "social-chair",
+      "kind": "answer"
+    },
+    {
+      "text": "social chair email",
+      "intent": "social-chair",
+      "kind": "answer"
+    },
+    {
+      "text": "who is max sabio",
+      "intent": "social-chair",
+      "kind": "answer"
+    },
+    {
+      "text": "who is the webmaster",
+      "intent": "webmaster",
+      "kind": "answer"
+    },
+    {
+      "text": "contact the webmaster",
+      "intent": "webmaster",
+      "kind": "answer"
+    },
+    {
+      "text": "webmaster email",
+      "intent": "webmaster",
+      "kind": "answer"
+    },
+    {
+      "text": "who is margaux rasalan",
+      "intent": "webmaster",
+      "kind": "answer"
+    },
+    {
+      "text": "who is the e council",
+      "intent": "ecouncil",
+      "kind": "answer"
+    },
+    {
+      "text": "contact the e-council representative",
+      "intent": "ecouncil",
+      "kind": "answer"
+    },
+    {
+      "text": "e-council representative email",
+      "intent": "ecouncil",
+      "kind": "answer"
+    },
+    {
+      "text": "who is kyle sandborn",
+      "intent": "ecouncil",
+      "kind": "answer"
+    },
+    {
+      "text": "how do i contact asme",
+      "intent": "contact",
+      "kind": "answer"
+    },
+    {
+      "text": "email the chapter",
+      "intent": "contact",
+      "kind": "answer"
+    },
+    {
+      "text": "contact info",
+      "intent": "contact",
+      "kind": "answer"
+    },
+    {
+      "text": "ask a human",
+      "intent": "contact",
+      "kind": "answer"
+    },
+    {
+      "text": "who sponsors asme",
+      "intent": "sponsors",
+      "kind": "answer"
+    },
+    {
+      "text": "current sponsors",
+      "intent": "sponsors",
+      "kind": "answer"
+    },
+    {
+      "text": "our sponsors",
+      "intent": "sponsors",
+      "kind": "answer"
+    },
+    {
+      "text": "sponsor list",
+      "intent": "sponsors",
+      "kind": "answer"
+    },
+    {
+      "text": "how can my company sponsor",
+      "intent": "sponsorship",
+      "kind": "answer"
+    },
+    {
+      "text": "sponsorship tiers",
+      "intent": "sponsorship",
+      "kind": "answer"
+    },
+    {
+      "text": "corporate partnership",
+      "intent": "sponsorship",
+      "kind": "answer"
+    },
+    {
+      "text": "become a sponsor",
+      "intent": "sponsorship",
+      "kind": "answer"
+    },
+    {
+      "text": "member resources",
+      "intent": "resources",
+      "kind": "answer"
+    },
+    {
+      "text": "useful student links",
+      "intent": "resources",
+      "kind": "answer"
+    },
+    {
+      "text": "where are resources",
+      "intent": "resources",
+      "kind": "answer"
+    },
+    {
+      "text": "resources page",
+      "intent": "resources",
+      "kind": "answer"
+    },
+    {
+      "text": "how do points work",
+      "intent": "member-points",
+      "kind": "answer"
+    },
+    {
+      "text": "check my points",
+      "intent": "member-points",
+      "kind": "answer"
+    },
+    {
+      "text": "member points",
+      "intent": "member-points",
+      "kind": "answer"
+    },
+    {
+      "text": "my attendance total",
+      "intent": "member-points",
+      "kind": "answer"
+    },
+    {
+      "text": "who leads the leaderboard",
+      "intent": "leaderboard",
+      "kind": "answer"
+    },
+    {
+      "text": "top members",
+      "intent": "leaderboard",
+      "kind": "answer"
+    },
+    {
+      "text": "current standings",
+      "intent": "leaderboard",
+      "kind": "answer"
+    },
+    {
+      "text": "leaderboard rankings",
+      "intent": "leaderboard",
+      "kind": "answer"
+    },
+    {
+      "text": "what is each event worth",
+      "intent": "point-values",
+      "kind": "answer"
+    },
+    {
+      "text": "point values",
+      "intent": "point-values",
+      "kind": "answer"
+    },
+    {
+      "text": "how many points per event",
+      "intent": "point-values",
+      "kind": "answer"
+    },
+    {
+      "text": "event point weights",
+      "intent": "point-values",
+      "kind": "answer"
+    },
+    {
+      "text": "career resources",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "text": "internship help",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "text": "resume resources",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "text": "handshake jobs",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "text": "what is asme",
+      "intent": "about",
+      "kind": "answer"
+    },
+    {
+      "text": "about the chapter",
+      "intent": "about",
+      "kind": "answer"
+    },
+    {
+      "text": "what does asme do",
+      "intent": "about",
+      "kind": "answer"
+    },
+    {
+      "text": "tell me about asme osu",
+      "intent": "about",
+      "kind": "answer"
+    },
+    {
+      "text": "latest instagram posts",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "text": "instagram updates",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "text": "show instagram",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "text": "insta",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "text": "social media links",
+      "intent": "social-media",
+      "kind": "answer"
+    },
+    {
+      "text": "where can i follow asme",
+      "intent": "social-media",
+      "kind": "answer"
+    },
+    {
+      "text": "follow the chapter",
+      "intent": "social-media",
+      "kind": "answer"
+    },
+    {
+      "text": "social accounts",
+      "intent": "social-media",
+      "kind": "answer"
+    },
+    {
+      "text": "show photos",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "text": "chapter gallery",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "text": "pictures from events",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "text": "photo album",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "text": "hello",
+      "intent": "greeting",
+      "kind": "answer"
+    },
+    {
+      "text": "hi",
+      "intent": "greeting",
+      "kind": "answer"
+    },
+    {
+      "text": "hey",
+      "intent": "greeting",
+      "kind": "answer"
+    },
+    {
+      "text": "good morning",
+      "intent": "greeting",
+      "kind": "answer"
+    },
+    {
+      "text": "yo",
+      "intent": "greeting",
+      "kind": "answer"
+    },
+    {
+      "text": "thank you",
+      "intent": "thanks",
+      "kind": "answer"
+    },
+    {
+      "text": "thanks",
+      "intent": "thanks",
+      "kind": "answer"
+    },
+    {
+      "text": "ty",
+      "intent": "thanks",
+      "kind": "answer"
+    },
+    {
+      "text": "appreciate it",
+      "intent": "thanks",
+      "kind": "answer"
+    },
+    {
+      "text": "cheers",
+      "intent": "thanks",
+      "kind": "answer"
+    },
+    {
+      "text": "bye",
+      "intent": "goodbye",
+      "kind": "answer"
+    },
+    {
+      "text": "goodbye",
+      "intent": "goodbye",
+      "kind": "answer"
+    },
+    {
+      "text": "see you later",
+      "intent": "goodbye",
+      "kind": "answer"
+    },
+    {
+      "text": "gotta go",
+      "intent": "goodbye",
+      "kind": "answer"
+    },
+    {
+      "text": "who are you",
+      "intent": "identity",
+      "kind": "answer"
+    },
+    {
+      "text": "are you ai",
+      "intent": "identity",
+      "kind": "answer"
+    },
+    {
+      "text": "what is gearly",
+      "intent": "identity",
+      "kind": "answer"
+    },
+    {
+      "text": "are you a chatbot",
+      "intent": "identity",
+      "kind": "answer"
+    },
+    {
+      "text": "show me around",
+      "intent": "tour",
+      "kind": "answer"
+    },
+    {
+      "text": "website tour",
+      "intent": "tour",
+      "kind": "answer"
+    },
+    {
+      "text": "take a tour",
+      "intent": "tour",
+      "kind": "answer"
+    },
+    {
+      "text": "walk me through the site",
+      "intent": "tour",
+      "kind": "answer"
+    },
+    {
+      "text": "how can i sign up for asme",
+      "intent": "join",
+      "kind": "answer"
+    },
+    {
+      "text": "i want to become a member",
+      "intent": "join",
+      "kind": "answer"
+    },
+    {
+      "text": "are there any dues",
+      "intent": "dues",
+      "kind": "answer"
+    },
+    {
+      "text": "what does membership cost",
+      "intent": "dues",
+      "kind": "answer"
+    },
+    {
+      "text": "what events are on the calendar this week",
+      "intent": "events",
+      "kind": "answer"
+    },
+    {
+      "text": "show me the event schedule",
+      "intent": "events",
+      "kind": "answer"
+    },
+    {
+      "text": "show the current leaderboard",
+      "intent": "leaderboard",
+      "kind": "answer"
+    },
+    {
+      "text": "where can i view rankings",
+      "intent": "leaderboard",
+      "kind": "answer"
+    },
+    {
+      "text": "where do i find chapter pictures",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "text": "can i see the photo album",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "text": "show the latest instagram updates",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "text": "what is on insta",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "text": "Hi!",
+      "intent": "greeting",
+      "kind": "answer"
+    },
+    {
+      "text": "hey there",
+      "intent": "greeting",
+      "kind": "answer"
+    },
+    {
+      "text": "Thanks!",
+      "intent": "thanks",
+      "kind": "answer"
+    },
+    {
+      "text": "thank you very much",
+      "intent": "thanks",
+      "kind": "answer"
+    },
+    {
+      "text": "bye for now",
+      "intent": "goodbye",
+      "kind": "answer"
+    },
+    {
+      "text": "goodbye gearly",
+      "intent": "goodbye",
+      "kind": "answer"
+    },
+    {
+      "text": "are you an ai assistant",
+      "intent": "identity",
+      "kind": "answer"
+    },
+    {
+      "text": "tell me who gearly is",
+      "intent": "identity",
+      "kind": "answer"
+    },
+    {
+      "text": "purple flying staplers",
+      "kind": "fallback"
+    },
+    {
+      "text": "flibbertigibbet quartz",
+      "kind": "fallback"
+    },
+    {
+      "text": "asdfghjkl",
+      "kind": "fallback"
+    },
+    {
+      "text": "banana spaceship",
+      "kind": "fallback"
+    },
+    {
+      "text": "what is the weather in tokyo",
+      "kind": "fallback"
+    },
+    {
+      "text": "buy bitcoin for me",
+      "kind": "fallback"
+    },
+    {
+      "text": "solve my calculus homework",
+      "kind": "fallback"
+    },
+    {
+      "text": "write my essay",
+      "kind": "fallback"
+    },
+    {
+      "text": "pizza delivery coupons",
+      "kind": "fallback"
+    },
+    {
+      "text": "zzzz qqqq xxxx",
+      "kind": "fallback"
+    },
+    {
+      "text": "cancel join",
+      "kind": "fallback"
+    },
+    {
+      "text": "quit join",
+      "kind": "fallback"
+    },
+    {
+      "text": "join dues",
+      "kind": "clarify"
+    },
+    {
+      "text": "gallery resources",
+      "kind": "clarify"
+    },
+    {
+      "text": "sponsors sponsorship",
+      "kind": "clarify"
+    },
+    {
+      "text": "how do i join and what events are coming up",
+      "intent": "join",
+      "kind": "clarify",
+      "category": "multi-intent"
+    },
+    {
+      "text": "when are meetings and how much are dues",
+      "intent": "dues",
+      "kind": "clarify",
+      "category": "multi-intent"
+    },
+    {
+      "text": "show photos and instagram updates",
+      "intent": "instagram",
+      "kind": "clarify",
+      "category": "multi-intent"
+    },
+    {
+      "text": "tell me about sponsors and sponsorship tiers",
+      "intent": "sponsorship",
+      "kind": "clarify",
+      "category": "multi-intent"
+    },
+    {
+      "text": "resorces",
+      "intent": "resources",
+      "kind": "answer",
+      "category": "typo"
+    },
+    {
+      "text": "leaderbord",
+      "intent": "leaderboard",
+      "kind": "answer",
+      "category": "typo"
+    },
+    {
+      "text": "newsl etter",
+      "intent": "newsletter",
+      "kind": "answer",
+      "category": "typo"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "president contact follow-up",
+      "turns": [
+        {
+          "text": "who is the pres",
+          "intent": "president",
+          "kind": "answer"
+        },
+        {
+          "text": "how do I contact them",
+          "intent": "contact-president",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "treasurer contact follow-up",
+      "turns": [
+        {
+          "text": "who is the treasurer",
+          "intent": "treasurer",
+          "kind": "answer"
+        },
+        {
+          "text": "how do I contact them",
+          "intent": "contact-treasurer",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "webmaster contact follow-up",
+      "turns": [
+        {
+          "text": "who is the webmaster",
+          "intent": "webmaster",
+          "kind": "answer"
+        },
+        {
+          "text": "how do I contact them",
+          "intent": "contact-webmaster",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "administrator contact follow-up",
+      "turns": [
+        {
+          "text": "who is the administrator",
+          "intent": "administrator",
+          "kind": "answer"
+        },
+        {
+          "text": "how do I contact them",
+          "intent": "contact-administrator",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "social-chair contact follow-up",
+      "turns": [
+        {
+          "text": "who is the social chair",
+          "intent": "social-chair",
+          "kind": "answer"
+        },
+        {
+          "text": "how do I contact them",
+          "intent": "contact-social-chair",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "event date follow-up next month",
+      "turns": [
+        {
+          "text": "upcoming events",
+          "intent": "events",
+          "kind": "answer"
+        },
+        {
+          "text": "what about next month",
+          "intent": "events",
+          "kind": "answer",
+          "entities": {
+            "dateRange": "next-month"
+          }
+        },
+        {
+          "text": "how do i join",
+          "intent": "join",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "event date follow-up next week",
+      "turns": [
+        {
+          "text": "upcoming events",
+          "intent": "events",
+          "kind": "answer"
+        },
+        {
+          "text": "what about next week",
+          "intent": "events",
+          "kind": "answer",
+          "entities": {
+            "dateRange": "next-week"
+          }
+        },
+        {
+          "text": "how do i join",
+          "intent": "join",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "event date follow-up this month",
+      "turns": [
+        {
+          "text": "upcoming events",
+          "intent": "events",
+          "kind": "answer"
+        },
+        {
+          "text": "what about this month",
+          "intent": "events",
+          "kind": "answer",
+          "entities": {
+            "dateRange": "this-month"
+          }
+        },
+        {
+          "text": "how do i join",
+          "intent": "join",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "event date follow-up tomorrow",
+      "turns": [
+        {
+          "text": "upcoming events",
+          "intent": "events",
+          "kind": "answer"
+        },
+        {
+          "text": "what about tomorrow",
+          "intent": "events",
+          "kind": "answer",
+          "entities": {
+            "dateRange": "tomorrow"
+          }
+        },
+        {
+          "text": "how do i join",
+          "intent": "join",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "event date follow-up this week",
+      "turns": [
+        {
+          "text": "upcoming events",
+          "intent": "events",
+          "kind": "answer"
+        },
+        {
+          "text": "what about this week",
+          "intent": "events",
+          "kind": "answer",
+          "entities": {
+            "dateRange": "this-week"
+          }
+        },
+        {
+          "text": "how do i join",
+          "intent": "join",
+          "kind": "answer"
+        }
+      ]
+    }
+  ]
+}

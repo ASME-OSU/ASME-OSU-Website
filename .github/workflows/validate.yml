@@ -27,6 +27,8 @@ jobs:
         run: npm run check
       - name: Run behavior tests
         run: npm test
+      - name: Run Gearly conversation corpus
+        run: node tests/gearly/run-tests.mjs
       - name: Verify all generated assets are current
         run: |
           npm run build

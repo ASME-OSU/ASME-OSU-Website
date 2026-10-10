@@ -1,0 +1,604 @@
+{
+  "description": "Independent evaluation questions authored separately from training examples. Keep expectations stable; report remaining confusions.",
+  "cases": [
+    {
+      "text": "I would like to get involved as a member",
+      "intent": "join",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where can I register for the chapter?",
+      "intent": "join",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How can a new student become part of ASME?",
+      "intent": "join",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Do I pay to be in the chapter?",
+      "intent": "dues",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "What are the chapter membership fees?",
+      "intent": "dues",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Is there a charge for signing up?",
+      "intent": "dues",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Would an electrical engineering student be welcome?",
+      "intent": "eligibility",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "I am a first year student can I participate?",
+      "intent": "eligibility",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Can non mechanical majors become members?",
+      "intent": "eligibility",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where do I subscribe for email announcements?",
+      "intent": "newsletter",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Please point me to the mailing list registration",
+      "intent": "newsletter",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How can I receive the chapter newsletter?",
+      "intent": "newsletter",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Is there a link for the chapter group chat?",
+      "intent": "groupme",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "I need the ASME GroupMe invitation",
+      "intent": "groupme",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How do I access day of reminders in GroupMe?",
+      "intent": "groupme",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Which chapter events are scheduled tomorrow?",
+      "intent": "events",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "What is on the calendar next month?",
+      "intent": "events",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Show me upcoming ASME activities",
+      "intent": "events",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "When will the next chapter meeting happen?",
+      "intent": "meetings",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where do I find the GBM schedule?",
+      "intent": "meetings",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Are employers presenting at any upcoming company sessions?",
+      "intent": "company-sessions",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "I want to attend a company information event",
+      "intent": "company-sessions",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Do you have any socials planned soon?",
+      "intent": "social-events",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "What social gatherings are on the schedule?",
+      "intent": "social-events",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Are there technical workshops this month?",
+      "intent": "workshops",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where is the workshop calendar?",
+      "intent": "workshops",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How do I find engineering project opportunities?",
+      "intent": "projects",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Are there design competitions to take part in?",
+      "intent": "projects",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where is the list of current board members?",
+      "intent": "officer",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who serves on the ASME leadership team?",
+      "intent": "officer",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who currently serves as chapter president?",
+      "intent": "president",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How can I email the president?",
+      "intent": "president",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who is the corporate liaison on the board?",
+      "intent": "vice-president",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "I need the vice president contact details",
+      "intent": "vice-president",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who handles finances for the chapter?",
+      "intent": "treasurer",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How do I reach the treasurer?",
+      "intent": "treasurer",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who is the chapter administrator this year?",
+      "intent": "administrator",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who organizes socials on the executive board?",
+      "intent": "social-chair",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who manages the ASME website?",
+      "intent": "webmaster",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who represents ASME in E Council?",
+      "intent": "ecouncil",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Is there an email address for questions to the chapter?",
+      "intent": "contact",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How can I get help from a real officer?",
+      "intent": "contact",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Which organizations support the chapter?",
+      "intent": "sponsors",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where is the list of corporate sponsors?",
+      "intent": "sponsors",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "My business wants to support ASME financially",
+      "intent": "sponsorship",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where can a company learn about sponsorship levels?",
+      "intent": "sponsorship",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Can you direct me to student resource links?",
+      "intent": "resources",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where are the member tools listed?",
+      "intent": "resources",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How do I look up my attendance score?",
+      "intent": "member-points",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where can I find my own member point total?",
+      "intent": "member-points",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Who is currently ranked first among members?",
+      "intent": "leaderboard",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Show me the public member standings",
+      "intent": "leaderboard",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "How much credit does a company session earn?",
+      "intent": "point-values",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "What is the attendance point value for each event?",
+      "intent": "point-values",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where can I find help preparing my resume?",
+      "intent": "careers",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Are there resources for finding engineering internships?",
+      "intent": "careers",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "What does the Ohio State ASME chapter focus on?",
+      "intent": "about",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Can you explain the purpose of this organization?",
+      "intent": "about",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "What has the chapter posted on Instagram recently?",
+      "intent": "instagram",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Can I view the newest Insta post?",
+      "intent": "instagram",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where should I follow the chapter online?",
+      "intent": "social-media",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Where are pictures of past chapter activities?",
+      "intent": "gallery",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "I want to browse the photo archive",
+      "intent": "gallery",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Howdy Gearly",
+      "intent": "greeting",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Hello there friend",
+      "intent": "greeting",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Thanks a lot for your help",
+      "intent": "thanks",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "That helped thank you",
+      "intent": "thanks",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Catch you later Gearly",
+      "intent": "goodbye",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Have a nice day goodbye",
+      "intent": "goodbye",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Are you powered by a language model?",
+      "intent": "identity",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Do you use AI to generate answers?",
+      "intent": "identity",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Can you give me a walkthrough of this website?",
+      "intent": "tour",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "Help me learn to navigate the site",
+      "intent": "tour",
+      "kind": "answer",
+      "category": "paraphrase"
+    },
+    {
+      "text": "I do not want to join the chapter",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "Cancel my newsletter subscription",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "Do not sign me up",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "What is the fee for a parking permit?",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "What are the points on my calculus exam?",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "Who is president of the United States?",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "Who leads the leaderboard in the NBA?",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "Show photos of my cat",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "What is your Instagram password?",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "Please publish a new event for me",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "Transfer money to the treasurer",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "What is the exact guaranteed date of the next internship offer?",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "Where is my ASME membership password?",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "aqua giraffe purple toaster",
+      "kind": "fallback",
+      "category": "false-confidence-negative"
+    },
+    {
+      "text": "I need join information and the next events",
+      "kind": "clarify",
+      "category": "compound"
+    },
+    {
+      "text": "Show the leaderboard and Instagram posts",
+      "kind": "clarify",
+      "category": "compound"
+    },
+    {
+      "text": "Who is the president and how do points work?",
+      "kind": "clarify",
+      "category": "compound"
+    },
+    {
+      "text": "What are the dues and the newsletter signup?",
+      "kind": "clarify",
+      "category": "compound"
+    },
+    {
+      "text": "president treasurer",
+      "kind": "clarify",
+      "category": "ambiguity"
+    },
+    {
+      "text": "gallery resources",
+      "kind": "clarify",
+      "category": "ambiguity"
+    },
+    {
+      "text": "sponsors sponsorship",
+      "kind": "clarify",
+      "category": "ambiguity"
+    },
+    {
+      "text": "events points",
+      "kind": "clarify",
+      "category": "ambiguity"
+    },
+    {
+      "text": "Who is the president of ASME?",
+      "kind": "answer",
+      "entities": {
+        "role": "president"
+      },
+      "category": "entity"
+    },
+    {
+      "text": "How do I reach the corporate liaison?",
+      "kind": "answer",
+      "entities": {
+        "role": "vice-president"
+      },
+      "category": "entity"
+    },
+    {
+      "text": "What is the webmaster email?",
+      "kind": "answer",
+      "entities": {
+        "role": "webmaster"
+      },
+      "category": "entity"
+    },
+    {
+      "text": "Any company events next week?",
+      "kind": "answer",
+      "entities": {
+        "eventType": "company",
+        "dateRange": "next-week"
+      },
+      "category": "entity"
+    },
+    {
+      "text": "Any social events tomorrow?",
+      "kind": "answer",
+      "entities": {
+        "eventType": "social",
+        "dateRange": "tomorrow"
+      },
+      "category": "entity"
+    },
+    {
+      "text": "Workshops this month please",
+      "kind": "answer",
+      "entities": {
+        "eventType": "workshop",
+        "dateRange": "this-month"
+      },
+      "category": "entity"
+    }
+  ]
+}
