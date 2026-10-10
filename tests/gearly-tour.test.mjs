@@ -41,7 +41,7 @@ test('modal tour blocks background actions and restores original inert attribute
 async function crossPage(url,storage,data){
  const {default:vm}=await import('node:vm');const dom=new JSDOM('<header id="header">Header</header><section id="events">Events</section>',{url});const w=dom.window;w.HTMLElement.prototype.getBoundingClientRect=()=>({left:20,top:60,right:200,bottom:100,width:180,height:40});
  const moves=[];const loc=new URL(url);loc.assign=value=>moves.push(value);const root={document:w.document,location:loc,innerWidth:320,innerHeight:640,getComputedStyle:w.getComputedStyle.bind(w),addEventListener:w.addEventListener.bind(w),removeEventListener:w.removeEventListener.bind(w),localStorage:w.localStorage,sessionStorage:storage};
- vm.runInNewContext(code,{window:root,URL,setTimeout,clearTimeout});root.GearlyTour.configure({data,assetBase:'https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/'});return {w,api:root.GearlyTour,moves};
+ vm.runInNewContext(code,{window:root,URL,setTimeout,clearTimeout});root.GearlyTour.configure({data,assetBase:'https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/'});return {w,api:root.GearlyTour,moves,root};
 }
 const routeData={pages:[{url:'https://org.osu.edu/asme/',sourceFile:'Home Page.html'},{url:'https://org.osu.edu/asme/calendar/',sourceFile:'Calendar Page.html'}],tour:{version:3,steps:[{page:'https://org.osu.edu/asme/',selector:'#header',title:'Home',text:'Navigation',sprite:'gearly-smiling-wave.png'},{page:'https://org.osu.edu/asme/calendar/',selector:'#events',title:'Events',text:'Upcoming',sprite:'gearly-calendar-presenting.png'}]}};
 function session(){const values=new Map();return {getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k),values};}
@@ -66,4 +66,32 @@ test('resumed tour returns focus to launcher added after configure',async()=>{
 });
 test('same-page destination cue uses section title',async()=>{
  const data=structuredClone(routeData);data.pages[0].title='Home';data.tour.steps[1].page='https://org.osu.edu/asme/';const page=await crossPage('https://org.osu.edu/asme/',session(),data);page.api.start();assert.equal(page.w.document.querySelector('.gearly-tour-destination').textContent,'Next: Events');page.api.close();
+});
+
+
+const sectionData={pages:routeData.pages,intents:[{id:'find-events',actions:[{type:'scrollTo',page:'https://org.osu.edu/asme/calendar/',selector:'#events',label:'Show events',title:'Upcoming events'},{type:'scrollTo',page:'https://org.osu.edu/asme/',selector:'#header',label:'Show navigation',title:'Navigation'}]}]};
+test('section requests navigate and resume the registered section without a modal overlay',async()=>{
+ const storage=session(),home=await crossPage('https://org.osu.edu/asme/',storage,sectionData),action=sectionData.intents[0].actions[0];
+ assert.equal(home.api.showSection(action),true);assert.deepEqual(home.moves,['https://org.osu.edu/asme/calendar/']);assert.ok(storage.getItem('asme-gearly-section-v1'));
+ const events=await crossPage('https://org.osu.edu/asme/calendar/',storage,sectionData);assert.equal(storage.getItem('asme-gearly-section-v1'),null);assert.ok(events.w.document.querySelector('#events').classList.contains('gearly-section-focus'));assert.equal(events.w.document.querySelector('.gearly-section-card h2').textContent,'Upcoming events');assert.equal(events.w.document.querySelector('.gearly-tour'),null);assert.equal(events.w.document.querySelector('#events').hasAttribute('inert'),false);
+ events.w.document.querySelector('[aria-label="Explore section"]').click();assert.equal(events.w.document.querySelector('.gearly-section-card'),null);assert.equal(events.w.document.querySelector('#events').classList.contains('gearly-section-focus'),false);assert.equal(events.w.document.activeElement.id,'events');
+});
+test('section guidance rejects unregistered selectors and forged, expired or wrong-route resumption',async()=>{
+ for(const pending of [{intent:'unknown',index:0,to:'https://org.osu.edu/asme/calendar/',expires:Date.now()+10000},{intent:'find-events',index:0,to:'https://evil.example/',expires:Date.now()+10000},{intent:'find-events',index:0,to:'https://org.osu.edu/asme/calendar/',expires:1}]){
+  const storage=session();storage.setItem('asme-gearly-section-v1',JSON.stringify(pending));const page=await crossPage('https://org.osu.edu/asme/calendar/',storage,sectionData);assert.equal(page.w.document.querySelector('.gearly-section-card'),null);assert.equal(storage.getItem('asme-gearly-section-v1'),null);
+ }
+ const page=await crossPage('https://org.osu.edu/asme/',session(),sectionData);assert.equal(page.api.showSection({...sectionData.intents[0].actions[1],selector:'body'}),false);assert.equal(page.moves.length,0);
+});
+test('section Escape clears the native outline; denied storage still navigates to the approved page',async()=>{
+ const page=await crossPage('https://org.osu.edu/asme/',session(),sectionData);page.api.showSection(sectionData.intents[0].actions[1]);assert.ok(page.w.document.querySelector('.gearly-section-card'));page.w.document.dispatchEvent(new page.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(page.w.document.querySelector('.gearly-section-focus'),null);assert.equal(page.w.document.querySelector('.gearly-section-card'),null);
+ const denied={getItem(){throw Error('denied');},setItem(){throw Error('denied');},removeItem(){throw Error('denied');}};const fallback=await crossPage('https://org.osu.edu/asme/',denied,sectionData);assert.equal(fallback.api.showSection(sectionData.intents[0].actions[0]),true);assert.deepEqual(fallback.moves,['https://org.osu.edu/asme/calendar/']);
+});
+test('tour scroll updates coalesce into one frame and keep the guide card steady',async()=>{
+ const page=await crossPage('https://org.osu.edu/asme/',session(),routeData);let render,calls=0;page.root.requestAnimationFrame=cb=>{calls++;render=cb;return 7;};page.root.cancelAnimationFrame=()=>{};page.api.start();const tip=page.w.document.querySelector('.gearly-tour-tip'),top=tip.style.top;page.w.document.querySelector('#header').getBoundingClientRect=()=>({left:40,top:180,bottom:220,width:180,height:40});page.w.dispatchEvent(new page.w.Event('scroll'));page.w.dispatchEvent(new page.w.Event('scroll'));assert.equal(calls,1);render();assert.equal(page.w.document.querySelector('.gearly-tour-ring').style.top,'175px');assert.equal(tip.style.top,top);page.api.close();
+});
+
+
+test('tour observes changing targets and disconnects observers on exit',async()=>{
+ const page=await crossPage('https://org.osu.edu/asme/',session(),routeData);let callback,observed=[],disconnected=0;page.root.ResizeObserver=class {constructor(cb){callback=cb;}observe(el){observed.push(el);}disconnect(){disconnected++;}};
+ page.api.start();const target=page.w.document.querySelector('#header');assert.ok(observed.includes(target));target.getBoundingClientRect=()=>({left:20,top:60,bottom:160,width:180,height:100});callback();assert.equal(page.w.document.querySelector('.gearly-tour-ring').style.height,'110px');page.api.close();assert.ok(disconnected>=2);callback();assert.equal(page.w.document.querySelector('.gearly-tour-ring'),null);
 });
