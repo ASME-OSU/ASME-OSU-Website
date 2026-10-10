@@ -3,7 +3,7 @@ import http from 'node:http';
 import path from 'node:path';
 const root = path.resolve(import.meta.dirname, '..');
 const pages = new Set(JSON.parse(fs.readFileSync(path.join(root, 'assets/gearly/gearly-data.json'), 'utf8')).pages.map(page => page.sourceFile).filter(Boolean));
-const types = { '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg' };
+const types = { '.html': 'text/html; charset=utf-8', '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg' };
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, 'http://localhost');
   if (url.pathname === '/') {

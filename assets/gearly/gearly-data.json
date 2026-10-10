@@ -6,7 +6,7 @@
     "logEndpoint": "",
     "sprites": {
       "idle": "sprites/gearly-neutral-head.webp",
-      "launcher": "sprites/gearly-happy-head.webp",
+      "launcher": "sprites/gearly-smiling-wave-corner.webp",
       "thinking": "sprites/gearly-thinking-chin.webp",
       "typing": "sprites/gearly-laptop-presenting.webp",
       "happy": "sprites/gearly-happy-head.webp",

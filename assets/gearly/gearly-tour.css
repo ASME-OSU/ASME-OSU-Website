@@ -36,3 +36,9 @@ html[data-theme=light] .gearly-section-eyebrow { color:#a6192e; }
 .gearly-tour-tip h2 { color:inherit!important; font-weight:700!important; font-family:var(--font-body,'DM Sans',sans-serif)!important; }
 .gearly-tour-controls button { font-size:14px; }
 .gearly-tour-controls button[aria-label="Skip tour"] { font-size:24px; }
+
+.gearly-section-sprite { animation:gearly-section-arrival .65s ease-out 1; }
+.gearly-section-card:hover .gearly-section-sprite,.gearly-section-card:focus-within .gearly-section-sprite { animation:gearly-section-point .8s ease-in-out 1; }
+@keyframes gearly-section-arrival { from { transform:translateY(5px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+@keyframes gearly-section-point { 0%,100% { transform:translateX(0); } 45% { transform:translateX(4px) rotate(-4deg); } }
+@media(prefers-reduced-motion:reduce) { .gearly-section-sprite { animation:none!important; } }
