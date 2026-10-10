@@ -31,3 +31,13 @@ The reference roadmaps' automatic nudges, query/feedback logging, autonomous cro
 The local browser completed all ten steps across Home, Join, Calendar, Resources, Points, Gallery, Leadership, and Sponsorship. Back returned from Join to the prior Home highlight. Each destination resumed its intended step. Completion restored focus to the 52px launcher, with no separate persistent tour button. Sprites loaded and the next destination was visible. Updated unit tests cover invalid/expired destinations, cross-page resume, cancellation, denied storage, safe sprites, resumed-page focus restoration, and section-specific next cues. Astra's source review and further UX recommendations are in `gearly-ux-recommendations.md`; it is not a production or screen-reader certification.
 
 The follow-up dark preview confirmed a true 360px CSS viewport with the tooltip inside its bounds. The compact launcher measured 52×52px. Light desktop and dark phone screenshots were saved. The temporary browser viewport was restored after verification.
+
+
+## Welcome screen and reply feedback — October 10, 2026
+
+- Version 1.3.0 adds the waving welcome banner, page context, Events/Join/Career/Tour shortcuts, and a compact scarlet corner launcher with a status dot.
+- The thinking-chin and laptop sprites mark pending and typing states. Local answers have a 280 ms minimum thinking cue and a text reveal capped at one second; live requests retain the pending cue until they finish. Reduced-motion users receive the complete response immediately. This presentation does not change the local matching engine or imply a generative service.
+- Clearing the chat cancels pending feedback and restores the welcome screen. A new question completes any prior reveal without allowing an older request to overwrite the current answer. Completed answers become accessible once rather than announcing every character; links remain hidden while their answer is typing.
+- The welcome screen remains available across page loads until a visitor actually asks a question. Existing conversations are restored as before.
+- Browser checks cover light and dark chat surfaces, mobile width 360 px, welcome shortcuts, page context, reply states, and keyboard controls. Explicit light theme overrides a system dark preference; all surfaces, input text, links, and muted text share theme variables.
+- The shared WordPress loader uses cache version `20261010-4`. Individual page HTML does not change.
