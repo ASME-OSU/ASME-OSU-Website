@@ -1,22 +1,27 @@
 # Gearly validation and review scope
 
-This PR implements the requested rule-based website assistant, reuse of public changing data, descriptive sprite upload, and isolated review. The attached plan was used as reference; its full milestone roadmap is not claimed complete.
+This draft PR implements the requested rule-based website assistant, reuse of public changing data, descriptive sprite upload, and isolated review. Both attached plans were used as references; their full roadmaps are not claimed complete. The follow-up adds matching improvements, optional first-visit spotlight tours, page-specific prompts, Clear chat, a feature flag, and approved public page search.
 
 ## Verified
 
-- Repository syntax and generated-asset checks pass. All 110 behavioral tests pass, including 22 Gearly tests.
-- Conversation corpus includes 189 cases and ten dialogue scripts. 175/189 cases pass (92.6%); all ten dialogue scripts pass. The runner prints unresolved confusions and fails below the threshold or on dialogue failure.
-- Public WordPress subsite REST pages endpoint returns HTTP 200. Response fields are documented in `gearly-recon.md`.
-- The existing sanitized Google Sheets export returns the expected `setting/public_value` and `rank/display_name/period_label/points` columns. Its response allows requests from the WordPress origin.
-- Local browser preview renders public leaderboard totals, calendar events, and Instagram captions with source labels and stale warnings. Sprite states load, Escape closes the panel, and input focus returns on reopen.
-- Desktop and small-screen dark-theme preview checked. The in-app browser clamps the requested 360px viewport to an observed 400px CSS viewport; layout remains inside its bounds.
-- Source failures, malformed data, unsafe links, public status gating, Eastern event filtering, independent filtered caches, session limits, and text rendering have offline behavioral coverage.
-- All 22 provided originals are retained and labeled. The runtime uses small WebP counterparts rather than downloading the entire PNG library.
+- Build, syntax, generated-asset checks, and all 131 behavioral tests pass.
+- The original 189 questions remain unchanged. Matching improves from 175/189 (92.6%) to 186/189 (98.4%); all ten dialogue scripts pass.
+- A separate 101-question holdout improves from 33/101 (32.7%) to 85/101 (84.2%). These comparisons use both engines with identical current content. Wrong confident answers fall from 17 to zero on the holdout and from one to zero on the frozen corpus. Zero is a test result, not a universal guarantee.
+- Three frozen cases still clarify compound questions with a different first candidate. Sixteen holdout cases still fall back or ask for clarification. The runner prints these cases and gates both accuracy thresholds, dialogues, and wrong confident answers.
+- Verified company aliases include RTX / Pratt & Whitney, HRST, and PPG. Company and Eastern date filters have behavioral coverage; cancelled events are excluded. Unknown company names do not silently become known ones.
+- Public WordPress REST pages and the sanitized Google Sheets export were checked. Local browser preview renders public leaderboard totals, calendar events, and Instagram captions with source labels and stale warnings.
+- The ten-page search index builds from explicitly approved repository HTML, loads lazily, and returns safe chapter links. Its tests cover actual resume-book page text, unrelated queries, unsafe routes, loading failure, cache reuse, and retry.
+- Browser checks cover first-visit invitation, dismissal persistence, tour replay, Next/Back/Skip, Escape, restored focus, spotlight alignment after scrolling, light desktop, and dark small-screen layouts. The follow-up preview confirmed a true 360px CSS viewport with its tooltip inside the viewport.
+- Tour tests cover missing/hidden targets, bounded steps, storage denial, keyboard focus trapping, background isolation and restoration. UI tests cover page prompts, feature flag, clearing history, and pending responses after Clear chat.
+- Source failures, malformed data, unsafe links, public status gating, independent filtered caches, session limits, and safe text rendering have offline behavioral coverage.
+- All 22 supplied originals are retained and descriptively labeled. The runtime uses smaller WebP counterparts.
 
-## Review limitations and deployment
+## Deployment and limitations
 
-WordPress is unchanged by this PR. Merge and GitHub Pages deployment must precede installation of `Gearly Embed.html` in the shared CampusPress Footer code. Page hook edits also require pasting the affected page HTML if those actions are wanted. Remove the marked footer block to disable Gearly.
+WordPress is unchanged. Merge and GitHub Pages deployment must precede installation of `Gearly Embed.html` in the shared CampusPress Footer code. Page hook edits require pasting affected page HTML. Remove the marked footer block or set `meta.enabled` to false to disable Gearly. The PR remains draft and unmerged.
 
-Officer and static FAQ content is checked-in and requires maintenance. Calendar, Instagram, and gallery are scheduled snapshots; their timestamps and stale warnings distinguish them from instant updates. Leaderboard and point values are read from the public export on request with a short memory cache.
+Officer and static FAQ content requires maintenance. Calendar, Instagram, and gallery use scheduled snapshots; timestamps and stale warnings distinguish them from instant updates. Public leaderboard and point values are fetched on request with a short memory cache.
 
-The full reference roadmap's automatic nudges, query/feedback logging, autonomous cross-page action persistence, and compound answer merging are not included. Compound questions may require a choice or separate questions. FAQ data requires an intent to become directly answerable. Production WordPress installation, Safari/Firefox, explicit light-theme visual comparison, true 360px browser rendering, and Lighthouse were not tested. No claim is made that all reference-plan acceptance criteria are satisfied.
+Tours highlight visible targets on the current page and skip unavailable sections. They do not automatically continue across page navigation. Compound requests may require separate questions. Negated requests conservatively fall back rather than implementing exclusion filters. The approved public search index returns page cards, not generated factual answers.
+
+The reference roadmaps' automatic nudges, query/feedback logging, autonomous cross-page action persistence, and compound answer merging are not included. Production CampusPress installation, Safari/Firefox, and Lighthouse remain unverified. No claim is made that every reference-plan acceptance criterion is satisfied.

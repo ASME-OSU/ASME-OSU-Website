@@ -65,3 +65,19 @@ test('event date ranges use Eastern calendar days and cache filters independentl
   const company = await api.load('events',{eventType:'company'}); assert.equal(company.cards.length,1);
   const missing = await api.load('events',{company:'nonexistent'}); assert.equal(missing.cards.length,0); assert.match(missing.text,/No upcoming events match/);
 });
+test('verified company aliases classify named events, exclude unrelated and canceled events',async()=>{
+ const source={checkedAt:new Date().toISOString(),events:[
+  {title:'ASME Pratt & Whitney Event',start:'2099-01-01T18:00:00Z'},
+  {title:'RTX career talk',start:'2099-01-02T18:00:00Z'},
+  {title:'Pickleball social',start:'2099-01-03T18:00:00Z'},
+  {title:'Pratt and Whitney',start:'2099-01-04T18:00:00Z',status:'cancelled'},
+  {title:'RTX workshop',start:'2099-01-05T18:00:00Z',cancelled:true}
+ ]};
+ const {api}=setup([source,source]);api.configure({companies:[{id:'pratt-whitney',name:'Pratt & Whitney',aliases:['Pratt and Whitney','RTX']}]});
+ const company=await api.load('events',{eventType:'company'});assert.equal(company.cards.length,2);
+ const alias=await api.load('events',{company:'pratt-whitney'});assert.equal(alias.cards.length,2);assert.equal(alias.cards[0].title,'ASME Pratt & Whitney Event');
+});
+test('gallery unsafe source falls back to verified pictures route',async()=>{
+ const {api}=setup([{generatedAt:new Date().toISOString(),albumUrl:'javascript:bad',items:[{alt:'Chapter photo'}]}]);
+ assert.equal((await api.load('gallery')).cards[0].url,'https://org.osu.edu/asme/pictures/');
+});

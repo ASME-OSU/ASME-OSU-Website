@@ -5,6 +5,10 @@
   var sheet = 'https://docs.google.com/spreadsheets/d/1otAJV_pDkj6xWCVBHbhXPq99sT9L33ZFOdQU59uKXLg/gviz/tq';
   var cache = Object.create(null), pending = Object.create(null), ttl = 60000;
   var pages = 'https://org.osu.edu/asme/';
+  var companies = [];
+  function words(value) { return clean(value, 2000).toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim(); }
+  function mentions(text, alias) { var a=words(alias); return a && (' '+words(text)+' ').includes(' '+a+' '); }
+  function knownCompany(text) { return companies.some(function(c){return c.aliases.some(function(a){return mentions(text,a);});}); }
   function clean(value, limit) { return typeof value === 'string' ? value.replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, limit || 400) : ''; }
   function safeURL(value, fallback) {
     try { var u = new URL(value); if (u.protocol === 'https:' && !u.username && !u.password && /^(org\.osu\.edu|calendar\.google\.com|www\.instagram\.com|instagram\.com|photos\.app\.goo\.gl|asme-osu\.github\.io)$/.test(u.hostname)) return u.href; } catch (_) {}
@@ -53,25 +57,26 @@
       var updated = data.checkedAt || data.updatedAt || data.generatedAt;
       var cards;
       if (kind === 'events') {
-        cards = rows.filter(function (e) { if (!e || !date(e.start) || !date(e.end || e.start) || date(e.end || e.start).getTime() < Date.now()) return false;
+        cards = rows.filter(function (e) { if (!e || e.cancelled === true || /^(cancelled|canceled)$/i.test(e.status || '') || !date(e.start) || !date(e.end || e.start) || date(e.end || e.start).getTime() < Date.now()) return false;
           var dayParts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(date(e.start));
           var parts = {}; dayParts.forEach(function (p) { parts[p.type] = p.value; });
           var day = parts.year + '-' + parts.month + '-' + parts.day;
           var range = options.dateRange || {};
           if (range.from && day < range.from || range.to && day > range.to) return false;
           var words = (clean(e.title) + ' ' + clean(e.description)).toLowerCase();
-          if (options.company && !words.includes(options.company.toLowerCase())) return false;
+          var selected = companies.find(function(c){return c.id === options.company;});
+          if (options.company && !(selected ? selected.aliases.some(function(a){return mentions(words,a);}) : mentions(words,options.company))) return false;
           if (options.eventType) {
             var type = options.eventType.toLowerCase();
             var patterns = { social: /\b(social|pickleball|casino|bowling|game night|picnic)\b/, workshop: /\b(workshop|tutorial|training|hands-on)\b/, company: /\b(company|employer|recruiting|recruiter|corporate|information session|info session)\b/, volunteering: /\b(volunteer|volunteering|community service)\b/, competition: /\b(competition|contest|design challenge|robotics competition)\b/, meeting: /\b(meeting|gbm|general body|chapter session)\b/ };
-            if (!patterns[type] || !patterns[type].test(words)) return false;
+            if (!patterns[type] || !(patterns[type].test(words) || type === 'company' && knownCompany(words))) return false;
           }
           return true; }).sort(function (a, b) { return date(a.start) - date(b.start); }).slice(0, 5).map(function (e) {
           var when = date(e.start).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric', ...(e.allDay ? {} : { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) });
           return { title: clean(e.title, 150) || 'Chapter event', text: when + (e.allDay ? ' · All day' : '') + (clean(e.location) ? ' · ' + clean(e.location) : ''), url: safeURL(e.url, pages + 'calendar/') };
         });
       } else cards = rows.filter(function (e) { return e && typeof e === 'object'; }).slice().sort(function (a, b) { return kind === 'instagram' ? (date(b.timestamp) || 0) - (date(a.timestamp) || 0) : Number(a.order || 0) - Number(b.order || 0); }).slice(0, 5).map(function (e) {
-        return { title: clean(e.title || e.alt, 150) || 'Chapter photo', text: clean(e.summary || e.caption || e.category), url: safeURL(kind === 'instagram' ? e.permalink : data.albumUrl, kind === 'instagram' ? 'https://www.instagram.com/asmeohiostate/' : pages + 'gallery/') };
+        return { title: clean(e.title || e.alt, 150) || 'Chapter photo', text: clean(e.summary || e.caption || e.category), url: safeURL(kind === 'instagram' ? e.permalink : data.albumUrl, kind === 'instagram' ? 'https://www.instagram.com/asmeohiostate/' : pages + 'pictures/') };
       });
       var labels = { events: 'Google Calendar · hourly snapshot', instagram: 'Instagram · snapshot every 6 hours', gallery: 'Public Google Photos · daily snapshot' };
       var value = result(cards.length ? (kind === 'events' ? 'Upcoming events in Eastern Time.' : 'Latest public chapter updates.') : (kind === 'events' && (options.dateRange || options.eventType || options.company) ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : 'No public updates are available in this snapshot.'), cards, updated, labels[kind]);
@@ -81,7 +86,7 @@
     });
   }
   root.GearlyLive = {
-    configure: function (options) { if (options && options.baseURL) { var u = new URL(options.baseURL, root.location && root.location.href); if (!/^https?:$/.test(u.protocol)) throw new Error('Invalid feed base'); baseURL = u.href.replace(/\/?$/, '/'); cache = Object.create(null); pending = Object.create(null); } },
+    configure: function (options) { if (options && Array.isArray(options.companies)) { companies=options.companies.filter(function(c){return c && typeof c.id === 'string' && typeof c.name === 'string';}).slice(0,100).map(function(c){return {id:clean(c.id,100),aliases:[c.name].concat(Array.isArray(c.aliases)?c.aliases:[]).filter(function(a){return typeof a === 'string' && a.trim().length >= 2;}).map(function(a){return clean(a,100);})};}); cache=Object.create(null); pending=Object.create(null); } if (options && options.baseURL) { var u = new URL(options.baseURL, root.location && root.location.href); if (!/^https?:$/.test(u.protocol)) throw new Error('Invalid feed base'); baseURL = u.href.replace(/\/?$/, '/'); cache = Object.create(null); pending = Object.create(null); } },
     load: function (kind, options) {
       options = options && typeof options === 'object' ? options : {};
       var range = options.dateRange && typeof options.dateRange === 'object' ? options.dateRange : null;

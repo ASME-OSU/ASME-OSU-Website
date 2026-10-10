@@ -9,7 +9,8 @@
       "thinking": "sprites/gearly-thinking-chin.webp",
       "happy": "sprites/gearly-happy-head.webp",
       "confused": "sprites/gearly-surprised-head.webp"
-    }
+    },
+    "enabled": true
   },
   "synonyms": {
     "meeting": [
@@ -20,7 +21,13 @@
     "join": [
       "signup",
       "sign up",
-      "enroll"
+      "enroll",
+      "register",
+      "registration",
+      "become a member",
+      "get involved",
+      "participation",
+      "become part"
     ],
     "events": [
       "event",
@@ -34,16 +41,87 @@
     "leaderboard": [
       "rankings",
       "ranking",
-      "standings"
+      "standings",
+      "ranked"
     ],
     "dues": [
       "fee",
       "fees",
-      "cost"
+      "cost",
+      "pay",
+      "charge",
+      "membership fee"
     ],
     "officers": [
       "board",
       "leadership"
+    ],
+    "treasurer": [
+      "finances",
+      "finance officer",
+      "finance",
+      "financial officer"
+    ],
+    "webmaster": [
+      "website officer",
+      "website manager",
+      "website maintenance",
+      "web maintenance",
+      "site maintenance"
+    ],
+    "point values": [
+      "credit",
+      "worth",
+      "weights"
+    ],
+    "resources": [
+      "tools",
+      "resource links"
+    ],
+    "ai": [
+      "language model",
+      "artificial intelligence"
+    ],
+    "newsletter": [
+      "mailing list",
+      "email announcements"
+    ],
+    "gallery": [
+      "photo archive",
+      "pictures",
+      "photos"
+    ],
+    "competitions": [
+      "design competition",
+      "engineering competition"
+    ],
+    "careers": [
+      "internships",
+      "career resources"
+    ],
+    "social-chair": [
+      "social coordination",
+      "social organizer"
+    ],
+    "sponsorship": [
+      "corporate donation",
+      "business support",
+      "financial support"
+    ],
+    "about": [
+      "organizational purpose",
+      "organization purpose",
+      "chapter purpose"
+    ],
+    "greeting": [
+      "howdy",
+      "hello",
+      "hi"
+    ],
+    "tour": [
+      "navigation",
+      "navigate",
+      "walkthrough"
     ]
   },
   "pages": [
@@ -55,7 +133,13 @@
         "home",
         "start"
       ],
-      "sections": []
+      "sections": [],
+      "sourceFile": "Home Page.html",
+      "suggestions": [
+        "How do I join?",
+        "Upcoming events",
+        "Show me around"
+      ]
     },
     {
       "id": "join",
@@ -80,6 +164,12 @@
           "selector": ".join-faq-section",
           "keywords": []
         }
+      ],
+      "sourceFile": "Join Page.html",
+      "suggestions": [
+        "Is there a membership fee?",
+        "GroupMe link",
+        "Can other majors join?"
       ]
     },
     {
@@ -98,6 +188,12 @@
           "selector": "[data-gearly='events-upcoming']",
           "keywords": []
         }
+      ],
+      "sourceFile": "Calendar Page.html",
+      "suggestions": [
+        "Events this week",
+        "Company info sessions",
+        "Upcoming socials"
       ]
     },
     {
@@ -108,7 +204,13 @@
         "officers",
         "board"
       ],
-      "sections": []
+      "sections": [],
+      "sourceFile": "Leadership Page.html",
+      "suggestions": [
+        "Who is the president?",
+        "Email the chapter",
+        "Who are the officers?"
+      ]
     },
     {
       "id": "resources",
@@ -126,6 +228,12 @@
           "selector": "[data-gearly='member-resources']",
           "keywords": []
         }
+      ],
+      "sourceFile": "Member Resources Page.html",
+      "suggestions": [
+        "Career resources",
+        "Member points",
+        "Newsletter signup"
       ]
     },
     {
@@ -151,6 +259,12 @@
           "selector": "#point-values",
           "keywords": []
         }
+      ],
+      "sourceFile": "Member Points Page.html",
+      "suggestions": [
+        "How do points work?",
+        "Leaderboard rankings",
+        "Point values"
       ]
     },
     {
@@ -161,7 +275,13 @@
         "photos",
         "pictures"
       ],
-      "sections": []
+      "sections": [],
+      "sourceFile": "Gallery Page.html",
+      "suggestions": [
+        "Latest Instagram posts",
+        "Chapter gallery",
+        "Upcoming events"
+      ]
     },
     {
       "id": "about",
@@ -172,7 +292,13 @@
         "projects",
         "competitions"
       ],
-      "sections": []
+      "sections": [],
+      "sourceFile": "About Us Page.html",
+      "suggestions": [
+        "Tell me about ASME OSU",
+        "Competitions and projects",
+        "How do I join?"
+      ]
     },
     {
       "id": "sponsors",
@@ -182,7 +308,13 @@
         "sponsors",
         "companies"
       ],
-      "sections": []
+      "sections": [],
+      "sourceFile": "Current Sponsors Page.html",
+      "suggestions": [
+        "Current sponsors",
+        "Corporate partnership",
+        "Contact ASME"
+      ]
     },
     {
       "id": "sponsorship",
@@ -200,6 +332,12 @@
           "selector": "[data-gearly='sponsor-tiers']",
           "keywords": []
         }
+      ],
+      "sourceFile": "Sponsor ASME Page.html",
+      "suggestions": [
+        "Sponsorship tiers",
+        "Corporate liaison",
+        "Email the chapter"
       ]
     }
   ],
@@ -1435,7 +1573,10 @@
         "id": "treasurer",
         "aliases": [
           "treasurer",
-          "finance officer"
+          "finance officer",
+          "finance",
+          "finances",
+          "financial officer"
         ]
       },
       {
@@ -1449,14 +1590,19 @@
         "id": "social-chair",
         "aliases": [
           "social chair",
-          "social officer"
+          "social officer",
+          "social coordination",
+          "social organizer"
         ]
       },
       {
         "id": "webmaster",
         "aliases": [
           "webmaster",
-          "website officer"
+          "website officer",
+          "website maintenance",
+          "web maintenance",
+          "site maintenance"
         ]
       },
       {
@@ -1473,6 +1619,22 @@
         "id": "ppg",
         "name": "PPG",
         "aliases": []
+      },
+      {
+        "id": "pratt-whitney",
+        "name": "Pratt & Whitney",
+        "aliases": [
+          "Pratt and Whitney",
+          "Pratt Whitney",
+          "RTX"
+        ]
+      },
+      {
+        "id": "hrst",
+        "name": "HRST, Inc.",
+        "aliases": [
+          "HRST"
+        ]
       }
     ],
     "topics": []
@@ -1546,5 +1708,85 @@
     "clarifyThreshold": 0.15,
     "lowThreshold": 0.35,
     "highThreshold": 0.65
+  },
+  "tour": {
+    "version": 1,
+    "maxSteps": 8,
+    "offer": {
+      "title": "Welcome! Want a quick tour?",
+      "text": "Gearly can show you where to join, find events, and explore member resources. You can skip or replay this tour any time."
+    },
+    "steps": [
+      {
+        "selector": "#asme-site-header, #site-navigation",
+        "title": "Find your way around",
+        "text": "Use the main navigation to explore the chapter. On a small screen, open the menu button to see the links."
+      },
+      {
+        "selector": ".asme-hd-join, #site-navigation a[href*=\"/join/\"], #asme-site-header a[href*=\"/join/\"]",
+        "title": "Join the chapter",
+        "text": "The Join page has the email newsletter signup and the chapter GroupMe invitation."
+      },
+      {
+        "selector": "#asme-site-header a[href*=\"/calendar/\"], #site-navigation a[href*=\"/calendar/\"]",
+        "title": "Plan your next event",
+        "text": "Open the Calendar for chapter events, times, and calendar subscription options."
+      },
+      {
+        "selector": "#asme-site-header .asme-hd-dropdown-trigger, #asme-site-header a[href*=\"/member-resources/\"], #site-navigation a[href*=\"/member-resources/\"], .asme-hd-menu-toggle",
+        "title": "Explore member links",
+        "text": "Look in the Members menu for resources, points, and chapter information. Open a submenu to see its links."
+      },
+      {
+        "selector": ".asme-hd-search-toggle, #site-navigation .search-item a",
+        "title": "Search the website",
+        "text": "Use search when you know what you want to find. Gearly can also point you to a useful page."
+      },
+      {
+        "selector": "#asmeFeaturedEvent",
+        "title": "Featured chapter event",
+        "text": "This featured card reads the published event snapshot. Open the Calendar to confirm details and see more events."
+      },
+      {
+        "selector": "#newsletter-signup, [data-gearly=\"join-button\"]",
+        "title": "Stay informed",
+        "text": "Sign up here for chapter email announcements. Then continue to GroupMe for quick reminders."
+      },
+      {
+        "selector": "#asmeCalendarUpcoming, [data-gearly=\"events-upcoming\"] .acp-upcoming-grid",
+        "title": "Upcoming events",
+        "text": "Browse the published chapter events here. The calendar subscription keeps events in your own calendar."
+      },
+      {
+        "selector": "#leaderboard, [data-gearly=\"leaderboard\"]",
+        "title": "Public member standings",
+        "text": "The leaderboard shows published member standings. Use Find My Points on this page for your personal dashboard."
+      },
+      {
+        "selector": "#getting-started, [data-gearly=\"member-resources\"]",
+        "title": "Useful resources",
+        "text": "Find chapter links, engineering tools, and career resources here. Use the page sections to browse a topic."
+      },
+      {
+        "selector": ".gallery-instagram-feature, #galleryInstagramFeaturedLink",
+        "title": "Chapter moments",
+        "text": "See the published Instagram feed and visit the original posts. Scroll to the photo archive for more chapter pictures."
+      },
+      {
+        "selector": ".sponsor-tiers-table, [data-gearly=\"sponsor-tiers\"]",
+        "title": "Support the chapter",
+        "text": "Explore sponsorship options and contact the corporate team to discuss a partnership."
+      },
+      {
+        "selector": "#professional-dev",
+        "title": "Prepare for your next career step",
+        "text": "Find the career packet, resume tools, and professional development links in this section."
+      },
+      {
+        "selector": ".lb-current-year .lb-grid",
+        "title": "Meet the current officers",
+        "text": "Explore the current executive board and the public contact information shown on each officer card."
+      }
+    ]
   }
 }
