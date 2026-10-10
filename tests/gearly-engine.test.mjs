@@ -14,3 +14,15 @@ test('non-array nested data is discarded safely',()=>{const r=e.validateData({..
 test('date ranges use Eastern calendar independently of runtime timezone',()=>{const original=process.env.TZ;try{for(const zone of ['Pacific/Auckland','Asia/Tokyo','America/Los_Angeles','UTC']){process.env.TZ=zone;const r=e.extractEntities('today',data,new Date('2026-10-11T02:00:00Z'));assert.equal(r.dateRange.from,'2026-10-10');assert.equal(e.extractEntities('tomorrow',data,new Date('2026-10-11T02:00:00Z')).dateRange.from,'2026-10-11');assert.equal(e.extractEntities('Oct 14',data,new Date('2026-10-11T02:00:00Z')).dateRange.from,'2026-10-14');}}finally{if(original===undefined)delete process.env.TZ;else process.env.TZ=original;}});
 test('malformed nested entities and keyword values never crash matching',()=>{const broken=e.validateData({...raw,entities:{roles:[null,'bad',{id:'president',aliases:'not an array'}],topics:{}},intents:[{...raw.intents[0],keywords:{join:{bad:true},other:Infinity}},raw.intents[1]]}).data;assert.doesNotThrow(()=>e.match(broken,'president'));assert.equal(Object.keys(broken.intents[0].keywords).length,0);});
 test('two confident distinct clauses request one choice',()=>{const m=e.match(data,'how do i join and events');assert.equal(m.kind,'clarify');assert.deepEqual(Array.from(m.candidates,c=>c.intent.id),['join','events']);});
+
+test('malformed response collections and slot requirements are safely discarded', () => {
+  const raw = JSON.parse(fs.readFileSync('assets/gearly/gearly-data.json', 'utf8'));
+  raw.intents[0].requires = 'company';
+  raw.intents[0].response.cards = { title: 'Broken' };
+  raw.intents[0].response.chips = [null, 4, 'Events'];
+  const checked = e.validateData(raw);
+  assert.equal(checked.data.intents[0].requires.length, 0);
+  assert.equal(checked.data.intents[0].response.cards.length, 0);
+  assert.equal(checked.data.intents[0].response.chips.length, 1);
+  assert.doesNotThrow(() => e.match(checked.data, 'join'));
+});

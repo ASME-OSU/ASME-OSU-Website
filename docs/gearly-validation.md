@@ -4,8 +4,8 @@ This PR implements the requested rule-based website assistant, reuse of public c
 
 ## Verified
 
-- Repository syntax and generated-asset checks pass. All 109 behavioral tests pass, including 21 Gearly tests.
-- Conversation corpus includes 189 cases and ten dialogue scripts. 175/189 cases pass (92.6%); all ten dialogue scripts pass. the runner prints unresolved confusions and fails below the threshold or on dialogue failure.
+- Repository syntax and generated-asset checks pass. All 110 behavioral tests pass, including 22 Gearly tests.
+- Conversation corpus includes 189 cases and ten dialogue scripts. 175/189 cases pass (92.6%); all ten dialogue scripts pass. The runner prints unresolved confusions and fails below the threshold or on dialogue failure.
 - Public WordPress subsite REST pages endpoint returns HTTP 200. Response fields are documented in `gearly-recon.md`.
 - The existing sanitized Google Sheets export returns the expected `setting/public_value` and `rank/display_name/period_label/points` columns. Its response allows requests from the WordPress origin.
 - Local browser preview renders public leaderboard totals, calendar events, and Instagram captions with source labels and stale warnings. Sprite states load, Escape closes the panel, and input focus returns on reopen.
