@@ -540,7 +540,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the published calendar feed for upcoming events.",
+        "text": "I’ll check the published calendar feed for upcoming events.",
         "cards": [
           {
             "title": "Events Calendar",
@@ -574,7 +574,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the event feed for meeting information. Confirm the event listing for time and location.",
+        "text": "I’ll check the event feed for meeting information. Confirm the event listing for time and location.",
         "cards": [
           {
             "title": "Events Calendar",
@@ -609,7 +609,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the event feed for company sessions.",
+        "text": "I’ll check the event feed for company sessions.",
         "cards": [
           {
             "title": "Events Calendar",
@@ -643,7 +643,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the event feed for chapter socials.",
+        "text": "I’ll check the event feed for chapter socials.",
         "cards": [
           {
             "title": "Events Calendar",
@@ -677,7 +677,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the event feed for workshops and technical programming.",
+        "text": "I’ll check the event feed for workshops and technical programming.",
         "cards": [
           {
             "title": "Events Calendar",
@@ -745,7 +745,7 @@
       },
       "negations": [],
       "response": {
-        "text": "The Leadership page lists the 2026\u20132027 executive board and their public contact details.",
+        "text": "The Leadership page lists the 2026–2027 executive board and their public contact details.",
         "cards": [
           {
             "title": "Leadership",
@@ -780,7 +780,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Matthew Allen is the 2026\u20132027 President. Public email: allen.2906@osu.edu.",
+        "text": "Matthew Allen is the 2026–2027 President. Public email: allen.2906@osu.edu.",
         "cards": [
           {
             "title": "Leadership",
@@ -814,7 +814,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Jessica Wilson is the 2026\u20132027 Vice President / Corporate Liaison. Public email: wilson.5210@osu.edu.",
+        "text": "Jessica Wilson is the 2026–2027 Vice President / Corporate Liaison. Public email: wilson.5210@osu.edu.",
         "cards": [
           {
             "title": "Leadership",
@@ -847,7 +847,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Aliyah Beitzel is the 2026\u20132027 Treasurer. Public email: beitzel.29@osu.edu.",
+        "text": "Aliyah Beitzel is the 2026–2027 Treasurer. Public email: beitzel.29@osu.edu.",
         "cards": [
           {
             "title": "Leadership",
@@ -880,7 +880,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Kasper Szymczak is the 2026\u20132027 Administrator. Public email: szymczak.28@osu.edu.",
+        "text": "Kasper Szymczak is the 2026–2027 Administrator. Public email: szymczak.28@osu.edu.",
         "cards": [
           {
             "title": "Leadership",
@@ -913,7 +913,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Max Sabio is the 2026\u20132027 Social Chair. Public email: sabio.4@osu.edu.",
+        "text": "Max Sabio is the 2026–2027 Social Chair. Public email: sabio.4@osu.edu.",
         "cards": [
           {
             "title": "Leadership",
@@ -946,7 +946,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Margaux Rasalan is the 2026\u20132027 Webmaster. Public email: rasalan.1@osu.edu.",
+        "text": "Margaux Rasalan is the 2026–2027 Webmaster. Public email: rasalan.1@osu.edu.",
         "cards": [
           {
             "title": "Leadership",
@@ -980,7 +980,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Kyle Sandborn is the 2026\u20132027 E-Council Representative. Public email: sandborn.3@osu.edu.",
+        "text": "Kyle Sandborn is the 2026–2027 E-Council Representative. Public email: sandborn.3@osu.edu.",
         "cards": [
           {
             "title": "Leadership",
@@ -1183,7 +1183,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the public leaderboard source.",
+        "text": "I’ll check the public leaderboard source.",
         "cards": [
           {
             "title": "Member Points",
@@ -1217,7 +1217,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the published point values.",
+        "text": "I’ll check the published point values.",
         "cards": [
           {
             "title": "Member Points",
@@ -1291,7 +1291,7 @@
       },
       "negations": [],
       "response": {
-        "text": "ASME OSU is Ohio State\u2019s American Society of Mechanical Engineers student chapter, connecting students through professional development, industry events, and community.",
+        "text": "ASME OSU is Ohio State’s American Society of Mechanical Engineers student chapter, connecting students through professional development, industry events, and community.",
         "cards": [
           {
             "title": "About ASME OSU",
@@ -1323,7 +1323,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the published Instagram feed. For the latest source posts, visit @asmeohiostate.",
+        "text": "I’ll check the published Instagram feed. For the latest source posts, visit @asmeohiostate.",
         "cards": [
           {
             "title": "Gallery",
@@ -1392,7 +1392,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019ll check the published gallery feed.",
+        "text": "I’ll check the published gallery feed.",
         "cards": [
           {
             "title": "Gallery",
@@ -1428,7 +1428,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Hi! I\u2019m Gearly. Ask me about joining, events, officers, member points, or chapter resources.",
+        "text": "Hi! I’m Gearly. Ask me about joining, events, officers, member points, or chapter resources.",
         "cards": [],
         "chips": []
       },
@@ -1452,7 +1452,7 @@
       },
       "negations": [],
       "response": {
-        "text": "You\u2019re welcome! What else can I help you find?",
+        "text": "You’re welcome! What else can I help you find?",
         "cards": [],
         "chips": []
       },
@@ -1497,7 +1497,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I\u2019m Gearly, a rule-based website guide. I match questions to verified chapter information and published feeds; I do not use an AI model.",
+        "text": "I’m Gearly, a rule-based website guide. I match questions to verified chapter information and published feeds; I do not use an AI model.",
         "cards": [],
         "chips": []
       },
@@ -1710,82 +1710,81 @@
     "highThreshold": 0.65
   },
   "tour": {
-    "version": 1,
-    "maxSteps": 8,
+    "version": 2,
+    "maxSteps": 10,
     "offer": {
-      "title": "Welcome! Want a quick tour?",
-      "text": "Gearly can show you where to join, find events, and explore member resources. You can skip or replay this tour any time."
+      "label": "Take a tour"
     },
     "steps": [
       {
         "selector": "#asme-site-header, #site-navigation",
         "title": "Find your way around",
-        "text": "Use the main navigation to explore the chapter. On a small screen, open the menu button to see the links."
-      },
-      {
-        "selector": ".asme-hd-join, #site-navigation a[href*=\"/join/\"], #asme-site-header a[href*=\"/join/\"]",
-        "title": "Join the chapter",
-        "text": "The Join page has the email newsletter signup and the chapter GroupMe invitation."
-      },
-      {
-        "selector": "#asme-site-header a[href*=\"/calendar/\"], #site-navigation a[href*=\"/calendar/\"]",
-        "title": "Plan your next event",
-        "text": "Open the Calendar for chapter events, times, and calendar subscription options."
-      },
-      {
-        "selector": "#asme-site-header .asme-hd-dropdown-trigger, #asme-site-header a[href*=\"/member-resources/\"], #site-navigation a[href*=\"/member-resources/\"], .asme-hd-menu-toggle",
-        "title": "Explore member links",
-        "text": "Look in the Members menu for resources, points, and chapter information. Open a submenu to see its links."
-      },
-      {
-        "selector": ".asme-hd-search-toggle, #site-navigation .search-item a",
-        "title": "Search the website",
-        "text": "Use search when you know what you want to find. Gearly can also point you to a useful page."
+        "text": "The navigation connects the chapter pages. On a small screen, its menu button reveals the links.",
+        "page": "https://org.osu.edu/asme/",
+        "sprite": "gearly-open-eyes-wave.webp"
       },
       {
         "selector": "#asmeFeaturedEvent",
         "title": "Featured chapter event",
-        "text": "This featured card reads the published event snapshot. Open the Calendar to confirm details and see more events."
+        "text": "This card previews the published event snapshot. The Calendar page has more events and their details.",
+        "page": "https://org.osu.edu/asme/",
+        "sprite": "gearly-calendar-presenting.webp"
       },
       {
         "selector": "#newsletter-signup, [data-gearly=\"join-button\"]",
         "title": "Stay informed",
-        "text": "Sign up here for chapter email announcements. Then continue to GroupMe for quick reminders."
+        "text": "The email signup and GroupMe invitation keep members informed. After the tour, you can join here.",
+        "page": "https://org.osu.edu/asme/join/",
+        "sprite": "gearly-double-thumbs-up.webp"
       },
       {
         "selector": "#asmeCalendarUpcoming, [data-gearly=\"events-upcoming\"] .acp-upcoming-grid",
         "title": "Upcoming events",
-        "text": "Browse the published chapter events here. The calendar subscription keeps events in your own calendar."
-      },
-      {
-        "selector": "#leaderboard, [data-gearly=\"leaderboard\"]",
-        "title": "Public member standings",
-        "text": "The leaderboard shows published member standings. Use Find My Points on this page for your personal dashboard."
+        "text": "Published chapter events appear here. The subscription link adds the calendar to your own calendar.",
+        "page": "https://org.osu.edu/asme/calendar/",
+        "sprite": "gearly-calendar-presenting.webp"
       },
       {
         "selector": "#getting-started, [data-gearly=\"member-resources\"]",
         "title": "Useful resources",
-        "text": "Find chapter links, engineering tools, and career resources here. Use the page sections to browse a topic."
-      },
-      {
-        "selector": ".gallery-instagram-feature, #galleryInstagramFeaturedLink",
-        "title": "Chapter moments",
-        "text": "See the published Instagram feed and visit the original posts. Scroll to the photo archive for more chapter pictures."
-      },
-      {
-        "selector": ".sponsor-tiers-table, [data-gearly=\"sponsor-tiers\"]",
-        "title": "Support the chapter",
-        "text": "Explore sponsorship options and contact the corporate team to discuss a partnership."
+        "text": "This page gathers chapter links, engineering tools, forms, and member benefits by topic.",
+        "page": "https://org.osu.edu/asme/member-resources/",
+        "sprite": "gearly-laptop-presenting.webp"
       },
       {
         "selector": "#professional-dev",
         "title": "Prepare for your next career step",
-        "text": "Find the career packet, resume tools, and professional development links in this section."
+        "text": "This section collects the career packet, resume tools, and professional development links.",
+        "page": "https://org.osu.edu/asme/member-resources/",
+        "sprite": "gearly-executive-briefcase.webp"
+      },
+      {
+        "selector": "#leaderboard, [data-gearly=\"leaderboard\"]",
+        "title": "Public member standings",
+        "text": "These are the published member standings. Find My Points offers a personal dashboard after the tour.",
+        "page": "https://org.osu.edu/asme/member-points-page/",
+        "sprite": "gearly-growth-chart.webp"
+      },
+      {
+        "selector": ".gallery-instagram-feature, #galleryInstagramFeaturedLink",
+        "title": "Chapter moments",
+        "text": "This section shows the published Instagram feed. The photo archive below has more chapter pictures.",
+        "page": "https://org.osu.edu/asme/pictures/",
+        "sprite": "gearly-laughing-head.webp"
       },
       {
         "selector": ".lb-current-year .lb-grid",
         "title": "Meet the current officers",
-        "text": "Explore the current executive board and the public contact information shown on each officer card."
+        "text": "The current executive board and public officer contact details appear on these cards.",
+        "page": "https://org.osu.edu/asme/leadership/",
+        "sprite": "gearly-presenting-open-arms.webp"
+      },
+      {
+        "selector": ".sponsor-tiers-table, [data-gearly=\"sponsor-tiers\"]",
+        "title": "Support the chapter",
+        "text": "These annual sponsorship options help partners support the chapter. The corporate team can discuss a partnership.",
+        "page": "https://org.osu.edu/asme/sponsor-asme/",
+        "sprite": "gearly-executive-briefcase.webp"
       }
     ]
   }
