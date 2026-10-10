@@ -123,3 +123,22 @@ html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#292427; --g
 .gearly-place-card:hover .gearly-place-sprite,.gearly-place-card:focus-visible .gearly-place-sprite { transform:translateX(3px) rotate(-4deg); }
 .gearly-place-card:hover,.gearly-place-card:focus-visible { border-color:var(--gearly-link); }
 @media(prefers-reduced-motion:reduce) { .gearly-root * { transition:none!important; }.gearly-launcher:hover,.gearly-launcher:focus-visible,.gearly-place-card .gearly-place-sprite,.gearly-shortcut .gearly-shortcut-sprite { transform:none!important; } }
+
+/* Animate the character inside fixed boxes, leaving card and spotlight geometry still. */
+.gearly-welcome-sprite { transform-origin:50% 80%; animation:gearly-greet 1.25s ease-in-out 1; }
+.gearly-welcome-hero:hover .gearly-welcome-sprite { animation:gearly-greet .9s ease-in-out 1; }
+.gearly-launcher:hover .gearly-avatar-image,.gearly-launcher:focus-visible .gearly-avatar-image { animation:gearly-nod .65s ease-in-out 1; }
+.gearly-shortcut:hover .gearly-shortcut-sprite,.gearly-shortcut:focus-visible .gearly-shortcut-sprite { animation:gearly-greet .7s ease-in-out 1; }
+.gearly-place-card:hover .gearly-place-sprite,.gearly-place-card:focus-visible .gearly-place-sprite { animation:gearly-point .7s ease-out 1; }
+.gearly-activity { display:flex; align-items:center; gap:8px; }
+.gearly-activity-sprite { width:56px; height:56px; object-fit:contain; flex:none; animation:gearly-ponder 1.8s ease-in-out infinite; }
+.gearly-reply-sprite { display:block; width:56px; height:56px; object-fit:contain; animation:gearly-type .65s ease-in-out infinite; }
+.gearly-avatar[data-state=thinking] img { animation:gearly-ponder 1.8s ease-in-out infinite; }
+.gearly-avatar[data-state=typing] img { animation:gearly-type .65s ease-in-out infinite; }
+.gearly-avatar[data-state=happy] img { animation:gearly-nod .65s ease-in-out 1; }
+@keyframes gearly-greet { 0%,100% { transform:rotate(0); } 25% { transform:rotate(-5deg) translateY(-2px); } 65% { transform:rotate(4deg); } }
+@keyframes gearly-nod { 0%,100% { transform:translateY(0); } 45% { transform:translateY(-3px) rotate(-4deg); } }
+@keyframes gearly-point { 0%,100% { transform:translateX(0); } 45% { transform:translateX(4px) rotate(-3deg); } }
+@keyframes gearly-ponder { 0%,100% { transform:rotate(0); } 50% { transform:rotate(-5deg) translateY(-2px); } }
+@keyframes gearly-type { 0%,100% { transform:translateY(0); } 35% { transform:translateY(-2px) rotate(1deg); } 70% { transform:rotate(-1deg); } }
+@media(prefers-reduced-motion:reduce) { .gearly-root * { animation:none!important; transition:none!important; transform:none!important; } }

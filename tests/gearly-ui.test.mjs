@@ -45,3 +45,16 @@ test('explicit section requests open the section; information questions get inte
  await w.Gearly.ask('pull up the ranking chart');assert.equal(opened.selector,'#ranking');assert.equal(w.document.querySelector('.gearly-panel').hidden,true);opened=null;
  await w.Gearly.ask('who leads the leaderboard');assert.equal(opened,null);const card=w.document.querySelector('.gearly-place-card');assert.ok(card.querySelector('img'));assert.equal(card.getAttribute('aria-label'),'Show ranking chart');card.click();assert.equal(opened.selector,'#ranking');dom.window.close();
 });
+
+test('mascot reactions work with keyboard and pointer, and pending sprites clear on reset',async()=>{
+ const seed={...raw,meta:{...raw.meta,sprites:{idle:'sprites/gearly-neutral-head.webp',launcher:'sprites/gearly-happy-head.webp',thinking:'sprites/gearly-thinking-chin.webp'}}};
+ let resolve;
+ const dom=await start({...seed,intents:[{id:'events',examples:['events'],response:{text:'Current events'},liveSource:'events'}]},w=>{w.GearlyLive={configure:()=>{},load:()=>new Promise(r=>resolve=r)};});const w=dom.window;
+ const join=Array.from(w.document.querySelectorAll('.gearly-shortcut')).find(el=>el.getAttribute('aria-label')==='Join ASME'),sprite=join.querySelector('img');
+ assert.match(sprite.src,/double-thumbs-up/);join.focus();assert.match(sprite.src,/celebrating-jump/);
+ w.Gearly.open();await new Promise(r=>setTimeout(r,10));assert.match(sprite.src,/double-thumbs-up/);
+ join.dispatchEvent(new w.MouseEvent('mouseenter'));assert.match(sprite.src,/celebrating-jump/);join.dispatchEvent(new w.MouseEvent('mouseleave'));assert.match(sprite.src,/double-thumbs-up/);
+ const pending=w.Gearly.ask('events');assert.match(w.document.querySelector('.gearly-activity-sprite').src,/thinking-chin/);
+ w.document.querySelector('[aria-label="Clear chat"]').click();resolve({text:'Stale response'});await pending;
+ assert.equal(w.document.querySelector('.gearly-activity-sprite'),null);assert.equal(w.document.querySelector('.gearly-reply-sprite'),null);dom.window.close();
+});
