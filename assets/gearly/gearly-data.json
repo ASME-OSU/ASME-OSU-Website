@@ -6,6 +6,7 @@
     "logEndpoint": "",
     "sprites": {
       "idle": "sprites/gearly-neutral-head.webp",
+      "launcher": "sprites/gearly-happy-head.webp",
       "thinking": "sprites/gearly-thinking-chin.webp",
       "typing": "sprites/gearly-laptop-presenting.webp",
       "happy": "sprites/gearly-happy-head.webp",
@@ -43,7 +44,14 @@
       "rankings",
       "ranking",
       "standings",
-      "ranked"
+      "ranked",
+      "ranking chart",
+      "rankings chart",
+      "ranking table",
+      "rank table",
+      "standings chart",
+      "standings table",
+      "points leaderboard"
     ],
     "dues": [
       "fee",
@@ -531,7 +539,11 @@
         "upcoming events",
         "any events next week",
         "events today",
-        "evnts"
+        "evnts",
+        "show upcoming events",
+        "pull up upcoming events",
+        "take me to the upcoming events section",
+        "bring up the event schedule"
       ],
       "keywords": {
         "events": 3,
@@ -552,8 +564,12 @@
       },
       "actions": [
         {
-          "type": "navigate",
-          "url": "https://org.osu.edu/asme/calendar/"
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/calendar/",
+          "selector": "#asmeCalendarUpcoming",
+          "label": "Show upcoming events",
+          "title": "Upcoming events",
+          "text": "Open the chapter calendar’s upcoming event cards."
         }
       ],
       "related": [],
@@ -1173,7 +1189,16 @@
         "who leads the leaderboard",
         "top members",
         "current standings",
-        "leaderboard rankings"
+        "leaderboard rankings",
+        "show me the ranking chart",
+        "pull up the ranking chart",
+        "where am I on the leaderboard",
+        "can you bring up the standings chart",
+        "go to the ranking table",
+        "take me to the leaderboard",
+        "open the rankings table",
+        "show my public rank",
+        "where can I check my ranking"
       ],
       "keywords": {
         "leaderboard": 3,
@@ -1182,9 +1207,15 @@
         "standings": 3,
         "top members": 3
       },
-      "negations": [],
+      "negations": [
+        "bank",
+        "credit score",
+        "stock ranking",
+        "university ranking",
+        "college ranking"
+      ],
       "response": {
-        "text": "I’ll check the public leaderboard source.",
+        "text": "I’ll check the public leaderboard. To find your own standing, use the public name search on Member Points; I cannot identify you or infer your rank.",
         "cards": [
           {
             "title": "Member Points",
@@ -1195,8 +1226,20 @@
       },
       "actions": [
         {
-          "type": "navigate",
-          "url": "https://org.osu.edu/asme/member-points-page/"
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/member-points-page/",
+          "selector": "#leaderboard",
+          "label": "Show ranking chart",
+          "title": "Public ranking chart",
+          "text": "Open verified chapter standings."
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/member-points-page/",
+          "selector": "#member-dashboard",
+          "label": "Find my public standing",
+          "title": "Find your public standing",
+          "text": "Use the public name search on Member Points."
         }
       ],
       "related": [],
@@ -1248,7 +1291,11 @@
         "career resources",
         "internship help",
         "resume resources",
-        "handshake jobs"
+        "handshake jobs",
+        "take me to career resources",
+        "pull up the career resources",
+        "show me career tools",
+        "bring up resume resources"
       ],
       "keywords": {
         "careers": 3,
@@ -1270,8 +1317,12 @@
       },
       "actions": [
         {
-          "type": "navigate",
-          "url": "https://org.osu.edu/asme/member-resources/"
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/member-resources/",
+          "selector": "#professional-dev",
+          "label": "Show career resources",
+          "title": "Career resources",
+          "text": "Open Handshake, career tools, and professional development resources."
         }
       ],
       "related": [],
