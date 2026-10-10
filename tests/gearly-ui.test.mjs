@@ -21,7 +21,7 @@ test('clearing during a live request prevents stale answers reappearing',async()
 test('fresh welcome shortcuts, context, tour, and topic browsing work without sending a query',async()=>{
  const dom=await start({...raw,pages:[{id:'home',title:'Home',url:'https://org.osu.edu/asme/'}]});const w=dom.window;
  assert.match(w.document.querySelector('.gearly-context').textContent,/Helping with: Home/);
- assert.equal(w.document.querySelector('.gearly-welcome-sprite').alt,'Gearly peeking over the welcome card');
+ assert.match(w.document.querySelector('.gearly-welcome').textContent,/Hi! I’m Gearly/);assert.equal(w.document.querySelector('.gearly-welcome-hero'),null);
  assert.equal(w.document.querySelectorAll('.gearly-shortcut').length,4);
  let toured=0;w.GearlyTour={start:()=>toured++};Array.from(w.document.querySelectorAll('.gearly-shortcut')).find(b=>b.textContent==='Take a tour').click();assert.equal(toured,1);assert.equal(w.document.querySelector('.gearly-panel').hidden,true);
  w.Gearly.open();Array.from(w.document.querySelectorAll('.gearly-text-button')).find(b=>b.textContent.includes('Browse')).click();assert.equal(w.document.querySelector('.gearly-welcome'),null);assert.match(w.document.querySelector('.gearly-chips').textContent,/Member points/);assert.equal(w.document.querySelectorAll('.gearly-user').length,0);dom.window.close();
@@ -29,8 +29,8 @@ test('fresh welcome shortcuts, context, tour, and topic browsing work without se
 test('thinking changes to typing and a complete accessible answer; reduced motion skips the reveal',async()=>{
  const seed={...raw,meta:{...raw.meta,sprites:{idle:'idle.webp',thinking:'think.webp',typing:'type.webp',happy:'happy.webp'}}};const dom=await start(seed);const w=dom.window;w.matchMedia=()=>({matches:false});
  const pending=w.Gearly.ask('join');assert.ok(w.document.querySelector('.gearly-activity'));assert.equal(w.document.querySelector('.gearly-avatar').dataset.state,'thinking');assert.equal(w.document.querySelector('.gearly-messages').getAttribute('aria-busy'),'true');
- await new Promise(r=>setTimeout(r,340));assert.equal(w.document.querySelector('.gearly-avatar').dataset.state,'typing');assert.ok(w.document.querySelector('.gearly-typing-label'));assert.equal(w.document.querySelector('.gearly-message:last-child a').hidden,true);
- await pending;assert.equal(w.document.querySelector('.gearly-typing-label'),null);assert.equal(w.document.querySelector('.gearly-activity'),null);assert.equal(w.document.querySelector('.gearly-message:last-child a').hidden,false);assert.equal(w.document.querySelector('.gearly-message:last-child p').hasAttribute('aria-hidden'),false);assert.equal(w.document.querySelector('.gearly-avatar').dataset.state,'happy');
+ await new Promise(r=>setTimeout(r,340));assert.equal(w.document.querySelector('.gearly-avatar').dataset.state,'typing');assert.ok(w.document.querySelector('.gearly-typing-label'));assert.equal(w.document.querySelector('.gearly-message:nth-last-child(2) a').hidden,true);
+ await pending;assert.equal(w.document.querySelector('.gearly-typing-label'),null);assert.equal(w.document.querySelector('.gearly-activity'),null);assert.equal(w.document.querySelector('.gearly-message:nth-last-child(2) a').hidden,false);assert.equal(w.document.querySelector('.gearly-message:nth-last-child(2) p').hasAttribute('aria-hidden'),false);assert.equal(w.document.querySelector('.gearly-avatar').dataset.state,'happy');
  w.matchMedia=()=>({matches:true});const immediate=w.Gearly.ask('join');assert.equal(w.document.querySelector('.gearly-typing-label'),null);await immediate;dom.window.close();
 });
 test('clear during the animated reply cancels reveal and restores the welcome',async()=>{
@@ -59,9 +59,11 @@ test('mascot reactions work with keyboard and pointer, and pending sprites clear
  assert.equal(w.document.querySelector('.gearly-activity-sprite'),null);assert.equal(w.document.querySelector('.gearly-reply-sprite'),null);dom.window.close();
 });
 
-test('edge-specific poses are used for the welcome and tour card',async()=>{
- const dom=await start();const doc=dom.window.document;
- assert.match(doc.querySelector('.gearly-welcome-sprite').src,/gearly-peeking-banner/);
- const tour=doc.querySelector('.gearly-shortcut-peek');assert.equal(tour.getAttribute('aria-label'),'Take a tour');assert.match(tour.querySelector('img').src,/gearly-peeking-thumbs-up/);
- tour.focus();assert.match(tour.querySelector('img').src,/gearly-peeking-banner/);dom.window.close();
+test('conversation layout keeps suggestions in the feed and toggles launcher with focus',async()=>{
+ const dom=await start();const w=dom.window,doc=w.document,launcher=doc.querySelector('.gearly-launcher');
+ assert.equal(doc.querySelector('.gearly-chips').parentElement,doc.querySelector('.gearly-messages'));
+ assert.equal(doc.querySelector('.gearly-welcome-hero'),null);assert.equal(doc.querySelectorAll('.gearly-shortcut').length,4);
+ w.Gearly.open();assert.equal(launcher.hidden,true);assert.equal(doc.querySelector('.gearly-panel').hidden,false);assert.equal(doc.activeElement,doc.querySelector('.gearly-input'));
+ w.Gearly.close();assert.equal(launcher.hidden,false);assert.equal(doc.activeElement,launcher);
+ w.Gearly.open();await w.Gearly.ask('join');doc.querySelector('[aria-label="Clear chat"]').click();assert.ok(doc.querySelector('.gearly-welcome'));assert.equal(doc.querySelector('.gearly-chips').parentElement,doc.querySelector('.gearly-messages'));dom.window.close();
 });
