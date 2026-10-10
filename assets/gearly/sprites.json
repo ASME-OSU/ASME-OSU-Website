@@ -299,6 +299,19 @@
         "height": 384
       },
       "state": "happy"
+    },
+    {
+      "original": "Waving ASME Robot Mascot (1).png (circular artwork supplied October 10)",
+      "name": "gearly-circular-wave",
+      "file": "sprites/gearly-circular-wave.png",
+      "webFile": "sprites/gearly-circular-wave.webp",
+      "description": "Gearly with open happy eyes waving out of a circular portrait, supplied for the corner launcher",
+      "alt": "Gearly waving from a circular portrait",
+      "dimensions": {
+        "width": 1312,
+        "height": 1199
+      },
+      "state": "happy"
     }
   ]
 }
