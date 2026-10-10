@@ -40,11 +40,15 @@ This implementation is delivered as one reviewable PR, following the user's requ
 
 ## Walkthrough and local preferences
 
-On a first visit Gearly offers a short optional walkthrough. Start it to highlight the visible navigation and useful sections on the current page; Not now dismisses the offer, and Skip ends an active tour. The tour filters missing or hidden targets and shows at most eight steps, so the displayed count matches what is available. Desktop dropdowns and the mobile menu can differ. Next, Back, Escape, and the close/skip control are keyboard accessible. Gearly can replay the walkthrough from its Tour control or the “Show me around” suggestion.
+The closed guide is one 52px square head sprite. Open Gearly to replay the tour using the small tour icon in its header or a “Show me around” prompt. A first-visit invitation is a compact sprite row; opening chat dismisses it so the two surfaces do not compete.
 
-The versioned tour completion/opt-out preference is stored only in this browser's local storage; no tour telemetry is sent. Clear chat resets the stored conversation; Website tour replays the walkthrough without resetting the preference. Other browsers, cleared browser storage, private browsing, or a bumped tour version can show the offer again. If browser storage is unavailable, the guide still works but cannot remember the preference. Do not store attendance records or personal identities in tour preferences.
+The ten-step overview visits eight verified chapter pages. Start, Next, and Back initiate navigation, and a destination cue explains the next stop. The offer itself never navigates. Each step uses a relevant existing pose with decorative empty alt text. Arrow and close controls keep 44px touch targets and accessible names; Escape ends the tour.
 
-Officers can edit `tour.offer.title` and `tour.offer.text`, and the `tour.steps` array (`selector`, `title`, `text`) in JSON. `tour.maxSteps` caps the visible sequence. Use selectors from the actual installed markup, including `#asme-site-header`, `.asme-hd-join`, and existing section IDs; `data-gearly` hooks may require the updated page template to be pasted into WordPress. Bump `tour.version` when a changed site warrants showing the offer again.
+Cross-page progress uses versioned session storage, expires after 30 minutes, and resumes only on the exact verified destination. Skip, Escape, and completion clear pending navigation. Reloading an already displayed step does not retain that step. Unavailable storage keeps the tour on the current page and offers a useful destination link. Missing targets wait briefly and then skip without an unbounded redirect loop.
+
+Completion and opt-out preferences use browser local storage; no tour telemetry is sent. Clear chat resets the conversation, while replay starts a fresh walkthrough. Browser storage denial does not disable the guide.
+
+Edit `tour.offer.label` for the short invitation text. A tour step contains `selector`, `title`, `text`, `page`, and `sprite`. The `page` must exactly match a verified `pages[].url`; preview navigation maps it to that entry's `sourceFile`. The `sprite` must name an existing allowlisted sprite file, preferably WebP. Keep copy observational because highlighted page elements are blocked while the tour is modal. `tour.maxSteps` caps the sequence; bump `tour.version` for an updated first-visit experience.
 
 ## Disable, suggestions, and approved content search
 

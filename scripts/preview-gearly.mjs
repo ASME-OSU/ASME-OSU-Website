@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 const root = path.resolve(import.meta.dirname, '..');
-const pages = new Set(['Home Page.html', 'Join Page.html', 'Calendar Page.html', 'Member Points Page.html', 'Gallery Page.html', 'Leadership Page.html']);
+const pages = new Set(JSON.parse(fs.readFileSync(path.join(root, 'assets/gearly/gearly-data.json'), 'utf8')).pages.map(page => page.sourceFile).filter(Boolean));
 const types = { '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg' };
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, 'http://localhost');
