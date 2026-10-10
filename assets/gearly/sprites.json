@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "sprites": [
+    {
+      "original": "Cheerful ASME Mascot Jumping.png",
+      "name": "gearly-celebrating-jump",
+      "file": "sprites/gearly-celebrating-jump.png",
+      "webFile": "sprites/gearly-celebrating-jump.webp",
+      "description": "Gearly jumping with both fists raised in celebration",
+      "alt": "Gearly jumping with both fists raised in celebration",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "state": "happy"
+    },
+    {
+      "original": "Cheerful ASME Robot Calendar Mascot.png",
+      "name": "gearly-calendar-presenting",
+      "file": "sprites/gearly-calendar-presenting.png",
+      "webFile": "sprites/gearly-calendar-presenting.webp",
+      "description": "Gearly holding a calendar and pointing toward the viewer",
+      "alt": "Gearly holding a calendar and pointing toward the viewer",
+      "dimensions": {
+        "width": 1273,
+        "height": 1236
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Cheerful ASME Robot Double Thumbs-Up.png",
+      "name": "gearly-double-thumbs-up",
+      "file": "sprites/gearly-double-thumbs-up.png",
+      "webFile": "sprites/gearly-double-thumbs-up.webp",
+      "description": "Gearly winking with both thumbs raised",
+      "alt": "Gearly winking with both thumbs raised",
+      "dimensions": {
+        "width": 1284,
+        "height": 1225
+      },
+      "state": "happy"
+    },
+    {
+      "original": "Cheerful ASME Robot Mascot Waving.png",
+      "name": "gearly-open-eyes-wave",
+      "file": "sprites/gearly-open-eyes-wave.png",
+      "webFile": "sprites/gearly-open-eyes-wave.webp",
+      "description": "Gearly standing and waving with open eyes",
+      "alt": "Gearly standing and waving with open eyes",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Cheerful ASME Robot Mascot.png",
+      "name": "gearly-presenting-open-arms",
+      "file": "sprites/gearly-presenting-open-arms.png",
+      "webFile": "sprites/gearly-presenting-open-arms.webp",
+      "description": "Gearly presenting with one arm extended",
+      "alt": "Gearly presenting with one arm extended",
+      "dimensions": {
+        "width": 1262,
+        "height": 1246
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Cheerful Red Mascot Peeking Out.png",
+      "name": "gearly-peeking-side",
+      "file": "sprites/gearly-peeking-side.png",
+      "webFile": "sprites/gearly-peeking-side.webp",
+      "description": "Gearly peeking around a vertical edge",
+      "alt": "Gearly peeking around a vertical edge",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Cheerful Red Robot Mascot Peeking Over Banner.png",
+      "name": "gearly-peeking-banner",
+      "file": "sprites/gearly-peeking-banner.png",
+      "webFile": "sprites/gearly-peeking-banner.webp",
+      "description": "Gearly peeking over a horizontal banner",
+      "alt": "Gearly peeking over a horizontal banner",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Cheerful Robot Growth Chart Mascot.png",
+      "name": "gearly-growth-chart",
+      "file": "sprites/gearly-growth-chart.png",
+      "webFile": "sprites/gearly-growth-chart.webp",
+      "description": "Gearly presenting a rising growth chart",
+      "alt": "Gearly presenting a rising growth chart",
+      "dimensions": {
+        "width": 1230,
+        "height": 1278
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Cheerful Robot Mascot Waving.png",
+      "name": "gearly-sitting-wave",
+      "file": "sprites/gearly-sitting-wave.png",
+      "webFile": "sprites/gearly-sitting-wave.webp",
+      "description": "Gearly sitting and waving",
+      "alt": "Gearly sitting and waving",
+      "dimensions": {
+        "width": 1277,
+        "height": 1231
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Cheerful Robot Wink and Thumbs-Up.png",
+      "name": "gearly-peeking-thumbs-up",
+      "file": "sprites/gearly-peeking-thumbs-up.png",
+      "webFile": "sprites/gearly-peeking-thumbs-up.webp",
+      "description": "Gearly peeking over an edge with a wink and thumbs up",
+      "alt": "Gearly peeking over an edge with a wink and thumbs up",
+      "dimensions": {
+        "width": 1339,
+        "height": 1174
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Confident Robot Executive in Motion.png",
+      "name": "gearly-executive-briefcase",
+      "file": "sprites/gearly-executive-briefcase.png",
+      "webFile": "sprites/gearly-executive-briefcase.webp",
+      "description": "Gearly walking with a briefcase in a suit",
+      "alt": "Gearly walking with a briefcase in a suit",
+      "dimensions": {
+        "width": 1230,
+        "height": 1278
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Cute Red-White Robot Mascot Head.png",
+      "name": "gearly-neutral-head",
+      "file": "sprites/gearly-neutral-head.png",
+      "webFile": "sprites/gearly-neutral-head.webp",
+      "description": "Gearly neutral head with open eyes",
+      "alt": "Gearly neutral head with open eyes",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Gearley Pointing with a Smile.png",
+      "name": "gearly-pointing-right",
+      "file": "sprites/gearly-pointing-right.png",
+      "webFile": "sprites/gearly-pointing-right.webp",
+      "description": "Gearly smiling and pointing right",
+      "alt": "Gearly smiling and pointing right",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Glossy ASME Robot Mascot Presenting Laptop.png",
+      "name": "gearly-laptop-presenting",
+      "file": "sprites/gearly-laptop-presenting.png",
+      "webFile": "sprites/gearly-laptop-presenting.webp",
+      "description": "Gearly presenting an open laptop",
+      "alt": "Gearly presenting an open laptop",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Joyful Red and White Robot Emoji.png",
+      "name": "gearly-happy-head",
+      "file": "sprites/gearly-happy-head.png",
+      "webFile": "sprites/gearly-happy-head.webp",
+      "description": "Gearly happy head with closed smiling eyes",
+      "alt": "Gearly happy head with closed smiling eyes",
+      "dimensions": {
+        "width": 1410,
+        "height": 1115
+      },
+      "state": "happy"
+    },
+    {
+      "original": "Joyful Robo Gear Laughing Emote.png",
+      "name": "gearly-laughing-head",
+      "file": "sprites/gearly-laughing-head.png",
+      "webFile": "sprites/gearly-laughing-head.webp",
+      "description": "Gearly laughing head with tightly closed eyes",
+      "alt": "Gearly laughing head with tightly closed eyes",
+      "dimensions": {
+        "width": 1409,
+        "height": 1116
+      },
+      "state": "happy"
+    },
+    {
+      "original": "Shocked Glossy Robot Mascot Head.png",
+      "name": "gearly-surprised-head",
+      "file": "sprites/gearly-surprised-head.png",
+      "webFile": "sprites/gearly-surprised-head.webp",
+      "description": "Gearly surprised head with wide eyes and open mouth",
+      "alt": "Gearly surprised head with wide eyes and open mouth",
+      "dimensions": {
+        "width": 1409,
+        "height": 1116
+      },
+      "state": "confused"
+    },
+    {
+      "original": "Thinking Robot in Red Hoodie.png",
+      "name": "gearly-thinking-chin",
+      "file": "sprites/gearly-thinking-chin.png",
+      "webFile": "sprites/gearly-thinking-chin.webp",
+      "description": "Gearly thinking with a hand on the chin",
+      "alt": "Gearly thinking with a hand on the chin",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "state": "thinking"
+    },
+    {
+      "original": "Waving ASME Robot Mascot (1).png",
+      "name": "gearly-smiling-wave",
+      "file": "sprites/gearly-smiling-wave.png",
+      "webFile": "sprites/gearly-smiling-wave.webp",
+      "description": "Gearly waving with closed smiling eyes",
+      "alt": "Gearly waving with closed smiling eyes",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Winking Gear Robot Mascot.png",
+      "name": "gearly-winking-head",
+      "file": "sprites/gearly-winking-head.png",
+      "webFile": "sprites/gearly-winking-head.webp",
+      "description": "Gearly winking head",
+      "alt": "Gearly winking head",
+      "dimensions": {
+        "width": 1410,
+        "height": 1116
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Winking Robot Double-Pointing Mascot.png",
+      "name": "gearly-double-pointing",
+      "file": "sprites/gearly-double-pointing.png",
+      "webFile": "sprites/gearly-double-pointing.webp",
+      "description": "Gearly winking while pointing with both hands",
+      "alt": "Gearly winking while pointing with both hands",
+      "dimensions": {
+        "width": 1273,
+        "height": 1236
+      },
+      "state": "idle"
+    },
+    {
+      "original": "Winking Robot Peeking with ASME Hoodie.png",
+      "name": "gearly-winking-peek",
+      "file": "sprites/gearly-winking-peek.png",
+      "webFile": "sprites/gearly-winking-peek.webp",
+      "description": "Gearly winking while peeking around a vertical edge",
+      "alt": "Gearly winking while peeking around a vertical edge",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "state": "idle"
+    }
+  ]
+}

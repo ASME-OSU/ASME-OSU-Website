@@ -1,0 +1,1550 @@
+{
+  "meta": {
+    "version": 1,
+    "contactEmail": "asme@osu.edu",
+    "siteBase": "https://org.osu.edu/asme/",
+    "logEndpoint": "",
+    "sprites": {
+      "idle": "sprites/gearly-neutral-head.webp",
+      "thinking": "sprites/gearly-thinking-chin.webp",
+      "happy": "sprites/gearly-happy-head.webp",
+      "confused": "sprites/gearly-surprised-head.webp"
+    }
+  },
+  "synonyms": {
+    "meeting": [
+      "session",
+      "gbm",
+      "gathering"
+    ],
+    "join": [
+      "signup",
+      "sign up",
+      "enroll"
+    ],
+    "events": [
+      "event",
+      "calendar",
+      "schedule"
+    ],
+    "photos": [
+      "pictures",
+      "gallery"
+    ],
+    "leaderboard": [
+      "rankings",
+      "ranking",
+      "standings"
+    ],
+    "dues": [
+      "fee",
+      "fees",
+      "cost"
+    ],
+    "officers": [
+      "board",
+      "leadership"
+    ]
+  },
+  "pages": [
+    {
+      "id": "home",
+      "title": "Home",
+      "url": "https://org.osu.edu/asme/",
+      "keywords": [
+        "home",
+        "start"
+      ],
+      "sections": []
+    },
+    {
+      "id": "join",
+      "title": "Join ASME",
+      "url": "https://org.osu.edu/asme/join/",
+      "keywords": [
+        "signup",
+        "newsletter",
+        "groupme",
+        "dues"
+      ],
+      "sections": [
+        {
+          "id": "newsletter",
+          "title": "Newsletter signup",
+          "selector": "#newsletter-signup",
+          "keywords": []
+        },
+        {
+          "id": "faq",
+          "title": "Joining questions",
+          "selector": ".join-faq-section",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "title": "Events Calendar",
+      "url": "https://org.osu.edu/asme/calendar/",
+      "keywords": [
+        "events",
+        "schedule",
+        "meetings"
+      ],
+      "sections": [
+        {
+          "id": "calendar",
+          "title": "Events calendar",
+          "selector": "[data-gearly='events-upcoming']",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "id": "leadership",
+      "title": "Leadership",
+      "url": "https://org.osu.edu/asme/leadership/",
+      "keywords": [
+        "officers",
+        "board"
+      ],
+      "sections": []
+    },
+    {
+      "id": "resources",
+      "title": "Member Resources",
+      "url": "https://org.osu.edu/asme/member-resources/",
+      "keywords": [
+        "careers",
+        "resume",
+        "resources"
+      ],
+      "sections": [
+        {
+          "id": "resources",
+          "title": "Resource links",
+          "selector": "[data-gearly='member-resources']",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "id": "points",
+      "title": "Member Points",
+      "url": "https://org.osu.edu/asme/member-points-page/",
+      "keywords": [
+        "leaderboard",
+        "ranking",
+        "attendance",
+        "points"
+      ],
+      "sections": [
+        {
+          "id": "leaderboard",
+          "title": "Leaderboard",
+          "selector": "#leaderboard",
+          "keywords": []
+        },
+        {
+          "id": "values",
+          "title": "Point values",
+          "selector": "#point-values",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "title": "Gallery",
+      "url": "https://org.osu.edu/asme/pictures/",
+      "keywords": [
+        "photos",
+        "pictures"
+      ],
+      "sections": []
+    },
+    {
+      "id": "about",
+      "title": "About ASME OSU",
+      "url": "https://org.osu.edu/asme/aboutus/",
+      "keywords": [
+        "about",
+        "projects",
+        "competitions"
+      ],
+      "sections": []
+    },
+    {
+      "id": "sponsors",
+      "title": "Current Sponsors",
+      "url": "https://org.osu.edu/asme/current-sponsors/",
+      "keywords": [
+        "sponsors",
+        "companies"
+      ],
+      "sections": []
+    },
+    {
+      "id": "sponsorship",
+      "title": "Sponsor ASME",
+      "url": "https://org.osu.edu/asme/sponsor-asme/",
+      "keywords": [
+        "sponsorship",
+        "tiers",
+        "partnership"
+      ],
+      "sections": [
+        {
+          "id": "tiers",
+          "title": "Sponsorship tiers",
+          "selector": "[data-gearly='sponsor-tiers']",
+          "keywords": []
+        }
+      ]
+    }
+  ],
+  "intents": [
+    {
+      "id": "join",
+      "examples": [
+        "how do i join",
+        "become a member",
+        "sign me up",
+        "join asme"
+      ],
+      "keywords": {
+        "join": 3,
+        "signup": 3,
+        "enroll": 3
+      },
+      "negations": [
+        "leave",
+        "quit",
+        "cancel"
+      ],
+      "response": {
+        "text": "Start with the email newsletter signup on the Join page, then join the chapter GroupMe.",
+        "cards": [
+          {
+            "title": "Join ASME",
+            "url": "https://org.osu.edu/asme/join/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/join/"
+        },
+        {
+          "type": "scroll",
+          "selector": "#newsletter-signup",
+          "page": "https://org.osu.edu/asme/join/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "dues",
+      "examples": [
+        "is there a membership fee",
+        "how much are dues",
+        "does joining cost money",
+        "is the chapter free"
+      ],
+      "keywords": {
+        "dues": 3,
+        "fee": 3,
+        "fees": 3,
+        "cost": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Joining the chapter newsletter and GroupMe is free. ASME National membership is separate; check the Join FAQ for the published details.",
+        "cards": [
+          {
+            "title": "Join ASME",
+            "url": "https://org.osu.edu/asme/join/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/join/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "eligibility",
+      "examples": [
+        "can other majors join",
+        "do i need to be mechanical engineering",
+        "can a freshman join",
+        "who can join"
+      ],
+      "keywords": {
+        "majors": 3,
+        "freshman": 3,
+        "eligibility": 3,
+        "first year": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Students from related engineering majors and anyone interested in engineering or professional development are welcome; first-year students are encouraged to join.",
+        "cards": [
+          {
+            "title": "Join ASME",
+            "url": "https://org.osu.edu/asme/join/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/join/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "newsletter",
+      "examples": [
+        "subscribe to the newsletter",
+        "email newsletter signup",
+        "how do i get announcements",
+        "mailing list"
+      ],
+      "keywords": {
+        "newsletter": 3,
+        "subscribe": 3,
+        "mailing": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "The Join page has the email newsletter form for event announcements, chapter news, and opportunities.",
+        "cards": [
+          {
+            "title": "Join ASME",
+            "url": "https://org.osu.edu/asme/join/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/join/"
+        },
+        {
+          "type": "highlight",
+          "selector": "#newsletter-signup",
+          "page": "https://org.osu.edu/asme/join/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "groupme",
+      "examples": [
+        "where is the groupme",
+        "join the group chat",
+        "groupme link",
+        "quick reminders"
+      ],
+      "keywords": {
+        "groupme": 3,
+        "group chat": 3,
+        "reminders": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "GroupMe shares quick reminders and day-of updates. The Join page provides the chapter invitation.",
+        "cards": [
+          {
+            "title": "Join ASME",
+            "url": "https://org.osu.edu/asme/join/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/join/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "events",
+      "examples": [
+        "what events are coming up",
+        "upcoming events",
+        "any events next week",
+        "events today",
+        "evnts"
+      ],
+      "keywords": {
+        "events": 3,
+        "upcoming": 3,
+        "calendar": 3,
+        "schedule": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the published calendar feed for upcoming events.",
+        "cards": [
+          {
+            "title": "Events Calendar",
+            "url": "https://org.osu.edu/asme/calendar/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/calendar/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "events"
+    },
+    {
+      "id": "meetings",
+      "examples": [
+        "when are meetings",
+        "next meeting",
+        "meeting times",
+        "any gbm this week"
+      ],
+      "keywords": {
+        "meeting": 3,
+        "meetings": 3,
+        "gbm": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the event feed for meeting information. Confirm the event listing for time and location.",
+        "cards": [
+          {
+            "title": "Events Calendar",
+            "url": "https://org.osu.edu/asme/calendar/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/calendar/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "events"
+    },
+    {
+      "id": "company-sessions",
+      "examples": [
+        "any company sessions",
+        "company info sessions",
+        "employer presentations",
+        "recruiting events"
+      ],
+      "keywords": {
+        "company": 3,
+        "employer": 3,
+        "recruiting": 3,
+        "info session": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the event feed for company sessions.",
+        "cards": [
+          {
+            "title": "Events Calendar",
+            "url": "https://org.osu.edu/asme/calendar/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/calendar/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "events"
+    },
+    {
+      "id": "social-events",
+      "examples": [
+        "upcoming socials",
+        "social events",
+        "any social this month",
+        "hang out with members"
+      ],
+      "keywords": {
+        "social": 3,
+        "socials": 3,
+        "hang out": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the event feed for chapter socials.",
+        "cards": [
+          {
+            "title": "Events Calendar",
+            "url": "https://org.osu.edu/asme/calendar/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/calendar/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "events"
+    },
+    {
+      "id": "workshops",
+      "examples": [
+        "technical workshops",
+        "upcoming workshops",
+        "workshop schedule",
+        "technical talks"
+      ],
+      "keywords": {
+        "workshop": 3,
+        "workshops": 3,
+        "technical talks": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the event feed for workshops and technical programming.",
+        "cards": [
+          {
+            "title": "Events Calendar",
+            "url": "https://org.osu.edu/asme/calendar/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/calendar/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "events"
+    },
+    {
+      "id": "projects",
+      "examples": [
+        "what projects do you offer",
+        "competitions and projects",
+        "engineering competitions",
+        "hands on activities"
+      ],
+      "keywords": {
+        "projects": 3,
+        "project": 3,
+        "competitions": 3,
+        "competition": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "The About page describes workshops, projects, and competitions. Check current announcements or ask the board about active opportunities; I do not have a verified project roster.",
+        "cards": [
+          {
+            "title": "About ASME OSU",
+            "url": "https://org.osu.edu/asme/aboutus/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/aboutus/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "officer",
+      "examples": [
+        "who are the officers",
+        "executive board",
+        "show leadership",
+        "current officers"
+      ],
+      "keywords": {
+        "officers": 3,
+        "board": 3,
+        "leadership": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "The Leadership page lists the 2026\u20132027 executive board and their public contact details.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "president",
+      "examples": [
+        "who is the pres",
+        "contact the president",
+        "president email",
+        "who is matthew allen"
+      ],
+      "keywords": {
+        "president": 3,
+        "matthew allen": 3,
+        "pres": 3,
+        "club president": 3,
+        "head of asme": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Matthew Allen is the 2026\u20132027 President. Public email: allen.2906@osu.edu.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "vice-president",
+      "examples": [
+        "who is the vp",
+        "contact the vice president / corporate liaison",
+        "vice president / corporate liaison email",
+        "who is jessica wilson"
+      ],
+      "keywords": {
+        "vice president": 3,
+        "jessica wilson": 3,
+        "vp": 3,
+        "corporate liaison": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Jessica Wilson is the 2026\u20132027 Vice President / Corporate Liaison. Public email: wilson.5210@osu.edu.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "treasurer",
+      "examples": [
+        "who is the treasurer",
+        "contact the treasurer",
+        "treasurer email",
+        "who is aliyah beitzel"
+      ],
+      "keywords": {
+        "treasurer": 3,
+        "aliyah beitzel": 3,
+        "finance officer": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Aliyah Beitzel is the 2026\u20132027 Treasurer. Public email: beitzel.29@osu.edu.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "administrator",
+      "examples": [
+        "who is the administrator",
+        "contact the administrator",
+        "administrator email",
+        "who is kasper szymczak"
+      ],
+      "keywords": {
+        "administrator": 3,
+        "kasper szymczak": 3,
+        "admin officer": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Kasper Szymczak is the 2026\u20132027 Administrator. Public email: szymczak.28@osu.edu.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "social-chair",
+      "examples": [
+        "who is the social chair",
+        "contact the social chair",
+        "social chair email",
+        "who is max sabio"
+      ],
+      "keywords": {
+        "social chair": 3,
+        "max sabio": 3,
+        "social officer": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Max Sabio is the 2026\u20132027 Social Chair. Public email: sabio.4@osu.edu.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "webmaster",
+      "examples": [
+        "who is the webmaster",
+        "contact the webmaster",
+        "webmaster email",
+        "who is margaux rasalan"
+      ],
+      "keywords": {
+        "webmaster": 3,
+        "margaux rasalan": 3,
+        "website officer": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Margaux Rasalan is the 2026\u20132027 Webmaster. Public email: rasalan.1@osu.edu.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "ecouncil",
+      "examples": [
+        "who is the e council",
+        "contact the e-council representative",
+        "e-council representative email",
+        "who is kyle sandborn"
+      ],
+      "keywords": {
+        "ecouncil": 3,
+        "kyle sandborn": 3,
+        "e council": 3,
+        "e-council representative": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Kyle Sandborn is the 2026\u20132027 E-Council Representative. Public email: sandborn.3@osu.edu.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "contact",
+      "examples": [
+        "how do i contact asme",
+        "email the chapter",
+        "contact info",
+        "ask a human"
+      ],
+      "keywords": {
+        "contact": 3,
+        "email": 3,
+        "human": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Email the chapter at asme@osu.edu. Officer contacts are on the Leadership page.",
+        "cards": [
+          {
+            "title": "Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/leadership/"
+        },
+        {
+          "type": "openLink",
+          "url": "mailto:asme@osu.edu"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "sponsors",
+      "examples": [
+        "who sponsors asme",
+        "current sponsors",
+        "our sponsors",
+        "sponsor list"
+      ],
+      "keywords": {
+        "sponsors": 3,
+        "ppg": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "The Current Sponsors page lists chapter supporters and industry partners. PPG is listed as a Brutus sponsor.",
+        "cards": [
+          {
+            "title": "Current Sponsors",
+            "url": "https://org.osu.edu/asme/current-sponsors/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/current-sponsors/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "sponsorship",
+      "examples": [
+        "how can my company sponsor",
+        "sponsorship tiers",
+        "corporate partnership",
+        "become a sponsor"
+      ],
+      "keywords": {
+        "sponsorship": 3,
+        "tiers": 3,
+        "partnership": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "The Sponsor ASME page explains partnership options. Contact asme@osu.edu to discuss support.",
+        "cards": [
+          {
+            "title": "Sponsor ASME",
+            "url": "https://org.osu.edu/asme/sponsor-asme/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/sponsor-asme/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "resources",
+      "examples": [
+        "member resources",
+        "useful student links",
+        "where are resources",
+        "resources page"
+      ],
+      "keywords": {
+        "resources": 3,
+        "links": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Member Resources brings together chapter links, engineering tools, career resources, and ways to connect.",
+        "cards": [
+          {
+            "title": "Member Resources",
+            "url": "https://org.osu.edu/asme/member-resources/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/member-resources/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "member-points",
+      "examples": [
+        "how do points work",
+        "check my points",
+        "member points",
+        "my attendance total"
+      ],
+      "keywords": {
+        "points": 3,
+        "attendance": 3,
+        "total": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Use the Member Points dashboard to find your personal total. Attendance is checked against the roster, event, and duplicates. I cannot identify your private record in chat.",
+        "cards": [
+          {
+            "title": "Member Points",
+            "url": "https://org.osu.edu/asme/member-points-page/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/member-points-page/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "points"
+    },
+    {
+      "id": "leaderboard",
+      "examples": [
+        "who leads the leaderboard",
+        "top members",
+        "current standings",
+        "leaderboard rankings"
+      ],
+      "keywords": {
+        "leaderboard": 3,
+        "rankings": 3,
+        "ranking": 3,
+        "standings": 3,
+        "top members": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the public leaderboard source.",
+        "cards": [
+          {
+            "title": "Member Points",
+            "url": "https://org.osu.edu/asme/member-points-page/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/member-points-page/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "leaderboard"
+    },
+    {
+      "id": "point-values",
+      "examples": [
+        "what is each event worth",
+        "point values",
+        "how many points per event",
+        "event point weights"
+      ],
+      "keywords": {
+        "point values": 3,
+        "worth": 3,
+        "weights": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the published point values.",
+        "cards": [
+          {
+            "title": "Member Points",
+            "url": "https://org.osu.edu/asme/member-points-page/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/member-points-page/"
+        },
+        {
+          "type": "openFaq",
+          "selector": "#point-values",
+          "page": "https://org.osu.edu/asme/member-points-page/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "points"
+    },
+    {
+      "id": "careers",
+      "examples": [
+        "career resources",
+        "internship help",
+        "resume resources",
+        "handshake jobs"
+      ],
+      "keywords": {
+        "careers": 3,
+        "career": 3,
+        "internship": 3,
+        "resume": 3,
+        "handshake": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Member Resources links to career resources, including Ohio State Handshake. Company events also offer employer connections.",
+        "cards": [
+          {
+            "title": "Member Resources",
+            "url": "https://org.osu.edu/asme/member-resources/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/member-resources/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "about",
+      "examples": [
+        "what is asme",
+        "about the chapter",
+        "what does asme do",
+        "tell me about asme osu"
+      ],
+      "keywords": {
+        "about": 3,
+        "chapter": 3,
+        "asme": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "ASME OSU is Ohio State\u2019s American Society of Mechanical Engineers student chapter, connecting students through professional development, industry events, and community.",
+        "cards": [
+          {
+            "title": "About ASME OSU",
+            "url": "https://org.osu.edu/asme/aboutus/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/aboutus/"
+        }
+      ],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "instagram",
+      "examples": [
+        "latest instagram posts",
+        "instagram updates",
+        "show instagram",
+        "insta"
+      ],
+      "keywords": {
+        "instagram": 3,
+        "insta": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the published Instagram feed. For the latest source posts, visit @asmeohiostate.",
+        "cards": [
+          {
+            "title": "Gallery",
+            "url": "https://org.osu.edu/asme/pictures/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/pictures/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "instagram"
+    },
+    {
+      "id": "social-media",
+      "examples": [
+        "social media links",
+        "where can i follow asme",
+        "follow the chapter",
+        "social accounts"
+      ],
+      "keywords": {
+        "social media": 3,
+        "follow": 3,
+        "accounts": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Follow @asmeohiostate on Instagram and use GroupMe for quick chapter reminders.",
+        "cards": [
+          {
+            "title": "Gallery",
+            "url": "https://org.osu.edu/asme/pictures/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/pictures/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "instagram"
+    },
+    {
+      "id": "gallery",
+      "examples": [
+        "show photos",
+        "chapter gallery",
+        "pictures from events",
+        "photo album"
+      ],
+      "keywords": {
+        "gallery": 3,
+        "photos": 3,
+        "pictures": 3,
+        "album": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019ll check the published gallery feed.",
+        "cards": [
+          {
+            "title": "Gallery",
+            "url": "https://org.osu.edu/asme/pictures/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/pictures/"
+        }
+      ],
+      "related": [],
+      "requires": [],
+      "liveSource": "gallery"
+    },
+    {
+      "id": "greeting",
+      "examples": [
+        "hello",
+        "hi",
+        "hey",
+        "good morning",
+        "yo"
+      ],
+      "keywords": {
+        "hello": 3,
+        "hi": 3,
+        "hey": 3,
+        "yo": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Hi! I\u2019m Gearly. Ask me about joining, events, officers, member points, or chapter resources.",
+        "cards": [],
+        "chips": []
+      },
+      "actions": [],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "thanks",
+      "examples": [
+        "thank you",
+        "thanks",
+        "ty",
+        "appreciate it",
+        "cheers"
+      ],
+      "keywords": {
+        "thanks": 3,
+        "thank": 3,
+        "ty": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "You\u2019re welcome! What else can I help you find?",
+        "cards": [],
+        "chips": []
+      },
+      "actions": [],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "goodbye",
+      "examples": [
+        "bye",
+        "goodbye",
+        "see you later",
+        "gotta go"
+      ],
+      "keywords": {
+        "bye": 3,
+        "goodbye": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "See you at a chapter event!",
+        "cards": [],
+        "chips": []
+      },
+      "actions": [],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "identity",
+      "examples": [
+        "who are you",
+        "are you ai",
+        "what is gearly",
+        "are you a chatbot"
+      ],
+      "keywords": {
+        "gearly": 3,
+        "chatbot": 3,
+        "ai": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "I\u2019m Gearly, a rule-based website guide. I match questions to verified chapter information and published feeds; I do not use an AI model.",
+        "cards": [],
+        "chips": []
+      },
+      "actions": [],
+      "related": [],
+      "requires": []
+    },
+    {
+      "id": "tour",
+      "examples": [
+        "show me around",
+        "website tour",
+        "take a tour",
+        "walk me through the site"
+      ],
+      "keywords": {
+        "tour": 3,
+        "walkthrough": 3
+      },
+      "negations": [],
+      "response": {
+        "text": "Start with Join, Calendar, Member Resources, and Leadership. I can guide you to those pages.",
+        "cards": [
+          {
+            "title": "Home",
+            "url": "https://org.osu.edu/asme/"
+          }
+        ],
+        "chips": []
+      },
+      "actions": [
+        {
+          "type": "navigate",
+          "url": "https://org.osu.edu/asme/"
+        },
+        {
+          "type": "tour",
+          "steps": [
+            {
+              "selector": ".asme-hd-join",
+              "text": "Start here to join the email newsletter and GroupMe."
+            },
+            {
+              "selector": ".asme-footer-links",
+              "text": "Use the footer links to explore the chapter."
+            }
+          ]
+        }
+      ],
+      "related": [],
+      "requires": []
+    }
+  ],
+  "entities": {
+    "roles": [
+      {
+        "id": "president",
+        "aliases": [
+          "pres",
+          "club president",
+          "head of asme"
+        ]
+      },
+      {
+        "id": "vice-president",
+        "aliases": [
+          "vp",
+          "vice president",
+          "corporate liaison"
+        ]
+      },
+      {
+        "id": "treasurer",
+        "aliases": [
+          "treasurer",
+          "finance officer"
+        ]
+      },
+      {
+        "id": "administrator",
+        "aliases": [
+          "administrator",
+          "admin officer"
+        ]
+      },
+      {
+        "id": "social-chair",
+        "aliases": [
+          "social chair",
+          "social officer"
+        ]
+      },
+      {
+        "id": "webmaster",
+        "aliases": [
+          "webmaster",
+          "website officer"
+        ]
+      },
+      {
+        "id": "ecouncil",
+        "aliases": [
+          "e council",
+          "e-council representative",
+          "ecouncil"
+        ]
+      }
+    ],
+    "companies": [
+      {
+        "id": "ppg",
+        "name": "PPG",
+        "aliases": []
+      }
+    ],
+    "topics": []
+  },
+  "officers": [
+    {
+      "role": "president",
+      "name": "Matthew Allen",
+      "email": "allen.2906@osu.edu",
+      "photo": "https://org.osu.edu/asme/files/2026/05/Matthew-Allen-2.png"
+    },
+    {
+      "role": "vice-president",
+      "name": "Jessica Wilson",
+      "email": "wilson.5210@osu.edu",
+      "photo": "https://org.osu.edu/asme/files/2026/05/Jessie-Wilson.jpeg"
+    },
+    {
+      "role": "treasurer",
+      "name": "Aliyah Beitzel",
+      "email": "beitzel.29@osu.edu",
+      "photo": "https://org.osu.edu/asme/files/2026/05/Aliyah-Beitzel.jpeg"
+    },
+    {
+      "role": "administrator",
+      "name": "Kasper Szymczak",
+      "email": "szymczak.28@osu.edu",
+      "photo": "https://org.osu.edu/asme/files/2026/07/Kasper-Szymczak.png"
+    },
+    {
+      "role": "social-chair",
+      "name": "Max Sabio",
+      "email": "sabio.4@osu.edu",
+      "photo": "https://org.osu.edu/asme/files/2026/05/Max-Sabio.png"
+    },
+    {
+      "role": "webmaster",
+      "name": "Margaux Rasalan",
+      "email": "rasalan.1@osu.edu",
+      "photo": "https://org.osu.edu/asme/files/2026/04/Margaux_Rasalan.png"
+    },
+    {
+      "role": "ecouncil",
+      "name": "Kyle Sandborn",
+      "email": "sandborn.3@osu.edu",
+      "photo": "https://org.osu.edu/asme/files/2026/05/Kyle-Sandborn-e1778043609711.jpeg"
+    }
+  ],
+  "events": [],
+  "faqs": [
+    {
+      "q": "Is there a membership fee?",
+      "a": "Joining the chapter newsletter and GroupMe is free. National membership is separate.",
+      "keywords": [
+        "dues",
+        "fee"
+      ],
+      "anchor": "https://org.osu.edu/asme/join/"
+    },
+    {
+      "q": "Can first-year students join?",
+      "a": "Yes. First-year students are encouraged to join.",
+      "keywords": [
+        "first-year",
+        "freshman"
+      ],
+      "anchor": "https://org.osu.edu/asme/join/"
+    }
+  ],
+  "fallback": {
+    "clarifyThreshold": 0.15,
+    "lowThreshold": 0.35,
+    "highThreshold": 0.65
+  }
+}
