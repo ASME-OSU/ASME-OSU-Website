@@ -286,6 +286,19 @@
         "height": 1536
       },
       "state": "idle"
+    },
+    {
+      "original": "gearly-smiling-wave.png (upper-body crop)",
+      "name": "gearly-smiling-wave-corner",
+      "file": "sprites/gearly-smiling-wave-corner.png",
+      "webFile": "sprites/gearly-smiling-wave-corner.webp",
+      "description": "Existing smiling-wave artwork cropped to the face, raised hand, and upper hoodie for the corner launcher",
+      "alt": "Gearly smiling and waving from the corner",
+      "dimensions": {
+        "width": 480,
+        "height": 384
+      },
+      "state": "happy"
     }
   ]
 }
