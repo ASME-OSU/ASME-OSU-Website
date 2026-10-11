@@ -71,7 +71,7 @@
             var patterns = { social: /\b(social|pickleball|casino|bowling|game night|picnic)\b/, workshop: /\b(workshop|tutorial|training|hands-on)\b/, company: /\b(company|employer|recruiting|recruiter|corporate|information session|info session)\b/, volunteering: /\b(volunteer|volunteering|community service)\b/, competition: /\b(competition|contest|design challenge|robotics competition)\b/, meeting: /\b(meeting|gbm|general body|chapter session)\b/ };
             if (!patterns[type] || !(patterns[type].test(words) || type === 'company' && knownCompany(words))) return false;
           }
-          return true; }).sort(function (a, b) { return date(a.start) - date(b.start); }).slice(0, 5).map(function (e) {
+          return true; }).sort(function (a, b) { return date(a.start) - date(b.start); }).slice(0, 3).map(function (e) {
           var when = date(e.start).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric', ...(e.allDay ? {} : { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) });
           return { title: clean(e.title, 150) || 'Chapter event', text: when + (e.allDay ? ' · All day' : '') + (clean(e.location) ? ' · ' + clean(e.location) : ''), url: safeURL(e.url, pages + 'calendar/') };
         });

@@ -95,3 +95,14 @@ test('tour observes changing targets and disconnects observers on exit',async()=
  const page=await crossPage('https://org.osu.edu/asme/',session(),routeData);let callback,observed=[],disconnected=0;page.root.ResizeObserver=class {constructor(cb){callback=cb;}observe(el){observed.push(el);}disconnect(){disconnected++;}};
  page.api.start();const target=page.w.document.querySelector('#header');assert.ok(observed.includes(target));target.getBoundingClientRect=()=>({left:20,top:60,bottom:160,width:180,height:100});callback();assert.equal(page.w.document.querySelector('.gearly-tour-ring').style.height,'110px');page.api.close();assert.ok(disconnected>=2);callback();assert.equal(page.w.document.querySelector('.gearly-tour-ring'),null);
 });
+
+test('page changes display immediate loading feedback and Finish returns Home without resuming',async()=>{
+ const data=structuredClone(routeData);data.tour.returnPage='https://org.osu.edu/asme/';
+ const storage=session(),home=await crossPage('https://org.osu.edu/asme/',storage,data);home.api.start();home.w.document.querySelector('[aria-label="Next"]').click();
+ assert.equal(home.w.document.querySelector('.gearly-tour-tip').getAttribute('aria-busy'),'true');assert.match(home.w.document.querySelector('#gearly-tour-title').textContent,/Opening/);assert.equal(home.w.document.querySelector('.gearly-tour-ring').hidden,true);
+ const events=await crossPage('https://org.osu.edu/asme/calendar/',storage,data);events.w.document.querySelector('[aria-label="Done"]').click();assert.deepEqual(events.moves,['https://org.osu.edu/asme/']);assert.equal(storage.getItem('asme-gearly-tour-3-session'),null);assert.equal(events.w.localStorage.getItem('asme-gearly-tour-3'),'completed');
+ const canceled=await crossPage('https://org.osu.edu/asme/calendar/',session(),data);canceled.api.start();canceled.api.close();assert.equal(canceled.moves.length,1); // Starting elsewhere opens Home; closing adds no navigation.
+});
+test('highlight follows layout movement even without a resize or scroll event',async()=>{
+ const page=await crossPage('https://org.osu.edu/asme/',session(),routeData);let render;page.root.requestAnimationFrame=cb=>{render=cb;return 1;};page.root.cancelAnimationFrame=()=>{};page.api.start();page.w.document.querySelector('#header').getBoundingClientRect=()=>({left:30,top:140,width:180,height:40});render();assert.equal(page.w.document.querySelector('.gearly-tour-ring').style.top,'135px');page.api.close();
+});
