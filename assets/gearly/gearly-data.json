@@ -1762,8 +1762,8 @@
     "highThreshold": 0.65
   },
   "tour": {
-    "version": 2,
-    "maxSteps": 10,
+    "version": 3,
+    "maxSteps": 8,
     "offer": {
       "label": "Take a tour"
     },
@@ -1790,25 +1790,18 @@
         "sprite": "gearly-double-thumbs-up.webp"
       },
       {
-        "selector": "#asmeCalendarUpcoming, [data-gearly=\"events-upcoming\"] .acp-upcoming-grid",
-        "title": "Upcoming events",
-        "text": "Published chapter events appear here. The subscription link adds the calendar to your own calendar.",
+        "selector": ".acp-cal-card",
+        "title": "Your chapter calendar",
+        "text": "Check the live chapter calendar for dates and details. Use Upcoming or Month to change the view, and subscribe from the top of this page.",
         "page": "https://org.osu.edu/asme/calendar/",
         "sprite": "gearly-calendar-presenting.webp"
       },
       {
-        "selector": "#getting-started, [data-gearly=\"member-resources\"]",
+        "selector": "#professional-dev",
         "title": "Useful resources",
-        "text": "This page gathers chapter links, engineering tools, forms, and member benefits by topic.",
+        "text": "Find the career packet, resume tools, and professional development links here. The page also collects engineering tools, forms, and member benefits.",
         "page": "https://org.osu.edu/asme/member-resources/",
         "sprite": "gearly-laptop-presenting.webp"
-      },
-      {
-        "selector": "#professional-dev",
-        "title": "Prepare for your next career step",
-        "text": "This section collects the career packet, resume tools, and professional development links.",
-        "page": "https://org.osu.edu/asme/member-resources/",
-        "sprite": "gearly-executive-briefcase.webp"
       },
       {
         "selector": "#leaderboard, [data-gearly=\"leaderboard\"]",
@@ -1825,19 +1818,13 @@
         "sprite": "gearly-laughing-head.webp"
       },
       {
-        "selector": ".lb-current-year .lb-grid",
+        "selector": ".lb-current-year",
         "title": "Meet the current officers",
         "text": "The current executive board and public officer contact details appear on these cards.",
         "page": "https://org.osu.edu/asme/leadership/",
         "sprite": "gearly-presenting-open-arms.webp"
-      },
-      {
-        "selector": ".sponsor-tiers-table, [data-gearly=\"sponsor-tiers\"]",
-        "title": "Support the chapter",
-        "text": "These annual sponsorship options help partners support the chapter. The corporate team can discuss a partnership.",
-        "page": "https://org.osu.edu/asme/sponsor-asme/",
-        "sprite": "gearly-executive-briefcase.webp"
       }
-    ]
+    ],
+    "returnPage": "https://org.osu.edu/asme/"
   }
 }

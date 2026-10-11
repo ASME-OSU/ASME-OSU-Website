@@ -81,3 +81,8 @@ test('gallery unsafe source falls back to verified pictures route',async()=>{
  const {api}=setup([{generatedAt:new Date().toISOString(),albumUrl:'javascript:bad',items:[{alt:'Chapter photo'}]}]);
  assert.equal((await api.load('gallery')).cards[0].url,'https://org.osu.edu/asme/pictures/');
 });
+
+test('upcoming-event answers contain only the next three chronological matches',async()=>{
+ const {api}=setup([{checkedAt:new Date().toISOString(),events:[6,4,2,5,1,3].map(day=>({title:'Event '+day,start:'2099-01-0'+day+'T18:00:00Z'}))}]);
+ const value=await api.load('events');assert.deepEqual(Array.from(value.cards,c=>c.title),['Event 1','Event 2','Event 3']);
+});

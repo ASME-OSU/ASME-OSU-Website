@@ -55,8 +55,23 @@
     var url=destination(active.steps[index]);
     try {root.sessionStorage.setItem(sessionKey(),JSON.stringify({index:index,direction:direction,to:url,expires:Date.now()+1800000}));}
     catch(_) {return false;}
-    try {root.location.assign(url);}catch(_){clearPending();return false;}
-    finish();return true;
+    transition(active.steps[index]);
+    try {root.location.assign(url);}catch(_){clearPending();show(active.index,1);return false;}
+    return true;
+  }
+  function transition(step) {
+    if(!active)return;
+    var page=(config.data.pages || []).find(function(p){return p.url===step.page;});
+    active.element=null;active.ring.hidden=true;active.tip.textContent='';
+    var title=doc.createElement('h2');title.id='gearly-tour-title';title.textContent='Opening '+(page && page.title || step.title)+'…';
+    var status=doc.createElement('p');status.id='gearly-tour-description';status.setAttribute('role','status');status.textContent='Gearly is taking you to the next stop.';
+    active.tip.append(title,status,button('Skip',function(){finish('dismissed');}));
+    active.tip.setAttribute('aria-busy','true');active.tip.removeAttribute('aria-describedby');
+  }
+  function complete() {
+    var url=destination({page:config.data && config.data.tour && config.data.tour.returnPage});
+    finish('completed');
+    if(url && !current(url)){try{root.location.assign(url);}catch(_){}}
   }
   function validSteps() {var t=config.data && config.data.tour;return t && Array.isArray(t.steps) ? t.steps.filter(function(s){return s && typeof s.selector==='string' && typeof s.title==='string' && typeof s.text==='string' && (!s.page || destination(s));}).slice(0,Number(t.maxSteps)||8) : [];}
   function begin(index,direction) {
@@ -87,20 +102,24 @@
     var restore=old.previous;if(!restore || !restore.isConnected || /^(BODY|HTML)$/.test(restore.tagName))restore=doc.querySelector('.gearly-launcher');if(restore && typeof restore.focus === 'function')restore.focus({preventScroll:true});
   }
   function update() {
-    if (!active || !active.element) return;
+    if (!active) return;
+    if(!active.element){positionTip();return;}
     var r = active.element.getBoundingClientRect();
     // No geometric easing: the highlight stays on the element during layout changes.
     active.ring.style.left = r.left - 5 + 'px'; active.ring.style.top = r.top - 5 + 'px'; active.ring.style.width = r.width + 10 + 'px'; active.ring.style.height = r.height + 10 + 'px';
+    positionTip();
+  }
+  function positionTip(){
     var height=active.tip.getBoundingClientRect().height || 220,width=Math.min(340,root.innerWidth-24);
     active.tip.style.width=width+'px';active.tip.style.left=Math.max(12,root.innerWidth-width-16)+'px';active.tip.style.top=Math.max(12,root.innerHeight-height-16)+'px';
   }
-  function scheduleUpdate(){if(!active || active.frame)return;if(!root.requestAnimationFrame){update();return;}active.frame=root.requestAnimationFrame(function(){if(!active)return;active.frame=null;update();});}
+  function scheduleUpdate(){if(!active || active.frame)return;if(!root.requestAnimationFrame){update();return;}active.frame=root.requestAnimationFrame(function(){if(!active)return;active.frame=null;update();scheduleUpdate();});}
   function show(index, direction) {
     if (!active) return;
     var steps = active.steps, el;
     while (index >= 0 && index < steps.length) { var route=destination(steps[index]);if(route && !current(route)){if(navigate(index,direction||1))return;} else {el = target(steps[index]);if(el)break;} index += direction || 1; }
-    if (!el) { finish('completed'); return; }
-    active.index = index; active.element = el; var step = steps[index], tip = active.tip; tip.textContent = '';
+    if (!el) { complete(); return; }
+    active.ring.hidden=false;active.tip.removeAttribute('aria-busy');active.tip.setAttribute('aria-describedby','gearly-tour-progress gearly-tour-description');active.index = index; active.element = el; var step = steps[index], tip = active.tip; tip.textContent = '';
     var count = doc.createElement('p'); count.className = 'gearly-tour-count'; count.id = 'gearly-tour-progress'; count.textContent = 'Step ' + (index + 1) + ' of ' + steps.length;
     var title = doc.createElement('h2'); title.id = 'gearly-tour-title'; title.textContent = step.title;
     var body = doc.createElement('p'); body.id = 'gearly-tour-description'; body.textContent = step.text;
@@ -112,10 +131,10 @@
     var controls = doc.createElement('div'); controls.className = 'gearly-tour-controls';
     controls.appendChild(button('Skip', function () { finish('dismissed'); }));
     if (index > 0) controls.appendChild(button('Back', function () { show(active.index - 1, -1); }));
-    var next = button(index === steps.length - 1 ? 'Done' : 'Next', function () { if (active.index === steps.length - 1) finish('completed'); else show(active.index + 1, 1); }); controls.appendChild(next); tip.appendChild(controls);
+    var next = button(index === steps.length - 1 ? 'Done' : 'Next', function () { if (active.index === steps.length - 1) complete(); else show(active.index + 1, 1); }); controls.appendChild(next); tip.appendChild(controls);
     if(index < steps.length-1){var following=steps[index+1],page=(config.data.pages || []).find(function(p){return p.url===following.page;}),cue=doc.createElement('p');cue.className='gearly-tour-destination';cue.textContent='Next: '+(!current(destination(following)) && page && page.title || following.title);tip.appendChild(cue);next.title=cue.textContent;}
     if(active.observer){active.observer.disconnect();active.observer.observe(el);active.observer.observe(tip);}scrollTarget(el);
-    update(); next.focus({preventScroll:true});
+    update(); scheduleUpdate(); next.focus({preventScroll:true});
   }
   function launch(steps,index,direction) {
     if(!steps.some(function(s){return s.page;})) steps = steps.filter(function(s){return target(s);});
