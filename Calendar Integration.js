@@ -205,6 +205,10 @@
     var frame = document.getElementById('asmeCalendarFrame');
     if (frame) {
       frame.hidden = fictionalSource;
+      // The CMS calendar stylesheet sets iframe display:block, which overrides
+      // the browser's default [hidden] rule. Hide the live view explicitly.
+      if (fictionalSource) frame.style.setProperty('display', 'none', 'important');
+      else frame.style.removeProperty('display');
       if (previewYear && !fictionalSource) {
         var url = new URL(frame.src), start = previewYear.slice(0, 4), end = previewYear.slice(5);
         url.searchParams.set('dates', start + '0801/' + end + '0731'); frame.src = url.toString();

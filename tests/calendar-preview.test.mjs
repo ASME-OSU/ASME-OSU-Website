@@ -7,6 +7,10 @@ const script = fs.readFileSync('Calendar Integration.js', 'utf8');
 const flush = async () => { await new Promise(resolve => setTimeout(resolve, 20)); };
 function page(fetch) {
   const dom = new JSDOM(markup, { url: 'https://org.osu.edu/asme/calendar/', runScripts: 'outside-only' });
+  // Match the CMS's explicit iframe display rule: hidden alone is insufficient.
+  const style = dom.window.document.createElement('style');
+  style.textContent = '#asmeCalendarFrame { display: block; }';
+  dom.window.document.head.append(style);
   dom.window.matchMedia = () => ({ matches: false }); dom.window.fetch = fetch;
   dom.window.eval(script); dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
   return dom;
@@ -36,12 +40,16 @@ test('actual website Calendar script filters Eastern and all-day dates, rehearse
     assert.match(window.document.getElementById('asmeCalendarStatus').textContent, /source checked.*Refresh rereads JSON/);
     const before = requests; click(window, 'asmeCalendarFictional');
     assert.equal(requests, before); assert.equal(frame.hidden, true);
+    assert.equal(window.getComputedStyle(frame).display, 'none');
+    assert.equal(frame.style.getPropertyPriority('display'), 'important');
     assert.match(window.document.getElementById('asmeCalendarUpcoming').textContent, /TEST ONLY.*Fall.*TEST ONLY.*Spring/);
     assert.equal((window.document.getElementById('asmeCalendarUpcoming').textContent.match(/6:00 PM/g) || []).length, 2);
     assert.match(window.document.getElementById('asmeCalendarStatus').textContent, /FICTIONAL REHEARSAL/);
     click(window, 'asmeCalendarClearFictional'); assert.match(window.document.getElementById('asmeCalendarStatus').textContent, /Fictional events removed.*Reading/);
     await flush();
     assert.equal(requests, before + 1); assert.equal(frame.hidden, false);
+    assert.equal(window.getComputedStyle(frame).display, 'block');
+    assert.equal(frame.style.getPropertyValue('display'), '');
     assert.match(window.document.getElementById('asmeCalendarUpcoming').textContent, /Fall official fixture/);
     assert.doesNotMatch(window.document.getElementById('asmeCalendarStatus').textContent, /FICTIONAL/);
     window.document.getElementById('asmeCalendarYear').value = '2028-2029'; click(window, 'asmeCalendarPreview');
