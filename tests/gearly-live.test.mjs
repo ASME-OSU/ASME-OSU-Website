@@ -225,3 +225,37 @@ test('academic dates do not consume the three chapter results and generic info s
  assert.deepEqual(Array.from((await api.load('events')).cards,c=>c.title),['MATLAB Info Session','Social event','Workshop']);
  assert.deepEqual(Array.from((await api.load('events',{eventType:'company'})).cards,c=>c.title),['Company recruiting']);
 });
+
+
+test('adding deadline and other vocabulary leaves general, company and workshop answers unchanged on the current feed', async () => {
+  const feed = JSON.parse(readFileSync(new URL('../data/calendar-events.json',import.meta.url),'utf8'));
+  const baseline = JSON.parse(readFileSync(new URL('../assets/gearly/gearly-data.json',import.meta.url),'utf8'));
+  baseline.eventTypes = {...baseline.eventTypes};
+  delete baseline.eventTypes.deadline;
+  delete baseline.eventTypes['academic-support'];
+  delete baseline.eventTypes['ice-skating'];
+  baseline.eventTypes.social = baseline.eventTypes.social.filter(word => !['skating','ice skating','friendsgiving','sweets with swe'].includes(word));
+  for (const filter of [{},{eventType:'company'},{eventType:'workshop'}]) {
+    const before = setup([feed]).api;
+    before.configure({eventTypes:baseline.eventTypes, companies:siteData.entities.companies});
+    const after = setup([feed]).api;
+    after.configure({companies:siteData.entities.companies});
+    assert.deepEqual(JSON.parse(JSON.stringify((await after.load('events',filter)).cards)), JSON.parse(JSON.stringify((await before.load('events',filter)).cards)));
+  }
+});
+
+test('social filters include ice skating in range; deadlines never override academic exclusions', async () => {
+  const events = [{title:'ASME Ice Skating Event',start:'2099-01-15'},{title:'Initial Fee Due Date',start:'2099-01-16'},{title:'Chapter competition deadline',start:'2099-01-17'}];
+  const {api} = setup([{events},{events}]);
+  const social = await api.load('events',{eventType:'social',dateRange:{from:'2099-01-01',to:'2099-01-31'}});
+  assert.deepEqual(Array.from(social.cards,c=>c.title),['ASME Ice Skating Event']);
+  assert.deepEqual(Array.from((await api.load('events',{eventType:'deadline'})).cards,c=>c.title),['Chapter competition deadline']);
+});
+
+
+test('specific skating requests reach the skating event in the current feed even when other socials are earlier', async () => {
+  const feed = JSON.parse(readFileSync(new URL('../data/calendar-events.json',import.meta.url),'utf8'));
+  const {api} = setup([feed]);
+  const value = await api.load('events',{eventType:'ice-skating'});
+  assert.deepEqual(Array.from(value.cards,c=>c.title),['ASME Ice Skating Event']);
+});

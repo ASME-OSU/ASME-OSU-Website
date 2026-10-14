@@ -94,3 +94,20 @@ test('site snapshot builder uses shared source parsers and check mode catches ch
     assert.match(stale.stderr, /snapshot is stale/);
   } finally { await fs.rm(directory, { recursive: true, force: true }); }
 });
+
+
+test('calendar contracts skip excluded academic titles, tolerate malformed patterns and still warn about unknown chapter activities', async () => {
+  const value = fixture();
+  value.data.eventRules = {nonChapterTitlePatterns:['[', '\\bfinal exams?\\b', 42]};
+  value.files['data/calendar-events.json'] = JSON.stringify({events:[{title:'Final Exams'},{title:'Unknown chapter outing'}]});
+  const result = await check(value);
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.warnings, ['Calendar event has no configured event type: Unknown chapter outing']);
+});
+
+test('current calendar feed has no event type warnings after academic filtering and source-based classification', async () => {
+  const data = JSON.parse(await fs.readFile('assets/gearly/gearly-data.json','utf8'));
+  const result = await checkContract(data, file => fs.readFile(file,'utf8'));
+  assert.deepEqual(result.errors, []);
+  assert.deepEqual(result.warnings.filter(w => w.startsWith('Calendar event')), []);
+});

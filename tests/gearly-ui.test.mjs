@@ -126,3 +126,29 @@ test('check my points prompts for a name before requesting public data',async()=
  await dom.window.Gearly.ask('Check my points.');assert.equal(calls,0);assert.match(dom.window.document.querySelector('.gearly-messages').textContent,/What name is on the leaderboard/);
  await dom.window.Gearly.ask('Matthew Allen');assert.equal(calls,1);assert.ok(!dom.window.sessionStorage.getItem('gearly_state_v1').includes('Matthew'));dom.window.close();
 });
+
+test('section retrieval never replaces a confident answer, but remains available for unknown section requests', async () => {
+  let sectionCalls = 0;
+  let opened;
+  const action = {type:'scrollTo',page:'https://org.osu.edu/asme/aboutus/',selector:"[data-gearly='about-audiences']",title:'Use ASME in the way that helps you most.',label:'Show audiences'};
+  const dom = await start(raw, window => {
+    window.GearlySearch = {
+      configure: () => {}, sections: async () => [], records: async () => [], find: async () => [],
+      findSections: async () => {
+        sectionCalls++;
+        return [{...action,coverage:1,score:30,snippet:'Choose how to participate.'}];
+      }
+    };
+    window.GearlyTour = {configure:() => {},showSection: value => {opened=value;return true;}};
+  });
+  await dom.window.Gearly.ask('join');
+  assert.equal(sectionCalls,0);
+  assert.equal(dom.window.document.querySelector('.gearly-place-card'),null);
+  await dom.window.Gearly.ask('Use ASME in the way that helps you most.');
+  assert.ok(sectionCalls > 0);
+  const card = dom.window.document.querySelector('.gearly-place-card');
+  assert.equal(card.getAttribute('aria-label'),'Show Use ASME in the way that helps you most.');
+  card.click();
+  assert.equal(opened.selector,action.selector);
+  dom.window.close();
+});

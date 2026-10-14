@@ -49,3 +49,12 @@ test('natural numbered followups select the requested index',()=>{
  for(const text of ['Show me the second one','the second one','Open the second photo.'])assert.equal(e.followupRequest(text).index,1,text);
  assert.equal(e.followupRequest('Tell me more').index,0);assert.equal(e.followupRequest('show me the third result').index,2);
 });
+
+
+test('skating language requests the specific skating filter, using configured aliases', () => {
+  const match = e.match(siteData,'any ice skating events',e.createState());
+  assert.equal(match.kind,'answer');
+  assert.equal(match.intent.id,'social-events');
+  assert.equal(match.entities.eventType,'ice-skating');
+  assert.equal(e.extractEntities('next deadline',siteData).eventType,'deadline');
+});
