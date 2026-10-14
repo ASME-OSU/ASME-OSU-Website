@@ -1,11 +1,292 @@
 {
+  "generatedAt": "2026-10-14T12:34:34.619Z",
+  "checkedAt": "2026-10-14T12:34:34.616Z",
+  "windowStart": "2026-08-01T04:00:00.000Z",
+  "windowEnd": "2026-10-14T12:34:34.580Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-  "generatedAt": null,
-  "checkedAt": null,
-  "windowStart": null,
-  "windowEnd": null,
-  "events": []
+  "events": [
+    {
+      "id": "in97rvct2ilpavcm9m32jcaa47@google.com::2026-08-03T00:00:00.000Z",
+      "title": "ASME Exec Meeting",
+      "start": "2026-08-03T00:00:00.000Z",
+      "end": "2026-08-03T00:45:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-06-21T21:56:14.000Z"
+    },
+    {
+      "id": "in97rvct2ilpavcm9m32jcaa47@google.com::2026-08-17T00:00:00.000Z",
+      "title": "ASME Exec Meeting",
+      "start": "2026-08-17T00:00:00.000Z",
+      "end": "2026-08-17T00:45:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-06-21T21:56:14.000Z"
+    },
+    {
+      "id": "47for1l8v99aapd4o6bp8d1kte@google.com::2026-08-18T12:00:00.000Z",
+      "title": "Initial Fee Due Date",
+      "start": "2026-08-18T12:00:00.000Z",
+      "end": "2026-08-19T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:43:12.000Z"
+    },
+    {
+      "id": "39035g9jmv341tcj172slc1o8l@google.com::2026-08-23T20:00:00.000Z",
+      "title": "Involvement Fair ASME Fair",
+      "start": "2026-08-23T20:00:00.000Z",
+      "end": "2026-08-23T23:00:00.000Z",
+      "allDay": false,
+      "location": "181 Oval Dr S, Columbus, OH 43210, USA Table 508",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-08-22T08:14:01.000Z"
+    },
+    {
+      "id": "2kqpla9fgqapum8pgff0pds4p7@google.com::2026-08-25T12:00:00.000Z",
+      "title": "Semester and First-Session Classes Begin",
+      "start": "2026-08-25T12:00:00.000Z",
+      "end": "2026-08-26T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:45:05.000Z"
+    },
+    {
+      "id": "05rj687noigo5jjgv681sn7vms@google.com::2026-08-27T17:00:00.000Z",
+      "title": "MAE Welcome Back Open House",
+      "start": "2026-08-27T17:00:00.000Z",
+      "end": "2026-08-27T19:00:00.000Z",
+      "allDay": false,
+      "location": "201 W 19th Ave, Columbus, OH 43210, USA",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-30T23:58:49.000Z"
+    },
+    {
+      "id": "2uruu7vhkvo9bk4kthdr7vhqg5@google.com::2026-08-27T18:30:00.000Z",
+      "title": "ASME Lemonade Stand ",
+      "start": "2026-08-27T18:30:00.000Z",
+      "end": "2026-08-27T20:00:00.000Z",
+      "allDay": false,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-06-29T23:33:17.000Z"
+    },
+    {
+      "id": "7vve9qi4bj55nlelmh3vrlm19l@google.com::2026-09-02T21:30:00.000Z",
+      "title": "ExxonMobil Recruiting Session",
+      "start": "2026-09-02T21:30:00.000Z",
+      "end": "2026-09-02T23:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Lab E141",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-08-25T16:05:36.000Z"
+    },
+    {
+      "id": "18setca6i4pdhco59a9grgrhkr@google.com::2026-09-03T21:30:00.000Z",
+      "title": "ASME Ice Cream Social",
+      "start": "2026-09-03T21:30:00.000Z",
+      "end": "2026-09-03T22:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA Scott Lab E141",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-08-25T16:05:51.000Z"
+    },
+    {
+      "id": "5e419pq1kkfco5i7bhvuvg9gak@google.com::2026-09-04T21:00:00.000Z",
+      "title": "EWB x ASME Oldfields Trivia Night",
+      "start": "2026-09-04T21:00:00.000Z",
+      "end": "2026-09-05T01:00:00.000Z",
+      "allDay": false,
+      "location": "Oldfield's North Fourth Tavern, 1571 N 4th St, Columbus, OH 43201, USA",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-02T03:32:45.000Z"
+    },
+    {
+      "id": "7ub756b9mou34cr1kri3t0kh0d@google.com::2026-09-07T12:00:00.000Z",
+      "title": "Labor Day - no classes, offices closed",
+      "start": "2026-09-07T12:00:00.000Z",
+      "end": "2026-09-08T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:46:22.000Z"
+    },
+    {
+      "id": "0mgjtc75f9i5ob6ekgh6rm7chc@google.com::2026-09-08T12:00:00.000Z",
+      "title": "Enrollment Census Date (semester, first-session)",
+      "start": "2026-09-08T12:00:00.000Z",
+      "end": "2026-09-09T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:47:08.000Z"
+    },
+    {
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-09-10T21:30:00.000Z",
+      "title": "ASME ECS Showcase/Interview & Resume Review",
+      "start": "2026-09-10T21:30:00.000Z",
+      "end": "2026-09-10T22:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory, 201 W 19th Ave, Columbus, OH 43210, USA",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-11T15:09:34.000Z"
+    },
+    {
+      "id": "5he5s2hloqhcf0u269aru7ri7g@google.com::2026-09-16T21:30:00.000Z",
+      "title": "CMTA Info Session",
+      "start": "2026-09-16T21:30:00.000Z",
+      "end": "2026-09-16T22:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory E100",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-08-31T14:42:14.000Z"
+    },
+    {
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki@google.com::2026-09-17T21:30:00.000Z",
+      "title": "ASME Casino Night",
+      "start": "2026-09-17T21:30:00.000Z",
+      "end": "2026-09-17T22:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory E141",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-11T15:10:49.000Z"
+    },
+    {
+      "id": "040gnn2783gthupf4m50v7qdet@google.com::2026-09-21T21:30:00.000Z",
+      "title": "ExxonMobil Career Fair Prep",
+      "start": "2026-09-21T21:30:00.000Z",
+      "end": "2026-09-21T23:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory E100",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-08-31T14:40:28.000Z"
+    },
+    {
+      "id": "4n32e7as58n00rtnhesgcfv5c3@google.com::2026-09-22T22:00:00.000Z",
+      "title": "RTX Information Session",
+      "start": "2026-09-22T22:00:00.000Z",
+      "end": "2026-09-23T00:00:00.000Z",
+      "allDay": false,
+      "location": "Ohio Union, 1739 N High St, Columbus, OH 43210, USA",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-08-04T02:11:02.000Z"
+    },
+    {
+      "id": "7ej54q9i476u0e47mhr9asb07g@google.com::2026-09-23T17:00:00.000Z",
+      "title": "Career Fair",
+      "start": "2026-09-23T17:00:00.000Z",
+      "end": "2026-09-23T21:00:00.000Z",
+      "allDay": false,
+      "location": "Ohio Union, 1739 N High St, Columbus, OH 43210, USA",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-11T17:18:33.000Z"
+    },
+    {
+      "id": "65c02gtb27867qt19c2o8sb8fo@google.com::2026-09-23T22:30:00.000Z",
+      "title": "LyondellBasell Info Session",
+      "start": "2026-09-23T22:30:00.000Z",
+      "end": "2026-09-24T00:00:00.000Z",
+      "allDay": false,
+      "location": "Scott Lab e141",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-11T15:08:29.000Z"
+    },
+    {
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-09-24T21:30:00.000Z",
+      "title": "Caterpillar Inc. Interview Prep",
+      "start": "2026-09-24T21:30:00.000Z",
+      "end": "2026-09-24T22:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory E141",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-11T15:09:34.000Z"
+    },
+    {
+      "id": "49jb5ro956ej33a65ch0npnd52@google.com::2026-09-25T22:00:00.000Z",
+      "title": "TSMC x MSE x ASME Joint Info Session",
+      "start": "2026-09-25T22:00:00.000Z",
+      "end": "2026-09-25T23:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory E100",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-24T02:26:09.000Z"
+    },
+    {
+      "id": "70mbp8b82jdvcbcjbc8aj0a8ap@google.com::2026-09-28T22:00:00.000Z",
+      "title": "HRST Inc. Info Session",
+      "start": "2026-09-28T22:00:00.000Z",
+      "end": "2026-09-28T23:00:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory E100",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-11T15:13:04.000Z"
+    },
+    {
+      "id": "7rn8i8uc29jjmuub707qedlnfd@google.com::2026-09-30T22:30:00.000Z",
+      "title": "Study Tables with NSBE",
+      "start": "2026-09-30T22:30:00.000Z",
+      "end": "2026-10-01T00:00:00.000Z",
+      "allDay": false,
+      "location": "OSU CBEC Building 120 & 130",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-29T00:10:21.000Z"
+    },
+    {
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-01T21:30:00.000Z",
+      "title": " ASME Project Teams Introduction",
+      "start": "2026-10-01T21:30:00.000Z",
+      "end": "2026-10-01T22:30:00.000Z",
+      "allDay": false,
+      "location": "Scott Laboratory E141",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-22T19:28:01.000Z"
+    },
+    {
+      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-08T21:30:00.000Z",
+      "title": "ASME Pickleball @ RPAC",
+      "start": "2026-10-08T21:30:00.000Z",
+      "end": "2026-10-08T22:30:00.000Z",
+      "allDay": false,
+      "location": "RPAC Tennis Courts",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-09-22T19:28:48.000Z"
+    },
+    {
+      "id": "1c22bg1hi1lfavvlu35o540gbn@google.com::2026-10-12T12:00:00.000Z",
+      "title": "Last day of regularly scheduled first-session classes",
+      "start": "2026-10-12T12:00:00.000Z",
+      "end": "2026-10-13T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:48:52.000Z"
+    },
+    {
+      "id": "6uiqq5qfabjdik8lnrtfgcu364@google.com::2026-10-13T12:00:00.000Z",
+      "title": "Final exams for first-session classes",
+      "start": "2026-10-13T12:00:00.000Z",
+      "end": "2026-10-14T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:50:03.000Z"
+    },
+    {
+      "id": "3801j0b0sj6pi26eqoluvffcl5@google.com::2026-10-14T12:00:00.000Z",
+      "title": "Final exams for first-session classes",
+      "start": "2026-10-14T12:00:00.000Z",
+      "end": "2026-10-15T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:50:38.000Z"
+    }
+  ]
 }
