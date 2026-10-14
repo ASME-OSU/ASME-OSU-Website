@@ -88,7 +88,9 @@
         return sections;
       } catch (_) { return []; }
     },
+    records: async function(){try{return await readIndex();}catch(_){return [];}},
     rankSections: rankSections
   };
-  if (typeof module !== 'undefined' && module.exports) module.exports = {rank: rank, rankSections: rankSections};
+  if (typeof module !== 'undefined' && module.exports) module.exports = {rank: rank, records: async function(){try{return await readIndex();}catch(_){return [];}},
+    rankSections: rankSections};
 })(typeof window!=='undefined'?window:globalThis);
