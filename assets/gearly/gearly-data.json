@@ -762,7 +762,7 @@
       },
       "negations": [],
       "response": {
-        "text": "The Leadership page lists the 2026–2027 executive board and their public contact details.",
+        "text": "The Leadership page lists the current executive board and public contact details.",
         "cards": [
           {
             "title": "Leadership",
@@ -790,21 +790,19 @@
       ],
       "keywords": {
         "president": 3,
-        "matthew allen": 3,
         "pres": 3,
         "club president": 3,
         "head of asme": 3
       },
       "negations": [],
       "response": {
-        "text": "Matthew Allen is the 2026–2027 President. Public email: allen.2906@osu.edu.",
+        "text": "The Leadership page lists current officers and public contact details.",
         "cards": [
           {
             "title": "Leadership",
             "url": "https://org.osu.edu/asme/leadership/"
           }
-        ],
-        "chips": []
+        ]
       },
       "actions": [
         {
@@ -825,20 +823,17 @@
       ],
       "keywords": {
         "vice president": 3,
-        "jessica wilson": 3,
-        "vp": 3,
         "corporate liaison": 3
       },
       "negations": [],
       "response": {
-        "text": "Jessica Wilson is the 2026–2027 Vice President / Corporate Liaison. Public email: wilson.5210@osu.edu.",
+        "text": "The Leadership page lists current officers and public contact details.",
         "cards": [
           {
             "title": "Leadership",
             "url": "https://org.osu.edu/asme/leadership/"
           }
-        ],
-        "chips": []
+        ]
       },
       "actions": [
         {
@@ -859,19 +854,17 @@
       ],
       "keywords": {
         "treasurer": 3,
-        "aliyah beitzel": 3,
         "finance officer": 3
       },
       "negations": [],
       "response": {
-        "text": "Aliyah Beitzel is the 2026–2027 Treasurer. Public email: beitzel.29@osu.edu.",
+        "text": "The Leadership page lists current officers and public contact details.",
         "cards": [
           {
             "title": "Leadership",
             "url": "https://org.osu.edu/asme/leadership/"
           }
-        ],
-        "chips": []
+        ]
       },
       "actions": [
         {
@@ -892,19 +885,17 @@
       ],
       "keywords": {
         "administrator": 3,
-        "kasper szymczak": 3,
         "admin officer": 3
       },
       "negations": [],
       "response": {
-        "text": "Kasper Szymczak is the 2026–2027 Administrator. Public email: szymczak.28@osu.edu.",
+        "text": "The Leadership page lists current officers and public contact details.",
         "cards": [
           {
             "title": "Leadership",
             "url": "https://org.osu.edu/asme/leadership/"
           }
-        ],
-        "chips": []
+        ]
       },
       "actions": [
         {
@@ -925,19 +916,17 @@
       ],
       "keywords": {
         "social chair": 3,
-        "max sabio": 3,
         "social officer": 3
       },
       "negations": [],
       "response": {
-        "text": "Max Sabio is the 2026–2027 Social Chair. Public email: sabio.4@osu.edu.",
+        "text": "The Leadership page lists current officers and public contact details.",
         "cards": [
           {
             "title": "Leadership",
             "url": "https://org.osu.edu/asme/leadership/"
           }
-        ],
-        "chips": []
+        ]
       },
       "actions": [
         {
@@ -958,19 +947,17 @@
       ],
       "keywords": {
         "webmaster": 3,
-        "margaux rasalan": 3,
         "website officer": 3
       },
       "negations": [],
       "response": {
-        "text": "Margaux Rasalan is the 2026–2027 Webmaster. Public email: rasalan.1@osu.edu.",
+        "text": "The Leadership page lists current officers and public contact details.",
         "cards": [
           {
             "title": "Leadership",
             "url": "https://org.osu.edu/asme/leadership/"
           }
-        ],
-        "chips": []
+        ]
       },
       "actions": [
         {
@@ -991,20 +978,17 @@
       ],
       "keywords": {
         "ecouncil": 3,
-        "kyle sandborn": 3,
-        "e council": 3,
         "e-council representative": 3
       },
       "negations": [],
       "response": {
-        "text": "Kyle Sandborn is the 2026–2027 E-Council Representative. Public email: sandborn.3@osu.edu.",
+        "text": "The Leadership page lists current officers and public contact details.",
         "cards": [
           {
             "title": "Leadership",
             "url": "https://org.osu.edu/asme/leadership/"
           }
-        ],
-        "chips": []
+        ]
       },
       "actions": [
         {
@@ -1090,7 +1074,11 @@
         "how can my company sponsor",
         "sponsorship tiers",
         "corporate partnership",
-        "become a sponsor"
+        "become a sponsor",
+        "tell me more about the sponsorship options",
+        "sponsor tiers",
+        "sponsorship levels",
+        "how do I sponsor ASME"
       ],
       "keywords": {
         "sponsorship": 3,
@@ -1112,6 +1100,13 @@
         {
           "type": "navigate",
           "url": "https://org.osu.edu/asme/sponsor-asme/"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/sponsor-asme/",
+          "selector": "[data-gearly='sponsor-tiers']",
+          "title": "Sponsorship levels",
+          "label": "Show sponsorship levels"
         }
       ],
       "related": [],
@@ -1144,6 +1139,27 @@
         {
           "type": "navigate",
           "url": "https://org.osu.edu/asme/member-resources/"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/member-resources/",
+          "selector": "#getting-started",
+          "title": "Getting started",
+          "label": "Show Getting started"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/member-resources/",
+          "selector": "#events-calendar",
+          "title": "Events and calendar",
+          "label": "Show Events and calendar"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/member-resources/",
+          "selector": "#forms-admin",
+          "title": "Forms and administration",
+          "label": "Show Forms and administration"
         }
       ],
       "related": [],
@@ -1295,7 +1311,13 @@
         "take me to career resources",
         "pull up the career resources",
         "show me career tools",
-        "bring up resume resources"
+        "bring up resume resources",
+        "career guide",
+        "resume help",
+        "handshake",
+        "internships",
+        "job search",
+        "professional development"
       ],
       "keywords": {
         "careers": 3,
@@ -1713,50 +1735,6 @@
     ],
     "topics": []
   },
-  "officers": [
-    {
-      "role": "president",
-      "name": "Matthew Allen",
-      "email": "allen.2906@osu.edu",
-      "photo": "https://org.osu.edu/asme/files/2026/05/Matthew-Allen-2.png"
-    },
-    {
-      "role": "vice-president",
-      "name": "Jessica Wilson",
-      "email": "wilson.5210@osu.edu",
-      "photo": "https://org.osu.edu/asme/files/2026/05/Jessie-Wilson.jpeg"
-    },
-    {
-      "role": "treasurer",
-      "name": "Aliyah Beitzel",
-      "email": "beitzel.29@osu.edu",
-      "photo": "https://org.osu.edu/asme/files/2026/05/Aliyah-Beitzel.jpeg"
-    },
-    {
-      "role": "administrator",
-      "name": "Kasper Szymczak",
-      "email": "szymczak.28@osu.edu",
-      "photo": "https://org.osu.edu/asme/files/2026/07/Kasper-Szymczak.png"
-    },
-    {
-      "role": "social-chair",
-      "name": "Max Sabio",
-      "email": "sabio.4@osu.edu",
-      "photo": "https://org.osu.edu/asme/files/2026/05/Max-Sabio.png"
-    },
-    {
-      "role": "webmaster",
-      "name": "Margaux Rasalan",
-      "email": "rasalan.1@osu.edu",
-      "photo": "https://org.osu.edu/asme/files/2026/04/Margaux_Rasalan.png"
-    },
-    {
-      "role": "ecouncil",
-      "name": "Kyle Sandborn",
-      "email": "sandborn.3@osu.edu",
-      "photo": "https://org.osu.edu/asme/files/2026/05/Kyle-Sandborn-e1778043609711.jpeg"
-    }
-  ],
   "events": [],
   "faqs": [
     {
