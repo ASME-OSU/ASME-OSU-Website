@@ -39,3 +39,13 @@ test('member name extraction accepts public-name phrasing and rejects topics or 
  assert.equal(e.extractMemberName("it's Zoë O’Neil please",{pendingSlot:'memberName'}),'Zoë O’Neil');
  for(const text of ['what events are next','find events','my points','I am a first year student can I participate?','points for <script>','find 123'])assert.equal(e.extractMemberName(text,{}),null,text);
 });
+
+
+test('personal points commands with punctuation never become a member name',()=>{
+ for(const text of ['Check my points.','Check my points','Show my points!','What are my points?']){assert.equal(e.personalPoints(text),true,text);assert.equal(e.extractMemberName(text,{}),null,text);assert.equal(e.match(siteData,text,e.createState()).kind,'answer',text);}
+ assert.equal(e.extractMemberName('check my points for Zoë O’Neil.',{}),'Zoë O’Neil');
+});
+test('natural numbered followups select the requested index',()=>{
+ for(const text of ['Show me the second one','the second one','Open the second photo.'])assert.equal(e.followupRequest(text).index,1,text);
+ assert.equal(e.followupRequest('Tell me more').index,0);assert.equal(e.followupRequest('show me the third result').index,2);
+});

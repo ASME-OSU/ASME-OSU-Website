@@ -2,7 +2,7 @@
 (function (root) {
   'use strict';
   var baseURL = '', sheet = '', pages = '', instagramURL = '', contactEmail = '';
-  var eventTypes = Object.create(null);
+  var eventTypes = Object.create(null), nonChapterPatterns = [];
   var cache = Object.create(null), pending = Object.create(null), ttl = 60000;
   var companies = [];
   function words(value) { return clean(value, 2000).toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim(); }
@@ -55,12 +55,16 @@
     new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(parsed).forEach(function (part) { parts[part.type] = part.value; });
     return Date.parse(parts.year + '-' + parts.month + '-' + parts.day) / 86400000;
   }
+  function isChapterEvent(event) {
+    var title=clean(event && event.title,400);
+    return Boolean(title) && !nonChapterPatterns.some(function(pattern){return pattern.test(title);});
+  }
   function photoTitle(item, history, overrides) {
     var manual = clean(overrides[item.id], 150);
     if (manual) return manual;
     var day = easternDay(item.takenAt), closest = 2, matches = [];
     if (day !== null) history.forEach(function (event) {
-      if (!event || event.cancelled === true || /^(cancelled|canceled)$/i.test(event.status || '')) return;
+      if (!event || !isChapterEvent(event) || event.cancelled === true || /^(cancelled|canceled)$/i.test(event.status || '')) return;
       var eventDay = easternDay(event.start);
       if (eventDay === null) return;
       var distance = Math.abs(day - eventDay);
@@ -85,7 +89,7 @@
     if (matching) ranked = ranked.filter(function (entry) { return entry.score > 0; });
     ranked.sort(function (a, b) { return (matching ? b.score - a.score : 0) || b.time - a.time || Number(a.item.order || 0) - Number(b.item.order || 0) || a.index - b.index; });
     return { matching: !!matching, cards: ranked.slice(0, 3).map(function (entry) {
-      var card = { title: entry.title, text: clean(entry.item.summary || entry.item.caption || entry.item.category), url: safeURL(kind === 'instagram' ? entry.item.permalink : data.albumUrl, kind === 'instagram' ? instagramURL : pages + 'pictures/') };
+      var card = { id:clean(entry.item.id,300) || clean(entry.item.thumbnailUrl || entry.item.imageUrl || entry.item.permalink,1000), detailAvailable:Boolean(clean(entry.item.summary || entry.item.caption)), title: entry.title, text: clean(entry.item.summary || entry.item.caption || entry.item.category), url: safeURL(kind === 'instagram' ? entry.item.permalink : data.albumUrl, kind === 'instagram' ? instagramURL : pages + 'pictures/') };
       var image = imageFor(entry.item, kind);
       if (image) card.image = image;
       return card;
@@ -212,7 +216,7 @@
       var updated = data.checkedAt || data.updatedAt || data.generatedAt;
       var cards;
       if (kind === 'events') {
-        cards = rows.filter(function (e) { if (!e || e.cancelled === true || /^(cancelled|canceled)$/i.test(e.status || '') || !date(e.start) || !date(e.end || e.start) || date(e.end || e.start).getTime() < Date.now()) return false;
+        cards = rows.filter(function (e) { if (!e || !isChapterEvent(e) || e.cancelled === true || /^(cancelled|canceled)$/i.test(e.status || '') || !date(e.start) || !date(e.end || e.start) || date(e.end || e.start).getTime() < Date.now()) return false;
           var dayParts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(date(e.start));
           var parts = {}; dayParts.forEach(function (p) { parts[p.type] = p.value; });
           var day = parts.year + '-' + parts.month + '-' + parts.day;
@@ -223,9 +227,10 @@
           if (options.company && !(selected ? selected.aliases.some(function(a){return mentions(words,a);}) : mentions(words,options.company))) return false;
           if (options.eventType) {
             var type = options.eventType.toLowerCase();
+            var declared=clean(e.eventType,60).toLowerCase();
             var vocabulary = eventTypes[type];
             var classified = Array.isArray(vocabulary) && vocabulary.some(function (keyword) { return mentions(words, keyword); });
-            if (!(classified || type === 'company' && knownCompany(words))) return false;
+            if (!(declared===type || classified || type === 'company' && knownCompany(words))) return false;
           }
           return true; }).sort(function (a, b) { return date(a.start) - date(b.start); }).slice(0, 3).map(function (e) {
           var when = date(e.start).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric', ...(e.allDay ? {} : { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) });
@@ -236,7 +241,7 @@
         cards = media.cards;
       }
       var labels = { events: 'Google Calendar · hourly snapshot', instagram: 'Instagram · snapshot every 6 hours', gallery: 'Public Google Photos · daily snapshot' };
-      var value = result(cards.length ? (kind === 'events' ? 'Upcoming events in Eastern Time.' : (media.matching ? 'Closest matches from public chapter updates.' : 'Latest public chapter updates.')) : (kind === 'events' && (options.dateRange || options.eventType || options.company) ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : 'No public updates are available in this snapshot.'), cards, updated, labels[kind]);
+      var value = result(cards.length ? (kind === 'events' ? 'Upcoming chapter events in Eastern Time.' : (media.matching ? 'Closest matches from public chapter updates.' : 'Latest public chapter updates.')) : (kind === 'events' && (options.dateRange || options.eventType || options.company) ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : 'No public updates are available in this snapshot.'), cards, updated, labels[kind]);
       if (!cards.length && kind !== 'events') value.cards = [{ title: 'Open the source', text: 'See current public updates.', url: kind === 'instagram' ? instagramURL : kind === 'gallery' ? safeURL(data.albumUrl, pages + 'pictures/') : pages + 'calendar/' }];
       var maximumAge = kind === 'events' ? 3 * 3600000 : kind === 'instagram' ? 18 * 3600000 : 3 * 86400000;
       if (!value.updatedAt || Date.now() - date(value.updatedAt) > maximumAge) { value.stale = true; value.text += ' This snapshot may be out of date; open the source for current details.'; }
@@ -276,6 +281,7 @@
           eventTypes[type] = options.eventTypes[type].filter(function (keyword) { return typeof keyword === 'string' && keyword.trim(); }).slice(0, 100).map(function (keyword) { return clean(keyword, 100); });
         });
       }
+      if(options.eventRules && Array.isArray(options.eventRules.nonChapterTitlePatterns)){nonChapterPatterns=options.eventRules.nonChapterTitlePatterns.slice(0,50).map(function(pattern){try{return typeof pattern==='string'?new RegExp(pattern,'i'):null;}catch(_){return null;}}).filter(Boolean);}
       if (Array.isArray(options.companies)) {
         companies = options.companies.filter(function (company) { return company && typeof company.id === 'string' && typeof company.name === 'string'; }).slice(0, 100).map(function (company) {
           return {id: clean(company.id, 100), aliases: [company.name].concat(Array.isArray(company.aliases) ? company.aliases : []).filter(function (alias) { return typeof alias === 'string' && alias.trim().length >= 2; }).map(function (alias) { return clean(alias, 100); })};

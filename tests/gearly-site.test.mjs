@@ -92,3 +92,13 @@ test('anonymous page fetch is cached, rejects unsafe URLs and bounds payload siz
   api.clearCache();
   await assert.rejects(api.loadPage('https://org.osu.edu/asme/join/', { ...options, fetch: async () => response('x'.repeat(2097153)) }), /size limit/);
 });
+
+
+test('sponsorship options read actual prices and custom option and benefits',async()=>{
+ const html=await fs.readFile(new URL('../Sponsor ASME Page.html',import.meta.url),'utf8');
+ const result=api.parseSponsorship(doc(html));
+ assert.deepEqual(result.tiers.map(t=>t.price),['$250','$500','$1,000','$2,500','$5,000',"Let's Talk"]);
+ assert.ok(result.tiers.every(t=>t.perks.length));
+ const changed=doc(html);changed.querySelector('.sponsor-tier-price').textContent='$300';
+ assert.equal(api.parseSponsorship(changed).tiers[0].price,'$300');
+});

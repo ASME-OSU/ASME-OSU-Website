@@ -19,7 +19,7 @@ function setup(responses) {
     return { ok: true, text: async () => typeof body === 'string' ? body : JSON.stringify(body) };
   }};
   vm.runInNewContext(code, context);
-  context.GearlyLive.configure(Object.assign({}, fixtureConfig, siteData.meta, {eventTypes: siteData.eventTypes || fixtureConfig.eventTypes}));
+  context.GearlyLive.configure(Object.assign({}, fixtureConfig, siteData.meta, {eventRules: siteData.eventRules, eventTypes: siteData.eventTypes || fixtureConfig.eventTypes}));
   return { api: context.GearlyLive, requests };
 }
 const gviz = (rows, labels = []) => '/*O_o*/\ngoogle.visualization.Query.setResponse(' + JSON.stringify({ status: 'ok', table: { cols: labels.map(label => ({label})), rows: rows.map(values => ({ c: values.map(v => ({v})) })) } }) + ');';
@@ -216,4 +216,12 @@ test('unconfigured adapter does not request any implicit feed or sheet',async()=
   vm.runInNewContext(code,context);
   for(const kind of ['member','leaderboard','points','gallery','instagram','events']) assert.equal((await context.GearlyLive.load(kind)).cards.length,0);
   assert.equal(requests,0);
+});
+
+
+test('academic dates do not consume the three chapter results and generic info sessions are not company events',async()=>{
+ const events=[{title:'Final Exams',start:'2099-01-01'},{title:'Autumn Break',start:'2099-01-02'},{title:'MATLAB Info Session',start:'2099-01-03'},...['Social event','Workshop','Company recruiting'].map((title,i)=>({title,start:'2099-01-0'+(i+4)}))];
+ const {api}=setup([{events},{events}]);
+ assert.deepEqual(Array.from((await api.load('events')).cards,c=>c.title),['MATLAB Info Session','Social event','Workshop']);
+ assert.deepEqual(Array.from((await api.load('events',{eventType:'company'})).cards,c=>c.title),['Company recruiting']);
 });
