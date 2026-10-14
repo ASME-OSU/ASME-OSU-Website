@@ -289,3 +289,5 @@ After the PR is merged and GitHub Pages has deployed, append `Gearly Embed.html`
 ### Gearly v2 development
 
 Version 2.0.0 adds query-selected inline public photos and LIVE-gated public member-name lookup. Names and image payloads are not stored in session history. See `docs/gearly-v2.md` for staged PRs and quality measurements. The production WordPress embed remains unchanged until the chapter reviews and merges the v2 PRs.
+
+Gearly v2 also routes registered sections, reads current and historical officers from the live Leadership page, and offers a prefilled team email draft on uncertain answers. It discovers public pages and derives sponsors/FAQ copy with offline snapshots. Four stacked PRs separate these changes; none deploys to WordPress automatically. Run all required checks with `npm ci`, `npm run build`, `npm run check`, `npm test`, and `npm run test:gearly`. The corpus runner reports frozen, independent holdout, and v2 suites; `--no-idf` disables optional weighting for measurement. Use `npm run preview:gearly` with `?qa=member` for a clearly marked fabricated candidate-choice fixture.

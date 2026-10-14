@@ -1,10 +1,9 @@
 /* Public data only. Never query the member system or execute a JSONP response. */
 (function (root) {
   'use strict';
-  var baseURL = 'https://asme-osu.github.io/ASME-OSU-Website/';
-  var sheet = 'https://docs.google.com/spreadsheets/d/1otAJV_pDkj6xWCVBHbhXPq99sT9L33ZFOdQU59uKXLg/gviz/tq';
+  var baseURL = '', sheet = '', pages = '', instagramURL = '', contactEmail = '';
+  var eventTypes = Object.create(null);
   var cache = Object.create(null), pending = Object.create(null), ttl = 60000;
-  var pages = 'https://org.osu.edu/asme/';
   var companies = [];
   function words(value) { return clean(value, 2000).toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim(); }
   function mentions(text, alias) { var a=words(alias); return a && (' '+words(text)+' ').includes(' '+a+' '); }
@@ -86,7 +85,7 @@
     if (matching) ranked = ranked.filter(function (entry) { return entry.score > 0; });
     ranked.sort(function (a, b) { return (matching ? b.score - a.score : 0) || b.time - a.time || Number(a.item.order || 0) - Number(b.item.order || 0) || a.index - b.index; });
     return { matching: !!matching, cards: ranked.slice(0, 3).map(function (entry) {
-      var card = { title: entry.title, text: clean(entry.item.summary || entry.item.caption || entry.item.category), url: safeURL(kind === 'instagram' ? entry.item.permalink : data.albumUrl, kind === 'instagram' ? 'https://www.instagram.com/asmeohiostate/' : pages + 'pictures/') };
+      var card = { title: entry.title, text: clean(entry.item.summary || entry.item.caption || entry.item.category), url: safeURL(kind === 'instagram' ? entry.item.permalink : data.albumUrl, kind === 'instagram' ? instagramURL : pages + 'pictures/') };
       var image = imageFor(entry.item, kind);
       if (image) card.image = image;
       return card;
@@ -133,7 +132,11 @@
       return missing;
     }
     var row = matches[0];
-    var breakdown = EVENT_TYPES.map(function (type) { var count = Number(cell(row.raw, type.column)); return Number.isFinite(count) && count > 0 ? type.label + ': ' + count : ''; }).filter(Boolean);
+    var breakdown = EVENT_TYPES.map(function (type) {
+      var count = Number(cell(row.raw, type.column));
+      var label = row.labels && clean(row.labels[type.column], 100) || type.label;
+      return Number.isFinite(count) && count > 0 ? label + ': ' + count : '';
+    }).filter(Boolean);
     var text = row.points + ' points · ' + row.events + ' events' + (row.period ? ' · ' + row.period : '') + (row.tier ? ' · ' + row.tier : '') + (row.topType ? ' · Top event type: ' + row.topType : '') + (breakdown.length ? '. ' + breakdown.join('; ') : '');
     return result('Matched a public leaderboard name; I cannot verify who is asking.', [{ title: row.name + ' · #' + row.rank, text: text, url: pages + 'member-points-page/' }], row.updated, 'Public leaderboard');
   }
@@ -145,7 +148,7 @@
       if (!memberPending) memberPending = table('Leaderboard_Public', 'select A,B,C,D,E,F,G,H,I,J,K,L,M,N,O where B is not null').then(function (rows) {
         memberGeneration++;
         memberRows = rows.map(function (raw, index) {
-          return { raw: raw, selection: 'public-row-' + memberGeneration + '-' + index, rank: Number(cell(raw, 0)), name: clean(cell(raw, 1), 100), period: clean(cell(raw, 2), 100), points: cell(raw, 3) === null ? NaN : Number(cell(raw, 3)), events: Number(cell(raw, 4)) || 0, tier: clean(cell(raw, 5)), updated: cell(raw, 6), topType: clean(cell(raw, 14)) };
+          return { raw: raw, labels: rows.labels, selection: 'public-row-' + memberGeneration + '-' + index, rank: Number(cell(raw, 0)), name: clean(cell(raw, 1), 100), period: clean(cell(raw, 2), 100), points: cell(raw, 3) === null ? NaN : Number(cell(raw, 3)), events: Number(cell(raw, 4)) || 0, tier: clean(cell(raw, 5)), updated: cell(raw, 6), topType: clean(cell(raw, 14)) };
         }).filter(function (row) { return row.name && Number.isFinite(row.points) && row.points >= 0 && Number.isInteger(row.rank) && row.rank > 0; });
         memberTime = Date.now();
         return memberRows;
@@ -167,7 +170,14 @@
         if (gviz) { var match = body.match(/^\s*(?:\/\*[^]*?\*\/\s*)?google\.visualization\.Query\.setResponse\(([^]*)\);?\s*$/); if (!match) throw new Error('Malformed sheet response'); body = match[1]; }
         var data = JSON.parse(body); if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Malformed source');
         if (gviz && (data.status !== 'ok' || !data.table || !Array.isArray(data.table.rows))) throw new Error('Invalid public table');
-        return gviz ? data.table.rows : data;
+        if (gviz) {
+          Object.defineProperty(data.table.rows, 'labels', {
+            value: Array.isArray(data.table.cols) ? data.table.cols.map(function (column) { return column && clean(column.label, 100) || ''; }) : [],
+            enumerable: false
+          });
+          return data.table.rows;
+        }
+        return data;
       }),
       new Promise(function (_, reject) { timer = setTimeout(function () { controller.abort(); reject(new Error('Source timed out')); }, 8000); })
     ]).finally(function () { clearTimeout(timer); });
@@ -213,8 +223,9 @@
           if (options.company && !(selected ? selected.aliases.some(function(a){return mentions(words,a);}) : mentions(words,options.company))) return false;
           if (options.eventType) {
             var type = options.eventType.toLowerCase();
-            var patterns = { social: /\b(social|pickleball|casino|bowling|game night|picnic)\b/, workshop: /\b(workshop|tutorial|training|hands-on)\b/, company: /\b(company|employer|recruiting|recruiter|corporate|information session|info session)\b/, volunteering: /\b(volunteer|volunteering|community service)\b/, competition: /\b(competition|contest|design challenge|robotics competition)\b/, meeting: /\b(meeting|gbm|general body|chapter session)\b/ };
-            if (!patterns[type] || !(patterns[type].test(words) || type === 'company' && knownCompany(words))) return false;
+            var vocabulary = eventTypes[type];
+            var classified = Array.isArray(vocabulary) && vocabulary.some(function (keyword) { return mentions(words, keyword); });
+            if (!(classified || type === 'company' && knownCompany(words))) return false;
           }
           return true; }).sort(function (a, b) { return date(a.start) - date(b.start); }).slice(0, 3).map(function (e) {
           var when = date(e.start).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric', ...(e.allDay ? {} : { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) });
@@ -226,7 +237,7 @@
       }
       var labels = { events: 'Google Calendar · hourly snapshot', instagram: 'Instagram · snapshot every 6 hours', gallery: 'Public Google Photos · daily snapshot' };
       var value = result(cards.length ? (kind === 'events' ? 'Upcoming events in Eastern Time.' : (media.matching ? 'Closest matches from public chapter updates.' : 'Latest public chapter updates.')) : (kind === 'events' && (options.dateRange || options.eventType || options.company) ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : 'No public updates are available in this snapshot.'), cards, updated, labels[kind]);
-      if (!cards.length && kind !== 'events') value.cards = [{ title: 'Open the source', text: 'See current public updates.', url: kind === 'instagram' ? 'https://www.instagram.com/asmeohiostate/' : kind === 'gallery' ? safeURL(data.albumUrl, pages + 'pictures/') : pages + 'calendar/' }];
+      if (!cards.length && kind !== 'events') value.cards = [{ title: 'Open the source', text: 'See current public updates.', url: kind === 'instagram' ? instagramURL : kind === 'gallery' ? safeURL(data.albumUrl, pages + 'pictures/') : pages + 'calendar/' }];
       var maximumAge = kind === 'events' ? 3 * 3600000 : kind === 'instagram' ? 18 * 3600000 : 3 * 86400000;
       if (!value.updatedAt || Date.now() - date(value.updatedAt) > maximumAge) { value.stale = true; value.text += ' This snapshot may be out of date; open the source for current details.'; }
       return value;
@@ -235,7 +246,46 @@
   root.GearlyLive = {
     safeImageURL: safeImageURL,
     EVENT_TYPES: EVENT_TYPES,
-    configure: function (options) { memberRows = null; memberTime = 0; if (options && Array.isArray(options.companies)) { companies=options.companies.filter(function(c){return c && typeof c.id === 'string' && typeof c.name === 'string';}).slice(0,100).map(function(c){return {id:clean(c.id,100),aliases:[c.name].concat(Array.isArray(c.aliases)?c.aliases:[]).filter(function(a){return typeof a === 'string' && a.trim().length >= 2;}).map(function(a){return clean(a,100);})};}); cache=Object.create(null); pending=Object.create(null); } if (options && options.baseURL) { var u = new URL(options.baseURL, root.location && root.location.href); if (!/^https?:$/.test(u.protocol)) throw new Error('Invalid feed base'); baseURL = u.href.replace(/\/?$/, '/'); cache = Object.create(null); pending = Object.create(null); } },
+    configure: function (options) {
+      if (!options || typeof options !== 'object') return;
+      var configuredBase = options.baseURL || options.assetBase;
+      if (configuredBase) {
+        var base = new URL(configuredBase, root.location && root.location.href);
+        if (!/^https?:$/.test(base.protocol) || base.username || base.password) throw new Error('Invalid feed base');
+        baseURL = base.href.replace(/\/?$/, '/');
+      }
+      if (Object.prototype.hasOwnProperty.call(options, 'sheetID')) {
+        if (typeof options.sheetID !== 'string' || !/^[A-Za-z0-9_-]+$/.test(options.sheetID)) throw new Error('Invalid public sheet ID');
+        sheet = 'https://docs.google.com/spreadsheets/d/' + options.sheetID + '/gviz/tq';
+      }
+      if (options.siteBase) {
+        var site = new URL(options.siteBase);
+        if (site.origin !== 'https://org.osu.edu' || !site.pathname.startsWith('/asme/') || site.username || site.password) throw new Error('Invalid public site base');
+        pages = site.href.replace(/\/?$/, '/');
+      }
+      if (Object.prototype.hasOwnProperty.call(options, 'instagramHandle')) {
+        var handle = clean(options.instagramHandle, 31).replace(/^@/, '');
+        if (!/^[A-Za-z0-9._]{1,30}$/.test(handle)) throw new Error('Invalid Instagram handle');
+        instagramURL = safeURL('https://www.instagram.com/' + handle + '/', null);
+      }
+      if (Object.prototype.hasOwnProperty.call(options, 'contactEmail')) contactEmail = clean(options.contactEmail, 150);
+      if (options.eventTypes && typeof options.eventTypes === 'object' && !Array.isArray(options.eventTypes)) {
+        eventTypes = Object.create(null);
+        Object.keys(options.eventTypes).forEach(function (type) {
+          if (!/^[a-z][a-z-]*$/.test(type) || !Array.isArray(options.eventTypes[type])) return;
+          eventTypes[type] = options.eventTypes[type].filter(function (keyword) { return typeof keyword === 'string' && keyword.trim(); }).slice(0, 100).map(function (keyword) { return clean(keyword, 100); });
+        });
+      }
+      if (Array.isArray(options.companies)) {
+        companies = options.companies.filter(function (company) { return company && typeof company.id === 'string' && typeof company.name === 'string'; }).slice(0, 100).map(function (company) {
+          return {id: clean(company.id, 100), aliases: [company.name].concat(Array.isArray(company.aliases) ? company.aliases : []).filter(function (alias) { return typeof alias === 'string' && alias.trim().length >= 2; }).map(function (alias) { return clean(alias, 100); })};
+        });
+      }
+      memberRows = null;
+      memberTime = 0;
+      cache = Object.create(null);
+      pending = Object.create(null);
+    },
     load: function (kind, options) {
       options = options && typeof options === 'object' ? options : {};
       var range = options.dateRange && typeof options.dateRange === 'object' ? options.dateRange : null;
@@ -246,6 +296,7 @@
       normalized.selection = clean(options.selection, 100);
       var key = kind + (kind === 'events' || kind === 'gallery' || kind === 'instagram' ? JSON.stringify(normalized) : '');
       if (!['events', 'leaderboard', 'instagram', 'gallery', 'points', 'member'].includes(kind)) return Promise.resolve(result('This live source is not supported.', [], null, 'Unavailable'));
+      if ((kind === 'member' || kind === 'leaderboard' || kind === 'points') ? !sheet || !pages : !baseURL || !pages || kind === 'instagram' && !instagramURL) return Promise.resolve(result('This public source is temporarily unavailable. Try again shortly or open its website.', [], null, 'Unavailable'));
       if (kind === 'member') return feed(kind, normalized).catch(function () { return result('This public source is temporarily unavailable. Try again shortly or open its website.', [], null, 'Unavailable'); });
       if (cache[key] && Date.now() - cache[key].time < ttl) return Promise.resolve(cache[key].value);
       if (pending[key]) return pending[key];

@@ -52,7 +52,7 @@ test('live leadership uses bounded same-origin fetch, caches, and malformed live
   api.clearCache();
   let count = 0;
   const options = { siteBase: 'https://example.org/chapter/', origin: 'https://example.org', roles, DOMParser: new JSDOM().window.DOMParser,
-    fetch: async (url, init) => { count++; assert.equal(url, 'https://example.org/chapter/leadership/'); assert.equal(init.credentials, 'same-origin'); return { ok: true, text: async () => html }; } };
+    fetch: async (url, init) => { count++; assert.equal(url, 'https://example.org/chapter/leadership/'); assert.equal(init.credentials, 'omit'); return { ok: true, text: async () => html }; } };
   assert.deepEqual(await api.loadLeadership(options), snapshot);
   await api.loadLeadership(options);
   assert.equal(count, 1);

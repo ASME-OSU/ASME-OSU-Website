@@ -35,3 +35,7 @@ Company event classification also recognizes configured verified company registr
 ## V2 public adapter
 
 Cards may include validated `image: {src,alt,width,height}`. Gallery queries rank public metadata and label photos by manual titles, then unambiguous Eastern calendar-date matches from the separate academic-year history feed. Missing history leaves manual/feed labels available. Public `member` requests use `{name}` and optional opaque `{selection}` for exact disambiguation; only public rows are read after the LIVE gate. Typed and matched names are omitted from session storage and debug output.
+
+## V2 public site sources
+
+Leadership, source excerpts, sponsor markup, FAQ markup, and the public page list use anonymous public requests with bounded payloads and timeouts and ten-minute memory caches. No question text is transmitted to WordPress search. Generated officer/site/index files are offline fallbacks. Discovered routes remain restricted to approved HTTPS ASME paths; admin, preview, and excluded confirmation pages are rejected. Constants come from meta; contract checks compare the public sheet identifier and chapter contact/social values with site integration sources.

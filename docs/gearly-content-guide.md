@@ -67,3 +67,7 @@ Baseline comparisons need matching content: `--baseline` uses the prior engine w
 ## Section anchors
 
 Use a descriptive `id` on a public section, or a `data-gearly` attribute when an ID is unavailable. Keep a heading within or next to that section. The generated index prefers `#id`, skips form fields and modal internals, and warns about headings without anchors grouped by page. Those warnings identify markup that must also be updated in WordPress by the chapter. Add vocabulary gaps as examples or synonyms in data rather than code special cases.
+
+## Static versus source-based answers
+
+An intent with `static: true` always uses its editorial answer, even when a live page has a matching FAQ. Joining, dues, newsletter, and GroupMe are intentionally static. Dynamic intents can declare `source: {page,section}`; Gearly quotes source sentences with enough question overlap and retains a generic fallback. Configure event vocabulary, constant values, featured-topic order/labels, excluded page slugs, and exceptional company aliases in data. Company entities and FAQ snapshots are generated from source markup; regenerate them rather than editing the derived lists.

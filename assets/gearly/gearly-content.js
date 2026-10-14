@@ -108,7 +108,7 @@
     });
     try {
       return await Promise.race([timeout, (async function () {
-        var response = await (options.fetch || root.fetch)(url, { signal: controller.signal, credentials: 'same-origin' });
+        var response = await (options.fetch || root.fetch)(url, { signal: controller.signal, credentials: 'omit', redirect:'error' });
         if (!response.ok) throw new Error('Leadership source unavailable');
         if (Number(response.headers?.get('content-length')) > MAX_BYTES) throw new Error('Leadership source too large');
         var text = await response.text();

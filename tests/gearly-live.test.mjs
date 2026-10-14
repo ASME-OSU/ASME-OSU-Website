@@ -2,6 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
+const fixtureConfig = {
+  baseURL: 'https://asme-osu.github.io/ASME-OSU-Website/',
+  sheetID: readFileSync(new URL('../Member Points Integration.js', import.meta.url), 'utf8').match(/var EXPORT_ID = '([^']+)'/)[1],
+  siteBase: 'https://org.osu.edu/asme/',
+  instagramHandle: 'asmeohiostate',
+  eventTypes: {social: ['social', 'pickleball'], workshop: ['workshop'], company: ['company', 'info session'], volunteering: ['volunteering'], competition: ['competition'], meeting: ['meeting']}
+};
+const siteData = JSON.parse(readFileSync(new URL('../assets/gearly/gearly-data.json', import.meta.url), 'utf8'));
 const code = readFileSync(new URL('../assets/gearly/gearly-live.js', import.meta.url), 'utf8');
 function setup(responses) {
   const requests = [];
@@ -10,9 +18,11 @@ function setup(responses) {
     const body = responses.shift(); if (body instanceof Error) throw body;
     return { ok: true, text: async () => typeof body === 'string' ? body : JSON.stringify(body) };
   }};
-  vm.runInNewContext(code, context); return { api: context.GearlyLive, requests };
+  vm.runInNewContext(code, context);
+  context.GearlyLive.configure(Object.assign({}, fixtureConfig, siteData.meta, {eventTypes: siteData.eventTypes || fixtureConfig.eventTypes}));
+  return { api: context.GearlyLive, requests };
 }
-const gviz = rows => '/*O_o*/\ngoogle.visualization.Query.setResponse(' + JSON.stringify({ status: 'ok', table: { rows: rows.map(values => ({ c: values.map(v => ({v})) })) } }) + ');';
+const gviz = (rows, labels = []) => '/*O_o*/\ngoogle.visualization.Query.setResponse(' + JSON.stringify({ status: 'ok', table: { cols: labels.map(label => ({label})), rows: rows.map(values => ({ c: values.map(v => ({v})) })) } }) + ');';
 test('events are upcoming, chronological, Eastern Time, and links are safe', async () => {
   const { api, requests } = setup([{ checkedAt: new Date().toISOString(), events: [
     { title: 'Later', start: '2099-01-02T18:00:00Z', url: 'javascript:alert(1)' },
@@ -168,4 +178,42 @@ test('failed member status checks never return cached totals',async()=>{
   const {api}=setup([gviz([['system_status','LIVE']]),gviz([publicMember('Taylor Example')]),new Error('Status unavailable')]);
   assert.equal((await api.load('member',{name:'Taylor Example'})).cards.length,1);
   assert.equal((await api.load('member',{name:'Taylor Example'})).cards.length,0);
+});
+
+test('configured event vocabulary classifies new phrases without adapter changes',async()=>{
+  const source={checkedAt:new Date().toISOString(),events:[
+    {title:'Laser cutter orientation',start:'2099-01-01T18:00:00Z'},
+    {title:'Laser cutter orientations',start:'2099-01-02T18:00:00Z'},
+    {title:'Technical workshop',start:'2099-01-03T18:00:00Z'}
+  ]};
+  const {api}=setup([source]);api.configure({eventTypes:{workshop:['laser cutter orientation']}});
+  const result=await api.load('events',{eventType:'workshop'});
+  assert.deepEqual(Array.from(result.cards,card=>card.title),['Laser cutter orientation']);
+});
+test('public category labels prefer GViz header labels with per-column fallbacks',async()=>{
+  const labels=Array(15).fill('');labels[7]='Chapter sessions';labels[8]='Community gatherings';
+  const {api}=setup([gviz([['system_status','LIVE']]),gviz([publicMember('Taylor Example')],labels)]);
+  const answer=await api.load('member',{name:'Taylor Example'});
+  assert.match(answer.cards[0].text,/Chapter sessions: 1/);assert.match(answer.cards[0].text,/Community gatherings: 2/);
+  assert.ok(!answer.cards[0].text.includes('General body meetings:'));
+  const fallback=setup([gviz([['system_status','LIVE']]),gviz([publicMember('Taylor Example')],['Rank'])]);
+  assert.match((await fallback.api.load('member',{name:'Taylor Example'})).cards[0].text,/General body meetings: 1/);
+});
+test('configured constants determine public request URLs and partial updates preserve prior settings',async()=>{
+  const {api,requests}=setup([gviz([['system_status','LIVE']]),gviz([publicMember('Taylor Example')]),freshMedia([{title:'Post',permalink:'javascript:unsafe'}])]);
+  api.configure({sheetID:'public_test_sheet',assetBase:'https://asme-osu.github.io/ASME-OSU-Website/',siteBase:'https://org.osu.edu/asme/',contactEmail:'team@example.org',instagramHandle:'example.chapter'});
+  api.configure({eventTypes:{meeting:['chapter assembly']}});
+  await api.load('member',{name:'Taylor Example'});
+  assert.match(requests[0].url,/\/d\/public_test_sheet\/gviz\/tq/);
+  assert.match(requests[1].url,/sheet=Leaderboard_Public/);
+  assert.equal((await api.load('instagram')).cards[0].url,'https://www.instagram.com/example.chapter/');
+  assert.throws(()=>api.configure({sheetID:'id?sheet=Private'}),/Invalid public sheet ID/);
+  assert.throws(()=>api.configure({instagramHandle:'unsafe/path'}),/Invalid Instagram handle/);
+  assert.throws(()=>api.configure({siteBase:'https://evil.example/asme/'}),/Invalid public site base/);
+});
+test('unconfigured adapter does not request any implicit feed or sheet',async()=>{
+  let requests=0;const context={URL,AbortController,Date,setTimeout,clearTimeout,fetch:async()=>{requests++;throw Error('Unexpected request');}};
+  vm.runInNewContext(code,context);
+  for(const kind of ['member','leaderboard','points','gallery','instagram','events']) assert.equal((await context.GearlyLive.load(kind)).cards.length,0);
+  assert.equal(requests,0);
 });
