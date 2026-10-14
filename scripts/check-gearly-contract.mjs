@@ -64,9 +64,26 @@ export async function checkContract(data, readSource) {
       const definitions = Array.isArray(data.eventTypes) ? data.eventTypes : Object.values(data.eventTypes);
       const vocabulary = definitions.flatMap(type => Array.isArray(type) ? type : (type.keywords || type.terms || type.aliases || type.vocabulary || []));
       const normalize = text => String(text || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+      // Use the adapter's bounded, case-insensitive compilation rules.
+      const patterns = Array.isArray(data.eventRules?.nonChapterTitlePatterns)
+        ? data.eventRules.nonChapterTitlePatterns.slice(0, 50).map(pattern => {
+          try { return typeof pattern === 'string' ? new RegExp(pattern, 'i') : null; }
+          catch (_) { return null; }
+        }).filter(Boolean)
+        : [];
+      const companyAliases = (data.entities?.companies || []).flatMap(company =>
+        [company.name, company.id, ...(company.aliases || [])].filter(Boolean)
+      );
       for (const event of calendar.events || []) {
+        if (patterns.some(pattern => pattern.test(event.title || ''))) continue;
         const title = normalize(event.title);
-        if (!vocabulary.some(word => title.includes(normalize(word)))) warnings.push(`Calendar event has no configured event type: ${event.title}`);
+        const companyMatch = companyAliases.some(alias =>
+          (' ' + title + ' ').includes(' ' + normalize(alias) + ' ')
+        );
+        const declaredType = Object.prototype.hasOwnProperty.call(data.eventTypes, event.eventType || '');
+        if (!declaredType && !companyMatch && !vocabulary.some(word => title.includes(normalize(word)))) {
+          warnings.push(`Calendar event has no configured event type: ${event.title}`);
+        }
       }
     } catch (error) {
       if (error.code !== 'ENOENT') warnings.push(`Calendar type check unavailable: ${error.message}`);

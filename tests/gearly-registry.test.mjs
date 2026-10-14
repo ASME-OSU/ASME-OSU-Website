@@ -67,3 +67,20 @@ test('all approved source pages build sections without widening the source allow
   for(const selector of ['#getting-started','#events-calendar','#professional-dev','#forms-admin']) assert.ok(resources.sections.some(section=>section.selector===selector));
   assert.ok(built.warnings.some(warning=>warning.title==='Current Sponsors' && warning.headings.length));
 });
+
+
+test('warnings contain only actionable section headings, excluding cards, past boards, forms, modals and hidden elements', () => {
+  const leadership = {id:'leadership', title:'Leadership', sourceFile:'Leadership Page.html', url:'https://org.osu.edu/asme/leadership/'};
+  const html = '<h1>Leadership</h1><h2>Current Board</h2><h3>Card role</h3><h4>Card name</h4><article class="leader-card"><h2>Leader details</h2></article><div class="lb-past-years"><h2>Past Board</h2></div><div class="lb-year-panel"><h2>Older Board</h2></div><form><h2>Form Heading</h2></form><div role="dialog"><h2>Dialog Heading</h2></div><div class="sponsor-modal"><h2>Modal Heading</h2></div><section hidden><h2>Hidden Heading</h2></section>';
+  assert.deepEqual(buildRecords([leadership], () => html).warnings[0].headings, ['Leadership','Current Board']);
+});
+
+test('requested page anchors are indexed with page prefixes while existing selectors remain available', () => {
+  const data = JSON.parse(fs.readFileSync('assets/gearly/gearly-data.json','utf8'));
+  const records = buildRecords(data.pages, file => fs.readFileSync(file,'utf8')).records;
+  const expected = {about:['about-audiences','about-professional-growth','about-active-network','about-achievement-award','about-involvement-path','about-see-asme'],sponsorship:['sponsor-benefits','sponsor-tiers'],home:['home-get-involved','home-join','home-events','home-leadership','home-whats-next'],join:['join-community','join-faq'],leadership:['leadership-current-board']};
+  for (const [id, names] of Object.entries(expected)) {
+    const record = records.find(record => record.id === id);
+    for (const name of names) assert.ok(record.sections.some(section => section.selector === "[data-gearly='"+name+"']"), id+': '+name);
+  }
+});

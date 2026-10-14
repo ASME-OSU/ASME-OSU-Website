@@ -68,7 +68,11 @@ export function buildRecords(pages, readSource) {
         keywords: Array.from(new Set(title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(/\s+/).filter(word => word.length > 1)))
       });
     }
-    const unanchored = headingNodes.filter(node => !excluded(node) && !coveredHeadings.has(node)).map(node => clean(node.textContent)).filter(Boolean);
+    const unanchored = headingNodes.filter(node => {
+      if (!node.matches('h1,h2') || excluded(node) || coveredHeadings.has(node)) return false;
+      if (page.sourceFile === 'Leadership Page.html' && node.closest('.leader-card,.lb-past-years,.lb-year-panel')) return false;
+      return true;
+    }).map(node => clean(node.textContent)).filter(Boolean);
     if (unanchored.length) warnings.push({pageId: page.id, title: page.title, headings: unanchored});
     const description = [...body.querySelectorAll('p')].map(node => clean(node.textContent)).find(text => text.length > 45) || page.title;
     const record = {id: page.id, title: page.title, url: url.href, description: description.slice(0, 180), keywords: page.keywords, headings, text: clean(body.textContent).slice(0, 14000), sections};

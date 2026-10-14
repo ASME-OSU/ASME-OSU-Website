@@ -675,12 +675,15 @@
         "social events",
         "any social this month",
         "hang out with members",
-        "are there social events this month"
+        "are there social events this month",
+        "any ice skating events",
+        "are there skating events next month"
       ],
       "keywords": {
         "social": 3,
         "socials": 3,
-        "hang out": 3
+        "hang out": 3,
+        "skating": 3
       },
       "negations": [],
       "response": {
@@ -2053,7 +2056,25 @@
         ]
       }
     ],
-    "topics": []
+    "topics": [],
+    "eventTypes": [
+      {
+        "id": "ice-skating",
+        "aliases": [
+          "skating",
+          "ice skating"
+        ]
+      },
+      {
+        "id": "deadline",
+        "aliases": [
+          "deadline",
+          "deadlines",
+          "due date",
+          "fee due"
+        ]
+      }
+    ]
   },
   "events": [],
   "fallback": {
@@ -2158,7 +2179,11 @@
       "casino",
       "bowling",
       "game night",
-      "picnic"
+      "picnic",
+      "skating",
+      "ice skating",
+      "friendsgiving",
+      "sweets with swe"
     ],
     "workshop": [
       "workshop",
@@ -2189,6 +2214,21 @@
       "gbm",
       "general body",
       "chapter session"
+    ],
+    "deadline": [
+      "due date",
+      "deadline",
+      "fee due"
+    ],
+    "academic-support": [
+      "matlab info session",
+      "scheduling",
+      "buckeyelink tour",
+      "study tables"
+    ],
+    "ice-skating": [
+      "ice skating",
+      "skating"
     ]
   },
   "featuredTopics": [
