@@ -31,12 +31,13 @@ STATUS:CANCELLED
 END:VEVENT
 END:VCALENDAR`;
 
-async function generate(ics, previous) {
-  let written, requested;
-  const sandbox = { path, fileURLToPath, Date, console: { log() {}, warn() {} }, fs: { readFile: async () => JSON.stringify(previous), mkdir: async () => {}, writeFile: async (_path, text) => { written = JSON.parse(text); } }, ical: { ...ical, async: { fromURL: async url => { requested = url; return ical.sync.parseICS(ics); } } } };
+async function generate(ics, previous, now) {
+  const Clock = now ? class extends Date { constructor(...args) { super(...(args.length ? args : [now])); } } : Date;
+  let written, history, requested;
+  const sandbox = { path, fileURLToPath, Date: Clock, console: { log() {}, warn() {} }, fs: { readFile: async () => JSON.stringify(previous), mkdir: async () => {}, writeFile: async (_path, text) => { if (_path.endsWith("calendar-history.json")) history = JSON.parse(text); else written = JSON.parse(text); } }, ical: { ...ical, async: { fromURL: async url => { requested = url; return ical.sync.parseICS(ics); } } } };
   vm.runInNewContext(source, sandbox);
   await sandbox.runCalendarGenerator();
-  return { written, requested };
+  return { written, history, requested };
 }
 
 test('production generator uses official public iCal, expands next Fall/Spring with DST, removes canceled/removed events and publishes check/coverage metadata', async () => {
@@ -53,4 +54,58 @@ test('production generator uses official public iCal, expands next Fall/Spring w
   const unchanged = await generate('BEGIN:VCALENDAR\nVERSION:2.0\nEND:VCALENDAR', { events: [], generatedAt: '2025-01-01T00:00:00Z' });
   assert.equal(unchanged.written.generatedAt, '2025-01-01T00:00:00Z');
   assert.ok(unchanged.written.checkedAt > unchanged.written.generatedAt, 'unchanged events still record the actual successful Google check');
+});
+
+
+test('history expands academic-year recurrence without widening existing consumers or exposing descriptions', async () => {
+  const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+UID:weekly
+DTSTART;TZID=America/New_York:20260803T180000
+DTEND;TZID=America/New_York:20260803T190000
+RRULE:FREQ=WEEKLY;COUNT=12
+SUMMARY:Weekly workshop
+LOCATION:Lab
+DESCRIPTION:Do not copy into history
+END:VEVENT
+BEGIN:VEVENT
+UID:old
+DTSTART:20260731T220000Z
+DTEND:20260731T230000Z
+SUMMARY:Previous academic year
+END:VEVENT
+BEGIN:VEVENT
+UID:cancelled
+DTSTART:20260905T220000Z
+DTEND:20260905T230000Z
+SUMMARY:Cancelled event
+STATUS:CANCELLED
+END:VEVENT
+END:VCALENDAR`;
+  const now = '2026-10-14T12:00:00.000Z';
+  const { written, history } = await generate(ics, { events: [] }, now);
+  assert.equal(written.windowStart, '2026-10-07T12:00:00.000Z');
+  assert.equal(written.windowEnd, '2029-08-01T00:00:00.000Z');
+  // The original consumers still receive only the recent/future recurrence instances.
+  assert.deepEqual(Array.from(written.events, event => event.start), [
+    '2026-10-12T22:00:00.000Z', '2026-10-19T22:00:00.000Z'
+  ]);
+  assert.equal(written.events[0].description, '');
+  assert.equal(history.windowStart, '2026-08-01T04:00:00.000Z');
+  assert.equal(history.windowEnd, now);
+  assert.equal(history.events.length, 11);
+  assert.equal(history.events[0].start, '2026-08-03T22:00:00.000Z');
+  assert.ok(history.events.every(event => event.title === 'Weekly workshop' && !('description' in event)));
+  const shared = history.events.find(event => event.id === written.events[0].id);
+  const { description, ...expected } = written.events[0];
+  assert.equal(JSON.stringify(shared), JSON.stringify(expected), 'shared occurrence preserves every existing event field');
+});
+
+test('history academic year rolls over at Eastern August 1', async () => {
+  const empty = 'BEGIN:VCALENDAR\nVERSION:2.0\nEND:VCALENDAR';
+  const before = await generate(empty, { events: [] }, '2026-08-01T03:59:00.000Z');
+  const after = await generate(empty, { events: [] }, '2026-08-01T04:00:00.000Z');
+  assert.equal(before.history.windowStart, '2025-08-01T04:00:00.000Z');
+  assert.equal(after.history.windowStart, '2026-08-01T04:00:00.000Z');
 });

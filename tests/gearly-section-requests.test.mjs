@@ -18,5 +18,5 @@ test('section actions reference approved pages and actual repository selectors',
   const intent=data.intents.find(i=>i.id===id);assert.deepEqual(Array.from(intent.actions,a=>a.selector),selectors);
   for(const action of intent.actions){assert.equal(action.type,'scrollTo');const page=data.pages.find(p=>p.url===action.page);assert.ok(page);const dom=new JSDOM(fs.readFileSync(new URL('../'+page.sourceFile,import.meta.url),'utf8'));assert.ok(dom.window.document.querySelector(action.selector),action.selector);dom.window.close();}
  }
- assert.match(data.intents.find(i=>i.id==='leaderboard').response.text,/cannot identify you/);
+ assert.match(data.intents.find(i=>i.id==='leaderboard').response.text,/look up a name on the public leaderboard/);
 });

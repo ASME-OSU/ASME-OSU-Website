@@ -67,3 +67,14 @@ test('conversation layout keeps suggestions in the feed and toggles launcher wit
  w.Gearly.close();assert.equal(launcher.hidden,false);assert.equal(doc.activeElement,launcher);
  w.Gearly.open();await w.Gearly.ask('join');doc.querySelector('[aria-label="Clear chat"]').click();assert.ok(doc.querySelector('.gearly-welcome'));assert.equal(doc.querySelector('.gearly-chips').parentElement,doc.querySelector('.gearly-messages'));dom.window.close();
 });
+
+test('image cards stay inside typing links, cap images and remove failed assets',async()=>{
+ const seed={...raw,intents:[{id:'gallery',examples:['gallery'],liveSource:'gallery',response:{text:'Photos'}}]};
+ const dom=await start(seed,w=>{w.GearlyLive={load:async()=>({text:'Closest matches',cards:Array.from({length:5},(_,i)=>({title:'Photo '+i,url:'https://org.osu.edu/asme/pictures/',image:{src:'https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/test.webp',alt:'Chapter photo',width:300,height:200}}))})};});
+ await dom.window.Gearly.ask('gallery');const images=dom.window.document.querySelectorAll('.gearly-card img');assert.equal(images.length,3);assert.equal(images[0].loading,'lazy');assert.equal(images[0].getAttribute('width'),'300');images[0].dispatchEvent(new dom.window.Event('error'));assert.equal(dom.window.document.querySelectorAll('.gearly-card img').length,2);assert.ok(!dom.window.sessionStorage.getItem('gearly_state_v1').includes('test.webp'));dom.window.close();
+});
+test('pending member name and exact candidate choice never persist names',async()=>{
+ const seed={...raw,intents:[{id:'my-points',examples:['my points'],liveSource:'member',requires:['memberName'],response:{text:'Name?'}}]};let requests=[];
+ const dom=await start(seed,w=>{w.GearlyLive={load:async(kind,opts)=>{requests.push(opts);return opts.selection?{text:'Public name matched.',cards:[]}:{text:'Which one?',cards:[],candidates:[{label:'Zoë O’Neil · Autumn',name:'Zoë O’Neil',selection:'row:1'}]};}};});
+ const w=dom.window;await w.Gearly.ask('my points');assert.match(w.document.querySelector('.gearly-messages').textContent,/What name is on the leaderboard/);await w.Gearly.ask('Zoë O’Neil');assert.equal(requests[0].name,'Zoë O’Neil');assert.ok(!w.sessionStorage.getItem('gearly_state_v1').includes('Zoë'));assert.ok(!w.sessionStorage.getItem('gearly_state_v1').includes('pendingSlot'));const chip=Array.from(w.document.querySelectorAll('.gearly-chip')).find(e=>e.textContent.includes('Zoë'));chip.click();await new Promise(r=>setTimeout(r,20));assert.equal(requests[1].selection,'row:1');assert.ok(!w.sessionStorage.getItem('gearly_state_v1').includes('Zoë'));dom.window.close();
+});

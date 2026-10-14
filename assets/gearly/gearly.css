@@ -83,3 +83,5 @@ html[data-theme=dark] .gearly-root,body.dark-mode .gearly-root { --gearly-bg:#20
 html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#242228; --gearly-muted:#737078; --gearly-soft:#fff3f5; --gearly-border:#e9e1e4; --gearly-hero:#fff3f5; --gearly-hero-border:#efb9c3; --gearly-link:#c8102e; color-scheme:light; }
 @media(max-width:480px) { .gearly-root,.gearly-panel { right:12px; bottom:12px; }.gearly-header { gap:4px; }.gearly-subtitle { font-size:10px; } }
 @media(prefers-reduced-motion:reduce) { .gearly-root * { animation:none!important; transition:none!important; transform:none!important; scroll-behavior:auto!important; } }
+
+.gearly-card img{display:block;width:100%;height:auto;aspect-ratio:4/3;max-height:180px;object-fit:cover;border-radius:10px;background:var(--asme-surface,#f5eeee);margin-bottom:8px}
