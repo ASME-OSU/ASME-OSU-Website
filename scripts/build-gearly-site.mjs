@@ -5,16 +5,18 @@ import { JSDOM } from 'jsdom';
 import '../assets/gearly/gearly-site.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const [sponsors, join, rawData] = await Promise.all([
+const [sponsors, join, rawData, sponsorship] = await Promise.all([
   fs.readFile(path.join(root, 'Current Sponsors Page.html'), 'utf8'),
   fs.readFile(path.join(root, 'Join Page.html'), 'utf8'),
-  fs.readFile(path.join(root, 'assets/gearly/gearly-data.json'), 'utf8')
+  fs.readFile(path.join(root, 'assets/gearly/gearly-data.json'), 'utf8'),
+  fs.readFile(path.join(root,'Sponsor ASME Page.html'),'utf8')
 ]);
 const data = JSON.parse(rawData);
 const parsed = globalThis.GearlySite.parseSponsors(new JSDOM(sponsors).window.document, data.companyAliases);
 const faqs = globalThis.GearlySite.parseFAQs(new JSDOM(join).window.document);
 if (!parsed.companies.length || !faqs.length) throw new Error('Gearly site sources have no companies or FAQs');
-const expected = JSON.stringify({ companies: parsed.companies, tiers: parsed.tiers, faqs }, null, 2) + '\n';
+const sponsorshipOptions=globalThis.GearlySite.parseSponsorship(new JSDOM(sponsorship).window.document);
+const expected = JSON.stringify({ companies: parsed.companies, tiers: parsed.tiers, faqs, sponsorship:sponsorshipOptions }, null, 2) + '\n';
 const output = path.join(root, 'assets/gearly/gearly-site.json');
 // Vocabulary remains usable by the offline matcher; names are always derived
 // from the page rather than maintained as a second editorial company list.

@@ -71,6 +71,7 @@ test('site snapshot builder uses shared source parsers and check mode catches ch
     await fs.copyFile(new URL('../scripts/build-gearly-site.mjs', import.meta.url), path.join(directory, 'scripts/build-gearly-site.mjs'));
     await fs.copyFile(new URL('../assets/gearly/gearly-site.js', import.meta.url), path.join(directory, 'assets/gearly/gearly-site.js'));
     await fs.writeFile(path.join(directory, 'Current Sponsors Page.html'), '<section><h2>Supporters</h2><article class="sponsor-card"><h3>Example Engines, LLC</h3></article></section>');
+    await fs.writeFile(path.join(directory, 'Sponsor ASME Page.html'), '<section data-gearly="sponsor-tiers"></section>');
     await fs.writeFile(path.join(directory, 'Join Page.html'), '<section data-gearly="join-faq"><details class="join-faq-item"><summary>Can I join?</summary><p>Students are welcome.</p></details></section>');
     await fs.writeFile(path.join(directory, 'assets/gearly/gearly-data.json'), JSON.stringify({ companyAliases: { 'Example Engines, LLC': ['EE'] } }));
     const run = (...args) => spawnSync(process.execPath, [path.join(directory, 'scripts/build-gearly-site.mjs'), ...args], { encoding: 'utf8' });

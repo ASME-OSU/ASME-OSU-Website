@@ -2171,9 +2171,7 @@
       "employer",
       "recruiting",
       "recruiter",
-      "corporate",
-      "information session",
-      "info session"
+      "corporate"
     ],
     "volunteering": [
       "volunteer",
@@ -2218,5 +2216,20 @@
   "handoffTopics": [
     "reimbursement",
     "travel policy"
-  ]
+  ],
+  "eventRules": {
+    "nonChapterTitlePatterns": [
+      "\\bclasses begin\\b",
+      "\\benrollment census date\\b",
+      "\\blast day of regularly scheduled\\b",
+      "\\bfinal exams?\\b",
+      "^(?:autumn|spring|thanksgiving) break\\b",
+      "\\bacademic winter recess\\b",
+      "\\bcommencement\\b",
+      "\\binitial fee due date\\b",
+      "\\bnew year'?s day\\b",
+      "\\bno classes\\b",
+      "\\boffices (?:closed|open)\\b"
+    ]
+  }
 }

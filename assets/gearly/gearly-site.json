@@ -574,5 +574,77 @@
       "question": "How can I get more involved beyond attending events?",
       "answer": "Come to meetings, talk with current officers, volunteer at events, and watch for leadership applications or committee opportunities. We are always looking for students who want to help shape the chapter."
     }
-  ]
+  ],
+  "sponsorship": {
+    "intro": "All tiers are annual. Custom arrangements including equipment donations, project funding, and multi-year partnerships are always welcome.",
+    "tiers": [
+      {
+        "name": "Gray",
+        "price": "$250",
+        "perks": [
+          "Logo on ASME website",
+          "Logo in email newsletter",
+          "Certificate of sponsorship"
+        ]
+      },
+      {
+        "name": "Scarlet",
+        "price": "$500",
+        "perks": [
+          "Logo on ASME website",
+          "Logo in email newsletter",
+          "Certificate of sponsorship",
+          "Full resume book access"
+        ]
+      },
+      {
+        "name": "Buckeye",
+        "price": "$1,000",
+        "perks": [
+          "Logo on ASME website",
+          "Logo in email newsletter",
+          "Social media post (1×)",
+          "Sponsored info session",
+          "Priority job posting",
+          "Company tour opportunity"
+        ]
+      },
+      {
+        "name": "Block O",
+        "price": "$2,500",
+        "perks": [
+          "Top website placement",
+          "Featured newsletter logo",
+          "Premier banner placement",
+          "Named award or scholarship",
+          "Custom workshop",
+          "Exec lunch with reps"
+        ]
+      },
+      {
+        "name": "Brutus",
+        "price": "$5,000",
+        "perks": [
+          "Exclusive top website spot",
+          "Newsletter feature article",
+          "Networking Night title sponsor",
+          "Dedicated recruiting pipeline",
+          "First right of refusal",
+          "All Block O benefits"
+        ]
+      },
+      {
+        "name": "Custom",
+        "price": "Let's Talk",
+        "perks": [
+          "Design challenge sponsorship",
+          "Equipment / tool donations",
+          "Multi-year partnership rates",
+          "Project or capstone funding",
+          "Conference travel support",
+          "Fully in-kind contributions"
+        ]
+      }
+    ]
+  }
 }

@@ -110,3 +110,19 @@ test('public leaderboard card names are excluded from persisted followup state',
  const dom=await start(seed,w=>{w.GearlyLive={load:async()=>({text:'Current public standings.',cards:[{title:'#1 Avery Example',url:'https://org.osu.edu/asme/member-points-page/'}]})};});
  await dom.window.Gearly.ask('leaderboard');assert.ok(dom.window.document.querySelector('.gearly-card').textContent.includes('Avery'));const saved=dom.window.sessionStorage.getItem('gearly_state_v1');assert.ok(!saved.includes('Avery'));assert.deepEqual(JSON.parse(saved).lastResult,[]);dom.window.close();
 });
+
+
+test('exact live photo followups preserve the list and select the second identity',async()=>{
+ const cards=[1,2,3].map(n=>({id:'photo-'+n,title:'Photo '+n,text:'Description '+n,url:'https://org.osu.edu/asme/pictures/'}));
+ const dom=await start({...raw,intents:[{id:'gallery',examples:['photos'],liveSource:'gallery',response:{text:'Photos'}}]},w=>{w.GearlyLive={configure:()=>{},load:async()=>({text:'Photos',cards})};});
+ const w=dom.window;await w.Gearly.ask('photos');await w.Gearly.ask('Tell me more');await w.Gearly.ask('Show me the second one');
+ assert.match(Array.from(w.document.querySelectorAll('.gearly-bot')).at(-1).textContent,/Photo 2/);
+ assert.equal(JSON.parse(w.sessionStorage.getItem('gearly_state_v1')).lastResult.length,3);
+ assert.ok(!w.sessionStorage.getItem('gearly_state_v1').includes('photo-2'));
+ w.document.querySelector('[aria-label="Clear chat"]').click();await w.Gearly.ask('Show me the second one');assert.match(Array.from(w.document.querySelectorAll('.gearly-bot')).at(-1).textContent,/first so I have a list/);dom.window.close();
+});
+test('check my points prompts for a name before requesting public data',async()=>{
+ let calls=0;const dom=await start(config,w=>{w.GearlyLive={configure:()=>{},load:async()=>{calls++;return {text:'No public match',cards:[]};}};});
+ await dom.window.Gearly.ask('Check my points.');assert.equal(calls,0);assert.match(dom.window.document.querySelector('.gearly-messages').textContent,/What name is on the leaderboard/);
+ await dom.window.Gearly.ask('Matthew Allen');assert.equal(calls,1);assert.ok(!dom.window.sessionStorage.getItem('gearly_state_v1').includes('Matthew'));dom.window.close();
+});

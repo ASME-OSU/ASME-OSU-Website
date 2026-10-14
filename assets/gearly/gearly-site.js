@@ -102,6 +102,13 @@
     });
     return { companies: companies, tiers: Array.from(groups, function (entry) { return { name: entry[0], companies: entry[1] }; }) };
   }
+  function parseSponsorship(documentOrHtml, options) {
+    var doc=documentFor(documentOrHtml,options), table=doc.querySelector('[data-gearly="sponsor-tiers"]');
+    if(!table)return {intro:'',tiers:[]};
+    var header=table.closest('section')?.querySelector('.sponsor-section-header p');
+    var tiers=Array.from(table.querySelectorAll('.sponsor-tier-card')).map(function(card){return {name:clean(card.querySelector('.sponsor-tier-name')?.textContent),price:clean(card.querySelector('.sponsor-tier-price')?.textContent),perks:Array.from(card.querySelectorAll('.sponsor-tier-perks li')).map(function(perk){return readable(perk);}).filter(Boolean)};}).filter(function(tier){return tier.name;});
+    return {intro:header?readable(header):'',tiers:tiers};
+  }
   function parseFAQs(documentOrHtml, options) {
     var doc = documentFor(documentOrHtml, options);
     return Array.from(doc.querySelectorAll('[data-gearly="join-faq"] details.join-faq-item')).map(function (item) {
@@ -160,5 +167,5 @@
       return Object.assign({}, enrichment, { id: enrichment.id || slug, sourceId: row.id, slug: slug, title: title, url: url.href, snippet: snippet, sections: enrichment.sections || [] });
     }).filter(Boolean);
   }
-  return { parseSponsors: parseSponsors, parseFAQs: parseFAQs, loadPage: loadPage, extract: extract, discoverPages: discoverPages, clearCache: function () { cache.clear(); } };
+  return { parseSponsors: parseSponsors, parseSponsorship:parseSponsorship,parseFAQs: parseFAQs, loadPage: loadPage, extract: extract, discoverPages: discoverPages, clearCache: function () { cache.clear(); } };
 });
