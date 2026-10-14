@@ -104,3 +104,9 @@ test('configured reimbursement and travel handoff topics never quote a policy',a
  const seed={...raw,handoffTopics:['reimbursement','travel policy']};let extracted=0;
  const dom=await start(seed,w=>{w.GearlySite={extract:()=>{extracted++;return {matched:true,text:'Invented policy'};}};});await dom.window.Gearly.ask('what is the travel policy');const text=Array.from(dom.window.document.querySelectorAll('.gearly-bot')).pop().textContent;assert.match(text,/Ask the ASME team/);assert.ok(!text.includes('Invented policy'));assert.equal(extracted,0);dom.window.close();
 });
+
+test('public leaderboard card names are excluded from persisted followup state',async()=>{
+ const seed={...raw,intents:[{id:'leaderboard',examples:['leaderboard'],liveSource:'leaderboard',response:{text:'Standings'}}]};
+ const dom=await start(seed,w=>{w.GearlyLive={load:async()=>({text:'Current public standings.',cards:[{title:'#1 Avery Example',url:'https://org.osu.edu/asme/member-points-page/'}]})};});
+ await dom.window.Gearly.ask('leaderboard');assert.ok(dom.window.document.querySelector('.gearly-card').textContent.includes('Avery'));const saved=dom.window.sessionStorage.getItem('gearly_state_v1');assert.ok(!saved.includes('Avery'));assert.deepEqual(JSON.parse(saved).lastResult,[]);dom.window.close();
+});
