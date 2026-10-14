@@ -1,0 +1,249 @@
+{
+  "cases": [
+    {
+      "category": "photos-event",
+      "text": "show photographs of the casino social",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "category": "photos-event",
+      "text": "can I see ice cream social pictures",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "category": "photos-event",
+      "text": "do you have photos of the build night",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "category": "photos-recency",
+      "text": "show chapter pics from last week",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "category": "social-posts",
+      "text": "find the latest Instagram posts",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "category": "social-posts",
+      "text": "show an Instagram photo from a workshop",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "category": "member-name",
+      "text": "what are my points",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "member-name",
+      "text": "my rank",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "member-name",
+      "text": "points for Avery Example",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "member-name",
+      "text": "Avery Example's points",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "member-name",
+      "text": "how many points does Avery Example have",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "member-name",
+      "text": "look up Avery Example",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "member-name",
+      "text": "find Avery Example",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "member-name",
+      "text": "where is Avery Example on the leaderboard",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "career-section",
+      "text": "career guide",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "category": "career-section",
+      "text": "help with resumes",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "category": "career-section",
+      "text": "where can I learn about internships",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "category": "sponsor-section",
+      "text": "tell me about sponsorship options",
+      "intent": "sponsorship",
+      "kind": "answer"
+    },
+    {
+      "category": "sponsor-section",
+      "text": "show sponsorship levels",
+      "intent": "sponsorship",
+      "kind": "answer"
+    },
+    {
+      "category": "resource-section",
+      "text": "member resources",
+      "intent": "resources",
+      "kind": "answer"
+    },
+    {
+      "category": "resource-section",
+      "text": "where are the chapter admin forms",
+      "intent": "resources",
+      "kind": "answer"
+    },
+    {
+      "category": "public-points",
+      "text": "how are points earned",
+      "intent": "member-points",
+      "kind": "answer"
+    },
+    {
+      "category": "public-points",
+      "text": "show public leaderboard",
+      "intent": "leaderboard",
+      "kind": "answer"
+    },
+    {
+      "category": "unsure",
+      "text": "what is the weather in Antarctica",
+      "kind": "fallback"
+    },
+    {
+      "category": "unsure",
+      "text": "explain the travel reimbursement policy",
+      "kind": "fallback"
+    },
+    {
+      "category": "unsure",
+      "text": "how do I get reimbursed for a trip",
+      "kind": "fallback"
+    },
+    {
+      "category": "unsure",
+      "text": "what password unlocks the Instagram account",
+      "kind": "fallback"
+    },
+    {
+      "category": "unsure",
+      "text": "will the chapter pay for my flight",
+      "kind": "fallback"
+    },
+    {
+      "category": "officer-live",
+      "text": "who is the treasurer",
+      "intent": "treasurer",
+      "kind": "answer"
+    },
+    {
+      "category": "officer-live",
+      "text": "who handles the website",
+      "intent": "webmaster",
+      "kind": "answer"
+    }
+  ],
+  "scripts": [
+    {
+      "name": "event timeframe context",
+      "turns": [
+        {
+          "text": "upcoming events",
+          "intent": "events",
+          "kind": "answer"
+        },
+        {
+          "text": "what about next week",
+          "intent": "events",
+          "kind": "answer",
+          "entities": {
+            "dateRange": "next-week"
+          }
+        }
+      ]
+    },
+    {
+      "name": "event detail followup",
+      "turns": [
+        {
+          "text": "upcoming events",
+          "intent": "events",
+          "kind": "answer"
+        },
+        {
+          "text": "tell me more",
+          "intent": "events",
+          "kind": "answer"
+        },
+        {
+          "text": "when is it",
+          "intent": "events",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "photo detail followup",
+      "turns": [
+        {
+          "text": "show chapter photos",
+          "intent": "gallery",
+          "kind": "answer"
+        },
+        {
+          "text": "show me that",
+          "intent": "gallery",
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "name": "career section followup",
+      "turns": [
+        {
+          "text": "career guide",
+          "intent": "careers",
+          "kind": "answer"
+        },
+        {
+          "text": "tell me more",
+          "intent": "careers",
+          "kind": "answer"
+        }
+      ]
+    }
+  ]
+}

@@ -357,7 +357,8 @@
         "how do i join",
         "become a member",
         "sign me up",
-        "join asme"
+        "join asme",
+        "could you help me become part of the chapter"
       ],
       "keywords": {
         "join": 3,
@@ -399,7 +400,8 @@
         "is there a membership fee",
         "how much are dues",
         "does joining cost money",
-        "is the chapter free"
+        "is the chapter free",
+        "please explain whether membership is free"
       ],
       "keywords": {
         "dues": 3,
@@ -433,7 +435,9 @@
         "can other majors join",
         "do i need to be mechanical engineering",
         "can a freshman join",
-        "who can join"
+        "who can join",
+        "are electrical engineering students welcome",
+        "could graduate students participate"
       ],
       "keywords": {
         "majors": 3,
@@ -543,7 +547,8 @@
         "show upcoming events",
         "pull up upcoming events",
         "take me to the upcoming events section",
-        "bring up the event schedule"
+        "bring up the event schedule",
+        "what chapter events are coming soon"
       ],
       "keywords": {
         "events": 3,
@@ -651,7 +656,8 @@
         "upcoming socials",
         "social events",
         "any social this month",
-        "hang out with members"
+        "hang out with members",
+        "are there social events this month"
       ],
       "keywords": {
         "social": 3,
@@ -685,7 +691,8 @@
         "technical workshops",
         "upcoming workshops",
         "workshop schedule",
-        "technical talks"
+        "technical talks",
+        "any technical workshops next month"
       ],
       "keywords": {
         "workshop": 3,
@@ -850,7 +857,8 @@
         "who is the treasurer",
         "contact the treasurer",
         "treasurer email",
-        "who is aliyah beitzel"
+        "who is aliyah beitzel",
+        "which officer manages chapter finances"
       ],
       "keywords": {
         "treasurer": 3,
@@ -943,7 +951,9 @@
         "who is the webmaster",
         "contact the webmaster",
         "webmaster email",
-        "who is margaux rasalan"
+        "who is margaux rasalan",
+        "who maintains this website",
+        "who handles the website"
       ],
       "keywords": {
         "webmaster": 3,
@@ -1078,7 +1088,11 @@
         "tell me more about the sponsorship options",
         "sponsor tiers",
         "sponsorship levels",
-        "how do I sponsor ASME"
+        "how do I sponsor ASME",
+        "compare the sponsor contribution tiers",
+        "what benefits do chapter sponsors receive",
+        "tell me about sponsorship options",
+        "show sponsorship levels"
       ],
       "keywords": {
         "sponsorship": 3,
@@ -1118,7 +1132,10 @@
         "member resources",
         "useful student links",
         "where are resources",
-        "resources page"
+        "resources page",
+        "take me to the useful member tools",
+        "where are administrative forms for members",
+        "where are the chapter admin forms"
       ],
       "keywords": {
         "resources": 3,
@@ -1171,7 +1188,9 @@
         "how do points work",
         "check my points",
         "member points",
-        "my attendance total"
+        "my attendance total",
+        "show the scoring categories",
+        "how are points earned"
       ],
       "keywords": {
         "points": 3,
@@ -1214,7 +1233,9 @@
         "take me to the leaderboard",
         "open the rankings table",
         "show my public rank",
-        "where can I check my ranking"
+        "where can I check my ranking",
+        "public leaderboard standings",
+        "show public leaderboard"
       ],
       "keywords": {
         "leaderboard": 3,
@@ -1317,7 +1338,12 @@
         "handshake",
         "internships",
         "job search",
-        "professional development"
+        "professional development",
+        "where should I start my internship search",
+        "show the professional development guide",
+        "resume guidance for students",
+        "help with resumes",
+        "where can I learn about internships"
       ],
       "keywords": {
         "careers": 3,
@@ -1389,7 +1415,11 @@
         "latest instagram posts",
         "instagram updates",
         "show instagram",
-        "insta"
+        "insta",
+        "view the chapter Instagram feed",
+        "recent Instagram updates please",
+        "find the latest Instagram posts",
+        "show an Instagram photo from a workshop"
       ],
       "keywords": {
         "instagram": 3,
@@ -1459,7 +1489,14 @@
         "photo album",
         "show me casino night photos",
         "pictures from the ice cream social",
-        "any photos from last week"
+        "any photos from last week",
+        "bring up the chapter photo collection",
+        "pictures from a social gathering",
+        "photos from technical workshops",
+        "show photographs of the casino social",
+        "can I see ice cream social pictures",
+        "do you have photos of the build night",
+        "show chapter pics from last week"
       ],
       "keywords": {
         "gallery": 3,

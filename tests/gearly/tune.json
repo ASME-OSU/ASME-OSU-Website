@@ -1,0 +1,191 @@
+{
+  "cases": [
+    {
+      "category": "polite-introduction",
+      "text": "could you help me become part of the chapter",
+      "intent": "join",
+      "kind": "answer"
+    },
+    {
+      "category": "polite-introduction",
+      "text": "please explain whether membership is free",
+      "intent": "dues",
+      "kind": "answer"
+    },
+    {
+      "category": "membership-eligibility",
+      "text": "are electrical engineering students welcome",
+      "intent": "eligibility",
+      "kind": "answer"
+    },
+    {
+      "category": "membership-eligibility",
+      "text": "could graduate students participate",
+      "intent": "eligibility",
+      "kind": "answer"
+    },
+    {
+      "category": "career-language",
+      "text": "where should I start my internship search",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "category": "career-language",
+      "text": "show the professional development guide",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "category": "career-language",
+      "text": "resume guidance for students",
+      "intent": "careers",
+      "kind": "answer"
+    },
+    {
+      "category": "sponsorship-language",
+      "text": "compare the sponsor contribution tiers",
+      "intent": "sponsorship",
+      "kind": "answer"
+    },
+    {
+      "category": "sponsorship-language",
+      "text": "what benefits do chapter sponsors receive",
+      "intent": "sponsorship",
+      "kind": "answer"
+    },
+    {
+      "category": "resource-language",
+      "text": "take me to the useful member tools",
+      "intent": "resources",
+      "kind": "answer"
+    },
+    {
+      "category": "resource-language",
+      "text": "where are administrative forms for members",
+      "intent": "resources",
+      "kind": "answer"
+    },
+    {
+      "category": "photo-language",
+      "text": "bring up the chapter photo collection",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "category": "photo-language",
+      "text": "pictures from a social gathering",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "category": "photo-language",
+      "text": "photos from technical workshops",
+      "intent": "gallery",
+      "kind": "answer"
+    },
+    {
+      "category": "social-language",
+      "text": "view the chapter Instagram feed",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "category": "social-language",
+      "text": "recent Instagram updates please",
+      "intent": "instagram",
+      "kind": "answer"
+    },
+    {
+      "category": "points-language",
+      "text": "check Rowan Sample points",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "points-language",
+      "text": "how many points have I earned",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "points-language",
+      "text": "rank for Rowan Sample",
+      "intent": "my-points",
+      "kind": "answer"
+    },
+    {
+      "category": "points-language",
+      "text": "show the scoring categories",
+      "intent": "member-points",
+      "kind": "answer"
+    },
+    {
+      "category": "points-language",
+      "text": "public leaderboard standings",
+      "intent": "leaderboard",
+      "kind": "answer"
+    },
+    {
+      "category": "calendar-language",
+      "text": "what chapter events are coming soon",
+      "intent": "events",
+      "kind": "answer"
+    },
+    {
+      "category": "calendar-language",
+      "text": "are there social events this month",
+      "intent": "social-events",
+      "kind": "answer"
+    },
+    {
+      "category": "calendar-language",
+      "text": "any technical workshops next month",
+      "intent": "workshops",
+      "kind": "answer"
+    },
+    {
+      "category": "officer-language",
+      "text": "which officer manages chapter finances",
+      "intent": "treasurer",
+      "kind": "answer"
+    },
+    {
+      "category": "officer-language",
+      "text": "who maintains this website",
+      "intent": "webmaster",
+      "kind": "answer"
+    },
+    {
+      "category": "unknown-policy",
+      "text": "are conference hotel costs reimbursed",
+      "kind": "fallback"
+    },
+    {
+      "category": "unknown-policy",
+      "text": "how does travel insurance work",
+      "kind": "fallback"
+    },
+    {
+      "category": "unknown-domain",
+      "text": "can you calculate my chemistry grade",
+      "kind": "fallback"
+    },
+    {
+      "category": "unknown-domain",
+      "text": "what is tomorrow\u2019s stock market forecast",
+      "kind": "fallback"
+    },
+    {
+      "category": "negated-request",
+      "text": "do not open the gallery",
+      "kind": "fallback"
+    },
+    {
+      "category": "negated-request",
+      "text": "never contact an officer",
+      "kind": "fallback"
+    }
+  ],
+  "scripts": []
+}
