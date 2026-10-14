@@ -1164,7 +1164,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Use the Member Points dashboard to find your personal total. Attendance is checked against the roster, event, and duplicates. I cannot identify your private record in chat.",
+        "text": "I can look up a name on the public leaderboard or show the member points page.",
         "cards": [
           {
             "title": "Member Points",
@@ -1215,7 +1215,7 @@
         "college ranking"
       ],
       "response": {
-        "text": "I’ll check the public leaderboard. To find your own standing, use the public name search on Member Points; I cannot identify you or infer your rank.",
+        "text": "I can look up a name on the public leaderboard or show the member points page.",
         "cards": [
           {
             "title": "Member Points",
@@ -1375,7 +1375,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I’ll check the published Instagram feed. For the latest source posts, visit @asmeohiostate.",
+        "text": "I can check the public Instagram snapshot.",
         "cards": [
           {
             "title": "Gallery",
@@ -1434,7 +1434,10 @@
         "show photos",
         "chapter gallery",
         "pictures from events",
-        "photo album"
+        "photo album",
+        "show me casino night photos",
+        "pictures from the ice cream social",
+        "any photos from last week"
       ],
       "keywords": {
         "gallery": 3,
@@ -1444,7 +1447,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I’ll check the published gallery feed.",
+        "text": "I can check the public chapter photo feed.",
         "cards": [
           {
             "title": "Gallery",
@@ -1601,6 +1604,25 @@
       ],
       "related": [],
       "requires": []
+    },
+    {
+      "id": "my-points",
+      "label": "My points",
+      "examples": [
+        "what are my points",
+        "how many points do I have",
+        "my rank",
+        "where do I rank",
+        "points for a member"
+      ],
+      "keywords": {},
+      "requires": [
+        "memberName"
+      ],
+      "liveSource": "member",
+      "response": {
+        "text": "What name is on the leaderboard? I'll look it up."
+      }
     }
   ],
   "entities": {

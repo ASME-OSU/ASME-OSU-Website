@@ -9,6 +9,7 @@ const ICAL_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent
 const EMBED_URL = `https://calendar.google.com/calendar/embed?src=${encodeURIComponent(CALENDAR_ID)}&ctz=${encodeURIComponent(TIME_ZONE)}`;
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = path.join(ROOT, "data", "calendar-events.json");
+const HISTORY_OUTPUT = path.join(ROOT, "data", "calendar-history.json");
 
 function text(value) {
   if (value === undefined || value === null) return "";
@@ -105,12 +106,7 @@ function serializeInstance(instance, base) {
   };
 }
 
-async function main() {
-  const parsed = await ical.async.fromURL(ICAL_URL);
-  const now = new Date();
-  const from = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-  const academicStartYear = now.getUTCMonth() >= 7 ? now.getUTCFullYear() : now.getUTCFullYear() - 1;
-  const to = new Date(Date.UTC(academicStartYear + 3, 7, 1));
+function collectEvents(parsed, from, to) {
   const events = [];
 
   for (const component of Object.values(parsed)) {
@@ -139,8 +135,17 @@ async function main() {
     }
   }
 
-  const uniqueEvents = Array.from(new Map(events.map((event) => [event.id, event])).values())
+  return Array.from(new Map(events.map((event) => [event.id, event])).values())
     .sort((a, b) => a.start.localeCompare(b.start));
+}
+
+async function main() {
+  const parsed = await ical.async.fromURL(ICAL_URL);
+  const now = new Date();
+  const from = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const academicStartYear = now.getUTCMonth() >= 7 ? now.getUTCFullYear() : now.getUTCFullYear() - 1;
+  const to = new Date(Date.UTC(academicStartYear + 3, 7, 1));
+  const uniqueEvents = collectEvents(parsed, from, to);
   const next = {
     generatedAt: new Date().toISOString(),
     checkedAt: new Date().toISOString(),
@@ -166,6 +171,33 @@ async function main() {
   await fs.mkdir(path.dirname(OUTPUT), { recursive: true });
   await fs.writeFile(OUTPUT, `${JSON.stringify(next, null, 2)}\n`);
   console.log(`Wrote ${uniqueEvents.length} upcoming events to data/calendar-events.json.`);
+
+  // Photo matching needs older events without changing the homepage/calendar window.
+  const eastern = Object.fromEntries(new Intl.DateTimeFormat("en-US", {
+    timeZone: TIME_ZONE, year: "numeric", month: "numeric"
+  }).formatToParts(now).map((part) => [part.type, part.value]));
+  const historyYear = Number(eastern.year) - (Number(eastern.month) < 8 ? 1 : 0);
+  // August 1 is always daylight time in America/New_York.
+  const historyFrom = new Date(Date.UTC(historyYear, 7, 1, 4));
+  const history = {
+    ...next,
+    generatedAt: new Date().toISOString(),
+    windowStart: historyFrom.toISOString(),
+    windowEnd: now.toISOString(),
+    events: collectEvents(parsed, historyFrom, now)
+      .filter((event) => inWindow(event.start, historyFrom, now))
+      .map(({ description, ...event }) => event)
+  };
+  try {
+    const previous = JSON.parse(await fs.readFile(HISTORY_OUTPUT, "utf8"));
+    if (JSON.stringify(previous.events) === JSON.stringify(history.events)) {
+      history.generatedAt = previous.generatedAt || history.generatedAt;
+    }
+  } catch (error) {
+    if (error.code !== "ENOENT") console.warn(`Existing calendar history could not be read: ${error.message}`);
+  }
+  await fs.writeFile(HISTORY_OUTPUT, `${JSON.stringify(history, null, 2)}\n`);
+  console.log(`Wrote ${history.events.length} historical events to data/calendar-history.json.`);
 }
 
 await main();
