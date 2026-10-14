@@ -1,0 +1,578 @@
+{
+  "companies": [
+    {
+      "id": "pratt-whitney",
+      "name": "Pratt & Whitney | An RTX Business",
+      "aliases": [
+        "Pratt & Whitney | An RTX Business",
+        "Pratt & Whitney",
+        "pratt and whitney",
+        "pratt whitney",
+        "Pratt and Whitney",
+        "Pratt Whitney",
+        "RTX"
+      ],
+      "tier": "Brutus"
+    },
+    {
+      "id": "ppg",
+      "name": "PPG",
+      "aliases": [
+        "PPG",
+        "ppg"
+      ],
+      "tier": "Brutus"
+    },
+    {
+      "id": "hrst",
+      "name": "HRST, Inc.",
+      "aliases": [
+        "HRST, Inc.",
+        "HRST",
+        "hrst"
+      ],
+      "tier": "Gray"
+    },
+    {
+      "id": "osu-college-of-engineering",
+      "name": "OSU College of Engineering",
+      "aliases": [
+        "OSU College of Engineering",
+        "osu college of engineering"
+      ],
+      "tier": "Block O"
+    },
+    {
+      "id": "exxonmobil",
+      "name": "ExxonMobil",
+      "aliases": [
+        "ExxonMobil",
+        "exxonmobil"
+      ],
+      "tier": "Buckeye"
+    },
+    {
+      "id": "lyondellbasell",
+      "name": "LyondellBasell",
+      "aliases": [
+        "LyondellBasell",
+        "lyondellbasell"
+      ],
+      "tier": "Buckeye"
+    },
+    {
+      "id": "cmta",
+      "name": "CMTA",
+      "aliases": [
+        "CMTA",
+        "cmta"
+      ],
+      "tier": "Buckeye"
+    },
+    {
+      "id": "caterpillar",
+      "name": "Caterpillar",
+      "aliases": [
+        "Caterpillar",
+        "caterpillar"
+      ],
+      "tier": "Scarlet"
+    },
+    {
+      "id": "asme-sections",
+      "name": "ASME Sections",
+      "aliases": [
+        "ASME Sections",
+        "asme sections"
+      ],
+      "tier": "Scarlet"
+    },
+    {
+      "id": "r-r-i-c-associates",
+      "name": "R.R.I.C. Associates",
+      "aliases": [
+        "R.R.I.C. Associates",
+        "r r i c associates"
+      ],
+      "tier": "Scarlet"
+    },
+    {
+      "id": "nasa",
+      "name": "NASA",
+      "aliases": [
+        "NASA",
+        "nasa"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "u-s-navy",
+      "name": "U.S. Navy",
+      "aliases": [
+        "U.S. Navy",
+        "u s navy"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "general-motors",
+      "name": "General Motors",
+      "aliases": [
+        "General Motors",
+        "general motors"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "ford",
+      "name": "Ford",
+      "aliases": [
+        "Ford",
+        "ford"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "honda",
+      "name": "Honda",
+      "aliases": [
+        "Honda",
+        "honda"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "spacex",
+      "name": "SpaceX",
+      "aliases": [
+        "SpaceX",
+        "spacex"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "honeywell",
+      "name": "Honeywell",
+      "aliases": [
+        "Honeywell",
+        "honeywell"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "ge-aerospace",
+      "name": "GE Aerospace",
+      "aliases": [
+        "GE Aerospace",
+        "ge aerospace"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "ge-vernova",
+      "name": "GE Vernova",
+      "aliases": [
+        "GE Vernova",
+        "ge vernova"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "timken",
+      "name": "Timken",
+      "aliases": [
+        "Timken",
+        "timken"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "mathworks",
+      "name": "MathWorks",
+      "aliases": [
+        "MathWorks",
+        "mathworks"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "lincoln-electric",
+      "name": "Lincoln Electric",
+      "aliases": [
+        "Lincoln Electric",
+        "lincoln electric"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "cdm-smith",
+      "name": "CDM Smith",
+      "aliases": [
+        "CDM Smith",
+        "cdm smith"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "m-c-dean",
+      "name": "M.C. Dean",
+      "aliases": [
+        "M.C. Dean",
+        "m c dean"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "young-pipeline-professionals-usa",
+      "name": "Young Pipeline Professionals USA",
+      "aliases": [
+        "Young Pipeline Professionals USA",
+        "young pipeline professionals usa"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "energy-infrastructure-council",
+      "name": "Energy Infrastructure Council",
+      "aliases": [
+        "Energy Infrastructure Council",
+        "energy infrastructure council"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "priority-designs",
+      "name": "Priority Designs",
+      "aliases": [
+        "Priority Designs",
+        "priority designs"
+      ],
+      "tier": "Company Partners"
+    },
+    {
+      "id": "tsmc",
+      "name": "TSMC",
+      "aliases": [
+        "TSMC",
+        "tsmc"
+      ],
+      "tier": "Company Partners"
+    }
+  ],
+  "tiers": [
+    {
+      "name": "Brutus",
+      "companies": [
+        {
+          "id": "pratt-whitney",
+          "name": "Pratt & Whitney | An RTX Business",
+          "aliases": [
+            "Pratt & Whitney | An RTX Business",
+            "Pratt & Whitney",
+            "pratt and whitney",
+            "pratt whitney",
+            "Pratt and Whitney",
+            "Pratt Whitney",
+            "RTX"
+          ],
+          "tier": "Brutus"
+        },
+        {
+          "id": "ppg",
+          "name": "PPG",
+          "aliases": [
+            "PPG",
+            "ppg"
+          ],
+          "tier": "Brutus"
+        }
+      ]
+    },
+    {
+      "name": "Gray",
+      "companies": [
+        {
+          "id": "hrst",
+          "name": "HRST, Inc.",
+          "aliases": [
+            "HRST, Inc.",
+            "HRST",
+            "hrst"
+          ],
+          "tier": "Gray"
+        }
+      ]
+    },
+    {
+      "name": "Block O",
+      "companies": [
+        {
+          "id": "osu-college-of-engineering",
+          "name": "OSU College of Engineering",
+          "aliases": [
+            "OSU College of Engineering",
+            "osu college of engineering"
+          ],
+          "tier": "Block O"
+        }
+      ]
+    },
+    {
+      "name": "Buckeye",
+      "companies": [
+        {
+          "id": "exxonmobil",
+          "name": "ExxonMobil",
+          "aliases": [
+            "ExxonMobil",
+            "exxonmobil"
+          ],
+          "tier": "Buckeye"
+        },
+        {
+          "id": "lyondellbasell",
+          "name": "LyondellBasell",
+          "aliases": [
+            "LyondellBasell",
+            "lyondellbasell"
+          ],
+          "tier": "Buckeye"
+        },
+        {
+          "id": "cmta",
+          "name": "CMTA",
+          "aliases": [
+            "CMTA",
+            "cmta"
+          ],
+          "tier": "Buckeye"
+        }
+      ]
+    },
+    {
+      "name": "Scarlet",
+      "companies": [
+        {
+          "id": "caterpillar",
+          "name": "Caterpillar",
+          "aliases": [
+            "Caterpillar",
+            "caterpillar"
+          ],
+          "tier": "Scarlet"
+        },
+        {
+          "id": "asme-sections",
+          "name": "ASME Sections",
+          "aliases": [
+            "ASME Sections",
+            "asme sections"
+          ],
+          "tier": "Scarlet"
+        },
+        {
+          "id": "r-r-i-c-associates",
+          "name": "R.R.I.C. Associates",
+          "aliases": [
+            "R.R.I.C. Associates",
+            "r r i c associates"
+          ],
+          "tier": "Scarlet"
+        }
+      ]
+    },
+    {
+      "name": "Company Partners",
+      "companies": [
+        {
+          "id": "nasa",
+          "name": "NASA",
+          "aliases": [
+            "NASA",
+            "nasa"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "u-s-navy",
+          "name": "U.S. Navy",
+          "aliases": [
+            "U.S. Navy",
+            "u s navy"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "general-motors",
+          "name": "General Motors",
+          "aliases": [
+            "General Motors",
+            "general motors"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "ford",
+          "name": "Ford",
+          "aliases": [
+            "Ford",
+            "ford"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "honda",
+          "name": "Honda",
+          "aliases": [
+            "Honda",
+            "honda"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "spacex",
+          "name": "SpaceX",
+          "aliases": [
+            "SpaceX",
+            "spacex"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "honeywell",
+          "name": "Honeywell",
+          "aliases": [
+            "Honeywell",
+            "honeywell"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "ge-aerospace",
+          "name": "GE Aerospace",
+          "aliases": [
+            "GE Aerospace",
+            "ge aerospace"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "ge-vernova",
+          "name": "GE Vernova",
+          "aliases": [
+            "GE Vernova",
+            "ge vernova"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "timken",
+          "name": "Timken",
+          "aliases": [
+            "Timken",
+            "timken"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "mathworks",
+          "name": "MathWorks",
+          "aliases": [
+            "MathWorks",
+            "mathworks"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "lincoln-electric",
+          "name": "Lincoln Electric",
+          "aliases": [
+            "Lincoln Electric",
+            "lincoln electric"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "cdm-smith",
+          "name": "CDM Smith",
+          "aliases": [
+            "CDM Smith",
+            "cdm smith"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "m-c-dean",
+          "name": "M.C. Dean",
+          "aliases": [
+            "M.C. Dean",
+            "m c dean"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "young-pipeline-professionals-usa",
+          "name": "Young Pipeline Professionals USA",
+          "aliases": [
+            "Young Pipeline Professionals USA",
+            "young pipeline professionals usa"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "energy-infrastructure-council",
+          "name": "Energy Infrastructure Council",
+          "aliases": [
+            "Energy Infrastructure Council",
+            "energy infrastructure council"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "priority-designs",
+          "name": "Priority Designs",
+          "aliases": [
+            "Priority Designs",
+            "priority designs"
+          ],
+          "tier": "Company Partners"
+        },
+        {
+          "id": "tsmc",
+          "name": "TSMC",
+          "aliases": [
+            "TSMC",
+            "tsmc"
+          ],
+          "tier": "Company Partners"
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Do I need to be a mechanical engineering major to join?",
+      "answer": "No. ASME OSU is especially focused on mechanical engineering, but students from related engineering majors and anyone interested in design, manufacturing, robotics, energy, aerospace, automotive, or professional development are welcome."
+    },
+    {
+      "question": "Is there a membership fee?",
+      "answer": "Joining the ASME OSU newsletter and GroupMe is free. ASME National membership is separate: freshmen and first-year students receive their first year free when they enter their expected graduation date during signup. Other students can use code SECTION at checkout for 25% off. Any costs for special events, trips, or optional activities will be shared ahead of time."
+    },
+    {
+      "question": "What kinds of events does ASME OSU host?",
+      "answer": "We host company info sessions, technical talks, networking events, socials, resume and career development events, leadership opportunities, and occasional collaborations with other student organizations."
+    },
+    {
+      "question": "Can first-year students join?",
+      "answer": "Yes. First-year students are encouraged to join early. ASME is a great way to meet other students, learn about engineering careers, and start building connections before internship recruiting begins."
+    },
+    {
+      "question": "How will I hear about upcoming events?",
+      "answer": "Sign up for the email newsletter for full announcements and join the ASME OSU GroupMe for quick reminders and day-of updates. You can also check the events calendar and follow ASME OSU on social media."
+    },
+    {
+      "question": "How can I get more involved beyond attending events?",
+      "answer": "Come to meetings, talk with current officers, volunteer at events, and watch for leadership applications or committee opportunities. We are always looking for students who want to help shape the chapter."
+    }
+  ]
+}

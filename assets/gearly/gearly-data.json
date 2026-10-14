@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": 1,
+    "version": 2,
     "contactEmail": "asme@osu.edu",
     "siteBase": "https://org.osu.edu/asme/",
     "logEndpoint": "",
@@ -12,7 +12,10 @@
       "happy": "sprites/gearly-happy-head.webp",
       "confused": "sprites/gearly-surprised-head.webp"
     },
-    "enabled": true
+    "enabled": true,
+    "sheetID": "1otAJV_pDkj6xWCVBHbhXPq99sT9L33ZFOdQU59uKXLg",
+    "assetBase": "https://asme-osu.github.io/ASME-OSU-Website/",
+    "instagramHandle": "asmeohiostate"
   },
   "synonyms": {
     "meeting": [
@@ -392,7 +395,8 @@
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "dues",
@@ -427,7 +431,8 @@
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "eligibility",
@@ -447,7 +452,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Students from related engineering majors and anyone interested in engineering or professional development are welcome; first-year students are encouraged to join.",
+        "text": "The Join page explains who can participate in the chapter. Open its eligibility FAQ for current details.",
         "cards": [
           {
             "title": "Join ASME",
@@ -460,10 +465,21 @@
         {
           "type": "navigate",
           "url": "https://org.osu.edu/asme/join/"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/join/",
+          "selector": "[data-gearly=\"join-faq\"]",
+          "title": "Join ASME",
+          "label": "Show Join ASME"
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "source": {
+        "page": "https://org.osu.edu/asme/join/",
+        "section": "[data-gearly=\"join-faq\"]"
+      }
     },
     {
       "id": "newsletter",
@@ -501,7 +517,8 @@
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "groupme",
@@ -534,7 +551,8 @@
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "events",
@@ -736,7 +754,7 @@
       },
       "negations": [],
       "response": {
-        "text": "The About page describes workshops, projects, and competitions. Check current announcements or ask the board about active opportunities; I do not have a verified project roster.",
+        "text": "The About page describes chapter project opportunities and hands-on activities.",
         "cards": [
           {
             "title": "About ASME OSU",
@@ -749,10 +767,21 @@
         {
           "type": "navigate",
           "url": "https://org.osu.edu/asme/aboutus/"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/aboutus/",
+          "selector": ".about-experience",
+          "title": "About ASME OSU",
+          "label": "Show About ASME OSU"
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "source": {
+        "page": "https://org.osu.edu/asme/aboutus/",
+        "section": ".about-experience"
+      }
     },
     {
       "id": "officer",
@@ -782,10 +811,21 @@
         {
           "type": "navigate",
           "url": "https://org.osu.edu/asme/leadership/"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/leadership/",
+          "selector": ".lb-current-year",
+          "title": "Leadership",
+          "label": "Show Leadership"
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "source": {
+        "page": "https://org.osu.edu/asme/leadership/",
+        "section": ".lb-current-year"
+      }
     },
     {
       "id": "president",
@@ -1024,13 +1064,8 @@
       },
       "negations": [],
       "response": {
-        "text": "Email the chapter at asme@osu.edu. Officer contacts are on the Leadership page.",
-        "cards": [
-          {
-            "title": "Leadership",
-            "url": "https://org.osu.edu/asme/leadership/"
-          }
-        ],
+        "text": "You can contact the ASME team using the public email link.",
+        "cards": [],
         "chips": []
       },
       "actions": [
@@ -1044,7 +1079,8 @@
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "sponsors",
@@ -1060,7 +1096,7 @@
       },
       "negations": [],
       "response": {
-        "text": "The Current Sponsors page lists chapter supporters and industry partners. PPG is listed as a Brutus sponsor.",
+        "text": "The Sponsors page lists our current supporters and their sponsorship tiers.",
         "cards": [
           {
             "title": "Current Sponsors",
@@ -1073,10 +1109,21 @@
         {
           "type": "navigate",
           "url": "https://org.osu.edu/asme/current-sponsors/"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/current-sponsors/",
+          "selector": ".asme-sponsors-page",
+          "title": "Current Sponsors",
+          "label": "Show Current Sponsors"
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "source": {
+        "page": "https://org.osu.edu/asme/current-sponsors/",
+        "section": ".asme-sponsors-page"
+      }
     },
     {
       "id": "sponsorship",
@@ -1101,7 +1148,7 @@
       },
       "negations": [],
       "response": {
-        "text": "The Sponsor ASME page explains partnership options. Contact asme@osu.edu to discuss support.",
+        "text": "The Sponsor ASME page explains current partnership options. The ASME team can answer sponsorship questions.",
         "cards": [
           {
             "title": "Sponsor ASME",
@@ -1121,10 +1168,21 @@
           "selector": "[data-gearly='sponsor-tiers']",
           "title": "Sponsorship levels",
           "label": "Show sponsorship levels"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/sponsor-asme/",
+          "selector": "[data-gearly=\"sponsor-tiers\"]",
+          "title": "Sponsor ASME",
+          "label": "Show Sponsor ASME"
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "source": {
+        "page": "https://org.osu.edu/asme/sponsor-asme/",
+        "section": "[data-gearly=\"sponsor-tiers\"]"
+      }
     },
     {
       "id": "resources",
@@ -1354,7 +1412,7 @@
       },
       "negations": [],
       "response": {
-        "text": "Member Resources links to career resources, including Ohio State Handshake. Company events also offer employer connections.",
+        "text": "The Member Resources page collects career tools and professional development links.",
         "cards": [
           {
             "title": "Member Resources",
@@ -1374,7 +1432,11 @@
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "source": {
+        "page": "https://org.osu.edu/asme/member-resources/",
+        "section": "#professional-dev"
+      }
     },
     {
       "id": "about",
@@ -1391,7 +1453,7 @@
       },
       "negations": [],
       "response": {
-        "text": "ASME OSU is Ohio State’s American Society of Mechanical Engineers student chapter, connecting students through professional development, industry events, and community.",
+        "text": "The About page explains the chapter mission, activities, and community.",
         "cards": [
           {
             "title": "About ASME OSU",
@@ -1404,10 +1466,21 @@
         {
           "type": "navigate",
           "url": "https://org.osu.edu/asme/aboutus/"
+        },
+        {
+          "type": "scrollTo",
+          "page": "https://org.osu.edu/asme/aboutus/",
+          "selector": ".about-hero",
+          "title": "About ASME OSU",
+          "label": "Show About ASME OSU"
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "source": {
+        "page": "https://org.osu.edu/asme/aboutus/",
+        "section": ".about-hero"
+      }
     },
     {
       "id": "instagram",
@@ -1461,13 +1534,8 @@
       },
       "negations": [],
       "response": {
-        "text": "Follow @asmeohiostate on Instagram and use GroupMe for quick chapter reminders.",
-        "cards": [
-          {
-            "title": "Gallery",
-            "url": "https://org.osu.edu/asme/pictures/"
-          }
-        ],
+        "text": "The chapter Instagram has public announcements and updates.",
+        "cards": [],
         "chips": []
       },
       "actions": [
@@ -1478,7 +1546,8 @@
       ],
       "related": [],
       "requires": [],
-      "liveSource": "instagram"
+      "liveSource": "instagram",
+      "static": true
     },
     {
       "id": "gallery",
@@ -1548,7 +1617,8 @@
       },
       "actions": [],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "thanks",
@@ -1572,7 +1642,8 @@
       },
       "actions": [],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "goodbye",
@@ -1594,7 +1665,8 @@
       },
       "actions": [],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "identity",
@@ -1617,7 +1689,8 @@
       },
       "actions": [],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "tour",
@@ -1662,7 +1735,8 @@
         }
       ],
       "related": [],
-      "requires": []
+      "requires": [],
+      "static": true
     },
     {
       "id": "my-points",
@@ -1749,50 +1823,239 @@
     ],
     "companies": [
       {
-        "id": "ppg",
-        "name": "PPG",
-        "aliases": []
-      },
-      {
         "id": "pratt-whitney",
-        "name": "Pratt & Whitney",
+        "name": "Pratt & Whitney | An RTX Business",
         "aliases": [
+          "Pratt & Whitney | An RTX Business",
+          "Pratt & Whitney",
+          "pratt and whitney",
+          "pratt whitney",
           "Pratt and Whitney",
           "Pratt Whitney",
           "RTX"
         ]
       },
       {
+        "id": "ppg",
+        "name": "PPG",
+        "aliases": [
+          "PPG",
+          "ppg"
+        ]
+      },
+      {
         "id": "hrst",
         "name": "HRST, Inc.",
         "aliases": [
-          "HRST"
+          "HRST, Inc.",
+          "HRST",
+          "hrst"
+        ]
+      },
+      {
+        "id": "osu-college-of-engineering",
+        "name": "OSU College of Engineering",
+        "aliases": [
+          "OSU College of Engineering",
+          "osu college of engineering"
+        ]
+      },
+      {
+        "id": "exxonmobil",
+        "name": "ExxonMobil",
+        "aliases": [
+          "ExxonMobil",
+          "exxonmobil"
+        ]
+      },
+      {
+        "id": "lyondellbasell",
+        "name": "LyondellBasell",
+        "aliases": [
+          "LyondellBasell",
+          "lyondellbasell"
+        ]
+      },
+      {
+        "id": "cmta",
+        "name": "CMTA",
+        "aliases": [
+          "CMTA",
+          "cmta"
+        ]
+      },
+      {
+        "id": "caterpillar",
+        "name": "Caterpillar",
+        "aliases": [
+          "Caterpillar",
+          "caterpillar"
+        ]
+      },
+      {
+        "id": "asme-sections",
+        "name": "ASME Sections",
+        "aliases": [
+          "ASME Sections",
+          "asme sections"
+        ]
+      },
+      {
+        "id": "r-r-i-c-associates",
+        "name": "R.R.I.C. Associates",
+        "aliases": [
+          "R.R.I.C. Associates",
+          "r r i c associates"
+        ]
+      },
+      {
+        "id": "nasa",
+        "name": "NASA",
+        "aliases": [
+          "NASA",
+          "nasa"
+        ]
+      },
+      {
+        "id": "u-s-navy",
+        "name": "U.S. Navy",
+        "aliases": [
+          "U.S. Navy",
+          "u s navy"
+        ]
+      },
+      {
+        "id": "general-motors",
+        "name": "General Motors",
+        "aliases": [
+          "General Motors",
+          "general motors"
+        ]
+      },
+      {
+        "id": "ford",
+        "name": "Ford",
+        "aliases": [
+          "Ford",
+          "ford"
+        ]
+      },
+      {
+        "id": "honda",
+        "name": "Honda",
+        "aliases": [
+          "Honda",
+          "honda"
+        ]
+      },
+      {
+        "id": "spacex",
+        "name": "SpaceX",
+        "aliases": [
+          "SpaceX",
+          "spacex"
+        ]
+      },
+      {
+        "id": "honeywell",
+        "name": "Honeywell",
+        "aliases": [
+          "Honeywell",
+          "honeywell"
+        ]
+      },
+      {
+        "id": "ge-aerospace",
+        "name": "GE Aerospace",
+        "aliases": [
+          "GE Aerospace",
+          "ge aerospace"
+        ]
+      },
+      {
+        "id": "ge-vernova",
+        "name": "GE Vernova",
+        "aliases": [
+          "GE Vernova",
+          "ge vernova"
+        ]
+      },
+      {
+        "id": "timken",
+        "name": "Timken",
+        "aliases": [
+          "Timken",
+          "timken"
+        ]
+      },
+      {
+        "id": "mathworks",
+        "name": "MathWorks",
+        "aliases": [
+          "MathWorks",
+          "mathworks"
+        ]
+      },
+      {
+        "id": "lincoln-electric",
+        "name": "Lincoln Electric",
+        "aliases": [
+          "Lincoln Electric",
+          "lincoln electric"
+        ]
+      },
+      {
+        "id": "cdm-smith",
+        "name": "CDM Smith",
+        "aliases": [
+          "CDM Smith",
+          "cdm smith"
+        ]
+      },
+      {
+        "id": "m-c-dean",
+        "name": "M.C. Dean",
+        "aliases": [
+          "M.C. Dean",
+          "m c dean"
+        ]
+      },
+      {
+        "id": "young-pipeline-professionals-usa",
+        "name": "Young Pipeline Professionals USA",
+        "aliases": [
+          "Young Pipeline Professionals USA",
+          "young pipeline professionals usa"
+        ]
+      },
+      {
+        "id": "energy-infrastructure-council",
+        "name": "Energy Infrastructure Council",
+        "aliases": [
+          "Energy Infrastructure Council",
+          "energy infrastructure council"
+        ]
+      },
+      {
+        "id": "priority-designs",
+        "name": "Priority Designs",
+        "aliases": [
+          "Priority Designs",
+          "priority designs"
+        ]
+      },
+      {
+        "id": "tsmc",
+        "name": "TSMC",
+        "aliases": [
+          "TSMC",
+          "tsmc"
         ]
       }
     ],
     "topics": []
   },
   "events": [],
-  "faqs": [
-    {
-      "q": "Is there a membership fee?",
-      "a": "Joining the chapter newsletter and GroupMe is free. National membership is separate.",
-      "keywords": [
-        "dues",
-        "fee"
-      ],
-      "anchor": "https://org.osu.edu/asme/join/"
-    },
-    {
-      "q": "Can first-year students join?",
-      "a": "Yes. First-year students are encouraged to join.",
-      "keywords": [
-        "first-year",
-        "freshman"
-      ],
-      "anchor": "https://org.osu.edu/asme/join/"
-    }
-  ],
   "fallback": {
     "clarifyThreshold": 0.15,
     "lowThreshold": 0.35,
@@ -1863,5 +2126,97 @@
       }
     ],
     "returnPage": "https://org.osu.edu/asme/"
-  }
+  },
+  "companyAliases": [
+    {
+      "name": "PPG",
+      "aliases": []
+    },
+    {
+      "name": "Pratt & Whitney",
+      "aliases": [
+        "Pratt and Whitney",
+        "Pratt Whitney",
+        "RTX"
+      ]
+    },
+    {
+      "name": "HRST, Inc.",
+      "aliases": [
+        "HRST"
+      ]
+    }
+  ],
+  "excludedSlugs": [
+    "thank-you",
+    "form-confirmation"
+  ],
+  "eventTypes": {
+    "social": [
+      "social",
+      "pickleball",
+      "casino",
+      "bowling",
+      "game night",
+      "picnic"
+    ],
+    "workshop": [
+      "workshop",
+      "tutorial",
+      "training",
+      "hands-on"
+    ],
+    "company": [
+      "company",
+      "employer",
+      "recruiting",
+      "recruiter",
+      "corporate",
+      "information session",
+      "info session"
+    ],
+    "volunteering": [
+      "volunteer",
+      "volunteering",
+      "community service"
+    ],
+    "competition": [
+      "competition",
+      "contest",
+      "design challenge",
+      "robotics competition"
+    ],
+    "meeting": [
+      "meeting",
+      "gbm",
+      "general body",
+      "chapter session"
+    ]
+  },
+  "featuredTopics": [
+    {
+      "pageId": "events",
+      "label": "Upcoming events",
+      "query": "Events"
+    },
+    {
+      "pageId": "join",
+      "label": "Join ASME",
+      "query": "join"
+    },
+    {
+      "pageId": "resources",
+      "label": "Career resources",
+      "query": "career resources"
+    },
+    {
+      "pageId": "home",
+      "label": "Take a tour",
+      "tour": true
+    }
+  ],
+  "handoffTopics": [
+    "reimbursement",
+    "travel policy"
+  ]
 }

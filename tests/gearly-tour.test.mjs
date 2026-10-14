@@ -6,13 +6,13 @@ const code=readFileSync(new URL('../assets/gearly/gearly-tour.js',import.meta.ur
 function setup(denied=false){
  const dom=new JSDOM('<button id="launch">Tour</button><header id="header">Navigation</header><section id="events">Events</section>',{url:'https://org.osu.edu/asme/',runScripts:'outside-only'});
  const {window:w}=dom;w.HTMLElement.prototype.getBoundingClientRect=function(){return {left:20,top:60,right:200,bottom:100,width:180,height:40};};
- if(denied)Object.defineProperty(w,'localStorage',{get(){throw Error('denied');}});
+ if(denied)Object.defineProperty(w,'sessionStorage',{get(){throw Error('denied');}});
  w.eval(code);w.GearlyTour.configure({data:{tour:{version:1,steps:[{selector:'#header',title:'Navigation',text:'Find sections'},{selector:'#missing',title:'Missing',text:'Skip me'},{selector:'#events',title:'Events',text:'Upcoming meetings'}]}}});
  return {dom,w,api:w.GearlyTour};
 }
 test('first visit invitation is optional and persisted optout works',()=>{
  const {w,api}=setup();api.offer();assert.ok(w.document.querySelector('.gearly-tour-offer'));assert.equal(w.document.querySelector('[role=dialog]'),null);
- Array.from(w.document.querySelectorAll('.gearly-tour-offer button')).find(b=>b.getAttribute('aria-label')==='Not now').click();api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);assert.equal(w.localStorage.getItem('asme-gearly-tour-1'),'dismissed');
+ Array.from(w.document.querySelectorAll('.gearly-tour-offer button')).find(b=>b.getAttribute('aria-label')==='Not now').click();api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);assert.equal(w.sessionStorage.getItem('asme-gearly-tour-1'),'dismissed');
 });
 test('denied storage uses session memory and replay is available',()=>{
  const {w,api}=setup(true);api.offer();w.document.querySelectorAll('.gearly-tour-offer button')[1].click();api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);api.start();assert.ok(w.document.querySelector('[role=dialog]'));api.close();
@@ -30,7 +30,7 @@ test('mobile tooltip positioning is bounded above and below',()=>{
 });
 test('completion is versioned and resizing moves the spotlight',()=>{
  const {w,api}=setup();api.start();const header=w.document.querySelector('#header');header.getBoundingClientRect=()=>({left:80,top:120,bottom:160,right:260,width:180,height:40});w.dispatchEvent(new w.Event('resize'));assert.equal(w.document.querySelector('.gearly-tour-ring').style.left,'75px');
- Array.from(w.document.querySelectorAll('.gearly-tour-tip button')).find(b=>b.getAttribute('aria-label')==='Next').click();Array.from(w.document.querySelectorAll('.gearly-tour-tip button')).find(b=>b.getAttribute('aria-label')==='Done').click();assert.equal(w.localStorage.getItem('asme-gearly-tour-1'),'completed');api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);
+ Array.from(w.document.querySelectorAll('.gearly-tour-tip button')).find(b=>b.getAttribute('aria-label')==='Next').click();Array.from(w.document.querySelectorAll('.gearly-tour-tip button')).find(b=>b.getAttribute('aria-label')==='Done').click();assert.equal(w.sessionStorage.getItem('asme-gearly-tour-1'),'completed');api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);
  api.configure({data:{tour:{version:2,steps:[]}}});api.offer();assert.ok(w.document.querySelector('.gearly-tour-offer'));
 });
 test('modal tour blocks background actions and restores original inert attributes',()=>{
@@ -100,7 +100,7 @@ test('page changes display immediate loading feedback and Finish returns Home wi
  const data=structuredClone(routeData);data.tour.returnPage='https://org.osu.edu/asme/';
  const storage=session(),home=await crossPage('https://org.osu.edu/asme/',storage,data);home.api.start();home.w.document.querySelector('[aria-label="Next"]').click();
  assert.equal(home.w.document.querySelector('.gearly-tour-tip').getAttribute('aria-busy'),'true');assert.match(home.w.document.querySelector('#gearly-tour-title').textContent,/Opening/);assert.equal(home.w.document.querySelector('.gearly-tour-ring').hidden,true);
- const events=await crossPage('https://org.osu.edu/asme/calendar/',storage,data);events.w.document.querySelector('[aria-label="Done"]').click();assert.deepEqual(events.moves,['https://org.osu.edu/asme/']);assert.equal(storage.getItem('asme-gearly-tour-3-session'),null);assert.equal(events.w.localStorage.getItem('asme-gearly-tour-3'),'completed');
+ const events=await crossPage('https://org.osu.edu/asme/calendar/',storage,data);events.w.document.querySelector('[aria-label="Done"]').click();assert.deepEqual(events.moves,['https://org.osu.edu/asme/']);assert.equal(storage.getItem('asme-gearly-tour-3-session'),null);assert.equal(storage.getItem('asme-gearly-tour-3'),'completed');
  const canceled=await crossPage('https://org.osu.edu/asme/calendar/',session(),data);canceled.api.start();canceled.api.close();assert.equal(canceled.moves.length,1); // Starting elsewhere opens Home; closing adds no navigation.
 });
 test('highlight follows layout movement even without a resize or scroll event',async()=>{

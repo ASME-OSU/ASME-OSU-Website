@@ -76,12 +76,13 @@
   function validSteps() {var t=config.data && config.data.tour;return t && Array.isArray(t.steps) ? t.steps.filter(function(s){return s && typeof s.selector==='string' && typeof s.title==='string' && typeof s.text==='string' && (!s.page || destination(s));}).slice(0,Number(t.maxSteps)||8) : [];}
   function begin(index,direction) {
     stopGuide();finish();var steps=validSteps();if(!steps.length)return;var token=++generation,attempts=0;
-    function wait(){if(token!==generation)return;var step=steps[index];if(!step)return;if(!current(destination(step)) || target(step) || attempts++>=12)launch(steps,index,direction);else setTimeout(wait,250);}
+    function wait(){if(token!==generation)return;var step=steps[index];if(!step)return;launch(steps,index,direction);}
     wait();
   }
   function key() { return 'asme-gearly-tour-' + ((config.data && config.data.tour && config.data.tour.version) || 1); }
-  function read() { try { return root.localStorage.getItem(key()) || memory[key()]; } catch (_) { return memory[key()]; } }
-  function remember(value) { memory[key()] = value; try { root.localStorage.setItem(key(), value); } catch (_) {} }
+  function read() { try{return root.sessionStorage.getItem(key()) || memory[key()];}catch(_){return memory[key()];} }
+  function persist(value) { memory[key()]=value;try{root.sessionStorage.setItem(key(),value);}catch(_){} }
+  function remember(value) { persist(value); }
   function button(text, fn) { var b = doc.createElement('button'); b.type = 'button'; b.textContent = ({Skip:'×',Back:'← Back',Next:'Next →',Done:'Finish','Not now':'×'})[text] || text; b.setAttribute('aria-label',text === 'Skip' ? 'Skip tour' : text); b.addEventListener('click', fn); return b; }
   function position(rect, width, height, viewport) {
     var pad = 12, w = Math.min(width, Math.max(0, viewport.width - pad * 2));

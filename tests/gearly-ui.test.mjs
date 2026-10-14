@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
 import fs from 'node:fs';
 const source=fs.readFileSync(new URL('../assets/gearly/gearly.js',import.meta.url),'utf8');
-const raw={meta:{siteBase:'/asme',contactEmail:'asme@example.org'},pages:[{id:'join',title:'Join',url:'/asme/join/'}],intents:[{id:'join',examples:['join'],keywords:{join:3},response:{text:'<img src=x onerror=alert(1)>',cards:[{title:'Bad',url:'javascript:alert(1)'},{title:'Join',url:'/asme/join/'}],chips:['Join']}}]};
+const config=JSON.parse(fs.readFileSync('assets/gearly/gearly-data.json','utf8'));
+const raw={meta:{...config.meta,contactEmail:'asme@example.org'},featuredTopics:config.featuredTopics,pages:config.pages,intents:[{id:'join',examples:['join'],keywords:{join:3},response:{text:'<img src=x onerror=alert(1)>',cards:[{title:'Bad',url:'javascript:alert(1)'},{title:'Join',url:'/asme/join/'}],chips:['Join']}}]};
 async function start(data=raw,setup){const dom=new JSDOM('<body><main>Site</main></body>',{url:'https://org.osu.edu/asme/',runScripts:'outside-only'});dom.window.AbortSignal=AbortSignal;dom.window.fetch=async url=>({ok:true,json:async()=>url.includes('sprites.json')?{}:data});dom.window.matchMedia=()=>({matches:true});if(setup)setup(dom.window);dom.window.eval(source);await new Promise(r=>setTimeout(r,20));return dom;}
 test('dialog focus, Escape, safe response text and links',async()=>{const dom=await start();const w=dom.window;assert.ok(w.Gearly);w.Gearly.open();assert.equal(w.document.activeElement.className,'gearly-input');await w.Gearly.ask('join');assert.equal(w.document.querySelectorAll('.gearly-message img').length,0);assert.ok(w.document.querySelector('.gearly-message').textContent);assert.equal(w.document.querySelectorAll('a[href^="javascript:"]').length,0);w.document.querySelector('.gearly-panel').dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(w.document.querySelector('.gearly-panel').hidden,true);assert.equal(w.document.activeElement.className,'gearly-launcher');assert.equal(w.document.querySelector('.gearly-messages').getAttribute('aria-live'),'polite');dom.window.close();});
 test('malformed data never renders launcher',async()=>{const dom=await start({});assert.equal(dom.window.document.querySelector('.gearly-launcher'),null);dom.window.close();});
@@ -22,9 +23,9 @@ test('fresh welcome shortcuts, context, tour, and topic browsing work without se
  const dom=await start({...raw,pages:[{id:'home',title:'Home',url:'https://org.osu.edu/asme/'}]});const w=dom.window;
  assert.match(w.document.querySelector('.gearly-context').textContent,/Helping with: Home/);
  assert.match(w.document.querySelector('.gearly-welcome').textContent,/Hi! I’m Gearly/);assert.equal(w.document.querySelector('.gearly-welcome-hero'),null);
- assert.equal(w.document.querySelectorAll('.gearly-shortcut').length,4);
+ assert.equal(w.document.querySelectorAll('.gearly-shortcut').length,1);
  let toured=0;w.GearlyTour={start:()=>toured++};Array.from(w.document.querySelectorAll('.gearly-shortcut')).find(b=>b.textContent==='Take a tour').click();assert.equal(toured,1);assert.equal(w.document.querySelector('.gearly-panel').hidden,true);
- w.Gearly.open();Array.from(w.document.querySelectorAll('.gearly-text-button')).find(b=>b.textContent.includes('Browse')).click();assert.equal(w.document.querySelector('.gearly-welcome'),null);assert.match(w.document.querySelector('.gearly-chips').textContent,/Member points/);assert.equal(w.document.querySelectorAll('.gearly-user').length,0);dom.window.close();
+ w.Gearly.open();Array.from(w.document.querySelectorAll('.gearly-text-button')).find(b=>b.textContent.includes('Browse')).click();assert.equal(w.document.querySelector('.gearly-welcome'),null);assert.match(w.document.querySelector('.gearly-chips').textContent,/Take a tour/);assert.equal(w.document.querySelectorAll('.gearly-user').length,0);dom.window.close();
 });
 test('thinking changes to typing and a complete accessible answer; reduced motion skips the reveal',async()=>{
  const seed={...raw,meta:{...raw.meta,sprites:{idle:'idle.webp',thinking:'think.webp',typing:'type.webp',happy:'happy.webp'}}};const dom=await start(seed);const w=dom.window;w.matchMedia=()=>({matches:false});
@@ -83,4 +84,23 @@ test('first unknown answer hands off with encoded redacted question; None of the
  const seed={...raw,intents:[{id:'join',examples:['join'],keywords:{join:3},response:{text:'Join'}},{id:'events',examples:['events'],keywords:{events:3},response:{text:'Events'}}]};const dom=await start(seed),w=dom.window;
  await w.Gearly.ask('weather? contact person@example.org or 614-555-1234');let card=Array.from(w.document.querySelectorAll('.gearly-card')).find(e=>e.textContent.includes('Ask the ASME team'));assert.ok(card);let body=new URL(card.href).searchParams.get('body');assert.match(body,/weather/);assert.ok(!body.includes('person@example.org'));assert.ok(!body.includes('614-555-1234'));assert.equal(new URL(card.href).searchParams.get('subject'),'Question for ASME (from the website guide)');
  await w.Gearly.ask('join and events');const none=Array.from(w.document.querySelectorAll('.gearly-chip')).find(e=>e.textContent==='None of these');assert.ok(none);none.click();await new Promise(r=>setTimeout(r,25));card=Array.from(w.document.querySelectorAll('.gearly-card')).filter(e=>e.textContent.includes('Ask the ASME team')).pop();assert.match(new URL(card.href).searchParams.get('body'),/join and events/);dom.window.close();
+});
+
+test('static answers never use extractive content, while dynamic sources update from page text',async()=>{
+ let reads=0;
+ const staticSeed={...raw,intents:[{id:'dues',static:true,source:{page:'https://org.osu.edu/asme/join/',section:'#fees'},examples:['dues'],response:{text:'Joining the chapter is free.'}}]};
+ const stat=await start(staticSeed,w=>{w.GearlySite={loadPage:async url=>{if(!url.includes('/join/'))throw Error('Not a joining query');reads++;return '<p>Changed page fee.</p>';},extract:()=>({matched:true,text:'Changed page fee.'})};});await stat.window.Gearly.ask('dues');assert.match(Array.from(stat.window.document.querySelectorAll('.gearly-bot')).pop().textContent,/Joining the chapter is free/);assert.equal(reads,0);stat.window.close();
+ const dynamicSeed={...raw,intents:[{id:'careers',source:{page:'https://org.osu.edu/asme/member-resources/',section:'#career'},examples:['career guide'],response:{text:'Generic fallback.'}}]};let page='The career guide now links to new resume tools.';
+ const dyn=await start(dynamicSeed,w=>{w.GearlySite={loadPage:async()=>page,extract:(_,html)=>({matched:true,text:html})};});await dyn.window.Gearly.ask('career guide');assert.match(Array.from(dyn.window.document.querySelectorAll('.gearly-bot')).pop().textContent,/new resume tools/);page='The career guide has a new internship packet.';await dyn.window.Gearly.ask('career guide');assert.match(Array.from(dyn.window.document.querySelectorAll('.gearly-bot')).pop().textContent,/new internship packet/);assert.ok(dyn.window.document.querySelector('a.gearly-card').href.includes('/member-resources/'));dyn.window.close();
+});
+
+test('a superseded animated candidate answer does not clear the next member choices',async()=>{
+ const seed={...raw,intents:[{id:'my-points',examples:['my points'],liveSource:'member',response:{text:'Name?'}}]};
+ const dom=await start(seed,w=>{w.matchMedia=()=>({matches:false});w.GearlyLive={load:async(_,options)=>options.selection?{text:'Matched a public leaderboard name; I cannot verify who is asking.',cards:[]}:{text:'Which one?',cards:[],candidates:[{label:'Avery Example · Autumn',name:'Avery Example',selection:'first'}]}};});
+ const w=dom.window;await w.Gearly.ask('points for Avery Example');Array.from(w.document.querySelectorAll('.gearly-chip')).find(b=>b.textContent==='Avery Example · Autumn').click();await new Promise(r=>setTimeout(r,100));await w.Gearly.ask('points for Avery Example');await new Promise(r=>setTimeout(r,450));assert.ok(Array.from(w.document.querySelectorAll('.gearly-chip')).some(b=>b.textContent==='Avery Example · Autumn'));dom.window.close();
+});
+
+test('configured reimbursement and travel handoff topics never quote a policy',async()=>{
+ const seed={...raw,handoffTopics:['reimbursement','travel policy']};let extracted=0;
+ const dom=await start(seed,w=>{w.GearlySite={extract:()=>{extracted++;return {matched:true,text:'Invented policy'};}};});await dom.window.Gearly.ask('what is the travel policy');const text=Array.from(dom.window.document.querySelectorAll('.gearly-bot')).pop().textContent;assert.match(text,/Ask the ASME team/);assert.ok(!text.includes('Invented policy'));assert.equal(extracted,0);dom.window.close();
 });
