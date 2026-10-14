@@ -1,0 +1,463 @@
+{
+  "current": {
+    "label": "2026–2027",
+    "startYear": 2026,
+    "endYear": 2027,
+    "officers": [
+      {
+        "role": "President",
+        "roleId": "president",
+        "name": "Matthew Allen",
+        "email": "allen.2906@osu.edu",
+        "photo": "https://org.osu.edu/asme/files/2026/05/Matthew-Allen-2.png"
+      },
+      {
+        "role": "Vice President / Corporate Liaison",
+        "roleId": "vice-president",
+        "name": "Jessica Wilson",
+        "email": "wilson.5210@osu.edu",
+        "photo": "https://org.osu.edu/asme/files/2026/05/Jessie-Wilson.jpeg"
+      },
+      {
+        "role": "Treasurer",
+        "roleId": "treasurer",
+        "name": "Aliyah Beitzel",
+        "email": "beitzel.29@osu.edu",
+        "photo": "https://org.osu.edu/asme/files/2026/05/Aliyah-Beitzel.jpeg"
+      },
+      {
+        "role": "Administrator",
+        "roleId": "administrator",
+        "name": "Kasper Szymczak",
+        "email": "szymczak.28@osu.edu",
+        "photo": "https://org.osu.edu/asme/files/2026/07/Kasper-Szymczak.png"
+      },
+      {
+        "role": "Social Chair",
+        "roleId": "social-chair",
+        "name": "Max Sabio",
+        "email": "sabio.4@osu.edu",
+        "photo": "https://org.osu.edu/asme/files/2026/05/Max-Sabio.png"
+      },
+      {
+        "role": "Webmaster",
+        "roleId": "webmaster",
+        "name": "Margaux Rasalan",
+        "email": "rasalan.1@osu.edu",
+        "photo": "https://org.osu.edu/asme/files/2026/04/Margaux_Rasalan.png"
+      },
+      {
+        "role": "E-Council Representative",
+        "roleId": "ecouncil",
+        "name": "Kyle Sandborn",
+        "email": "sandborn.3@osu.edu",
+        "photo": "https://org.osu.edu/asme/files/2026/05/Kyle-Sandborn-e1778043609711.jpeg"
+      }
+    ]
+  },
+  "past": [
+    {
+      "label": "2025–2026",
+      "startYear": 2025,
+      "endYear": 2026,
+      "officers": [
+        {
+          "role": "President",
+          "roleId": "president",
+          "name": "Aiden Naseman"
+        },
+        {
+          "role": "Vice President / Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Matthew Allen"
+        },
+        {
+          "role": "Treasurer",
+          "roleId": "treasurer",
+          "name": "Ryan Joseph"
+        },
+        {
+          "role": "Administrator",
+          "roleId": "administrator",
+          "name": "Nicholas Centa"
+        },
+        {
+          "role": "Social Chair",
+          "roleId": "social-chair",
+          "name": "Amin Abdual"
+        },
+        {
+          "role": "Webmaster",
+          "roleId": "webmaster",
+          "name": "Margaux Rasalan"
+        },
+        {
+          "role": "E-Council Representative",
+          "roleId": "ecouncil",
+          "name": "Shuan Sekura"
+        }
+      ]
+    },
+    {
+      "label": "2024–2025",
+      "startYear": 2024,
+      "endYear": 2025,
+      "officers": [
+        {
+          "role": "President",
+          "roleId": "president",
+          "name": "Emma Wells"
+        },
+        {
+          "role": "Vice President / Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Adam Hagerty"
+        },
+        {
+          "role": "Treasurer",
+          "roleId": "treasurer",
+          "name": "Kyle Provonsil"
+        },
+        {
+          "role": "Administrator",
+          "roleId": "administrator",
+          "name": "Stephanie Marsh"
+        },
+        {
+          "role": "Social Chair",
+          "roleId": "social-chair",
+          "name": "Audrey Zorman"
+        },
+        {
+          "role": "Webmaster",
+          "roleId": "webmaster",
+          "name": "Sophie Davis"
+        },
+        {
+          "role": "E-Council Representative",
+          "roleId": "ecouncil",
+          "name": "Aiden Naseman"
+        }
+      ]
+    },
+    {
+      "label": "2023–2024",
+      "startYear": 2023,
+      "endYear": 2024,
+      "officers": [
+        {
+          "role": "President",
+          "roleId": "president",
+          "name": "Tim Wilczewski"
+        },
+        {
+          "role": "Vice President / Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Emma Wells"
+        },
+        {
+          "role": "Treasurer",
+          "roleId": "treasurer",
+          "name": "Kyle Provonsil"
+        },
+        {
+          "role": "Administrator",
+          "roleId": "administrator",
+          "name": "Stephanie Marsh"
+        },
+        {
+          "role": "Social Chair",
+          "roleId": "social-chair",
+          "name": "Audrey Zorman"
+        },
+        {
+          "role": "Webmaster",
+          "roleId": "webmaster",
+          "name": "Sophie Davis"
+        },
+        {
+          "role": "Project Coordinator",
+          "roleId": "project-coordinator",
+          "name": "Josh Orlett"
+        },
+        {
+          "role": "E-Council Representative",
+          "roleId": "ecouncil",
+          "name": "Aiden Naseman"
+        }
+      ]
+    },
+    {
+      "label": "2022–2023",
+      "startYear": 2022,
+      "endYear": 2023,
+      "officers": [
+        {
+          "role": "President",
+          "roleId": "president",
+          "name": "Mia Krakovsky"
+        },
+        {
+          "role": "Vice President / Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Connor Reis"
+        },
+        {
+          "role": "Treasurer",
+          "roleId": "treasurer",
+          "name": "Matt Venturella"
+        },
+        {
+          "role": "Administrator",
+          "roleId": "administrator",
+          "name": "Julian Surckla"
+        },
+        {
+          "role": "Social Chair",
+          "roleId": "social-chair",
+          "name": "Jack Spangler"
+        },
+        {
+          "role": "Webmaster",
+          "roleId": "webmaster",
+          "name": "Victoria Thimmes"
+        }
+      ]
+    },
+    {
+      "label": "2021–2022",
+      "startYear": 2021,
+      "endYear": 2022,
+      "officers": [
+        {
+          "role": "President / Treasurer",
+          "roleId": "president",
+          "name": "Danielle Brown"
+        },
+        {
+          "role": "Vice President",
+          "roleId": "vice-president",
+          "name": "Edward Ondrejech"
+        },
+        {
+          "role": "Administrator / Webmaster",
+          "roleId": "administrator",
+          "name": "Mia Krakovsky"
+        },
+        {
+          "role": "Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Connor Reis"
+        },
+        {
+          "role": "Social Chair",
+          "roleId": "social-chair",
+          "name": "Aidan Stevens"
+        }
+      ]
+    },
+    {
+      "label": "2020–2021",
+      "startYear": 2020,
+      "endYear": 2021,
+      "officers": [
+        {
+          "role": "President / Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Thomas Pham"
+        },
+        {
+          "role": "Vice President",
+          "roleId": "vice-president",
+          "name": "Jeff Chen"
+        },
+        {
+          "role": "Treasurer",
+          "roleId": "treasurer",
+          "name": "Danielle Brown"
+        },
+        {
+          "role": "Administrator",
+          "roleId": "administrator",
+          "name": "Ian Ellsworth"
+        },
+        {
+          "role": "Community Outreach",
+          "roleId": "community-outreach",
+          "name": "Edward Ondrejech"
+        },
+        {
+          "role": "Webmaster",
+          "roleId": "webmaster",
+          "name": "Alex Art"
+        }
+      ]
+    },
+    {
+      "label": "2019–2020",
+      "startYear": 2019,
+      "endYear": 2020,
+      "officers": [
+        {
+          "role": "President",
+          "roleId": "president",
+          "name": "Heather Oberst"
+        },
+        {
+          "role": "Vice President",
+          "roleId": "vice-president",
+          "name": "Gian Carlo Valli"
+        },
+        {
+          "role": "Treasurer",
+          "roleId": "treasurer",
+          "name": "Danielle Brown"
+        },
+        {
+          "role": "Administrator",
+          "roleId": "administrator",
+          "name": "Ian Ellsworth"
+        },
+        {
+          "role": "Social Chair",
+          "roleId": "social-chair",
+          "name": "Tyler Baumgartner"
+        },
+        {
+          "role": "Webmaster",
+          "roleId": "webmaster",
+          "name": "Alex Art"
+        },
+        {
+          "role": "Community Outreach",
+          "roleId": "community-outreach",
+          "name": "Dom Cicconi"
+        },
+        {
+          "role": "Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Thomas Pham"
+        }
+      ]
+    },
+    {
+      "label": "2018–2019",
+      "startYear": 2018,
+      "endYear": 2019,
+      "officers": [
+        {
+          "role": "President",
+          "roleId": "president",
+          "name": "Heather Oberst"
+        },
+        {
+          "role": "Vice President",
+          "roleId": "vice-president",
+          "name": "Scott Masteller"
+        },
+        {
+          "role": "Director of Projects",
+          "roleId": "director-of-projects",
+          "name": "Gian Carlo Valli"
+        },
+        {
+          "role": "Administrator",
+          "roleId": "administrator",
+          "name": "Evan Yabs"
+        },
+        {
+          "role": "Social Chair",
+          "roleId": "social-chair",
+          "name": "Tyler Baumgartner"
+        },
+        {
+          "role": "Webmaster",
+          "roleId": "webmaster",
+          "name": "Alex Art"
+        },
+        {
+          "role": "Community Outreach",
+          "roleId": "community-outreach",
+          "name": "Dom Cicconi"
+        },
+        {
+          "role": "Projects Chair",
+          "roleId": "projects-chair",
+          "name": "Brian Waibl-Polania"
+        },
+        {
+          "role": "Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Angie Volchko"
+        },
+        {
+          "role": "Director of Programming",
+          "roleId": "director-of-programming",
+          "name": "Rob Olander"
+        }
+      ]
+    },
+    {
+      "label": "2017–2018",
+      "startYear": 2017,
+      "endYear": 2018,
+      "officers": [
+        {
+          "role": "President",
+          "roleId": "president",
+          "name": "Matt Burns"
+        },
+        {
+          "role": "Vice President",
+          "roleId": "vice-president",
+          "name": "Dylan Walker"
+        },
+        {
+          "role": "Director of Administration",
+          "roleId": "director-of-administration",
+          "name": "Austin Carter"
+        },
+        {
+          "role": "Director of Programming",
+          "roleId": "director-of-programming",
+          "name": "Robby Olander"
+        },
+        {
+          "role": "Director of Projects",
+          "roleId": "director-of-projects",
+          "name": "Jordan Siegel"
+        },
+        {
+          "role": "Secretary",
+          "roleId": "secretary",
+          "name": "Heather Oberst"
+        },
+        {
+          "role": "Webmaster",
+          "roleId": "webmaster",
+          "name": "Scott Masteller"
+        },
+        {
+          "role": "Networking Chair",
+          "roleId": "networking-chair",
+          "name": "Michael Lloyd"
+        },
+        {
+          "role": "Community Outreach",
+          "roleId": "community-outreach",
+          "name": "Dom Cicconi"
+        },
+        {
+          "role": "Projects Chair",
+          "roleId": "projects-chair",
+          "name": "Gian Carlo Valli"
+        },
+        {
+          "role": "Corporate Liaison",
+          "roleId": "vice-president",
+          "name": "Evan Gorney"
+        }
+      ]
+    }
+  ]
+}
