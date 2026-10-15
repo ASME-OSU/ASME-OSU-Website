@@ -167,7 +167,7 @@ test('speaker heads remain after reveal, on reduced motion, and in restored conv
  assert.equal(restored.window.document.querySelectorAll('.gearly-bot .gearly-message-avatar').length,1);restored.window.close();
 });
 
-test('wave waits a quiet minute, plays once, reuses its download, and stops for chat, hidden tabs and reduced motion',async()=>{
+test('wave greets early, plays once, reuses its download, and stops for chat, hidden tabs and reduced motion',async()=>{
  const timers=new Map();let next=1000,preference,downloads=0,created=0,revoked=0;
  const motion={matches:false,addEventListener:(_type,cb)=>preference=cb};
  const dom=await start(raw,w=>{
@@ -176,17 +176,18 @@ test('wave waits a quiet minute, plays once, reuses its download, and stops for 
   const native=w.setTimeout.bind(w),clear=w.clearTimeout.bind(w);
   w.setTimeout=(cb,ms)=>{if(ms>=6000){timers.set(++next,{cb,ms});return next;}return native(cb,ms);};
   w.clearTimeout=id=>{if(timers.has(id))timers.delete(id);else clear(id);};
-  w.fetch=async url=>url.includes('original-look-wave')?(downloads++,{ok:true,blob:async()=>new w.Blob(['wave'],{type:'image/webp'})}):({ok:true,json:async()=>url.includes('sprites.json')?{}:raw});
+  w.fetch=async url=>url.includes('centered-wave')?(downloads++,{ok:true,blob:async()=>new w.Blob(['wave'],{type:'image/webp'})}):({ok:true,json:async()=>url.includes('sprites.json')?{}:raw});
   w.URL.createObjectURL=()=>`blob:wave-${++created}`;w.URL.revokeObjectURL=()=>revoked++;
  });
  const w=dom.window,face=w.document.querySelector('.gearly-launcher img');
  const run=async()=>{const [id,t]=timers.entries().next().value;timers.delete(id);await t.cb();return t.ms;};
- assert.equal(downloads,0);assert.ok([...timers.values()][0].ms>=60000);
- await run();assert.equal(face.src,'blob:wave-1');assert.equal(downloads,1);
- assert.equal(await run(),6250);assert.match(face.src,/original-look-idle.webp$/);assert.equal(revoked,1);
+ assert.equal(downloads,0);assert.ok([...timers.values()][0].ms>=8000 && [...timers.values()][0].ms<=12000);
+ await run();assert.equal(face.src,'blob:wave-1');assert.equal(downloads,1);assert.equal(w.document.querySelector('.gearly-launcher').dataset.waveCount,'1');
+ assert.equal(await run(),6250);assert.match(face.src,/centered-idle.webp$/);assert.equal(revoked,1);
+ w.document.querySelector('.gearly-launcher').dispatchEvent(new w.MouseEvent('mouseenter'));assert.equal(created,1);
  await run();assert.equal(downloads,1);assert.equal(created,2);
- w.Gearly.open();assert.match(face.src,/original-look-idle.webp$/);assert.equal(timers.size,0);
- w.Gearly.close();assert.equal(timers.size,1);
+ w.Gearly.open();assert.match(face.src,/centered-idle.webp$/);assert.equal(timers.size,0);
+ w.Gearly.close();assert.equal(timers.size,1);assert.ok([...timers.values()][0].ms>=60000);
  motion.matches=true;preference();assert.equal(timers.size,0);
  motion.matches=false;preference();assert.equal(timers.size,1);
  Object.defineProperty(w.document,'hidden',{value:true,configurable:true});w.document.dispatchEvent(new w.Event('visibilitychange'));assert.equal(timers.size,0);
