@@ -1,6 +1,6 @@
 (function (root) {
   'use strict';
-  var doc = root.document, config = {}, memory = {}, active = null, offerNode = null, generation = 0;
+  var doc = root.document, config = {}, memory = {}, active = null, offerNode = null, offerClosing = null, offerExitTimer = null, generation = 0;
 
   var spriteFiles = ["gearly-peeking-thumbs-up.png", "gearly-executive-briefcase.webp", "gearly-peeking-banner.webp", "gearly-peeking-side.webp", "gearly-smiling-wave.webp", "gearly-surprised-head.webp", "gearly-laptop-presenting.webp", "gearly-open-eyes-wave.webp", "gearly-growth-chart.webp", "gearly-double-pointing.webp", "gearly-open-eyes-wave.png", "gearly-winking-peek.webp", "gearly-winking-head.webp", "gearly-executive-briefcase.png", "gearly-surprised-head.png", "gearly-neutral-head.webp", "gearly-double-thumbs-up.png", "gearly-peeking-thumbs-up.webp", "gearly-laughing-head.webp", "gearly-double-thumbs-up.webp", "gearly-sitting-wave.png", "gearly-presenting-open-arms.png", "gearly-smiling-wave.png", "gearly-celebrating-jump.png", "gearly-happy-head.webp", "gearly-thinking-chin.png", "gearly-winking-peek.png", "gearly-pointing-right.webp", "gearly-calendar-presenting.webp", "gearly-laptop-presenting.png", "gearly-growth-chart.png", "gearly-neutral-head.png", "gearly-celebrating-jump.webp", "gearly-laughing-head.png", "gearly-happy-head.png", "gearly-presenting-open-arms.webp", "gearly-calendar-presenting.png", "gearly-thinking-chin.webp", "gearly-sitting-wave.webp", "gearly-winking-head.png", "gearly-pointing-right.png", "gearly-peeking-banner.png", "gearly-double-pointing.png", "gearly-peeking-side.png"];
   // Section requests use registered actions, never selectors or routes from storage.
@@ -94,7 +94,17 @@
   }
   function visible(el) { if (!el || el.closest('[hidden], [aria-hidden="true"]')) return false; var r = el.getBoundingClientRect(), s = root.getComputedStyle(el); return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden'; }
   function target(step) { try { return Array.from(doc.querySelectorAll(step.selector)).find(visible); } catch (_) { return null; } }
-  function dismissOffer() { if (offerNode) offerNode.remove(); offerNode = null; }
+  function dismissOffer(animate) {
+    if(offerExitTimer)clearTimeout(offerExitTimer);
+    if(offerClosing)offerClosing.remove();offerClosing=null;
+    var node=offerNode;offerNode=null;if(!node)return;
+    var focused=node.contains(doc.activeElement);
+    if(animate && root.matchMedia && !root.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      offerClosing=node;node.classList.add('is-leaving');node.setAttribute('aria-hidden','true');node.setAttribute('inert','');
+      offerExitTimer=setTimeout(function(){node.remove();if(offerClosing===node)offerClosing=null;},180);
+    }else node.remove();
+    if(animate && focused){var launcher=doc.querySelector('.gearly-launcher');if(launcher)launcher.focus({preventScroll:true});}
+  }
   function finish(value) {
     generation++; dismissOffer(); if(value)clearPending();
     if (!active) return;
@@ -159,8 +169,22 @@
     start:function () {clearPending();begin(0,1);},
     offer:function () {
       if (read() || offerNode || active || guide || !config.data || !config.data.tour) return;
-      offerNode=doc.createElement('aside'); offerNode.className='gearly-tour-offer'; offerNode.setAttribute('aria-label','Website tour invitation');
-      var startButton=button('Start tour',function(){root.GearlyTour.start();});startButton.className='gearly-tour-offer-start';var label=config.data.tour.offer && config.data.tour.offer.label;if(typeof label==='string' && label.trim() && label.length<=40)startButton.textContent=label;var sprite=config.data.tour.steps && config.data.tour.steps[0] && config.data.tour.steps[0].sprite;if(spriteFiles.includes(sprite) && config.assetBase){try{var image=doc.createElement('img');image.src=new URL('sprites/'+sprite,config.assetBase).href;image.alt='';image.width=40;image.height=40;startButton.prepend(image);}catch(_){}}offerNode.appendChild(startButton); offerNode.appendChild(button('Not now',function(){remember('dismissed');dismissOffer();}));doc.body.appendChild(offerNode);
+      // Do not offer a second invitation beside an already-open conversation.
+      var chat=doc.querySelector('.gearly-panel');if(chat && !chat.hidden)return;
+      offerNode=doc.createElement('aside');offerNode.className='gearly-tour-offer';offerNode.setAttribute('aria-label','Website tour invitation');
+      var mascot=doc.createElement('div');mascot.className='gearly-tour-offer-mascot';mascot.setAttribute('aria-hidden','true');
+      for(var i=0;i<4;i++){var circle=doc.createElement('span');circle.className='gearly-tour-offer-circle';mascot.append(circle);}
+      if(config.assetBase){var image=doc.createElement('img');image.src=new URL('sprites/gearly-open-eyes-wave.webp',config.assetBase).href;image.alt='';image.width=96;image.height=110;mascot.append(image);}
+      var copy=doc.createElement('div');copy.className='gearly-tour-offer-copy';
+      var title=doc.createElement('h2');title.textContent='Take a tour';
+      var subtitle=doc.createElement('p');subtitle.textContent='Let Gearley show you around!';
+      var actions=doc.createElement('div');actions.className='gearly-tour-offer-actions';
+      var startButton=button('Start tour',function(){root.GearlyTour.start();});startButton.className='gearly-tour-offer-start';startButton.textContent='Start tour →';
+      function decline(){remember('dismissed');dismissOffer(true);}
+      var later=button('Maybe later',decline);later.className='gearly-tour-offer-later';
+      var close=button('Dismiss tour invitation',decline);close.className='gearly-tour-offer-close';close.textContent='×';
+      actions.append(startButton,later);copy.append(title,subtitle,actions);offerNode.append(mascot,copy,close);doc.body.appendChild(offerNode);
+
     },
     dismissOffer:dismissOffer,
     close:function () {finish('dismissed');},

@@ -12,7 +12,7 @@ function setup(denied=false){
 }
 test('first visit invitation is optional and persisted optout works',()=>{
  const {w,api}=setup();api.offer();assert.ok(w.document.querySelector('.gearly-tour-offer'));assert.equal(w.document.querySelector('[role=dialog]'),null);
- Array.from(w.document.querySelectorAll('.gearly-tour-offer button')).find(b=>b.getAttribute('aria-label')==='Not now').click();api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);assert.equal(w.sessionStorage.getItem('asme-gearly-tour-1'),'dismissed');
+ Array.from(w.document.querySelectorAll('.gearly-tour-offer button')).find(b=>b.getAttribute('aria-label')==='Dismiss tour invitation').click();api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);assert.equal(w.sessionStorage.getItem('asme-gearly-tour-1'),'dismissed');
 });
 test('denied storage uses session memory and replay is available',()=>{
  const {w,api}=setup(true);api.offer();w.document.querySelectorAll('.gearly-tour-offer button')[1].click();api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);api.start();assert.ok(w.document.querySelector('[role=dialog]'));api.close();
@@ -105,4 +105,25 @@ test('page changes display immediate loading feedback and Finish returns Home wi
 });
 test('highlight follows layout movement even without a resize or scroll event',async()=>{
  const page=await crossPage('https://org.osu.edu/asme/',session(),routeData);let render;page.root.requestAnimationFrame=cb=>{render=cb;return 1;};page.root.cancelAnimationFrame=()=>{};page.api.start();page.w.document.querySelector('#header').getBoundingClientRect=()=>({left:30,top:140,width:180,height:40});render();assert.equal(page.w.document.querySelector('.gearly-tour-ring').style.top,'135px');page.api.close();
+});
+
+test('speech bubble reuses the tour, offers both dismissals, and never duplicates an open chat',()=>{
+ const {dom,w,api}=setup();api.configure({assetBase:'https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/',data:{tour:{version:1,steps:[{selector:'#header',title:'Navigation',text:'Find sections'}]}}});
+ api.offer();api.offer();const offer=w.document.querySelector('.gearly-tour-offer');
+ assert.equal(w.document.querySelectorAll('.gearly-tour-offer').length,1);
+ assert.equal(offer.querySelector('h2').textContent,'Take a tour');assert.equal(offer.querySelector('p').textContent,'Let Gearley show you around!');
+ assert.equal(offer.querySelector('.gearly-tour-offer-mascot').getAttribute('aria-hidden'),'true');assert.equal(offer.querySelectorAll('.gearly-tour-offer-circle').length,4);
+ assert.match(offer.querySelector('img').src,/gearly-open-eyes-wave.webp$/);
+ offer.querySelector('.gearly-tour-offer-start').click();assert.ok(w.document.querySelector('[role=dialog]'));assert.equal(w.document.querySelector('.gearly-tour-offer'),null);api.close();dom.window.close();
+ for(const selector of ['.gearly-tour-offer-later','.gearly-tour-offer-close']){
+  const {dom,w,api}=setup();api.offer();w.document.querySelector(selector).click();assert.equal(w.sessionStorage.getItem('asme-gearly-tour-1'),'dismissed');api.offer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);dom.window.close();
+ }
+ const open=setup();const panel=open.w.document.createElement('section');panel.className='gearly-panel';open.w.document.body.append(panel);open.api.offer();assert.equal(open.w.document.querySelector('.gearly-tour-offer'),null);open.dom.window.close();
+});
+
+test('dismissal fades gently, while chat opening removes the invitation immediately and reduced motion skips fading',()=>{
+ const {dom,w,api}=setup();let exit;w.matchMedia=()=>({matches:false});w.setTimeout=fn=>{exit=fn;return 1;};
+ api.offer();w.document.querySelector('.gearly-tour-offer-later').click();const leaving=w.document.querySelector('.gearly-tour-offer');
+ assert.ok(leaving.classList.contains('is-leaving'));assert.ok(leaving.hasAttribute('inert'));assert.equal(leaving.getAttribute('aria-hidden'),'true');api.dismissOffer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);exit();dom.window.close();
+ const reduced=setup();reduced.w.matchMedia=()=>({matches:true});reduced.api.offer();reduced.w.document.querySelector('.gearly-tour-offer-close').click();assert.equal(reduced.w.document.querySelector('.gearly-tour-offer'),null);reduced.dom.window.close();
 });
