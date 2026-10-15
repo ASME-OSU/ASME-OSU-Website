@@ -127,3 +127,44 @@ test('dismissal fades gently, while chat opening removes the invitation immediat
  assert.ok(leaving.classList.contains('is-leaving'));assert.ok(leaving.hasAttribute('inert'));assert.equal(leaving.getAttribute('aria-hidden'),'true');api.dismissOffer();assert.equal(w.document.querySelector('.gearly-tour-offer'),null);exit();dom.window.close();
  const reduced=setup();reduced.w.matchMedia=()=>({matches:true});reduced.api.offer();reduced.w.document.querySelector('.gearly-tour-offer-close').click();assert.equal(reduced.w.document.querySelector('.gearly-tour-offer'),null);reduced.dom.window.close();
 });
+
+function mobileLayout({height=640,targetHeight=300,absoluteTop=900,pageHeight=2200}={}){
+ const dom=new JSDOM('<header id="asme-site-header" style="position:fixed"></header><section id="content"></section><button class="gearly-launcher">Gearly</button>',{url:'https://org.osu.edu/asme/',runScripts:'outside-only'}),w=dom.window;
+ Object.defineProperty(w,'innerWidth',{value:390});Object.defineProperty(w,'innerHeight',{value:height});let scroll=0,offset=absoluteTop,calls=0;
+ Object.defineProperty(w,'scrollY',{get:()=>scroll});w.scrollBy=({top})=>w.scrollTo({top:scroll+top});w.scrollTo=({top})=>{calls++;const room=parseFloat(w.document.querySelector('.gearly-tour-scroll-room')?.style.height)||0;scroll=Math.min(Math.max(0,top),Math.max(0,pageHeight+room-height));};
+ w.HTMLElement.prototype.getBoundingClientRect=function(){let left=12,top=0,width=366,h=44;if(this.id==='asme-site-header'){top=8;h=76;}else if(this.id==='content'){top=offset-scroll;h=targetHeight;}else if(this.classList.contains('gearly-tour-tip')){top=parseFloat(this.style.top)||0;h=180;}return {left,top,right:left+width,bottom:top+h,width,height:h};};
+ w.eval(code);w.GearlyTour.configure({data:{tour:{version:1,steps:[{selector:'#content',title:'Content',text:'Explore this section'}]}}});
+ return {dom,w,api:w.GearlyTour,shift:y=>offset+=y,scroll:()=>scroll,calls:()=>calls};
+}
+test('mobile tour clears the fixed header and keeps its spotlight above the guide',()=>{
+ const {dom,w,api,scroll}=mobileLayout();api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');
+ assert.equal(scroll(),804);assert.equal(parseFloat(ring.style.top),96);assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=parseFloat(tip.style.top)-12);
+ assert.equal(tip.style.width,'366px');assert.ok(w.document.querySelector('.gearly-tour-scroll-room'));api.close();assert.equal(w.document.querySelector('.gearly-tour-scroll-room'),null);assert.equal(w.document.querySelector('#content').hasAttribute('inert'),false);dom.window.close();
+});
+test('mobile arrival corrects late layout shifts but stops auto-scrolling immediately after user input',()=>{
+ const layout=mobileLayout();layout.api.start();const before=layout.scroll();layout.shift(250);layout.w.dispatchEvent(new layout.w.Event('resize'));assert.equal(layout.scroll(),before+250);
+ layout.w.document.dispatchEvent(new layout.w.WheelEvent('wheel',{bubbles:true}));layout.shift(200);layout.w.dispatchEvent(new layout.w.Event('resize'));assert.equal(layout.scroll(),before+250);layout.api.close();layout.dom.window.close();
+});
+test('tall mobile sections are clipped to the usable viewport, with room to scroll final content clear of the guide',()=>{
+ const layout=mobileLayout({height:568,targetHeight:1000,pageHeight:1900});layout.api.start();const {w}=layout,tip=w.document.querySelector('.gearly-tour-tip'),ring=w.document.querySelector('.gearly-tour-ring');
+ assert.equal(tip.dataset.scrollable,'true');assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=parseFloat(tip.style.top)-12);
+ w.document.dispatchEvent(new w.WheelEvent('wheel',{bubbles:true}));w.scrollTo({top:99999});w.dispatchEvent(new w.Event('scroll'));assert.ok(w.document.querySelector('#content').getBoundingClientRect().bottom<parseFloat(tip.style.top));
+ layout.api.close();layout.dom.window.close();
+});
+test('a mobile step at the document end does not retry an unchanged clamped scroll every frame',()=>{
+ const layout=mobileLayout({targetHeight:100,pageHeight:1000});layout.api.start();const count=layout.calls();for(let i=0;i<5;i++)layout.w.dispatchEvent(new layout.w.Event('resize'));assert.equal(layout.calls(),count);layout.api.close();layout.dom.window.close();
+});
+test('mobile wheel and swipe gestures outside the guide scroll the inert page, while guide scrolling stays local',()=>{
+ const layout=mobileLayout({targetHeight:1000,pageHeight:3000});layout.api.start();const {w}=layout,overlay=w.document.querySelector('.gearly-tour'),tip=w.document.querySelector('.gearly-tour-tip');let before=layout.scroll();
+ overlay.dispatchEvent(new w.WheelEvent('wheel',{deltaY:100,bubbles:true,cancelable:true}));assert.equal(layout.scroll(),before+100);before=layout.scroll();
+ tip.dispatchEvent(new w.WheelEvent('wheel',{deltaY:100,bubbles:true,cancelable:true}));assert.equal(layout.scroll(),before);
+ function touch(type,y){const event=new w.Event(type,{bubbles:true,cancelable:true});Object.defineProperty(event,'touches',{value:[{clientY:y}]});overlay.dispatchEvent(event);return event;}
+ touch('touchstart',400);assert.equal(touch('touchmove',300).defaultPrevented,true);assert.equal(layout.scroll(),before+100);overlay.dispatchEvent(new w.Event('touchend'));
+ layout.api.close();layout.dom.window.close();
+});
+test('mobile PageDown and End reveal section content without moving the guide or snapping back',()=>{
+ const layout=mobileLayout({targetHeight:1000,pageHeight:3000});layout.api.start();const {w}=layout,tip=w.document.querySelector('.gearly-tour-tip'),top=tip.style.top,before=layout.scroll();
+ w.document.dispatchEvent(new w.KeyboardEvent('keydown',{key:'PageDown',bubbles:true,cancelable:true}));assert.ok(layout.scroll()>before);assert.equal(tip.style.top,top);
+ w.document.dispatchEvent(new w.KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));assert.ok(Math.abs(w.document.querySelector('#content').getBoundingClientRect().bottom-(parseFloat(tip.style.top)-12))<1);
+ const stopped=layout.scroll();layout.shift(150);w.dispatchEvent(new w.Event('resize'));assert.equal(layout.scroll(),stopped);layout.api.close();layout.dom.window.close();
+});
