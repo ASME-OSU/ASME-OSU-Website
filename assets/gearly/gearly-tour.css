@@ -110,3 +110,37 @@ html[data-theme=light] .gearly-tour-offer { --offer-bg:#fffdfd; --offer-fg:#2422
 @media(prefers-reduced-motion:reduce) { .gearly-tour-offer,.gearly-tour-offer * { animation:none!important; transition:none!important; }.gearly-tour-offer .gearly-tour-offer-start:is(:hover,:focus-visible) { transform:none; } }
 /* The invitation supplies the greeting while it is visible. */
 body:has(> .gearly-tour-offer) .gearly-launcher-greeting { display:none; }
+
+/* The same invitation and handlers, with a miniature mobile presentation. */
+.gearly-tour-offer-start-mobile { display:none; }
+@media(max-width:600px) {
+  .gearly-root,.gearly-tour-offer { --gearly-mobile-edge:20px; --gearly-mobile-launcher-size:64px; --gearly-mobile-offer-gap:16px; }
+  .gearly-root { right:max(var(--gearly-mobile-edge),env(safe-area-inset-right,0px)); bottom:max(var(--gearly-mobile-edge),env(safe-area-inset-bottom,0px)); }
+  .gearly-root .gearly-launcher { width:var(--gearly-mobile-launcher-size); height:var(--gearly-mobile-launcher-size); }
+  .gearly-tour-offer {
+    display:block; width:200px; max-width:calc(100vw - 32px - env(safe-area-inset-right,0px));
+    height:auto; min-height:0; padding:16px 15px; border-radius:23px;
+    right:max(var(--gearly-mobile-edge),env(safe-area-inset-right,0px));
+    bottom:calc(max(var(--gearly-mobile-edge),env(safe-area-inset-bottom,0px)) + var(--gearly-mobile-launcher-size) + var(--gearly-mobile-offer-gap));
+    border-color:var(--offer-border); box-shadow:0 6px 20px rgba(20,25,45,.12);
+    animation:gearly-offer-mobile-enter .23s ease-out both;
+  }
+  .gearly-tour-offer::after { right:23px; }
+  .gearly-tour-offer-mascot { position:absolute; inset:0; display:block; width:auto; height:auto; overflow:hidden; border-radius:inherit; pointer-events:none; }
+  .gearly-tour-offer-mascot img,.gearly-tour-offer-copy > p,.gearly-tour-offer .gearly-tour-offer-later,.gearly-tour-offer-start-desktop { display:none; }
+  .gearly-tour-offer .gearly-tour-offer-start-mobile { display:inline; position:relative; z-index:1; }
+  .gearly-tour-offer-circle { animation:none; }
+  .gearly-tour-offer-circle:nth-child(1) { width:72px; height:72px; left:-35px; top:-30px; bottom:auto; background:var(--offer-blush); }
+  .gearly-tour-offer-circle:nth-child(2) { width:86px; height:86px; right:-28px; bottom:-54px; top:auto; background:var(--offer-blush); }
+  .gearly-tour-offer-circle:nth-child(3) { width:66px; height:66px; right:12px; bottom:-46px; left:auto; top:auto; background:var(--offer-circle); }
+  .gearly-tour-offer-circle:nth-child(4) { display:none; }
+  .gearly-tour-offer h2 { margin:0 22px 5px 0; font-size:16px!important; line-height:1.25!important; }
+  .gearly-tour-offer-actions { margin-top:8px; gap:0; }
+  .gearly-tour-offer .gearly-tour-offer-start { position:relative; min-height:44px; padding:0 14px; background:transparent; font-size:13px; box-shadow:none; }
+  .gearly-tour-offer .gearly-tour-offer-start::before { content:''; position:absolute; inset:5px 0; background:#ba0c2f; border-radius:999px; pointer-events:none; transition:background .18s; }
+  .gearly-tour-offer .gearly-tour-offer-start:is(:hover,:focus-visible) { background:transparent; box-shadow:none; transform:none; color:#fff; }
+  .gearly-tour-offer .gearly-tour-offer-start:is(:hover,:focus-visible)::before { background:#9d0927; }
+  .gearly-tour-offer .gearly-tour-offer-close { top:0; right:0; width:44px; height:44px; min-height:44px; font-size:16px; }
+}
+@media(max-width:480px) { .gearly-root,.gearly-tour-offer { --gearly-mobile-edge:12px; } }
+@keyframes gearly-offer-mobile-enter { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
