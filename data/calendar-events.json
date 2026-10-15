@@ -1,24 +1,13 @@
 {
-  "generatedAt": "2026-10-09T02:17:13.990Z",
-  "checkedAt": "2026-10-15T20:24:09.852Z",
-  "windowStart": "2026-10-08T20:24:09.814Z",
+  "generatedAt": "2026-10-15T23:42:53.220Z",
+  "checkedAt": "2026-10-15T23:42:53.220Z",
+  "windowStart": "2026-10-08T23:42:53.192Z",
   "windowEnd": "2029-08-01T00:00:00.000Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-08T21:30:00.000Z",
-      "title": "ASME Pickleball @ RPAC",
-      "start": "2026-10-08T21:30:00.000Z",
-      "end": "2026-10-08T22:30:00.000Z",
-      "allDay": false,
-      "location": "RPAC Tennis Courts",
-      "description": "Pickleball with provided equipment at the RPAC",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-22T19:28:48.000Z"
-    },
     {
       "id": "1c22bg1hi1lfavvlu35o540gbn@google.com::2026-10-12T12:00:00.000Z",
       "title": "Last day of regularly scheduled first-session classes",
