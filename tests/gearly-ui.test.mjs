@@ -6,7 +6,7 @@ const source=fs.readFileSync(new URL('../assets/gearly/gearly.js',import.meta.ur
 const config=JSON.parse(fs.readFileSync('assets/gearly/gearly-data.json','utf8'));
 const raw={meta:{...config.meta,contactEmail:'asme@example.org'},featuredTopics:config.featuredTopics,pages:config.pages,intents:[{id:'join',examples:['join'],keywords:{join:3},response:{text:'<img src=x onerror=alert(1)>',cards:[{title:'Bad',url:'javascript:alert(1)'},{title:'Join',url:'/asme/join/'}],chips:['Join']}}]};
 async function start(data=raw,setup){const dom=new JSDOM('<body><main>Site</main></body>',{url:'https://org.osu.edu/asme/',runScripts:'outside-only'});dom.window.AbortSignal=AbortSignal;dom.window.fetch=async url=>({ok:true,json:async()=>url.includes('sprites.json')?{}:data});dom.window.matchMedia=()=>({matches:true});if(setup)setup(dom.window);dom.window.eval(source);await new Promise(r=>setTimeout(r,20));return dom;}
-test('dialog focus, Escape, safe response text and links',async()=>{const dom=await start();const w=dom.window;assert.ok(w.Gearly);w.Gearly.open();assert.equal(w.document.activeElement.className,'gearly-input');await w.Gearly.ask('join');assert.equal(w.document.querySelectorAll('.gearly-message img').length,0);assert.ok(w.document.querySelector('.gearly-message').textContent);assert.equal(w.document.querySelectorAll('a[href^="javascript:"]').length,0);w.document.querySelector('.gearly-panel').dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(w.document.querySelector('.gearly-panel').hidden,true);assert.equal(w.document.activeElement.className,'gearly-launcher');assert.equal(w.document.querySelector('.gearly-messages').getAttribute('aria-live'),'polite');dom.window.close();});
+test('dialog focus, Escape, safe response text and links',async()=>{const dom=await start();const w=dom.window;assert.ok(w.Gearly);w.Gearly.open();assert.equal(w.document.activeElement.className,'gearly-input');await w.Gearly.ask('join');assert.equal(w.document.querySelectorAll('.gearly-message img:not(.gearly-message-avatar)').length,0);assert.equal(w.document.querySelectorAll('.gearly-bot .gearly-message-avatar').length,2);assert.ok(w.document.querySelector('.gearly-message').textContent);assert.equal(w.document.querySelectorAll('a[href^="javascript:"]').length,0);w.document.querySelector('.gearly-panel').dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(w.document.querySelector('.gearly-panel').hidden,true);assert.equal(w.document.activeElement.className,'gearly-launcher');assert.equal(w.document.querySelector('.gearly-messages').getAttribute('aria-live'),'polite');dom.window.close();});
 test('malformed data never renders launcher',async()=>{const dom=await start({});assert.equal(dom.window.document.querySelector('.gearly-launcher'),null);dom.window.close();});
 test('closed guide exposes only a compact sprite launcher with tour inside the panel',async()=>{const dom=await start({...raw,meta:{...raw.meta,sprites:{idle:'sprites/idle.webp'}}});const w=dom.window;const launcher=w.document.querySelector('.gearly-launcher');assert.equal(launcher.querySelector('.gearly-launcher-greeting').textContent,'Hi! Need help?');assert.equal(launcher.querySelector('.gearly-launcher-greeting').getAttribute('aria-hidden'),'true');assert.ok(launcher.querySelector('img'));assert.equal(w.document.querySelector('.gearly-root > .gearly-tour-replay'),null);assert.ok(w.document.querySelector('.gearly-header .gearly-tour-replay'));assert.equal(launcher.getAttribute('aria-label'),'Open Gearly, ASME website guide');dom.window.close();});
 test('session history stays capped at fifty messages',async()=>{const dom=await start();for(let i=0;i<30;i++)await dom.window.Gearly.ask('join');assert.ok(JSON.parse(dom.window.sessionStorage.getItem('gearly_state_v1')).history.length<=50);dom.window.close();});
@@ -151,4 +151,44 @@ test('section retrieval never replaces a confident answer, but remains available
   card.click();
   assert.equal(opened.selector,action.selector);
   dom.window.close();
+});
+
+test('speaker heads remain after reveal, on reduced motion, and in restored conversation',async()=>{
+ const dom=await start();const w=dom.window;
+ await w.Gearly.ask('join');
+ assert.equal(w.document.querySelectorAll('.gearly-user .gearly-message-avatar').length,0);
+ assert.equal(w.document.querySelectorAll('.gearly-bot .gearly-message-avatar').length,2);
+ w.matchMedia=()=>({matches:false});await w.Gearly.ask('join');
+ const answers=w.document.querySelectorAll('.gearly-bot');
+ assert.equal(answers[answers.length-1].querySelectorAll('.gearly-message-avatar').length,1);
+ assert.equal(w.document.querySelector('.gearly-reply-sprite'),null);
+ dom.window.close();
+ const restored=await start(raw,w=>w.sessionStorage.setItem('gearly_state_v1',JSON.stringify({history:[{who:'user',text:'Join?'},{who:'bot',text:'Join ASME'}]})));
+ assert.equal(restored.window.document.querySelectorAll('.gearly-bot .gearly-message-avatar').length,1);restored.window.close();
+});
+
+test('wave waits a quiet minute, plays once, reuses its download, and stops for chat, hidden tabs and reduced motion',async()=>{
+ const timers=new Map();let next=1000,preference,downloads=0,created=0,revoked=0;
+ const motion={matches:false,addEventListener:(_type,cb)=>preference=cb};
+ const dom=await start(raw,w=>{
+  Object.defineProperty(w.document,'hidden',{value:false,configurable:true});
+  w.matchMedia=()=>motion;
+  const native=w.setTimeout.bind(w),clear=w.clearTimeout.bind(w);
+  w.setTimeout=(cb,ms)=>{if(ms>=6000){timers.set(++next,{cb,ms});return next;}return native(cb,ms);};
+  w.clearTimeout=id=>{if(timers.has(id))timers.delete(id);else clear(id);};
+  w.fetch=async url=>url.includes('original-look-wave')?(downloads++,{ok:true,blob:async()=>new w.Blob(['wave'],{type:'image/webp'})}):({ok:true,json:async()=>url.includes('sprites.json')?{}:raw});
+  w.URL.createObjectURL=()=>`blob:wave-${++created}`;w.URL.revokeObjectURL=()=>revoked++;
+ });
+ const w=dom.window,face=w.document.querySelector('.gearly-launcher img');
+ const run=async()=>{const [id,t]=timers.entries().next().value;timers.delete(id);await t.cb();return t.ms;};
+ assert.equal(downloads,0);assert.ok([...timers.values()][0].ms>=60000);
+ await run();assert.equal(face.src,'blob:wave-1');assert.equal(downloads,1);
+ assert.equal(await run(),6250);assert.match(face.src,/original-look-idle.webp$/);assert.equal(revoked,1);
+ await run();assert.equal(downloads,1);assert.equal(created,2);
+ w.Gearly.open();assert.match(face.src,/original-look-idle.webp$/);assert.equal(timers.size,0);
+ w.Gearly.close();assert.equal(timers.size,1);
+ motion.matches=true;preference();assert.equal(timers.size,0);
+ motion.matches=false;preference();assert.equal(timers.size,1);
+ Object.defineProperty(w.document,'hidden',{value:true,configurable:true});w.document.dispatchEvent(new w.Event('visibilitychange'));assert.equal(timers.size,0);
+ dom.window.close();
 });
