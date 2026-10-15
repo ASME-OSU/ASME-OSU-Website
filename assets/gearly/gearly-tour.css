@@ -144,3 +144,19 @@ body:has(> .gearly-tour-offer) .gearly-launcher-greeting { display:none; }
 }
 @media(max-width:480px) { .gearly-root,.gearly-tour-offer { --gearly-mobile-edge:12px; } }
 @keyframes gearly-offer-mobile-enter { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+/* Mobile walkthrough: keep a clear page viewport above a compact docked guide. */
+.gearly-tour-scroll-hint { display:none; }
+.gearly-tour-scroll-room { pointer-events:none; flex:none; }
+@media(max-width:600px) {
+  .gearly-tour-tip { padding:12px 14px; border-radius:18px; font-size:13px; line-height:1.4; overscroll-behavior:contain; }
+  .gearly-tour-tip .gearly-tour-count { margin:0 42px 4px 0; font-size:11px; }
+  .gearly-tour-tip h2 { margin:0 42px 6px 0; font-size:17px!important; line-height:1.25; }
+  .gearly-tour-tip #gearly-tour-description { margin:6px 0; font-size:13px; line-height:1.45; }
+  .gearly-tour-tip .gearly-tour-sprite { width:36px; height:36px; padding:2px; margin:0 0 4px 8px; border-radius:10px; }
+  .gearly-tour-tip .gearly-tour-controls { position:sticky; bottom:0; margin-top:8px; padding-top:4px; background:inherit; gap:8px; }
+  .gearly-tour-tip .gearly-tour-controls button { min-height:44px; padding:6px 10px; font-size:13px; }
+  .gearly-tour-tip .gearly-tour-controls button[aria-label="Skip tour"] { font-size:22px; }
+  .gearly-tour-tip .gearly-tour-destination { font-size:10px; margin-top:4px!important; }
+  .gearly-tour-tip[data-scrollable="true"] .gearly-tour-scroll-hint { display:block; margin:6px 0; color:inherit; opacity:.8; font-size:11px; }
+}
