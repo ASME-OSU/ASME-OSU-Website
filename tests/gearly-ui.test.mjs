@@ -193,3 +193,14 @@ test('wave greets early, plays once, reuses its download, and stops for chat, hi
  Object.defineProperty(w.document,'hidden',{value:true,configurable:true});w.document.dispatchEvent(new w.Event('visibilitychange'));assert.equal(timers.size,0);
  dom.window.close();
 });
+
+test('photo and Instagram freshness labels show only a short Eastern date',async()=>{
+  for(const kind of ['instagram','gallery']) {
+    const seed={...raw,intents:[{id:kind,examples:[kind],liveSource:kind,response:{text:'Media'}}]};
+    const dom=await start(seed,w=>{w.GearlyLive={load:async()=>({text:'Latest update.',cards:[],updatedAt:'2026-08-14T00:37:00Z',sourceLabel:'Snapshot every 6 hours'})};});
+    await dom.window.Gearly.ask(kind);
+    const reply=Array.from(dom.window.document.querySelectorAll('.gearly-bot')).pop().textContent;
+    assert.match(reply,/Updated Aug 13, 2026\./);assert.doesNotMatch(reply,/Source:|Snapshot|12:37|8:37|AM|PM/);
+    dom.window.close();
+  }
+});

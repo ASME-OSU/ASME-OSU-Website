@@ -108,19 +108,38 @@ test('image URLs reject alternate hosts, paths, protocols and credentials', () =
   assert.equal(api.safeImageURL('https://asme-osu.github.io/preview/assets/gallery/example.jpg'),'https://asme-osu.github.io/preview/assets/gallery/example.jpg');
   assert.equal(api.safeImageURL('http://localhost:8080/preview/assets/gallery/example.jpg'),null);
 });
-test('media ranks query matches, limits to three, caches each query and validates image dimensions',async()=>{
+test('Instagram always returns only the newest post, even when an older post matches the query',async()=>{
   const source=freshMedia([
     {title:'Robotics workshop',timestamp:'2026-09-01',imageUrl:galleryURL,imageWidth:320,imageHeight:180,alt:'Robot'},
     ...[1,2,3,4].map(day=>({title:'Social '+day,timestamp:'2026-10-0'+day,imageUrl:galleryURL,imageWidth:-1,imageHeight:1.5}))
   ]);
   const {api,requests}=setup([source,source,source]);
-  const match=await api.load('instagram',{query:'show robot photos'});
-  assert.match(match.text,/Closest matches/); assert.equal(match.cards.length,1); assert.equal(match.cards[0].image.width,320);
-  const latest=await api.load('instagram',{query:'nonexistent'});
-  assert.match(latest.text,/Latest/); assert.deepEqual(Array.from(latest.cards,c=>c.title),['Social 4','Social 3','Social 2']);
-  assert.equal(latest.cards[0].image.width,undefined); assert.equal(latest.cards[0].image.height,undefined);
-  await api.load('instagram',{query:'nonexistent'}); assert.equal(requests.length,2);
-  const generic=await api.load('instagram',{query:'show latest photos'}); assert.equal(generic.cards[0].title,'Social 4');
+  for(const query of ['show robot photos','nonexistent','show latest photos']) {
+    const latest=await api.load('instagram',{query});
+    assert.equal(latest.text,'Latest Instagram post.');
+    assert.deepEqual(Array.from(latest.cards,c=>c.title),['Social 4']);
+    assert.equal(latest.cards[0].image.width,undefined); assert.equal(latest.cards[0].image.height,undefined);
+  }
+  await api.load('instagram',{query:'nonexistent'}); assert.equal(requests.length,3);
+});
+test('gallery keeps topical matching and up to three photos',async()=>{
+  const items=[{id:'robot',alt:'Robot workshop',takenAt:'2026-09-01',thumbnailUrl:galleryURL,width:320,height:180},
+    ...[1,2,3,4].map(day=>({id:'social'+day,alt:'Social '+day,takenAt:'2026-10-0'+day}))];
+  const {api}=setup([freshMedia(items),{}, {},freshMedia(items),{}, {}]);
+  const match=await api.load('gallery',{query:'robot photos'});
+  assert.equal(match.cards.length,1);assert.equal(match.cards[0].title,'Robot workshop');assert.equal(match.cards[0].image.width,320);
+  const latest=await api.load('gallery',{query:'latest photos'});
+  assert.deepEqual(Array.from(latest.cards,c=>c.title),['Social 4','Social 3','Social 2']);
+});
+test('meeting filters use the same next events as general event requests',async()=>{
+  const source={checkedAt:new Date().toISOString(),events:[
+    {title:'Weekly Chapter Meeting',start:'2099-02-01T18:00:00Z'},
+    {title:'MATLAB Info Session',start:'2099-01-01T18:00:00Z'},
+    {title:'Bridge Competition',start:'2099-01-02T18:00:00Z'}]};
+  const {api}=setup([source]);
+  const value=await api.load('events',{eventType:'meeting'});
+  assert.equal(value.cards[0].title,'MATLAB Info Session');
+  assert.deepEqual(Array.from((await api.load('events')).cards,c=>c.title),Array.from(value.cards,c=>c.title));
 });
 test('gallery labels use Eastern dates, closest events, ties, cancellations and manual overrides',async()=>{
   const items=[

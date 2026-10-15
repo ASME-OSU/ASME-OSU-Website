@@ -618,7 +618,7 @@
       },
       "negations": [],
       "response": {
-        "text": "I’ll check the event feed for meeting information. Confirm the event listing for time and location.",
+        "text": "I’ll check the next chapter events. Confirm the event listing for time and location.",
         "cards": [
           {
             "title": "Events Calendar",

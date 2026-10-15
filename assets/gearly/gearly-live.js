@@ -75,7 +75,8 @@
     return (matches.length === 1 && clean(matches[0].title, 150)) || clean(item.alt || item.title, 150) || 'Chapter photo';
   }
   function mediaCards(kind, data, rows, options, history, overrides) {
-    var terms = Array.from(new Set(mediaTokens(options.query)));
+    // Instagram requests always show the newest post, regardless of topic words.
+    var terms = kind === 'instagram' ? [] : Array.from(new Set(mediaTokens(options.query)));
     var ranked = rows.filter(function (item) { return item && typeof item === 'object'; }).map(function (item, index) {
       var title = kind === 'gallery' ? photoTitle(item, history, overrides) : clean(item.title || item.alt, 150) || 'Chapter photo';
       var score = 0;
@@ -88,7 +89,7 @@
     var matching = terms.length && ranked.some(function (entry) { return entry.score > 0; });
     if (matching) ranked = ranked.filter(function (entry) { return entry.score > 0; });
     ranked.sort(function (a, b) { return (matching ? b.score - a.score : 0) || b.time - a.time || Number(a.item.order || 0) - Number(b.item.order || 0) || a.index - b.index; });
-    return { matching: !!matching, cards: ranked.slice(0, 3).map(function (entry) {
+    return { matching: !!matching, cards: ranked.slice(0, kind === 'instagram' ? 1 : 3).map(function (entry) {
       var card = { id:clean(entry.item.id,300) || clean(entry.item.thumbnailUrl || entry.item.imageUrl || entry.item.permalink,1000), detailAvailable:Boolean(clean(entry.item.summary || entry.item.caption)), title: entry.title, text: clean(entry.item.summary || entry.item.caption || entry.item.category), url: safeURL(kind === 'instagram' ? entry.item.permalink : data.albumUrl, kind === 'instagram' ? instagramURL : pages + 'pictures/') };
       var image = imageFor(entry.item, kind);
       if (image) card.image = image;
@@ -240,11 +241,11 @@
         var media = mediaCards(kind, data, rows, options, history, overrides);
         cards = media.cards;
       }
-      var labels = { events: 'Google Calendar · hourly snapshot', instagram: 'Instagram · snapshot every 6 hours', gallery: 'Public Google Photos · daily snapshot' };
-      var value = result(cards.length ? (kind === 'events' ? 'Upcoming chapter events in Eastern Time.' : (media.matching ? 'Closest matches from public chapter updates.' : 'Latest public chapter updates.')) : (kind === 'events' && (options.dateRange || options.eventType || options.company) ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : 'No public updates are available in this snapshot.'), cards, updated, labels[kind]);
+      var labels = { events: 'Google Calendar · hourly snapshot', instagram: 'Instagram', gallery: 'Google Photos' };
+      var value = result(cards.length ? (kind === 'events' ? 'Upcoming chapter events in Eastern Time.' : (kind === 'instagram' ? 'Latest Instagram post.' : media.matching ? 'Matching chapter photos.' : 'Latest chapter photos.')) : (kind === 'events' && (options.dateRange || options.eventType || options.company) ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : 'No public updates are available in this snapshot.'), cards, updated, labels[kind]);
       if (!cards.length && kind !== 'events') value.cards = [{ title: 'Open the source', text: 'See current public updates.', url: kind === 'instagram' ? instagramURL : kind === 'gallery' ? safeURL(data.albumUrl, pages + 'pictures/') : pages + 'calendar/' }];
       var maximumAge = kind === 'events' ? 3 * 3600000 : kind === 'instagram' ? 18 * 3600000 : 3 * 86400000;
-      if (!value.updatedAt || Date.now() - date(value.updatedAt) > maximumAge) { value.stale = true; value.text += ' This snapshot may be out of date; open the source for current details.'; }
+      if (!value.updatedAt || Date.now() - date(value.updatedAt) > maximumAge) { value.stale = true; value.text += kind === 'events' ? ' This snapshot may be out of date; open the source for current details.' : ' Updates may be out of date.'; }
       return value;
     });
   }
@@ -295,7 +296,7 @@
     load: function (kind, options) {
       options = options && typeof options === 'object' ? options : {};
       var range = options.dateRange && typeof options.dateRange === 'object' ? options.dateRange : null;
-      var normalized = { company: clean(options.company, 100), eventType: clean(options.eventType, 60) };
+      var normalized = { company: clean(options.company, 100), eventType: /^meetings?$/i.test(clean(options.eventType, 60)) ? '' : clean(options.eventType, 60) };
       if (range) { normalized.dateRange = {}; ['from', 'to'].forEach(function (name) { if (typeof range[name] === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(range[name])) normalized.dateRange[name] = range[name]; }); }
       normalized.query = clean(options.query, 200);
       normalized.name = clean(options.name, 60);
