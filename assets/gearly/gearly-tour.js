@@ -179,7 +179,7 @@
       var title=doc.createElement('h2');title.textContent='Take a tour';
       var subtitle=doc.createElement('p');subtitle.textContent='Let Gearley show you around!';
       var actions=doc.createElement('div');actions.className='gearly-tour-offer-actions';
-      var startButton=button('Start tour',function(){root.GearlyTour.start();});startButton.className='gearly-tour-offer-start';startButton.textContent='Start tour →';
+      var startButton=button('Start tour',function(){root.GearlyTour.start();});startButton.className='gearly-tour-offer-start';var desktopLabel=doc.createElement('span');desktopLabel.className='gearly-tour-offer-start-desktop';desktopLabel.textContent='Start tour →';var mobileLabel=doc.createElement('span');mobileLabel.className='gearly-tour-offer-start-mobile';mobileLabel.textContent='Start →';startButton.replaceChildren(desktopLabel,mobileLabel);
       function decline(){remember('dismissed');dismissOffer(true);}
       var later=button('Maybe later',decline);later.className='gearly-tour-offer-later';
       var close=button('Dismiss tour invitation',decline);close.className='gearly-tour-offer-close';close.textContent='×';
