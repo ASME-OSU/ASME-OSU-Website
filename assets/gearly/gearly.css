@@ -68,10 +68,10 @@
 .gearly-debug { font:11px monospace; }
 .gearly-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
 .gearly-launcher { position:relative; display:grid; place-items:center; width:64px; height:64px; padding:0; border:1px solid var(--gearly-hero-border); border-radius:50%; background:var(--gearly-bg); box-shadow:0 6px 24px #0002; }
-.gearly-root .gearly-launcher .gearly-avatar-image { position:absolute; left:-3px; bottom:-1px; width:68px; height:68px; }
+.gearly-root .gearly-launcher .gearly-avatar-image { position:absolute; left:1px; bottom:1px; width:60px; height:60px; }
 .gearly-launcher-greeting { position:absolute; right:0; bottom:calc(100% + 12px); padding:9px 12px; border:1px solid var(--gearly-border); border-radius:16px; background:var(--gearly-bg); color:var(--gearly-fg); font-size:12px; font-weight:700; white-space:nowrap; opacity:0; visibility:hidden; pointer-events:none; }
 .gearly-launcher:is(:hover,:focus-visible) .gearly-launcher-greeting { opacity:1; visibility:visible; }
-.gearly-launcher:is(:hover,:focus-visible) img { animation:gearly-wave .8s ease-in-out 1; }
+
 .gearly-avatar[data-state=thinking] img,.gearly-activity-sprite { animation:gearly-think 1.8s ease-in-out infinite; }
 .gearly-avatar[data-state=typing] img,.gearly-reply-sprite { animation:gearly-think .7s ease-in-out infinite; }
 .gearly-shortcut:is(:hover,:focus-visible) img,.gearly-place-card:is(:hover,:focus-visible) img { animation:gearly-wave .8s ease-in-out 1; }
@@ -85,3 +85,7 @@ html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#242228; --g
 @media(prefers-reduced-motion:reduce) { .gearly-root * { animation:none!important; transition:none!important; transform:none!important; scroll-behavior:auto!important; } }
 
 .gearly-card img{display:block;width:100%;height:auto;aspect-ratio:4/3;max-height:180px;object-fit:cover;border-radius:10px;background:var(--asme-surface,#f5eeee);margin-bottom:8px}
+
+/* A persistent speaker portrait stays with each answer after the typing reveal. */
+.gearly-bot { position:relative; margin-left:30px; }
+.gearly-root .gearly-message-avatar { position:absolute; left:-32px; top:8px; width:26px; height:28px; object-fit:contain; }

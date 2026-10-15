@@ -312,6 +312,19 @@
         "height": 1199
       },
       "state": "happy"
+    },
+    {
+      "original": "Gearley_Original_Look_24fps.webp",
+      "name": "gearly-original-look-idle",
+      "file": "sprites/gearly-original-look-idle.png",
+      "webFile": "sprites/gearly-original-look-idle.webp",
+      "description": "Gearly smiling with both hands resting on the launcher edge; static companion to the occasional wave",
+      "alt": "Gearly smiling with both hands resting on an edge",
+      "dimensions": {
+        "width": 128,
+        "height": 128
+      },
+      "state": "launcher"
     }
   ]
 }

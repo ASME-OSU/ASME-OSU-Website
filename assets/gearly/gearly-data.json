@@ -6,7 +6,7 @@
     "logEndpoint": "",
     "sprites": {
       "idle": "sprites/gearly-neutral-head.webp",
-      "launcher": "sprites/gearly-circular-wave.webp",
+      "launcher": "sprites/gearly-original-look-idle.webp",
       "thinking": "sprites/gearly-thinking-chin.webp",
       "typing": "sprites/gearly-laptop-presenting.webp",
       "happy": "sprites/gearly-happy-head.webp",
@@ -15,7 +15,11 @@
     "enabled": true,
     "sheetID": "1otAJV_pDkj6xWCVBHbhXPq99sT9L33ZFOdQU59uKXLg",
     "assetBase": "https://asme-osu.github.io/ASME-OSU-Website/",
-    "instagramHandle": "asmeohiostate"
+    "instagramHandle": "asmeohiostate",
+    "launcherAnimation": {
+      "path": "sprites/gearly-original-look-wave.webp",
+      "durationMs": 6250
+    }
   },
   "synonyms": {
     "meeting": [
