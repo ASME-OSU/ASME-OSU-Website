@@ -99,6 +99,27 @@
     if (input) input.removeAttribute('aria-describedby');
   }
 
+  function showPointsLoading(rows, state) {
+    // Also support the older HTML block still hosted in WordPress.
+    rows.setAttribute('aria-busy', 'true');
+    if (!rows.querySelector('.asme-points-skeleton-row')) rows.innerHTML = '<span class="asme-points-loading-label">Loading leaderboard…</span>' + new Array(11).join("<div class=\"asme-leaderboard-row asme-points-skeleton-row\" aria-hidden=\"true\"><span class=\"asme-leaderboard-rank\"><span class=\"asme-points-skeleton-bar\"></span></span><span class=\"asme-leaderboard-avatar\"><span class=\"asme-points-skeleton-bar\"></span></span><span class=\"asme-leaderboard-member\"><span class=\"asme-points-skeleton-bar\"></span></span><span class=\"asme-leaderboard-meta\"><span class=\"asme-points-skeleton-bar\"></span></span><span class=\"asme-leaderboard-score\"><span class=\"asme-points-skeleton-bar\"></span></span></div>");
+    if (state) {
+      state.classList.add('asme-member-dashboard-state--loading');
+      state.setAttribute('aria-busy', 'true');
+      if (!state.querySelector('.asme-points-summary-skeleton')) {
+        // The old block is a paragraph; replace it before adding block children.
+        if (state.tagName === 'P') {
+          var replacement = document.createElement('div');
+          Array.prototype.forEach.call(state.attributes, function (attribute) { replacement.setAttribute(attribute.name, attribute.value); });
+          state.replaceWith(replacement);
+          state = replacement;
+        }
+        state.innerHTML = "<span class=\"asme-points-loading-label\">Loading dashboard\u2026</span><div class=\"asme-points-summary-skeleton\" aria-hidden=\"true\"><div class=\"asme-points-skeleton-identity\"><span class=\"asme-points-skeleton-bar\"></span><span class=\"asme-points-skeleton-bar\"></span></div><div class=\"asme-points-skeleton-kpis\"><div><span class=\"asme-points-skeleton-bar\"></span><span class=\"asme-points-skeleton-bar\"></span></div><div><span class=\"asme-points-skeleton-bar\"></span><span class=\"asme-points-skeleton-bar\"></span></div><div><span class=\"asme-points-skeleton-bar\"></span><span class=\"asme-points-skeleton-bar\"></span></div><div><span class=\"asme-points-skeleton-bar\"></span><span class=\"asme-points-skeleton-bar\"></span></div></div><div class=\"asme-points-skeleton-activity\"><span class=\"asme-points-skeleton-bar\"></span><span class=\"asme-points-skeleton-bar\"></span><span class=\"asme-points-skeleton-bar\"></span><span class=\"asme-points-skeleton-bar\"></span></div></div>";
+      }
+    }
+    return state;
+  }
+
   function start() {
     var app = document.getElementById('asmePointsApp');
     var rowsEl = document.getElementById('asmeLeaderboardRows');
@@ -116,7 +137,7 @@
     var searchLabel = document.querySelector('label[for="asmeMemberSearch"]');
     var searchResults = document.getElementById('asmeMemberSearchResults');
     var dashboard = document.getElementById('asmeMemberDashboardPanel');
-    var dashboardState = document.getElementById('asmeMemberDashboardState');
+    var dashboardState = showPointsLoading(rowsEl, document.getElementById('asmeMemberDashboardState'));
     var dashboardName = document.getElementById('asmeDashboardName');
     var dashboardPeriod = document.getElementById('asmeDashboardPeriod');
     var dashboardRank = document.getElementById('asmeDashboardRank');
@@ -418,6 +439,9 @@
 
     function setDashboardState(message, isError) {
       if (!dashboardState) return;
+      dashboardState.classList.remove('asme-member-dashboard-state--loading');
+      dashboardState.setAttribute('aria-busy', 'false');
+      if (dashboard) dashboard.setAttribute('aria-busy', 'false');
       if (selectedMember && dashboard && !dashboard.hidden) {
         dashboardState.hidden = true;
         dashboardState.textContent = '';

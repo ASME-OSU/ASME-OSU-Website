@@ -24342,4 +24342,33 @@ html body .asme-lightbox[hidden] { display: none !important; }
 .asme-cal-page .acp-preview-controls input { max-width: 10rem; padding: 0.5rem; }
 .asme-cal-page .acp-preview-controls button { padding: 0.5rem 0.75rem; border-radius: 0.4rem; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
 .asme-cal-page #asmeCalendarPreviewHelp, .asme-cal-page #asmeCalendarStatus { font-size: 0.875rem; line-height: 1.5; }
+
+/* Member points loading skeletons reserve the data layout. */
+html body #page .entry-content .asme-points-page-v2 .asme-points-loading-label { position:absolute !important; width:1px !important; height:1px !important; padding:0 !important; overflow:hidden !important; clip-path:inset(50%) !important; white-space:nowrap !important; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-bar { display:block !important; width:100%; height:14px; border-radius:6px; background:currentColor; opacity:.12; animation:asme-points-skeleton-pulse 1.8s ease-in-out infinite; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row { pointer-events:none !important; cursor:default !important; color:#64748b !important; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row .asme-leaderboard-avatar { background:transparent !important; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row .asme-leaderboard-avatar .asme-points-skeleton-bar { height:32px; border-radius:50%; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row .asme-leaderboard-member { width:75%; }
+html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state:not([hidden]),
+html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-panel:not([hidden]) { min-height:400px !important; }
+html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state--loading { display:block !important; padding:0 !important; }
+html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state--loading::before { display:none !important; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-summary-skeleton { width:100%; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-identity { display:grid; gap:12px; padding:26px; border-bottom:1px solid rgba(128,128,128,.18); }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-identity .asme-points-skeleton-bar:first-child { width:52%; height:26px; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-identity .asme-points-skeleton-bar:last-child { width:32%; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-bottom:1px solid rgba(128,128,128,.18); }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-kpis > div { display:grid; gap:16px; padding:24px 16px; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-kpis .asme-points-skeleton-bar:last-child { height:32px; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-activity { display:grid; gap:18px; padding:24px 26px; }
+html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-activity .asme-points-skeleton-bar:nth-child(even) { width:72%; }
+@keyframes asme-points-skeleton-pulse { 50% { opacity:.24; } }
+@media (max-width:600px) {
+  html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state:not([hidden]),
+  html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-panel:not([hidden]) { min-height:510px !important; }
+}
+@media (prefers-color-scheme:dark) { html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row { color:#cbd5e1 !important; } }
+@media (prefers-reduced-motion:reduce) { html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-bar { animation:none !important; } }
 /* ASME SHARED DESIGN SYSTEM END */
