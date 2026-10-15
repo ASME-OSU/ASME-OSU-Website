@@ -158,3 +158,6 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-activi
 }
 @media (prefers-color-scheme:dark) { html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row { color:#cbd5e1 !important; } }
 @media (prefers-reduced-motion:reduce) { html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-bar { animation:none !important; } }
+
+/* Keep the member summary filler still until a member is selected. */
+html body #page .entry-content .asme-points-page-v2 .asme-points-summary-skeleton .asme-points-skeleton-bar { animation: none !important; }

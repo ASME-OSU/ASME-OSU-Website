@@ -437,9 +437,9 @@
       }).filter(function (r) { return r.name && Number.isFinite(r.points); });
     }
 
-    function setDashboardState(message, isError) {
+    function setDashboardState(message, isError, keepSkeleton) {
       if (!dashboardState) return;
-      dashboardState.classList.remove('asme-member-dashboard-state--loading');
+      dashboardState.classList.toggle('asme-member-dashboard-state--loading', Boolean(keepSkeleton));
       dashboardState.setAttribute('aria-busy', 'false');
       if (dashboard) dashboard.setAttribute('aria-busy', 'false');
       if (selectedMember && dashboard && !dashboard.hidden) {
@@ -448,7 +448,12 @@
         return;
       }
       dashboardState.hidden = false;
-      dashboardState.textContent = message;
+      if (keepSkeleton) {
+        var label = dashboardState.querySelector('.asme-points-loading-label');
+        if (label) label.textContent = message;
+      } else {
+        dashboardState.textContent = message;
+      }
       dashboardState.classList.toggle('asme-member-dashboard-state--error', Boolean(isError));
       if (dashboard) dashboard.hidden = true;
     }
@@ -460,7 +465,7 @@
 
     function renderMember(member) {
       if (!member || !dashboard) return;
-      if (dashboardState) dashboardState.hidden = true;
+      if (dashboardState) { dashboardState.hidden = true; dashboardState.textContent = ''; }
       dashboard.hidden = false;
       dashboard.setAttribute('aria-busy', 'false');
       replayEntrance(dashboard, 'asme-dashboard-enter');
@@ -567,7 +572,7 @@
       }
       searchInput.disabled = false;
       searchInput.placeholder = 'Start typing a name…';
-      setDashboardState('Search your name above to open your dashboard.');
+      setDashboardState('Search your name above or select a leaderboard member to open your dashboard.', false, true);
       searchInput.addEventListener('input', function () {
         if (selectedMember && searchInput.value !== selectedMember.name) selectedMember = null;
         updateSearchLabel();

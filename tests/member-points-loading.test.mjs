@@ -43,12 +43,16 @@ for (const oldMarkup of [false, true]) {
       assert.ok(d.querySelector('.asme-points-summary-skeleton'));
       reply('Leaderboard_Public', [[1, 'Alex A.', 'Fall 2026', 50, 2, 'Active', '2026-10-14', 2, 0, 0, 0, 0, 0, 0, 'Meetings']]);
       await tick();
-      assert.equal(d.querySelectorAll('.asme-points-skeleton-bar').length, 0);
+      assert.equal(d.querySelectorAll('.asme-points-skeleton-row').length, 0);
+      assert.ok(d.querySelector('.asme-points-summary-skeleton'));
+      assert.equal(d.querySelector('#asmeMemberDashboardState').hidden, false);
       assert.equal(d.querySelector('#asmeMemberDashboardState').getAttribute('aria-busy'), 'false');
       assert.equal(d.querySelector('#asmeMemberSearch').disabled, false);
       d.querySelector('.asme-leaderboard-row').click();
       assert.equal(d.querySelector('#asmeDashboardName').textContent, 'Alex A.');
       assert.equal(d.querySelector('#asmeMemberDashboardPanel').hidden, false);
+      assert.equal(d.querySelector('.asme-points-summary-skeleton'), null);
+      assert.equal(d.querySelector('#asmeMemberDashboardState').hidden, true);
     } finally { dom.window.close(); }
   });
 }
