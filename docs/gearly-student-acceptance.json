@@ -1,0 +1,616 @@
+{
+  "fixedTime": "2026-10-15T16:00:00Z",
+  "calendarFixture": "repository calendar with fresh checkedAt; source events unchanged",
+  "answers": [
+    {
+      "number": 1,
+      "question": "I'm a freshman in aerospace, not mechanical engineering. Can I join, and how do I sign up?",
+      "text": "Yes. ASME OSU is especially focused on mechanical engineering, but students from related engineering majors and anyone interested in design, manufacturing, robotics, energy, aerospace, automotive, or professional development are welcome. First-year students are encouraged to join early. Sign up for the email newsletter for full announcements and join the ASME OSU GroupMe for quick reminders and day-of updates.ASME OSU newsletter signupThis form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox.Join ASME OSU GroupMeJoin the chapter GroupMe for reminders, event changes, and member conversation.",
+      "cards": [
+        {
+          "title": "ASME OSU newsletter signup",
+          "url": "https://org.osu.edu/asme/join/#newsletter-signup",
+          "text": "This form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox."
+        },
+        {
+          "title": "Join ASME OSU GroupMe",
+          "url": "https://groupme.com/join_group/95825283/iaBgk5Ld",
+          "text": "Join the chapter GroupMe for reminders, event changes, and member conversation."
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/join/#newsletter-signup",
+        "https://groupme.com/join_group/95825283/iaBgk5Ld"
+      ]
+    },
+    {
+      "number": 2,
+      "question": "How much are chapter dues? Do I have to pay for national ASME membership too?",
+      "text": "Joining the ASME OSU newsletter and GroupMe is free. ASME National membership is separate; check ASME National for current membership terms. Any costs for special events, trips, or optional activities will be shared ahead of time.Join ASME OSUJoin ASME National",
+      "cards": [
+        {
+          "title": "Join ASME OSU",
+          "url": "https://org.osu.edu/asme/join/",
+          "text": ""
+        },
+        {
+          "title": "Join ASME National",
+          "url": "https://www.asme.org/membership/student-membership",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/join/",
+        "https://www.asme.org/membership/student-membership"
+      ]
+    },
+    {
+      "number": 3,
+      "question": "When and where is the next ASME meeting?",
+      "text": "Upcoming chapter events in Eastern Time. Location: Scott Laboratory E141. Updated 10/15/2026, 12:00:00 PM. Source: Google Calendar · hourly snapshot.ASME MATLAB Info SessionOct 22, 2026, 5:30 PM EDT · Scott Laboratory E141Bar SocialOct 23, 2026, 6:30 PM EDTASME Scheduling/BuckeyeLink TourOct 29, 2026, 5:30 PM EDT · Scott Laboratory E141",
+      "cards": [
+        {
+          "title": "ASME MATLAB Info Session",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 22, 2026, 5:30 PM EDT · Scott Laboratory E141"
+        },
+        {
+          "title": "Bar Social",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 23, 2026, 6:30 PM EDT"
+        },
+        {
+          "title": "ASME Scheduling/BuckeyeLink Tour",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 29, 2026, 5:30 PM EDT · Scott Laboratory E141"
+        }
+      ],
+      "urls": [
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York"
+      ]
+    },
+    {
+      "number": 4,
+      "question": "Do I need to RSVP for it, and will there be food?",
+      "text": "Public calendar listing for ASME MATLAB Info Session. RSVP: The listing does not specify whether an RSVP or registration is required. Food: The listing does not specify whether food will be provided. Updated 10/15/2026, 12:00:00 PM. Source: Google Calendar · hourly snapshot.ASME MATLAB Info SessionOct 22, 2026, 5:30 PM EDT · Scott Laboratory E141",
+      "cards": [
+        {
+          "title": "ASME MATLAB Info Session",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 22, 2026, 5:30 PM EDT · Scott Laboratory E141"
+        }
+      ],
+      "urls": [
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York"
+      ]
+    },
+    {
+      "number": 5,
+      "question": "What's the next upcoming event?",
+      "text": "Upcoming chapter events in Eastern Time. Updated 10/15/2026, 12:00:00 PM. Source: Google Calendar · hourly snapshot.ASME MATLAB Info SessionOct 22, 2026, 5:30 PM EDT · Scott Laboratory E141Bar SocialOct 23, 2026, 6:30 PM EDTASME Scheduling/BuckeyeLink TourOct 29, 2026, 5:30 PM EDT · Scott Laboratory E141",
+      "cards": [
+        {
+          "title": "ASME MATLAB Info Session",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 22, 2026, 5:30 PM EDT · Scott Laboratory E141"
+        },
+        {
+          "title": "Bar Social",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 23, 2026, 6:30 PM EDT"
+        },
+        {
+          "title": "ASME Scheduling/BuckeyeLink Tour",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 29, 2026, 5:30 PM EDT · Scott Laboratory E141"
+        }
+      ],
+      "urls": [
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York"
+      ]
+    },
+    {
+      "number": 6,
+      "question": "Where can I get help with my resume and finding my first internship?",
+      "text": "ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students. Ohio State's job and career-fair platform for internship postings, on-campus interviews, employer events, and recruiting updates.Career PacketASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students.HandshakeOhio State's job and career-fair platform for internship postings, on-campus interviews, employer events, and recruiting updates.",
+      "cards": [
+        {
+          "title": "Career Packet",
+          "url": "https://asme-osu.github.io/ASME-Career-Packet/",
+          "text": "ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students."
+        },
+        {
+          "title": "Handshake",
+          "url": "https://osu.joinhandshake.com/",
+          "text": "Ohio State's job and career-fair platform for internship postings, on-campus interviews, employer events, and recruiting updates."
+        }
+      ],
+      "urls": [
+        "https://asme-osu.github.io/ASME-Career-Packet/",
+        "https://osu.joinhandshake.com/"
+      ]
+    },
+    {
+      "number": 7,
+      "question": "How do I earn member points, and where can I see my total?",
+      "text": "The published point values are listed below. To see your total and attendance, open Member Points and search your name. Current public point values. Source: Public point values · read on request.Find your pointsGeneral Body Meeting5 pointsSocial / Tabling5 pointsCompany Info Session7 points",
+      "cards": [
+        {
+          "title": "Find your points",
+          "url": "https://org.osu.edu/asme/member-points-page/",
+          "text": ""
+        },
+        {
+          "title": "General Body Meeting",
+          "url": "https://org.osu.edu/asme/member-points-page/",
+          "text": "5 points"
+        },
+        {
+          "title": "Social / Tabling",
+          "url": "https://org.osu.edu/asme/member-points-page/",
+          "text": "5 points"
+        },
+        {
+          "title": "Company Info Session",
+          "url": "https://org.osu.edu/asme/member-points-page/",
+          "text": "7 points"
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/member-points-page/",
+        "https://org.osu.edu/asme/member-points-page/",
+        "https://org.osu.edu/asme/member-points-page/",
+        "https://org.osu.edu/asme/member-points-page/"
+      ]
+    },
+    {
+      "number": 8,
+      "question": "I went to the MATLAB event but my attendance points are missing. How do I fix that?",
+      "text": "Check your name and attendance on the Member Points page. If points are missing, ask the ASME team to check the event and attendance record; I cannot change points.Find your pointsAsk the ASME teamasme@osu.edu",
+      "cards": [
+        {
+          "title": "Find your points",
+          "url": "https://org.osu.edu/asme/member-points-page/",
+          "text": ""
+        },
+        {
+          "title": "Ask the ASME team",
+          "url": "mailto:asme@osu.edu?subject=Question%20for%20ASME%20(from%20the%20website%20guide)&body=Hello%20ASME%20team%2C%0A%0AI%20have%20a%20question%20from%20the%20website%20guide%3A%0AI%20went%20to%20the%20MATLAB%20event%20but%20my%20attendance%20points%20are%20missing.%20How%20do%20I%20fix%20that%3F%0A%0AThank%20you!",
+          "text": "asme@osu.edu"
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/member-points-page/",
+        "mailto:asme@osu.edu?subject=Question%20for%20ASME%20(from%20the%20website%20guide)&body=Hello%20ASME%20team%2C%0A%0AI%20have%20a%20question%20from%20the%20website%20guide%3A%0AI%20went%20to%20the%20MATLAB%20event%20but%20my%20attendance%20points%20are%20missing.%20How%20do%20I%20fix%20that%3F%0A%0AThank%20you!"
+      ]
+    },
+    {
+      "number": 9,
+      "question": "Who is the current president, and how can I contact the officers?",
+      "text": "Matthew Allen is the 2026–2027 President. Public email: allen.2906@osu.edu.Leadership and past boards",
+      "cards": [
+        {
+          "title": "Leadership and past boards",
+          "url": "https://org.osu.edu/asme/leadership/",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/leadership/"
+      ]
+    },
+    {
+      "number": 10,
+      "question": "how do i jon the group me",
+      "text": "Join the chapter GroupMe for reminders, event changes, and member conversation.Join ASME OSU GroupMeJoin the chapter GroupMe for reminders, event changes, and member conversation.",
+      "cards": [
+        {
+          "title": "Join ASME OSU GroupMe",
+          "url": "https://groupme.com/join_group/95825283/iaBgk5Ld",
+          "text": "Join the chapter GroupMe for reminders, event changes, and member conversation."
+        }
+      ],
+      "urls": [
+        "https://groupme.com/join_group/95825283/iaBgk5Ld"
+      ]
+    },
+    {
+      "number": 11,
+      "question": "Will SpaceX be at the meeting tomorrow, and can you guarantee I will get an internship if I join?",
+      "text": "I don't see a chapter event listed for that date or date range in the public calendar. ASME membership does not guarantee an internship or job. The published career resources offer preparation and recruiting help; hiring decisions are made by employers. Updated 10/15/2026, 12:00:00 PM. Source: Google Calendar · hourly snapshot.Career PacketASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students.ECS Career AdvisingEngineering Career Services advising for resumes, cover letters, LinkedIn, Handshake, interviews, and career fair prep.",
+      "cards": [
+        {
+          "title": "Career Packet",
+          "url": "https://asme-osu.github.io/ASME-Career-Packet/",
+          "text": "ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students."
+        },
+        {
+          "title": "ECS Career Advising",
+          "url": "https://ecs.osu.edu/students/meet-career-advisor",
+          "text": "Engineering Career Services advising for resumes, cover letters, LinkedIn, Handshake, interviews, and career fair prep."
+        }
+      ],
+      "urls": [
+        "https://asme-osu.github.io/ASME-Career-Packet/",
+        "https://ecs.osu.edu/students/meet-career-advisor"
+      ]
+    },
+    {
+      "number": 12,
+      "question": "How do I join the GroupMe?",
+      "text": "Join the chapter GroupMe for reminders, event changes, and member conversation.Join ASME OSU GroupMeJoin the chapter GroupMe for reminders, event changes, and member conversation.",
+      "cards": [
+        {
+          "title": "Join ASME OSU GroupMe",
+          "url": "https://groupme.com/join_group/95825283/iaBgk5Ld",
+          "text": "Join the chapter GroupMe for reminders, event changes, and member conversation."
+        }
+      ],
+      "urls": [
+        "https://groupme.com/join_group/95825283/iaBgk5Ld"
+      ]
+    },
+    {
+      "number": 13,
+      "question": "What should I wear to a company info session?",
+      "text": "Start with the Career Packet for career preparation. I do not see event-specific attire instructions in these chapter sources; check the event announcement or contact asme@osu.edu for the expected dress code.Career PacketASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students.Email ASME OSU",
+      "cards": [
+        {
+          "title": "Career Packet",
+          "url": "https://asme-osu.github.io/ASME-Career-Packet/",
+          "text": "ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students."
+        },
+        {
+          "title": "Email ASME OSU",
+          "url": "mailto:asme@osu.edu",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://asme-osu.github.io/ASME-Career-Packet/",
+        "mailto:asme@osu.edu"
+      ]
+    },
+    {
+      "number": 14,
+      "question": "GroupMe",
+      "text": "Join the chapter GroupMe for reminders, event changes, and member conversation.Join ASME OSU GroupMeJoin the chapter GroupMe for reminders, event changes, and member conversation.",
+      "cards": [
+        {
+          "title": "Join ASME OSU GroupMe",
+          "url": "https://groupme.com/join_group/95825283/iaBgk5Ld",
+          "text": "Join the chapter GroupMe for reminders, event changes, and member conversation."
+        }
+      ],
+      "urls": [
+        "https://groupme.com/join_group/95825283/iaBgk5Ld"
+      ]
+    },
+    {
+      "number": 15,
+      "question": "Can I just show up to an event if I have never been to ASME before?",
+      "text": "Yes. First-year students are encouraged to join early. ASME is a great way to meet other students, learn about engineering careers, and start building connections before internship recruiting begins. Use the newsletter and GroupMe to find an event. Check that event’s announcement for RSVP or registration instructions; these sources do not establish a blanket no-RSVP policy.ASME OSU newsletter signupThis form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox.Join ASME OSU GroupMeJoin the chapter GroupMe for reminders, event changes, and member conversation.",
+      "cards": [
+        {
+          "title": "ASME OSU newsletter signup",
+          "url": "https://org.osu.edu/asme/join/#newsletter-signup",
+          "text": "This form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox."
+        },
+        {
+          "title": "Join ASME OSU GroupMe",
+          "url": "https://groupme.com/join_group/95825283/iaBgk5Ld",
+          "text": "Join the chapter GroupMe for reminders, event changes, and member conversation."
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/join/#newsletter-signup",
+        "https://groupme.com/join_group/95825283/iaBgk5Ld"
+      ]
+    },
+    {
+      "number": 16,
+      "question": "Is there a minimum GPA or an application to become a member?",
+      "text": "Yes. First-year students are encouraged to join early. ASME is a great way to meet other students, learn about engineering careers, and start building connections before internship recruiting begins. I do not see a published minimum GPA or membership application requirement. The Join page provides newsletter signup and GroupMe access; contact asme@osu.edu to confirm any other requirements.ASME OSU newsletter signupThis form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox.Join ASME OSU GroupMeJoin the chapter GroupMe for reminders, event changes, and member conversation.Email ASME OSU",
+      "cards": [
+        {
+          "title": "ASME OSU newsletter signup",
+          "url": "https://org.osu.edu/asme/join/#newsletter-signup",
+          "text": "This form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox."
+        },
+        {
+          "title": "Join ASME OSU GroupMe",
+          "url": "https://groupme.com/join_group/95825283/iaBgk5Ld",
+          "text": "Join the chapter GroupMe for reminders, event changes, and member conversation."
+        },
+        {
+          "title": "Email ASME OSU",
+          "url": "mailto:asme@osu.edu",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/join/#newsletter-signup",
+        "https://groupme.com/join_group/95825283/iaBgk5Ld",
+        "mailto:asme@osu.edu"
+      ]
+    },
+    {
+      "number": 17,
+      "question": "How can I add the ASME calendar to my Google Calendar?",
+      "text": "Open “Subscribe in Google Calendar,” sign in to Google if prompted, and confirm adding the ASME calendar. This opens the subscription link so you can add it yourself.Subscribe in Google CalendarEvent CalendarAll upcoming ASME OSU events. Add to your Google Calendar with one click so you never miss an info session or GBM.",
+      "cards": [
+        {
+          "title": "Subscribe in Google Calendar",
+          "url": "https://calendar.google.com/calendar/r?cid=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
+          "text": ""
+        },
+        {
+          "title": "Event Calendar",
+          "url": "https://org.osu.edu/asme/calendar/",
+          "text": "All upcoming ASME OSU events. Add to your Google Calendar with one click so you never miss an info session or GBM."
+        }
+      ],
+      "urls": [
+        "https://calendar.google.com/calendar/r?cid=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
+        "https://org.osu.edu/asme/calendar/"
+      ]
+    },
+    {
+      "number": 18,
+      "question": "Is there an ASME event tonight, October 15?",
+      "text": "I don't see a chapter event listed for that date or date range in the public calendar. Updated 10/15/2026, 12:00:00 PM. Source: Google Calendar · hourly snapshot.",
+      "cards": [],
+      "urls": []
+    },
+    {
+      "number": 19,
+      "question": "Where is the bar social on October 23, and can students under 21 attend?",
+      "text": "Public calendar listing for Bar Social. Age eligibility: The listing does not specify whether students under 21 can attend or any other age requirement. Location: The listing does not specify a location. Updated 10/15/2026, 12:00:00 PM. Source: Google Calendar · hourly snapshot.Bar SocialOct 23, 2026, 6:30 PM EDT",
+      "cards": [
+        {
+          "title": "Bar Social",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 23, 2026, 6:30 PM EDT"
+        }
+      ],
+      "urls": [
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York"
+      ]
+    },
+    {
+      "number": 20,
+      "question": "Do I need to bring a laptop or know MATLAB before the MATLAB info session?",
+      "text": "Public calendar listing for ASME MATLAB Info Session. Laptop: The listing does not specify whether you need to bring a laptop. Prior knowledge / preparation: The listing does not specify whether prior knowledge or preparation is required. Updated 10/15/2026, 12:00:00 PM. Source: Google Calendar · hourly snapshot.ASME MATLAB Info SessionOct 22, 2026, 5:30 PM EDT · Scott Laboratory E141",
+      "cards": [
+        {
+          "title": "ASME MATLAB Info Session",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Oct 22, 2026, 5:30 PM EDT · Scott Laboratory E141"
+        }
+      ],
+      "urls": [
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York"
+      ]
+    },
+    {
+      "number": 21,
+      "question": "How can I join the executive board or volunteer to help plan events?",
+      "text": "Come to meetings, talk with current officers, volunteer at events, and watch for leadership applications or committee opportunities. We are always looking for students who want to help shape the chapter.Chapter LeadershipMeet the 2026–2027 executive board and committee chairs — your point of contact for events, projects, and questions.Join ASME OSU",
+      "cards": [
+        {
+          "title": "Chapter Leadership",
+          "url": "https://org.osu.edu/asme/leadership/",
+          "text": "Meet the 2026–2027 executive board and committee chairs — your point of contact for events, projects, and questions."
+        },
+        {
+          "title": "Join ASME OSU",
+          "url": "https://org.osu.edu/asme/join/",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/leadership/",
+        "https://org.osu.edu/asme/join/"
+      ]
+    },
+    {
+      "number": 22,
+      "question": "Does ASME have any scholarships for undergraduate students?",
+      "text": "National ASME student opportunities — career resources, competitions, scholarships, and early career programs. Check the national resource for current scholarships and requirements. I do not have a verified current chapter scholarship listing in these sources; contact asme@osu.edu about chapter opportunities.ASME Student ResourcesNational ASME student opportunities — career resources, competitions, scholarships, and early career programs.Email ASME OSU",
+      "cards": [
+        {
+          "title": "ASME Student Resources",
+          "url": "https://www.asme.org/get-involved/student-opportunities-and-resources",
+          "text": "National ASME student opportunities — career resources, competitions, scholarships, and early career programs."
+        },
+        {
+          "title": "Email ASME OSU",
+          "url": "mailto:asme@osu.edu",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://www.asme.org/get-involved/student-opportunities-and-resources",
+        "mailto:asme@osu.edu"
+      ]
+    },
+    {
+      "number": 23,
+      "question": "How do I submit my resume to the ASME resume book, and who gets to see it?",
+      "text": "Use the résumé submission form. Share your résumé with ASME OSU for inclusion in the chapter résumé book provided to participating sponsors and recruiting partners.Submit to the Résumé BookShare your résumé with ASME OSU for inclusion in the chapter résumé book provided to participating sponsors and recruiting partners.",
+      "cards": [
+        {
+          "title": "Submit to the Résumé Book",
+          "url": "https://forms.cloud.microsoft/r/vY6XuhxK1n",
+          "text": "Share your résumé with ASME OSU for inclusion in the chapter résumé book provided to participating sponsors and recruiting partners."
+        }
+      ],
+      "urls": [
+        "https://forms.cloud.microsoft/r/vY6XuhxK1n"
+      ]
+    },
+    {
+      "number": 24,
+      "question": "I have an interview next week. Where can I practice behavioral and technical interview questions?",
+      "text": "ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students. Engineering Career Services advising for resumes, cover letters, LinkedIn, Handshake, interviews, and career fair prep.Career PacketASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students.ECS Career AdvisingEngineering Career Services advising for resumes, cover letters, LinkedIn, Handshake, interviews, and career fair prep.",
+      "cards": [
+        {
+          "title": "Career Packet",
+          "url": "https://asme-osu.github.io/ASME-Career-Packet/",
+          "text": "ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students."
+        },
+        {
+          "title": "ECS Career Advising",
+          "url": "https://ecs.osu.edu/students/meet-career-advisor",
+          "text": "Engineering Career Services advising for resumes, cover letters, LinkedIn, Handshake, interviews, and career fair prep."
+        }
+      ],
+      "urls": [
+        "https://asme-osu.github.io/ASME-Career-Packet/",
+        "https://ecs.osu.edu/students/meet-career-advisor"
+      ]
+    },
+    {
+      "number": 25,
+      "question": "Where is the ASME office, and what are the office hours?",
+      "text": "The chapter office is listed as Scott Laboratory, Office N147. I do not see office hours published; contact asme@osu.edu to confirm availability.Email ASME OSUASME OSU contact information",
+      "cards": [
+        {
+          "title": "Email ASME OSU",
+          "url": "mailto:asme@osu.edu",
+          "text": ""
+        },
+        {
+          "title": "ASME OSU contact information",
+          "url": "https://org.osu.edu/asme/",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "mailto:asme@osu.edu",
+        "https://org.osu.edu/asme/"
+      ]
+    },
+    {
+      "number": 26,
+      "question": "Where can I see photos from past ASME events?",
+      "text": "See current Instagram updates and photos from ASME OSU events, company sessions, competitions, and community activities. Matching chapter photos. Updates may be out of date. Updated Oct 10, 2026.Members playing cards at ASME Casino NightgeneralASME chapter presentationgeneralEvent Photos & RecapsSee current Instagram updates and photos from ASME OSU events, company sessions, competitions, and community activities.",
+      "cards": [
+        {
+          "title": "Members playing cards at ASME Casino Night",
+          "url": "https://photos.app.goo.gl/33pfCCghnJbXPzho9",
+          "text": "general"
+        },
+        {
+          "title": "ASME chapter presentation",
+          "url": "https://photos.app.goo.gl/33pfCCghnJbXPzho9",
+          "text": "general"
+        },
+        {
+          "title": "Event Photos & Recaps",
+          "url": "https://org.osu.edu/asme/pictures/",
+          "text": "See current Instagram updates and photos from ASME OSU events, company sessions, competitions, and community activities."
+        }
+      ],
+      "urls": [
+        "https://photos.app.goo.gl/33pfCCghnJbXPzho9",
+        "https://photos.app.goo.gl/33pfCCghnJbXPzho9",
+        "https://org.osu.edu/asme/pictures/"
+      ]
+    },
+    {
+      "number": 27,
+      "question": "What hands-on projects or design competitions can I get involved in through ASME?",
+      "text": "National ASME student opportunities — career resources, competitions, scholarships, and early career programs. I’ll check the chapter calendar for upcoming competitions. Contact asme@osu.edu about chapter participation and project opportunities. Upcoming chapter events in Eastern Time. Updated 10/15/2026, 12:00:00 PM. Source: Google Calendar · hourly snapshot.ASME Bridge Building CompetitionNov 5, 2026, 5:30 PM EST · Scott Laboratory E141ASME Student ResourcesNational ASME student opportunities — career resources, competitions, scholarships, and early career programs.Email ASME OSU",
+      "cards": [
+        {
+          "title": "ASME Bridge Building Competition",
+          "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+          "text": "Nov 5, 2026, 5:30 PM EST · Scott Laboratory E141"
+        },
+        {
+          "title": "ASME Student Resources",
+          "url": "https://www.asme.org/get-involved/student-opportunities-and-resources",
+          "text": "National ASME student opportunities — career resources, competitions, scholarships, and early career programs."
+        },
+        {
+          "title": "Email ASME OSU",
+          "url": "mailto:asme@osu.edu",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+        "https://www.asme.org/get-involved/student-opportunities-and-resources",
+        "mailto:asme@osu.edu"
+      ]
+    },
+    {
+      "number": 28,
+      "question": "Do I have to attend every meeting to stay a member? I have a class conflict on Thursdays.",
+      "text": "I do not see a published requirement to attend every meeting or a minimum attendance policy. Contact asme@osu.edu about your schedule or class conflict.Join ASME OSUEmail ASME OSU",
+      "cards": [
+        {
+          "title": "Join ASME OSU",
+          "url": "https://org.osu.edu/asme/join/",
+          "text": ""
+        },
+        {
+          "title": "Email ASME OSU",
+          "url": "mailto:asme@osu.edu",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/join/",
+        "mailto:asme@osu.edu"
+      ]
+    },
+    {
+      "number": 29,
+      "question": "I signed up but am not getting the newsletter. Who should I contact?",
+      "text": "For a newsletter signup or delivery problem, contact asme@osu.edu. The chapter lists the board as the contact for membership questions.Email ASME OSUASME OSU newsletter signupThis form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox.",
+      "cards": [
+        {
+          "title": "Email ASME OSU",
+          "url": "mailto:asme@osu.edu",
+          "text": ""
+        },
+        {
+          "title": "ASME OSU newsletter signup",
+          "url": "https://org.osu.edu/asme/join/#newsletter-signup",
+          "text": "This form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox."
+        }
+      ],
+      "urls": [
+        "mailto:asme@osu.edu",
+        "https://org.osu.edu/asme/join/#newsletter-signup"
+      ]
+    },
+    {
+      "number": 30,
+      "question": "What is the difference between ASME and SAE at Ohio State?",
+      "text": "ASME OSU: We host company info sessions, technical talks, networking events, socials, resume and career development events, leadership opportunities, and occasional collaborations with other student organizations. These ASME chapter sources do not verify SAE at Ohio State’s current scope or activities, so I cannot make a reliable comparison of the two chapters.About ASME OSUJoin ASME OSU",
+      "cards": [
+        {
+          "title": "About ASME OSU",
+          "url": "https://org.osu.edu/asme/aboutus/",
+          "text": ""
+        },
+        {
+          "title": "Join ASME OSU",
+          "url": "https://org.osu.edu/asme/join/",
+          "text": ""
+        }
+      ],
+      "urls": [
+        "https://org.osu.edu/asme/aboutus/",
+        "https://org.osu.edu/asme/join/"
+      ]
+    }
+  ]
+}

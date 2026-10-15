@@ -646,5 +646,222 @@
         ]
       }
     ]
+  },
+  "student": {
+    "resources": [
+      {
+        "title": "Join ASME National",
+        "text": "Freshmen and first-year students receive their first year free. Enter your expected graduation date accurately during signup. All other students can use code SECTION at checkout for 25% off.",
+        "url": "https://www.asme.org/membership/student-membership",
+        "links": [
+          {
+            "title": "Join ASME National",
+            "url": "https://www.asme.org/membership/student-membership"
+          }
+        ]
+      },
+      {
+        "title": "Join OSU Chapter",
+        "text": "Sign up for ASME OSU's mailing list and chapter roster to get event invites, newsletters, and announcements.",
+        "url": "https://org.osu.edu/asme/join/",
+        "links": [
+          {
+            "title": "Join OSU Chapter",
+            "url": "https://org.osu.edu/asme/join/"
+          }
+        ]
+      },
+      {
+        "title": "Career Packet",
+        "text": "ASME OSU's interactive career development guide — resume tips, interview prep, and internship strategy built for ME students.",
+        "url": "https://asme-osu.github.io/ASME-Career-Packet/",
+        "links": [
+          {
+            "title": "Career Packet",
+            "url": "https://asme-osu.github.io/ASME-Career-Packet/"
+          }
+        ]
+      },
+      {
+        "title": "Member Points",
+        "text": "Earn points for attending events, volunteering, and contributing to the chapter — then track your standing on the semester leaderboard.",
+        "url": "https://org.osu.edu/asme/member-points-page/",
+        "links": [
+          {
+            "title": "Member Points",
+            "url": "https://org.osu.edu/asme/member-points-page/"
+          }
+        ]
+      },
+      {
+        "title": "Chapter Leadership",
+        "text": "Meet the 2026–2027 executive board and committee chairs — your point of contact for events, projects, and questions.",
+        "url": "https://org.osu.edu/asme/leadership/",
+        "links": [
+          {
+            "title": "Chapter Leadership",
+            "url": "https://org.osu.edu/asme/leadership/"
+          }
+        ]
+      },
+      {
+        "title": "Event Calendar",
+        "text": "All upcoming ASME OSU events. Add to your Google Calendar with one click so you never miss an info session or GBM.",
+        "url": "https://org.osu.edu/asme/calendar/",
+        "links": [
+          {
+            "title": "Open Calendar",
+            "url": "https://org.osu.edu/asme/calendar/"
+          },
+          {
+            "title": "Subscribe ↗",
+            "url": "https://calendar.google.com/calendar/r?cid=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com"
+          }
+        ]
+      },
+      {
+        "title": "Event Photos & Recaps",
+        "text": "See current Instagram updates and photos from ASME OSU events, company sessions, competitions, and community activities.",
+        "url": "https://org.osu.edu/asme/pictures/",
+        "links": [
+          {
+            "title": "Event Photos & Recaps",
+            "url": "https://org.osu.edu/asme/pictures/"
+          }
+        ]
+      },
+      {
+        "title": "OSU MAE Events",
+        "text": "Department seminars, research talks, career events, workshops, and other Mechanical and Aerospace Engineering programs at Ohio State.",
+        "url": "https://mae.osu.edu/events",
+        "links": [
+          {
+            "title": "OSU MAE Events",
+            "url": "https://mae.osu.edu/events"
+          }
+        ]
+      },
+      {
+        "title": "Submit to the Résumé Book",
+        "text": "Share your résumé with ASME OSU for inclusion in the chapter résumé book provided to participating sponsors and recruiting partners.",
+        "url": "https://forms.cloud.microsoft/r/vY6XuhxK1n",
+        "links": [
+          {
+            "title": "Submit to the Résumé Book",
+            "url": "https://forms.cloud.microsoft/r/vY6XuhxK1n"
+          }
+        ]
+      },
+      {
+        "title": "ECS Career Advising",
+        "text": "Engineering Career Services advising for resumes, cover letters, LinkedIn, Handshake, interviews, and career fair prep.",
+        "url": "https://ecs.osu.edu/students/meet-career-advisor",
+        "links": [
+          {
+            "title": "ECS Career Advising",
+            "url": "https://ecs.osu.edu/students/meet-career-advisor"
+          }
+        ]
+      },
+      {
+        "title": "Handshake",
+        "text": "Ohio State's job and career-fair platform for internship postings, on-campus interviews, employer events, and recruiting updates.",
+        "url": "https://osu.joinhandshake.com/",
+        "links": [
+          {
+            "title": "Handshake",
+            "url": "https://osu.joinhandshake.com/"
+          }
+        ]
+      },
+      {
+        "title": "Co-ops & Internships",
+        "text": "ECS resources for engineering co-ops, internships, research experience, and the Professional Experience Program.",
+        "url": "https://ecs.osu.edu/students/co-ops-and-internships",
+        "links": [
+          {
+            "title": "Co-ops & Internships",
+            "url": "https://ecs.osu.edu/students/co-ops-and-internships"
+          }
+        ]
+      },
+      {
+        "title": "ASME Student Resources",
+        "text": "National ASME student opportunities — career resources, competitions, scholarships, and early career programs.",
+        "url": "https://www.asme.org/get-involved/student-opportunities-and-resources",
+        "links": [
+          {
+            "title": "ASME Student Resources",
+            "url": "https://www.asme.org/get-involved/student-opportunities-and-resources"
+          }
+        ]
+      },
+      {
+        "title": "ASME OSU LinkedIn",
+        "text": "Follow the chapter LinkedIn for event announcements, member spotlights, and to show your ASME affiliation to recruiters.",
+        "url": "https://www.linkedin.com/company/asme-osu/",
+        "links": [
+          {
+            "title": "ASME OSU LinkedIn",
+            "url": "https://www.linkedin.com/company/asme-osu/"
+          }
+        ]
+      },
+      {
+        "title": "Career Employment & Starting Salaries",
+        "text": "College of Engineering career outcomes and starting salary dashboard, provided by OSU Career Services.",
+        "url": "https://dataviz.rae.osu.edu/t/public/views/CoEAnnualReport-CareerEmploymentStartingSalaries/CoE-CareerEmploymentStartingSalaries",
+        "links": [
+          {
+            "title": "Career Employment & Starting Salaries",
+            "url": "https://dataviz.rae.osu.edu/t/public/views/CoEAnnualReport-CareerEmploymentStartingSalaries/CoE-CareerEmploymentStartingSalaries"
+          }
+        ]
+      },
+      {
+        "title": "Co-op & Internship Hourly Wages",
+        "text": "Hourly wage data for engineering co-ops and internships, provided by OSU Career Services.",
+        "url": "https://dataviz.rae.osu.edu/t/public/views/CoEAnnualReport-CooperativeEducationandInternshipHourlyWages/CoE-Co-opInternHourlyWages",
+        "links": [
+          {
+            "title": "Co-op & Internship Hourly Wages",
+            "url": "https://dataviz.rae.osu.edu/t/public/views/CoEAnnualReport-CooperativeEducationandInternshipHourlyWages/CoE-Co-opInternHourlyWages"
+          }
+        ]
+      },
+      {
+        "title": "Contact the Board",
+        "text": "Questions about membership, events, or partnerships? Email the executive board directly at asme@osu.edu.",
+        "url": "mailto:asme@osu.edu",
+        "links": [
+          {
+            "title": "Contact the Board",
+            "url": "mailto:asme@osu.edu"
+          }
+        ]
+      },
+      {
+        "title": "Chapter Newsletter",
+        "text": "ASME OSU's bi-weekly newsletter — recaps, upcoming events, and chapter updates delivered to your inbox every other week.",
+        "url": "https://org.osu.edu/asme/join/",
+        "links": [
+          {
+            "title": "Chapter Newsletter",
+            "url": "https://org.osu.edu/asme/join/"
+          }
+        ]
+      }
+    ],
+    "signup": {
+      "title": "ASME OSU newsletter signup",
+      "url": "https://org.osu.edu/asme/join/#newsletter-signup",
+      "text": "This form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox."
+    },
+    "groupme": {
+      "title": "Join ASME OSU GroupMe",
+      "url": "https://groupme.com/join_group/95825283/iaBgk5Ld",
+      "text": "Join the chapter GroupMe for reminders, event changes, and member conversation."
+    },
+    "officeLocation": "Scott Laboratory, Office N147"
   }
 }

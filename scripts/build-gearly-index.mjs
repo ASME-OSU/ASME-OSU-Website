@@ -5,6 +5,12 @@ import {JSDOM} from 'jsdom';
 const root = path.resolve(import.meta.dirname, '..');
 export const approved = new Set(['Home Page.html','Join Page.html','Calendar Page.html','Leadership Page.html','Member Resources Page.html','Member Points Page.html','Gallery Page.html','About Us Page.html','Current Sponsors Page.html','Sponsor ASME Page.html']);
 const clean = s => String(s || '').replace(/\s+/g, ' ').trim();
+function excerpt(value, limit) {
+  const text = clean(value);
+  if (text.length <= limit) return text;
+  const clipped = text.slice(0, limit + 1).replace(/\s+\S*$/, '').trim();
+  return (clipped || text.slice(0, limit - 1)).slice(0, limit - 1) + '…';
+}
 const headingSelector = 'h1,h2,h3,h4,h5,h6';
 const safeAnchor = /^[A-Za-z][A-Za-z0-9_-]*$/;
 
@@ -45,7 +51,7 @@ export function buildRecords(pages, readSource) {
     const dom = new JSDOM(readSource(page.sourceFile));
     const document = dom.window.document;
     const body = document.body;
-    body.querySelectorAll('script,style,template,[hidden],input,textarea').forEach(node => node.remove());
+    body.querySelectorAll('script,style,template,[hidden],[aria-hidden="true"],input,textarea,button,form,nav,header[role="banner"],footer[role="contentinfo"],.asme-status-badge,[aria-busy="true"],.asme-points-feature--loading').forEach(node => node.remove());
     const headingNodes = [...body.querySelectorAll(headingSelector)];
     const headings = headingNodes.map(node => clean(node.textContent));
     const sections = [];
@@ -64,7 +70,7 @@ export function buildRecords(pages, readSource) {
         pageId: page.id,
         selector,
         title,
-        snippet: clean(sectionText).slice(0, 300),
+        snippet: excerpt(sectionText, 300),
         keywords: Array.from(new Set(title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(/\s+/).filter(word => word.length > 1)))
       });
     }
@@ -75,7 +81,7 @@ export function buildRecords(pages, readSource) {
     }).map(node => clean(node.textContent)).filter(Boolean);
     if (unanchored.length) warnings.push({pageId: page.id, title: page.title, headings: unanchored});
     const description = [...body.querySelectorAll('p')].map(node => clean(node.textContent)).find(text => text.length > 45) || page.title;
-    const record = {id: page.id, title: page.title, url: url.href, description: description.slice(0, 180), keywords: page.keywords, headings, text: clean(body.textContent).slice(0, 14000), sections};
+    const record = {id: page.id, title: page.title, url: url.href, description: excerpt(description, 180), keywords: page.keywords, headings, text: clean(body.textContent).slice(0, 14000), sections};
     dom.window.close();
     return record;
   });

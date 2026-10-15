@@ -72,7 +72,9 @@ test('site snapshot builder uses shared source parsers and check mode catches ch
     await fs.copyFile(new URL('../assets/gearly/gearly-site.js', import.meta.url), path.join(directory, 'assets/gearly/gearly-site.js'));
     await fs.writeFile(path.join(directory, 'Current Sponsors Page.html'), '<section><h2>Supporters</h2><article class="sponsor-card"><h3>Example Engines, LLC</h3></article></section>');
     await fs.writeFile(path.join(directory, 'Sponsor ASME Page.html'), '<section data-gearly="sponsor-tiers"></section>');
-    await fs.writeFile(path.join(directory, 'Join Page.html'), '<section data-gearly="join-faq"><details class="join-faq-item"><summary>Can I join?</summary><p>Students are welcome.</p></details></section>');
+    await fs.writeFile(path.join(directory, 'Join Page.html'), '<section data-gearly="join-faq"><details class="join-faq-item"><summary>Can I join?</summary><p>Students are welcome.</p></details></section><section id="newsletter-signup"><p class="join-form-purpose">Chapter newsletter signup.</p></section><a id="joinGroupMeButton" href="https://groupme.com/join_group/example">Join GroupMe</a>');
+    await fs.writeFile(path.join(directory, 'Member Resources Page.html'), '<a class="asme-resource-card" href="https://org.osu.edu/asme/join/"><h3 class="asme-resource-card-title">Join OSU Chapter</h3><p class="asme-resource-card-desc">Join the newsletter.</p></a>');
+    await fs.writeFile(path.join(directory, 'Footer.html'), '<div class="asme-footer-contact"><p><span>Scott Laboratory<br>Office N147</span></p></div>');
     await fs.writeFile(path.join(directory, 'assets/gearly/gearly-data.json'), JSON.stringify({ companyAliases: { 'Example Engines, LLC': ['EE'] } }));
     const run = (...args) => spawnSync(process.execPath, [path.join(directory, 'scripts/build-gearly-site.mjs'), ...args], { encoding: 'utf8' });
     assert.equal(run().status, 0);
@@ -80,6 +82,8 @@ test('site snapshot builder uses shared source parsers and check mode catches ch
     const snapshot = JSON.parse(await fs.readFile(path.join(directory, 'assets/gearly/gearly-site.json'), 'utf8'));
     assert.ok(snapshot.companies[0].aliases.includes('EE'));
     assert.equal(snapshot.faqs[0].answer, 'Students are welcome.');
+    assert.equal(snapshot.student.officeLocation, 'Scott Laboratory, Office N147');
+    assert.equal(snapshot.student.resources[0].text, 'Join the newsletter.');
     const generatedDataPath = path.join(directory, 'assets/gearly/gearly-data.json');
     const generatedData = JSON.parse(await fs.readFile(generatedDataPath, 'utf8'));
     assert.equal(generatedData.entities.companies[0].id, 'example-engines');
@@ -88,7 +92,7 @@ test('site snapshot builder uses shared source parsers and check mode catches ch
     await fs.writeFile(generatedDataPath, JSON.stringify(generatedData));
     assert.match(run('--check').stderr, /company entities are stale/);
     assert.equal(run().status, 0);
-    await fs.writeFile(path.join(directory, 'Join Page.html'), '<section data-gearly="join-faq"><details class="join-faq-item"><summary>Can I join?</summary><p>Everyone is welcome.</p></details></section>');
+    await fs.writeFile(path.join(directory, 'Join Page.html'), (await fs.readFile(path.join(directory, 'Join Page.html'), 'utf8')).replace('Students are welcome.', 'Everyone is welcome.'));
     const stale = run('--check');
     assert.notEqual(stale.status, 0);
     assert.match(stale.stderr, /snapshot is stale/);
