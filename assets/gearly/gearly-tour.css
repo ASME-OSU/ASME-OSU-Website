@@ -108,3 +108,5 @@ html[data-theme=light] .gearly-tour-offer { --offer-bg:#fffdfd; --offer-fg:#2422
 }
 @media(max-height:440px) { .gearly-tour-offer { min-height:0; padding-top:10px; padding-bottom:10px; bottom:94px; }.gearly-tour-offer-mascot { height:92px; }.gearly-tour-offer-mascot img { height:88px; } }
 @media(prefers-reduced-motion:reduce) { .gearly-tour-offer,.gearly-tour-offer * { animation:none!important; transition:none!important; }.gearly-tour-offer .gearly-tour-offer-start:is(:hover,:focus-visible) { transform:none; } }
+/* The invitation supplies the greeting while it is visible. */
+body:has(> .gearly-tour-offer) .gearly-launcher-greeting { display:none; }
