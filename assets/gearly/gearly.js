@@ -144,26 +144,33 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
     control.addEventListener('mouseenter',function(){image.src=active;});
     control.addEventListener('mouseleave',update);control.addEventListener('focusin',function(){image.src=active;});control.addEventListener('focusout',function(){root.setTimeout(update,0);});
   }
-  // The animated asset is fetched only for a visible, closed launcher after a quiet minute.
+  // One early greeting, then infrequent waves. Keep the same image geometry for both poses.
   function setupLauncherMotion(){
     var still=new URL(data.meta.sprites.launcher || data.meta.sprites.idle,base).href;
-    var config=data.meta.launcherAnimation || {},timer,objectURL,blob,failed=false,epoch=0;
+    var config=data.meta.launcherAnimation || {},timer,objectURL,blob,epoch=0,lastPlayed=0,playing=false,loading=false;
     var motion=root.matchMedia('(prefers-reduced-motion: reduce)');
-    var face=el('img','gearly-avatar-image');face.alt='';face.width=64;face.height=64;face.src=still;launcher.prepend(face);
-    function eligible(){return panel.hidden && !root.document.hidden && !motion.matches && !failed && !!config.path;}
-    function stop(){epoch++;root.clearTimeout(timer);face.src=still;launcher.dataset.animating='false';if(objectURL){root.URL.revokeObjectURL(objectURL);objectURL=null;}}
-    function schedule(){if(eligible())timer=root.setTimeout(play,60000+Math.round(Math.random()*30000));}
+    var face=el('img','gearly-avatar-image');face.alt='';face.width=72;face.height=72;face.src=still;launcher.prepend(face);
+    function eligible(){return panel.hidden && !root.document.hidden && !motion.matches && !!config.path;}
+    function stop(){epoch++;root.clearTimeout(timer);playing=false;loading=false;face.src=still;launcher.dataset.animating='false';launcher.dataset.motion=motion.matches?'reduced-motion':'idle';if(objectURL){root.URL.revokeObjectURL(objectURL);objectURL=null;}}
+    function schedule(retry){if(eligible())timer=root.setTimeout(play,retry || (lastPlayed?60000+Math.round(Math.random()*30000):8000+Math.round(Math.random()*4000)));}
     async function play(){
-      if(!eligible())return;var turn=epoch;
+      if(!eligible() || playing || loading)return;
+      var turn=epoch;loading=true;root.clearTimeout(timer);launcher.dataset.motion='loading';
       try{
         if(!blob){var response=await root.fetch(new URL(config.path,base).href);if(!response.ok)throw Error('Wave unavailable');blob=await response.blob();}
         if(turn!==epoch || !eligible())return;
-        // A fresh object URL restarts the one-shot WebP without downloading it again.
-        objectURL=root.URL.createObjectURL(blob);face.src=objectURL;launcher.dataset.animating='true';
+        // New local URLs restart a single playthrough without another download.
+        objectURL=root.URL.createObjectURL(blob);face.src=objectURL;
+        if(face.decode)await face.decode();
+        if(turn!==epoch || !eligible())return;
+        loading=false;playing=true;lastPlayed=Date.now();launcher.dataset.waveCount=String(Number(launcher.dataset.waveCount || 0)+1);launcher.dataset.animating='true';launcher.dataset.motion='playing';
         timer=root.setTimeout(function(){stop();schedule();},config.durationMs || 6250);
-      }catch(_){failed=true;stop();}
+      }catch(_){if(turn!==epoch)return;blob=null;stop();launcher.dataset.motion='retry-wait';schedule(90000);}
     }
-    face.addEventListener('error',function(){if(face.src!==still){failed=true;stop();}});
+    face.addEventListener('error',function(){if(face.src!==still){blob=null;stop();launcher.dataset.motion='retry-wait';schedule(90000);}});
+    function greet(){if(!lastPlayed || Date.now()-lastPlayed>=60000)play();}
+    launcher.addEventListener('mouseenter',greet);
+    launcher.addEventListener('focusin',function(){if(launcher.matches(':focus-visible'))greet();});
     syncLauncherMotion=function(){stop();schedule();};
     root.document.addEventListener('visibilitychange',syncLauncherMotion);
     if(motion.addEventListener)motion.addEventListener('change',syncLauncherMotion);
