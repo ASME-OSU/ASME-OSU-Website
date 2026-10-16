@@ -70,6 +70,8 @@ Then hard refresh the site.
 
 ## Update Workflow
 
+Before saving a CampusPress page, follow the [page publishing guide](docs/campuspress-publishing.md). **Click Update in the Publish panel (`#publish`), not the profile/header area.** Use a fresh accessibility target, confirm **Page updated**, and verify the saved source and public page. A previous Update click opened Profile without saving; the guide documents the recovery.
+
 1. Edit the file in this repo.
 2. Commit the change.
 3. Push to `main`.
