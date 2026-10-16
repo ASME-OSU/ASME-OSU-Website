@@ -8,3 +8,9 @@ const ctx={module:{exports:{}},URL,AbortSignal};vm.runInNewContext(code,ctx);
 test('approved body content finds actual career resources beyond titles',()=>{const r=ctx.module.exports.rank(index.records,'where can I find the resume book');assert.ok(r.some(x=>x.url.includes('member-resources')));assert.ok(r.every(x=>x.title && x.url.startsWith('https://org.osu.edu/asme/')));});
 test('unrelated questions return no content and unsafe records are excluded',()=>{assert.equal(ctx.module.exports.rank(index.records,'interstellar mortgages').length,0);assert.equal(ctx.module.exports.rank([{id:'evil',title:'Resume book',url:'javascript:alert(1)',text:'resume book'}],'resume book').length,0);});
 test('index is loaded lazily once and failed requests can recover',async()=>{let requests=0,fail=true;const sandbox={URL,AbortSignal,fetch:async()=>{requests++;if(fail)throw Error('offline');return {ok:true,json:async()=>index};}};vm.runInNewContext(code,sandbox);sandbox.GearlySearch.configure({assetBase:'https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/'});assert.equal(requests,0);assert.equal((await sandbox.GearlySearch.find('resume book')).length,0);fail=false;assert.ok((await sandbox.GearlySearch.find('resume book')).length);await sandbox.GearlySearch.find('resume book');assert.equal(requests,2);});
+
+test('generated search descriptions and sections exclude loading and test chrome',()=>{
+ const points=index.records.find(r=>r.id==='points');assert.ok(points);
+ for(const value of [points.description,points.text,...points.sections.map(s=>s.snippet)])assert.doesNotMatch(value,/Loading (?:leaderboard|dashboard|values)|Testing/);
+ assert.ok(points.sections.some(s=>s.selector==='#member-dashboard'));
+});

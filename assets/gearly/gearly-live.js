@@ -59,6 +59,97 @@
     var title=clean(event && event.title,400);
     return Boolean(title) && !nonChapterPatterns.some(function(pattern){return pattern.test(title);});
   }
+  // Topic words select a named event; ordinary calendar and logistics words do not.
+  var eventStop = new Set(('a an the is are was what where when how can could would will i we you me my our your please find show tell do does have has be there it its that this these those for of with on in to at and or asme chapter event events meeting meetings next upcoming tonight today tomorrow week month date dates time times eastern location venue info information session sessions social workshop company volunteering competition competitions project projects hands design involved through get into bring need laptop computer know knowledge prior experience before rsvp register registration food eat meal pizza age students student under attend attendance should preparation required requirements whether listed calendar october january february march april may june july august september november december jan feb mar apr jun jul aug sep oct nov dec').split(' '));
+  function eventID(event) {
+    return clean(event.id, 500) || 'event:' + words(event.title).slice(0, 400) + ':' + clean(event.start, 40);
+  }
+  function publicDescription(event) {
+    return clean(event.description, 4000).replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  function eventCard(event) {
+    var when = date(event.start).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric', ...(event.allDay ? {} : { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) });
+    // Preserve date-only all-day values as their stated calendar day.
+    if (event.allDay && /^\d{4}-\d{2}-\d{2}$/.test(event.start)) when = new Date(event.start + 'T12:00:00Z').toLocaleDateString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric' });
+    var description = publicDescription(event), location = clean(event.location);
+    return { id: eventID(event), title: clean(event.title, 150) || 'Chapter event', text: when + (event.allDay ? ' · All day' : '') + (location ? ' · ' + location : ''), url: safeURL(event.url, pages + 'calendar/'), detailAvailable: Boolean(location || description), start: clean(event.start, 40), end: clean(event.end, 40), location: location, description: description };
+  }
+  function detailRequests(query) {
+    var q = words(query), details = [];
+    if (/\b(rsvp|register|registration|sign up)\b/.test(q)) details.push({label:'RSVP', match:/\b(rsvp|register|registration|sign up)\b/i, unknown:'whether an RSVP or registration is required'});
+    if (/\b(food|pizza|meal|eat|dinner|lunch|snacks?|refreshments?)\b/.test(q)) details.push({label:'Food', match:/\b(food|pizza|meal|dinner|lunch|snacks?|refreshments?|catered)\b/i, unknown:'whether food will be provided'});
+    if (/\b(laptop|computer)\b/.test(q)) details.push({label:'Laptop', match:/\b(laptop|computer)\b/i, unknown:'whether you need to bring a laptop'});
+    if (/\b(prior|prerequisite|experience|beginner|knowledge|know|preparation|prepare)\b/.test(q)) details.push({label:'Prior knowledge / preparation', match:/\b(prior|prerequisites?|experience|beginner|knowledge|preparation|prepare)\b/i, unknown:'whether prior knowledge or preparation is required'});
+    if (/\b(age|under 21|21|twenty one|minor|freshman|first year)\b/.test(q)) details.push({label:'Age eligibility', match:/\b(age|under.?21|21\+|21 and|21 or|twenty.one|minors?|all ages)\b/i, unknown:'whether students under 21 can attend or any other age requirement'});
+    if (/\b(where|location|venue|room)\b/.test(q)) details.push({label:'Location', match:/\b(location|venue|room|meet at|held at|take place at)\b/i, unknown:'a location'});
+    return details;
+  }
+  function eventDetails(event, requested) {
+    var description = publicDescription(event), sentences = description.split(/(?<=[.!?])\s+|\n/);
+    return requested.map(function (detail) {
+      if (detail.label === 'Location' && clean(event.location)) return 'Location: ' + clean(event.location) + '.';
+      var evidence = detail.match && sentences.find(function (sentence) { return detail.match.test(sentence); });
+      if (evidence) return detail.label + ': The public description says “' + evidence.slice(0, 240) + (evidence.length > 240 ? '…' : '') + '”.';
+      return detail.label + ': The listing does not specify ' + detail.unknown + '.';
+    }).join(' ');
+  }
+  function eventResult(data, options, updated) {
+    var now = Date.now(), selectedID = options.selectedEventId || options.eventId;
+    var requested = detailRequests(options.query), range = options.dateRange || {};
+    var sourceTime = date(updated), stale = !sourceTime || now - sourceTime.getTime() > 3 * 3600000;
+    var eligible = data.events.filter(function (e) {
+      return e && isChapterEvent(e) && e.cancelled !== true && !/^(cancelled|canceled)$/i.test(e.status || '') && date(e.start) && date(e.end || e.start) && +date(e.end || e.start) >= +date(e.start);
+    });
+    var selected = selectedID ? eligible.filter(function (e) { return eventID(e) === selectedID; }) : [];
+    var candidates = selectedID ? selected : eligible.filter(function (e) {
+      var startDay = easternDay(e.start), endDay = easternDay(e.end || e.start);
+      var allDayDates = e.allDay && /^\d{4}-\d{2}-\d{2}$/.test(e.start);
+      if (allDayDates && e.end && /^\d{4}-\d{2}-\d{2}$/.test(e.end) && endDay > startDay) endDay--;
+      if (allDayDates ? endDay < easternDay(now) : date(e.end || e.start).getTime() < now) return false;
+      var firstDay = new Date(startDay * 86400000).toISOString().slice(0, 10), lastDay = new Date(endDay * 86400000).toISOString().slice(0, 10);
+      if (range.from && lastDay < range.from || range.to && firstDay > range.to) return false;
+      var text = clean(e.title) + ' ' + clean(e.description), company = companies.find(function (c) { return c.id === options.company; });
+      if (options.company && !(company ? company.aliases.some(function (a) { return mentions(text, a); }) : mentions(text, options.company))) return false;
+      if (options.eventType) {
+        var type = options.eventType.toLowerCase(), vocabulary = eventTypes[type];
+        var classified = Array.isArray(vocabulary) && vocabulary.some(function (keyword) { return mentions(text, keyword); });
+        if (!(clean(e.eventType, 60).toLowerCase() === type || classified || type === 'company' && knownCompany(text))) return false;
+      }
+      return true;
+    });
+    candidates.sort(function (a, b) { return date(a.start) - date(b.start); });
+    var terms = Array.from(new Set(words(options.query).split(' ').filter(function (term) { return term.length > 1 && !/^\d+$/.test(term) && !eventStop.has(term); })));
+    // Only tokens present in public titles are used. This avoids treating question
+    // phrasing as a required title phrase, while resolving names such as MATLAB.
+    var titleTerms = terms.filter(function (term) { return eligible.some(function (e) { return mentions(e.title, term); }); });
+    var named = false;
+    if (!selectedID && titleTerms.length) {
+      candidates = candidates.filter(function (e) { return titleTerms.some(function (term) { return mentions(e.title, term); }); });
+      named = true;
+    }
+    var queryWords = words(options.query);
+    var next = /\bnext\b/.test(queryWords) && !/\bnext (?:week|month|semester|year|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/.test(queryWords);
+    var primary = candidates.length === 1 || next && candidates.length && +date(candidates[0].start) < +date(candidates[1].start);
+    var ambiguous = requested.length && candidates.length > 1 && !primary;
+    var cards = candidates.slice(0, 3).map(eventCard), message;
+    if (selectedID && !candidates.length) message = 'The previously selected event is unavailable in this public calendar snapshot. Please choose an event from the calendar.';
+    else if (!candidates.length) message = stale ? "I can't confirm whether a chapter event matches because the public calendar snapshot is out of date or has no refresh date. Open the calendar for current details." : range.from || range.to ? "I don't see a chapter event listed for that date or date range in the public calendar." : options.company || options.eventType || named ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : "I don't see any upcoming chapter events listed in the public calendar.";
+    else if (ambiguous) message = 'Which event do you mean? Choose an event or give its title so I can check those details.';
+    else {
+      message = selectedID || named && candidates.length === 1 ? 'Public calendar listing for ' + clean(candidates[0].title, 150) + '.' : 'Upcoming chapter events in Eastern Time.';
+      if (requested.length && primary) message += ' ' + eventDetails(candidates[0], requested);
+    }
+    var value = result(message, cards, updated, 'Google Calendar · hourly snapshot');
+    value.availability = stale ? 'stale' : 'fresh';
+    if (primary && cards.length && !ambiguous) value.primaryEventId = cards[0].id;
+    if (ambiguous) value.needsEventSelection = true;
+    if (selectedID && !candidates.length) value.selectedEventUnavailable = true;
+    if (stale) {
+      value.stale = true;
+      if (candidates.length) value.text += ' This snapshot may be out of date; confirm current details in the calendar.';
+    }
+    return value;
+  }
   function photoTitle(item, history, overrides) {
     var manual = clean(overrides[item.id], 150);
     if (manual) return manual;
@@ -75,7 +166,8 @@
     return (matches.length === 1 && clean(matches[0].title, 150)) || clean(item.alt || item.title, 150) || 'Chapter photo';
   }
   function mediaCards(kind, data, rows, options, history, overrides) {
-    var terms = Array.from(new Set(mediaTokens(options.query)));
+    // Instagram requests always show the newest post, regardless of topic words.
+    var terms = kind === 'instagram' ? [] : Array.from(new Set(mediaTokens(options.query)));
     var ranked = rows.filter(function (item) { return item && typeof item === 'object'; }).map(function (item, index) {
       var title = kind === 'gallery' ? photoTitle(item, history, overrides) : clean(item.title || item.alt, 150) || 'Chapter photo';
       var score = 0;
@@ -88,7 +180,7 @@
     var matching = terms.length && ranked.some(function (entry) { return entry.score > 0; });
     if (matching) ranked = ranked.filter(function (entry) { return entry.score > 0; });
     ranked.sort(function (a, b) { return (matching ? b.score - a.score : 0) || b.time - a.time || Number(a.item.order || 0) - Number(b.item.order || 0) || a.index - b.index; });
-    return { matching: !!matching, cards: ranked.slice(0, 3).map(function (entry) {
+    return { matching: !!matching, cards: ranked.slice(0, kind === 'instagram' ? 1 : 3).map(function (entry) {
       var card = { id:clean(entry.item.id,300) || clean(entry.item.thumbnailUrl || entry.item.imageUrl || entry.item.permalink,1000), detailAvailable:Boolean(clean(entry.item.summary || entry.item.caption)), title: entry.title, text: clean(entry.item.summary || entry.item.caption || entry.item.category), url: safeURL(kind === 'instagram' ? entry.item.permalink : data.albumUrl, kind === 'instagram' ? instagramURL : pages + 'pictures/') };
       var image = imageFor(entry.item, kind);
       if (image) card.image = image;
@@ -189,6 +281,11 @@
   function table(name, query) { return request(sheet + '?headers=1&sheet=' + encodeURIComponent(name) + '&tq=' + encodeURIComponent(query) + '&tqx=out:json', true); }
   function cell(row, index) { return row && Array.isArray(row.c) && row.c[index] ? row.c[index].v : null; }
   function result(text, cards, updatedAt, sourceLabel) { return { text: text, cards: cards, updatedAt: stamp(updatedAt), sourceLabel: sourceLabel }; }
+  function unavailableResult(kind) {
+    var value = result(kind === 'events' ? "I can't confirm chapter events because the public calendar is temporarily unavailable. Open the calendar or try again shortly." : 'This public source is temporarily unavailable. Try again shortly or open its website.', [], null, 'Unavailable');
+    if (kind === 'events') value.availability = 'unavailable';
+    return value;
+  }
   function feed(kind, options) {
     if (kind === 'member') return loadMember(options);
     if (kind === 'leaderboard' || kind === 'points') {
@@ -215,36 +312,16 @@
       if (!Array.isArray(rows)) throw new Error('Malformed feed');
       var updated = data.checkedAt || data.updatedAt || data.generatedAt;
       var cards;
-      if (kind === 'events') {
-        cards = rows.filter(function (e) { if (!e || !isChapterEvent(e) || e.cancelled === true || /^(cancelled|canceled)$/i.test(e.status || '') || !date(e.start) || !date(e.end || e.start) || date(e.end || e.start).getTime() < Date.now()) return false;
-          var dayParts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(date(e.start));
-          var parts = {}; dayParts.forEach(function (p) { parts[p.type] = p.value; });
-          var day = parts.year + '-' + parts.month + '-' + parts.day;
-          var range = options.dateRange || {};
-          if (range.from && day < range.from || range.to && day > range.to) return false;
-          var words = (clean(e.title) + ' ' + clean(e.description)).toLowerCase();
-          var selected = companies.find(function(c){return c.id === options.company;});
-          if (options.company && !(selected ? selected.aliases.some(function(a){return mentions(words,a);}) : mentions(words,options.company))) return false;
-          if (options.eventType) {
-            var type = options.eventType.toLowerCase();
-            var declared=clean(e.eventType,60).toLowerCase();
-            var vocabulary = eventTypes[type];
-            var classified = Array.isArray(vocabulary) && vocabulary.some(function (keyword) { return mentions(words, keyword); });
-            if (!(declared===type || classified || type === 'company' && knownCompany(words))) return false;
-          }
-          return true; }).sort(function (a, b) { return date(a.start) - date(b.start); }).slice(0, 3).map(function (e) {
-          var when = date(e.start).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric', ...(e.allDay ? {} : { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) });
-          return { title: clean(e.title, 150) || 'Chapter event', text: when + (e.allDay ? ' · All day' : '') + (clean(e.location) ? ' · ' + clean(e.location) : ''), url: safeURL(e.url, pages + 'calendar/') };
-        });
-      } else {
+      if (kind === 'events') return eventResult(data, options, updated);
+      else {
         var media = mediaCards(kind, data, rows, options, history, overrides);
         cards = media.cards;
       }
-      var labels = { events: 'Google Calendar · hourly snapshot', instagram: 'Instagram · snapshot every 6 hours', gallery: 'Public Google Photos · daily snapshot' };
-      var value = result(cards.length ? (kind === 'events' ? 'Upcoming chapter events in Eastern Time.' : (media.matching ? 'Closest matches from public chapter updates.' : 'Latest public chapter updates.')) : (kind === 'events' && (options.dateRange || options.eventType || options.company) ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : 'No public updates are available in this snapshot.'), cards, updated, labels[kind]);
+      var labels = { events: 'Google Calendar · hourly snapshot', instagram: 'Instagram', gallery: 'Google Photos' };
+      var value = result(cards.length ? (kind === 'events' ? 'Upcoming chapter events in Eastern Time.' : (kind === 'instagram' ? 'Latest Instagram post.' : media.matching ? 'Matching chapter photos.' : 'Latest chapter photos.')) : (kind === 'events' && (options.dateRange || options.eventType || options.company) ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : 'No public updates are available in this snapshot.'), cards, updated, labels[kind]);
       if (!cards.length && kind !== 'events') value.cards = [{ title: 'Open the source', text: 'See current public updates.', url: kind === 'instagram' ? instagramURL : kind === 'gallery' ? safeURL(data.albumUrl, pages + 'pictures/') : pages + 'calendar/' }];
       var maximumAge = kind === 'events' ? 3 * 3600000 : kind === 'instagram' ? 18 * 3600000 : 3 * 86400000;
-      if (!value.updatedAt || Date.now() - date(value.updatedAt) > maximumAge) { value.stale = true; value.text += ' This snapshot may be out of date; open the source for current details.'; }
+      if (!value.updatedAt || Date.now() - date(value.updatedAt) > maximumAge) { value.stale = true; value.text += kind === 'events' ? ' This snapshot may be out of date; open the source for current details.' : ' Updates may be out of date.'; }
       return value;
     });
   }
@@ -295,21 +372,22 @@
     load: function (kind, options) {
       options = options && typeof options === 'object' ? options : {};
       var range = options.dateRange && typeof options.dateRange === 'object' ? options.dateRange : null;
-      var normalized = { company: clean(options.company, 100), eventType: clean(options.eventType, 60) };
+      var normalized = { company: clean(options.company, 100), eventType: /^meetings?$/i.test(clean(options.eventType, 60)) ? '' : clean(options.eventType, 60) };
       if (range) { normalized.dateRange = {}; ['from', 'to'].forEach(function (name) { if (typeof range[name] === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(range[name])) normalized.dateRange[name] = range[name]; }); }
-      normalized.query = clean(options.query, 200);
+      normalized.query = clean(options.query, 500);
+      normalized.selectedEventId = clean(options.selectedEventId || options.eventId, 500);
       normalized.name = clean(options.name, 60);
       normalized.selection = clean(options.selection, 100);
       var key = kind + (kind === 'events' || kind === 'gallery' || kind === 'instagram' ? JSON.stringify(normalized) : '');
       if (!['events', 'leaderboard', 'instagram', 'gallery', 'points', 'member'].includes(kind)) return Promise.resolve(result('This live source is not supported.', [], null, 'Unavailable'));
-      if ((kind === 'member' || kind === 'leaderboard' || kind === 'points') ? !sheet || !pages : !baseURL || !pages || kind === 'instagram' && !instagramURL) return Promise.resolve(result('This public source is temporarily unavailable. Try again shortly or open its website.', [], null, 'Unavailable'));
+      if ((kind === 'member' || kind === 'leaderboard' || kind === 'points') ? !sheet || !pages : !baseURL || !pages || kind === 'instagram' && !instagramURL) return Promise.resolve(unavailableResult(kind));
       if (kind === 'member') return feed(kind, normalized).catch(function () { return result('This public source is temporarily unavailable. Try again shortly or open its website.', [], null, 'Unavailable'); });
       if (cache[key] && Date.now() - cache[key].time < ttl) return Promise.resolve(cache[key].value);
       if (pending[key]) return pending[key];
       pending[key] = feed(kind, normalized).then(function (value) { cache[key] = { time: Date.now(), value: value }; return value; }).catch(function () {
         // Never retain leaderboard totals after a failed status check.
-        if (cache[key] && kind !== 'leaderboard') return Object.assign({}, cache[key].value, { stale: true, text: 'The source could not be refreshed. Showing the last snapshot; open the source for current details.' });
-        return result('This public source is temporarily unavailable. Try again shortly or open its website.', [], null, 'Unavailable');
+        if (cache[key] && kind !== 'leaderboard') return Object.assign({}, cache[key].value, { stale: true, availability: 'stale', text: 'The source could not be refreshed. Showing the last snapshot; open the source for current details.' });
+        return unavailableResult(kind);
       }).finally(function () { delete pending[key]; });
       return pending[key];
     }

@@ -119,6 +119,34 @@
       return question && answer ? { question: question, answer: answer } : null;
     }).filter(Boolean);
   }
+  // Student answers use the same approved page copy as the public resource cards.
+  function parseStudentSources(sources, options) {
+    var join = documentFor(sources.join, options), resources = documentFor(sources.resources, options), footer = documentFor(sources.footer, options);
+    function link(node) {
+      if (!node) return null;
+      var href = node.getAttribute('href');
+      if (!href) return null;
+      var url;
+      try { url = new URL(href, SITE); } catch (_) { return null; }
+      if (!['https:', 'mailto:'].includes(url.protocol)) return null;
+      return { title: clean(node.textContent), url: url.href };
+    }
+    var cards = Array.from(resources.querySelectorAll('.asme-resource-card')).map(function (card) {
+      var title = clean(card.querySelector('.asme-resource-card-title')?.textContent);
+      var description = card.querySelector('.asme-resource-card-desc');
+      var links = card.matches('a[href]') ? [link(card)].filter(Boolean) : Array.from(card.querySelectorAll('a[href]')).map(link).filter(Boolean);
+      if (!title || !links.length) return null;
+      return { title: title, text: description ? readable(description) : '', url: links[0].url, links: links.map(function (entry) { return { title: card.matches('a[href]') ? title : entry.title, url: entry.url }; }) };
+    }).filter(Boolean);
+    var groupme = link(join.querySelector('#joinGroupMeButton'));
+    if (groupme) { groupme.title = 'Join ASME OSU GroupMe'; groupme.text = clean(join.querySelector('.join-groupme-step-copy p')?.textContent); }
+    var signupNode = join.querySelector('#newsletter-signup');
+    var signup = signupNode ? { title: 'ASME OSU newsletter signup', url: new URL('join/#newsletter-signup', SITE).href, text: clean(signupNode.querySelector('.join-form-purpose')?.textContent) } : null;
+    var location = Array.from(footer.querySelectorAll('.asme-footer-contact p span')).find(function (node) { return /office\s/i.test(node.textContent); });
+    var officeLocation = '';
+    if (location) { var copy = location.cloneNode(true); copy.querySelectorAll('br').forEach(function (node) { node.replaceWith(', '); }); officeLocation = readable(copy); }
+    return { resources: cards, signup: signup, groupme: groupme, officeLocation: officeLocation };
+  }
   function tokens(value) { return Array.from(new Set(normalize(value).split(' ').filter(function (token) { return token.length > 2 && !stopwords.has(token); }))); }
   function extract(question, pageHTML, selector, options) {
     var empty = { matched: false, text: '', sentences: [] };
@@ -162,10 +190,12 @@
       var title = readable(documentFor(row.title?.rendered || '', options).body);
       if (!title || seen.has(url.href)) return null;
       seen.add(url.href);
-      var snippet = readable(documentFor(row.excerpt?.rendered || '', options).body).slice(0, 300);
+      var excerpt = readable(documentFor(row.excerpt?.rendered || '', options).body);
+      var boundary = excerpt.lastIndexOf(' ', 300);
+      var snippet = excerpt.length <= 300 ? excerpt : (boundary > 0 ? excerpt.slice(0, boundary) : '');
       var enrichment = (options.enrichment || []).find(function (page) { return page.url === url.href || page.path === url.pathname || page.id === slug; }) || {};
       return Object.assign({}, enrichment, { id: enrichment.id || slug, sourceId: row.id, slug: slug, title: title, url: url.href, snippet: snippet, sections: enrichment.sections || [] });
     }).filter(Boolean);
   }
-  return { parseSponsors: parseSponsors, parseSponsorship:parseSponsorship,parseFAQs: parseFAQs, loadPage: loadPage, extract: extract, discoverPages: discoverPages, clearCache: function () { cache.clear(); } };
+  return { parseStudentSources: parseStudentSources, parseSponsors: parseSponsors, parseSponsorship:parseSponsorship,parseFAQs: parseFAQs, loadPage: loadPage, extract: extract, discoverPages: discoverPages, clearCache: function () { cache.clear(); } };
 });

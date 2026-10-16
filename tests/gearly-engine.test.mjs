@@ -58,3 +58,11 @@ test('skating language requests the specific skating filter, using configured al
   assert.equal(match.entities.eventType,'ice-skating');
   assert.equal(e.extractEntities('next deadline',siteData).eventType,'deadline');
 });
+
+test('ASME meeting requests do not narrow the next event by meeting title',()=>{
+  for(const text of ['What is the next ASME meeting?','next meeting','when are meetings']) {
+    const got=e.match(siteData,text);assert.equal(got.kind,'answer',text);
+    assert.equal(got.intent.liveSource,'events',text);assert.equal(got.entities.eventType,undefined,text);
+  }
+  assert.equal(e.extractEntities('next social meeting',siteData).eventType,'social');
+});
