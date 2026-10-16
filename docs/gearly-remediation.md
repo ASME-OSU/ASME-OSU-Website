@@ -38,4 +38,6 @@ Public answer text, cards, and links survive same-site navigation. Image data, m
 
 ## Release
 
+For manual CampusPress edits, follow the [page publishing and save-recovery guide](campuspress-publishing.md). Page edits require the Publish-panel **Update** control and a verified **Page updated** result; shared Footer settings use **Save Changes**.
+
 This branch changes source and preview behavior, not the live CampusPress site. After review and GitHub Pages release, replace the Gearly block in the shared CampusPress footer with `Gearly Embed.html` (asset version `20261015-remediation`), preserving unrelated customizations. Publish the updated Member Resources page wording as well. The site's snapshot and search index are generated with the release.
