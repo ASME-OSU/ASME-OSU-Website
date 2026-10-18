@@ -3,9 +3,8 @@
 
   var IS_LOCAL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
   var FEED_URL = IS_LOCAL ? '/data/calendar-events.json' : 'https://asme-osu.github.io/ASME-OSU-Website/data/calendar-events.json';
-  var CACHE_KEY = 'asmeCalendarEventsV3';
+  var CACHE_KEY = 'asmeCalendarEventsV4';
   var TIME_ZONE = 'America/New_York';
-  var previewYear = '', activeFeed = null, chapterFeed = null, loadNotice = '', loadPending = false, fictionalSource = false, loadGeneration = 0;
   var NON_CHAPTER_EVENT_TITLE_PATTERNS = [
     /\bclasses begin\b/i,
     /\benrollment census date\b/i,
@@ -40,38 +39,16 @@
     return Number.isNaN(date.getTime()) ? null : date;
   }
 
-  function calendarDateKey(event) {
-    var date = safeDate(event.start);
-    if (!date) return '';
-    var parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: event.allDay ? 'UTC' : TIME_ZONE }).formatToParts(date).map(function (part) { return [part.type, part.value]; }));
-    return parts.year + '-' + parts.month + '-' + parts.day;
-  }
-
-  function validatePreviewYear(year) {
-    if (/^\d{4}$/.test(year)) year += '-' + String(Number(year) + 1).padStart(4, '0');
-    var match = year.match(/^(\d{4})-(\d{4})$/);
-    if (!match || Number(match[2]) !== Number(match[1]) + 1) throw new Error('Enter a start year such as 2027, or consecutive academic years such as 2027-2028.');
-    return match;
-  }
-
   function upcomingEvents(feed) {
     var now = new Date();
     if (!feed || !Array.isArray(feed.events)) return [];
-    var bounds = previewYear ? validatePreviewYear(previewYear) : null;
     return feed.events.filter(function (event) {
-      var start = safeDate(event.start), end = safeDate(event.end);
-      if (!start) return false;
-      if (bounds) { var key = calendarDateKey(event); return key >= bounds[1] + '-08-01' && key < bounds[2] + '-08-01'; }
-      return (end && end > now) || start >= now;
-    }).sort(function (a, b) { return safeDate(a.start) - safeDate(b.start); });
-  }
-
-  function fictionalFeed(year) {
-    var bounds = validatePreviewYear(year), start = Number(bounds[1]);
-    return { generatedAt: new Date().toISOString(), events: [
-      { id: 'fictional-fall-' + year, title: 'TEST ONLY — Fall workshop — DO NOT PUBLISH', start: start + '-09-15T22:00:00.000Z', end: start + '-09-15T23:00:00.000Z', location: 'Fictional training room' },
-      { id: 'fictional-spring-' + year, title: 'TEST ONLY — Spring workshop — DO NOT PUBLISH', start: (start + 1) + '-01-15T23:00:00.000Z', end: (start + 1) + '-01-16T00:00:00.000Z', location: 'Fictional training room' }
-    ] };
+      var start = safeDate(event.start);
+      var end = safeDate(event.end);
+      return start && ((end && end > now) || start >= now);
+    }).sort(function (a, b) {
+      return safeDate(a.start) - safeDate(b.start);
+    });
   }
 
   function isChapterEvent(event) {
@@ -175,12 +152,12 @@
     var grid = document.getElementById('asmeCalendarUpcoming');
     if (!grid) return;
     grid.replaceChildren();
-    grid.setAttribute('aria-busy', String(loadPending));
+    grid.setAttribute('aria-busy', 'false');
 
     if (!events.length) {
       var empty = document.createElement('div');
       empty.className = 'acp-event-empty';
-      empty.innerHTML = '<strong>No events are available for this view.</strong><span>Check the chapter calendar and snapshot coverage for the latest schedule.</span>';
+      empty.innerHTML = '<strong>No upcoming events are published yet.</strong><span>Subscribe or check the full calendar below for the latest schedule.</span>';
       grid.appendChild(empty);
       return;
     }
@@ -191,48 +168,19 @@
   }
 
   function render(feed) {
-    activeFeed = feed;
     var events = upcomingEvents(feed).filter(isChapterEvent);
     renderHome(events);
     renderCalendarPage(events);
-    var status = document.getElementById('asmeCalendarStatus');
-    var coverage = fictionalSource ? '' : feed.windowStart && feed.windowEnd ? ' Snapshot coverage ' + feed.windowStart.slice(0, 10) + ' through ' + feed.windowEnd.slice(0, 10) + '; dates outside this range are unavailable.' : ' Snapshot coverage is not supplied; check the full chapter calendar for missing dates.';
-    if (status) status.textContent = loadNotice + (fictionalSource ? 'FICTIONAL REHEARSAL — no Google events. ' : 'Chapter generated snapshot. ') + events.length + ' event(s) for ' + (previewYear || 'upcoming dates') + ' · generated ' + (feed.generatedAt || 'time unavailable') + (feed.checkedAt ? ' · source checked ' + feed.checkedAt : '') + ' · read ' + new Date().toLocaleString() + '. Refresh rereads JSON; the hourly job reads Google.' + coverage;
-    var clear = document.getElementById('asmeCalendarClearFictional');
-    if (clear) clear.hidden = !fictionalSource;
-    var label = document.getElementById('acp-calendar-label');
-    if (label) label.textContent = previewYear ? 'Chapter calendar — ' + previewYear.replace('-', '–') + ' preview · Eastern Time' : 'ASME Events · Eastern Time';
-    var frame = document.getElementById('asmeCalendarFrame');
-    if (frame) {
-      frame.hidden = fictionalSource;
-      // The CMS calendar stylesheet sets iframe display:block, which overrides
-      // the browser's default [hidden] rule. Hide the live view explicitly.
-      if (fictionalSource) frame.style.setProperty('display', 'none', 'important');
-      else frame.style.removeProperty('display');
-      if (previewYear && !fictionalSource) {
-        var url = new URL(frame.src), start = previewYear.slice(0, 4), end = previewYear.slice(5);
-        url.searchParams.set('dates', start + '0801/' + end + '0731'); frame.src = url.toString();
-      } else if (!fictionalSource) { var sourceUrl = new URL(frame.src); sourceUrl.searchParams.delete('dates'); frame.src = sourceUrl.toString(); }
-    }
   }
 
-  function initPreviewControls() {
-    var input = document.getElementById('asmeCalendarYear');
-    if (!input) return;
-    function apply() {
-      try { var selectedYear = input.value.trim(); if (selectedYear) selectedYear = validatePreviewYear(selectedYear)[0]; previewYear = selectedYear; input.value = selectedYear; render(activeFeed || { events: [] }); }
-      catch (error) { document.getElementById('asmeCalendarStatus').textContent = error.message; }
-    }
-    document.getElementById('asmeCalendarPreview').addEventListener('click', apply);
-    document.getElementById('asmeCalendarUpcomingView').addEventListener('click', function () { input.value = ''; previewYear = ''; render(activeFeed || { events: [] }); });
-    document.getElementById('asmeCalendarRefresh').addEventListener('click', function () { loadFeed(); });
-    document.getElementById('asmeCalendarFictional').addEventListener('click', function () {
-      var year = input.value.trim();
-      if (!year) { var now = new Date(), start = now.getMonth() >= 7 ? now.getFullYear() : now.getFullYear() - 1; year = start + '-' + (start + 1); input.value = year; }
-      try { year = validatePreviewYear(year)[0]; var feed = fictionalFeed(year); input.value = year; loadGeneration++; loadPending = false; loadNotice = ''; previewYear = year; fictionalSource = true; render(feed); }
-      catch (error) { document.getElementById('asmeCalendarStatus').textContent = error.message; }
-    });
-    document.getElementById('asmeCalendarClearFictional').addEventListener('click', function () { if (fictionalSource) loadFeed(true); });
+  // Older WordPress page copies still contain the rehearsal panel. Remove it
+  // when loading the shared script so production stays clean before a CMS edit.
+  function removePreviewInterface() {
+    var page = document.querySelector('.asme-cal-page');
+    if (!page) return;
+    page.querySelectorAll('.acp-preview-controls, #asmeCalendarPreviewHelp, #asmeCalendarStatus').forEach(function (element) { element.remove(); });
+    var badge = page.querySelector('.acp-live-badge');
+    if (badge) badge.replaceChildren('Chapter events');
   }
 
   function readCache() {
@@ -250,19 +198,16 @@
     } catch (error) {}
   }
 
-  function loadFeed(removed) {
-    var generation = ++loadGeneration;
-    var cached = chapterFeed || readCache();
+  function loadFeed() {
+    var cached = readCache();
     var controller = typeof AbortController === 'function' ? new AbortController() : null;
     var timer = window.setTimeout(function () {
       if (controller) controller.abort();
     }, 4500);
 
-    fictionalSource = false; loadPending = true;
-    loadNotice = (removed ? 'Fictional events removed. ' : '') + 'Reading generated chapter snapshot… ';
-    render(cached || { events: [] });
+    if (cached) render(cached);
 
-    return fetch(FEED_URL + '?hour=' + Math.floor(Date.now() / 3600000), {
+    fetch(FEED_URL + '?hour=' + Math.floor(Date.now() / 3600000), {
       cache: 'no-store',
       credentials: 'omit',
       signal: controller ? controller.signal : undefined
@@ -271,17 +216,12 @@
       if (!response.ok) throw new Error('Calendar feed request failed');
       return response.json();
     }).then(function (feed) {
-      if (generation !== loadGeneration) return;
-      if (!feed || !Array.isArray(feed.events)) throw new Error("Malformed calendar snapshot");
-      chapterFeed = feed; fictionalSource = false; loadPending = false; loadNotice = removed ? 'Fictional events removed. ' : '';
+      if (!feed || !Array.isArray(feed.events)) throw new Error('Malformed calendar feed');
       writeCache(feed);
       render(feed);
     }).catch(function () {
       window.clearTimeout(timer);
-      if (generation !== loadGeneration) return;
-      loadPending = false;
-      loadNotice = (removed ? 'Fictional events removed. ' : '') + (cached ? "Snapshot request failed; showing cached chapter events. Retry Refresh chapter snapshot. " : "Calendar snapshot unavailable. Open the chapter calendar or retry Refresh chapter snapshot. ");
-      render(cached || { events: [] });
+      if (!cached) render({ events: [] });
     });
   }
 
@@ -346,7 +286,7 @@
     removeBlogFromNavigation();
     removeWordPressInfoArtifacts();
     initViewSwitch();
-    initPreviewControls();
+    removePreviewInterface();
     if (document.getElementById('asmeFeaturedTitle') || document.getElementById('asmeCalendarUpcoming')) loadFeed();
   }
 

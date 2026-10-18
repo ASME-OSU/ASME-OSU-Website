@@ -240,14 +240,14 @@
         "Events Calendar",
         "Next ASME events"
       ],
-      "text": "Ohio State ASME · Plan What’s Next Events Calendar Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Subscribe once and new events will appear automatically in your calendar. + Subscribe to Calendar Opens in Google Calendar Coming Up Next ASME events Generated calendar snapshot Academic year (August–July) Enter 2027 or 2027-2028 for the same academic year. Preview changes this browser only. Remove fictional events restores the chapter snapshot. Fictional events are local and never added to Google. Refresh rereads generated JSON; the hourly job reads Google. The embedded calendar remains a separate live Google view. Reading generated calendar snapshot… ASME Events · Eastern Time Add it once Subscribe so schedule changes and new events appear automatically. Get reminders Follow @asmeohiostate for announcements and event-day updates. Have a question? Email asme@osu.edu and the executive board will help.",
+      "text": "Ohio State ASME · Plan What’s Next Events Calendar Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Subscribe once and new events will appear automatically in your calendar. + Subscribe to Calendar Opens in Google Calendar Coming Up Next ASME events Chapter events ASME Events · Eastern Time Add it once Subscribe so schedule changes and new events appear automatically. Get reminders Follow @asmeohiostate for announcements and event-day updates. Have a question? Email asme@osu.edu and the executive board will help.",
       "sections": [
         {
           "id": "events:[data-gearly='events-upcoming']",
           "pageId": "events",
           "selector": "[data-gearly='events-upcoming']",
           "title": "Events Calendar",
-          "snippet": "Ohio State ASME · Plan What’s Next Events Calendar Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Subscribe once and new events will appear automatically in your calendar. + Subscribe to Calendar Opens in Google Calendar Coming Up Next ASME events…",
+          "snippet": "Ohio State ASME · Plan What’s Next Events Calendar Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Subscribe once and new events will appear automatically in your calendar. + Subscribe to Calendar Opens in Google Calendar Coming Up Next ASME events Chapte…",
           "keywords": [
             "events",
             "calendar"
@@ -259,30 +259,6 @@
           "selector": "#acp-upcoming-title",
           "title": "Next ASME events",
           "snippet": "Coming Up Next ASME events",
-          "keywords": [
-            "next",
-            "asme",
-            "events"
-          ]
-        },
-        {
-          "id": "events:#asmeCalendarPreviewHelp",
-          "pageId": "events",
-          "selector": "#asmeCalendarPreviewHelp",
-          "title": "Next ASME events",
-          "snippet": "Enter 2027 or 2027-2028 for the same academic year. Preview changes this browser only. Remove fictional events restores the chapter snapshot. Fictional events are local and never added to Google. Refresh rereads generated JSON; the hourly job reads Google. The embedded calendar remains a separate…",
-          "keywords": [
-            "next",
-            "asme",
-            "events"
-          ]
-        },
-        {
-          "id": "events:#asmeCalendarStatus",
-          "pageId": "events",
-          "selector": "#asmeCalendarStatus",
-          "title": "Next ASME events",
-          "snippet": "Reading generated calendar snapshot…",
           "keywords": [
             "next",
             "asme",
