@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-18T20:53:47.933Z",
-  "checkedAt": "2026-10-18T20:53:47.933Z",
-  "windowStart": "2026-10-11T20:53:47.912Z",
+  "generatedAt": "2026-10-18T23:21:51.153Z",
+  "checkedAt": "2026-10-18T23:21:51.153Z",
+  "windowStart": "2026-10-11T23:21:51.122Z",
   "windowEnd": "2029-08-01T00:00:00.000Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
@@ -65,36 +65,36 @@
     },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-22T21:30:00.000Z",
-      "title": "ASME MATLAB Info Session",
+      "title": "ASME Scheduling/BuckeyeLink Tour",
       "start": "2026-10-22T21:30:00.000Z",
       "end": "2026-10-22T22:30:00.000Z",
       "allDay": false,
       "location": "Scott Laboratory E141",
-      "description": "Matlab info session",
+      "description": "Scheduling / Buckeye link tour",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:09:34.000Z"
+      "updated": "2026-10-18T22:23:54.000Z"
     },
     {
       "id": "51ktvdb5pj9l342194d7ance14@google.com::2026-10-23T22:30:00.000Z",
-      "title": "Bar Social",
+      "title": "ASME Bar Social",
       "start": "2026-10-23T22:30:00.000Z",
       "end": "2026-10-24T00:30:00.000Z",
       "allDay": false,
-      "location": "House Shoe bar",
+      "location": "The Horseshoe Country Bar & More, 2159 N High St, Columbus, OH 43201, USA",
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-10-18T18:19:03.000Z"
+      "updated": "2026-10-18T22:24:48.000Z"
     },
     {
       "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-10-29T21:30:00.000Z",
-      "title": "ASME Scheduling/BuckeyeLink Tour",
+      "title": "ASME MATLAB Info Session",
       "start": "2026-10-29T21:30:00.000Z",
       "end": "2026-10-29T22:30:00.000Z",
       "allDay": false,
       "location": "Scott Laboratory E141",
-      "description": "Scheduling / Buckeye link tour",
+      "description": "Matlab info session",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:09:34.000Z"
+      "updated": "2026-10-18T22:23:50.000Z"
     },
     {
       "id": "4o94ugad0fu7c42nu4j2huli1j@google.com::2026-11-02T12:00:00.000Z",
