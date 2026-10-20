@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-10-07T06:00:13.088Z",
+  "updatedAt": "2026-10-20T04:51:30.186Z",
   "items": [
+    {
+      "id": "DesXRwvFBee",
+      "permalink": "https://www.instagram.com/p/DesXRwvFBee/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DesXRwvFBee-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-10-19T22:46:35.000Z",
+      "title": "ASME Bar Social Join ASME this Friday, October 23, for our Bar Social at…",
+      "summary": "Come hang out, catch up with friends, and kick off the weekend with us! 📍 Horseshoe Bar, Columbus 🗓️ Friday, October 23 🕡 6:30–8:30 PM Drinks are on ASME while the tab lasts! 18+ to enter | 21+ to drink See you there! Friday, October…",
+      "caption": "ASME Bar Social Join ASME this Friday, October 23, for our Bar Social at Horseshoe Bar! Come hang out, catch up with friends, and kick off the weekend with us! 📍 Horseshoe Bar, Columbus 🗓️ Friday, October 23 🕡 6:30–8:30 PM Drinks are on ASME while the tab lasts! 18+ to enter | 21+ to drink See you there! Friday, October 23, 2026 at 6:30 PM The Horseshoe Country Bar & More, 2159 N High St, Columbus, OH 43201, USA Food provided! Drinks on ASME while the tab lasts",
+      "alt": "ASME Bar Social Join ASME this Friday, October 23, for our Bar Social at…"
+    },
     {
       "id": "DeK7UCZFs7i",
       "permalink": "https://www.instagram.com/p/DeK7UCZFs7i/",
@@ -68,19 +81,6 @@
       "summary": "Join us TODAY for a conversation with Lester Stanley, P.E., an Ohio State Mechanical Engineering alum with over 35 years of experience in boiler inspection, problem investigation, and field engineering. Hear about his career at HRST, the…",
       "caption": "We’re closing out ASME Career Week with HRST! Join us TODAY for a conversation with Lester Stanley, P.E., an Ohio State Mechanical Engineering alum with over 35 years of experience in boiler inspection, problem investigation, and field engineering. Hear about his career at HRST, the power generation industry, and how growing energy demand—including AI and data centers—is creating new opportunities for mechanical engineers. 📅 Monday, September 28 ⏰ 6:00–7:00 PM 📍 Scott Lab E100 Come hear from an experienced Buckeye engineer, ask questions, and learn about a side of mechanical engineering you might not have explored before!",
       "alt": "We’re closing out ASME Career Week with HRST!"
-    },
-    {
-      "id": "DdtskSdlnwi",
-      "permalink": "https://www.instagram.com/p/DdtskSdlnwi/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DdtskSdlnwi-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-09-25T14:40:23.000Z",
-      "title": "Only 2 events left in ASME Career Week!",
-      "summary": "🔥 Today, we’re wrapping up the week with TSMC × MSE × ASME! Come learn about the semiconductor industry, hear what it’s like to work as a process engineer, and explore full-time & Summer 2027 internship opportunities at TSMC’s Phoenix,…",
-      "caption": "Only 2 events left in ASME Career Week! 🔥 Today, we’re wrapping up the week with TSMC × MSE × ASME! Come learn about the semiconductor industry, hear what it’s like to work as a process engineer, and explore full-time & Summer 2027 internship opportunities at TSMC’s Phoenix, Arizona site. 💻⚙️ 📅 TODAY — Friday, September 25 ⏰ 6:00–7:30 PM 📍 Scott Lab E100 📄 Bring a physical + electronic copy of your resume 🍽️ Food & refreshments provided TSMC will also be collecting resumes, so this is a great chance to connect directly with the team and learn about opportunities in semiconductor manufacturing. And then just ONE final Career Week event on Monday! 👀",
-      "alt": "Only 2 events left in ASME Career Week!"
     }
   ]
 }
