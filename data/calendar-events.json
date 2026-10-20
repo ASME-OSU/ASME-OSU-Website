@@ -1,24 +1,13 @@
 {
-  "generatedAt": "2026-10-18T23:21:51.153Z",
-  "checkedAt": "2026-10-19T21:09:11.386Z",
-  "windowStart": "2026-10-12T21:09:11.357Z",
+  "generatedAt": "2026-10-20T00:26:32.026Z",
+  "checkedAt": "2026-10-20T00:26:32.026Z",
+  "windowStart": "2026-10-13T00:26:32.002Z",
   "windowEnd": "2029-08-01T00:00:00.000Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "1c22bg1hi1lfavvlu35o540gbn@google.com::2026-10-12T12:00:00.000Z",
-      "title": "Last day of regularly scheduled first-session classes",
-      "start": "2026-10-12T12:00:00.000Z",
-      "end": "2026-10-13T12:00:00.000Z",
-      "allDay": true,
-      "location": "",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-09T22:48:52.000Z"
-    },
     {
       "id": "6uiqq5qfabjdik8lnrtfgcu364@google.com::2026-10-13T12:00:00.000Z",
       "title": "Final exams for first-session classes",
