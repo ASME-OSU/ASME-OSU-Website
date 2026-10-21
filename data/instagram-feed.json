@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-10-20T04:51:30.186Z",
+  "updatedAt": "2026-10-21T17:12:39.153Z",
   "items": [
+    {
+      "id": "DewraTGG80B",
+      "permalink": "https://www.instagram.com/p/DewraTGG80B/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DewraTGG80B-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-10-21T14:59:30.000Z",
+      "title": "ASME Scheduling/BuckeyeLink Tour Want to learn more about scheduling and…",
+      "summary": "Come to our info session! See flyer for details. ⚙️🎓 Thursday, October 22, 2026 at 5:30 PM Scott Laboratory E141",
+      "caption": "ASME Scheduling/BuckeyeLink Tour Want to learn more about scheduling and degree planning? Come to our info session! See flyer for details. ⚙️🎓 Thursday, October 22, 2026 at 5:30 PM Scott Laboratory E141",
+      "alt": "ASME Scheduling/BuckeyeLink Tour Want to learn more about scheduling and…"
+    },
     {
       "id": "DesXRwvFBee",
       "permalink": "https://www.instagram.com/p/DesXRwvFBee/",
@@ -68,19 +81,6 @@
       "summary": "Come to our project team introduction for an overview of multiple teams you can join! This Thursday, October 1st 5:30 - 6:30 PM Scott Lab E141",
       "caption": "Want to learn more about project teams for engineers? Come to our project team introduction for an overview of multiple teams you can join! This Thursday, October 1st 5:30 - 6:30 PM Scott Lab E141",
       "alt": "Want to learn more about project teams for engineers?"
-    },
-    {
-      "id": "Dd1eNE2ltco",
-      "permalink": "https://www.instagram.com/p/Dd1eNE2ltco/",
-      "mediaType": "CAROUSEL_ALBUM",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Dd1eNE2ltco-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-09-28T15:08:48.000Z",
-      "title": "We’re closing out ASME Career Week with HRST!",
-      "summary": "Join us TODAY for a conversation with Lester Stanley, P.E., an Ohio State Mechanical Engineering alum with over 35 years of experience in boiler inspection, problem investigation, and field engineering. Hear about his career at HRST, the…",
-      "caption": "We’re closing out ASME Career Week with HRST! Join us TODAY for a conversation with Lester Stanley, P.E., an Ohio State Mechanical Engineering alum with over 35 years of experience in boiler inspection, problem investigation, and field engineering. Hear about his career at HRST, the power generation industry, and how growing energy demand—including AI and data centers—is creating new opportunities for mechanical engineers. 📅 Monday, September 28 ⏰ 6:00–7:00 PM 📍 Scott Lab E100 Come hear from an experienced Buckeye engineer, ask questions, and learn about a side of mechanical engineering you might not have explored before!",
-      "alt": "We’re closing out ASME Career Week with HRST!"
     }
   ]
 }
