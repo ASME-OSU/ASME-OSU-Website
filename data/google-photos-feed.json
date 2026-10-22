@@ -2,8 +2,19 @@
   "schemaVersion": 1,
   "source": "Google Photos public shared album",
   "albumUrl": "https://photos.app.goo.gl/33pfCCghnJbXPzho9",
-  "generatedAt": "2026-10-21T14:38:54.280Z",
+  "generatedAt": "2026-10-22T14:38:40.516Z",
   "items": [
+    {
+      "id": "AF1QipOdmEgAJMH1uVBU1x-BkrZRSkkH6eg9vQoSG2Kc",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOdmEgAJMH1uVBU1x-BkrZRSkkH6eg9vQoSG2Kc-8120518dd8645c41-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOdmEgAJMH1uVBU1x-BkrZRSkkH6eg9vQoSG2Kc-8120518dd8645c41-large.webp",
+      "width": 2000,
+      "height": 1499,
+      "alt": "ASME Pickleball Night",
+      "category": "general",
+      "takenAt": "2026-10-08T22:39:01.484Z",
+      "order": 1
+    },
     {
       "id": "AF1QipP2Ai8CJT2lzunN2fXngAOaR634vvdOeqbSUNnw",
       "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipP2Ai8CJT2lzunN2fXngAOaR634vvdOeqbSUNnw-d022d8aa50fbe47d-thumb.webp",
@@ -13,7 +24,7 @@
       "alt": "Casino Night",
       "category": "general",
       "takenAt": "2026-09-17T22:35:20.172Z",
-      "order": 1
+      "order": 2
     },
     {
       "id": "AF1QipM6nRAjQsx-VI2UwtSceD2IeOtZ2NwL5cLaUeHs",
@@ -24,7 +35,7 @@
       "alt": "Members playing cards at ASME Casino Night",
       "category": "general",
       "takenAt": "2026-09-17T22:16:48.325Z",
-      "order": 2
+      "order": 3
     },
     {
       "id": "AF1QipPOYKhNGtBfRmpLdOpakPKyQXLvSvemeCrs6PGK",
@@ -35,7 +46,7 @@
       "alt": "Casino Night",
       "category": "general",
       "takenAt": "2026-09-17T22:13:50.503Z",
-      "order": 3
+      "order": 4
     },
     {
       "id": "AF1QipOVHctZbz7GkYNPTvX2EQUrHpuOYpDuvAAIxqPg",
@@ -46,7 +57,7 @@
       "alt": "Ice Cream Social",
       "category": "general",
       "takenAt": "2026-09-03T21:43:15.139Z",
-      "order": 4
+      "order": 5
     },
     {
       "id": "AF1QipNAAAAcACeFq79paEBhtdTF20Fbz41PhxtT2JDX",
@@ -57,7 +68,7 @@
       "alt": "ASME chapter presentation",
       "category": "general",
       "takenAt": "2026-09-02T21:36:11.905Z",
-      "order": 5
+      "order": 6
     }
   ]
 }
