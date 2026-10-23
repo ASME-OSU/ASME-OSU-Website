@@ -42,13 +42,16 @@
 .gearly-card span,.gearly-place-copy strong,.gearly-place-copy > span { display:block; }
 .gearly-card span { margin-top:4px; }
 .gearly-root .gearly-place-card { position:relative; display:block; width:calc(100% - 12px); min-height:100px; margin:12px 0 0 12px; padding:12px 10px 12px 42px; border:1px solid var(--gearly-hero-border); border-radius:14px; background:var(--gearly-bg); color:var(--gearly-fg); text-align:left; line-height:1.4; }
-.gearly-place-sprite { position:absolute; left:-20px; top:8px; width:54px; height:80px; object-fit:contain; pointer-events:none; }
+.gearly-place-sprite { position:absolute; left:-20px; top:8px; width:54px; height:80px; object-fit:contain; pointer-events:none; transition:transform .18s ease-out; }
 .gearly-place-copy strong { font-size:14px; }
 .gearly-place-copy > span { font-size:12px; margin-top:5px; }
 .gearly-place-copy .gearly-place-cta { color:var(--gearly-link); font-weight:700; }
 /* Override website-wide button/link hover rules, including nested labels and icons. */
 .gearly-root :is(.gearly-chip,.gearly-shortcut,.gearly-card,.gearly-place-card):is(:hover,:focus-visible) { background:var(--gearly-soft); color:var(--gearly-fg); border-color:var(--gearly-hero-border); }
 .gearly-root :is(.gearly-chip,.gearly-shortcut,.gearly-card,.gearly-place-card):is(:hover,:focus-visible) :is(span,p,strong,svg) { color:var(--gearly-fg); }
+/* Keep the peeking artwork anchored to its result; acknowledge interaction without changing poses. */
+.gearly-root .gearly-place-card:is(:hover,:focus-visible) .gearly-place-sprite { transform:translateY(-2px); }
+.gearly-root .gearly-place-card:is(:hover,:focus-visible) .gearly-place-cta { color:var(--gearly-link); text-decoration:underline; text-underline-offset:3px; }
 .gearly-root .gearly-text-button:is(:hover,:focus-visible) { color:var(--gearly-link); background:var(--gearly-soft); }
 .gearly-root :is(.gearly-icon-button,.gearly-tour-replay):is(:hover,:focus-visible) { color:var(--gearly-fg); background:var(--gearly-soft); }
 .gearly-form { flex:none; display:flex; gap:8px; padding:14px 12px 10px; border-top:1px solid var(--gearly-border); }
@@ -74,7 +77,7 @@
 
 .gearly-avatar[data-state=thinking] img,.gearly-activity-sprite { animation:gearly-think 1.8s ease-in-out infinite; }
 .gearly-avatar[data-state=typing] img,.gearly-reply-sprite { animation:gearly-think .7s ease-in-out infinite; }
-.gearly-shortcut:is(:hover,:focus-visible) img,.gearly-place-card:is(:hover,:focus-visible) img { animation:gearly-wave .8s ease-in-out 1; }
+.gearly-shortcut:is(:hover,:focus-visible) img { animation:gearly-wave .8s ease-in-out 1; }
 @keyframes gearly-wave { 0%,100% { transform:translateY(0) rotate(0); } 35% { transform:translateY(-3px) rotate(-5deg); } 70% { transform:rotate(3deg); } }
 @keyframes gearly-think { 50% { transform:translateY(-2px) rotate(-3deg); } }
 @keyframes gearly-dot { 50% { opacity:.35; transform:translateY(-3px); } }
