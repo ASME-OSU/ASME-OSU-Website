@@ -135,6 +135,8 @@ Installation order: (1) merge/push this repository change; (2) replace the Gener
 
 The Calendar page defaults to a readable upcoming-events agenda and offers an optional month view. `Calendar Integration.js` also renders the next three events above the embed and the next event on the homepage.
 
+Upcoming calendar cards read the Social Hub’s published `data/archive-index.json`. A unique active campaign with the same calendar occurrence ID and start time links the entire card to its public `event.html` page in a new tab and shows “Click on the event to find out more.” Manual campaigns require an exact title and start-time match. Demo, cancelled, deleted, ambiguous, or unavailable campaigns leave the card informational. Matching repeats on each page load as campaigns are published; recurring events never inherit another occurrence’s link.
+
 The `Refresh public calendar feed` GitHub Actions workflow reads the public Google Calendar hourly and writes recurrence-aware event data to `data/calendar-events.json`. The browser reads this same-origin static feed instead of waiting on public CORS proxies. A local cached copy is rendered immediately on repeat visits, and the page keeps useful static fallback content when the feed is unavailable.
 
 The old Blog posts remain available by their direct URLs as an archive, but Blog is intentionally removed from the primary Events navigation and current-event buttons now point to the Calendar.

@@ -3,6 +3,9 @@
 
   var IS_LOCAL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
   var FEED_URL = IS_LOCAL ? '/data/calendar-events.json' : 'https://asme-osu.github.io/ASME-OSU-Website/data/calendar-events.json';
+  var SOCIAL_HUB_URL = 'https://asme-osu.github.io/ASME-Social-Hub';
+  var campaigns = [];
+  var currentFeed = null;
   var CACHE_KEY = 'asmeCalendarEventsV4';
   var TIME_ZONE = 'America/New_York';
   var NON_CHAPTER_EVENT_TITLE_PATTERNS = [
@@ -115,9 +118,49 @@
     location.textContent = cleanText(event.location) || 'Location TBA';
   }
 
+  function campaignPageFor(event) {
+    var start = safeDate(event.start);
+    if (!start) return '';
+    var matches = campaigns.filter(function (campaign) {
+      if (!campaign || campaign.demo || campaign.deletedAt || campaign.cancelled) return false;
+      if (!/^\d{4}-\d{2}$/.test(campaign.year || '') || !/^[a-z0-9][a-z0-9_-]{0,179}$/i.test(campaign.id || '')) return false;
+      var campaignStart = safeDate(campaign.start);
+      if (!campaignStart || campaignStart.getTime() !== start.getTime() || Boolean(campaign.allDay) !== Boolean(event.allDay)) return false;
+      var source = campaign.source || {};
+      if (source.uid) return source.uid === event.id;
+      if (source.calendarUid) return event.id === source.calendarUid + '::' + start.toISOString();
+      // Manually created campaigns have no calendar identity. Require both the
+      // exact start time and title; never guess from a recurring title alone.
+      return cleanText(campaign.title).toLowerCase() === cleanText(event.title).toLowerCase();
+    });
+    if (matches.length !== 1) return '';
+    var page = new URL(SOCIAL_HUB_URL + '/event.html');
+    page.searchParams.set('year', matches[0].year);
+    page.searchParams.set('id', matches[0].id);
+    return page.href;
+  }
+
+  function loadCampaigns() {
+    var controller = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = window.setTimeout(function () { if (controller) controller.abort(); }, 4500);
+    fetch(SOCIAL_HUB_URL + '/data/archive-index.json', {
+      cache: 'no-store', credentials: 'omit', signal: controller ? controller.signal : undefined
+    }).then(function (response) {
+      if (!response.ok) throw new Error('Campaign archive request failed');
+      return response.json();
+    }).then(function (archive) {
+      if (!archive || !Array.isArray(archive.campaigns)) throw new Error('Malformed campaign archive');
+      campaigns = archive.campaigns;
+      if (currentFeed) render(currentFeed);
+    }).catch(function () {
+      // Missing/unavailable campaign data leaves calendar cards informational.
+    }).finally(function () { window.clearTimeout(timer); });
+  }
+
   function buildEventCard(event, index) {
     var start = safeDate(event.start);
-    var card = document.createElement('article');
+    var campaignPage = campaignPageFor(event);
+    var card = document.createElement(campaignPage ? 'a' : 'article');
     var dateBlock = document.createElement('div');
     var month = document.createElement('span');
     var day = document.createElement('strong');
@@ -127,6 +170,14 @@
     var location = document.createElement('p');
 
     card.className = 'acp-event-card' + (index === 0 ? ' acp-event-card--next' : '');
+    if (campaignPage) {
+      card.href = campaignPage;
+      card.target = '_blank';
+      card.rel = 'noopener noreferrer';
+      card.style.color = 'inherit';
+      card.style.textDecoration = 'none';
+      card.setAttribute('aria-label', cleanText(event.title) + ' — find out more (opens in a new tab)');
+    }
     dateBlock.className = 'acp-event-date';
     month.textContent = start ? monthLabel(start, event.allDay) : 'TBA';
     day.textContent = start ? dayLabel(start, event.allDay) : '—';
@@ -142,6 +193,12 @@
     copy.appendChild(title);
     copy.appendChild(meta);
     copy.appendChild(location);
+    if (campaignPage) {
+      var hint = document.createElement('p');
+      hint.className = 'acp-event-more';
+      hint.textContent = 'Click on the event to find out more. ↗';
+      copy.appendChild(hint);
+    }
 
     card.appendChild(dateBlock);
     card.appendChild(copy);
@@ -168,6 +225,7 @@
   }
 
   function render(feed) {
+    currentFeed = feed;
     var events = upcomingEvents(feed).filter(isChapterEvent);
     renderHome(events);
     renderCalendarPage(events);
@@ -287,6 +345,7 @@
     removeWordPressInfoArtifacts();
     initViewSwitch();
     removePreviewInterface();
+    if (document.getElementById('asmeCalendarUpcoming')) loadCampaigns();
     if (document.getElementById('asmeFeaturedTitle') || document.getElementById('asmeCalendarUpcoming')) loadFeed();
   }
 
