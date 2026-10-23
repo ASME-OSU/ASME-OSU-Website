@@ -44,7 +44,13 @@ test('explicit section requests open the section; information questions get inte
  const action={type:'scrollTo',page:'https://org.osu.edu/asme/',selector:'#ranking',label:'Show ranking chart',title:'Public ranking chart'};const seed={...raw,intents:[{id:'leaderboard',examples:['pull up the ranking chart','who leads the leaderboard'],response:{text:'The public chart has current standings.'},actions:[action]}]};let opened;
  const dom=await start(seed,w=>{w.GearlyTour={configure:()=>{},showSection:a=>{opened=a;return true;},clearSection:()=>{}};});const w=dom.window;
  await w.Gearly.ask('pull up the ranking chart');assert.equal(opened.selector,'#ranking');assert.equal(w.document.querySelector('.gearly-panel').hidden,true);opened=null;
- await w.Gearly.ask('who leads the leaderboard');assert.equal(opened,null);const card=w.document.querySelector('.gearly-place-card');assert.ok(card.querySelector('img'));assert.equal(card.getAttribute('aria-label'),'Show ranking chart');card.click();assert.equal(opened.selector,'#ranking');dom.window.close();
+ await w.Gearly.ask('who leads the leaderboard');assert.equal(opened,null);const card=w.document.querySelector('.gearly-place-card');assert.ok(card.querySelector('img'));assert.equal(card.getAttribute('aria-label'),'Show ranking chart');
+ const image=card.querySelector('img'),original=image.src;
+ card.dispatchEvent(new w.MouseEvent('mouseenter'));assert.equal(image.src,original);
+ card.focus();assert.equal(image.src,original);
+ card.dispatchEvent(new w.MouseEvent('mouseleave'));assert.equal(image.src,original);
+ card.blur();await new Promise(r=>setTimeout(r,10));assert.equal(image.src,original);
+ card.click();assert.equal(opened.selector,'#ranking');dom.window.close();
 });
 
 test('mascot reactions work with keyboard and pointer, and pending sprites clear on reset',async()=>{
