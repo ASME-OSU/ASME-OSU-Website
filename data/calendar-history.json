@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-22T22:29:12.229Z",
-  "checkedAt": "2026-10-23T22:21:29.375Z",
+  "generatedAt": "2026-10-24T00:50:33.659Z",
+  "checkedAt": "2026-10-24T00:50:33.658Z",
   "windowStart": "2026-08-01T04:00:00.000Z",
-  "windowEnd": "2026-10-23T22:21:29.338Z",
+  "windowEnd": "2026-10-24T00:50:33.632Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
@@ -317,6 +317,16 @@
       "location": "Scott Laboratory E141",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
       "updated": "2026-10-18T22:23:54.000Z"
+    },
+    {
+      "id": "51ktvdb5pj9l342194d7ance14@google.com::2026-10-23T22:30:00.000Z",
+      "title": "ASME Bar Social",
+      "start": "2026-10-23T22:30:00.000Z",
+      "end": "2026-10-24T00:30:00.000Z",
+      "allDay": false,
+      "location": "The Horseshoe Country Bar & More, 2159 N High St, Columbus, OH 43201, USA",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-10-18T22:24:48.000Z"
     }
   ]
 }

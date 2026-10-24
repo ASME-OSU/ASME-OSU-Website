@@ -1,24 +1,13 @@
 {
-  "generatedAt": "2026-10-22T05:02:47.898Z",
-  "checkedAt": "2026-10-23T22:21:29.375Z",
-  "windowStart": "2026-10-16T22:21:29.338Z",
+  "generatedAt": "2026-10-24T00:50:33.658Z",
+  "checkedAt": "2026-10-24T00:50:33.658Z",
+  "windowStart": "2026-10-17T00:50:33.632Z",
   "windowEnd": "2029-08-01T00:00:00.000Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "6b6r3vahedesilnk814v81q811@google.com::2026-10-15T12:00:00.000Z",
-      "title": "Autumn Break - no classes, offices open",
-      "start": "2026-10-15T12:00:00.000Z",
-      "end": "2026-10-17T12:00:00.000Z",
-      "allDay": true,
-      "location": "",
-      "description": "",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-07-09T22:51:31.000Z"
-    },
     {
       "id": "5n4j886meo63ojjrbue0b56i19@google.com::2026-10-19T12:00:00.000Z",
       "title": "Second-session classes begin",
