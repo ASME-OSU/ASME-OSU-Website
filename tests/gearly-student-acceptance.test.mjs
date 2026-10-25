@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import {JSDOM} from 'jsdom';
 const read=path=>fs.readFileSync(new URL('../'+path,import.meta.url),'utf8');
 const prompts=JSON.parse(read('tests/gearly/student-prompts.json'));
+// Keep this fixed-time dialogue independent of the hourly production feed.
+const calendarFixture=JSON.parse(read('tests/gearly/student-calendar.json'));
 const instant=Date.parse('2026-10-15T16:00:00Z');
 class FixedDate extends Date {constructor(...args){super(...(args.length?args:[instant]));} static now(){return instant;}}
 const routes={'':'Home Page.html','join/':'Join Page.html','member-resources/':'Member Resources Page.html','leadership/':'Leadership Page.html','current-sponsors/':'Current Sponsors Page.html','sponsor-asme/':'Sponsor ASME Page.html','pictures/':'Gallery Page.html','aboutus/':'About Us Page.html','calendar/':'Calendar Page.html'};
@@ -18,8 +20,10 @@ async function start(saved, overrides={}){
    body=gviz(u.searchParams.get('sheet')==='Point_Values_Public'?[['gbm','General Body Meeting',5,'','General Body Meeting'],['social','Social / Tabling',5,'','Social / Tabling'],['company','Company Info Session',7,'','Company Info Session']]:[['system_status','TESTING']]);
   }else if(u.pathname.includes('/wp-json/'))body=[];
   else if(u.pathname.includes('/data/')){
-   body=JSON.parse(read('data/'+u.pathname.split('/').pop()));
-   if(u.pathname.endsWith('/calendar-events.json')){if(overrides.calendar)body=structuredClone(overrides.calendar);body.checkedAt=new Date(instant).toISOString();}
+   if(u.pathname.endsWith('/calendar-events.json')){
+    body=structuredClone(overrides.calendar || calendarFixture);
+    body.checkedAt=new Date(instant).toISOString();
+   }else body=JSON.parse(read('data/'+u.pathname.split('/').pop()));
   }else if(/gearly-(data|site|index|officers)\.json$/.test(u.pathname))body=JSON.parse(read('assets/gearly/'+u.pathname.split('/').pop()));
   else if(u.pathname.endsWith('/sprites.json'))body={};
   else if(u.origin==='https://org.osu.edu' && u.pathname.startsWith('/asme/'))body=read(routes[u.pathname.slice(6)] || 'Home Page.html');
@@ -75,7 +79,7 @@ test('all 30 original student prompts get a grounded answer or specific honest f
    const answer={...prompt,text:reply.textContent,cards,urls:cards.map(c=>c.url)};answers.push(answer);
    await t.test('prompt '+prompt.number,()=>{assert.doesNotMatch(answer.text,/Loading leaderboard|Testing Semester/);checks[prompt.number](answer);});
   }
- }finally{dom.window.close();if(process.env.GEARLY_RECORD_ACCEPTANCE==='1')fs.writeFileSync('docs/gearly-student-acceptance.json',JSON.stringify({fixedTime:'2026-10-15T16:00:00Z',calendarFixture:'repository calendar with fresh checkedAt; source events unchanged',answers},null,2)+'\n');}
+ }finally{dom.window.close();if(process.env.GEARLY_RECORD_ACCEPTANCE==='1')fs.writeFileSync('docs/gearly-student-acceptance.json',JSON.stringify({fixedTime:'2026-10-15T16:00:00Z',calendarFixture:'tests/gearly/student-calendar.json',answers},null,2)+'\n');}
 });
 test('public answer cards survive same-site reload without persisting images or public member names',async()=>{
  const first=await start();let saved;
@@ -94,6 +98,27 @@ test('event context handles detail followups, changed dates and unknown referent
   await w.Gearly.ask('Show upcoming events');await w.Gearly.ask('Is there food there?');assert.match(latest(),/Which event do you mean/);
  }finally{dom.window.close();}
 });
+test('calendar updates change next-event context and replace missing location answers',async()=>{
+ const calendar=structuredClone(calendarFixture);
+ calendar.events.find(e=>e.id==='matlab').start='2026-11-12T22:30:00Z';
+ calendar.events.find(e=>e.id==='matlab').end='2026-11-12T23:30:00Z';
+ calendar.events.find(e=>e.id==='bar').location='Published Social Venue';
+ calendar.events.push({id:'scheduling',title:'ASME Scheduling/BuckeyeLink Tour',start:'2026-10-22T21:30:00Z',end:'2026-10-22T22:30:00Z',location:'Scott Laboratory E141'});
+ const dom=await start(undefined,{calendar}),w=dom.window;
+ const latest=()=>Array.from(w.document.querySelectorAll('.gearly-bot')).at(-1);
+ try{
+  await w.Gearly.ask('What is the next ASME event?');
+  assert.match(latest().querySelector('a.gearly-card strong').textContent,/Scheduling\/BuckeyeLink Tour/);
+  await w.Gearly.ask('Will there be food for it?');
+  assert.match(latest().textContent,/Scheduling\/BuckeyeLink Tour/);
+  assert.doesNotMatch(latest().textContent,/MATLAB/);
+  await w.Gearly.ask('Where is the bar social on October 23, and can students under 21 attend?');
+  assert.match(latest().textContent,/Location: Published Social Venue/);
+  assert.doesNotMatch(latest().textContent,/Location:.*does not specify/i);
+  assert.match(latest().textContent,/Age eligibility:.*does not specify/i);
+ }finally{dom.window.close();}
+});
+
 test('paraphrases and unrelated queries cannot be hijacked by student overrides',async()=>{
  const dom=await start(),w=dom.window;
  const latest=()=>Array.from(w.document.querySelectorAll('.gearly-bot')).at(-1);

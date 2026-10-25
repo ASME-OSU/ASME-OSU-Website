@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-15T16:00:00Z",
+  "events": [
+    {
+      "id": "autumn-break",
+      "title": "Autumn Break - no classes, offices open",
+      "start": "2026-10-15T12:00:00Z",
+      "end": "2026-10-17T12:00:00Z",
+      "allDay": true
+    },
+    {
+      "id": "matlab",
+      "title": "ASME MATLAB Info Session",
+      "start": "2026-10-22T21:30:00Z",
+      "end": "2026-10-22T22:30:00Z",
+      "location": "Scott Laboratory E141",
+      "description": "Matlab info session"
+    },
+    {
+      "id": "bar",
+      "title": "ASME Bar Social",
+      "start": "2026-10-23T22:30:00Z",
+      "end": "2026-10-24T00:30:00Z"
+    },
+    {
+      "id": "bridge",
+      "title": "ASME Bridge Building Competition",
+      "start": "2026-11-05T22:30:00Z",
+      "location": "Scott Laboratory E141",
+      "description": "Bridge Building + Lesson"
+    },
+    {
+      "id": "weekly",
+      "title": "Weekly Chapter Meeting",
+      "start": "2027-01-14T22:30:00Z",
+      "location": "Scott E141"
+    }
+  ]
+}
