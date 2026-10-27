@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-10-21T17:12:39.153Z",
+  "updatedAt": "2026-10-27T18:01:01.224Z",
   "items": [
+    {
+      "id": "DfAVLkcCVJE",
+      "permalink": "https://www.instagram.com/p/DfAVLkcCVJE/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DfAVLkcCVJE-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-10-27T16:53:06.000Z",
+      "title": "ASME Bridge Building Competition Seek friendly competition and a chance to…",
+      "summary": "Come to our bridge building competition! See the flyer for more details. ⚙️ Thursday, October 29, 2026 at 5:30 PM Scott Lab E141",
+      "caption": "ASME Bridge Building Competition Seek friendly competition and a chance to win prizes? Come to our bridge building competition! See the flyer for more details. ⚙️ Thursday, October 29, 2026 at 5:30 PM Scott Lab E141",
+      "alt": "ASME Bridge Building Competition Seek friendly competition and a chance to…"
+    },
     {
       "id": "DewraTGG80B",
       "permalink": "https://www.instagram.com/p/DewraTGG80B/",
@@ -68,19 +81,6 @@
       "summary": "Join @tosu_nsbe, ASME, and 10+ student organizations for a joint study session with free food, free tutoring, and a chance to connect! 📚🍔 📅 Today, September 30 ⏰ 6:30–8:00 PM 📍 CBEC 120 & 130 Get support from the Math and Statistics…",
       "caption": "🔐 LOCK IN with NSBE × ASME TONIGHT! Join @tosu_nsbe, ASME, and 10+ student organizations for a joint study session with free food, free tutoring, and a chance to connect! 📚🍔 📅 Today, September 30 ⏰ 6:30–8:00 PM 📍 CBEC 120 & 130 Get support from the Math and Statistics Learning Center, Amgen STEM Learning Center, General Chemistry Success Center, and Departmental Physics Tutoring. Bring your study materials and a friend—we’ll see you there! ⚙️",
       "alt": "🔐 LOCK IN with NSBE × ASME TONIGHT!"
-    },
-    {
-      "id": "Dd6ojshT4WQ",
-      "permalink": "https://www.instagram.com/p/Dd6ojshT4WQ/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Dd6ojshT4WQ-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-09-30T15:17:26.000Z",
-      "title": "Want to learn more about project teams for engineers?",
-      "summary": "Come to our project team introduction for an overview of multiple teams you can join! This Thursday, October 1st 5:30 - 6:30 PM Scott Lab E141",
-      "caption": "Want to learn more about project teams for engineers? Come to our project team introduction for an overview of multiple teams you can join! This Thursday, October 1st 5:30 - 6:30 PM Scott Lab E141",
-      "alt": "Want to learn more about project teams for engineers?"
     }
   ]
 }
