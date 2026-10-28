@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-27T00:34:44.033Z",
-  "checkedAt": "2026-10-28T02:24:12.464Z",
-  "windowStart": "2026-10-21T02:24:12.428Z",
+  "generatedAt": "2026-10-28T09:50:34.117Z",
+  "checkedAt": "2026-10-28T09:50:34.117Z",
+  "windowStart": "2026-10-21T09:50:34.083Z",
   "windowEnd": "2029-08-01T00:00:00.000Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
@@ -37,9 +37,9 @@
       "end": "2026-10-29T22:30:00.000Z",
       "allDay": false,
       "location": "Scott Laboratory E141",
-      "description": "Matlab info session",
+      "description": "<p>Bridge Building + Lesson</p>",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-10-25T19:35:12.000Z"
+      "updated": "2026-10-28T02:48:08.000Z"
     },
     {
       "id": "4o94ugad0fu7c42nu4j2huli1j@google.com::2026-11-02T12:00:00.000Z",
@@ -59,9 +59,9 @@
       "end": "2026-11-05T23:30:00.000Z",
       "allDay": false,
       "location": "Scott Laboratory E141",
-      "description": "Bridge Building + Lesson",
+      "description": "<p>Matlab info session</p>",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-10-25T19:35:44.000Z"
+      "updated": "2026-10-28T02:48:15.000Z"
     },
     {
       "id": "6007o04v43b5pioguflhf7p4qk@google.com::2026-11-11T12:00:00.000Z",
