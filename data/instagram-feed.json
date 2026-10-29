@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-10-27T18:01:01.224Z",
+  "updatedAt": "2026-10-29T22:45:11.889Z",
   "items": [
+    {
+      "id": "DfFfYY3FH3t",
+      "permalink": "https://www.instagram.com/p/DfFfYY3FH3t/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DfFfYY3FH3t-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-10-29T16:58:25.000Z",
+      "title": "ASME MATLAB Info Session We’re having a MATLAB info session!",
+      "summary": "Come join us if you want to learn more about MATLAB and how it works. See the flyer for details! Thursday, November 5, 2026 at 5:30 PM Scott Laboratory E141",
+      "caption": "ASME MATLAB Info Session We’re having a MATLAB info session! Come join us if you want to learn more about MATLAB and how it works. See the flyer for details! Thursday, November 5, 2026 at 5:30 PM Scott Laboratory E141",
+      "alt": "ASME MATLAB Info Session We’re having a MATLAB info session!"
+    },
     {
       "id": "DfAVLkcCVJE",
       "permalink": "https://www.instagram.com/p/DfAVLkcCVJE/",
@@ -68,19 +81,6 @@
       "summary": "Compete with other members on the court! Equipment will be provided. Thursday, October 8th 5:30 - 6:30 PM RPAC Courts",
       "caption": "Join us for our pickleball night! Compete with other members on the court! Equipment will be provided. Thursday, October 8th 5:30 - 6:30 PM RPAC Courts",
       "alt": "Join us for our pickleball night!"
-    },
-    {
-      "id": "Dd62UnOltDh",
-      "permalink": "https://www.instagram.com/p/Dd62UnOltDh/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/Dd62UnOltDh-640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-09-30T17:15:45.000Z",
-      "title": "🔐 LOCK IN with NSBE × ASME TONIGHT!",
-      "summary": "Join @tosu_nsbe, ASME, and 10+ student organizations for a joint study session with free food, free tutoring, and a chance to connect! 📚🍔 📅 Today, September 30 ⏰ 6:30–8:00 PM 📍 CBEC 120 & 130 Get support from the Math and Statistics…",
-      "caption": "🔐 LOCK IN with NSBE × ASME TONIGHT! Join @tosu_nsbe, ASME, and 10+ student organizations for a joint study session with free food, free tutoring, and a chance to connect! 📚🍔 📅 Today, September 30 ⏰ 6:30–8:00 PM 📍 CBEC 120 & 130 Get support from the Math and Statistics Learning Center, Amgen STEM Learning Center, General Chemistry Success Center, and Departmental Physics Tutoring. Bring your study materials and a friend—we’ll see you there! ⚙️",
-      "alt": "🔐 LOCK IN with NSBE × ASME TONIGHT!"
     }
   ]
 }
