@@ -138,3 +138,5 @@ html body #page .entry-content .asme-join-page.asme-join-three-step .join-proces
 
 /* WordPress can insert direct breaks into the existing progress stations. */
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress-step>br{display:none!important}
+/* wpautop wraps the newsletter's hidden auxiliary fields in a visible paragraph. */
+html body #page .entry-content .asme-join-page.asme-join-three-step #asmeNewsletterForm>p:has(>input[name="locale"]){display:none!important}
