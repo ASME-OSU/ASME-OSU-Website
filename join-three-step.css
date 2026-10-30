@@ -135,3 +135,6 @@ html body #page .entry-content .asme-join-page.asme-join-three-step .join-intro{
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-benefits{margin-top:auto!important;padding-top:24px!important}
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-process-area{grid-template-rows:64px minmax(0,1fr)!important}
 }
+
+/* WordPress can insert direct breaks into the existing progress stations. */
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress-step>br{display:none!important}

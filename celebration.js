@@ -319,16 +319,26 @@ formHeading.querySelector('.join-form-purpose').textContent='Chapter news, event
 const groupCopy=trigger.closest('.join-groupme-step-copy');
 trigger.closest('.join-groupme-step').querySelector('.join-groupme-step-number')?.remove();
 // Put helper text before actions, so every card ends with its primary button.
-groupCopy.insertBefore(groupCopy.querySelector('small'),trigger);
+const groupHelper=groupCopy.querySelector('small');
+if(groupHelper)groupCopy.appendChild(groupHelper);
+groupCopy.appendChild(trigger);
+for(const child of [...groupCopy.children]){
+  if(child.tagName==='BR'||(child.tagName==='P'&&!child.textContent.trim()&&![...child.children].some(el=>el.tagName!=='BR')))child.remove();
+}
 const signupForm=joinPage.querySelector('#asmeNewsletterForm');
 const signupStatus=joinPage.querySelector('#asmeNewsletterStatus');
-signupForm.insertBefore(signupStatus,signupForm.querySelector('.join-submit-wrap'));
+const submitWrap=signupForm.querySelector('.join-submit-wrap');if(signupStatus&&submitWrap)submitWrap.before(signupStatus);
 returnPanel.insertBefore(returnPanel.querySelector('.asme-return-reopen'),returnPanel.querySelector('.asme-return-confirm'));
 
 groupCopy.querySelector('h3').textContent='Quick updates.';
 groupCopy.querySelector('p').textContent='Event reminders and chapter conversation, all in one place.';
 groupCopy.querySelector('small').textContent='Join, then come back for Step 3.';
 const progress=joinPage.querySelector('.join-flow-progress');
+for(const station of [...progress.querySelectorAll('.join-flow-progress-step,.join-flow-progress-line')])progress.appendChild(station);
+for(const child of [...progress.children]){
+  if(child.tagName==='BR'||(child.tagName==='P'&&!child.textContent.trim()&&![...child.children].some(el=>el.tagName!=='BR')))child.remove();
+}
+
 progress.setAttribute('aria-label','Three steps to join the ASME OSU community');
 const thirdProgress=document.createElement('div');
 thirdProgress.className='join-flow-progress-step join-flow-progress-step--welcome';
