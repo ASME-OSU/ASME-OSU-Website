@@ -295,7 +295,7 @@
 #asme-celebration-experience .asme-card-chapter-logo{display:block;width:clamp(120px,14vw,200px);max-width:100%;height:auto;filter:brightness(0) invert(1)}
 
 /* Keep the celebration controls and compact finish independent of site-wide styles. */
-html body #asme-celebration-experience { --asme-control-radius:9px; }
+html body #asme-celebration-experience { --asme-control-radius:999px; }
 html body #asme-celebration-experience button { border-radius:var(--asme-control-radius)!important; font-family:system-ui,sans-serif!important; text-transform:none!important; }
 html body #asme-celebration-experience .topactions button,
 html body #asme-celebration-experience .linkedin-dismiss { background:#132138!important; border:1px solid #70839c!important; color:#edf3fc!important; box-shadow:none!important; }
