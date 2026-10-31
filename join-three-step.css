@@ -140,3 +140,9 @@ html body #page .entry-content .asme-join-page.asme-join-three-step .join-proces
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress-step>br{display:none!important}
 /* wpautop wraps the newsletter's hidden auxiliary fields in a visible paragraph. */
 html body #page .entry-content .asme-join-page.asme-join-three-step #asmeNewsletterForm>p:has(>input[name="locale"]){display:none!important}
+
+/* Keep small setup copy readable on the navy dark-mode cards. */
+@media(prefers-color-scheme:dark){
+ html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy .join-eyebrow{color:#b8c9df!important}
+ html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy small{color:#bdcbdc!important}
+}
