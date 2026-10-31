@@ -151,3 +151,10 @@ html body #page .entry-content .asme-join-page.asme-join-three-step #asmeNewslet
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-submit-button,
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-button,
 html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return .asme-return-confirm{border-radius:12px!important}
+
+/* WordPress wraps the GroupMe visual in a paragraph; keep it in the shared visual row. */
+html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMeStep>p:has(>.join-groupme-step-icon){display:contents!important}
+html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMeStep>p:has(>.join-groupme-step-icon)>br,
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon>br{display:none!important}
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon{align-self:stretch!important;justify-content:center!important;max-width:none!important}
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon .join-groupme-logo{width:120px!important;height:auto!important;max-height:100%!important;justify-self:center!important}
