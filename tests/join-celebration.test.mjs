@@ -20,6 +20,10 @@ for (const formatted of [false, true]) {
     const destination = link.href;
     const action = window.document.querySelector('#asmeNewsletterForm').action;
     if (formatted) {
+      const returnPanel=window.document.querySelector('#asme-groupme-return');
+      const controls=window.document.createElement('p');returnPanel.append(controls);
+      controls.append(returnPanel.querySelector('.asme-return-reopen'),returnPanel.querySelector('.asme-return-confirm'));
+
       const paragraph = window.document.createElement('p');
       link.before(paragraph);
       paragraph.append(link, window.document.createElement('br'), helper);

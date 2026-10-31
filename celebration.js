@@ -329,7 +329,10 @@ for(const child of [...groupCopy.children]){
 const signupForm=joinPage.querySelector('#asmeNewsletterForm');
 const signupStatus=joinPage.querySelector('#asmeNewsletterStatus');
 const submitWrap=signupForm.querySelector('.join-submit-wrap');if(signupStatus&&submitWrap)submitWrap.before(signupStatus);
-returnPanel.insertBefore(returnPanel.querySelector('.asme-return-reopen'),returnPanel.querySelector('.asme-return-confirm'));
+returnPanel.append(returnPanel.querySelector('.asme-return-reopen'),returnPanel.querySelector('.asme-return-confirm'));
+for(const child of [...returnPanel.children]){
+  if(child.tagName==='BR'||(child.tagName==='P'&&!child.textContent.trim()&&!child.id&&![...child.children].some(el=>el.tagName!=='BR')))child.remove();
+}
 
 groupCopy.querySelector('h3').textContent='Quick updates.';
 groupCopy.querySelector('p').textContent='Event reminders and chapter conversation, all in one place.';
