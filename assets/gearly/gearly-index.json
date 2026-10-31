@@ -123,7 +123,7 @@
       "id": "join",
       "title": "Join ASME",
       "url": "https://org.osu.edu/asme/join/",
-      "description": "Stay connected through our email newsletter and GroupMe for company info sessions, professional development events, socials, leadership opportunities, and chapter updates.",
+      "description": "Meet employers, build friendships, and find your next opportunity with ASME OSU.",
       "keywords": [
         "signup",
         "newsletter",
@@ -131,26 +131,26 @@
         "dues"
       ],
       "headings": [
-        "Get connected with Ohio State's mechanical engineering community.",
-        "Become a member",
-        "Get the quick updates.",
+        "Get connected with Ohio State's engineering community.",
+        "Join the newsletter.",
+        "Quick updates.",
+        "Get your welcome card.",
         "Frequently Asked Questions"
       ],
-      "text": "466+ Members 25+ Events / Year 2026 ASME Achievement Award Join ASME OSU Get connected with Ohio State's mechanical engineering community. Stay connected through our email newsletter and GroupMe for company info sessions, professional development events, socials, leadership opportunities, and chapter updates. Industry EventsMeet employers and learn about engineering careers. CommunityConnect with other mechanical engineering students. LeadershipFind ways to get involved beyond attending events. 1 Email newsletterFull announcements 2 GroupMeFast updates Step 1 · Email Newsletter Become a member This form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox. Please enable JavaScript to sign up here, or email asme@osu.edu for help. Step 2 · GroupMe Get the quick updates. Join the chapter GroupMe for reminders, event changes, and member conversation. Continue to GroupMe Already receive our emails? You can go straight to this step. Questions Frequently Asked Questions New to ASME OSU? Here are a few quick answers before you join. Do I need to be a mechanical engineering major to join? No. ASME OSU is especially focused on mechanical engineering, but students from related engineering majors and anyone interested in design, manufacturing, robotics, energy, aerospace, automotive, or professional development are welcome. Is there a membership fee? Joining the ASME OSU newsletter and GroupMe is free. ASME National membership is separate: freshmen and first-year students receive their first year free when they enter their expected graduation date during signup. Other students can use code SECTION at checkout for 25% off. Any costs for special events, trips, or optional activities will be shared ahead of time. What kinds of events does ASME OSU host? We host company info sessions, technical talks, networking events, socials, resume and career development events, leadership opportunities, and occasional collaborations with other student organizations. Can first-year students join? Yes. First-year students are encouraged to join early. ASME is a great way to meet other students, learn about engineering careers, and start building connections before internship recruiting begins. How will I hear about upcoming events? Sign up for the email newsletter for full announcements and join the ASME OSU GroupMe for quick reminders and day-of updates. You can also check the events calendar and follow ASME OSU on social media. How can I get more involved beyond attending events? Come to meetings, talk with current officers, volunteer at events, and watch for leadership applications or committee opportunities. We are always looking for students who want to help shape the chapter.",
+      "text": "466+ Members 25+ Events / Year 2026 Chapter Achievement AwardASME recognition Join ASME OSU Get connected with Ohio State's engineering community. Meet employers, build friendships, and find your next opportunity with ASME OSU. Industry EventsMeet employers and learn about engineering careers. CommunityConnect with other mechanical engineering students. LeadershipFind ways to get involved beyond attending events. 1 Email newsletterFull announcements 2 GroupMeFast updates 3Welcome cardYour Buckeye keepsake Step 1 · Email Newsletter Join the newsletter. Chapter news, events, and opportunities—straight to your inbox. Please enable JavaScript to sign up here, or email asme@osu.edu for help. Step 2 · GroupMe Quick updates. Event reminders and chapter conversation, all in one place. Join, then come back for Step 3.Continue to GroupMe Step 3 · Welcome cardGet your welcome card.Return after joining GroupMe to get your card and celebrate. Questions Frequently Asked Questions New to ASME OSU? Here are a few quick answers before you join. Do I need to be a mechanical engineering major to join? No. ASME OSU is especially focused on mechanical engineering, but students from related engineering majors and anyone interested in design, manufacturing, robotics, energy, aerospace, automotive, or professional development are welcome. Is there a membership fee? Joining the ASME OSU newsletter and GroupMe is free. ASME National membership is separate: freshmen and first-year students receive their first year free when they enter their expected graduation date during signup. Other students can use code SECTION at checkout for 25% off. Any costs for special events, trips, or optional activities will be shared ahead of time. What kinds of events does ASME OSU host? We host company info sessions, technical talks, networking events, socials, resume and career development events, leadership opportunities, and occasional collaborations with other student organizations. Can first-year students join? Yes. First-year students are encouraged to join early. ASME is a great way to meet other students, learn about engineering careers, and start building connections before internship recruiting begins. How will I hear about upcoming events? Sign up for the email newsletter for full announcements and join the ASME OSU GroupMe for quick reminders and day-of updates. You can also check the events calendar and follow ASME OSU on social media. How can I get more involved beyond attending events? Come to meetings, talk with current officers, volunteer at events, and watch for leadership applications or committee opportunities. We are always looking for students who want to help shape the chapter.",
       "sections": [
         {
           "id": "join:[data-gearly='join-community']",
           "pageId": "join",
           "selector": "[data-gearly='join-community']",
-          "title": "Get connected with Ohio State's mechanical engineering community.",
-          "snippet": "Join ASME OSU Get connected with Ohio State's mechanical engineering community. Stay connected through our email newsletter and GroupMe for company info sessions, professional development events, socials, leadership opportunities, and chapter updates. Industry EventsMeet employers and learn about…",
+          "title": "Get connected with Ohio State's engineering community.",
+          "snippet": "Join ASME OSU Get connected with Ohio State's engineering community. Meet employers, build friendships, and find your next opportunity with ASME OSU. Industry EventsMeet employers and learn about engineering careers. CommunityConnect with other mechanical engineering students. LeadershipFind ways t…",
           "keywords": [
             "get",
             "connected",
             "with",
             "ohio",
             "state",
-            "mechanical",
             "engineering",
             "community"
           ]
@@ -159,44 +159,57 @@
           "id": "join:#joinNewsletterStep",
           "pageId": "join",
           "selector": "#joinNewsletterStep",
-          "title": "Become a member",
+          "title": "Join the newsletter.",
           "snippet": "1 Email newsletterFull announcements",
           "keywords": [
-            "become",
-            "member"
+            "join",
+            "the",
+            "newsletter"
           ]
         },
         {
           "id": "join:#joinGroupMeProgress",
           "pageId": "join",
           "selector": "#joinGroupMeProgress",
-          "title": "Become a member",
+          "title": "Join the newsletter.",
           "snippet": "2 GroupMeFast updates",
           "keywords": [
-            "become",
-            "member"
+            "join",
+            "the",
+            "newsletter"
+          ]
+        },
+        {
+          "id": "join:#joinWelcomeProgress",
+          "pageId": "join",
+          "selector": "#joinWelcomeProgress",
+          "title": "Join the newsletter.",
+          "snippet": "3Welcome cardYour Buckeye keepsake",
+          "keywords": [
+            "join",
+            "the",
+            "newsletter"
           ]
         },
         {
           "id": "join:#newsletter-signup",
           "pageId": "join",
           "selector": "#newsletter-signup",
-          "title": "Become a member",
-          "snippet": "Step 1 · Email Newsletter Become a member This form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox. Please enable JavaScript to sign up here, or email asme@osu.edu for help.",
+          "title": "Join the newsletter.",
+          "snippet": "Step 1 · Email Newsletter Join the newsletter. Chapter news, events, and opportunities—straight to your inbox. Please enable JavaScript to sign up here, or email asme@osu.edu for help.",
           "keywords": [
-            "become",
-            "member"
+            "join",
+            "the",
+            "newsletter"
           ]
         },
         {
           "id": "join:#joinGroupMeStep",
           "pageId": "join",
           "selector": "#joinGroupMeStep",
-          "title": "Get the quick updates.",
-          "snippet": "Step 2 · GroupMe Get the quick updates. Join the chapter GroupMe for reminders, event changes, and member conversation. Continue to GroupMe Already receive our emails? You can go straight to this step.",
+          "title": "Quick updates.",
+          "snippet": "Step 2 · GroupMe Quick updates. Event reminders and chapter conversation, all in one place. Join, then come back for Step 3.Continue to GroupMe",
           "keywords": [
-            "get",
-            "the",
             "quick",
             "updates"
           ]
@@ -205,11 +218,51 @@
           "id": "join:#joinGroupMeButton",
           "pageId": "join",
           "selector": "#joinGroupMeButton",
-          "title": "Become a member",
+          "title": "Join the newsletter.",
           "snippet": "Continue to GroupMe",
           "keywords": [
-            "become",
-            "member"
+            "join",
+            "the",
+            "newsletter"
+          ]
+        },
+        {
+          "id": "join:#asme-groupme-return",
+          "pageId": "join",
+          "selector": "#asme-groupme-return",
+          "title": "Get your welcome card.",
+          "snippet": "Step 3 · Welcome cardGet your welcome card.Return after joining GroupMe to get your card and celebrate.",
+          "keywords": [
+            "get",
+            "your",
+            "welcome",
+            "card"
+          ]
+        },
+        {
+          "id": "join:#asme-groupme-return-title",
+          "pageId": "join",
+          "selector": "#asme-groupme-return-title",
+          "title": "Get your welcome card.",
+          "snippet": "Step 3 · Welcome cardGet your welcome card.Return after joining GroupMe to get your card and celebrate.",
+          "keywords": [
+            "get",
+            "your",
+            "welcome",
+            "card"
+          ]
+        },
+        {
+          "id": "join:#asme-groupme-return-message",
+          "pageId": "join",
+          "selector": "#asme-groupme-return-message",
+          "title": "Get your welcome card.",
+          "snippet": "Return after joining GroupMe to get your card and celebrate.",
+          "keywords": [
+            "get",
+            "your",
+            "welcome",
+            "card"
           ]
         },
         {

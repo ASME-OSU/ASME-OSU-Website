@@ -48,7 +48,7 @@ function fanfare(){
 }
 function cue(){tone(784,.14,'triangle',.053);tone(1175,.24,'sine',.035,.07);noise(.19,.019,3300,.02)}
 function later(fn,delay){let id=setTimeout(fn,delay);timers.push(id)}function clearTimers(){timers.forEach(clearTimeout);timers=[]}function setScene(n){scene=n;for(let i=0;i<3;i++)$('scene'+i).classList.toggle('visible',i===n);$('formation').style.display='none'}function setStatus(t){$('status').textContent=t}
-function formWord(word){const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d'),fs=Math.min((W-36)/(word.length*.73),Math.max(80,H-170)*.65,287.5);c.fillStyle='#fff';c.textAlign='center';c.textBaseline='middle';c.font=`900 ${Math.floor(fs)}px Arial, sans-serif`;c.fillText(word,W/2,H*.48);const data=c.getImageData(0,0,W,H).data,step=W<650?Math.max(3,Math.round(W/100)):6,pts=[];for(let y=0;y<H;y+=step)for(let x=0;x<W;x+=step)if(data[(y*W+x)*4+3]>180)pts.push([x,y]);return pts}
+function formWord(word){const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d'),fs=Math.min((W-40)/(word.length*.64),Math.max(80,H-170)*.8,390);c.fillStyle='#fff';c.textAlign='center';c.textBaseline='middle';c.font=`900 ${Math.floor(fs)}px Arial, sans-serif`;c.fillText(word,W/2,H*.48);const data=c.getImageData(0,0,W,H).data,step=W<650?Math.max(3,Math.round(W/100)):6,pts=[];for(let y=0;y<H;y+=step)for(let x=0;x<W;x+=step)if(data[(y*W+x)*4+3]>180)pts.push([x,y]);return pts}
 let morphKind='';
 function morph(word){
  const targets=formWord(word);if(!targets.length)return;
@@ -299,11 +299,12 @@ $('openLinkedIn').addEventListener('click',()=>{
 // GroupMe comes first. Confirmation after returning starts the full timeline.
 const pendingKey='asme-groupme-pending-v1';
 let pending=false,away=false;
-const returnPanel=document.createElement('section');
+const existingReturnPanel=document.getElementById('asme-groupme-return');
+const returnPanel=existingReturnPanel||document.createElement('section');
 returnPanel.id='asme-groupme-return';
 returnPanel.className='join-welcome-card';
 returnPanel.setAttribute('aria-labelledby','asme-groupme-return-title');
-returnPanel.innerHTML=`<div class="join-welcome-visual" aria-hidden="true"><div class="join-welcome-keepsake"><img class="join-keepsake-logo" alt="" src="${chapterLogoSrc}"><span class="join-keepsake-name">YOUR NEXT CHAPTER</span></div></div><div class="join-eyebrow">Step 3 · Welcome card</div><h3 id="asme-groupme-return-title">Get your welcome card.</h3><p id="asme-groupme-return-message" role="status">Return after joining GroupMe to get your card and celebrate.</p><button type="button" class="asme-return-confirm" disabled>Join GroupMe first</button><a class="asme-return-reopen" target="_blank" rel="noopener noreferrer" hidden>Reopen GroupMe →</a>`;
+if(!existingReturnPanel)returnPanel.innerHTML=`<div class="join-welcome-visual" aria-hidden="true"><div class="join-welcome-keepsake"><img class="join-keepsake-logo" alt="" src="${chapterLogoSrc}"><span class="join-keepsake-name">YOUR NEXT CHAPTER</span></div></div><div class="join-eyebrow">Step 3 · Welcome card</div><h3 id="asme-groupme-return-title">Get your welcome card.</h3><p id="asme-groupme-return-message" role="status">Return after joining GroupMe to get your card and celebrate.</p><button type="button" class="asme-return-confirm" disabled>Join GroupMe first</button><a class="asme-return-reopen" target="_blank" rel="noopener noreferrer" hidden>Reopen GroupMe →</a>`;
 (trigger.closest('.join-groupme-step')||trigger).insertAdjacentElement('afterend',returnPanel);
 const joinPage=document.querySelector('.asme-join-page');
 joinPage.classList.add('asme-join-three-step');
@@ -340,12 +341,13 @@ for(const child of [...progress.children]){
 }
 
 progress.setAttribute('aria-label','Three steps to join the ASME OSU community');
-const thirdProgress=document.createElement('div');
+const existingWelcomeProgress=document.getElementById('joinWelcomeProgress');
+const thirdProgress=existingWelcomeProgress||document.createElement('div');
 thirdProgress.className='join-flow-progress-step join-flow-progress-step--welcome';
 thirdProgress.id='joinWelcomeProgress';
 thirdProgress.innerHTML='<span class="join-flow-progress-number">3</span><span><strong>Welcome card</strong><small>Your Buckeye keepsake</small></span>';
 const progressLine=document.createElement('span');progressLine.className='join-flow-progress-line';progressLine.setAttribute('aria-hidden','true');
-progress.append(progressLine,thirdProgress);
+if(!existingWelcomeProgress)progress.append(progressLine,thirdProgress);
 let welcomed=false;
 const confirmJoin=returnPanel.querySelector('.asme-return-confirm');
 const reopenGroup=returnPanel.querySelector('.asme-return-reopen');

@@ -855,12 +855,12 @@
     "signup": {
       "title": "ASME OSU newsletter signup",
       "url": "https://org.osu.edu/asme/join/#newsletter-signup",
-      "text": "This form signs you up for the ASME OSU email newsletter. You'll receive event announcements, chapter news, and opportunities in your inbox."
+      "text": "Chapter news, events, and opportunities—straight to your inbox."
     },
     "groupme": {
       "title": "Join ASME OSU GroupMe",
       "url": "https://groupme.com/join_group/95825283/iaBgk5Ld",
-      "text": "Join the chapter GroupMe for reminders, event changes, and member conversation."
+      "text": "Event reminders and chapter conversation, all in one place."
     },
     "officeLocation": "Scott Laboratory, Office N147"
   }

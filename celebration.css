@@ -293,3 +293,28 @@
 
 #asme-groupme-return{grid-column:1/-1;width:100%;margin:8px 0 0;padding:22px 24px}#asme-groupme-return h4{font-family:system-ui,sans-serif!important;font-size:22px!important;line-height:1.25!important}#asme-groupme-return .asme-return-confirm{max-width:360px}#asme-groupme-return .asme-return-reopen{width:fit-content}@media(max-width:520px){#asme-groupme-return{padding:20px}#asme-groupme-return .asme-return-confirm{max-width:none}}
 #asme-celebration-experience .asme-card-chapter-logo{display:block;width:clamp(120px,14vw,200px);max-width:100%;height:auto;filter:brightness(0) invert(1)}
+
+/* Keep the celebration controls and compact finish independent of site-wide styles. */
+html body #asme-celebration-experience { --asme-control-radius:9px; }
+html body #asme-celebration-experience button { border-radius:var(--asme-control-radius)!important; font-family:system-ui,sans-serif!important; text-transform:none!important; }
+html body #asme-celebration-experience .topactions button,
+html body #asme-celebration-experience .linkedin-dismiss { background:#132138!important; border:1px solid #70839c!important; color:#edf3fc!important; box-shadow:none!important; }
+html body #asme-celebration-experience .finalinner { box-sizing:border-box!important; width:100%!important; max-width:1100px!important; min-height:0!important; padding:32px!important; gap:36px!important; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+html body #asme-celebration-experience .finalcopy h2 { font-family:system-ui,sans-serif!important; font-size:clamp(42px,4.5vw,64px)!important; font-weight:900!important; line-height:1.02!important; color:#fff!important; margin:14px 0!important; }
+html body #asme-celebration-experience .finalcopy p { margin:12px 0!important; font-size:15px!important; line-height:1.5!important; }
+html body #asme-celebration-experience .seal { margin-top:8px; }
+html body #asme-celebration-experience .final-actions { margin-top:20px; }
+html body #asme-celebration-experience .final-actions .final-share { background:#bb0000!important; border:1px solid #d45c66!important; box-shadow:none!important; color:#fff!important; padding:13px 15px; }
+html body #asme-celebration-experience .final-actions .final-download { background:#132138!important; border:1px solid #70839c!important; color:#edf3fc!important; }
+html body #asme-celebration-experience .final-secondary { gap:10px; margin-top:4px; }
+html body #asme-celebration-experience .final-secondary .final-text-action { flex:1; min-height:44px!important; padding:10px 12px!important; border:1px solid #70839c!important; background:#132138!important; color:#edf3fc!important; }
+html body #asme-celebration-experience .final-sep { display:none; }
+html body #asme-celebration-experience .tiny-note { margin:12px 0 0; }
+html body #asme-celebration-experience .primary { background:#bb0000!important; border:1px solid #d45c66!important; color:#fff!important; box-shadow:none!important; }
+html body #asme-celebration-experience button:hover { filter:brightness(1.12); }
+@media(max-width:720px) {
+ html body #asme-celebration-experience .finalinner { grid-template-columns:minmax(0,1fr); padding:24px!important; gap:24px!important; }
+ html body #asme-celebration-experience .finalcopy h2 { font-size:42px!important; }
+ html body #asme-celebration-experience .finalcopy p { font-size:14px!important; }
+ html body #asme-celebration-experience .final-secondary .final-text-action { font-size:11px!important; }
+}
