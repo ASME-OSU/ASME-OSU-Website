@@ -318,3 +318,6 @@ html body #asme-celebration-experience button:hover { filter:brightness(1.12); }
  html body #asme-celebration-experience .finalcopy p { font-size:14px!important; }
  html body #asme-celebration-experience .final-secondary .final-text-action { font-size:11px!important; }
 }
+
+/* Brighter scarlet keeps the large final heading legible on navy. */
+html body #asme-celebration-experience .finalcopy h2 em{color:#ff667a!important}
