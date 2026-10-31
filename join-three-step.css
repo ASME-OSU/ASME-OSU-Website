@@ -146,3 +146,8 @@ html body #page .entry-content .asme-join-page.asme-join-three-step #asmeNewslet
  html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy .join-eyebrow{color:#b8c9df!important}
  html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy small{color:#bdcbdc!important}
 }
+
+/* Match all three setup actions to the live site's rounded rectangles. */
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-submit-button,
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-button,
+html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return .asme-return-confirm{border-radius:12px!important}
