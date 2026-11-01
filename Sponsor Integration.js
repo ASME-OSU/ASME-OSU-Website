@@ -1,4 +1,6 @@
 (function () {
+  var sponsorReturnFocus = null;
+  var sponsorBackground = [];
   function initSponsorInquiryForm(form) {
     if (!form || form.getAttribute('data-mailto-ready') === 'true') return;
     var submitLink = form.querySelector('.sponsor-form-submit');
@@ -68,6 +70,16 @@
     var modal = document.getElementById('sponsor-modal');
     if (!modal) return;
     var modalForm = modal.querySelector('[data-sponsor-form]');
+    if (modal.hidden) {
+      sponsorReturnFocus = document.activeElement;
+      var branch = modal;
+      while (branch.parentElement && branch !== document.body) {
+        Array.prototype.forEach.call(branch.parentElement.children, function (sibling) {
+          if (sibling !== branch) { sponsorBackground.push([sibling, sibling.inert]); sibling.inert = true; }
+        });
+        branch = branch.parentElement;
+      }
+    }
     modal.hidden = false;
     document.documentElement.classList.add('sponsor-modal-open');
     setTier(modalForm, tier);
@@ -78,8 +90,13 @@
   function closeSponsorModal() {
     var modal = document.getElementById('sponsor-modal');
     if (!modal) return;
+    if (modal.hidden) return;
     modal.hidden = true;
     document.documentElement.classList.remove('sponsor-modal-open');
+    sponsorBackground.forEach(function (entry) { entry[0].inert = entry[1]; });
+    sponsorBackground = [];
+    if (sponsorReturnFocus && sponsorReturnFocus.isConnected) sponsorReturnFocus.focus();
+    sponsorReturnFocus = null;
   }
 
   function bindSponsorModal() {
@@ -104,7 +121,17 @@
     });
 
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') closeSponsorModal();
+      var modal = document.getElementById('sponsor-modal');
+      if (!modal || modal.hidden) return;
+      if (event.key === 'Escape') { event.preventDefault(); closeSponsorModal(); return; }
+      if (event.key !== 'Tab') return;
+      var controls = Array.prototype.filter.call(modal.querySelectorAll('a[href], button, input, select, textarea, [tabindex]'), function (control) {
+        return !control.disabled && control.tabIndex >= 0 && !control.closest('[hidden]');
+      });
+      var first = controls[0], last = controls[controls.length - 1];
+      if (!first) { event.preventDefault(); return; }
+      if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
     });
   }
 

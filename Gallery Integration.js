@@ -96,6 +96,9 @@
     var previous = document.createElement('button');
     var next = document.createElement('button');
     var status = document.createElement('span');
+    var pause = document.createElement('button');
+    var paused = false;
+    var hovered = false;
     var currentIndex = 0;
     var intervalId = 0;
     var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -115,9 +118,15 @@
     next.textContent = '›';
     status.className = 'gallery-instagram-carousel-status';
     status.setAttribute('aria-live', 'polite');
+    pause.type = 'button';
+    pause.className = 'gallery-instagram-carousel-button gallery-instagram-carousel-pause';
+    pause.textContent = 'Pause';
+    pause.setAttribute('aria-label', 'Pause Instagram slideshow');
+    pause.setAttribute('aria-pressed', 'false');
     controls.appendChild(previous);
     controls.appendChild(status);
     controls.appendChild(next);
+    controls.appendChild(pause);
     shell.appendChild(controls);
 
     function showSlide(index) {
@@ -144,7 +153,7 @@
 
     function startRotation() {
       stopRotation();
-      if (!reducedMotion && document.visibilityState !== 'hidden') {
+      if (!paused && !hovered && !shell.contains(document.activeElement) && !reducedMotion && document.visibilityState !== 'hidden') {
         intervalId = window.setInterval(function () { showSlide(currentIndex + 1); }, 6000);
       }
     }
@@ -157,10 +166,19 @@
       showSlide(currentIndex + 1);
       startRotation();
     });
-    shell.addEventListener('mouseenter', stopRotation);
-    shell.addEventListener('mouseleave', startRotation);
+    pause.addEventListener('click', function () {
+      paused = !paused;
+      pause.textContent = paused ? 'Play' : 'Pause';
+      pause.setAttribute('aria-label', paused ? 'Play Instagram slideshow' : 'Pause Instagram slideshow');
+      pause.setAttribute('aria-pressed', String(paused));
+      startRotation();
+    });
+    shell.addEventListener('mouseenter', function () { hovered = true; stopRotation(); });
+    shell.addEventListener('mouseleave', function () { hovered = false; startRotation(); });
     shell.addEventListener('focusin', stopRotation);
-    shell.addEventListener('focusout', startRotation);
+    shell.addEventListener('focusout', function (event) {
+      if (!shell.contains(event.relatedTarget)) window.setTimeout(startRotation, 0);
+    });
     document.addEventListener('visibilitychange', function () {
       if (document.visibilityState === 'hidden') stopRotation();
       else startRotation();
@@ -257,8 +275,13 @@
       featuredImage.alt = text(featured.alt, text(featured.title, 'Latest ASME OSU Instagram post'));
       if (Number(featured.imageWidth) > 0) featuredImage.width = Number(featured.imageWidth);
       if (Number(featured.imageHeight) > 0) featuredImage.height = Number(featured.imageHeight);
-      featuredTitle.textContent = text(featured.title, 'Latest from ASME OSU');
-      featuredCaption.textContent = text(featured.summary, text(featured.caption, 'Follow ASME OSU for chapter updates, events, and student opportunities.'));
+      var headline = text(featured.title, 'Latest from ASME OSU');
+      var intro = headline.match(/^(.{8,100}?)\s+((?:We[’']re|We are|Join us|Come join us|Seek friendly competition)\b.*)$/i);
+      featuredTitle.textContent = intro ? intro[1] : headline;
+      var summary = text(featured.summary, text(featured.caption, 'Follow ASME OSU for chapter updates, events, and student opportunities.'));
+      if (summary.indexOf(headline) === 0) summary = summary.slice(headline.length).trim();
+      if (intro && !summary.startsWith(intro[2])) summary = intro[2] + (summary ? ' ' + summary : '');
+      featuredCaption.textContent = summary;
       featuredDate.textContent = shortDate(featured.timestamp);
       removeWordPressMediaBreaks(featuredLink);
       featuredImage.addEventListener('load', finishReveal, { once: true });

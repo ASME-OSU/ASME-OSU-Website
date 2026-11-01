@@ -6,12 +6,12 @@ const markup = fs.readFileSync('Calendar Page.html', 'utf8');
 const script = fs.readFileSync('Calendar Integration.js', 'utf8');
 const event = (title, day) => ({ title, start: `2090-10-${day}T21:30:00Z`, end: `2090-10-${day}T22:30:00Z` });
 const feed = { events: [event('Third chapter event', '24'), event('First chapter event', '22'), event('Second chapter event', '23'), event('Fourth chapter event', '25'), event('Final exams', '21'), { title: 'Past event', start: '2000-01-01T12:00:00Z' }] };
-async function page(fetch, cached = null) {
+async function page(fetch, cached = null, savedAt = Date.now()) {
   const dom = new JSDOM(markup, { url: 'https://org.osu.edu/asme/calendar/', runScripts: 'outside-only' });
   const { window } = dom;
   window.matchMedia = () => ({ matches: false }); window.fetch = fetch;
   window.document.querySelector('.acp-upcoming').insertAdjacentHTML('afterbegin', '<div class="acp-preview-controls"><button id="asmeCalendarFictional">Load fictional Fall/Spring</button></div><p id="asmeCalendarPreviewHelp">Fictional events</p><p id="asmeCalendarStatus">Snapshot diagnostics</p>');
-  if (cached) window.localStorage.setItem('asmeCalendarEventsV4', JSON.stringify({ feed: cached }));
+  if (cached) window.localStorage.setItem('asmeCalendarEventsV4', JSON.stringify({ feed: cached, savedAt }));
   window.localStorage.setItem('asmeCalendarEventsV3', JSON.stringify({ feed: { events: [event('TEST ONLY fictional event', '20')] } }));
   window.eval(script); window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
   await new Promise(resolve => setTimeout(resolve, 20));
@@ -35,7 +35,16 @@ test('failed feed retains chapter cache and ignores retired rehearsal cache', as
     try {
       const text = dom.window.document.querySelector('#asmeCalendarUpcoming').textContent;
       assert.doesNotMatch(text, /TEST ONLY|fictional/);
-      assert.match(text, cached ? /First chapter event/ : /No upcoming events are published yet/);
+      if(cached)assert.match(text,/saved .+ ET/);
+      else assert.ok(dom.window.document.querySelector('#asmeCalendarUpcoming button'));
+      assert.match(text, cached ? /First chapter event/ : /temporarily unavailable/);
     } finally { dom.window.close(); }
   }
+});
+
+test('expired calendar caches do not masquerade as a current empty schedule', async()=>{
+ const dom=await page(async()=>{throw Error('Offline')},feed,Date.now()-25*60*60*1000);
+ assert.match(dom.window.document.querySelector('#asmeCalendarUpcoming').textContent,/temporarily unavailable/);
+ assert.doesNotMatch(dom.window.document.querySelector('#asmeCalendarUpcoming').textContent,/No upcoming events/);
+ dom.window.close();
 });

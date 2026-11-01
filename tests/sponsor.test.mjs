@@ -36,12 +36,14 @@ test('tier selection opens and focuses modal; Escape and close button close it',
   const { document, KeyboardEvent } = dom.window;
   const button = document.querySelector('[data-sponsor-tier]');
   const modal = document.getElementById('sponsor-modal');
+  button.focus();
   button.click();
   assert.equal(modal.hidden, false);
   assert.equal(modal.querySelector('[data-sponsor-field="tier"]').value, button.getAttribute('data-sponsor-tier'));
   assert.equal(document.activeElement, modal.querySelector('[data-sponsor-field="company"]'));
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
   assert.equal(modal.hidden, true);
+  assert.equal(document.activeElement, button);
   assert.equal(document.documentElement.classList.contains('sponsor-modal-open'), false);
   button.click();
   modal.querySelector('[data-sponsor-modal-close]').click();
@@ -59,4 +61,14 @@ test('loading both inline copies binds only one tier-change handler', () => {
   document.querySelector('[data-sponsor-tier]').click();
   assert.equal(changes, 1);
   dom.window.close();
+});
+
+test('sponsor dialog wraps keyboard focus and restores prior background state',()=>{
+ const dom=setup(); const w=dom.window,d=w.document;
+ const trigger=d.querySelector('[data-sponsor-tier]'); trigger.focus();trigger.click();
+ const modal=d.getElementById('sponsor-modal');
+ const first=modal.querySelector('button[data-sponsor-modal-close]'),last=modal.querySelector('.sponsor-form-submit');
+ first.focus();first.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true}));assert.equal(d.activeElement,last);
+ last.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(d.activeElement,first);
+ first.click();assert.equal(d.activeElement,trigger);assert.ok(!trigger.closest('[inert]'));dom.window.close();
 });

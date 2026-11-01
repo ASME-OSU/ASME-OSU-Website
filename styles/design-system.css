@@ -161,3 +161,41 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-activi
 
 /* Keep the member summary filler still until a member is selected. */
 html body #page .entry-content .asme-points-page-v2 .asme-points-summary-skeleton .asme-points-skeleton-bar { animation: none !important; }
+
+/* Component surface tokens keep light and dark card text paired. */
+html body #page .entry-content .asme-members-page .asme-resource-group-title {
+  font-family: var(--asme-font-sans) !important; font-size: 17px !important;
+  line-height: 1.4 !important; letter-spacing: .02em !important;
+}
+html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card p { color: #4b5563 !important; }
+.gallery-instagram-carousel-pause { width: auto !important; padding: 0 12px !important; font-size: 12px !important; }
+.acp-feed-notice { grid-column: 1 / -1; margin: 8px 0 0; font-size: 14px; }
+@media (prefers-color-scheme: dark) {
+  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card h3 { color: #f8fafc !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card p { color: #dbe4ef !important; }
+}
+@media (max-width: 700px) {
+  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card h3 { color: #f8fafc !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card p { color: #dbe4ef !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial {
+    display: flex !important; flex-direction: column !important; gap: 16px !important;
+    padding: 20px !important; min-height: 0 !important; height: auto !important;
+  }
+  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon {
+    position: static !important; width: auto !important; min-width: 0 !important;
+    height: auto !important; min-height: 0 !important; max-width: none !important; max-height: none !important; align-self: stretch !important; flex-direction: row !important; justify-content: space-between !important; padding: 10px 14px !important;
+    clip-path: none !important; border-radius: 10px !important; display: flex !important;
+    align-items: center !important; gap: 12px !important;
+  }
+  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__tier { font-size: 12px !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__tier br { display: contents !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__tier br::after { content: ' '; }
+  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__divider { display: none !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__badge { width: 42px !important; height: 42px !important; margin: 0 !important; object-fit: contain !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsor-card__content { padding: 0 !important; width: 100% !important; min-width: 0 !important; }
+  html body #page .entry-content .asme-cal-page .acp-upcoming-heading { gap: 12px !important; margin-bottom: 20px !important; }
+  html body #page .entry-content .asme-home .ah-hero { min-height: 0 !important; }
+  html body #page .entry-content .asme-home .ah-hero-left { padding-top: 30px !important; padding-bottom: 30px !important; }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-intro { height: auto !important; padding-top: 0 !important; }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-intro h1 { margin-bottom: 12px !important; }
+}

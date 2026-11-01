@@ -46,6 +46,5 @@ for f in frames:
  canvas.alpha_composite(f,(side//2-anchor_x,side//2-anchor_y))
  final.append(canvas.resize((128,128),Image.Resampling.LANCZOS))
 final[0].save(out/'gearly-centered-idle.webp',quality=90,method=6)
-final[0].save(out/'gearly-centered-idle.png')
 final[0].save(out/'gearly-centered-wave.webp',save_all=True,append_images=final[1:],duration=durations,loop=1,quality=78,method=4,minimize_size=False)
 print(json.dumps({'frames':len(final),'durationMs':sum(durations),'sourceBytes':source.stat().st_size,'outputBytes':(out/'gearly-centered-wave.webp').stat().st_size,'crop':box}))

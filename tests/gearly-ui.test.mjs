@@ -15,7 +15,7 @@ test('optimized sprites update launcher and avatar, safe restored history is ren
 
 test('feature flag disables the assistant without rendering controls',async()=>{const dom=await start({...raw,meta:{...raw.meta,enabled:false}});assert.equal(dom.window.Gearly,undefined);assert.equal(dom.window.document.querySelector('.gearly-root'),null);dom.window.close();});
 test('page suggestions and clear chat reset conversation and stored context',async()=>{const seed={...raw,pages:[{id:'join',title:'Join',url:'/asme/',suggestions:['Newsletter','GroupMe']}]};const dom=await start(seed);const w=dom.window;assert.equal(w.document.querySelector('.gearly-chips').textContent,'NewsletterGroupMe');await w.Gearly.ask('join');w.document.querySelector('[aria-label="Clear chat"]').click();const state=JSON.parse(w.sessionStorage.getItem('gearly_state_v1'));assert.equal(state.lastIntent,null);assert.equal(state.history.length,1);assert.ok(w.document.querySelector('.gearly-welcome'));assert.equal(w.document.querySelectorAll('.gearly-message').length,1);assert.equal(w.document.querySelector('.gearly-chips').textContent,'NewsletterGroupMe');dom.window.close();});
-test('tour is configured, offered after a quiet delay, and can be replayed',async()=>{const dom=new JSDOM('<body></body>',{url:'https://org.osu.edu/asme/',runScripts:'outside-only'});const w=dom.window;w.AbortSignal=AbortSignal;w.matchMedia=()=>({matches:true});let offered=0,replayed=0,dismissed=0,configured,delayed;w.GearlyTour={configure:x=>configured=x,offer:()=>offered++,start:()=>replayed++,dismissOffer:()=>dismissed++};w.setTimeout=(cb,ms)=>{if(ms===4000)delayed=cb;return 0;};w.fetch=async()=>({ok:true,json:async()=>({...raw,tour:{version:1,steps:[]}})});w.eval(source);await new Promise(r=>setTimeout(r,20));assert.ok(configured.data.tour);assert.equal(offered,0);delayed();assert.equal(offered,1);w.document.querySelector('.gearly-tour-replay').click();assert.equal(replayed,1);assert.equal(w.document.querySelector('.gearly-panel').hidden,true);w.Gearly.open();assert.equal(dismissed,1);dom.window.close();});
+test('tour is configured, offered after a quiet delay, and can be replayed',async()=>{const dom=new JSDOM('<body></body>',{url:'https://org.osu.edu/asme/',runScripts:'outside-only'});const w=dom.window;w.AbortSignal=AbortSignal;w.matchMedia=()=>({matches:true});let offered=0,replayed=0,dismissed=0,configured,delayed;w.GearlyTour={configure:x=>configured=x,offer:()=>offered++,start:()=>replayed++,dismissOffer:()=>dismissed++};w.setTimeout=(cb,ms)=>{if(ms===4000)delayed=cb;return 0;};w.fetch=async()=>({ok:true,json:async()=>({...raw,tour:{version:1,steps:[]}})});w.eval(source);await new Promise(r=>setTimeout(r,20));assert.ok(configured.data.tour);assert.equal(offered,0);assert.equal(delayed,undefined);w.scrollY=400;w.dispatchEvent(new w.Event('scroll'));delayed();assert.equal(offered,1);w.document.querySelector('.gearly-tour-replay').click();assert.equal(replayed,1);assert.equal(w.document.querySelector('.gearly-panel').hidden,true);w.Gearly.open();assert.equal(dismissed,1);dom.window.close();});
 test('clearing during a live request prevents stale answers reappearing',async()=>{const dom=new JSDOM('<body></body>',{url:'https://org.osu.edu/asme/',runScripts:'outside-only'});const w=dom.window;w.AbortSignal=AbortSignal;w.matchMedia=()=>({matches:true});let resolve;w.GearlyLive={configure:()=>{},load:()=>new Promise(r=>resolve=r)};w.fetch=async()=>({ok:true,json:async()=>({...raw,intents:[{id:'events',examples:['events'],response:{text:'Events'},liveSource:'events'}]})});w.eval(source);await new Promise(r=>setTimeout(r,20));const pending=w.Gearly.ask('events');w.document.querySelector('[aria-label="Clear chat"]').click();resolve({text:'Outdated pending answer',cards:[]});await pending;assert.ok(!w.document.querySelector('.gearly-messages').textContent.includes('Outdated'));assert.equal(JSON.parse(w.sessionStorage.getItem('gearly_state_v1')).lastIntent,null);dom.window.close();});
 
 
@@ -173,7 +173,7 @@ test('speaker heads remain after reveal, on reduced motion, and in restored conv
  assert.equal(restored.window.document.querySelectorAll('.gearly-bot .gearly-message-avatar').length,1);restored.window.close();
 });
 
-test('wave greets early, plays once, reuses its download, and stops for chat, hidden tabs and reduced motion',async()=>{
+test('wave loads only on interaction, plays once, reuses its download, and stops for chat, hidden tabs and reduced motion',async()=>{
  const timers=new Map();let next=1000,preference,downloads=0,created=0,revoked=0;
  const motion={matches:false,addEventListener:(_type,cb)=>preference=cb};
  const dom=await start(raw,w=>{
@@ -187,8 +187,9 @@ test('wave greets early, plays once, reuses its download, and stops for chat, hi
  });
  const w=dom.window,face=w.document.querySelector('.gearly-launcher img');
  const run=async()=>{const [id,t]=timers.entries().next().value;timers.delete(id);await t.cb();return t.ms;};
- assert.equal(downloads,0);assert.ok([...timers.values()][0].ms>=8000 && [...timers.values()][0].ms<=12000);
- await run();assert.equal(face.src,'blob:wave-1');assert.equal(downloads,1);assert.equal(w.document.querySelector('.gearly-launcher').dataset.waveCount,'1');
+ assert.equal(downloads,0);assert.equal(timers.size,0);
+ w.document.querySelector('.gearly-launcher').dispatchEvent(new w.MouseEvent('mouseenter'));
+ await new Promise(resolve=>setImmediate(resolve));assert.equal(face.src,'blob:wave-1');assert.equal(downloads,1);assert.equal(w.document.querySelector('.gearly-launcher').dataset.waveCount,'1');
  assert.equal(await run(),6250);assert.match(face.src,/centered-idle.webp$/);assert.equal(revoked,1);
  w.document.querySelector('.gearly-launcher').dispatchEvent(new w.MouseEvent('mouseenter'));assert.equal(created,1);
  await run();assert.equal(downloads,1);assert.equal(created,2);

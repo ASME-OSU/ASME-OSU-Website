@@ -5,7 +5,7 @@ import { JSDOM } from 'jsdom';
 import { parse, generate } from 'css-tree';
 
 const page = await readFile(new URL('../Join Page.html', import.meta.url), 'utf8');
-const source = await readFile(new URL('../celebration.js', import.meta.url), 'utf8');
+const source = await readFile(new URL('../assets/celebration/experience.js', import.meta.url), 'utf8');
 
 for (const formatted of [false, true]) {
   test(`celebration initializes with ${formatted ? 'WordPress paragraph wrappers' : 'source markup'}`, () => {

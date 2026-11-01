@@ -409,7 +409,9 @@
         "how much are dues",
         "does joining cost money",
         "is the chapter free",
-        "please explain whether membership is free"
+        "please explain whether membership is free",
+        "Is there a charge for signing up?",
+        "Does signing up cost money?"
       ],
       "keywords": {
         "dues": 3,
@@ -446,7 +448,9 @@
         "can a freshman join",
         "who can join",
         "are electrical engineering students welcome",
-        "could graduate students participate"
+        "could graduate students participate",
+        "I am a first year student can I participate?",
+        "Can non mechanical majors become members?"
       ],
       "keywords": {
         "majors": 3,
@@ -681,7 +685,8 @@
         "hang out with members",
         "are there social events this month",
         "any ice skating events",
-        "are there skating events next month"
+        "are there skating events next month",
+        "What social gatherings are on the schedule?"
       ],
       "keywords": {
         "social": 3,
@@ -967,7 +972,8 @@
         "who is the social chair",
         "contact the social chair",
         "social chair email",
-        "who is max sabio"
+        "who is max sabio",
+        "Who organizes socials on the executive board?"
       ],
       "keywords": {
         "social chair": 3,
@@ -1095,7 +1101,8 @@
         "who sponsors asme",
         "current sponsors",
         "our sponsors",
-        "sponsor list"
+        "sponsor list",
+        "Which organizations support the chapter?"
       ],
       "keywords": {
         "sponsors": 3,
@@ -1146,7 +1153,9 @@
         "compare the sponsor contribution tiers",
         "what benefits do chapter sponsors receive",
         "tell me about sponsorship options",
-        "show sponsorship levels"
+        "show sponsorship levels",
+        "My business wants to support ASME financially",
+        "Where can a company learn about sponsorship levels?"
       ],
       "keywords": {
         "sponsorship": 3,
@@ -1354,7 +1363,9 @@
         "what is each event worth",
         "point values",
         "how many points per event",
-        "event point weights"
+        "event point weights",
+        "How much credit does a company session earn?",
+        "What is the attendance point value for each event?"
       ],
       "keywords": {
         "point values": 3,
@@ -1408,7 +1419,8 @@
         "show the professional development guide",
         "resume guidance for students",
         "help with resumes",
-        "where can I learn about internships"
+        "where can I learn about internships",
+        "Are there resources for finding engineering internships?"
       ],
       "keywords": {
         "careers": 3,
@@ -1451,7 +1463,9 @@
         "what is asme",
         "about the chapter",
         "what does asme do",
-        "tell me about asme osu"
+        "tell me about asme osu",
+        "What does the Ohio State ASME chapter focus on?",
+        "Can you explain the purpose of this organization?"
       ],
       "keywords": {
         "about": 3,
@@ -1658,7 +1672,8 @@
         "bye",
         "goodbye",
         "see you later",
-        "gotta go"
+        "gotta go",
+        "Catch you later Gearly"
       ],
       "keywords": {
         "bye": 3,
