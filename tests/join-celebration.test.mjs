@@ -45,3 +45,11 @@ for (const formatted of [false, true]) {
     dom.window.close();
   });
 }
+
+test('the current Join design is available before any scripts or remote styles load', async () => {
+  const css = (await Promise.all(['celebration.css', 'join-three-step.css'].map(name => readFile(new URL('../'+name, import.meta.url), 'utf8')))).join('\n');
+  const block = '<style id="asme-join-page-styles">\n'+css+'\n</style>';
+  assert.ok(page.includes(block));
+  assert.ok(page.indexOf(block) < page.indexOf('<div class="asme-join-page'));
+  assert.doesNotMatch(page, /<link[^>]+(?:celebration|join-three-step)\.css/);
+});
