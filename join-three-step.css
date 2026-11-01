@@ -174,3 +174,9 @@ html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-p
 
 html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMeStep .join-groupme-step-copy #joinGroupMeButton{margin-top:auto!important}
 html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMeStep .join-groupme-step-copy small{margin:0 0 18px!important}
+
+/* Lower both text groups equally while keeping their actions on the shared baseline. */
+@media(min-width:901px){
+ html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon,
+ html body #page .entry-content .asme-join-page.asme-join-three-step .join-welcome-visual{margin-bottom:44px!important}
+}
