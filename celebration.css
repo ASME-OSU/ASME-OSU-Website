@@ -347,3 +347,58 @@ html body #asme-celebration-experience .linkedin-steps button svg{width:19px;hei
 html body #asme-celebration-experience .linkedin-dismiss{display:grid!important;place-items:center!important;width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;padding:0!important;line-height:1!important;box-sizing:border-box!important}
 html body #asme-celebration-experience .linkedin-dismiss:before,html body #asme-celebration-experience .linkedin-dismiss:after{display:none!important;content:none!important}
 html body #asme-celebration-experience .linkedin-dismiss svg{display:block;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+/* Readable sharing preview: show the full post rather than a small nested scroller. */
+html body #asme-celebration-experience .linkedin-panel{width:min(100%,720px);max-width:720px;background:#111d30;padding:32px}
+html body #asme-celebration-experience .linkedin-panel h4{font-family:system-ui,sans-serif!important;font-size:26px!important;line-height:1.2!important;font-weight:800!important;letter-spacing:-.03em!important;margin:0 0 12px!important;color:#fff!important}
+html body #asme-celebration-experience .linkedin-panel .linkedin-intro{font:400 15px/1.6 system-ui,sans-serif;color:#d2deed;margin:0 0 22px}
+html body #asme-celebration-experience .linkedin-kicker{color:#b8d6f7;font-size:11px;letter-spacing:.12em}
+html body #asme-celebration-experience .linkedin-caption-label{margin:24px 0 9px;font:750 12px/1.5 system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#c3d5ea}
+html body #asme-celebration-experience .linkedin-caption{margin:0;padding:20px;border:1px solid #536984;border-radius:12px;background:#091322;color:#edf3fb;font:400 15px/1.75 system-ui,sans-serif;max-height:none;overflow:visible;text-align:left}
+html body #asme-celebration-experience .linkedin-panel .helper-note{font:400 13px/1.65 system-ui,sans-serif;color:#c5d2e2;margin-top:16px}
+@media(max-width:570px){html body #asme-celebration-experience .linkedin-panel{padding:22px}html body #asme-celebration-experience .linkedin-panel h4{font-size:24px!important}html body #asme-celebration-experience .linkedin-caption{padding:16px;font-size:15px}}
+
+html body #asme-celebration-experience .caption-choices{border:0;padding:0;margin:0 0 22px;min-width:0}
+html body #asme-celebration-experience .caption-choices legend{padding:0;margin:0 0 10px;color:#d2deed;font:650 14px/1.5 system-ui,sans-serif}
+html body #asme-celebration-experience .caption-choice-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+html body #asme-celebration-experience .caption-choice-options label{position:relative;display:block;cursor:pointer;margin:0}
+html body #asme-celebration-experience .caption-choice-options input{position:absolute;opacity:0;width:1px;height:1px}
+html body #asme-celebration-experience .caption-choice-options span{display:flex;justify-content:center;align-items:center;min-height:40px;padding:8px;border:1px solid #657d9a;border-radius:9px;background:#17283e;color:#dce8f6;font:650 13px/1.3 system-ui,sans-serif;box-sizing:border-box}
+html body #asme-celebration-experience .caption-choice-options input:checked+span{background:#204f7c;border-color:#8cc4ff;color:#fff;box-shadow:inset 0 0 0 1px #8cc4ff}
+html body #asme-celebration-experience .caption-choice-options input:focus-visible+span{outline:3px solid #ff8090;outline-offset:3px}
+
+/* One decision and one primary action at a time. */
+html body #asme-celebration-experience .linkedin-panel [hidden]{display:none!important}
+html body #asme-celebration-experience .share-stage{font:700 12px/1.5 system-ui,sans-serif;color:#a9c9ee;letter-spacing:.04em;margin:3px 0 12px}
+html body #asme-celebration-experience .caption-choices{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 16px}
+html body #asme-celebration-experience .caption-choices label{color:#d2deed;font:650 14px/1.5 system-ui,sans-serif;margin:0}
+html body #asme-celebration-experience .caption-choices select{max-width:65%;min-height:40px;padding:8px 32px 8px 12px;border:1px solid #657d9a;border-radius:8px;background:#17283e;color:#fff;font:500 14px/1.4 system-ui,sans-serif;color-scheme:dark}
+html body #asme-celebration-experience .linkedin-caption-label{margin-top:0}
+html body #asme-celebration-experience .linkedin-steps{display:block;margin-top:20px}
+html body #asme-celebration-experience .linkedin-steps button{width:100%;background:#0a66c2!important;border-color:#71a9e2!important}
+html body #asme-celebration-experience .share-summary{font:400 16px/1.65 system-ui,sans-serif;color:#edf3fb;margin:16px 0 24px}
+html body #asme-celebration-experience .share-edit{display:block;margin:14px auto 0;padding:6px 8px;border:0;background:none;color:#c6d6e9;font:600 13px/1.5 system-ui,sans-serif;text-decoration:underline;box-shadow:none}
+/* Keep the dropdown chevron inside its border instead of using the native arrow. */
+html body #asme-celebration-experience .caption-choices select{appearance:none!important;-webkit-appearance:none!important;box-sizing:border-box!important;padding-right:36px!important;background-color:#17283e!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23dce8f6' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 12px center!important;background-size:12px 8px!important}
+
+/* Clean handoff: lettering fades out, then the stationary card fades in. */
+html body #asme-celebration-experience .formation.script-exit{z-index:5;transform:none;filter:none;transition:opacity .32s ease}
+html body #asme-celebration-experience .final.show{animation:asme-final-soft-reveal .45s ease both}
+html body #asme-celebration-experience .final .card,
+html body #asme-celebration-experience .final.show .credential-scene{animation:none!important}
+@keyframes asme-final-soft-reveal{from{opacity:0}to{opacity:1}}
+/* Start the highlight off-card and invisible, including during its initial delay. */
+html body #asme-celebration-experience .final .card::before{animation:none;transform:translate3d(-65%,0,0);opacity:0;pointer-events:none;backface-visibility:hidden}
+html body #asme-celebration-experience .final.show .card::before{animation:asme-card-soft-shimmer 4.8s ease-in-out .65s infinite both}
+@keyframes asme-card-soft-shimmer{
+ 0%,16%{transform:translate3d(-65%,0,0);opacity:0}
+ 24%{opacity:.65}
+ 60%{transform:translate3d(65%,0,0);opacity:.65}
+ 68%,100%{transform:translate3d(65%,0,0);opacity:0}
+}
+
+/* Compact sound control, with a clear icon for its current state. */
+html body #asme-celebration-experience #asme-celebration-soundBtn{display:inline-flex;align-items:center;justify-content:center;width:44px;min-width:44px;height:44px;padding:0;flex-shrink:0}
+html body #asme-celebration-experience #asme-celebration-soundBtn svg{display:block;width:20px;height:20px}
+#asme-celebration-soundBtn[aria-pressed="false"] .sound-waves,
+#asme-celebration-soundBtn[aria-pressed="true"] .sound-muted{display:none}
