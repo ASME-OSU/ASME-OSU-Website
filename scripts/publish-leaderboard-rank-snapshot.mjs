@@ -8,14 +8,13 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const EXPORT_ID = '1otAJV_pDkj6xWCVBHbhXPq99sT9L33ZFOdQU59uKXLg';
 const QUERY = 'select A,B,C,G where B is not null';
 const DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(DIRECTORY, '..', 'data', 'leaderboard-rank-snapshots.json');
-const URL = `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=Leaderboard_Public&tqx=out:json&tq=${encodeURIComponent(QUERY)}`;
+const leaderboardURL = (EXPORT_ID) => `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=Leaderboard_Public&tqx=out:json&tq=${encodeURIComponent(QUERY)}`;
 /* Match the browser's authoritative status request exactly. Google can serve
    a stale/incomplete result when this sheet is queried without headers=1. */
-const STATUS_URL = `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=System_Status&headers=1&tqx=out:json&tq=${encodeURIComponent('select A,B where A is not null')}`;
+const statusURL = (EXPORT_ID) => `https://docs.google.com/spreadsheets/d/${EXPORT_ID}/gviz/tq?sheet=System_Status&headers=1&tqx=out:json&tq=${encodeURIComponent('select A,B where A is not null')}`;
 
 function fail(message) {
   throw new Error(`Leaderboard snapshot: ${message}`);
@@ -95,9 +94,13 @@ export async function publishSnapshot({
   readFile = fs.readFile,
   writeFile = fs.writeFile,
   output = OUTPUT,
-  dryRun = false
+  dryRun = false,
+  source = null
 } = {}) {
-  const statusResponse = await fetchFn(STATUS_URL, { headers: { accept: 'application/json' } });
+  source ||= JSON.parse(await fs.readFile(path.join(DIRECTORY, '..', 'data', 'points-source.json'), 'utf8'));
+  if (source.schemaVersion !== 1 || !/^[A-Za-z0-9_-]{20,}$/.test(source.exportId)) fail('invalid points source.');
+  const EXPORT_ID = source.exportId;
+  const statusResponse = await fetchFn(statusURL(EXPORT_ID), { headers: { accept: 'application/json' } });
   if (!statusResponse.ok) fail(`system-status request failed with ${statusResponse.status}.`);
   const statusRows = parseResponse(await statusResponse.text());
   const statusValues = statusRows.filter((row) => cell(row, 0).toLowerCase() === 'system_status');
@@ -105,7 +108,7 @@ export async function publishSnapshot({
   const live = isLiveSystemStatus(statusRows);
   let current = null;
   if (live) {
-    const response = await fetchFn(URL, { headers: { accept: 'application/json' } });
+    const response = await fetchFn(leaderboardURL(EXPORT_ID), { headers: { accept: 'application/json' } });
     if (!response.ok) fail(`public export request failed with ${response.status}.`);
     current = buildCurrentSnapshot(parseResponse(await response.text()));
   }
@@ -114,7 +117,8 @@ export async function publishSnapshot({
   // A public file remains directly readable when the website hides its UI.
   // Publish an empty projection on non-LIVE status so both retained baselines
   // disappear from the current public artifact without reading member rows.
-  const next = live ? nextSnapshot(old ? JSON.parse(old) : null, current)
+  const previousDocument = old ? JSON.parse(old) : null;
+  const next = live ? { ...nextSnapshot(previousDocument?.exportId === EXPORT_ID ? previousDocument : null, current), exportId: EXPORT_ID }
     : { schemaVersion: 1, current: null, previous: null };
   const serialized = `${JSON.stringify(next, null, 2)}\n`;
   if (serialized === old) {

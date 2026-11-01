@@ -30,9 +30,8 @@ export async function checkContract(data, readSource) {
     } catch (error) { errors.push(`Tour step ${index + 1}: ${error.message}`); }
   }
   try {
-    const integration = await source('Member Points Integration.js');
-    const sheet = integration.match(/\b(?:EXPORT_ID|SHEET_ID)\s*=\s*['"]([^'"]+)['"]/);
-    if (!data.meta?.sheetID || sheet?.[1] !== data.meta.sheetID) errors.push('meta.sheetID differs from Member Points Integration.js public sheet ID.');
+    const manifest = JSON.parse(await source('data/points-source.json'));
+    if (manifest.schemaVersion !== 1 || !data.meta?.sheetID || manifest.exportId !== data.meta.sheetID) errors.push('meta.sheetID differs from the approved points-source.json export ID.');
   } catch (error) { errors.push(`Public sheet contract: ${error.message}`); }
   let join = '';
   let leadership = '';
