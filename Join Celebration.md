@@ -15,3 +15,5 @@ October 31 polish: larger responsive O–H / I–O formations, shared 9px button
 Reload styling: Join Page.html embeds the current celebration.css and join-three-step.css before page markup. It no longer waits on separate design stylesheet requests. After editing either stylesheet, run `node scripts/sync-join-styles.mjs`; use `--check` to verify the embedded styles are current, then publish Join Page.html to WordPress. The interaction script remains deferred.
 
 The embedded CSS is generated as one line so WordPress wpautop cannot insert paragraph tags into stylesheet rules. Do not pretty-print the embedded style block.
+
+Initial-render layout: WordPress paragraph wrappers around the GroupMe helper/action and welcome-card action use display:contents, so their flex layout matches the later JS normalization. Empty formatting paragraphs around the inline style block are hidden. The Join content has no extra horizontal inset, matching the navigation edges.

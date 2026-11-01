@@ -158,3 +158,19 @@ html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMe
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon>br{display:none!important}
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon{align-self:stretch!important;justify-content:center!important;max-width:none!important}
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon .join-groupme-logo{width:120px!important;height:auto!important;max-height:100%!important;justify-self:center!important}
+
+/* Keep page content on the same rails as the navigation, without wpautop spacers. */
+html body #page .entry-content .asme-join-page.asme-join-three-step{padding-inline:0!important}
+html body #page .entry-content>p:has(+#asme-join-page-styles),
+html body #page .entry-content>#asme-join-page-styles+p:has(+.asme-join-page){display:none!important}
+
+/* Match post-initialization layout before JavaScript unwraps WordPress paragraphs. */
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy>p:has(>#joinGroupMeButton),
+html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return>p:has(>.asme-return-confirm),
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress>p{display:contents!important}
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy>p:has(>#joinGroupMeButton)>br,
+html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return>p:has(>.asme-return-confirm)>br,
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress>p>br{display:none!important}
+
+html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMeStep .join-groupme-step-copy #joinGroupMeButton{margin-top:auto!important}
+html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMeStep .join-groupme-step-copy small{margin:0 0 18px!important}
