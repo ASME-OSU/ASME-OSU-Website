@@ -13,3 +13,5 @@ Validation: approved local browser review at 320–1920px; tested simulated news
 October 31 polish: larger responsive O–H / I–O formations, shared 9px button corners, scoped scarlet/navy controls, and a compact final panel.
 
 Reload styling: Join Page.html embeds the current celebration.css and join-three-step.css before page markup. It no longer waits on separate design stylesheet requests. After editing either stylesheet, run `node scripts/sync-join-styles.mjs`; use `--check` to verify the embedded styles are current, then publish Join Page.html to WordPress. The interaction script remains deferred.
+
+The embedded CSS is generated as one line so WordPress wpautop cannot insert paragraph tags into stylesheet rules. Do not pretty-print the embedded style block.

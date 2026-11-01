@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
+import { parse, generate } from 'css-tree';
 
 const page = await readFile(new URL('../Join Page.html', import.meta.url), 'utf8');
 const source = await readFile(new URL('../celebration.js', import.meta.url), 'utf8');
@@ -48,7 +49,8 @@ for (const formatted of [false, true]) {
 
 test('the current Join design is available before any scripts or remote styles load', async () => {
   const css = (await Promise.all(['celebration.css', 'join-three-step.css'].map(name => readFile(new URL('../'+name, import.meta.url), 'utf8')))).join('\n');
-  const block = '<style id="asme-join-page-styles">\n'+css+'\n</style>';
+  const block = '<style id="asme-join-page-styles">'+generate(parse(css))+'</style>';
+  assert.doesNotMatch(block, /[\r\n]/);
   assert.ok(page.includes(block));
   assert.ok(page.indexOf(block) < page.indexOf('<div class="asme-join-page'));
   assert.doesNotMatch(page, /<link[^>]+(?:celebration|join-three-step)\.css/);
