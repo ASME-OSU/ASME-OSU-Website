@@ -323,3 +323,27 @@ html body #asme-celebration-experience button:hover { filter:brightness(1.12); }
 html body #asme-celebration-experience .finalcopy h2 em{color:#ff667a!important}
 
 html body #asme-celebration-experience .final-actions .final-share{background:#0a66c2!important;border-color:#5b9ddd!important}
+
+/* Intro experiment: reserve real space between the caption and larger gear. */
+html body #asme-celebration-experience #asme-celebration-scene0{--intro-ring-size:min(70vw,48dvh,400px);display:grid;justify-items:center;row-gap:16px;padding:0 18px;top:calc(50% + 20px)}
+html body #asme-celebration-experience #asme-celebration-scene0>.hero-label{margin:0;line-height:1.5;max-width:90vw}
+html body #asme-celebration-experience #asme-celebration-scene0 .launch-ring{width:var(--intro-ring-size);margin:0;flex:none}
+html body #asme-celebration-experience #asme-celebration-scene0 .gear-symbol{font-size:calc(var(--intro-ring-size)*.54)}
+html body #asme-celebration-experience #asme-celebration-scene0 .progress{margin:0}
+html body #asme-celebration-experience #asme-celebration-scene0 .scene-desc{margin:0;line-height:1.5;min-height:1.5em}
+@media(max-height:500px){html body #asme-celebration-experience #asme-celebration-scene0{--intro-ring-size:min(60vw,36dvh,260px);row-gap:8px;top:calc(50% + 24px)}}
+/* Let the welcome headline stay in front of the shower. */
+html body #asme-celebration-experience #asme-celebration-burst{z-index:5}
+html body #asme-celebration-experience #asme-celebration-scene1 .display .red{color:#f13d55}
+
+/* Local refinement: clean top controls and unmistakable sharing actions. */
+html body #asme-celebration-experience .asme-c-topbar{justify-content:flex-end}
+html body #asme-celebration-experience .linkedin-steps{display:grid;gap:12px}
+html body #asme-celebration-experience .linkedin-steps button{min-height:52px;gap:9px;padding:13px 12px!important;border:1px solid #7896b8!important;background:#1b304b!important;color:#fff!important;font-size:13px;font-weight:750;box-shadow:0 3px 0 #020813!important;cursor:pointer;transition:background .15s,transform .15s}
+html body #asme-celebration-experience .linkedin-steps #asme-celebration-copyLinkedIn{background:#0a66c2!important;border-color:#71a9e2!important}
+html body #asme-celebration-experience .linkedin-steps button:hover{background:#2a4668!important;transform:translateY(-1px)}
+html body #asme-celebration-experience .linkedin-steps button:active{transform:translateY(1px);box-shadow:none!important}
+html body #asme-celebration-experience .linkedin-steps button svg{width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+html body #asme-celebration-experience .linkedin-dismiss{display:grid!important;place-items:center!important;width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;padding:0!important;line-height:1!important;box-sizing:border-box!important}
+html body #asme-celebration-experience .linkedin-dismiss:before,html body #asme-celebration-experience .linkedin-dismiss:after{display:none!important;content:none!important}
+html body #asme-celebration-experience .linkedin-dismiss svg{display:block;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}

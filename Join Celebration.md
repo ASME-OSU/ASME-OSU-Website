@@ -17,3 +17,5 @@ Reload styling: Join Page.html embeds the current celebration.css and join-three
 The embedded CSS is generated as one line so WordPress wpautop cannot insert paragraph tags into stylesheet rules. Do not pretty-print the embedded style block.
 
 Initial-render layout: WordPress paragraph wrappers around the GroupMe helper/action and welcome-card action use display:contents, so their flex layout matches the later JS normalization. Empty formatting paragraphs around the inline style block are hidden. The Join content has no extra horizontal inset, matching the navigation edges.
+
+Animation refinement: larger separated startup gear, wide side cannons with a longer welcome beat, no top-left wordmark, icon-based sharing buttons and centered SVG dismiss control. Clicking the final backdrop returns to Join; sharing backdrop dismisses only sharing.
