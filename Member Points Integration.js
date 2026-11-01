@@ -126,8 +126,9 @@
     if (!app || !rowsEl) return;
     removeRedundantPointsCopy(app);
 
-    var EXPORT_ID = '1otAJV_pDkj6xWCVBHbhXPq99sT9L33ZFOdQU59uKXLg';
-    var base = 'https://docs.google.com/spreadsheets/d/' + EXPORT_ID + '/gviz/tq';
+    var EXPORT_ID;
+    var base;
+    var SOURCE_URL = 'https://asme-osu.github.io/ASME-OSU-Website/data/points-source.json';
     var statusBadge = document.getElementById('asmePointsStatusBadge');
     var leaderboardBadge = document.getElementById('asmeLeaderboardStatus');
     var caption = document.getElementById('asmeLeaderboardCaption');
@@ -329,6 +330,9 @@
       return fetch(SHARED_RANK_SNAPSHOT_URL, { cache: 'no-store', credentials: 'omit' }).then(function (response) {
         if (!response.ok) throw new Error('Rank snapshot request failed');
         return response.json();
+      }).then(function (snapshot) {
+        // Never compare members from different annual export workbooks.
+        return snapshot.exportId === EXPORT_ID ? snapshot : null;
       }).catch(function () {
         return null;
       });
@@ -640,11 +644,19 @@
 
     setStatus('LOADING');
 
-    Promise.all([
+    fetch(SOURCE_URL, { cache: 'no-store', credentials: 'omit' }).then(function (response) {
+      if (!response.ok) throw new Error('Points source request failed');
+      return response.json();
+    }).then(function (source) {
+      if (!source || source.schemaVersion !== 1 || !/^\d{4}-\d{4}$/.test(source.academicYear) || !/^[A-Za-z0-9_-]{20,}$/.test(source.exportId)) throw new Error('Invalid points source');
+      EXPORT_ID = source.exportId;
+      base = 'https://docs.google.com/spreadsheets/d/' + EXPORT_ID + '/gviz/tq';
+      return Promise.all([
       jsonp('System_Status', 'select A,B where A is not null'),
       jsonp('Point_Values_Public', 'select A,B,C,D,E,F where B is not null'),
       loadSharedRankSnapshot()
-    ]).then(function (results) {
+      ]);
+    }).then(function (results) {
       var statusTable = table(results[0]);
       var status = 'TESTING';
       (statusTable.rows || []).forEach(function (r) { if (value(r, 0).toLowerCase() === 'system_status') status = value(r, 1); });

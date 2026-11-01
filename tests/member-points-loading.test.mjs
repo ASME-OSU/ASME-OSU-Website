@@ -5,6 +5,7 @@ import { JSDOM } from 'jsdom';
 
 const page = fs.readFileSync(new URL('../Member Points Page.html', import.meta.url), 'utf8');
 const script = fs.readFileSync(new URL('../Member Points Integration.js', import.meta.url), 'utf8');
+const source = JSON.parse(fs.readFileSync(new URL('../data/points-source.json', import.meta.url), 'utf8'));
 const tick = () => new Promise(resolve => setImmediate(resolve));
 function setup(oldMarkup = false) {
   const dom = new JSDOM(page, { runScripts: 'outside-only', url: 'https://example.com/member-points/' });
@@ -12,7 +13,7 @@ function setup(oldMarkup = false) {
   w.matchMedia = () => ({ matches: true });
   w.requestAnimationFrame = () => 0;
   w.HTMLElement.prototype.scrollIntoView = () => {};
-  w.fetch = async () => ({ ok: true, json: async () => ({}) });
+  w.fetch = async url => ({ ok: true, json: async () => String(url).includes('points-source.json') ? source : {} });
   if (oldMarkup) {
     w.document.querySelector('#asmeLeaderboardRows').textContent = 'Loading leaderboard…';
     w.document.querySelector('#asmeMemberDashboardState').outerHTML = '<p class="asme-member-dashboard-state" id="asmeMemberDashboardState" role="status">Loading dashboard…</p>';
@@ -36,6 +37,7 @@ for (const oldMarkup of [false, true]) {
       assert.equal(d.querySelectorAll('.asme-points-skeleton-row').length, 10);
       assert.ok(d.querySelector('.asme-points-summary-skeleton'));
       assert.equal(d.querySelectorAll('.asme-points-skeleton-row[tabindex]').length, 0);
+      await tick();
       reply('System_Status', [['system_status', 'LIVE']]);
       reply('Point_Values_Public', []);
       await tick();
@@ -60,6 +62,7 @@ for (const outcome of ['empty', 'paused', 'error']) {
   test(`${outcome} clears both skeletons and busy states`, async () => {
     const { dom, w, reply } = setup();
     try {
+      await tick();
       if (outcome === 'error') w.document.head.querySelector('script').dispatchEvent(new w.Event('error'));
       else {
         reply('System_Status', [['system_status', outcome === 'paused' ? 'PAUSED' : 'LIVE']]);

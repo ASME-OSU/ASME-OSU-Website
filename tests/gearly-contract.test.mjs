@@ -19,7 +19,7 @@ function fixture() {
     files: {
       'Home Page.html': '<section id="home"></section>',
       'Header.html': '<header id="asme-site-header"></header>',
-      'Member Points Integration.js': "var EXPORT_ID = 'public-fixture-sheet';",
+      'data/points-source.json': JSON.stringify({schemaVersion:1,exportId:'public-fixture-sheet'}),
       'Join Page.html': '<a href="mailto:team@example.org">Team</a><p>Joining is free.</p>',
       'Leadership Page.html': '<h1>Leadership</h1>',
       'Footer.html': '<a href="https://www.instagram.com/fixturechapter/">Instagram</a>',

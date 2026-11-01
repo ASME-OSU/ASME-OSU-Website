@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 const fixtureConfig = {
   baseURL: 'https://asme-osu.github.io/ASME-OSU-Website/',
-  sheetID: readFileSync(new URL('../Member Points Integration.js', import.meta.url), 'utf8').match(/var EXPORT_ID = '([^']+)'/)[1],
+  sheetID: JSON.parse(readFileSync(new URL('../data/points-source.json', import.meta.url), 'utf8')).exportId,
   siteBase: 'https://org.osu.edu/asme/',
   instagramHandle: 'asmeohiostate',
   eventTypes: {social: ['social', 'pickleball'], workshop: ['workshop'], company: ['company', 'info session'], volunteering: ['volunteering'], competition: ['competition'], meeting: ['meeting']}

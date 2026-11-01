@@ -9,6 +9,10 @@ permissions:
   contents: write
   pages: write
 
+concurrency:
+  group: public-points-publication
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -18,11 +22,16 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
+      - name: Select the approved annual public points source
+        continue-on-error: true
+        run: node scripts/sync-points-source.mjs
+      - name: Keep Gearly on the same approved public source
+        run: node scripts/sync-gearly-points-source.mjs
       - name: Build the public comparison snapshot
         run: node scripts/publish-leaderboard-rank-snapshot.mjs
       - name: Commit a changed public snapshot
         run: |
-          git add data/leaderboard-rank-snapshots.json
+          git add data/points-source.json data/leaderboard-rank-snapshots.json assets/gearly/gearly-data.json
           git diff --cached --quiet || git -c user.name='ASME Website Bot' -c user.email='asme-website-bot@users.noreply.github.com' commit -m 'Update public leaderboard rank snapshot'
           git push
       - name: Request GitHub Pages source deployment
