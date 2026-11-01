@@ -9,6 +9,14 @@
   source.search = entry?.src ? new URL(entry.src).search : '';
   const pendingKey = 'asme-groupme-pending-v1';
   let loading, pending = 0;
+  // Keep only card fields in memory before the accepted newsletter form resets.
+  function captureProfile() {
+    const prior = trigger.asmeCelebrationProfile || {};
+    trigger.asmeCelebrationProfile = Object.fromEntries([['first','FIRSTNAME'],['last','LASTNAME'],['year','GRADUATION_YEAR']].map(([key,id]) => [key,document.getElementById(id)?.value.trim() || prior[key] || '']));
+  }
+  const newsletter = document.getElementById('asmeNewsletterForm');
+  newsletter?.addEventListener('input', captureProfile);
+  newsletter?.addEventListener('submit', captureProfile, true);
   function load() {
     if (loading) return;
     loading = document.createElement('script');
