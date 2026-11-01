@@ -152,6 +152,7 @@
        public display names and ranks; browser storage is never the authority
        for rank movement. */
     var SHARED_RANK_SNAPSHOT_URL = 'https://asme-osu.github.io/ASME-OSU-Website/data/leaderboard-rank-snapshots.json';
+    var sharedRankSnapshot = null;
     var members = [];
     var selectedMember = null;
     var jumpLinks = Array.prototype.slice.call(app.querySelectorAll('.asme-points-jump-nav a[href^="#"]'));
@@ -327,15 +328,20 @@
     }
 
     function loadSharedRankSnapshot() {
-      return fetch(SHARED_RANK_SNAPSHOT_URL, { cache: 'no-store', credentials: 'omit' }).then(function (response) {
+      var controller = new AbortController();
+      var timer;
+      var timeout = new Promise(function (_, reject) {
+        timer = window.setTimeout(function () { controller.abort(); reject(new Error('Rank snapshot timed out')); }, 4500);
+      });
+      return Promise.race([timeout, fetch(SHARED_RANK_SNAPSHOT_URL, { cache: 'no-store', credentials: 'omit', signal: controller.signal }).then(function (response) {
         if (!response.ok) throw new Error('Rank snapshot request failed');
         return response.json();
-      }).then(function (snapshot) {
+      })]).then(function (snapshot) {
         // Never compare members from different annual export workbooks.
         return snapshot.exportId === EXPORT_ID ? snapshot : null;
       }).catch(function () {
         return null;
-      });
+      }).finally(function () { window.clearTimeout(timer); });
     }
 
     function createCrownIcon() {
@@ -536,6 +542,7 @@
       var clean = String(query || '').trim();
       if (!clean) {
         hideSearchResults();
+        setDashboardState('Search your name above or select a leaderboard member to open your dashboard.');
         return;
       }
       var exactMatch = members.find(function (member) { return member.name.toLowerCase() === clean.toLowerCase(); });
@@ -576,7 +583,7 @@
       }
       searchInput.disabled = false;
       searchInput.placeholder = 'Start typing a name…';
-      setDashboardState('Search your name above or select a leaderboard member to open your dashboard.', false, true);
+      setDashboardState('Search your name above or select a leaderboard member to open your dashboard.');
       searchInput.addEventListener('input', function () {
         if (selectedMember && searchInput.value !== selectedMember.name) selectedMember = null;
         updateSearchLabel();
@@ -651,10 +658,14 @@
       if (!source || source.schemaVersion !== 1 || !/^\d{4}-\d{4}$/.test(source.academicYear) || !/^[A-Za-z0-9_-]{20,}$/.test(source.exportId)) throw new Error('Invalid points source');
       EXPORT_ID = source.exportId;
       base = 'https://docs.google.com/spreadsheets/d/' + EXPORT_ID + '/gviz/tq';
+      // Rank movement is optional: it must never hold up the public totals.
+      loadSharedRankSnapshot().then(function (snapshot) {
+        sharedRankSnapshot = snapshot;
+        if (members.length && snapshot) renderLeaderboard('LIVE', snapshot);
+      });
       return Promise.all([
-      jsonp('System_Status', 'select A,B where A is not null'),
-      jsonp('Point_Values_Public', 'select A,B,C,D,E,F where B is not null'),
-      loadSharedRankSnapshot()
+        jsonp('System_Status', 'select A,B where A is not null'),
+        jsonp('Point_Values_Public', 'select A,B,C,D,E,F where B is not null')
       ]);
     }).then(function (results) {
       var statusTable = table(results[0]);
@@ -666,11 +677,11 @@
         return jsonp('Leaderboard_Public', 'select A,B,C,D,E,F,G,H,I,J,K,L,M,N,O where B is not null').then(function (d) {
           members = parseMembers(table(d));
           renderDashboard(status);
-          renderLeaderboard(status, results[2]);
+          renderLeaderboard(status, sharedRankSnapshot);
         });
       }
       renderDashboard(status);
-      renderLeaderboard(status, results[2]);
+      renderLeaderboard(status, sharedRankSnapshot);
     }).catch(function () {
       if (valuesGrid) { valuesGrid.textContent = 'Point values are temporarily unavailable.'; valuesGrid.setAttribute('aria-busy', 'false'); }
       rowsEl.textContent = ''; rowsEl.setAttribute('aria-busy', 'false');

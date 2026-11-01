@@ -7,14 +7,16 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
-  group: update-instagram-gallery
-  cancel-in-progress: true
+  group: public-feed-publication
+  cancel-in-progress: false
 
 jobs:
   refresh-feed:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - name: Check out the website
         uses: actions/checkout@v5
@@ -22,19 +24,21 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: '22'
+          node-version: '24'
 
       - name: Collect the public Instagram feed
         run: node scripts/scrape-instagram-feed.mjs
 
       - name: Publish an updated feed
+        id: publish
+        run: node scripts/publish-feed.mjs "Update Instagram gallery feed" data/instagram-feed.json assets/gallery/instagram-auto
+      - name: Request GitHub Pages source deployment
+        if: steps.publish.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ -z "$(git status --porcelain -- data/instagram-feed.json assets/gallery/instagram-auto)" ]; then
-            echo 'Instagram feed is already current.'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/instagram-feed.json assets/gallery/instagram-auto
-          git commit -m 'Update Instagram gallery feed'
-          git push
+          curl --fail-with-body --retry 3 --retry-delay 3 \
+            --request POST \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/pages/builds"

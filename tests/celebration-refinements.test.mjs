@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 const html=await readFile(new URL('../Join Page.html',import.meta.url),'utf8');
-const source=await readFile(new URL('../celebration.js',import.meta.url),'utf8');
+const source=await readFile(new URL('../assets/celebration/experience.js',import.meta.url),'utf8');
 function setup(reduced=false,configure=()=>{}){
  const dom=new JSDOM(html,{url:'http://127.0.0.1:8787/',runScripts:'outside-only',pretendToBeVisual:true});
  const w=dom.window;w.innerWidth=1440;w.innerHeight=900;w.matchMedia=()=>({matches:reduced});

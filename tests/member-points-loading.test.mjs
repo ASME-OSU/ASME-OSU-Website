@@ -7,13 +7,13 @@ const page = fs.readFileSync(new URL('../Member Points Page.html', import.meta.u
 const script = fs.readFileSync(new URL('../Member Points Integration.js', import.meta.url), 'utf8');
 const source = JSON.parse(fs.readFileSync(new URL('../data/points-source.json', import.meta.url), 'utf8'));
 const tick = () => new Promise(resolve => setImmediate(resolve));
-function setup(oldMarkup = false) {
+function setup(oldMarkup = false, stallRank = false) {
   const dom = new JSDOM(page, { runScripts: 'outside-only', url: 'https://example.com/member-points/' });
   const w = dom.window;
   w.matchMedia = () => ({ matches: true });
   w.requestAnimationFrame = () => 0;
   w.HTMLElement.prototype.scrollIntoView = () => {};
-  w.fetch = async url => ({ ok: true, json: async () => String(url).includes('points-source.json') ? source : {} });
+  w.fetch = async url => stallRank && String(url).includes('leaderboard-rank-snapshots') ? new Promise(() => {}) : ({ ok: true, json: async () => String(url).includes('points-source.json') ? source : {} });
   if (oldMarkup) {
     w.document.querySelector('#asmeLeaderboardRows').textContent = 'Loading leaderboard…';
     w.document.querySelector('#asmeMemberDashboardState').outerHTML = '<p class="asme-member-dashboard-state" id="asmeMemberDashboardState" role="status">Loading dashboard…</p>';
@@ -46,7 +46,7 @@ for (const oldMarkup of [false, true]) {
       reply('Leaderboard_Public', [[1, 'Alex A.', 'Fall 2026', 50, 2, 'Active', '2026-10-14', 2, 0, 0, 0, 0, 0, 0, 'Meetings']]);
       await tick();
       assert.equal(d.querySelectorAll('.asme-points-skeleton-row').length, 0);
-      assert.ok(d.querySelector('.asme-points-summary-skeleton'));
+      assert.equal(d.querySelector('.asme-points-summary-skeleton'), null);
       assert.equal(d.querySelector('#asmeMemberDashboardState').hidden, false);
       assert.equal(d.querySelector('#asmeMemberDashboardState').getAttribute('aria-busy'), 'false');
       assert.equal(d.querySelector('#asmeMemberSearch').disabled, false);
@@ -55,6 +55,10 @@ for (const oldMarkup of [false, true]) {
       assert.equal(d.querySelector('#asmeMemberDashboardPanel').hidden, false);
       assert.equal(d.querySelector('.asme-points-summary-skeleton'), null);
       assert.equal(d.querySelector('#asmeMemberDashboardState').hidden, true);
+      const search = d.querySelector('#asmeMemberSearch');
+      search.value = ''; search.dispatchEvent(new w.Event('input'));
+      assert.equal(d.querySelector('#asmeMemberDashboardPanel').hidden, true);
+      assert.match(d.querySelector('#asmeMemberDashboardState').textContent, /Search your name/);
     } finally { dom.window.close(); }
   });
 }
@@ -78,3 +82,12 @@ for (const outcome of ['empty', 'paused', 'error']) {
     } finally { dom.window.close(); }
   });
 }
+
+ test('a stalled optional rank request does not block live totals', async () => {
+   const {dom,w,reply}=setup(false,true);
+   try { await tick(); reply('System_Status',[['system_status','LIVE']]); reply('Point_Values_Public',[]); await tick();
+     reply('Leaderboard_Public',[[1,'Alex A.','Fall 2026',50,2,'Active','2026-10-14']]); await tick();
+     assert.match(w.document.querySelector('#asmeLeaderboardRows').textContent,/Alex A/);
+     assert.equal(w.document.querySelector('#asmeLeaderboardRows').getAttribute('aria-busy'),'false');
+   } finally {dom.window.close();}
+ });

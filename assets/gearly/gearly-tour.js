@@ -2,7 +2,7 @@
   'use strict';
   var doc = root.document, config = {}, memory = {}, active = null, offerNode = null, offerClosing = null, offerExitTimer = null, generation = 0;
 
-  var spriteFiles = ["gearly-peeking-thumbs-up.png", "gearly-executive-briefcase.webp", "gearly-peeking-banner.webp", "gearly-peeking-side.webp", "gearly-smiling-wave.webp", "gearly-surprised-head.webp", "gearly-laptop-presenting.webp", "gearly-open-eyes-wave.webp", "gearly-growth-chart.webp", "gearly-double-pointing.webp", "gearly-open-eyes-wave.png", "gearly-winking-peek.webp", "gearly-winking-head.webp", "gearly-executive-briefcase.png", "gearly-surprised-head.png", "gearly-neutral-head.webp", "gearly-double-thumbs-up.png", "gearly-peeking-thumbs-up.webp", "gearly-laughing-head.webp", "gearly-double-thumbs-up.webp", "gearly-sitting-wave.png", "gearly-presenting-open-arms.png", "gearly-smiling-wave.png", "gearly-celebrating-jump.png", "gearly-happy-head.webp", "gearly-thinking-chin.png", "gearly-winking-peek.png", "gearly-pointing-right.webp", "gearly-calendar-presenting.webp", "gearly-laptop-presenting.png", "gearly-growth-chart.png", "gearly-neutral-head.png", "gearly-celebrating-jump.webp", "gearly-laughing-head.png", "gearly-happy-head.png", "gearly-presenting-open-arms.webp", "gearly-calendar-presenting.png", "gearly-thinking-chin.webp", "gearly-sitting-wave.webp", "gearly-winking-head.png", "gearly-pointing-right.png", "gearly-peeking-banner.png", "gearly-double-pointing.png", "gearly-peeking-side.png"];
+  var spriteFiles = ["gearly-peeking-thumbs-up.webp", "gearly-executive-briefcase.webp", "gearly-peeking-banner.webp", "gearly-peeking-side.webp", "gearly-smiling-wave.webp", "gearly-surprised-head.webp", "gearly-laptop-presenting.webp", "gearly-open-eyes-wave.webp", "gearly-growth-chart.webp", "gearly-double-pointing.webp", "gearly-winking-peek.webp", "gearly-winking-head.webp", "gearly-neutral-head.webp", "gearly-double-thumbs-up.webp", "gearly-laughing-head.webp", "gearly-sitting-wave.webp", "gearly-presenting-open-arms.webp", "gearly-celebrating-jump.webp", "gearly-happy-head.webp", "gearly-thinking-chin.webp", "gearly-pointing-right.webp", "gearly-calendar-presenting.webp"];
   // Section requests use registered actions, never selectors or routes from storage.
   var guide = null, guideToken = 0, guideKey = 'asme-gearly-section-v1';
   function clearSectionPending(){try{root.sessionStorage.removeItem(guideKey);}catch(_){}}
@@ -165,7 +165,8 @@
     var title = doc.createElement('h2'); title.id = 'gearly-tour-title'; title.textContent = step.title;
     var body = doc.createElement('p'); body.id = 'gearly-tour-description'; body.textContent = step.text;
     tip.append(count,title,body);
-    if(spriteFiles.includes(step.sprite) && config.assetBase){try{var image=doc.createElement('img');image.src=new URL('sprites/'+step.sprite,config.assetBase).href;image.alt='';image.className='gearly-tour-sprite';image.width=72;image.height=72;image.addEventListener('error',function(){image.remove();});tip.insertBefore(image,count);}catch(_){}}
+    var sprite=typeof step.sprite==='string'?step.sprite.replace(/\.png$/,'.webp'):'';
+    if(spriteFiles.includes(sprite) && config.assetBase){try{var image=doc.createElement('img');image.src=new URL('sprites/'+sprite,config.assetBase).href;image.alt='';image.className='gearly-tour-sprite';image.width=72;image.height=72;image.addEventListener('error',function(){image.remove();});tip.insertBefore(image,count);}catch(_){}}
     var nextRoute=steps.slice(index+1).map(destination).find(function(url){return url && !current(url);});
     if(nextRoute){try{root.sessionStorage.setItem(sessionKey()+'-probe','1');root.sessionStorage.removeItem(sessionKey()+'-probe');}catch(_){var note=doc.createElement('p');note.textContent='Browser storage is unavailable. This tour stays on this page; explore the next section here:';var fallback=doc.createElement('a');fallback.href=nextRoute;fallback.textContent='Open next tour page';tip.append(note,fallback);}}
     if (step.url) { try { var u = new URL(step.url, root.location.href); if (u.protocol === 'https:' && u.hostname === 'org.osu.edu') { var link = doc.createElement('a'); link.href = u.href; link.textContent = 'Open this page'; tip.appendChild(link); } } catch (_) {} }
@@ -212,6 +213,9 @@
       if (read() || offerNode || active || guide || !config.data || !config.data.tour) return;
       // Do not offer a second invitation beside an already-open conversation.
       var chat=doc.querySelector('.gearly-panel');if(chat && !chat.hidden)return;
+      if(doc.querySelector('#asme-site-header [aria-expanded="true"]'))return;
+      var nav=doc.getElementById('asme-site-header');
+      if(nav && root.MutationObserver){var menuWatch=new root.MutationObserver(function(){if(doc.querySelector('#asme-site-header [aria-expanded="true"]')){dismissOffer(false);menuWatch.disconnect();}});menuWatch.observe(nav,{subtree:true,attributes:true,attributeFilter:['aria-expanded']});}
       offerNode=doc.createElement('aside');offerNode.className='gearly-tour-offer';offerNode.setAttribute('aria-label','Website tour invitation');
       var mascot=doc.createElement('div');mascot.className='gearly-tour-offer-mascot';mascot.setAttribute('aria-hidden','true');
       for(var i=0;i<4;i++){var circle=doc.createElement('span');circle.className='gearly-tour-offer-circle';mascot.append(circle);}

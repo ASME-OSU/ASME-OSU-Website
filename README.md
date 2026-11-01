@@ -291,7 +291,7 @@ The preview accepts either a starting year such as `2027` or its complete academ
 
 Gearly is a rule-based, free browser assistant. Its answers and page directory live in `assets/gearly/gearly-data.json`, its named character artwork lives in `assets/gearly/sprites/`, and its live adapter reuses the existing public calendar, Instagram, Google Photos, and sanitized member-points exports. It displays source freshness; scheduled feeds are snapshots and are not instant updates. It never accesses the private member workbook or uses an AI service.
 
-Run `npm run test:gearly`, `npm run check`, and `npm test` before reviewing changes. Run `npm run preview:gearly` for a local page preview. See `docs/gearly-recon.md` for source details and `docs/gearly-content-guide.md` for content editing and limitations.
+Run `npm run test:gearly`, `npm run check`, and `npm test` before reviewing changes. Run `npm run preview:gearly` for a local page preview. See `docs/repository-cleanup.md` for the current cleanup, compatibility, and publishing notes, `docs/gearly-recon.md` for source details and `docs/gearly-content-guide.md` for content editing and limitations.
 
 The student acceptance dialogue freezes time at October 15, 2026 and uses `tests/gearly/student-calendar.json`. Keep its event scenarios independent of the hourly production calendar. The calendar-update regression supplies changed dates and a newly published location to verify that answers follow the supplied feed while unknown age requirements remain unknown.
 
@@ -304,3 +304,8 @@ After the PR is merged and GitHub Pages has deployed, append `Gearly Embed.html`
 Version 2.0.0 adds query-selected inline public photos and LIVE-gated public member-name lookup. Names and image payloads are not stored in session history. See `docs/gearly-v2.md` for staged PRs and quality measurements. The production WordPress embed remains unchanged until the chapter reviews and merges the v2 PRs.
 
 Gearly v2 also routes registered sections, reads current and historical officers from the live Leadership page, and offers a prefilled team email draft on uncertain answers. It discovers public pages and derives sponsors/FAQ copy with offline snapshots. Four stacked PRs separate these changes; none deploys to WordPress automatically. Run all required checks with `npm ci`, `npm run build`, `npm run check`, `npm test`, and `npm run test:gearly`. The corpus runner reports frozen, independent holdout, and v2 suites; `--no-idf` disables optional weighting for measurement. Use `npm run preview:gearly` with `?qa=member` for a clearly marked fabricated candidate-choice fixture.
+
+
+## Audit repairs and compatibility assets (November 2026)
+
+See [repository cleanup](docs/repository-cleanup.md) and the complete [file review inventory](docs/repository-inventory-2026-11-01.csv). `celebration.js` is the stable, lightweight Join loader; maintain the full experience in `assets/celebration/experience.js`. PNG pose paths remain as optimized compatibility copies for cached clients; new runtime references use WebP. Feed workflows share `scripts/publish-feed.mjs` and publish Pages only after changed data. Use Node 24 for current tooling.

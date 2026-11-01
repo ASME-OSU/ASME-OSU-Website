@@ -16,7 +16,7 @@ const latestPost = {
   alt: 'Latest ASME OSU Instagram post'
 };
 
-function setup(fetchResult, { legacy = false } = {}) {
+function setup(fetchResult, { legacy = false, configure } = {}) {
   const dom = new JSDOM('<!doctype html><body><main class="asme-gallery-page">' + page + '</main></body>', {
     url: 'https://org.osu.edu/asme/pictures/',
     runScripts: 'outside-only'
@@ -36,7 +36,7 @@ function setup(fetchResult, { legacy = false } = {}) {
   window.Image = class {
     set src(value) {
       this._src = value;
-      queueMicrotask(() => this.onload());
+      queueMicrotask(() => this.onload?.());
     }
   };
   Object.defineProperty(window.HTMLImageElement.prototype, 'src', {
@@ -47,6 +47,7 @@ function setup(fetchResult, { legacy = false } = {}) {
       queueMicrotask(() => this.dispatchEvent(new window.Event('load')));
     }
   });
+  if (configure) configure(window);
   window.eval(script);
   window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
   return { dom, window, document: window.document };
@@ -85,4 +86,17 @@ test('uses an Instagram account link when the feed cannot load', async () => {
   assert.equal(view.document.getElementById('galleryInstagramFeaturedLink').href, 'https://www.instagram.com/asmeohiostate/');
   assert.equal(view.document.getElementById('galleryInstagramFeaturedButton').textContent, 'Visit @asmeohiostate');
   view.window.close();
+});
+
+test('carousel stays paused across focus moves, control clicks, and explicit pause',async()=>{
+ const timers=new Map();let id=0;
+ const post={...latestPost,carouselImages:[{imageUrl:'https://example.test/one.jpg'},{imageUrl:'https://example.test/two.jpg'}]};
+ const v=setup(async()=>({ok:true,json:async()=>({items:[post]})}),{configure(w){w.matchMedia=()=>({matches:false});w.setInterval=fn=>{timers.set(++id,fn);return id};w.clearInterval=id=>timers.delete(id);}});
+ await new Promise(r=>setTimeout(r,20));
+ const shell=v.document.querySelector('.gallery-instagram-media-shell');
+ const controls=shell.querySelectorAll('button'); controls[0].focus();assert.equal(timers.size,0);
+ controls[1].focus();controls[1].click();assert.equal(timers.size,0);
+ const pause=shell.querySelector('.gallery-instagram-carousel-pause');pause.click();assert.equal(pause.getAttribute('aria-pressed'),'true');
+ v.document.body.tabIndex=-1;v.document.body.focus();shell.dispatchEvent(new v.window.MouseEvent('mouseleave'));
+ await new Promise(r=>setTimeout(r,1));assert.equal(timers.size,0);v.window.close();
 });

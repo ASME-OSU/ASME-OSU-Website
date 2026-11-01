@@ -6,6 +6,10 @@
   var SOCIAL_HUB_URL = 'https://asme-osu.github.io/ASME-Social-Hub';
   var campaigns = [];
   var currentFeed = null;
+  var feedNotice = '';
+  var feedUnavailable = false;
+  var CACHE_MAX_AGE = 24 * 60 * 60 * 1000;
+  var cacheSavedAt = 0;
   var CACHE_KEY = 'asmeCalendarEventsV4';
   var TIME_ZONE = 'America/New_York';
   var NON_CHAPTER_EVENT_TITLE_PATTERNS = [
@@ -211,6 +215,19 @@
     grid.replaceChildren();
     grid.setAttribute('aria-busy', 'false');
 
+    if (feedUnavailable) {
+      var unavailable = document.createElement('p');
+      unavailable.className = 'acp-event-empty';
+      unavailable.textContent = 'Upcoming event previews are temporarily unavailable. Please check the full calendar below for the latest schedule.';
+      grid.appendChild(unavailable);
+      var retry = document.createElement('button');
+      retry.type = 'button'; retry.textContent = 'Retry event previews';
+      retry.addEventListener('click', function () { retry.disabled = true; retry.textContent = 'Refreshing…'; loadFeed(); });
+      grid.appendChild(retry);
+      var full = document.querySelector('.acp-subscribe-btn');
+      if (full) { var fallback = document.createElement('a'); fallback.href = full.href; fallback.target = '_blank'; fallback.rel = 'noopener noreferrer'; fallback.textContent = 'Open Google Calendar'; grid.appendChild(fallback); }
+      return;
+    }
     if (!events.length) {
       var empty = document.createElement('div');
       empty.className = 'acp-event-empty';
@@ -229,6 +246,18 @@
     var events = upcomingEvents(feed).filter(isChapterEvent);
     renderHome(events);
     renderCalendarPage(events);
+    if (feedUnavailable) {
+      var description = document.getElementById('asmeFeaturedDescription');
+      if (description) description.textContent = 'Event previews are temporarily unavailable. Open the calendar for the latest schedule.';
+    }
+    var grid = document.getElementById('asmeCalendarUpcoming');
+    if (grid && feedNotice) {
+      var notice = document.createElement('p');
+      notice.className = 'acp-feed-notice';
+      notice.setAttribute('role', 'status');
+      notice.textContent = feedNotice;
+      grid.appendChild(notice);
+    }
   }
 
   // Older WordPress page copies still contain the rehearsal panel. Remove it
@@ -244,7 +273,9 @@
   function readCache() {
     try {
       var cached = JSON.parse(window.localStorage.getItem(CACHE_KEY));
-      return cached && cached.feed ? cached.feed : null;
+      cacheSavedAt = Number(cached && cached.savedAt) || 0;
+      var age = cached && Date.now() - cacheSavedAt;
+      return cached && cached.feed && Array.isArray(cached.feed.events) && Number.isFinite(age) && age >= 0 && age <= CACHE_MAX_AGE ? cached.feed : null;
     } catch (error) {
       return null;
     }
@@ -263,23 +294,30 @@
       if (controller) controller.abort();
     }, 4500);
 
-    if (cached) render(cached);
+    if (cached) {
+      feedNotice = 'Showing saved events while checking for schedule updates.';
+      render(cached);
+    }
 
     fetch(FEED_URL + '?hour=' + Math.floor(Date.now() / 3600000), {
       cache: 'no-store',
       credentials: 'omit',
       signal: controller ? controller.signal : undefined
     }).then(function (response) {
-      window.clearTimeout(timer);
       if (!response.ok) throw new Error('Calendar feed request failed');
       return response.json();
     }).then(function (feed) {
+      window.clearTimeout(timer);
       if (!feed || !Array.isArray(feed.events)) throw new Error('Malformed calendar feed');
       writeCache(feed);
+      feedNotice = '';
+      feedUnavailable = false;
       render(feed);
     }).catch(function () {
       window.clearTimeout(timer);
-      if (!cached) render({ events: [] });
+      feedUnavailable = !cached;
+      feedNotice = cached ? 'Showing events saved ' + new Intl.DateTimeFormat('en-US', { timeZone: TIME_ZONE, month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(cacheSavedAt)) + ' ET. Check the full calendar for schedule changes.' : '';
+      render(cached || { events: [] });
     });
   }
 
