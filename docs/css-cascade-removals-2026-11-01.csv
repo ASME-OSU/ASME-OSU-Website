@@ -1,0 +1,394 @@
+source_file,original_line,selectors,property,removed_value,important,conditions,later_winner_lines,later_values
+ASME Custom CSS.css,381,body #page .asme-gallery-page .gallery-archive-status | html body #page .entry-content .asme-gallery-page .gallery-archive-status,border,0,True,,"22631,22631",1px solid var(--asme-line)
+ASME Custom CSS.css,1403,body #page .asme-join-page .join-form-purpose strong | html body #page .entry-content .asme-join-page .join-form-purpose strong,color,#ff6b78,True,@media (prefers-color-scheme:dark),"21518,24309",#ba0c2f | #ffb4b4
+ASME Custom CSS.css,2248,.cat-links a | .tags-links a,background,var(--asme-chip),True,,"5519,5519",var(--osu-scarlet-light)
+ASME Custom CSS.css,2250,.cat-links a | .tags-links a,color,var(--asme-navy),True,,"5520,5520",var(--osu-scarlet)
+ASME Custom CSS.css,2319,.search-form .search-submit,background,var(--asme-navy),True,,5494,var(--osu-scarlet)
+ASME Custom CSS.css,2322,.search-form .search-submit,color,#ffffff,True,,5495,#ffffff
+ASME Custom CSS.css,2344,.ah-hero,gap,28px,False,,5662,24px
+ASME Custom CSS.css,2348,.ah-hero,background,"linear-gradient(135deg,#0f3460 0%,#16213e 100%)",False,,5581,transparent
+ASME Custom CSS.css,2400,.ah-btn-p,background,#ffffff,False,,5478,var(--osu-scarlet)
+ASME Custom CSS.css,2414,.ah-hero-right,flex,0 0 auto,False,,5675,0 0 320px
+ASME Custom CSS.css,2572,.ah-cards-grid>.ah-card .ah-card-button,background,var(--asme-navy),True,,5494,var(--osu-scarlet)
+ASME Custom CSS.css,2573,.ah-cards-grid>.ah-card .ah-card-button,color,#ffffff,True,,5495,#ffffff
+ASME Custom CSS.css,2582,.ah-cards-grid>.ah-card .ah-card-button:hover,background,var(--asme-blue),True,,5502,var(--osu-scarlet-dark)
+ASME Custom CSS.css,2583,.ah-cards-grid>.ah-card .ah-card-button:hover,color,#ffffff,True,,5503,#ffffff
+ASME Custom CSS.css,2679,.leader-card h3,color,#0f3460,True,,5520,var(--osu-scarlet)
+ASME Custom CSS.css,2680,.leader-card h3,background,#e8f4fd,True,,5519,var(--osu-scarlet-light)
+ASME Custom CSS.css,3432,.sponsors-cta-button,background,var(--asme-navy),False,,5494,var(--osu-scarlet)
+ASME Custom CSS.css,3433,.sponsors-cta-button,color,#ffffff,True,,5495,#ffffff
+ASME Custom CSS.css,3443,.sponsors-cta-button:hover,background,var(--asme-blue),False,,5502,var(--osu-scarlet-dark)
+ASME Custom CSS.css,3444,.sponsors-cta-button:hover,color,#ffffff,True,,5503,#ffffff
+ASME Custom CSS.css,3548,.sponsor-primary-button,background,var(--asme-navy),False,,5494,var(--osu-scarlet)
+ASME Custom CSS.css,3549,.sponsor-primary-button,color,#ffffff,True,,5495,#ffffff
+ASME Custom CSS.css,3559,.sponsor-primary-button:hover,background,var(--asme-blue),False,,5502,var(--osu-scarlet-dark)
+ASME Custom CSS.css,3560,.sponsor-primary-button:hover,color,#ffffff,True,,5503,#ffffff
+ASME Custom CSS.css,3564,.sponsor-hero-panel,background,"linear-gradient(135deg,#0f3460,#16213e)",False,,5562,"linear-gradient(135deg,#BB0000 0%,#7a0000 100%)"
+ASME Custom CSS.css,3856,.asme-home .ah-btn-p,color,var(--asme-navy),True,,5721,#ffffff
+ASME Custom CSS.css,3914,.asme-footer-col,text-align,center,True,,4688,center
+ASME Custom CSS.css,3936,.asme-footer-col a:hover,color,var(--asme-blue),True,,5550,var(--osu-scarlet)
+ASME Custom CSS.css,3945,.asme-footer-bottom,text-align,center,True,,4688,center
+ASME Custom CSS.css,3989,.site-title | .site-title a,font-size,14px,True,@media (max-width:768px),"4805,4805","clamp(27px,7.4vw,34px)"
+ASME Custom CSS.css,4008,.ah-hero-right,width,100%,False,@media (max-width:768px),5672,320px
+ASME Custom CSS.css,4032,.asme-cal-page,padding-top,24px,True,,6878,0
+ASME Custom CSS.css,4088,.acp-subscribe-btn,background,var(--asme-navy),False,,5494,var(--osu-scarlet)
+ASME Custom CSS.css,4089,.acp-subscribe-btn,color,#fff,True,,5495,#ffffff
+ASME Custom CSS.css,4103,.acp-subscribe-btn:hover,background,var(--asme-blue),True,,5502,var(--osu-scarlet-dark)
+ASME Custom CSS.css,4104,.acp-subscribe-btn:hover,color,#fff,True,,5503,#ffffff
+ASME Custom CSS.css,4126,body #page .asme-cal-page .acp-subscribe-btn,animation,asme-calendar-subscribe-pulse 2s ease-in-out infinite,True,@media (prefers-reduced-motion:no-preference),22222,asme-calendar-subscribe-pulse 2s ease-in-out infinite
+ASME Custom CSS.css,4127,body #page .asme-cal-page .acp-subscribe-btn,animation-play-state,running,True,@media (prefers-reduced-motion:no-preference),22223,running
+ASME Custom CSS.css,4128,body #page .asme-cal-page .acp-subscribe-btn,transform-origin,center,True,@media (prefers-reduced-motion:no-preference),22224,center
+ASME Custom CSS.css,4129,body #page .asme-cal-page .acp-subscribe-btn,will-change,"box-shadow,scale,filter",False,@media (prefers-reduced-motion:no-preference),22225,"box-shadow,scale,filter"
+ASME Custom CSS.css,5094,.lb-current-header h2,background,#0f3460,True,,5531,var(--osu-scarlet)
+ASME Custom CSS.css,5145,.lb-year-tab:hover,background,#e8f4fd,False,,5536,var(--osu-scarlet-light)
+ASME Custom CSS.css,5146,.lb-year-tab:hover,color,#0f3460,False,,5537,var(--osu-scarlet)
+ASME Custom CSS.css,5147,.lb-year-tab:hover,border-color,#0f3460,False,,5538,var(--osu-scarlet)
+ASME Custom CSS.css,5156,.lb-year-tab.active,background,#0f3460,False,,5531,var(--osu-scarlet)
+ASME Custom CSS.css,5158,.lb-year-tab.active,border-color,#0f3460,False,,5532,var(--osu-scarlet)
+ASME Custom CSS.css,5260,.sponsor-card-primary::before,background,#0f3460,False,,5542,var(--osu-scarlet)
+ASME Custom CSS.css,6565,.sponsors-grid-partners .sponsor-card h3 | .sponsors-grid-partners .sponsor-card h3 a | .sponsor-card-partner h3 | .sponsor-card-partner h3 a,color,#ffffff,True,@media (prefers-color-scheme:dark),"6581,6581,6581,6581",#ffffff
+ASME Custom CSS.css,6570,.sponsors-grid-partners .sponsor-card h3 a:hover | .sponsor-card-partner h3 a:hover,color,var(--asme-blue),True,@media (prefers-color-scheme:dark),"6588,6588",var(--asme-blue)
+ASME Custom CSS.css,7108,body .asme-home | body .asme-about-page | body .asme-join-page | body .asme-sponsors-page | body .asme-sponsor-page | body .asme-gallery-page | body .asme-cal-page | body .leadership-board,width,calc(100vw - 12px),True,@media (max-width:768px),"11110,11110,11110,11110,11110,11110,11110,24201",calc(100vw - 32px) | calc(100vw - 24px)
+ASME Custom CSS.css,7109,body .asme-home | body .asme-about-page | body .asme-join-page | body .asme-sponsors-page | body .asme-sponsor-page | body .asme-gallery-page | body .asme-cal-page | body .leadership-board,max-width,calc(100vw - 12px),True,@media (max-width:768px),"11111,11111,11111,11111,11111,11111,11111,24202",calc(100vw - 32px) | calc(100vw - 24px)
+ASME Custom CSS.css,7110,body .asme-home | body .asme-about-page | body .asme-join-page | body .asme-sponsors-page | body .asme-sponsor-page | body .asme-gallery-page | body .asme-cal-page | body .leadership-board,margin-left,auto,True,@media (max-width:768px),"11112,11112,11112,11112,11112,11112,11112,24204",auto
+ASME Custom CSS.css,7111,body .asme-home | body .asme-about-page | body .asme-join-page | body .asme-sponsors-page | body .asme-sponsor-page | body .asme-gallery-page | body .asme-cal-page | body .leadership-board,margin-right,auto,True,@media (max-width:768px),"11113,11113,11113,11113,11113,11113,11113,24203",auto
+ASME Custom CSS.css,7112,body .asme-home | body .asme-about-page | body .asme-join-page | body .asme-sponsors-page | body .asme-sponsor-page | body .asme-gallery-page | body .asme-cal-page | body .leadership-board,padding-left,0,True,@media (max-width:768px),"11114,11114,11114,11114,11114,11114,11114,24206",0
+ASME Custom CSS.css,7113,body .asme-home | body .asme-about-page | body .asme-join-page | body .asme-sponsors-page | body .asme-sponsor-page | body .asme-gallery-page | body .asme-cal-page | body .leadership-board,padding-right,0,True,@media (max-width:768px),"11115,11115,11115,11115,11115,11115,11115,24205",0
+ASME Custom CSS.css,7114,body .asme-home | body .asme-about-page | body .asme-join-page | body .asme-sponsors-page | body .asme-sponsor-page | body .asme-gallery-page | body .asme-cal-page | body .leadership-board,box-sizing,border-box,True,@media (max-width:768px),"11116,11116,11116,11116,11116,11116,11116,24200",border-box
+ASME Custom CSS.css,7184,body .site-header .inside-header | body #masthead .inside-header,gap,8px,True,@media (max-width:768px),"14735,14735",4px
+ASME Custom CSS.css,7207,body .custom-logo | body .site-logo img | body .custom-logo-link img,width,auto,True,@media (max-width:768px),"14742,14742,14742",auto
+ASME Custom CSS.css,7208,body .custom-logo | body .site-logo img | body .custom-logo-link img,height,72px,True,@media (max-width:768px),"14743,14743,14743",42px
+ASME Custom CSS.css,7216,body .site-title | body .site-title a,margin,6px auto 0,True,@media (max-width:768px),"14750,14750",0 auto
+ASME Custom CSS.css,7218,body .site-title | body .site-title a,font-size,"clamp(31px,8vw,40px)",True,@media (max-width:768px),"14751,14751","clamp(20px,5.7vw,24px)"
+ASME Custom CSS.css,7219,body .site-title | body .site-title a,line-height,1.08,True,@media (max-width:768px),"14752,14752",1.05
+ASME Custom CSS.css,7255,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,width,auto,True,@media (max-width:768px),"8159,8159,8159,18408",36px | 44px
+ASME Custom CSS.css,7256,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,height,34px,True,@media (max-width:768px),"14769,8160,8160,18409",30px | 36px | 44px
+ASME Custom CSS.css,7257,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,min-height,0,True,@media (max-width:768px),"14770,8161,8161,18410",30px | 36px | 44px
+ASME Custom CSS.css,7258,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,margin,0 auto,True,@media (max-width:768px),"8162,8162,8162,18411",0 auto | -5px auto
+ASME Custom CSS.css,7259,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,padding,0 10px,True,@media (max-width:768px),"8163,8163,8163,18412",0
+ASME Custom CSS.css,7260,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,background,transparent,True,@media (max-width:768px),"8167,8167,8167,8167",transparent
+ASME Custom CSS.css,7261,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,border,0,True,@media (max-width:768px),"8168,8168,8168,8168",0
+ASME Custom CSS.css,7262,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,color,#ffffff,True,@media (max-width:768px),"8164,8164,8164,8164",#0f3460
+ASME Custom CSS.css,7263,body .menu-toggle | body .menu-toggle:hover | body .menu-toggle:focus | body #site-navigation .menu-toggle,line-height,1,True,@media (max-width:768px),"8169,8169,8169,8169",1
+ASME Custom CSS.css,7269,body .menu-toggle .gp-icon | body .menu-toggle .gp-icon svg | body .menu-toggle .gp-icon svg path,color,#ffffff,True,@media (max-width:768px),"8186,8194,8194",#0f3460
+ASME Custom CSS.css,7281,body #site-navigation.toggled .main-nav,width,100%,True,@media (max-width:768px),17365,"min(calc(100vw - 24px),420px)"
+ASME Custom CSS.css,7318,body #site-navigation.toggled .main-nav>ul>li.current-menu-item>a | body #site-navigation.toggled .main-nav>ul>li.current_page_item>a,background,#bb0000,True,@media (max-width:768px),"18608,18608","linear-gradient(135deg,#c91616,#990000)"
+ASME Custom CSS.css,7319,body #site-navigation.toggled .main-nav>ul>li.current-menu-item>a | body #site-navigation.toggled .main-nav>ul>li.current_page_item>a,border-color,#bb0000,True,@media (max-width:768px),"18609,18609","rgba(255,148,148,0.55)"
+ASME Custom CSS.css,7826,body #site-navigation.toggled .main-nav>ul>li.current-menu-parent>a | body #site-navigation.toggled .main-nav>ul>li.current-menu-ancestor>a | body #site-navigation.toggled .main-nav>ul>li.current_page_parent>a | body #site-navigation.toggled .main-nav>ul>li.current_page_ancestor>a,background,#bb0000,True,@media (max-width:768px),"18608,18608,18608,18608","linear-gradient(135deg,#c91616,#990000)"
+ASME Custom CSS.css,7827,body #site-navigation.toggled .main-nav>ul>li.current-menu-parent>a | body #site-navigation.toggled .main-nav>ul>li.current-menu-ancestor>a | body #site-navigation.toggled .main-nav>ul>li.current_page_parent>a | body #site-navigation.toggled .main-nav>ul>li.current_page_ancestor>a,border-color,#bb0000,True,@media (max-width:768px),"18609,18609,18609,18609","rgba(255,148,148,0.55)"
+ASME Custom CSS.css,7948,body .asme-home .ah-about-impact,min-height,0,True,,8395,0
+ASME Custom CSS.css,8109,body .asme-home .ah-about,display,flex,True,@media (min-width:901px),8415,flow-root
+ASME Custom CSS.css,8117,body .asme-home .ah-about-impact,margin-top,18px,True,@media (min-width:901px),8404,16px
+ASME Custom CSS.css,8275,body .asme-home .ah-about,height,auto,True,@media (max-width:768px),8384,auto
+ASME Custom CSS.css,8276,body .asme-home .ah-about,min-height,0,True,@media (max-width:768px),8385,0
+ASME Custom CSS.css,8277,body .asme-home .ah-about,max-height,none,True,@media (max-width:768px),8386,none
+ASME Custom CSS.css,8278,body .asme-home .ah-about,margin,0 0 16px,True,@media (max-width:768px),8387,0 0 18px
+ASME Custom CSS.css,8280,body .asme-home .ah-about,overflow,visible,True,@media (max-width:768px),8389,visible
+ASME Custom CSS.css,8735,body #page .asme-cal-page,margin-top,0,True,,23524,-5px
+ASME Custom CSS.css,8736,body #page .asme-cal-page,padding-top,56px,True,,22162,32px
+ASME Custom CSS.css,8746,body #page .asme-cal-page,padding-top,28px,True,@media (max-width:768px),22162,32px
+ASME Custom CSS.css,9659,body #page .asme-member-resources-page .asme-resource-group-header,margin-bottom,16px,True,,10964,16px
+ASME Custom CSS.css,9861,body #page .asme-member-resources-page,background-color,#ffffff,True,,10395,#f5f7fa
+ASME Custom CSS.css,9920,body #page .asme-members-page,margin-top,8px,True,,23555,-13px
+ASME Custom CSS.css,10123,body #page .asme-members-page .asme-resource-card | body #page .asme-member-resources-page .asme-resource-card,background-color,#0f1b2d,True,@media (prefers-color-scheme:dark),"10291,10570",#0f1b2d
+ASME Custom CSS.css,10124,body #page .asme-members-page .asme-resource-card | body #page .asme-member-resources-page .asme-resource-card,border-color,#26364f,True,@media (prefers-color-scheme:dark),"10292,10571",#26364f
+ASME Custom CSS.css,10136,body #page .asme-members-page .asme-resource-card-title | body #page .asme-member-resources-page .asme-resource-card-title,color,#e2e8f0,True,@media (prefers-color-scheme:dark),"10296,10583",#e2e8f0 | #ffffff
+ASME Custom CSS.css,10141,body #page .asme-members-page .asme-resource-card-desc | body #page .asme-member-resources-page .asme-resource-card-desc,color,#94a3b8,True,@media (prefers-color-scheme:dark),"10300,10588",#94a3b8 | #cbd5e1
+ASME Custom CSS.css,10271,body #page .asme-members-page .asme-leaderboard-header h3,margin,0,True,@media (prefers-color-scheme:dark),10311,0
+ASME Custom CSS.css,10320,body #page .asme-members-page .asme-points-feature-name,margin,0,True,,11025,0
+ASME Custom CSS.css,10321,body #page .asme-members-page .asme-points-feature-name,padding,0,True,,11026,0
+ASME Custom CSS.css,10369,body .asme-members-page | body #page .asme-members-page,width,calc(100vw - 12px),True,@media (max-width:768px),"11110,24201",calc(100vw - 32px) | calc(100vw - 24px)
+ASME Custom CSS.css,10370,body .asme-members-page | body #page .asme-members-page,max-width,calc(100vw - 12px),True,@media (max-width:768px),"11111,24202",calc(100vw - 32px) | calc(100vw - 24px)
+ASME Custom CSS.css,10371,body .asme-members-page | body #page .asme-members-page,margin-left,auto,True,@media (max-width:768px),"11112,24204",auto
+ASME Custom CSS.css,10372,body .asme-members-page | body #page .asme-members-page,margin-right,auto,True,@media (max-width:768px),"11113,24203",auto
+ASME Custom CSS.css,10373,body .asme-members-page | body #page .asme-members-page,padding-left,0,True,@media (max-width:768px),"11114,24206",0
+ASME Custom CSS.css,10374,body .asme-members-page | body #page .asme-members-page,padding-right,0,True,@media (max-width:768px),"11115,24205",0
+ASME Custom CSS.css,10375,body .asme-members-page | body #page .asme-members-page,box-sizing,border-box,True,@media (max-width:768px),"11116,24200",border-box
+ASME Custom CSS.css,11070,body #page .asme-members-page .asme-leaderboard-row,grid-template-columns,"20px 28px minmax(72px,1fr) 42px",True,@media (max-width:520px),15335,"28px 36px minmax(110px,1fr) minmax(72px,auto) minmax(58px,auto)"
+ASME Custom CSS.css,11071,body #page .asme-members-page .asme-leaderboard-row,gap,10px,True,@media (max-width:520px),15336,12px
+ASME Custom CSS.css,12154,.sponsor-tier-card--brutus .sponsor-tier-price,color,#93c5fd,True,,13066,#ffffff
+ASME Custom CSS.css,12165,.sponsor-tier-card--custom .sponsor-tier-name | .sponsor-tier-card--custom .sponsor-tier-price,color,#ffffff,True,,"13089,13094",#ffffff | #93c5fd
+ASME Custom CSS.css,12169,.sponsor-tier-card--custom .sponsor-tier-perks li::before,color,#fca5a5,True,,13094,#93c5fd
+ASME Custom CSS.css,12387,.sponsor-form-submit,width,fit-content,False,,12443,100%
+ASME Custom CSS.css,12459,body #page .asme-sponsor-page .sponsor-tier-card,background,#0f1b2d,True,@media (prefers-color-scheme:dark),19791,#18283b
+ASME Custom CSS.css,12460,body #page .asme-sponsor-page .sponsor-tier-card,border-color,#263a5f,True,@media (prefers-color-scheme:dark),19793,"rgba(148,163,184,0.2)"
+ASME Custom CSS.css,12461,body #page .asme-sponsor-page .sponsor-tier-card,box-shadow,"0 12px 30px rgba(0,0,0,0.22)",True,@media (prefers-color-scheme:dark),19794,"0 12px 28px rgba(2,8,23,0.28),0 2px 6px rgba(2,8,23,0.2)"
+ASME Custom CSS.css,12470,body #page .asme-sponsor-page .sponsor-tier-name | body #page .asme-sponsor-page .sponsor-tier-price,color,#f8fafc,True,@media (prefers-color-scheme:dark),"19822,19831",#f5f8fc | #d9e7f4
+ASME Custom CSS.css,12474,body #page .asme-sponsor-page .sponsor-tier-perks li,color,#cbd5e1,True,@media (prefers-color-scheme:dark),19847,#c3cedb
+ASME Custom CSS.css,12478,body #page .asme-sponsor-page .sponsor-tier-perks li::before,color,#93c5fd,True,@media (prefers-color-scheme:dark),19858,#91bce2
+ASME Custom CSS.css,12482,body #page .asme-sponsor-page .sponsor-tier-cta,background,#f8fafc,True,@media (prefers-color-scheme:dark),19879,#18558a
+ASME Custom CSS.css,12483,body #page .asme-sponsor-page .sponsor-tier-cta,color,#0f3460,True,@media (prefers-color-scheme:dark),19880,#ffffff
+ASME Custom CSS.css,12487,body #page .asme-sponsor-page .sponsor-tier-cta:hover,background,#dbeafe,True,@media (prefers-color-scheme:dark),19887,#21699f
+ASME Custom CSS.css,12497,body #page .asme-sponsor-page .sponsor-tier-card--brutus,background,"linear-gradient(160deg,#123b70,#0b1728)",True,@media (prefers-color-scheme:dark),19801,#202638
+ASME Custom CSS.css,12498,body #page .asme-sponsor-page .sponsor-tier-card--brutus,border-color,#3b82f6,True,@media (prefers-color-scheme:dark),19802,"rgba(255,92,119,0.46)"
+ASME Custom CSS.css,12499,body #page .asme-sponsor-page .sponsor-tier-card--brutus,border-left-color,#93c5fd,True,@media (prefers-color-scheme:dark),13797,transparent
+ASME Custom CSS.css,12503,body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-price,color,#bfdbfe,True,@media (prefers-color-scheme:dark),19836,#ff718a
+ASME Custom CSS.css,12507,body #page .asme-sponsor-page .sponsor-tier-card--custom,background,"linear-gradient(160deg,#c40000,#7f0000)",True,@media (prefers-color-scheme:dark),19810,#18283b
+ASME Custom CSS.css,12508,body #page .asme-sponsor-page .sponsor-tier-card--custom,border-color,#ef4444,True,@media (prefers-color-scheme:dark),19811,"rgba(125,170,211,0.25)"
+ASME Custom CSS.css,12509,body #page .asme-sponsor-page .sponsor-tier-card--custom,border-left-color,"rgba(255,255,255,0.55)",True,@media (prefers-color-scheme:dark),13803,transparent
+ASME Custom CSS.css,12513,body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-cta,color,#9f0000,True,@media (prefers-color-scheme:dark),19880,#ffffff
+ASME Custom CSS.css,12523,body #page .asme-sponsor-page .sponsor-form-group label,color,#f8fafc,True,@media (prefers-color-scheme:dark),14156,#123963
+ASME Custom CSS.css,12527,body #page .asme-sponsor-page .sponsor-form-optional,color,#94a3b8,True,@media (prefers-color-scheme:dark),14166,#9aa4b2
+ASME Custom CSS.css,12533,body #page .asme-sponsor-page .sponsor-form-group input | body #page .asme-sponsor-page .sponsor-form-group select | body #page .asme-sponsor-page .sponsor-form-group textarea,background,#07111f,True,@media (prefers-color-scheme:dark),"13646,13646,13646",#f8fafc
+ASME Custom CSS.css,12534,body #page .asme-sponsor-page .sponsor-form-group input | body #page .asme-sponsor-page .sponsor-form-group select | body #page .asme-sponsor-page .sponsor-form-group textarea,border-color,#3b4f73,True,@media (prefers-color-scheme:dark),"14176,14176,14176",#e5e7eb
+ASME Custom CSS.css,12535,body #page .asme-sponsor-page .sponsor-form-group input | body #page .asme-sponsor-page .sponsor-form-group select | body #page .asme-sponsor-page .sponsor-form-group textarea,color,#f8fafc,True,@media (prefers-color-scheme:dark),"14177,14177,14177",#123963
+ASME Custom CSS.css,12561,body #page .asme-sponsor-page .sponsor-tiers-table,grid-template-columns,"repeat(3,minmax(240px,1fr))",True,,19324,"repeat(3,minmax(0,1fr))"
+ASME Custom CSS.css,12562,body #page .asme-sponsor-page .sponsor-tiers-table,gap,14px,True,,19326,24px
+ASME Custom CSS.css,12566,body #page .asme-sponsor-page .sponsor-tier-card,border-radius,14px,True,,19347,16px
+ASME Custom CSS.css,12567,body #page .asme-sponsor-page .sponsor-tier-card,padding,18px,True,,19341,22px 22px 18px
+ASME Custom CSS.css,12571,body #page .asme-sponsor-page .sponsor-tier-heading,display,flex,True,,23612,grid
+ASME Custom CSS.css,12572,body #page .asme-sponsor-page .sponsor-tier-heading,align-items,center,True,,23614,start
+ASME Custom CSS.css,12574,body #page .asme-sponsor-page .sponsor-tier-heading,min-height,54px,True,,19443,0
+ASME Custom CSS.css,12579,body #page .asme-sponsor-page .sponsor-tier-icon,width,48px,True,,23630,65px
+ASME Custom CSS.css,12580,body #page .asme-sponsor-page .sponsor-tier-icon,height,48px,True,,23633,65px
+ASME Custom CSS.css,12582,body #page .asme-sponsor-page .sponsor-tier-icon,border-radius,12px,True,,19522,14px
+ASME Custom CSS.css,12583,body #page .asme-sponsor-page .sponsor-tier-icon,background,transparent,True,,19520,#ffffff
+ASME Custom CSS.css,12584,body #page .asme-sponsor-page .sponsor-tier-icon,object-fit,cover,True,,19523,contain
+ASME Custom CSS.css,12585,body #page .asme-sponsor-page .sponsor-tier-icon,box-shadow,"0 0 0 1px rgba(15,52,96,0.08)",True,,19525,"0 5px 15px rgba(15,35,55,0.08)"
+ASME Custom CSS.css,12589,body #page .asme-sponsor-page .sponsor-tier-name,font-size,21px,True,,19497,"clamp(30px,2.3vw,38px)"
+ASME Custom CSS.css,12593,body #page .asme-sponsor-page .sponsor-tier-price,font-size,30px,True,,19535,"clamp(27px,2vw,36px)"
+ASME Custom CSS.css,12601,body #page .asme-sponsor-page .sponsor-tier-perks li,font-size,12.5px,True,,19571,15px
+ASME Custom CSS.css,12605,body #page .asme-sponsor-page .sponsor-tier-cta,padding,9px 14px,True,,19610,9px 16px
+ASME Custom CSS.css,12674,body #page .asme-sponsor-page .sponsor-tiers-table,grid-template-columns,"repeat(2,minmax(0,1fr))",True,@media (max-width:900px),19324,"repeat(3,minmax(0,1fr))"
+ASME Custom CSS.css,12678,body #page .asme-sponsors-page .sponsors-grid-scarlet,grid-template-columns,1fr,True,@media (max-width:900px),12823,"repeat(2,minmax(0,1fr))"
+ASME Custom CSS.css,12684,body #page .asme-sponsor-page .sponsor-tiers-table,grid-template-columns,1fr,True,@media (max-width:640px),19324,"repeat(3,minmax(0,1fr))"
+ASME Custom CSS.css,12693,body #page .asme-sponsors-page .sponsor-card-primary,padding,14px,True,@media (max-width:640px),12751,16px
+ASME Custom CSS.css,12697,body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame,width,92px,True,@media (max-width:640px),12798,118px
+ASME Custom CSS.css,12698,body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame,height,68px,True,@media (max-width:640px),12799,78px
+ASME Custom CSS.css,12699,body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame,padding,8px,True,@media (max-width:640px),12800,10px
+ASME Custom CSS.css,12703,body #page .asme-sponsors-page .sponsor-card-primary .sponsor-logo-frame img,max-height,50px,True,@media (max-width:640px),12804,56px
+ASME Custom CSS.css,12709,body #page .asme-sponsor-page .sponsor-tier-icon,box-shadow,"0 0 0 1px rgba(255,255,255,0.12)",True,@media (prefers-color-scheme:dark),19865,"0 7px 18px rgba(2,8,23,0.3)"
+ASME Custom CSS.css,13108,body #page .asme-sponsor-page .sponsor-hero-panel,align-self,stretch,True,,13733,start
+ASME Custom CSS.css,13109,body #page .asme-sponsor-page .sponsor-hero-panel,padding,24px 24px 18px,True,,13743,24px
+ASME Custom CSS.css,13113,html body #page .entry-content .asme-sponsor-page .sponsor-hero-panel,align-self,stretch,True,,13733,start
+ASME Custom CSS.css,13114,html body #page .entry-content .asme-sponsor-page .sponsor-hero-panel,padding,24px 24px 18px,True,,13743,24px
+ASME Custom CSS.css,13365,html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary,grid-template-columns,"220px minmax(0,1fr) 62px",True,,14063,"190px minmax(0,1fr) 58px"
+ASME Custom CSS.css,13366,html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary,min-height,210px,True,,14065,170px
+ASME Custom CSS.css,13367,html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary,padding,32px 34px,True,,14067,24px 32px
+ASME Custom CSS.css,13379,html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-logo-frame,width,220px,True,,14074,190px
+ASME Custom CSS.css,13380,html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-logo-frame,height,132px,True,,14075,112px
+ASME Custom CSS.css,13386,html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary,grid-template-columns,"minmax(108px,126px) minmax(0,1fr) 46px",True,,14085,"minmax(104px,118px) minmax(0,1fr) 44px"
+ASME Custom CSS.css,13387,html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary,min-height,156px,True,,14087,138px
+ASME Custom CSS.css,13388,html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary,padding,20px 18px,True,,14090,16px 16px
+ASME Custom CSS.css,13392,html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-logo-frame,width,126px,True,,14100,118px
+ASME Custom CSS.css,13393,html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-logo-frame,height,84px,True,,14101,76px
+ASME Custom CSS.css,13398,html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card--blocko .sponsor-logo-frame,width,132px,True,,14100,118px
+ASME Custom CSS.css,13399,html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card--blocko .sponsor-logo-frame,height,90px,True,,14101,76px
+ASME Custom CSS.css,13419,html body #page .entry-content .asme-sponsors-page .sponsor-card-tier-badge,background,transparent,True,,13869,#ffffff
+ASME Custom CSS.css,13421,html body #page .entry-content .asme-sponsors-page .sponsor-card-tier-badge,border-radius,0,True,,13870,10px
+ASME Custom CSS.css,13422,html body #page .entry-content .asme-sponsors-page .sponsor-card-tier-badge,padding,0,True,,13871,4px
+ASME Custom CSS.css,13423,html body #page .entry-content .asme-sponsors-page .sponsor-card-tier-badge,box-shadow,none,True,,13872,"0 10px 22px rgba(15,23,42,0.16),0 0 0 1px rgba(15,23,42,0.08)"
+ASME Custom CSS.css,13454,html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary | html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary,grid-template-columns,"108px minmax(0,1fr) 42px",True,@media (max-width:900px),"14276,14276","minmax(0,1fr)"
+ASME Custom CSS.css,13460,html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-logo-frame | html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-logo-frame | html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card--blocko .sponsor-logo-frame,width,108px,True,@media (max-width:900px),"14299,14308,14308","min(100%,220px) | min(100%,156px)"
+ASME Custom CSS.css,13461,html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-logo-frame | html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-logo-frame | html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card--blocko .sponsor-logo-frame,height,76px,True,@media (max-width:900px),"14300,14309,14309",118px | 92px
+ASME Custom CSS.css,13486,body #page .asme-sponsor-page .sponsor-contact,background,#0f1b2d,True,,13609,#ffffff
+ASME Custom CSS.css,13496,body #page .asme-sponsor-page .sponsor-contact>.sponsor-contact-header,background,#142236,True,,13616,#f8fafc
+ASME Custom CSS.css,13500,body #page .asme-sponsor-page .sponsor-contact-header .sponsor-eyebrow,color,"rgba(255,255,255,0.55)",True,,13621,#9aa4b2
+ASME Custom CSS.css,13504,body #page .asme-sponsor-page .sponsor-contact-header h2,color,#ffffff,True,,13626,#123963
+ASME Custom CSS.css,13510,body #page .asme-sponsor-page .sponsor-contact-header p,color,"rgba(255,255,255,0.65)",True,,13631,#6b7280
+ASME Custom CSS.css,13811,body #page .asme-sponsor-page .sponsor-tier-name | html body #page .entry-content .asme-sponsor-page .sponsor-tier-name,max-width,calc(100% - 6px),True,,"19493,19493",none
+ASME Custom CSS.css,13812,body #page .asme-sponsor-page .sponsor-tier-name | html body #page .entry-content .asme-sponsor-page .sponsor-tier-name,color,#123963,True,,"19495,19495",#073b68
+ASME Custom CSS.css,13817,body #page .asme-sponsor-page .sponsor-tier-price | html body #page .entry-content .asme-sponsor-page .sponsor-tier-price,color,#123963,True,,"19534,19534",#073b68
+ASME Custom CSS.css,13826,body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-name | body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-price | body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-name | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-name | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-price | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-name,color,#ffffff,True,,"19495,19543,19495,19495,19543,19495",#073b68 | #ba0c2f
+ASME Custom CSS.css,13831,body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-price | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-price,color,#93c5fd,True,,"19534,19534",#073b68
+ASME Custom CSS.css,13838,body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-perks li | body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-perks li | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-perks li | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-perks li,color,"rgba(255,255,255,0.82)",True,,"19568,19568,19568,19568",#5f6878
+ASME Custom CSS.css,13843,body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-perks li::before | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-perks li::before,color,#fecaca,True,,"19588,19588",#073b68
+ASME Custom CSS.css,13848,body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-perks li::before | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-perks li::before,color,#93c5fd,True,,"19588,19588",#073b68
+ASME Custom CSS.css,13853,body #page .asme-sponsor-page .sponsor-tier-cta | html body #page .entry-content .asme-sponsor-page .sponsor-tier-cta,border-radius,999px,True,,"19614,19614",12px
+ASME Custom CSS.css,13854,body #page .asme-sponsor-page .sponsor-tier-cta | html body #page .entry-content .asme-sponsor-page .sponsor-tier-cta,background,#123963,True,,"19612,19612",#073b68
+ASME Custom CSS.css,13856,body #page .asme-sponsor-page .sponsor-tier-cta | html body #page .entry-content .asme-sponsor-page .sponsor-tier-cta,font-weight,800,True,,"19619,19619",700
+ASME Custom CSS.css,13861,body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-cta | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-cta,background,#ffffff,True,,"19612,19612",#073b68
+ASME Custom CSS.css,13862,body #page .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-cta | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--custom .sponsor-tier-cta,color,#123963,True,,"19611,19611",#ffffff
+ASME Custom CSS.css,13901,body #page .asme-sponsor-page .sponsor-modal-dialog | html body #page .entry-content .asme-sponsor-page .sponsor-modal-dialog,max-height,"min(90vh,820px)",True,,"14002,14002",calc(100dvh - 112px)
+ASME Custom CSS.css,14121,body #page .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary | body #page .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary | html body #page .entry-content .asme-sponsors-page .sponsors-top-tier-grid .sponsor-card-primary | html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row .sponsor-card-primary,min-height,0,True,@media (max-width:900px),"14278,14278,14278,14278",0
+ASME Custom CSS.css,14377,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),background,#142236,True,@media (max-width:700px),"19758,19758",#ffffff
+ASME Custom CSS.css,14380,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),color,#f8fafc,True,@media (max-width:700px),"19757,19757",#5f6878
+ASME Custom CSS.css,14387,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-name | body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-price | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-name | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-price,color,#f8fafc,True,@media (max-width:700px),"19767,19767,19767,19767",#073b68
+ASME Custom CSS.css,14392,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li,color,"rgba(248,250,252,0.78)",True,@media (max-width:700px),"19772,19772",#5f6878
+ASME Custom CSS.css,14397,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li::before | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li::before,color,#93c5fd,True,@media (max-width:700px),"19777,19777",#073b68
+ASME Custom CSS.css,14445,body #page .asme-home .ah-about,min-height,0,True,@media (min-width:700px) and (max-width:1100px) and (orientation:portrait),16132,0
+ASME Custom CSS.css,14446,body #page .asme-home .ah-about,max-height,none,True,@media (min-width:700px) and (max-width:1100px) and (orientation:portrait),16133,none
+ASME Custom CSS.css,14447,body #page .asme-home .ah-about,overflow,visible,True,@media (min-width:700px) and (max-width:1100px) and (orientation:portrait),16135,visible
+ASME Custom CSS.css,14528,body #page .asme-sponsors-page .sponsors-lower-tier-row | html body #page .entry-content .asme-sponsors-page .sponsors-lower-tier-row,grid-template-columns,"minmax(0,1fr)",True,@media (min-width:700px) and (max-width:1100px) and (orientation:portrait),"16577,16577","repeat(2,minmax(0,1fr))"
+ASME Custom CSS.css,14780,body #page .asme-points-page-v2 .asme-points-hero-compact .asme-member-hero-inner,min-height,190px,False,,19999,0
+ASME Custom CSS.css,14805,body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-header,padding,18px 22px,False,,20118,17px 19px
+ASME Custom CSS.css,14815,body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-title,font-size,18px,False,,20126,17px
+ASME Custom CSS.css,14819,body #page .asme-points-page-v2 .asme-leaderboard-caption,padding,11px 20px 14px,False,,20145,10px 18px 13px
+ASME Custom CSS.css,14820,body #page .asme-points-page-v2 .asme-leaderboard-caption,font-size,11px,False,,20147,12px
+ASME Custom CSS.css,14829,body #page .asme-points-page-v2 .asme-member-dashboard-heading,grid-template-columns,"minmax(0,1fr) minmax(290px,390px)",False,,20153,"minmax(0,1fr) minmax(230px,300px)"
+ASME Custom CSS.css,14830,body #page .asme-points-page-v2 .asme-member-dashboard-heading,align-items,start,False,,20155,start
+ASME Custom CSS.css,14944,body #page .asme-points-page-v2 .asme-member-search-hint,color,#64748b,False,,20212,#526173
+ASME Custom CSS.css,14945,body #page .asme-points-page-v2 .asme-member-search-hint,font-size,11px,False,,20213,12px
+ASME Custom CSS.css,14950,body #page .asme-points-page-v2 .asme-member-dashboard-state,padding,16px,False,,20179,13px 15px
+ASME Custom CSS.css,15007,body #page .asme-points-page-v2 .asme-point-values-compact summary small,color,#64748b,False,,20233,#526173
+ASME Custom CSS.css,15008,body #page .asme-points-page-v2 .asme-point-values-compact summary small,font-size,12px,False,,20234,13px
+ASME Custom CSS.css,15060,body #page .asme-points-page-v2 .asme-points-flow-compact,padding,18px 20px,False,,20239,19px 21px
+ASME Custom CSS.css,15088,body #page .asme-points-page-v2 .asme-points-flow-compact strong,font-size,13px,False,,20244,14px
+ASME Custom CSS.css,15092,body #page .asme-points-page-v2 .asme-points-flow-compact small,color,#64748b,False,,20249,#526173
+ASME Custom CSS.css,15093,body #page .asme-points-page-v2 .asme-points-flow-compact small,font-size,11px,False,,20250,12px
+ASME Custom CSS.css,15094,body #page .asme-points-page-v2 .asme-points-flow-compact small,line-height,1.35,False,,20251,1.45
+ASME Custom CSS.css,15137,body #page .asme-points-page-v2 .asme-member-dashboard-heading,grid-template-columns,1fr,False,@media (max-width:760px),20307,1fr
+ASME Custom CSS.css,15142,body #page .asme-points-page-v2 .asme-points-flow-compact,gap,10px,False,@media (max-width:760px),20321,12px
+ASME Custom CSS.css,15157,body #page .asme-points-page-v2 .asme-points-hero-compact .asme-member-hero-inner,min-height,160px,False,@media (max-width:480px),19999,0
+ASME Custom CSS.css,15163,body #page .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-header,padding,15px 16px,False,@media (max-width:480px),20118,17px 19px
+ASME Custom CSS.css,15576,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),background,#142236,True,@media (prefers-color-scheme:dark),"19791,19791",#18283b
+ASME Custom CSS.css,15577,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),border-color,"rgba(147,197,253,0.18)",True,@media (prefers-color-scheme:dark),"19793,19793","rgba(148,163,184,0.2)"
+ASME Custom CSS.css,15578,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),box-shadow,"0 16px 32px rgba(2,8,23,0.22)",True,@media (prefers-color-scheme:dark),"19794,19794","0 12px 28px rgba(2,8,23,0.28),0 2px 6px rgba(2,8,23,0.2)"
+ASME Custom CSS.css,15579,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom),color,#f8fafc,True,@media (prefers-color-scheme:dark),"19790,19790",#c3cedb
+ASME Custom CSS.css,15586,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-name | body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-price | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-name | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-price,color,#f8fafc,True,@media (prefers-color-scheme:dark),"19822,19831,19822,19831",#f5f8fc | #d9e7f4
+ASME Custom CSS.css,15591,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li,color,"rgba(248,250,252,0.78)",True,@media (prefers-color-scheme:dark),"19847,19847",#c3cedb
+ASME Custom CSS.css,15596,body #page .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li::before | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponsor-tier-card--brutus):not(.sponsor-tier-card--custom) .sponsor-tier-perks li::before,color,#93c5fd,True,@media (prefers-color-scheme:dark),"19858,19858",#91bce2
+ASME Custom CSS.css,16809,body #page .asme-home .ah-featured-meta span,backdrop-filter,blur(6px),True,,18319,blur(12px) saturate(135%)
+ASME Custom CSS.css,17811,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body .leadership-board | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page,width,100%,True,@media (min-width:1920px),"23459,23459,23459,23459,23459,23459,23459,23459,23459,23459,23459,23459,23459,23459,23459",100%
+ASME Custom CSS.css,17812,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body .leadership-board | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page,max-width,"min(2100px,calc(100vw - 80px))",True,@media (min-width:1920px),"23460,23460,23460,23460,23460,23460,23460,23460,23460,23460,23460,23460,23460,23460,23460","min(2100px,calc(100vw - 80px))"
+ASME Custom CSS.css,17816,body #page .asme-cal-page .acp-header,max-width,none,True,@media (min-width:1920px),23468,none
+ASME Custom CSS.css,19442,body #page .asme-sponsor-page .sponsor-tier-heading | html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading,display,block,True,,"23612,23612",grid
+ASME Custom CSS.css,19467,body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-heading::after | html body #page .entry-content .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-heading::after,width,max-content,True,,"23642,23642",100%
+ASME Custom CSS.css,19506,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,position,absolute,True,,"23627,23627",static
+ASME Custom CSS.css,19513,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,min-width,65px,True,,"23631,23631",0
+ASME Custom CSS.css,19514,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,max-width,65px,True,,"23632,23632",100%
+ASME Custom CSS.css,19516,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,min-height,65px,True,,"23634,23634",0
+ASME Custom CSS.css,19517,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,max-height,65px,True,,"23635,23635",none
+ASME Custom CSS.css,19712,body #page .asme-sponsor-page .sponsor-tier-heading | html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading,padding-right,86px,True,@media (max-width:700px),"23616,23616",0
+ASME Custom CSS.css,19735,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,width,63px,True,@media (max-width:700px),"23630,23630",65px
+ASME Custom CSS.css,19736,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,min-width,63px,True,@media (max-width:700px),"23631,23631",0
+ASME Custom CSS.css,19737,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,max-width,63px,True,@media (max-width:700px),"23632,23632",100%
+ASME Custom CSS.css,19738,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,height,63px,True,@media (max-width:700px),"23633,23633",65px
+ASME Custom CSS.css,19739,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,min-height,63px,True,@media (max-width:700px),"23634,23634",0
+ASME Custom CSS.css,19740,body #page .asme-sponsor-page .sponsor-tier-icon | html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon,max-height,63px,True,@media (max-width:700px),"23635,23635",none
+ASME Custom CSS.css,22306,body #page .asme-cal-page .acp-event-card | html body #page .entry-content .asme-cal-page .acp-event-card,min-height,128px,True,,"23660,23660",0
+ASME Custom CSS.css,22493,body #page .asme-cal-page .acp-event-card | html body #page .entry-content .asme-cal-page .acp-event-card,min-height,0,True,@media (max-width:900px),"23660,23660",0
+ASME Custom CSS.css,23476,body #page .asme-join-page | html body #page .entry-content .asme-join-page,padding-right,0,True,@media (min-width:981px),"24071,24071",0
+ASME Custom CSS.css,23477,body #page .asme-join-page | html body #page .entry-content .asme-join-page,padding-left,0,True,@media (min-width:981px),"24072,24072",0
+ASME Custom CSS.css,23986,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body #page .asme-members-page | html body #page .entry-content .asme-members-page | body #page .asme-member-resources-page | html body #page .entry-content .asme-member-resources-page | body .leadership-board,box-sizing,border-box,True,@media (min-width:981px),"24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066,24066",border-box
+ASME Custom CSS.css,23987,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body #page .asme-members-page | html body #page .entry-content .asme-members-page | body #page .asme-member-resources-page | html body #page .entry-content .asme-member-resources-page | body .leadership-board,width,calc(100vw - 80px),True,@media (min-width:981px),"24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067,24067",100%
+ASME Custom CSS.css,23988,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body #page .asme-members-page | html body #page .entry-content .asme-members-page | body #page .asme-member-resources-page | html body #page .entry-content .asme-member-resources-page | body .leadership-board,max-width,2100px,True,@media (min-width:981px),"24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068,24068",none
+ASME Custom CSS.css,23989,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body #page .asme-members-page | html body #page .entry-content .asme-members-page | body #page .asme-member-resources-page | html body #page .entry-content .asme-member-resources-page | body .leadership-board,margin-right,auto,True,@media (min-width:981px),"24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069,24069",0
+ASME Custom CSS.css,23990,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body #page .asme-members-page | html body #page .entry-content .asme-members-page | body #page .asme-member-resources-page | html body #page .entry-content .asme-member-resources-page | body .leadership-board,margin-left,auto,True,@media (min-width:981px),"24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070,24070",0
+ASME Custom CSS.css,23991,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body #page .asme-members-page | html body #page .entry-content .asme-members-page | body #page .asme-member-resources-page | html body #page .entry-content .asme-member-resources-page | body .leadership-board,padding-right,0,True,@media (min-width:981px),"24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071,24071",0
+ASME Custom CSS.css,23992,body #page .asme-home | html body #page .entry-content .asme-home | body #page .asme-about-page | html body #page .entry-content .asme-about-page | body #page .asme-join-page | html body #page .entry-content .asme-join-page | body #page .asme-cal-page | html body #page .entry-content .asme-cal-page | body #page .asme-gallery-page | html body #page .entry-content .asme-gallery-page | body #page .asme-sponsors-page | html body #page .entry-content .asme-sponsors-page | body #page .asme-sponsor-page | html body #page .entry-content .asme-sponsor-page | body #page .asme-members-page | html body #page .entry-content .asme-members-page | body #page .asme-member-resources-page | html body #page .entry-content .asme-member-resources-page | body .leadership-board,padding-left,0,True,@media (min-width:981px),"24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072,24072",0
+ASME Custom CSS.css,24000,body #page .asme-cal-page .acp-header | html body #page .entry-content .asme-cal-page .acp-header | body #page .asme-join-page .join-faq-section | html body #page .entry-content .asme-join-page .join-faq-section,width,100%,True,@media (min-width:981px),"24079,24079,24079,24079",100%
+ASME Custom CSS.css,24001,body #page .asme-cal-page .acp-header | html body #page .entry-content .asme-cal-page .acp-header | body #page .asme-join-page .join-faq-section | html body #page .entry-content .asme-join-page .join-faq-section,max-width,none,True,@media (min-width:981px),"24080,24080,24080,24080",none
+ASME Custom CSS.css,24002,body #page .asme-cal-page .acp-header | html body #page .entry-content .asme-cal-page .acp-header | body #page .asme-join-page .join-faq-section | html body #page .entry-content .asme-join-page .join-faq-section,margin-right,0,True,@media (min-width:981px),"24081,24081,24081,24081",0
+ASME Custom CSS.css,24003,body #page .asme-cal-page .acp-header | html body #page .entry-content .asme-cal-page .acp-header | body #page .asme-join-page .join-faq-section | html body #page .entry-content .asme-join-page .join-faq-section,margin-left,0,True,@media (min-width:981px),"24082,24082,24082,24082",0
+celebration.css,10,#asme-celebration-experience,z-index,50,False,,258,100000
+celebration.css,10,#asme-celebration-experience,background,#050a12,False,,143,"rgba(3,10,21,.43)"
+celebration.css,10,#asme-celebration-experience,display,none,False,,143,block
+celebration.css,15,#asme-celebration-experience .stadium,background,"radial-gradient(ellipse 57% 32%at 50% 108%,#5811269c,transparent 80%),radial-gradient(ellipse 55% 32%at 50% 1%,#132747,transparent 90%),#050a12",False,,145,"radial-gradient(ellipse at 50% 70%,rgba(96,12,37,.27),transparent 65%)"
+celebration.css,17,#asme-celebration-experience .stadium:after,opacity,.18,False,,146,.10
+celebration.css,18,#asme-celebration-experience .spot,opacity,.5,False,,147,.2
+celebration.css,22,#asme-celebration-experience .asme-c-topbar,top,22px,False,,259,"max(14px,env(safe-area-inset-top))"
+celebration.css,22,#asme-celebration-experience .asme-c-topbar,left,"clamp(18px,4vw,65px)",False,,259,"max(12px,env(safe-area-inset-left))"
+celebration.css,22,#asme-celebration-experience .asme-c-topbar,right,"clamp(18px,4vw,65px)",False,,259,"max(12px,env(safe-area-inset-right))"
+celebration.css,25,#asme-celebration-experience .topactions,gap,9px,False,,260,5px
+celebration.css,33,#asme-celebration-experience .display,font-size,"clamp(58px,12vw,178px)",False,,152,"clamp(55px,10vw,145px)"
+celebration.css,48,#asme-celebration-experience .formation-caption,display,none,True,,165,none
+celebration.css,48,#asme-celebration-experience .formation-caption,bottom,20%,False,,153,17%
+celebration.css,49,#asme-celebration-experience .whiteflash,background,white,False,,154,#f5dfe6
+celebration.css,50,#asme-celebration-experience .whiteflash.go,animation,asme-celebration-flash .75s ease-out forwards,False,,155,asme-celebration-softflash .75s ease-out forwards
+celebration.css,52,#asme-celebration-experience .final,display,none,False,,150,none
+celebration.css,52,#asme-celebration-experience .final,padding,90px 20px 35px,False,,150,75px 20px 45px
+celebration.css,52,#asme-celebration-experience .final,background,"radial-gradient(ellipse 75% 80%at 50% 26%,#2d1738aa,transparent 65%),linear-gradient(180deg,#070f20d9,#07101eea)",False,,148,transparent
+celebration.css,53,#asme-celebration-experience .final.show,display,block,False,,151,grid
+celebration.css,53,#asme-celebration-experience .final.show,animation,"asme-celebration-asme-celebration-finalArrival .8s cubic-bezier(.2,.8,.2,1) both",False,,230,"asme-celebration-asme-celebration-finalArrival .82s cubic-bezier(.16,1,.3,1) both"
+celebration.css,56,#asme-celebration-experience .finalinner,max-width,1020px,False,,178,1140px
+celebration.css,56,#asme-celebration-experience .finalinner,margin,0 auto,False,,263,auto
+celebration.css,56,#asme-celebration-experience .finalinner,grid-template-columns,1fr 1fr,False,,178,"minmax(0,1.08fr) minmax(0,.92fr)"
+celebration.css,56,#asme-celebration-experience .finalinner,gap,"clamp(25px,5vw,80px)",False,,149,"clamp(20px,4vw,60px)"
+celebration.css,56,#asme-celebration-experience .finalinner,min-height,calc(100vh - 160px),False,,263,0
+celebration.css,58,#asme-celebration-experience .finalcopy h2,letter-spacing,-.07em,False,,271,-.05em
+celebration.css,60,#asme-celebration-experience .finalcopy p,color,#bbcbdf,False,,272,#c5d0df
+celebration.css,62,#asme-celebration-experience .finalbuttons,display,flex,False,,264,flex
+celebration.css,62,#asme-celebration-experience .finalbuttons,gap,11px,False,,180,10px
+celebration.css,62,#asme-celebration-experience .finalbuttons,margin-top,27px,False,,180,24px
+celebration.css,65,#asme-celebration-experience .card,aspect-ratio,1.58,False,,268,1.58
+celebration.css,75,#asme-celebration-experience .cardname,font-size,"clamp(23px,3.7vw,47px)",False,,270,"clamp(20px,3.7vw,42px)"
+celebration.css,80,#asme-celebration-experience .ticker,opacity,.75,False,,157,.4
+celebration.css,92,#asme-celebration-experience .finalinner,max-width,700px,False,@media (max-width:1000px),196,680px
+celebration.css,92,#asme-celebration-experience .finalinner,grid-template-columns,1fr,False,@media (max-width:1000px),196,1fr
+celebration.css,92,#asme-celebration-experience .finalinner,gap,32px,False,@media (max-width:1000px),149,"clamp(20px,4vw,60px)"
+celebration.css,101,#asme-celebration-experience .ticker,display,none,False,@media (max-width:1000px),165,none
+celebration.css,126,#asme-celebration-experience .finalcopy h2,font-size,59px,False,@media (max-width:620px),158,"clamp(48px,6vw,90px)"
+celebration.css,127,#asme-celebration-experience .final,padding,100px 22px 20px,False,@media (max-width:620px),150,75px 20px 45px
+celebration.css,135,#asme-celebration-experience .asme-c-topbar,top,15px,False,@media (max-width:620px),259,"max(14px,env(safe-area-inset-top))"
+celebration.css,149,#asme-celebration-experience .finalinner,max-width,990px,False,,178,1140px
+celebration.css,149,#asme-celebration-experience .finalinner,min-height,"min(620px,calc(100dvh - 145px))",False,,263,0
+celebration.css,149,#asme-celebration-experience .finalinner,padding,"clamp(24px,4vw,56px)",False,,263,"clamp(20px,4vw,48px)"
+celebration.css,150,#asme-celebration-experience .final,align-content,center,False,,262,start
+celebration.css,159,#asme-celebration-experience .finalinner,grid-template-columns,1fr,False,@media (max-width:720px),178,"minmax(0,1.08fr) minmax(0,.92fr)"
+celebration.css,159,#asme-celebration-experience .finalinner,min-height,unset,False,@media (max-width:720px),263,0
+celebration.css,159,#asme-celebration-experience .finalinner,padding,24px,False,@media (max-width:720px),263,"clamp(20px,4vw,48px)"
+celebration.css,163,#asme-celebration-experience .final,align-content,start,False,@media (max-width:720px),262,start
+celebration.css,180,#asme-celebration-experience .finalbuttons,display,grid,False,,264,flex
+celebration.css,180,#asme-celebration-experience .finalbuttons,align-items,stretch,False,,264,stretch
+celebration.css,185,#asme-celebration-experience .linkedin-panel,display,none,False,,209,block
+celebration.css,185,#asme-celebration-experience .linkedin-panel,padding,14px,False,,209,"clamp(20px,3.4vw,30px)"
+celebration.css,185,#asme-celebration-experience .linkedin-panel,border-radius,14px,False,,209,22px
+celebration.css,185,#asme-celebration-experience .linkedin-panel,background,"rgba(11,24,42,.92)",False,,209,"linear-gradient(155deg,#142137,#0b1425 75%)"
+celebration.css,185,#asme-celebration-experience .linkedin-panel,border,"1px solid rgba(93,119,150,.55)",False,,209,"1px solid rgba(172,193,217,.26)"
+celebration.css,185,#asme-celebration-experience .linkedin-panel,box-shadow,"0 14px 34px rgba(0,0,0,.28)",False,,209,"0 36px 100px rgba(0,0,0,.62)"
+celebration.css,186,#asme-celebration-experience .linkedin-panel.show,display,block,False,,209,block
+celebration.css,186,#asme-celebration-experience .linkedin-panel.show,animation,asme-celebration-reveal .32s ease both,False,,209,"asme-celebration-linkedinIn .3s cubic-bezier(.2,.8,.2,1) both"
+celebration.css,187,#asme-celebration-experience .linkedin-panel h4,margin,0 0 8px,False,,213,0 0 14px
+celebration.css,187,#asme-celebration-experience .linkedin-panel h4,font-size,13px,False,,213,"clamp(19px,2.8vw,27px)"
+celebration.css,187,#asme-celebration-experience .linkedin-panel h4,letter-spacing,.09em,False,,213,-.035em
+celebration.css,187,#asme-celebration-experience .linkedin-panel h4,text-transform,uppercase,False,,213,none
+celebration.css,187,#asme-celebration-experience .linkedin-panel h4,color,#dbe7f6,False,,213,#fff
+celebration.css,189,#asme-celebration-experience .linkedin-steps,grid-template-columns,"repeat(3,minmax(0,1fr))",False,,216,"repeat(3,minmax(0,1fr))"
+celebration.css,189,#asme-celebration-experience .linkedin-steps,gap,10px,False,,216,8px
+celebration.css,190,#asme-celebration-experience .linkedin-steps button,padding,12px 10px,False,,217,12px 7px
+celebration.css,194,#asme-celebration-experience .linkedin-steps,grid-template-columns,1fr,False,@media (max-width:700px),216,"repeat(3,minmax(0,1fr))"
+celebration.css,200,#asme-celebration-experience .finalinner,padding,10px 0 36px,False,@media (max-width:520px),263,"clamp(20px,4vw,48px)"
+celebration.css,201,#asme-celebration-experience .final,padding,85px 18px 20px,False,@media (max-width:520px),273,86px 12px 24px
+celebration.css,223,#asme-celebration-experience .linkedin-panel,max-height,90vh,False,@media (max-width:570px),269,calc(100dvh - 48px)
+celebration.css,282,#asme-groupme-return,margin,18px 0 8px,False,,294,8px 0 0
+celebration.css,282,#asme-groupme-return,padding,20px,False,,294,22px 24px
+celebration.css,307,html body #asme-celebration-experience .final-actions .final-share,background,#bb0000,True,,325,#0a66c2
+celebration.css,341,html body #asme-celebration-experience .linkedin-steps,display,grid,False,,377,block
+celebration.css,342,html body #asme-celebration-experience .linkedin-steps button,background,#1b304b,True,,378,#0a66c2
+celebration.css,361,html body #asme-celebration-experience .caption-choices,margin,0 0 22px,False,,373,0 0 16px
+join-three-step.css,9,html body #page .entry-content .asme-join-page.asme-join-three-step .join-process-content,display,grid,True,,58,contents
+join-three-step.css,16,html body #page .entry-content .asme-join-page.asme-join-three-step .join-submit-button,padding,0 12px,True,,70,10px 12px
+join-three-step.css,21,html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-button,padding,12px,True,,70,10px 12px
+join-three-step.css,24,html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress-step,min-width,0,True,,60,0
+join-three-step.css,24,html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress-step,gap,8px,True,,60,10px
+join-three-step.css,29,html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return,grid-column,auto,True,,66,3
+join-three-step.css,29,html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return,padding,24px 20px,True,,66,24px
+join-three-step.css,32,#asme-groupme-return .join-welcome-keepsake,max-width,250px,False,,74,none
+join-three-step.css,32,#asme-groupme-return .join-welcome-keepsake,transform,rotate(-4deg),False,,114,none
+join-three-step.css,36,#asme-groupme-return .join-keepsake-name,margin-top,16px,False,,73,14px
+join-three-step.css,41,html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return .asme-return-confirm,min-height,48px,False,,70,52px
+join-three-step.css,41,html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return .asme-return-confirm,padding,12px 10px,True,,70,10px 12px
+join-three-step.css,41,html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return .asme-return-confirm,border-radius,999px,False,,153,12px
+join-three-step.css,43,#asme-groupme-return .asme-return-reopen,padding,10px 0 0,False,,71,0
+join-three-step.css,47,html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress-step small,display,none,True,@media (max-width:900px),76,block
+join-three-step.css,47,html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress-step,gap,5px,True,@media (max-width:900px),60,10px
+join-three-step.css,48,html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress-line,display,none,True,@media (max-width:375px),59,none
+join-three-step.css,49,html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return,border-color,#493248,True,@media (prefers-color-scheme:dark),55,#304a67
+join-three-step.css,49,html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return,background,"linear-gradient(180deg,#251f35,#1b2032)",True,@media (prefers-color-scheme:dark),55,"linear-gradient(180deg,#172a42,#14243a)"
+join-three-step.css,49,#asme-groupme-return .asme-return-confirm:disabled,background,#383348,True,@media (prefers-color-scheme:dark),55,#2b3b52
+join-three-step.css,49,#asme-groupme-return .asme-return-confirm:disabled,color,#c3bdcd,True,@media (prefers-color-scheme:dark),55,#bdcbdc
+join-three-step.css,51,html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress,display,grid,True,,58,contents
+join-three-step.css,57,html body #page .entry-content .asme-join-page.asme-join-three-step .join-process-area,row-gap,16px,True,,101,12px
+join-three-step.css,76,html body #page .entry-content .asme-join-page.asme-join-three-step .join-process-area,row-gap,12px,True,@media (max-width:900px),101,12px
+join-three-step.css,98,html body #page .entry-content .asme-join-page.asme-join-three-step .join-stats-bar .join-proof-award,gap,8px,True,,106,12px
+join-three-step.css,99,html body #page .entry-content .asme-join-page.asme-join-three-step .join-proof-award-icon,font-size,16px,True,,107,0
+join-three-step.css,102,html body #page .entry-content .asme-join-page.asme-join-three-step .join-stats-bar .join-proof-award,gap,3px,True,@media (max-width:560px),112,7px
+join-three-step.css,102,html body #page .entry-content .asme-join-page.asme-join-three-step .join-proof-award-icon,font-size,14px,True,@media (max-width:560px),107,0
+join-three-step.css,117,html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon | html body #page .entry-content .asme-join-page.asme-join-three-step .join-welcome-visual,margin,8px 0 32px,True,,"127,127",0 0 20px
+join-three-step.css,118,html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon .join-groupme-logo,width,90px,True,,160,120px
+join-three-step.css,118,html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon .join-groupme-logo,height,103px,True,,160,auto
+join-three-step.css,123,html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon .join-groupme-logo,width,76px,True,@media (max-width:900px),160,120px
+join-three-step.css,123,html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon .join-groupme-logo,height,87px,True,@media (max-width:900px),160,auto
+assets/gearly/gearly-tour.css,1,.gearly-tour-ring,box-shadow,0 0 0 9999px rgb(0 0 0/.58),False,,13,0 0 0 9999px rgb(0 0 0/.35)
+assets/gearly/gearly-tour.css,1,.gearly-tour-ring,transition,"top .15s,left .15s,width .15s,height .15s",False,,13,none
+assets/gearly/gearly-tour.css,1,.gearly-tour button,cursor,pointer,False,,1,pointer
+assets/gearly/gearly-tour.css,1,.gearly-tour-offer,bottom,100px,False,,63,100px
+assets/gearly/gearly-tour.css,1,.gearly-tour-offer,right,16px,False,,63,20px
+assets/gearly/gearly-tour.css,1,.gearly-tour-offer,width,340px,False,,62,360px
+assets/gearly/gearly-tour.css,1,.gearly-tour-offer,max-width,calc(100vw - 32px),False,,62,calc(100vw - 32px)
+assets/gearly/gearly-tour.css,1,.gearly-tour-offer p,margin,0 0 12px,False,,83,0
+assets/gearly/gearly-tour.css,1,.gearly-tour-offer button,margin,0 8px 4px 0,False,,85,0
+assets/gearly/gearly-tour.css,1,.gearly-tour-ring,transition,none,False,@media (prefers-reduced-motion:reduce),13,none
+assets/gearly/gearly-tour.css,5,.gearly-tour-controls button,font-size,22px,False,,36,14px
+assets/gearly/gearly-tour.css,32,.gearly-tour-tip,border-radius,16px,False,@media (max-width:600px),152,18px
