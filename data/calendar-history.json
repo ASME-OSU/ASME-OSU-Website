@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-30T01:08:31.688Z",
-  "checkedAt": "2026-11-02T06:25:56.868Z",
+  "generatedAt": "2026-11-02T17:13:50.770Z",
+  "checkedAt": "2026-11-02T17:13:50.767Z",
   "windowStart": "2026-08-01T04:00:00.000Z",
-  "windowEnd": "2026-11-02T06:25:56.835Z",
+  "windowEnd": "2026-11-02T17:13:50.730Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
@@ -337,6 +337,16 @@
       "location": "Scott Laboratory E141",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
       "updated": "2026-10-28T02:48:08.000Z"
+    },
+    {
+      "id": "4o94ugad0fu7c42nu4j2huli1j@google.com::2026-11-02T12:00:00.000Z",
+      "title": "Enrollment Census Date (second-session)",
+      "start": "2026-11-02T12:00:00.000Z",
+      "end": "2026-11-03T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:54:00.000Z"
     }
   ]
 }
