@@ -309,3 +309,8 @@ Gearly v2 also routes registered sections, reads current and historical officers
 ## Audit repairs and compatibility assets (November 2026)
 
 See [repository cleanup](docs/repository-cleanup.md) and the complete [file review inventory](docs/repository-inventory-2026-11-01.csv). `celebration.js` is the stable, lightweight Join loader; maintain the full experience in `assets/celebration/experience.js`. PNG pose paths remain as optimized compatibility copies for cached clients; new runtime references use WebP. Feed workflows share `scripts/publish-feed.mjs` and publish Pages only after changed data. Use Node 24 for current tooling.
+
+
+## CSS cascade audits
+
+Run `npm run audit:css` to report exact-selector declarations superseded by later rules. See [the November 2026 CSS cleanup](docs/css-cascade-cleanup.md) and its declaration-by-declaration removal log. The helper preserves fallback, conditional, and generated-style boundaries; rendered regression comparisons are required before publishing another cleanup.
