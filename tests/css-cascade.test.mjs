@@ -20,6 +20,7 @@ test('importance is respected and distinct selector specificity is not guessed',
 });
 test('invalid values and vendor selector groups cannot erase portable fallbacks', () => {
   assert.equal(cleanCascade('.a{display:block}.a{display:not-a-display-value}').removed.length, 0);
+  assert.equal(cleanCascade('.a{display:-webkit-box}.a{display:flex}').removed.length, 0);
   assert.equal(cleanCascade('.a{color:red}.a,::-webkit-nonstandard{color:blue}').removed.length, 0);
 });
 test('layers, keyframes, custom properties and shorthand relationships are preserved', () => {

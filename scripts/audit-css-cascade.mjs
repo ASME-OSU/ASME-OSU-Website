@@ -41,7 +41,7 @@ export function cleanCascade(source, { protectedFrom = Infinity } = {}) {
   const later = new Map();
   const removed = [];
   for (const row of [...declarations].reverse()) {
-    if (row.start < protectedFrom && !row.property.startsWith('-')) {
+    if (row.start < protectedFrom && !row.property.startsWith('-') && !/-(?:webkit|moz|ms|o)-/.test(row.value)) {
       const winners = row.selectors.map(selector => (later.get(`${selector}|${row.property}`) || []).find(candidate =>
         (!row.important || candidate.important) &&
         candidate.conditions.every(condition => row.conditions.includes(condition)) &&
