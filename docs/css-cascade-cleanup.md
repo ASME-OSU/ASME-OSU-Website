@@ -26,7 +26,7 @@ Run `npm run audit:css` for a read-only report. `node scripts/audit-css-cascade.
 
 ## Payload change
 
-The main production stylesheet changes from 637,280 to 618,582 bytes: 18,698 bytes smaller (2.93%) before HTTP compression. Locally gzipped size changes from 75,349 to 73,968 bytes (1.83%). These are file-size measurements, not a page-load-time benchmark. Avoid adding source and generated file savings together as if both were downloaded by the browser.
+The main production stylesheet changes from 637,280 to 618,582 bytes: 18,698 bytes smaller (2.93%) before HTTP compression. Locally gzipped size changes from 75,349 to 73,963 bytes (1.84%). These are file-size measurements, not a page-load-time benchmark. Avoid adding source and generated file savings together as if both were downloaded by the browser.
 
 ## Verification
 
