@@ -1,0 +1,172 @@
+/* Wide screens get compositions with more useful columns, not longer lines.
+   Keep the existing 2100px site frame and all layouts below 1800px. */
+@media (min-width: 1800px) {
+  html body #page .entry-content {
+    --asme-wide-gap: clamp(24px, 1.4vw, 36px);
+    --asme-wide-pad: clamp(32px, 2vw, 48px);
+  }
+  html body #page .entry-content :is(.asme-home, .asme-about-page, .asme-join-page, .asme-cal-page, .asme-gallery-page, .asme-sponsors-page, .asme-sponsor-page, .asme-members-page, .leadership-board) h1 {
+    font-size: clamp(60px, 3vw, 76px) !important;
+    line-height: 1.08 !important;
+  }
+  html body #page .entry-content :is(.ah-card, .about-pillar, .about-semester-step, .sponsor-benefit-card) p {
+    font-size: 18px !important;
+    line-height: 1.65 !important;
+  }
+
+  /* Gallery: the latest story and recent posts share a single visual row. */
+  html body #page .entry-content .asme-gallery-page {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2.1fr) minmax(420px, 1fr) !important;
+    gap: var(--asme-wide-gap) !important;
+    align-items: start !important;
+  }
+  html body #page .entry-content .asme-gallery-page > * { min-width: 0; grid-column: 1 / -1; }
+  html body #page .entry-content .asme-gallery-page > :is(br, p:empty) { display: none !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-hero {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    column-gap: var(--asme-wide-gap) !important;
+    padding: var(--asme-wide-pad) !important;
+    margin: 0 !important;
+    align-items: center !important;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-hero .gallery-eyebrow { grid-column: 1 / -1; }
+  html body #page .entry-content .asme-gallery-page .gallery-hero h1 { margin: 0 !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-hero p { margin: 0 !important; max-width: 58ch !important; font-size: 20px !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr) !important;
+    gap: var(--asme-wide-gap) !important;
+    justify-content: stretch !important;
+    align-items: center !important;
+    padding: 32px !important;
+    margin: 0 !important;
+    align-self: stretch !important;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-media {
+    width: 100% !important; max-width: none !important; margin: 0 !important;
+    align-self: center !important; justify-self: start !important;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-media img { object-fit: contain !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy {
+    display: flex !important; flex-direction: column !important; justify-content: center !important;
+    align-items: flex-start !important; max-width: none !important; gap: 0 !important; padding: 0 !important;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-eyebrow { margin: 0 0 16px !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy h2 {
+    font-size: clamp(36px, 2vw, 48px) !important; line-height: 1.1 !important;
+    margin: 0 0 20px !important; text-wrap: balance;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-copy > p {
+    max-width: none !important; font-size: 18px !important; line-height: 1.65 !important; margin: 0 0 24px !important;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-actions {
+    margin: 0 !important; padding: 0 !important; align-self: auto !important; flex-wrap: wrap !important;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent {
+    grid-column: 2 !important; grid-row: 2 !important; margin: 0 !important; padding: 28px !important;
+    align-self: stretch !important; display: flex !important; flex-direction: column !important;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-header { align-items: start !important; flex-direction: column !important; gap: 12px !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-header h2 { font-size: 32px !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid { grid-template-columns: 1fr !important; gap: 16px !important; flex: 1 !important; align-content: center !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card {
+    grid-template-columns: 112px minmax(0, 1fr) !important; grid-template-rows: auto !important; align-items: center !important;
+  }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-copy { padding: 16px !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-copy strong { font-size: 18px !important; line-height: 1.4 !important; }
+  html body #page .entry-content .asme-gallery-page .gallery-archive-header { margin: 8px 0 0 !important; }
+  html body #page .entry-content .asme-gallery-page .gallery { margin-top: 0 !important; }
+
+  /* Home: substantial hero, then an event and chapter introduction in parallel. */
+  html body #page .entry-content .asme-home { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; gap: var(--asme-wide-gap) !important; }
+  html body #page .entry-content .asme-home > * { grid-column: 1 / -1; min-width: 0; }
+  /* Home has no authored root paragraphs; WordPress inserts whitespace nodes. */
+  html body #page .entry-content .asme-home > :is(br, p) { display: none !important; }
+  html body #page .entry-content .asme-home .ah-hero { min-height: 560px !important; margin: 0 !important; grid-template-columns: minmax(0, 1fr) 420px !important; align-items: center !important; }
+  html body #page .entry-content .asme-home .ah-hero-left { padding: var(--asme-wide-pad) !important; }
+  html body #page .entry-content .asme-home .ah-sub { max-width: 64ch !important; font-size: 20px !important; line-height: 1.65 !important; }
+  html body #page .entry-content .asme-home .ah-hero-right { padding: 32px !important; }
+  html body #page .entry-content .asme-home .ah-spotlight { right: 0 !important; transform: none !important; width: 100% !important; }
+  html body #page .entry-content .asme-home .ah-featured-event { grid-column: span 7 !important; margin: 0 !important; padding: 32px !important; }
+  html body #page .entry-content .asme-home .ah-about { grid-column: span 5 !important; margin: 0 !important; padding: 32px !important; }
+  html body #page .entry-content .asme-home .ah-about-text { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
+  html body #page .entry-content .asme-home .ah-about-text > * { margin: 0 !important; max-width: none !important; }
+  html body #page .entry-content .asme-home :is(.ah-about-text p, #asmeFeaturedDescription) { font-size: 18px !important; line-height: 1.65 !important; }
+  html body #page .entry-content .asme-home .ah-section-title { font-size: 36px !important; }
+
+  /* About: fill the introduction and use both halves of section headings. */
+  html body #page .entry-content .asme-about-page .about-hero-copy { padding: var(--asme-wide-pad) !important; }
+  html body #page .entry-content .asme-about-page .about-hero-copy h1 { font-size: clamp(64px, 3.4vw, 84px) !important; max-width: none !important; }
+  html body #page .entry-content .asme-about-page .about-hero-copy > p { max-width: 58ch !important; font-size: 20px !important; line-height: 1.65 !important; }
+  html body #page .entry-content .asme-about-page .about-section-heading { display: grid !important; grid-template-columns: 1fr 1fr !important; align-items: center !important; gap: 48px !important; }
+  html body #page .entry-content .asme-about-page .about-section-heading > div { max-width: none !important; }
+  html body #page .entry-content .asme-about-page .about-section-heading > p { max-width: 64ch !important; margin: 0 !important; font-size: 18px !important; }
+  html body #page .entry-content .asme-about-page .about-section-heading h2 { max-width: none !important; font-size: 40px !important; }
+
+  /* Join: readable introduction and FAQ answers that don't span the monitor. */
+  /* These selectors also outrank the legacy stylesheet embedded in Join HTML. */
+  html body #page .entry-content .asme-join-page.asme-join-three-step div.join-main-layout { grid-template-columns: minmax(400px, 1fr) minmax(0, 3fr) !important; gap: 32px !important; }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-intro.join-hero-copy h1 { font-size: clamp(42px, 2.3vw, 58px) !important; }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-intro.join-hero-copy > p { max-width: 44ch !important; font-size: 18px !important; line-height: 1.65 !important; }
+  html body #page .entry-content .asme-join-page .join-faq-list { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px 24px !important; align-items: start !important; }
+  html body #page .entry-content .asme-join-page .join-faq-item { margin: 0 !important; }
+  html body #page .entry-content .asme-join-page .join-faq-list > :is(br, p:empty) { display: none !important; }
+
+  /* Calendar: readable agenda beside the month view, with help below it. */
+  html body #page .entry-content .asme-cal-page { display: grid !important; grid-template-columns: minmax(420px, 1fr) minmax(0, 2.2fr) !important; gap: 24px !important; align-items: start !important; }
+  html body #page .entry-content .asme-cal-page > * { grid-column: 1 / -1; min-width: 0; }
+  html body #page .entry-content .asme-cal-page > :is(br, p:empty) { display: none !important; }
+  html body #page .entry-content .asme-cal-page .acp-header { margin: 0 !important; }
+  html body #page .entry-content .asme-cal-page .acp-header .acp-title { font-size: clamp(60px, 3vw, 76px) !important; }
+  html body #page .entry-content .asme-cal-page .acp-header .acp-sub { font-size: 20px !important; max-width: 64ch !important; line-height: 1.6 !important; }
+  html body #page .entry-content .asme-cal-page .acp-upcoming { grid-column: 1 !important; grid-row: 2 !important; padding: 28px !important; margin: 0 !important; }
+  html body #page .entry-content .asme-cal-page .acp-upcoming-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  html body #page .entry-content .asme-cal-page .acp-event-card { min-height: 116px !important; padding: 20px !important; }
+  html body #page .entry-content .asme-cal-page .acp-event-copy h3 { font-size: 20px !important; }
+  html body #page .entry-content .asme-cal-page .acp-event-copy p { font-size: 15px !important; }
+  html body #page .entry-content .asme-cal-page .acp-cal-card { grid-column: 2 !important; grid-row: 2 / 4 !important; margin: 0 !important; }
+  html body #page .entry-content .asme-cal-page .acp-cal-card iframe { height: 780px !important; }
+  html body #page .entry-content .asme-cal-page .acp-info-strip { grid-column: 1 !important; grid-row: 3 !important; display: grid !important; grid-template-columns: 1fr !important; margin: 0 !important; gap: 16px !important; }
+
+  /* Leadership: photographs and names grow with their cards. */
+  html body #page .entry-content .leadership-board .lb-grid { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)) !important; width: 100% !important; max-width: none !important; gap: 24px !important; }
+  html body #page .entry-content .leadership-board .leader-card { width: auto !important; max-width: none !important; padding: 26px 16px !important; }
+  html body #page .entry-content .leadership-board .leader-photo { width: 144px !important; height: 160px !important; object-fit: cover !important; }
+  html body #page .entry-content .leadership-board .leader-card h4 { font-size: 21px !important; }
+  html body #page .entry-content .leadership-board .leader-card > a:not(.leader-linkedin) { font-size: 14px !important; overflow-wrap: anywhere; }
+
+  /* Resources: distribute the actual cards, eliminating unused grid tracks. */
+  html body #page .entry-content .asme-member-resources-page .asme-resource-group--start .asme-member-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important; }
+  html body #page .entry-content .asme-member-resources-page .asme-member-grid--2col { width: 100% !important; max-width: none !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  html body #page .entry-content .asme-member-resources-page .asme-resource-card { padding: 28px !important; }
+  html body #page .entry-content .asme-member-resources-page .asme-resource-card-title { font-size: 21px !important; }
+  html body #page .entry-content .asme-member-resources-page .asme-resource-card-desc { font-size: 17px !important; line-height: 1.65 !important; max-width: 65ch !important; }
+  html body #page .entry-content .asme-members-page .asme-member-hero-copy { display: grid !important; grid-template-columns: 1fr 1fr !important; column-gap: 48px !important; align-items: center !important; }
+  html body #page .entry-content .asme-members-page .asme-member-hero-copy > :is(.asme-member-eyebrow, .asme-points-hero-kicker) { grid-column: 1 / -1 !important; }
+  html body #page .entry-content .asme-members-page .asme-member-hero-copy > h1 { grid-column: 1 !important; margin: 8px 0 0 !important; }
+  html body #page .entry-content .asme-members-page .asme-member-hero-desc { grid-column: 2 !important; max-width: 58ch !important; font-size: 20px !important; line-height: 1.6 !important; margin: 0 !important; }
+  html body #page .entry-content .asme-points-page-v2 .asme-points-primary-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) !important; gap: 32px !important; }
+  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-row { min-height: 64px !important; }
+
+  /* Corporate: balance copy with statistics, and use the width for tiers/logos. */
+  html body #page .entry-content .asme-sponsor-page .sponsor-hero { grid-template-columns: 1.2fr 1fr !important; gap: 64px !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-hero h1 { max-width: none !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-hero-copy > p { font-size: 20px !important; max-width: 62ch !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-section-header { max-width: none !important; display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px 48px !important; align-items: center !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-section-header > .sponsor-eyebrow { grid-column: 1 / -1 !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-section-header h2 { margin: 0 !important; font-size: 40px !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-section-header > p { margin: 0 !important; font-size: 18px !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsors-hero { display: grid !important; grid-template-columns: 1.1fr 1fr !important; gap: 12px 48px !important; align-items: center !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsors-hero .sponsors-eyebrow { grid-column: 1 / -1 !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsors-hero h1 { margin: 0 !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsors-hero > p { font-size: 20px !important; max-width: 62ch !important; margin: 0 !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsors-grid-partners { display: grid !important; grid-template-columns: repeat(6, minmax(0, 1fr)) !important; width: 100% !important; max-width: none !important; gap: 24px !important; }
+  html body #page .entry-content .asme-sponsors-page .sponsors-grid-partners > .sponsor-card { width: auto !important; max-width: none !important; }
+  @media (prefers-color-scheme: dark) {
+    html body #page .entry-content .asme-gallery-page .gallery-instagram-eyebrow { color: #ffb4b4 !important; }
+  }
+}

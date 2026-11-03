@@ -314,3 +314,50 @@ See [repository cleanup](docs/repository-cleanup.md) and the complete [file revi
 ## CSS cascade audits
 
 Run `npm run audit:css` to report exact-selector declarations superseded by later rules. See [the November 2026 CSS cleanup](docs/css-cascade-cleanup.md) and its declaration-by-declaration removal log. The helper preserves fallback, conditional, and generated-style boundaries; rendered regression comparisons are required before publishing another cleanup.
+
+## Wide-screen layout (November 2026)
+
+Join's light-mode palette is maintained in `styles/design-system.css`: a pale
+blue statistics banner with opaque navy/slate text, a white progress track,
+scarlet current-step markers, and green completed-step markers. These overrides
+apply only to light mode and outrank the older embedded Join CSS. The targeted
+text/background contrast ratios range from 5.57:1 to 11.23:1; dark-mode palette
+comparison was unchanged. Check the embedded stylesheet as well as shared CSS
+when simulating themes in a local preview.
+
+`styles/widescreen.css` defines the layouts at 1800 CSS pixels and above. The
+existing 2100px shared frame is preserved; extra space is used by related
+content, larger type and photographs, and useful columns. The stylesheet is
+included after `styles/design-system.css` by `scripts/build-styles.mjs` and is
+bundled into both main CSS assets. It does not add a browser request.
+
+- Gallery places its featured post beside a column of recent posts. Portrait
+  artwork stays proportional and uncropped; the archive remains full width.
+- Home has a larger hero and parallel featured-event/chapter-introduction panels.
+- About uses larger introductory type and two-column section introductions.
+- Join balances its introduction with the existing signup steps and uses two
+  FAQ columns. Selectors account for the embedded legacy Join stylesheet.
+- Calendar places upcoming events and help beside the interactive calendar.
+- Leadership scales officer photos/names and lets the cards fill the frame.
+- Member Resources distributes its actual cards instead of reserving empty grid
+  tracks; both member headers balance their titles and introductory copy.
+- Member Points retains its two-panel workflow with roomier rows; public-data
+  gating and requests are unchanged.
+- Sponsorship balances headings/descriptions, uses five tier columns, and fills
+  the partners grid with evenly sized logo cards.
+
+Run `npm run build:styles` after editing either style source. Publish the two
+main CSS assets through GitHub Pages. Existing WordPress page HTML and shared
+snippets remain compatible; no CMS content replacement is required. Bump the
+existing main stylesheet query version if immediate cache invalidation is needed.
+
+Validation uses saved public WordPress markup, including formatting artifacts.
+All ten main pages were checked at 1800, 1920, 2560 and 3440px, with no horizontal
+overflow or clipped headings/controls. Before/after comparisons at 390, 1024 and
+1440px preserved the original frame and heading metrics. Normal desktop/mobile
+rules are unchanged. Local previews do not establish production publication.
+
+Build and source checks plus all 352 behavior tests passed. Browser checks also
+covered FAQ expansion, Gallery filter selection, calendar mode switching, and
+light/dark presentation. No signup, external message, calendar edit, or member
+record mutation was performed.

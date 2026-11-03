@@ -124,6 +124,68 @@ html body .asme-lightbox[hidden] { display: none !important; }
   }
 }
 
+/* Join's light palette pairs every surface with explicit, opaque text colors.
+   Extra component classes outrank the critical CSS embedded in older CMS HTML. */
+@media (prefers-color-scheme: light) {
+  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-stats-bar {
+    background: #edf3f9 !important;
+    border: 1px solid #d8e2ee !important;
+    color: #173554 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-stats-bar .join-proof-num {
+    color: #173554 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-stats-bar .join-proof-label,
+  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-stats-bar .join-proof-award small {
+    color: #526277 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-stats-bar .join-proof-award {
+    color: #173554 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-stats-bar .join-award-copy strong,
+  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-stats-bar .join-proof-award-icon {
+    color: #173554 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-stats-bar > div + div::before {
+    background: #cdd9e7 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-process-area .join-flow-progress {
+    background: #fff !important;
+    border-color: #d8e2ee !important;
+    color: #173554 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress .join-flow-progress-step strong {
+    color: #173554 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress .join-flow-progress-step small {
+    color: #526277 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress .join-flow-progress-number {
+    background: #f4f7fb !important;
+    border-color: #c5d1df !important;
+    color: #526277 !important;
+    box-shadow: none !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress .is-current .join-flow-progress-number {
+    background: #ba0c2f !important;
+    border-color: #ba0c2f !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 4px #fff0f3 !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress .is-complete .join-flow-progress-number {
+    background: #196541 !important;
+    border-color: #196541 !important;
+    color: #fff !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-flow-progress .join-flow-progress-line {
+    background: #d8e2ee !important;
+  }
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy .join-eyebrow,
+  html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy small {
+    color: #526277 !important;
+  }
+}
+
 /* Calendar year preview and isolated rehearsal controls. */
 .asme-cal-page .acp-preview-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-block: 1rem; }
 .asme-cal-page .acp-preview-controls input { max-width: 10rem; padding: 0.5rem; }
