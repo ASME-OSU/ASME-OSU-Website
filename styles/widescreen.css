@@ -81,7 +81,8 @@
   html body #page .entry-content .asme-gallery-page .gallery { margin-top: 0 !important; }
 
   /* Home: substantial hero, then an event and chapter introduction in parallel. */
-  html body #page .entry-content .asme-home { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; gap: var(--asme-wide-gap) !important; }
+  /* Removing WordPress spacer paragraphs also removes 25px of top spacing. */
+  html body #page .entry-content .asme-home.asme-home { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; gap: var(--asme-wide-gap) !important; margin-top: -13px !important; }
   html body #page .entry-content .asme-home > * { grid-column: 1 / -1; min-width: 0; }
   /* Home has no authored root paragraphs; WordPress inserts whitespace nodes. */
   html body #page .entry-content .asme-home > :is(br, p) { display: none !important; }
@@ -159,7 +160,16 @@
   html body #page .entry-content .asme-sponsor-page .sponsor-section-header > .sponsor-eyebrow { grid-column: 1 / -1 !important; }
   html body #page .entry-content .asme-sponsor-page .sponsor-section-header h2 { margin: 0 !important; font-size: 40px !important; }
   html body #page .entry-content .asme-sponsor-page .sponsor-section-header > p { margin: 0 !important; font-size: 18px !important; }
-  html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; gap: 18px !important; }
+  /* Two support paths share a row; keep the longer inquiry form spacious. */
+  html body #page .entry-content .asme-sponsor-page.asme-sponsor-page { display: grid !important; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr) !important; gap: 0 32px !important; margin-top: -13px !important; }
+  html body #page .entry-content .asme-sponsor-page > * { grid-column: 1 / -1; min-width: 0; }
+  /* Direct paragraphs are WordPress whitespace/script wrappers, not copy. */
+  html body #page .entry-content .asme-sponsor-page > :is(br, p) { display: none !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-donation { grid-column: 1 !important; grid-template-columns: minmax(0, 1fr) !important; align-content: center !important; gap: 32px !important; padding: 40px !important; margin: 0 !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-contact { grid-column: 2 !important; grid-template-columns: minmax(0, 1fr) !important; margin: 0 !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-contact-header { padding: 32px !important; }
+  html body #page .entry-content .asme-sponsor-page .sponsor-contact .sponsor-inquiry-form { border-left: 0 !important; }
   html body #page .entry-content .asme-sponsors-page .sponsors-hero { display: grid !important; grid-template-columns: 1.1fr 1fr !important; gap: 12px 48px !important; align-items: center !important; }
   html body #page .entry-content .asme-sponsors-page .sponsors-hero .sponsors-eyebrow { grid-column: 1 / -1 !important; }
   html body #page .entry-content .asme-sponsors-page .sponsors-hero h1 { margin: 0 !important; }

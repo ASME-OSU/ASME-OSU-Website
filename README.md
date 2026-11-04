@@ -343,8 +343,8 @@ bundled into both main CSS assets. It does not add a browser request.
   tracks; both member headers balance their titles and introductory copy.
 - Member Points retains its two-panel workflow with roomier rows; public-data
   gating and requests are unchanged.
-- Sponsorship balances headings/descriptions, uses five tier columns, and fills
-  the partners grid with evenly sized logo cards.
+- Sponsorship fits all six tiers in one row and pairs the donation and inquiry
+  sections side by side; the partners grid uses evenly sized logo cards.
 
 Run `npm run build:styles` after editing either style source. Publish the two
 main CSS assets through GitHub Pages. Existing WordPress page HTML and shared
