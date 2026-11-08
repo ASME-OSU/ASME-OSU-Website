@@ -279,8 +279,7 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
   #asme-site-header.asme-home-header .asme-hd-title {font-size:19px;}
 }
 @media (min-width:980px) {
-  #asme-site-header.asme-home-header .asme-hd-nav {flex:1 1 auto;margin-left:0;}
-  #asme-site-header.asme-home-header .asme-hd-links {justify-content:center;}
+  #asme-site-header.asme-home-header .asme-hd-nav {margin-left:auto;}
 }
 @media (max-width:979px) {
   #asme-site-header.asme-home-header .asme-hd-brand {flex:1 1 auto;}
