@@ -54,6 +54,13 @@
     var order = ['Home', 'About', 'Join', 'Events', 'Corporate', 'Gallery', 'Leadership', 'Members'];
     if (!order.every(function (name) { return entries.has(name); })) { restoreOriginalHeader(); return; }
     var header = template.content.firstElementChild.cloneNode(true);
+    var isHomePage = Boolean(document.querySelector('.asme-home')) ||
+      (window.location.pathname.replace(/\/$/, '') === new URL(home.href).pathname.replace(/\/$/, ''));
+    if (isHomePage) {
+      header.classList.add('asme-home-header');
+      header.querySelector('.asme-hd-title').textContent = 'ASME at Ohio State';
+      header.querySelector('.asme-hd-subtitle').remove();
+    }
     var brand = header.querySelector('.asme-hd-brand');
     brand.href = home.href;
     var image = logo.cloneNode(true);

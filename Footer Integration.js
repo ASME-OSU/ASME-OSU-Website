@@ -153,8 +153,32 @@
     document.body.classList.add('asme-footer-spacing-ready');
   }
 
+  // Upgrade the existing CMS hero in place. The authored Home template matches
+  // these values too; neither delivery path replaces slides or their controls.
+  function refineHomeHero() {
+    var home = document.querySelector('.asme-home');
+    var hero = home && home.querySelector('.ah-hero');
+    if (!hero) return;
+    home.classList.add('asme-home-refined');
+    // WordPress adds empty paragraphs between block elements. In flex/grid
+    // containers they become extra tracks and stretch the hero unexpectedly.
+    hero.querySelectorAll('p').forEach(function (paragraph) {
+      if (!paragraph.textContent.trim() && !paragraph.id && !paragraph.hasAttribute('role') &&
+          !paragraph.querySelector('img, svg, iframe, video, button, input, a[href]')) paragraph.remove();
+    });
+    var eyebrow = hero.querySelector('.ah-hero-left > .ah-eyebrow');
+    if (eyebrow) eyebrow.remove();
+    var subtitle = hero.querySelector('.ah-sub');
+    if (subtitle) subtitle.textContent = 'Connecting students, industry, and opportunity.';
+    var events = hero.querySelector('.ah-btns .ah-btn-o');
+    if (events) events.textContent = 'Events';
+    var awardLabel = hero.querySelector('[data-spotlight-slide="0"] .ah-badge-label');
+    if (awardLabel) awardLabel.remove();
+  }
+
   function ready() {
     start();
+    refineHomeHero();
     window.setTimeout(function () { normalizePageMotion(); normalizeFooterSpacing(); }, 0);
     document.addEventListener('focusin', function (event) {
       var target = event.target;

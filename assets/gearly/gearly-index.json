@@ -5,7 +5,7 @@
       "id": "home",
       "title": "Home",
       "url": "https://org.osu.edu/asme/",
-      "description": "Connecting OSU engineering students with industry, research, and each other through events, competitions, and community.",
+      "description": "Connecting students, industry, and opportunity.",
       "keywords": [
         "home",
         "start"
@@ -20,7 +20,7 @@
         "Leadership",
         "What's Next"
       ],
-      "text": "Ohio State University · Student Chapter American Society ofMechanical Engineers Connecting OSU engineering students with industry, research, and each other through events, competitions, and community. New members welcome Sponsor interest open Join Latest Events 466+Members 25+Events/yr 20+Partners Award Winner Student SectionAchievement Award 2025–2026 Career Resource ASME Career Guide Resumes, interviews, career fairs, networking, internships, and evaluating offers. Open Career Guide → Featured Upcoming Event Explore the 2026–27 calendar Meetings, company sessions, socials, and competitions are already on the schedule. Calendar available ASME OSU View Calendar → About ASME OSU Build skills, connections, and community. ASME at Ohio State brings students interested in mechanical engineering together with employers, practical learning, service, leadership, and one another. Attend an event, meet the chapter, and choose the level of involvement that fits you. Learn about ASME OSU → Get Involved 🤝 Join ASME Become a member and get access to exclusive events, networking opportunities, and professional development resources. Join now → 📅 Events From company info sessions to socials and competitions, there is always something happening with ASME at OSU. See events → ⭐ Leadership Meet the team behind OSU ASME and learn about opportunities to take on leadership roles within the chapter. Meet the team → Upcoming Events What's Next",
+      "text": "American Society ofMechanical Engineers Connecting students, industry, and opportunity. New members welcome Sponsor interest open Join Events 466+Members 25+Events/yr 20+Partners Student SectionAchievement Award 2025–2026 Career Resource ASME Career Guide Resumes, interviews, career fairs, networking, internships, and evaluating offers. Open Career Guide → Featured Upcoming Event Explore the 2026–27 calendar Meetings, company sessions, socials, and competitions are already on the schedule. Calendar available ASME OSU View Calendar → About ASME OSU Build skills, connections, and community. ASME at Ohio State brings students interested in mechanical engineering together with employers, practical learning, service, leadership, and one another. Attend an event, meet the chapter, and choose the level of involvement that fits you. Learn about ASME OSU → Get Involved 🤝 Join ASME Become a member and get access to exclusive events, networking opportunities, and professional development resources. Join now → 📅 Events From company info sessions to socials and competitions, there is always something happening with ASME at OSU. See events → ⭐ Leadership Meet the team behind OSU ASME and learn about opportunities to take on leadership roles within the chapter. Meet the team → Upcoming Events What's Next",
       "sections": [
         {
           "id": "home:#asmeFeaturedEvent",
@@ -69,7 +69,7 @@
           "pageId": "home",
           "selector": "[data-gearly='home-get-involved']",
           "title": "Get Involved",
-          "snippet": "Ohio State University · Student Chapter American Society ofMechanical Engineers Connecting OSU engineering students with industry, research, and each other through events, competitions, and community. New members welcome Sponsor interest open Join Latest Events 466+Members 25+Events/yr 20+Partners…",
+          "snippet": "American Society ofMechanical Engineers Connecting students, industry, and opportunity. New members welcome Sponsor interest open Join Events 466+Members 25+Events/yr 20+Partners Student SectionAchievement Award 2025–2026 Career Resource ASME Career Guide Resumes, interviews, career fairs,…",
           "keywords": [
             "get",
             "involved"

@@ -36,6 +36,18 @@ function setup({url='https://org.osu.edu/asme/',styles=true,prepare=()=>{}}={}) 
   w.eval(script);w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
   return {dom,w,d:w.document,close:()=>w.close()};
 }
+test('homepage brand is compact without changing the logo or other page branding',()=>{
+  const home=setup();const about=setup({url:'https://org.osu.edu/asme/aboutus/'});
+  try {
+    assert.equal(home.d.querySelector('.asme-hd-title').textContent,'ASME at Ohio State');
+    assert.equal(home.d.querySelector('.asme-hd-subtitle'),null);
+    assert.ok(home.d.querySelector('#asme-site-header').classList.contains('asme-home-header'));
+    assert.equal(home.d.querySelector('.asme-hd-logo img').src,about.d.querySelector('.asme-hd-logo img').src);
+    assert.equal(about.d.querySelector('.asme-hd-title').textContent,'American Society of Mechanical Engineers');
+    assert.ok(about.d.querySelector('.asme-hd-subtitle'));
+    assert.equal(about.d.querySelector('#asme-site-header').classList.contains('asme-home-header'),false);
+  } finally {home.close();about.close();}
+});
 test('renders ordered CMS links, active Home, and unchanged page content',()=>{
   const s=setup();const links=[...s.d.querySelectorAll('.asme-hd-link')];
   assert.deepEqual(links.map(x=>x.textContent),['Home','About','Join','Events','Corporate','Gallery','Leadership','Members']);

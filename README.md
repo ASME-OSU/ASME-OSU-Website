@@ -353,7 +353,12 @@ bundled into both main CSS assets. It does not add a browser request.
 - Sponsorship fits all six tiers in one row and pairs the donation and inquiry
   sections side by side; the partners grid uses evenly sized logo cards.
 
-Run `npm run build:styles` after editing either style source. Publish the two
+Homepage header/hero refinements are scoped with `.asme-home-header` and
+`.asme-home-refined`; `styles/home-hero.css` preserves the original liquid-glass
+spotlight surfaces. The existing external header/footer integrations also update
+legacy Home markup in WordPress without replacing carousel nodes or controls.
+
+Run `npm run build:styles` after editing any style source. Publish the two
 main CSS assets through GitHub Pages. Existing WordPress page HTML and shared
 snippets remain compatible; no CMS content replacement is required. Bump the
 existing main stylesheet query version if immediate cache invalidation is needed.
