@@ -36,16 +36,20 @@ function setup({url='https://org.osu.edu/asme/',styles=true,prepare=()=>{}}={}) 
   w.eval(script);w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
   return {dom,w,d:w.document,close:()=>w.close()};
 }
-test('homepage brand is compact without changing the logo or other page branding',()=>{
-  const home=setup();const about=setup({url:'https://org.osu.edu/asme/aboutus/'});
+test('shared brand is compact on Home and inner pages without changing the logo',()=>{
+  const home=setup();const about=setup({url:'https://org.osu.edu/asme/aboutus/',prepare(d){
+    const legacy=d.querySelector('#asme-header-template').content;
+    legacy.querySelector('.asme-hd-title').textContent='American Society of Mechanical Engineers';
+    legacy.querySelector('.asme-hd-brand-copy').insertAdjacentHTML('beforeend','<span class="asme-hd-subtitle">At the Ohio State University</span>');
+  }});
   try {
     assert.equal(home.d.querySelector('.asme-hd-title').textContent,'ASME at Ohio State');
     assert.equal(home.d.querySelector('.asme-hd-subtitle'),null);
-    assert.ok(home.d.querySelector('#asme-site-header').classList.contains('asme-home-header'));
+    assert.ok(home.d.querySelector('#asme-site-header').classList.contains('asme-compact-header'));
     assert.equal(home.d.querySelector('.asme-hd-logo img').src,about.d.querySelector('.asme-hd-logo img').src);
-    assert.equal(about.d.querySelector('.asme-hd-title').textContent,'American Society of Mechanical Engineers');
-    assert.ok(about.d.querySelector('.asme-hd-subtitle'));
-    assert.equal(about.d.querySelector('#asme-site-header').classList.contains('asme-home-header'),false);
+    assert.equal(about.d.querySelector('.asme-hd-title').textContent,'ASME at Ohio State');
+    assert.equal(about.d.querySelector('.asme-hd-subtitle'),null);
+    assert.equal(about.d.querySelector('#asme-site-header').classList.contains('asme-compact-header'),true);
   } finally {home.close();about.close();}
 });
 test('renders ordered CMS links, active Home, and unchanged page content',()=>{

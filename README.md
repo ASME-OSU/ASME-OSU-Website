@@ -373,3 +373,5 @@ Build and source checks plus all 352 behavior tests passed. Browser checks also
 covered FAQ expansion, Gallery filter selection, calendar mode switching, and
 light/dark presentation. No signup, external message, calendar edit, or member
 record mutation was performed.
+
+The shared header uses “ASME at Ohio State” in DM Serif Display across all pages, with no subtitle. `Header Integration.js` upgrades older installed WordPress templates to match `Header.html`; page titles and active navigation remain page-specific.
