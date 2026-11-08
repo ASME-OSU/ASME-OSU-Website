@@ -3,20 +3,20 @@
 html body #page .entry-content .asme-home.asme-home-refined .ah-hero {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) clamp(240px, 21vw, 300px) !important;
-  align-items: start !important;
-  align-content: start !important;
+  align-items: center !important;
+  align-content: center !important;
   gap: 32px !important;
   height: auto !important;
-  min-height: 425px !important;
+  min-height: 400px !important;
   max-height: none !important;
-  padding: 28px 40px 32px !important;
+  padding: 24px 40px !important;
 }
 html body #page .entry-content .asme-home.asme-home-refined .ah-hero-overlay {
   background: linear-gradient(100deg, rgba(6,16,35,.88) 0%, rgba(6,16,35,.76) 38%, rgba(6,16,35,.36) 68%, rgba(6,16,35,.22) 100%) !important;
 }
 html body #page .entry-content .asme-home.asme-home-refined .ah-hero-left {
   display: flex !important; flex-direction: column !important; align-items: flex-start !important;
-  align-self: start !important;
+  align-self: center !important;
   width: 100% !important; max-width: none !important; min-width: 0 !important;
   margin: 0 !important; padding: 0 !important; text-align: left !important;
   transform: none !important;
@@ -53,7 +53,7 @@ html body #page .entry-content .asme-home.asme-home-refined .ah-stat-n { font-si
 html body #page .entry-content .asme-home.asme-home-refined .ah-stat-l { font-size: 8px !important; line-height: 1.5 !important; }
 html body #page .entry-content .asme-home.asme-home-refined .ah-hero-right {
   display: flex !important; align-items: center !important; justify-content: flex-end !important;
-  align-self: start !important;
+  align-self: center !important;
   width: 100% !important; max-width: none !important; min-width: 0 !important;
   margin: 0 !important; padding: 0 !important; transform: none !important;
 }
@@ -74,7 +74,7 @@ html body #page .entry-content .asme-home.asme-home-refined .ah-badge > img {
 html body #page .entry-content .asme-home.asme-home-refined .ah-badge-name { font-size: 24px !important; line-height: 1.18 !important; margin: 0 !important; }
 html body #page .entry-content .asme-home.asme-home-refined .ah-badge-year { font-size: 14px !important; line-height: 1.4 !important; margin: 8px 0 0 !important; color: #e2e8f0 !important; }
 @media (min-width: 1800px) {
-  html body #page .entry-content .asme-home.asme-home-refined .ah-hero { min-height: 560px !important; padding: 40px 48px !important; gap: 48px !important; }
+  html body #page .entry-content .asme-home.asme-home-refined .ah-hero { min-height: 480px !important; padding: 32px 48px !important; gap: 48px !important; }
 }
 @media (min-width: 701px) and (max-width: 900px) {
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero { grid-template-columns: minmax(0, 1fr) 220px !important; padding: 28px 24px 32px !important; gap: 24px !important; }
@@ -85,6 +85,7 @@ html body #page .entry-content .asme-home.asme-home-refined .ah-badge-year { fon
 @media (max-width: 700px) {
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero {
     grid-template-columns: minmax(0, 1fr) !important; min-height: 0 !important;
+    align-items: start !important; align-content: start !important;
     padding: 28px 20px 34px !important; gap: 24px !important;
   }
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero-overlay {
