@@ -24447,21 +24447,21 @@ html body #page .entry-content .asme-home.asme-home-refined .ah-spotlight-slide 
 html body #page .entry-content .asme-home.asme-home-refined .ah-spotlight { right: auto !important; transform: none !important; }
 html body #page .entry-content .asme-home.asme-home-refined .ah-spotlight-track { height: 350px !important; min-height: 350px !important; }
 html body #page .entry-content .asme-home.asme-home-refined .ah-spotlight-slide {
-  min-height: 350px !important; height: 100% !important; padding: 20px !important;
+  min-height: 350px !important; height: 100% !important; padding: 18px !important;
 }
 html body #page .entry-content .asme-home.asme-home-refined .ah-badge > img {
-  display: block !important; width: 138px !important; height: 138px !important;
-  object-fit: contain !important; margin: 0 auto 14px !important;
+  display: block !important; width: 200px !important; height: 200px !important;
+  object-fit: contain !important; margin: 0 auto 12px !important;
 }
-html body #page .entry-content .asme-home.asme-home-refined .ah-badge-name { font-size: 22px !important; line-height: 1.18 !important; margin: 0 !important; }
-html body #page .entry-content .asme-home.asme-home-refined .ah-badge-year { font-size: 14px !important; line-height: 1.4 !important; margin: 10px 0 0 !important; color: #e2e8f0 !important; }
+html body #page .entry-content .asme-home.asme-home-refined .ah-badge-name { font-size: 24px !important; line-height: 1.18 !important; margin: 0 !important; }
+html body #page .entry-content .asme-home.asme-home-refined .ah-badge-year { font-size: 14px !important; line-height: 1.4 !important; margin: 8px 0 0 !important; color: #e2e8f0 !important; }
 @media (min-width: 1800px) {
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero { min-height: 560px !important; padding: 40px 48px !important; gap: 48px !important; }
 }
 @media (min-width: 701px) and (max-width: 900px) {
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero { grid-template-columns: minmax(0, 1fr) 220px !important; padding: 28px 24px 32px !important; gap: 24px !important; }
   html body #page .entry-content .asme-home.asme-home-refined .ah-title { font-size: 34px !important; }
-  html body #page .entry-content .asme-home.asme-home-refined .ah-badge > img { width: 116px !important; height: 116px !important; }
+  html body #page .entry-content .asme-home.asme-home-refined .ah-badge > img { width: 160px !important; height: 160px !important; }
   html body #page .entry-content .asme-home.asme-home-refined .ah-badge-name { font-size: 20px !important; }
 }
 @media (max-width: 700px) {
@@ -24478,7 +24478,7 @@ html body #page .entry-content .asme-home.asme-home-refined .ah-badge-year { fon
   html body #page .entry-content .asme-home.asme-home-refined :is(.ah-status-row, .ah-btns, .ah-stats) { justify-content: center !important; }
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero-right { justify-content: center !important; }
   html body #page .entry-content .asme-home.asme-home-refined .ah-spotlight-track { height: 330px !important; min-height: 330px !important; }
-  html body #page .entry-content .asme-home.asme-home-refined .ah-spotlight-slide { min-height: 330px !important; padding: 20px !important; }
-  html body #page .entry-content .asme-home.asme-home-refined .ah-badge > img { width: 118px !important; height: 118px !important; }
+  html body #page .entry-content .asme-home.asme-home-refined .ah-spotlight-slide { min-height: 330px !important; padding: 18px !important; }
+  html body #page .entry-content .asme-home.asme-home-refined .ah-badge > img { width: 180px !important; height: 180px !important; }
 }
 /* ASME SHARED DESIGN SYSTEM END */

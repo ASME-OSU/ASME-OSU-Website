@@ -272,11 +272,11 @@ html body #asme-site-header.asme-header-hidden:focus-within { transform:translat
 /* Homepage-only brand lockup; other pages retain their existing identity. */
 #asme-site-header.asme-home-header .asme-hd-brand {flex:0 0 auto;}
 #asme-site-header.asme-home-header .asme-hd-brand-copy {max-width:none;justify-content:center;}
-#asme-site-header.asme-home-header .asme-hd-title {font-family:'DM Sans',Arial,Helvetica,sans-serif;font-size:20px;line-height:1.2;white-space:nowrap;letter-spacing:-.35px;color:var(--hd-text);}
+#asme-site-header.asme-home-header .asme-hd-title {font-family:'DM Serif Display',Georgia,serif;font-size:24px;font-weight:400;line-height:1.15;white-space:nowrap;letter-spacing:-.15px;color:var(--hd-text);}
 @media (min-width:768px) and (max-width:1199px) {
   #asme-site-header.asme-home-header .asme-hd-brand {gap:12px;}
   #asme-site-header.asme-home-header .asme-hd-brand-copy {padding-left:12px;}
-  #asme-site-header.asme-home-header .asme-hd-title {font-size:17px;}
+  #asme-site-header.asme-home-header .asme-hd-title {font-size:19px;}
 }
 @media (min-width:980px) {
   #asme-site-header.asme-home-header .asme-hd-nav {flex:1 1 auto;margin-left:0;}
