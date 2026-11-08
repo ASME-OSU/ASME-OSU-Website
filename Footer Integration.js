@@ -86,6 +86,42 @@
       '<div class="asme-footer-bottom"><span>© 2026 ASME Ohio State University Chapter. All rights reserved.</span><a href="' + home + 'wp-admin/" class="asme-footer-login" aria-label="Admin Login" title="Admin Login">' + svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>') + '</a></div>';
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
-  else start();
+  /* Runs after the installed WordPress footer has registered its reveals.
+     Keep this in the existing external entrypoint so older CMS embeds also
+     receive the motion fixes without requiring a footer replacement. */
+  function normalizePageMotion() {
+    document.documentElement.classList.toggle('asme-motion-static', !('IntersectionObserver' in window));
+    var targets = document.querySelectorAll('.asme-reveal, .asme-animate');
+    // Take a snapshot before removing classes: a parent and its descendants
+    // must not both fade/translate, even when nested more than two levels.
+    var nested = Array.prototype.filter.call(targets, function (el) {
+      return el.parentElement && el.parentElement.closest('.asme-reveal, .asme-animate');
+    });
+    nested.forEach(function (el) {
+      el.classList.remove('asme-reveal', 'asme-animate');
+      el.style.removeProperty('--asme-delay');
+    });
+    targets.forEach(function (el) {
+      if (!el.matches('.asme-reveal, .asme-animate')) return;
+      var delay = parseFloat(el.style.getPropertyValue('--asme-delay')) || 0;
+      el.style.setProperty('--asme-delay', Math.min(delay, 140) + 'ms');
+      if (!('IntersectionObserver' in window)) el.classList.add('is-visible');
+    });
+  }
+  function ready() {
+    start();
+    window.setTimeout(normalizePageMotion, 0);
+    document.addEventListener('focusin', function (event) {
+      var target = event.target;
+      while (target && target.closest) {
+        var reveal = target.closest('.asme-reveal, .asme-animate');
+        if (!reveal) break;
+        reveal.classList.add('is-visible');
+        reveal.style.setProperty('--asme-delay', '0ms');
+        target = reveal.parentElement;
+      }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready, { once: true });
+  else ready();
 })();

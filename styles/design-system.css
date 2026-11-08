@@ -94,6 +94,43 @@ html body .asme-lightbox[hidden] { display: none !important; }
     scroll-behavior: auto !important;
   }
 }
+/* Page motion: keep entrances separate from hover feedback. Legacy card hover
+   shorthands omitted opacity and caused reveal fades to jump to full opacity. */
+@media (prefers-reduced-motion: no-preference) {
+  html body #page .entry-content :is(.asme-reveal, .asme-animate),
+  html body.blog #page article.asme-reveal,
+  /* Editorial sponsor cards have more specific legacy hover shorthands. */
+  html body #page .entry-content .asme-sponsors-page .sponsor-card.asme-reveal.asme-animate {
+    transition: opacity 360ms ease, transform 360ms cubic-bezier(.22, 1, .36, 1),
+      box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease !important;
+    transition-delay: var(--asme-delay, 0ms), var(--asme-delay, 0ms), 0ms, 0ms, 0ms !important;
+  }
+  html body #page .entry-content :is(.asme-reveal, .asme-animate).is-visible,
+  html body.blog #page article.asme-reveal.is-visible {
+    will-change: auto !important;
+  }
+  html body #page .entry-content :is(.asme-reveal, .asme-animate).is-visible:hover,
+  html body.blog #page article.asme-reveal.is-visible:hover,
+  html body #page .entry-content .asme-sponsors-page .sponsor-card.asme-reveal.asme-animate.is-visible:hover {
+    transition-delay: 0s !important;
+  }
+}
+/* Initial headings stay readable during startup; below-fold sections still
+   reveal. This also prevents late JS from hiding an already-painted hero. */
+html body #page .entry-content :is(.about-hero, .join-hero-copy, .sponsors-hero, .sponsor-hero, .gallery-hero, .acp-header).asme-reveal,
+html body #page .entry-content .ah-hero :is(.ah-eyebrow, .ah-title, .ah-sub, .ah-btns, .ah-stats, .ah-badge),
+html.asme-motion-static body :is(.asme-reveal, .asme-animate) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+html body #page .entry-content :is(.asme-reveal, .asme-animate):focus-within,
+html body.blog #page article.asme-reveal:focus-within {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: 0s !important;
+}
 /* Secondary copy must remain readable on the signup page's dark surfaces. */
 @media (prefers-color-scheme: dark) {
   html body #page .entry-content .asme-join-page .join-form-purpose strong { color: #ffb4b4 !important; }

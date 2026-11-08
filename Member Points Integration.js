@@ -526,7 +526,7 @@
       renderMember(member);
       if (scrollToDashboard) {
         var dashboardSection = document.getElementById('member-dashboard');
-        if (dashboardSection) dashboardSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (dashboardSection) dashboardSection.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
       }
     }
 

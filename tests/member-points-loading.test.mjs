@@ -7,10 +7,10 @@ const page = fs.readFileSync(new URL('../Member Points Page.html', import.meta.u
 const script = fs.readFileSync(new URL('../Member Points Integration.js', import.meta.url), 'utf8');
 const source = JSON.parse(fs.readFileSync(new URL('../data/points-source.json', import.meta.url), 'utf8'));
 const tick = () => new Promise(resolve => setImmediate(resolve));
-function setup(oldMarkup = false, stallRank = false) {
+function setup(oldMarkup = false, stallRank = false, reducedMotion = true) {
   const dom = new JSDOM(page, { runScripts: 'outside-only', url: 'https://example.com/member-points/' });
   const w = dom.window;
-  w.matchMedia = () => ({ matches: true });
+  w.matchMedia = () => ({ matches: reducedMotion });
   w.requestAnimationFrame = () => 0;
   w.HTMLElement.prototype.scrollIntoView = () => {};
   w.fetch = async url => stallRank && String(url).includes('leaderboard-rank-snapshots') ? new Promise(() => {}) : ({ ok: true, json: async () => String(url).includes('points-source.json') ? source : {} });
@@ -59,6 +59,24 @@ for (const oldMarkup of [false, true]) {
       search.value = ''; search.dispatchEvent(new w.Event('input'));
       assert.equal(d.querySelector('#asmeMemberDashboardPanel').hidden, true);
       assert.match(d.querySelector('#asmeMemberDashboardState').textContent, /Search your name/);
+    } finally { dom.window.close(); }
+  });
+}
+
+for (const reducedMotion of [true, false]) {
+  test(`selecting a member respects reduced motion (${reducedMotion})`, async () => {
+    const { dom, w, reply } = setup(false, false, reducedMotion);
+    const scrolls = [];
+    w.HTMLElement.prototype.scrollIntoView = options => scrolls.push(options);
+    try {
+      await tick();
+      reply('System_Status', [['system_status', 'LIVE']]);
+      reply('Point_Values_Public', []);
+      await tick();
+      reply('Leaderboard_Public', [[1, 'Alex A.', 'Fall 2026', 50, 2, 'Active', '2026-10-14']]);
+      await tick();
+      w.document.querySelector('.asme-leaderboard-row').click();
+      assert.equal(scrolls.at(-1).behavior, reducedMotion ? 'auto' : 'smooth');
     } finally { dom.window.close(); }
   });
 }

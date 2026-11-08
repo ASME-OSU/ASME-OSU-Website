@@ -162,7 +162,7 @@
       el.style.setProperty('--asme-delay', Math.min(count * 70, 350) + 'ms');
     });
 
-    if (reduceMotion) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
       revealTargets.forEach(function (el) { el.classList.add('is-visible'); });
     } else if ('IntersectionObserver' in window) {
       var observer = new IntersectionObserver(function (entries) {
