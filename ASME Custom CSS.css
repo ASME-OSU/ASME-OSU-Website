@@ -23874,6 +23874,7 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
 /* ASME SHARED DESIGN SYSTEM START */
 /* Shared expressive design language. Keep page-specific layouts and color treatments. */
 :root {
+  --asme-footer-gap: 48px;
   --asme-font-sans: 'DM Sans', system-ui, sans-serif;
   --asme-font-serif: 'DM Serif Display', Georgia, serif;
   --asme-radius-card: 20px;
@@ -23881,6 +23882,33 @@ html body #page .entry-content .asme-home .ah-career-guide .ah-career-guide-link
   --asme-space-card: clamp(20px, 2.5vw, 32px);
   --asme-shadow-card: 0 6px 24px rgb(15 34 58 / 8%);
   --asme-focus: #0067b1;
+}
+/* One page-to-footer gap. Theme wrappers and WordPress whitespace must not
+   add their own space; cards retain their internal padding. */
+html body.asme-footer-spacing-ready #page,
+html body.asme-footer-spacing-ready #page :is(#content, #primary, #main),
+html body.asme-footer-custom-page #page :is(article.type-page, .inside-article, .entry-content),
+html body.asme-footer-custom-page #page #main .asme-page-bottom-frame {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+html body.asme-footer-spacing-ready #page #main .asme-page-last-block { margin-bottom: 0 !important; }
+html body.blog.asme-footer-spacing-ready #page :is(.inside-right-sidebar, .inside-left-sidebar) {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+html body.blog.asme-footer-spacing-ready #page :is(#right-sidebar, #left-sidebar) .asme-page-last-block { margin-bottom: 0 !important; }
+html body.asme-footer-spacing-ready .asme-footer-spacer,
+html body.asme-footer-spacing-ready .asme-empty-theme-footer { display: none !important; }
+html body.asme-footer-spacing-ready .asme-footer-inner.asme-footer-v2 {
+  margin-top: var(--asme-footer-gap) !important;
+  border-top: 1px solid #d7dee8 !important;
+}
+@media (max-width: 768px) {
+  :root { --asme-footer-gap: 32px; }
+}
+@media (prefers-color-scheme: dark) {
+  html body.asme-footer-spacing-ready .asme-footer-inner.asme-footer-v2 { border-top-color: #26364f !important; }
 }
 html body #page .entry-content :is(.asme-home, .asme-about-page, .asme-join-page, .asme-cal-page, .asme-gallery-page, .asme-sponsors-page, .asme-sponsor-page, .asme-members-page, .leadership-board) {
   font-family: var(--asme-font-sans) !important;

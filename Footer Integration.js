@@ -108,9 +108,54 @@
       if (!('IntersectionObserver' in window)) el.classList.add('is-visible');
     });
   }
+  function normalizeFooterSpacing() {
+    var footer = document.querySelector('.asme-footer-inner.asme-footer-v2');
+    var page = document.getElementById('page');
+    if (!footer || !page) return;
+
+    function isSpacer(el) {
+      if (el.tagName === 'BR') return true;
+      if (el.tagName !== 'P') return false;
+      if (el.id || el.hasAttribute('role') || el.hasAttribute('aria-live')) return false;
+      var copy = el.cloneNode(true);
+      copy.querySelectorAll('script, style, template').forEach(function (node) { node.remove(); });
+      return !copy.textContent.trim() && !copy.querySelector('img, iframe, video, audio, svg, canvas, input, select, textarea, button, a[href]');
+    }
+    function markLastBlock(parent) {
+      var children = Array.prototype.slice.call(parent.children).reverse();
+      return children.find(function (el) {
+        if (isSpacer(el)) { el.classList.add('asme-footer-spacer'); return false; }
+        if (/^(SCRIPT|STYLE|TEMPLATE|NOSCRIPT)$/.test(el.tagName) || el.hidden) return false;
+        var style = window.getComputedStyle(el);
+        if (style.display === 'none' || style.position === 'fixed' || style.position === 'absolute') return false;
+        el.classList.add('asme-page-last-block');
+        return true;
+      });
+    }
+
+    var content = page.querySelector('.entry-content > :is(.asme-home, .asme-about-page, .asme-join-page, .asme-cal-page, .asme-gallery-page, .asme-sponsors-page, .asme-sponsor-page, .leadership-board, .asme-members-page)');
+    if (content) {
+      content.classList.add('asme-page-bottom-frame');
+      markLastBlock(content);
+      markLastBlock(content.parentElement);
+      document.body.classList.add('asme-footer-custom-page');
+    } else {
+      // WordPress Blog posts keep their internal card padding.
+      var main = page.querySelector('#main');
+      if (main) markLastBlock(main);
+      page.querySelectorAll('.inside-right-sidebar, .inside-left-sidebar').forEach(markLastBlock);
+    }
+    document.querySelectorAll('.site-footer').forEach(function (themeFooter) {
+      if (!themeFooter.contains(footer) && Array.prototype.every.call(themeFooter.children, function (el) {
+        return window.getComputedStyle(el).display === 'none';
+      })) themeFooter.classList.add('asme-empty-theme-footer');
+    });
+    document.body.classList.add('asme-footer-spacing-ready');
+  }
+
   function ready() {
     start();
-    window.setTimeout(normalizePageMotion, 0);
+    window.setTimeout(function () { normalizePageMotion(); normalizeFooterSpacing(); }, 0);
     document.addEventListener('focusin', function (event) {
       var target = event.target;
       while (target && target.closest) {

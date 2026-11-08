@@ -248,6 +248,13 @@ loads it to upgrade the older footer HTML stored in Advanced Settings. Its use
 was verified on September 6, 2026. Removing it before migrating the live footer
 markup would change the site's appearance.
 
+The same entrypoint normalizes page endings for footer spacing. The shared
+`--asme-footer-gap` in `styles/design-system.css` is 48px above 768px and 32px
+at smaller widths. It removes empty theme-footer space and trailing WordPress
+whitespace while preserving card padding, dialogs, visible widgets, and status
+placeholders. The Blog sidebar is included when it stacks below posts. Verified
+on all 11 public pages at 390, 768, 1280, 1920, and 3440px (55 browser checks).
+
 ## Shared visual system and performance build
 
 Edit `styles/design-system.css` for shared typography, card shapes, action sizes,
