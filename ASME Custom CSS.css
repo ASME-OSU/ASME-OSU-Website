@@ -23954,6 +23954,44 @@ html body #page .entry-content :is(.asme-home, .asme-about-page, .asme-join-page
   text-align: center;
   white-space: normal !important;
 }
+/* Join's three consecutive actions share feedback while retaining their colors.
+   Include the return-card ID to outrank legacy embedded and theme rules. */
+html body #page .entry-content .asme-join-page :is(.join-submit-button, .join-groupme-button, #asme-groupme-return .asme-return-confirm) {
+  --join-action-hover: #ad0e28;
+  transform: none !important;
+  box-shadow: none !important;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease !important;
+}
+html body #page .entry-content .asme-join-page .join-groupme-button {
+  --join-action-hover: #1f64ba;
+}
+html body #page .entry-content .asme-join-page :is(.join-submit-button, .join-groupme-button, #asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):is(:hover, :focus-visible) {
+  background: var(--join-action-hover) !important;
+  border-color: var(--join-action-hover) !important;
+  transform: translateY(-1px) !important;
+}
+html body #page .entry-content .asme-join-page :is(.join-submit-button, .join-groupme-button, #asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):active {
+  transform: translateY(0) !important;
+}
+html body #page .entry-content .asme-join-page :is(.join-submit-button, .join-groupme-button, #asme-groupme-return .asme-return-confirm):is(:disabled, [aria-disabled="true"]) {
+  transform: none !important;
+  transition: none !important;
+}
+html body #page .entry-content .asme-join-page .join-submit-button:disabled:hover {
+  background: #c8102e !important;
+}
+html body #page .entry-content .asme-join-page :is(.join-submit-button, .join-groupme-button, #asme-groupme-return .asme-return-confirm):focus-visible {
+  outline: 3px solid var(--asme-focus, #0067b1) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 3px #fff !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html body #page .entry-content .asme-join-page :is(.join-submit-button, .join-groupme-button, #asme-groupme-return .asme-return-confirm),
+  html body #page .entry-content .asme-join-page :is(.join-submit-button, .join-groupme-button, #asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):is(:hover, :focus-visible, :active) {
+    transform: none !important;
+    transition: none !important;
+  }
+}
 /* A two-tone focus ring remains visible on light, scarlet, and dark surfaces. */
 html body :is(#page, #asme-site-header, .asme-footer-inner, .asme-lightbox) :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 3px solid var(--asme-focus, #0067b1) !important;
