@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-06T02:34:02.954Z",
-  "checkedAt": "2026-11-11T06:46:13.167Z",
+  "generatedAt": "2026-11-11T15:25:49.302Z",
+  "checkedAt": "2026-11-11T15:25:49.299Z",
   "windowStart": "2026-08-01T04:00:00.000Z",
-  "windowEnd": "2026-11-11T06:46:13.137Z",
+  "windowEnd": "2026-11-11T15:25:49.268Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
@@ -357,6 +357,16 @@
       "location": "Scott Laboratory E141",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
       "updated": "2026-10-28T02:48:15.000Z"
+    },
+    {
+      "id": "6007o04v43b5pioguflhf7p4qk@google.com::2026-11-11T12:00:00.000Z",
+      "title": "Veterans Day observed - no classes, offices closed",
+      "start": "2026-11-11T12:00:00.000Z",
+      "end": "2026-11-12T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T22:54:33.000Z"
     }
   ]
 }
