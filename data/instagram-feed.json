@@ -2,8 +2,21 @@
   "version": 4,
   "account": "asmeohiostate",
   "source": "instagram-public-profile",
-  "updatedAt": "2026-10-29T22:45:11.889Z",
+  "updatedAt": "2026-11-12T19:54:27.291Z",
   "items": [
+    {
+      "id": "DfptQ-slLgK",
+      "permalink": "https://www.instagram.com/p/DfptQ-slLgK/",
+      "mediaType": "IMAGE",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DfptQ-slLgK-640x800.jpg",
+      "imageWidth": 640,
+      "imageHeight": 800,
+      "timestamp": "2026-11-12T18:32:26.000Z",
+      "title": "ASME Friendsgiving Join ASME for Friendsgiving!",
+      "summary": "See flyer for all details. Thursday, November 19, 2026 at 5:30 PM Scott Lab E141 Food provided!",
+      "caption": "ASME Friendsgiving Join ASME for Friendsgiving! See flyer for all details. Thursday, November 19, 2026 at 5:30 PM Scott Lab E141 Food provided!",
+      "alt": "ASME Friendsgiving Join ASME for Friendsgiving!"
+    },
     {
       "id": "DfFfYY3FH3t",
       "permalink": "https://www.instagram.com/p/DfFfYY3FH3t/",
@@ -68,19 +81,6 @@
       "summary": "Come out for an hour of pickleball with ASME. All skill levels are welcome. Scan the QR code to sign up. See you there.",
       "caption": "ASME Pickleball Night is this Thursday from 5:30–6:30 PM at the RPAC Outdoor Courts. Come out for an hour of pickleball with ASME. All skill levels are welcome. Scan the QR code to sign up. See you there.",
       "alt": "ASME Pickleball Night is this Thursday from 5:30–6:30 PM at the RPAC…"
-    },
-    {
-      "id": "DeIOFLZPUZ-",
-      "permalink": "https://www.instagram.com/p/DeIOFLZPUZ-/",
-      "mediaType": "IMAGE",
-      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/instagram-auto/DeIOFLZPUZ--640x800.jpg",
-      "imageWidth": 640,
-      "imageHeight": 800,
-      "timestamp": "2026-10-05T21:54:59.000Z",
-      "title": "Join us for our pickleball night!",
-      "summary": "Compete with other members on the court! Equipment will be provided. Thursday, October 8th 5:30 - 6:30 PM RPAC Courts",
-      "caption": "Join us for our pickleball night! Compete with other members on the court! Equipment will be provided. Thursday, October 8th 5:30 - 6:30 PM RPAC Courts",
-      "alt": "Join us for our pickleball night!"
     }
   ]
 }
