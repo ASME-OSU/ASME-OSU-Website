@@ -160,3 +160,29 @@ body:has(> .gearly-tour-offer) .gearly-launcher-greeting { display:none; }
   .gearly-tour-tip .gearly-tour-destination { font-size:10px; margin-top:4px!important; }
   .gearly-tour-tip[data-scrollable="true"] .gearly-tour-scroll-hint { display:block; margin:6px 0; color:inherit; opacity:.8; font-size:11px; }
 }
+
+/* One quiet arrival cue per step. Geometry stays immediate while scrolling. */
+.gearly-tour-ring { box-sizing:border-box; border-color:#ba0c2f; }
+.gearly-tour-halo { position:absolute; inset:-6px; border:2px solid #e75875; border-radius:18px; pointer-events:none; animation:gearly-tour-arrive .65s ease-out both; }
+.gearly-tour-tip #gearly-tour-title,.gearly-tour-tip #gearly-tour-description { animation:gearly-tour-copy .24s ease-out both; }
+.gearly-tour-progress { height:3px; margin:12px 0 4px; overflow:hidden; border-radius:99px; background:rgb(128 128 128 / .18); }
+.gearly-tour-progress > span { display:block; height:100%; border-radius:inherit; background:#ba0c2f; }
+.gearly-tour-tip[data-scrollable="true"] .gearly-tour-scroll-hint { display:block; font-size:12px; opacity:.8; }
+@keyframes gearly-tour-arrive { from { opacity:.8; transform:scale(.99); } to { opacity:0; transform:scale(1.015); } }
+@keyframes gearly-tour-copy { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+@media(prefers-reduced-motion:reduce) {
+  .gearly-tour-halo { display:none; animation:none; }
+  .gearly-tour-tip #gearly-tour-title,.gearly-tour-tip #gearly-tour-description { animation:none; }
+}
+
+@media(prefers-color-scheme:dark) { .gearly-tour-ring { border-color:#fb7185; }.gearly-tour-progress > span { background:#fb7185; } }
+html[data-theme=dark] .gearly-tour-ring,body.dark-mode .gearly-tour-ring { border-color:#fb7185; }
+html[data-theme=dark] .gearly-tour-progress > span,body.dark-mode .gearly-tour-progress > span { background:#fb7185; }
+html[data-theme=light] .gearly-tour-ring { border-color:#ba0c2f; }
+html[data-theme=light] .gearly-tour-progress > span { background:#ba0c2f; }
+@media(max-height:500px) and (min-width:601px) {
+  .gearly-tour-tip { padding:12px 14px; font-size:13px; }
+  .gearly-tour-tip h2 { font-size:17px!important; }
+  .gearly-tour-tip .gearly-tour-sprite { width:36px; height:36px; margin-bottom:4px; }
+  .gearly-tour-tip .gearly-tour-controls { position:sticky; bottom:0; background:inherit; }
+}

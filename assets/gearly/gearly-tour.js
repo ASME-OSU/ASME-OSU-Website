@@ -80,8 +80,28 @@
     wait();
   }
   function key() { return 'asme-gearly-tour-' + ((config.data && config.data.tour && config.data.tour.version) || 1); }
-  function read() { try{return root.sessionStorage.getItem(key()) || memory[key()];}catch(_){return memory[key()];} }
-  function persist(value) { memory[key()]=value;try{root.sessionStorage.setItem(key(),value);}catch(_){} }
+  // An explicit dismissal is a lasting preference, independent of tour revisions.
+  var dismissedKey = 'asme-gearly-tour-dismissed';
+  function stored(name) {
+    if(memory[name])return memory[name];
+    var value;
+    try{value=root.localStorage.getItem(name);}catch(_){}
+    if(!value){try{value=root.sessionStorage.getItem(name);}catch(_){}}
+    return value;
+  }
+  function save(name,value) {
+    memory[name]=value;
+    try{root.localStorage.setItem(name,value);}catch(_){}
+    try{root.sessionStorage.setItem(name,value);}catch(_){}
+  }
+  function read() {
+    if(stored(dismissedKey))return 'dismissed';
+    var value=stored(key());
+    // Preserve opt-outs made before persistent preferences were introduced.
+    if(value==='dismissed')save(dismissedKey,'1');
+    return value;
+  }
+  function persist(value) { save(key(),value);if(value==='dismissed')save(dismissedKey,'1'); }
   function remember(value) { persist(value); }
   function button(text, fn) { var b = doc.createElement('button'); b.type = 'button'; b.textContent = ({Skip:'×',Back:'← Back',Next:'Next →',Done:'Finish','Not now':'×'})[text] || text; b.setAttribute('aria-label',text === 'Skip' ? 'Skip tour' : text); b.addEventListener('click', fn); return b; }
   function position(rect, width, height, viewport) {
@@ -127,18 +147,21 @@
     if (!active) return;
     positionTip();if(!active.element)return;
     var v=tourViewport(),mobile=mobileTour(),r=active.element.getBoundingClientRect(),top=contentTop(active.element);
+    if(active.viewport && (active.viewport.width!==v.width || active.viewport.height!==v.height)){active.autoUntil=Date.now()+1000;active.lastAlign=null;}active.viewport={width:v.width,height:v.height};
     // Ignore CSS scroll margins: they otherwise add a second header offset.
     // Re-align late loading content only during arrival, and stop as soon as the user interacts.
-    if(mobile && Date.now()<active.autoUntil && typeof root.scrollTo==='function' && root.getComputedStyle(active.element).position!=='fixed'){
+    if((mobile || v.height<=500) && Date.now()<active.autoUntil && typeof root.scrollTo==='function' && root.getComputedStyle(active.element).position!=='fixed'){
       var delta=r.top-top,last=active.lastAlign;if(Math.abs(delta)>2 && (!last || Math.abs(r.top-last.top)>2 || (root.scrollY || 0)!==last.scroll)){root.scrollTo({top:Math.max(0,(root.scrollY || 0)+delta),left:root.scrollX || 0,behavior:'instant'});r=active.element.getBoundingClientRect();active.lastAlign={top:r.top,scroll:root.scrollY || 0};}
     }
     var ringTop=r.top-5,ringBottom=r.bottom+5,ringLeft=r.left-5,ringRight=r.right+5;
-    if(mobile){
-      var limit=parseFloat(active.tip.style.top)-12;
-      ringTop=Math.max(ringTop,top);ringBottom=Math.min(ringBottom,limit);
-      ringLeft=Math.max(v.left+4,ringLeft);ringRight=Math.min(v.left+v.width-4,ringRight);
-      active.tip.dataset.scrollable=r.height>Math.max(0,limit-top)?'true':'false';
-    }
+    // Keep the spotlight inside the visible page area, clear of the docked guide.
+    var tipLeft=parseFloat(active.tip.style.left),limit=v.top+v.height-12;
+    var beside=!mobile && v.height<=500 && tipLeft-r.left>=120;
+    if(beside)ringRight=Math.min(ringRight,tipLeft-12);
+    else if(mobile || r.right>tipLeft-12 && r.left<tipLeft+active.tip.getBoundingClientRect().width)limit=Math.min(limit,parseFloat(active.tip.style.top)-12);
+    ringTop=Math.max(ringTop,top);ringBottom=Math.min(ringBottom,limit);
+    ringLeft=Math.max(v.left+4,ringLeft);ringRight=Math.min(v.left+v.width-4,ringRight);
+    active.tip.dataset.scrollable=r.height>Math.max(0,limit-top) || beside && r.right>ringRight?'true':'false';
     active.ring.hidden=ringBottom<=ringTop || ringRight<=ringLeft;
     active.ring.style.left=ringLeft+'px';active.ring.style.top=ringTop+'px';active.ring.style.width=Math.max(0,ringRight-ringLeft)+'px';active.ring.style.height=Math.max(0,ringBottom-ringTop)+'px';
   }
@@ -148,10 +171,10 @@
     active.tip.style.maxHeight=mobile?Math.min(260,Math.max(100,v.height*.45))+'px':'';
     var height=active.tip.getBoundingClientRect().height || 220;
     active.tip.style.left=v.left+Math.max(12,v.width-width-(mobile?12:16))+'px';active.tip.style.top=v.top+Math.max(12,v.height-height-(mobile?12:16))+'px';
-    if(mobile){
+    {
       if(!active.spacer){active.spacer=doc.createElement('div');active.spacer.className='gearly-tour-scroll-room';active.spacer.setAttribute('aria-hidden','true');active.spacer.setAttribute('inert','');doc.body.append(active.spacer);}
       var room=height+36+'px';if(active.spacer.style.height!==room)active.spacer.style.height=room;
-    }else if(active.spacer){active.spacer.remove();active.spacer=null;}
+    }
   }
   function scrollTourPage(amount){if(!active || !mobileTour())return;active.autoUntil=0;if(typeof root.scrollBy==='function')root.scrollBy({top:amount,left:0,behavior:'instant'});update();}
   function scheduleUpdate(){if(!active || active.frame)return;if(!root.requestAnimationFrame){update();return;}active.frame=root.requestAnimationFrame(function(){if(!active)return;active.frame=null;update();scheduleUpdate();});}
@@ -165,6 +188,10 @@
     var title = doc.createElement('h2'); title.id = 'gearly-tour-title'; title.textContent = step.title;
     var body = doc.createElement('p'); body.id = 'gearly-tour-description'; body.textContent = step.text;
     tip.append(count,title,body);
+    // A fresh halo animates once on arrival; the tracking ring itself never lags.
+    var halo=doc.createElement('span');halo.className='gearly-tour-halo';active.ring.replaceChildren(halo);
+    var progress=doc.createElement('div');progress.className='gearly-tour-progress';progress.setAttribute('aria-hidden','true');
+    var fill=doc.createElement('span');fill.style.width=((index+1)/steps.length*100)+'%';progress.append(fill);tip.append(progress);
     var sprite=typeof step.sprite==='string'?step.sprite.replace(/\.png$/,'.webp'):'';
     if(spriteFiles.includes(sprite) && config.assetBase){try{var image=doc.createElement('img');image.src=new URL('sprites/'+sprite,config.assetBase).href;image.alt='';image.className='gearly-tour-sprite';image.width=72;image.height=72;image.addEventListener('error',function(){image.remove();});tip.insertBefore(image,count);}catch(_){}}
     var nextRoute=steps.slice(index+1).map(destination).find(function(url){return url && !current(url);});
@@ -222,7 +249,7 @@
       if(config.assetBase){var image=doc.createElement('img');image.src=new URL('sprites/gearly-open-eyes-wave.webp',config.assetBase).href;image.alt='';image.width=96;image.height=110;mascot.append(image);}
       var copy=doc.createElement('div');copy.className='gearly-tour-offer-copy';
       var title=doc.createElement('h2');title.textContent='Take a tour';
-      var subtitle=doc.createElement('p');subtitle.textContent='Let Gearley show you around!';
+      var subtitle=doc.createElement('p');subtitle.textContent='Let Gearly show you around!';
       var actions=doc.createElement('div');actions.className='gearly-tour-offer-actions';
       var startButton=button('Start tour',function(){root.GearlyTour.start();});startButton.className='gearly-tour-offer-start';var desktopLabel=doc.createElement('span');desktopLabel.className='gearly-tour-offer-start-desktop';desktopLabel.textContent='Start tour →';var mobileLabel=doc.createElement('span');mobileLabel.className='gearly-tour-offer-start-mobile';mobileLabel.textContent='Start →';startButton.replaceChildren(desktopLabel,mobileLabel);
       function decline(){remember('dismissed');dismissOffer(true);}

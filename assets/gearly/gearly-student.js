@@ -93,6 +93,25 @@
     if (/\b(?:never been|first time|new to asme|newcomer|just show up)\b/.test(q) && /\b(?:event|meeting|asme|attend)\b/.test(q)) {
       return result('newcomer', (firstYear ? firstYear + ' ' : '') + 'Use the newsletter and GroupMe to find an event. Check that event’s announcement for RSVP or registration instructions; these sources do not establish a blanket no-RSVP policy.', signupCards);
     }
+    // Route specific published tools before the broader career overview.
+    var tools = [
+      {id:'salary-data',query:/\b(?:starting salar(?:y|ies)|salary (?:data|dashboard)|career outcomes|graduate salaries|employment outcomes)\b/,title:/^career employment/},
+      {id:'wage-data',query:/\b(?:hourly (?:pay|wages?|rates?)|internship (?:pay|wages?|salaries)|co op (?:pay|wages?))\b/,title:/^co op.*hourly wages/},
+      {id:'mae-events',query:/\b(?:mae events|department(?:al)? (?:events|seminars)|research talks|mechanical and aerospace engineering events)\b/,title:/^osu mae events$/},
+      {id:'linkedin',query:/\blinkedin\b/,title:/^asme osu linkedin$/},
+      {id:'career-advising',query:/\b(?:career advis(?:ing|or)|ecs advising|cover letters?|career fair prep)\b/,title:/^ecs career advising$/},
+      {id:'experience',query:/\b(?:co ops?|professional experience program|research experience)\b/,title:/^co ops (?:and )?internships$/},
+      {id:'career-packet',query:/\bcareer packet\b/,title:/^career packet$/}
+    ];
+    var toolMatches=tools.filter(function(tool){return tool.query.test(q);});
+    if(toolMatches.length===1){
+      var tool=toolMatches[0],entry=source.resources.find(function(item){return tool.title.test(normalize(item.title));});
+      if(entry)return result(tool.id,entry.text,[card(entry)]);
+    }
+    if(/\b(?:what|which|show|browse|all)\b/.test(q) && /\b(?:tools|resources)\b/.test(q) && !/\b(?:resume|career|internship|national)\b/.test(q)){
+      var overview=source.resources.filter(function(entry){return /^(?:career packet|ecs career advising|handshake|osu mae events|asme student resources)$/.test(normalize(entry.title));});
+      if(overview.length)return result('resource-overview','There’s more on Member Resources: career preparation, advising, job postings, department events, and national ASME opportunities. Here are a few places to start.',overview.map(function(entry){return card(entry);}));
+    }
     if (/\b(?:interview|behavioral|technical interview)\b/.test(q) && /\b(?:practice|prep|prepare|preparation|questions|help|resources)\b/.test(q)) {
       return packet && ecs ? result('interview', packet.text + ' ' + ecs.text, [card(packet), card(ecs)]) : null;
     }

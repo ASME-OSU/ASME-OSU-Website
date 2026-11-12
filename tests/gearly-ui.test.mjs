@@ -173,7 +173,7 @@ test('speaker heads remain after reveal, on reduced motion, and in restored conv
  assert.equal(restored.window.document.querySelectorAll('.gearly-bot .gearly-message-avatar').length,1);restored.window.close();
 });
 
-test('wave loads only on interaction, plays once, reuses its download, and stops for chat, hidden tabs and reduced motion',async()=>{
+test('wave plays only on interaction with no idle repeats and respects chat, visibility and reduced motion',async()=>{
  const timers=new Map();let next=1000,preference,downloads=0,created=0,revoked=0;
  const motion={matches:false,addEventListener:(_type,cb)=>preference=cb};
  const dom=await start(raw,w=>{
@@ -185,18 +185,20 @@ test('wave loads only on interaction, plays once, reuses its download, and stops
   w.fetch=async url=>url.includes('centered-wave')?(downloads++,{ok:true,blob:async()=>new w.Blob(['wave'],{type:'image/webp'})}):({ok:true,json:async()=>url.includes('sprites.json')?{}:raw});
   w.URL.createObjectURL=()=>`blob:wave-${++created}`;w.URL.revokeObjectURL=()=>revoked++;
  });
- const w=dom.window,face=w.document.querySelector('.gearly-launcher img');
+ const w=dom.window,face=w.document.querySelector('.gearly-launcher img');let now=100000;w.Date.now=()=>now;
  const run=async()=>{const [id,t]=timers.entries().next().value;timers.delete(id);await t.cb();return t.ms;};
  assert.equal(downloads,0);assert.equal(timers.size,0);
  w.document.querySelector('.gearly-launcher').dispatchEvent(new w.MouseEvent('mouseenter'));
  await new Promise(resolve=>setImmediate(resolve));assert.equal(face.src,'blob:wave-1');assert.equal(downloads,1);assert.equal(w.document.querySelector('.gearly-launcher').dataset.waveCount,'1');
  assert.equal(await run(),6250);assert.match(face.src,/centered-idle.webp$/);assert.equal(revoked,1);
  w.document.querySelector('.gearly-launcher').dispatchEvent(new w.MouseEvent('mouseenter'));assert.equal(created,1);
- await run();assert.equal(downloads,1);assert.equal(created,2);
+ assert.equal(timers.size,0);now+=60001;w.document.querySelector('.gearly-launcher').dispatchEvent(new w.MouseEvent('mouseenter'));
+ await new Promise(resolve=>setImmediate(resolve));assert.equal(downloads,1);assert.equal(created,2);
  w.Gearly.open();assert.match(face.src,/centered-idle.webp$/);assert.equal(timers.size,0);
- w.Gearly.close();assert.equal(timers.size,1);assert.ok([...timers.values()][0].ms>=60000);
+ w.Gearly.close();assert.equal(timers.size,0);
  motion.matches=true;preference();assert.equal(timers.size,0);
- motion.matches=false;preference();assert.equal(timers.size,1);
+ now+=60001;w.document.querySelector('.gearly-launcher').dispatchEvent(new w.MouseEvent('mouseenter'));assert.equal(created,2);
+ motion.matches=false;preference();assert.equal(timers.size,0);
  Object.defineProperty(w.document,'hidden',{value:true,configurable:true});w.document.dispatchEvent(new w.Event('visibilitychange'));assert.equal(timers.size,0);
  dom.window.close();
 });
@@ -210,4 +212,40 @@ test('photo and Instagram freshness labels show only a short Eastern date',async
     assert.match(reply,/Updated Aug 13, 2026\./);assert.doesNotMatch(reply,/Source:|Snapshot|12:37|8:37|AM|PM/);
     dom.window.close();
   }
+});
+
+test('casual messages are friendly without replacing event followup context',async()=>{
+ const seed={...config,intents:[...config.intents,{id:'test-event',examples:['test event list'],keywords:{},liveSource:'events',response:{text:'Events'}}]};
+ const dom=await start(seed,w=>{w.GearlyLive={load:async()=>({text:'Upcoming events',cards:[{id:'demo',title:'Build night',url:'https://org.osu.edu/asme/calendar/',detailAvailable:true}]})};});const w=dom.window;
+ await w.Gearly.ask('test event list');
+ for(const text of ['hiya Gearly!','how are you doing?','thanks so much!','cool','im stressed']){
+  await w.Gearly.ask(text);const reply=[...w.document.querySelectorAll('.gearly-bot')].at(-1).textContent;
+  assert.doesNotMatch(reply,/could not confidently|ask the ASME team|Which of these/);
+  assert.equal(JSON.parse(w.sessionStorage.getItem('gearly_state_v1')).lastIntent,'test-event');
+ }
+ await w.Gearly.ask('show me the first one');assert.match([...w.document.querySelectorAll('.gearly-bot')].at(-1).textContent,/Build night/);dom.window.close();
+});
+test('greeting plus a question answers the question and displays the original wording',async()=>{
+ const dom=await start({...config});const w=dom.window;
+ await w.Gearly.ask('Hey Gearly, how do I join? Thanks!');
+ assert.match([...w.document.querySelectorAll('.gearly-bot')].at(-1).textContent,/newsletter|Join/);
+ assert.equal([...w.document.querySelectorAll('.gearly-user p')].at(-1).textContent,'Hey Gearly, how do I join? Thanks!');dom.window.close();
+});
+test('greetings do not consume a pending member-name question',async()=>{
+ const dom=await start(config);const w=dom.window;await w.Gearly.ask('my points');await w.Gearly.ask('hello');
+ assert.match([...w.document.querySelectorAll('.gearly-bot')].at(-1).textContent,/Hey!/);
+ assert.equal(JSON.parse(w.sessionStorage.getItem('gearly_state_v1')).lastIntent,'my-points');
+ await w.Gearly.ask('Zoë O’Neil');assert.doesNotMatch([...w.document.querySelectorAll('.gearly-bot')].at(-1).textContent,/could not confidently/);dom.window.close();
+});
+
+test('page help uses the current approved page and preserves the conversation',async()=>{
+ const dom=await start(config,w=>{w.GearlySearch={configure(){},records:async()=>[{id:'home',url:'https://org.osu.edu/asme/',sections:[{title:'Featured chapter event'},{title:'Get involved'}]},{id:'home',url:'https://evil.example/',sections:[{title:'Unapproved content'}]}]};});const w=dom.window;
+ await w.Gearly.ask('how do i join');const prior=JSON.parse(w.sessionStorage.getItem('gearly_state_v1')).lastIntent;
+ await w.Gearly.ask('Hey Gearly, what can I do on this page?');
+ const reply=[...w.document.querySelectorAll('.gearly-bot')].at(-1).textContent;
+ assert.match(reply,/You’re on Home.*Featured chapter event.*Get involved/);assert.doesNotMatch(reply,/Unapproved content/);
+ assert.equal(JSON.parse(w.sessionStorage.getItem('gearly_state_v1')).lastIntent,prior);dom.window.close();
+});
+test('page help remains useful if the optional content index cannot load',async()=>{
+ const dom=await start(config,w=>{w.GearlySearch={configure(){},records:async()=>{throw Error('offline');}};});await dom.window.Gearly.ask('explain this page');assert.match([...dom.window.document.querySelectorAll('.gearly-bot')].at(-1).textContent,/You’re on Home/);dom.window.close();
 });
