@@ -153,28 +153,34 @@
     if((mobile || v.height<=500) && Date.now()<active.autoUntil && typeof root.scrollTo==='function' && root.getComputedStyle(active.element).position!=='fixed'){
       var delta=r.top-top,last=active.lastAlign;if(Math.abs(delta)>2 && (!last || Math.abs(r.top-last.top)>2 || (root.scrollY || 0)!==last.scroll)){root.scrollTo({top:Math.max(0,(root.scrollY || 0)+delta),left:root.scrollX || 0,behavior:'instant'});r=active.element.getBoundingClientRect();active.lastAlign={top:r.top,scroll:root.scrollY || 0};}
     }
-    var ringTop=r.top-5,ringBottom=r.bottom+5,ringLeft=r.left-5,ringRight=r.right+5;
-    // Keep the spotlight inside the visible page area, clear of the docked guide.
-    var tipLeft=parseFloat(active.tip.style.left),limit=v.top+v.height-12;
-    var beside=!mobile && tipLeft-r.left>=240 && (v.height<=500 || parseFloat(active.tip.style.top)-Math.max(top,r.top)<Math.min(r.height,280));
-    if(beside)ringRight=Math.min(ringRight,tipLeft-12);
-    else if(mobile || r.right>tipLeft-12 && r.left<tipLeft+active.tip.getBoundingClientRect().width)limit=Math.min(limit,parseFloat(active.tip.style.top)-12);
-    ringTop=Math.max(ringTop,top);ringBottom=Math.min(ringBottom,limit);
-    ringLeft=Math.max(v.left+4,ringLeft);ringRight=Math.min(v.left+v.width-4,ringRight);
-    active.tip.dataset.scrollable=r.height>Math.max(0,limit-top) || beside && r.right>ringRight?'true':'false';
-    active.ring.hidden=ringBottom<=ringTop || ringRight<=ringLeft;
-    active.ring.style.left=ringLeft+'px';active.ring.style.top=ringTop+'px';active.ring.style.width=Math.max(0,ringRight-ringLeft)+'px';active.ring.style.height=Math.max(0,ringBottom-ringTop)+'px';
+    // The outline always represents the entire section, including off-screen content.
+    // Never close a false edge at the guide or viewport boundary.
+    active.tip.dataset.scrollable=r.height>Math.max(0,parseFloat(active.tip.style.top)-top)?'true':'false';
+    active.ring.dataset.label=r.top>v.top+24?'true':'false';
+    active.ring.hidden=r.bottom<=v.top || r.top>=v.top+v.height || r.right<=v.left || r.left>=v.left+v.width;
+    active.ring.style.left=(r.left-5)+'px';active.ring.style.top=(r.top-5)+'px';
+    active.ring.style.width=(r.width+10)+'px';active.ring.style.height=(r.height+10)+'px';
   }
   function positionTip(){
-    var v=tourViewport(),mobile=v.width<=600,width=mobile?v.width-24:Math.min(340,v.width-24);
+    var v=tourViewport(),mobile=v.width<=600,r=active.element && active.element.getBoundingClientRect();
+    var dock=!mobile && r && r.width>v.width*.6;
+    active.tip.dataset.layout=dock?'dock':'card';
+    var width=mobile?v.width-24:dock?Math.min(1200,v.width-32):Math.min(340,v.width-24);
     active.tip.style.width=Math.max(0,width)+'px';
-    active.tip.style.maxHeight=mobile?Math.min(260,Math.max(100,v.height*.45))+'px':'';
+    active.tip.style.maxHeight=mobile?Math.min(260,Math.max(100,v.height*.45))+'px':dock?Math.max(140,v.height*.5)+'px':'';
     var height=active.tip.getBoundingClientRect().height || 220;
-    active.tip.style.left=v.left+Math.max(12,v.width-width-(mobile?12:16))+'px';active.tip.style.top=v.top+Math.max(12,v.height-height-(mobile?12:16))+'px';
-    {
-      if(!active.spacer){active.spacer=doc.createElement('div');active.spacer.className='gearly-tour-scroll-room';active.spacer.setAttribute('aria-hidden','true');active.spacer.setAttribute('inert','');doc.body.append(active.spacer);}
-      var room=height+36+'px';if(active.spacer.style.height!==room)active.spacer.style.height=room;
+    var left=v.left+(dock?(v.width-width)/2:Math.max(12,v.width-width-(mobile?12:16)));
+    var top=v.top+Math.max(12,v.height-height-(mobile?12:16));
+    if(r && !mobile && !dock){
+      // Prefer a clear gap beside, below, or above a smaller section.
+      if(r.right+16+width<=v.left+v.width-12){left=r.right+16;top=Math.max(v.top+12,Math.min(r.top,v.top+v.height-height-12));}
+      else if(r.left-width-16>=v.left+12){left=r.left-width-16;top=Math.max(v.top+12,Math.min(r.top,v.top+v.height-height-12));}
+      else if(r.bottom+16+height<=v.top+v.height-12)top=r.bottom+16;
+      else if(r.top-height-16>=v.top+12)top=r.top-height-16;
     }
+    active.tip.style.left=left+'px';active.tip.style.top=top+'px';
+    if(!active.spacer){active.spacer=doc.createElement('div');active.spacer.className='gearly-tour-scroll-room';active.spacer.setAttribute('aria-hidden','true');active.spacer.setAttribute('inert','');doc.body.append(active.spacer);}
+    var room=height+36+'px';if(active.spacer.style.height!==room)active.spacer.style.height=room;
   }
   function scrollTourPage(amount){if(!active || !mobileTour())return;active.autoUntil=0;if(typeof root.scrollBy==='function')root.scrollBy({top:amount,left:0,behavior:'instant'});update();}
   function scheduleUpdate(){if(!active || active.frame)return;if(!root.requestAnimationFrame){update();return;}active.frame=root.requestAnimationFrame(function(){if(!active)return;active.frame=null;update();scheduleUpdate();});}
@@ -190,6 +196,8 @@
     tip.append(count,title,body);
     // A fresh halo animates once on arrival; the tracking ring itself never lags.
     var halo=doc.createElement('span');halo.className='gearly-tour-halo';active.ring.replaceChildren(halo);
+    ['top-left','top-right','bottom-left','bottom-right'].forEach(function(corner){var accent=doc.createElement('span');accent.className='gearly-tour-corner '+corner;active.ring.append(accent);});
+    var badge=doc.createElement('span');badge.className='gearly-tour-section-badge';badge.textContent=(index+1)+' / '+steps.length+' · '+step.title;active.ring.append(badge);
     var progress=doc.createElement('div');progress.className='gearly-tour-progress';progress.setAttribute('aria-hidden','true');
     var fill=doc.createElement('span');fill.style.width=((index+1)/steps.length*100)+'%';progress.append(fill);tip.append(progress);
     var sprite=typeof step.sprite==='string'?step.sprite.replace(/\.png$/,'.webp'):'';
