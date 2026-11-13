@@ -163,7 +163,7 @@
   }
   function positionTip(){
     var v=tourViewport(),mobile=v.width<=600,r=active.element && active.element.getBoundingClientRect();
-    var dock=!mobile && r && r.width>v.width*.6 && r.height>v.height*.4;
+    var dock=!mobile && r && r.width>v.width*.6;
     active.tip.dataset.layout=dock?'dock':'card';
     var width=mobile?v.width-24:dock?Math.min(1200,v.width-32):Math.min(340,v.width-24);
     active.tip.style.width=Math.max(0,width)+'px';
