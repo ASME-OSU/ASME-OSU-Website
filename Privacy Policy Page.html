@@ -1,6 +1,6 @@
 <!-- CampusPress page: Privacy Policy | slug: privacy-policy | disable automatic paragraphs. -->
 <style id="asme-privacy-styles">
-.asme-privacy-page{--pp-ink:#132c49;--pp-muted:#536477;--pp-paper:#fff;--pp-soft:#f3f6fa;--pp-line:#dce3ec;--pp-accent:#b00020;max-width:1180px;margin:0 auto;color:var(--pp-ink);font-family:var(--asme-font-sans,'DM Sans',system-ui,sans-serif);font-size:16px;line-height:1.75}
+.asme-privacy-page{--pp-ink:#132c49;--pp-muted:#536477;--pp-paper:#fff;--pp-soft:#f3f6fa;--pp-line:#dce3ec;--pp-accent:#b00020;width:min(100%,calc(100vw - 80px));max-width:2100px;margin:0 auto;color:var(--pp-ink);font-family:var(--asme-font-sans,'DM Sans',system-ui,sans-serif);font-size:16px;line-height:1.75}
 .asme-privacy-page,.asme-privacy-page *{box-sizing:border-box}
 html body #page .entry-content .asme-privacy-page h1{font-family:var(--asme-font-serif,'DM Serif Display',Georgia,serif);font-size:clamp(42px,6vw,72px);font-weight:400;line-height:1.08;letter-spacing:-.035em;color:#fff!important;margin:18px 0}
 .asme-privacy-page .pp-hero{position:relative;overflow:hidden;border-radius:24px;background:linear-gradient(120deg,#10243d,#1a3c60);padding:clamp(28px,5vw,64px);color:#e0e9f4;border-top:5px solid #bb002b}
@@ -28,6 +28,8 @@ html body #page .entry-content .asme-privacy-page h2{font-family:var(--asme-font
 .asme-privacy-page .pp-contact{padding:clamp(24px,4vw,40px);border-radius:20px;background:var(--pp-soft);border:1px solid var(--pp-line);margin-top:8px}
 .asme-privacy-page .pp-contact p{margin:0 0 16px;color:var(--pp-muted)}
 .asme-privacy-page .pp-contact a.pp-button{display:inline-flex;align-items:center;min-height:46px;padding:10px 20px;background:#b00020;border:1px solid #b00020;color:white;border-radius:12px;font-weight:700;text-decoration:none}
+@media(max-width:979px){.asme-privacy-page{width:100%}}
+@media(max-width:768px){.asme-privacy-page{width:calc(100% - 24px)}}
 @media(max-width:760px){.asme-privacy-page .pp-summary{grid-template-columns:1fr;gap:12px;margin-bottom:28px}.asme-privacy-page .pp-card{padding:20px}.asme-privacy-page .pp-layout{grid-template-columns:1fr;gap:28px}.asme-privacy-page .pp-nav{position:static;display:flex;flex-wrap:wrap;gap:4px 18px}.asme-privacy-page .pp-nav strong{flex-basis:100%;margin-bottom:4px}.asme-privacy-page .pp-nav a{padding:8px 0}.asme-privacy-page .pp-hero{border-radius:18px}.asme-privacy-page .pp-intro{font-size:16px}}
 @media(prefers-color-scheme:dark){.asme-privacy-page{--pp-ink:#e3edf8;--pp-muted:#bdcbdc;--pp-paper:#0b1626;--pp-soft:#122238;--pp-line:#2e425d;--pp-accent:#ffa6b8}}
 @media print{.asme-privacy-page{--pp-ink:#111;--pp-muted:#333;--pp-soft:#fff;--pp-line:#ccc;--pp-accent:#111}.asme-privacy-page .pp-nav,.asme-privacy-page .pp-summary{display:none}.asme-privacy-page .pp-layout{display:block}.asme-privacy-page .pp-hero{background:#fff;color:#111;border:0;padding:0}.asme-privacy-page .pp-hero:after{display:none}html body #page .entry-content .asme-privacy-page h1,.asme-privacy-page .pp-intro,.asme-privacy-page .pp-date,.asme-privacy-page .pp-eyebrow{color:#111}}
