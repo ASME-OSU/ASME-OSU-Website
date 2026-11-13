@@ -19,3 +19,7 @@ The notice reflects the existing signup fields and Brevo integration; approved p
 No fixed deletion deadline, exact retention period, blanket confidentiality promise, or assertion that the website has no cookies/analytics is made. Hosting, provider account settings, newsletter tracking settings, and internal record retention cannot be established from this repository alone. Officers should confirm these operational details with their providers and university contacts as needed, and update the notice when practices change.
 
 Keep the page out of generated search/page registries until its CMS URL is published. After publication, it can be added to those registries and the generated search content rebuilt.
+
+## Published November 13, 2026
+
+CampusPress page ID **1248** is live at `https://org.osu.edu/asme/privacy-policy/`. No sidebars, native content title hidden, and wpautop disabled. Saved source was read back and matched. The Join page (69) received only the new privacy notice; the active Advanced Settings footer received only the new Quick Links entry, preserving other saved CMS code. Both settings saves and public links were verified. Desktop and 390px mobile checks passed with no horizontal overflow and working section targets. The hero title uses an explicit white override for the installed shared heading styles.
