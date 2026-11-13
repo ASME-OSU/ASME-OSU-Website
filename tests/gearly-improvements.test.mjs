@@ -87,3 +87,8 @@ test('saved mixed officer cards retain their own role for later contact followup
  const first=await start(setup);await first.ask('who is the president and who is the treasurer');const saved=first.w.sessionStorage.getItem('gearly_state_v1');first.dom.window.close();
  const replay=await start(w=>{w.sessionStorage.setItem('gearly_state_v1',saved);setup(w);});await replay.ask('show the first result');await replay.ask('their email');assert.match(replay.reply(),/Current president/);assert.doesNotMatch(replay.reply(),/Current treasurer/);replay.dom.window.close();
 });
+test('selecting an ambiguous member also shows the actual public sheet read time',async()=>{
+ const page=await start(w=>{w.GearlyLive={configure(){},load:async(_kind,options)=>options.selection?{text:'Public matched member',cards:[],checkedAt:'2026-01-15T23:00:00Z',sourceLabel:'Public leaderboard'}:{text:'Choose a match',cards:[],candidates:[{label:'Avery Example · Autumn',name:'Avery Example',selection:'public-row:1'}]}};});
+ await page.ask('my points');await page.ask('Avery Example');[...page.w.document.querySelectorAll('.gearly-chip')].find(button=>button.textContent.includes('Avery Example')).click();
+ for(let n=0;n<20&&!/Read Jan/.test(page.reply());n++)await new Promise(resolve=>setTimeout(resolve,2));assert.match(page.reply(),/Read Jan 15, 2026.*6:00 PM EST/);assert.doesNotMatch(page.w.sessionStorage.getItem('gearly_state_v1'),/Avery Example/);page.dom.window.close();
+});

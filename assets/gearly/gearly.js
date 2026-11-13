@@ -547,7 +547,7 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
     privateTurn = true;
     var live = await root.GearlyLive.load('member', {name:candidate.name,selection:candidate.selection});
     if(generation !== conversationGeneration)return;
-    if(!await respond(live.text,live.cards,generation,Date.now()) || generation!==conversationGeneration)return;
+    if(!await respond(live.text+' '+sourceNote(live),live.cards,generation,Date.now()) || generation!==conversationGeneration)return;
     memberCandidates = [];
     setChips([]);
     persist();
