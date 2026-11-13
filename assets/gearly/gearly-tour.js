@@ -61,12 +61,26 @@
   }
   function transition(step) {
     if(!active)return;
-    var page=(config.data.pages || []).find(function(p){return p.url===step.page;});
-    active.element=null;active.ring.hidden=true;active.tip.textContent='';
-    var title=doc.createElement('h2');title.id='gearly-tour-title';title.textContent='Opening '+(page && page.title || step.title)+'…';
-    var status=doc.createElement('p');status.id='gearly-tour-description';status.setAttribute('role','status');status.textContent='Gearly is taking you to the next stop.';
-    active.tip.append(title,status,button('Skip',function(){finish('dismissed');}));
-    active.tip.setAttribute('aria-busy','true');active.tip.removeAttribute('aria-describedby');
+    var page=(config.data.pages || []).find(function(p){return p.url===step.page;}),tip=active.tip;
+    if(!tip.querySelector('#gearly-tour-title')){
+      // Starting the tour from another page still needs the complete dock shell.
+      var count=doc.createElement('p');count.className='gearly-tour-count';count.id='gearly-tour-progress';count.textContent='Step 1 of '+active.steps.length;
+      var heading=doc.createElement('h2');heading.id='gearly-tour-title';var description=doc.createElement('p');description.id='gearly-tour-description';
+      var sprite=typeof step.sprite==='string'?step.sprite.replace(/\.png$/,'.webp'):'';
+      if(spriteFiles.includes(sprite) && config.assetBase){var image=doc.createElement('img');image.className='gearly-tour-sprite';image.alt='';image.width=96;image.height=110;image.src=new URL('sprites/'+sprite,config.assetBase).href;tip.append(image);}
+      var progress=doc.createElement('div');progress.className='gearly-tour-progress';progress.setAttribute('aria-hidden','true');var fill=doc.createElement('span');fill.style.width=(100/active.steps.length)+'%';progress.append(fill);
+      var controls=doc.createElement('div');controls.className='gearly-tour-controls';controls.append(button('Skip',function(){finish('dismissed');}),button('Next',function(){}));
+      tip.append(count,heading,description,progress,controls);positionTip();
+    }
+    // Keep the same avatar, grid, progress, and controls while navigation is pending.
+    // Rebuilding a partial card here placed the loading copy in the wrong grid cells.
+    tip.style.minHeight=tip.getBoundingClientRect().height+'px';
+    active.element=null;active.ring.hidden=true;
+    tip.querySelector('#gearly-tour-title').textContent='Opening '+(page && page.title || step.title)+'…';
+    var status=tip.querySelector('#gearly-tour-description');status.setAttribute('role','status');status.textContent='Gearly is taking you to the next stop.';
+    tip.querySelectorAll('.gearly-tour-controls button').forEach(function(control){control.disabled=control.getAttribute('aria-label')!=='Skip tour';});
+    tip.setAttribute('aria-busy','true');
+    tip.querySelector('[aria-label="Skip tour"]').focus({preventScroll:true});
   }
   function complete() {
     var url=destination({page:config.data && config.data.tour && config.data.tour.returnPage});
@@ -166,7 +180,9 @@
     active.tip.dataset.layout=mobile?'mobile-dock':'dock';
     var width=mobile?v.width-24:Math.min(1200,v.width-32);
     active.tip.style.width=Math.max(0,width)+'px';
-    active.tip.style.maxHeight=mobile?Math.min(260,Math.max(100,v.height*.45))+'px':Math.max(140,v.height*.5)+'px';
+    var heightLimit=mobile?Math.min(340,Math.max(140,v.height*.5)):Math.max(160,v.height*(v.height<=500?.65:.5));
+    active.tip.style.maxHeight=heightLimit+'px';
+    if(active.tip.getAttribute('aria-busy')==='true')active.tip.style.minHeight=Math.min(parseFloat(active.tip.style.minHeight) || 0,heightLimit)+'px';
     var height=active.tip.getBoundingClientRect().height || 220;
     active.tip.style.left=(v.left+(v.width-width)/2)+'px';
     active.tip.style.top=(v.top+Math.max(12,v.height-height-(mobile?12:16)))+'px';
@@ -180,7 +196,7 @@
     var steps = active.steps, el;
     while (index >= 0 && index < steps.length) { var route=destination(steps[index]);if(route && !current(route)){if(navigate(index,direction||1))return;} else {el = target(steps[index]);if(el)break;} index += direction || 1; }
     if (!el) { complete(); return; }
-    active.ring.hidden=false;active.tip.removeAttribute('aria-busy');active.tip.setAttribute('aria-describedby','gearly-tour-progress gearly-tour-description');active.index = index; active.element = el; var step = steps[index], tip = active.tip; tip.textContent = '';
+    active.ring.hidden=false;active.tip.style.minHeight='';active.tip.removeAttribute('aria-busy');active.tip.setAttribute('aria-describedby','gearly-tour-progress gearly-tour-description');active.index = index; active.element = el; var step = steps[index], tip = active.tip; tip.textContent = '';
     var count = doc.createElement('p'); count.className = 'gearly-tour-count'; count.id = 'gearly-tour-progress'; count.textContent = 'Step ' + (index + 1) + ' of ' + steps.length;
     var title = doc.createElement('h2'); title.id = 'gearly-tour-title'; title.textContent = step.title;
     var body = doc.createElement('p'); body.id = 'gearly-tour-description'; body.textContent = step.text;
@@ -217,7 +233,7 @@
       if(active && ['ArrowDown','ArrowUp','PageDown','PageUp','Home','End'].includes(event.key))active.autoUntil=0;
       if(active && mobileTour() && active.element && ['PageDown','PageUp','Home','End'].includes(event.key)){event.preventDefault();var r=active.element.getBoundingClientRect(),top=contentTop(active.element),bottom=parseFloat(tip.style.top)-12,amount=event.key==='Home'?r.top-top:event.key==='End'?r.bottom-bottom:(event.key==='PageDown'?1:-1)*Math.max(80,(bottom-top)*.8);scrollTourPage(amount);return;}
       if (event.key === 'Escape') { event.preventDefault(); finish('dismissed'); }
-      if (event.key === 'Tab' && active) { var controls = Array.from(tip.querySelectorAll('button,a[href]')); var first=controls[0],last=controls[controls.length-1]; if (event.shiftKey && (doc.activeElement===first || !tip.contains(doc.activeElement))) {event.preventDefault();last.focus();} else if (!event.shiftKey && (doc.activeElement===last || !tip.contains(doc.activeElement))) {event.preventDefault();first.focus();} }
+      if (event.key === 'Tab' && active) { var controls = Array.from(tip.querySelectorAll('button,a[href]')).filter(function(control){return !control.disabled && !control.hidden;}); var first=controls[0],last=controls[controls.length-1]; if (event.shiftKey && (doc.activeElement===first || !tip.contains(doc.activeElement))) {event.preventDefault();last.focus();} else if (!event.shiftKey && (doc.activeElement===last || !tip.contains(doc.activeElement))) {event.preventDefault();first.focus();} }
     }};
     // The inert background cannot receive touch input; forward page gestures outside the guide.
     var touchY=null;

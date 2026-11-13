@@ -195,21 +195,36 @@ html[data-theme=light] .gearly-tour-progress > span { background:#ba0c2f; }
 @media(prefers-color-scheme:dark) { .gearly-tour-ring { --tour-accent:#fb7185; } }
 html[data-theme=dark] .gearly-tour-ring,body.dark-mode .gearly-tour-ring { --tour-accent:#fb7185; }
 html[data-theme=light] .gearly-tour-ring { --tour-accent:#ba0c2f; }
-/* Large sections get a low guide dock, keeping the section's actual outline intact. */
-.gearly-tour-tip[data-layout=dock] { display:grid; grid-template-columns:48px minmax(0,1fr) auto; align-items:center; column-gap:16px; row-gap:3px; padding:14px 18px; border-radius:18px; box-shadow:0 12px 36px #0007; }
-.gearly-tour-tip[data-layout=dock] .gearly-tour-sprite { grid-column:1; grid-row:1/4; width:48px; height:48px; float:none; margin:0; padding:3px; }
-.gearly-tour-tip[data-layout=dock] .gearly-tour-count { grid-column:2; grid-row:1; margin:0; font-size:11px; opacity:.8; }
-.gearly-tour-tip[data-layout=dock] h2 { grid-column:2; grid-row:2; margin:0; font-size:18px!important; }
-.gearly-tour-tip[data-layout=dock] #gearly-tour-description { grid-column:2; grid-row:3; margin:2px 0; font-size:13px; line-height:1.45; }
+/* A readable, steady guide dock with Gearly standing freely on the left. */
+.gearly-tour-tip[data-layout=dock] { display:grid; grid-template-columns:96px minmax(0,1fr) auto; align-items:center; column-gap:20px; row-gap:4px; padding:16px 22px; border-radius:18px; box-shadow:0 12px 36px #0007; }
+.gearly-tour-tip .gearly-tour-sprite { border:0; border-radius:0; background:transparent; box-shadow:none; padding:0; object-fit:contain; filter:drop-shadow(0 5px 8px #0003); }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-sprite { grid-column:1; grid-row:1/4; width:96px; height:110px; float:none; margin:0; border:0; background:transparent; box-shadow:none; padding:0; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-count { grid-column:2; grid-row:1; margin:0; font-size:14px; line-height:1.4; opacity:.9; }
+.gearly-tour-tip[data-layout=dock] h2 { grid-column:2; grid-row:2; margin:0; font-size:23px!important; line-height:1.25; }
+.gearly-tour-tip[data-layout=dock] #gearly-tour-description { grid-column:2; grid-row:3; margin:3px 0; font-size:16px; line-height:1.55; }
 .gearly-tour-tip[data-layout=dock] .gearly-tour-controls { grid-column:3; grid-row:1/4; margin:0; padding:0; flex-wrap:nowrap; position:static; }
-.gearly-tour-tip[data-layout=dock] .gearly-tour-progress { grid-column:1/-1; grid-row:4; margin:6px 0 0; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-controls button { min-height:46px; font-size:15px; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-controls button[aria-label="Skip tour"] { font-size:24px; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-progress { grid-column:1/-1; grid-row:4; margin:8px 0 0; }
 .gearly-tour-tip[data-layout=dock] .gearly-tour-destination { display:none; }
+.gearly-tour-controls button:disabled { opacity:.5; cursor:wait; }
+.gearly-tour-tip[aria-busy=true] #gearly-tour-title,.gearly-tour-tip[aria-busy=true] #gearly-tour-description { animation:none; }
 @media(max-width:980px) and (min-width:601px) {
-  .gearly-tour-tip[data-layout=dock] { column-gap:10px; grid-template-columns:36px minmax(0,1fr) auto; padding:10px 12px; }
-  .gearly-tour-tip[data-layout=dock] .gearly-tour-sprite { width:36px; height:36px; }
+  .gearly-tour-tip[data-layout=dock] { column-gap:14px; grid-template-columns:72px minmax(0,1fr) auto; padding:14px 16px; }
+  .gearly-tour-tip[data-layout=dock] .gearly-tour-sprite { width:72px; height:90px; }
+  .gearly-tour-tip[data-layout=dock] h2 { font-size:21px!important; }
   .gearly-tour-tip[data-layout=dock] .gearly-tour-controls { gap:6px; }
-  .gearly-tour-tip[data-layout=dock] .gearly-tour-controls button { padding:6px 10px; font-size:12px; }
+  .gearly-tour-tip[data-layout=dock] .gearly-tour-controls button { padding:8px 10px; font-size:14px; }
 }
+.gearly-tour-tip[data-layout=mobile-dock] { display:grid; grid-template-columns:76px minmax(0,1fr); align-items:center; gap:8px 12px; padding:14px 16px; }
+.gearly-tour-tip[data-layout=mobile-dock] .gearly-tour-sprite { grid-column:1; grid-row:1/3; float:none; width:76px; height:90px; margin:0; border:0; background:transparent; box-shadow:none; padding:0; }
+.gearly-tour-tip[data-layout=mobile-dock] .gearly-tour-count { grid-column:2; grid-row:1; margin:0; font-size:13px; line-height:1.4; }
+.gearly-tour-tip[data-layout=mobile-dock] h2 { grid-column:2; grid-row:2; margin:0; font-size:21px!important; line-height:1.25; }
+.gearly-tour-tip[data-layout=mobile-dock] #gearly-tour-description { grid-column:1/-1; grid-row:3; margin:0; font-size:15px; line-height:1.5; }
+.gearly-tour-tip[data-layout=mobile-dock] .gearly-tour-progress { grid-column:1/-1; grid-row:4; margin:2px 0; }
+.gearly-tour-tip[data-layout=mobile-dock] .gearly-tour-controls { grid-column:1/-1; grid-row:5; margin:0; padding:4px 0 0; font-size:15px; }
+.gearly-tour-tip[data-layout=mobile-dock] .gearly-tour-controls button { font-size:15px; min-height:44px; }
+.gearly-tour-tip[data-layout=mobile-dock] .gearly-tour-destination { display:none; }
 body:has(> .gearly-tour) .gearly-root { visibility:hidden; }
 .gearly-tour-corner { animation:gearly-tour-corner-in .4s ease-out both; }
 @keyframes gearly-tour-corner-in { from { opacity:0; transform:scale(.75); } to { opacity:1; transform:scale(1); } }
