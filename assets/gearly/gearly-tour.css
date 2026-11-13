@@ -186,3 +186,37 @@ html[data-theme=light] .gearly-tour-progress > span { background:#ba0c2f; }
   .gearly-tour-tip .gearly-tour-sprite { width:36px; height:36px; margin-bottom:4px; }
   .gearly-tour-tip .gearly-tour-controls { position:sticky; bottom:0; background:inherit; }
 }
+
+/* Full-section focus: a persistent luminous edge, corner accents, and step label. */
+.gearly-tour-ring { --tour-accent:#ba0c2f; border:1px solid var(--tour-accent); border-radius:16px; box-shadow:0 0 0 1px rgb(255 255 255 / .28),0 0 24px rgb(186 12 47 / .24),inset 0 0 18px rgb(186 12 47 / .06),0 0 0 9999px rgb(0 0 0 / .42); }
+.gearly-tour-corner { position:absolute; width:22px; height:22px; border:3px solid var(--tour-accent); filter:drop-shadow(0 0 4px rgb(186 12 47 / .35)); }
+.gearly-tour-corner.top-left { top:-2px; left:-2px; border-right:0; border-bottom:0; border-radius:16px 0 0 0; }
+.gearly-tour-corner.top-right { top:-2px; right:-2px; border-left:0; border-bottom:0; border-radius:0 16px 0 0; }
+.gearly-tour-corner.bottom-left { bottom:-2px; left:-2px; border-right:0; border-top:0; border-radius:0 0 0 16px; }
+.gearly-tour-corner.bottom-right { bottom:-2px; right:-2px; border-left:0; border-top:0; border-radius:0 0 16px 0; }
+.gearly-tour-section-badge { position:absolute; top:-13px; left:18px; max-width:calc(100% - 40px); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:4px 10px; border:1px solid rgb(255 255 255 / .3); border-radius:999px; background:#a30b2a; color:#fff; box-shadow:0 3px 12px #0003; font:700 11px/1.3 system-ui,sans-serif; letter-spacing:.01em; }
+@media(prefers-color-scheme:dark) { .gearly-tour-ring { --tour-accent:#fb7185; } }
+html[data-theme=dark] .gearly-tour-ring,body.dark-mode .gearly-tour-ring { --tour-accent:#fb7185; }
+html[data-theme=light] .gearly-tour-ring { --tour-accent:#ba0c2f; }
+/* Large sections get a low guide dock, keeping the section's actual outline intact. */
+.gearly-tour-tip[data-layout=dock] { display:grid; grid-template-columns:48px minmax(0,1fr) auto; align-items:center; column-gap:16px; row-gap:3px; padding:14px 18px; border-radius:18px; box-shadow:0 12px 36px #0007; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-sprite { grid-column:1; grid-row:1/4; width:48px; height:48px; float:none; margin:0; padding:3px; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-count { grid-column:2; grid-row:1; margin:0; font-size:11px; opacity:.8; }
+.gearly-tour-tip[data-layout=dock] h2 { grid-column:2; grid-row:2; margin:0; font-size:18px!important; }
+.gearly-tour-tip[data-layout=dock] #gearly-tour-description { grid-column:2; grid-row:3; margin:2px 0; font-size:13px; line-height:1.45; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-controls { grid-column:3; grid-row:1/4; margin:0; padding:0; flex-wrap:nowrap; position:static; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-progress { grid-column:1/-1; grid-row:4; margin:6px 0 0; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-scroll-hint { grid-column:2; grid-row:5; margin:0; font-size:11px; }
+.gearly-tour-tip[data-layout=dock] .gearly-tour-destination { display:none; }
+@media(max-width:980px) and (min-width:601px) {
+  .gearly-tour-tip[data-layout=dock] { column-gap:10px; grid-template-columns:36px minmax(0,1fr) auto; padding:10px 12px; }
+  .gearly-tour-tip[data-layout=dock] .gearly-tour-sprite { width:36px; height:36px; }
+  .gearly-tour-tip[data-layout=dock] .gearly-tour-controls { gap:6px; }
+  .gearly-tour-tip[data-layout=dock] .gearly-tour-controls button { padding:6px 10px; font-size:12px; }
+}
+body:has(> .gearly-tour) .gearly-root { visibility:hidden; }
+.gearly-tour-corner { animation:gearly-tour-corner-in .4s ease-out both; }
+@keyframes gearly-tour-corner-in { from { opacity:0; transform:scale(.75); } to { opacity:1; transform:scale(1); } }
+@media(prefers-reduced-motion:reduce) { .gearly-tour-corner { animation:none; } }
+
+.gearly-tour-ring[data-label=false] .gearly-tour-section-badge { display:none; }

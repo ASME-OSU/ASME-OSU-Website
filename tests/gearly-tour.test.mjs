@@ -138,16 +138,16 @@ function mobileLayout({height=640,targetHeight=300,absoluteTop=900,pageHeight=22
 }
 test('mobile tour clears the fixed header and keeps its spotlight above the guide',()=>{
  const {dom,w,api,scroll}=mobileLayout();api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');
- assert.equal(scroll(),804);assert.equal(parseFloat(ring.style.top),96);assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=parseFloat(tip.style.top)-12);
+ assert.equal(scroll(),804);assert.equal(parseFloat(ring.style.top),91);assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=parseFloat(tip.style.top)-12);
  assert.equal(tip.style.width,'366px');assert.ok(w.document.querySelector('.gearly-tour-scroll-room'));api.close();assert.equal(w.document.querySelector('.gearly-tour-scroll-room'),null);assert.equal(w.document.querySelector('#content').hasAttribute('inert'),false);dom.window.close();
 });
 test('mobile arrival corrects late layout shifts but stops auto-scrolling immediately after user input',()=>{
  const layout=mobileLayout();layout.api.start();const before=layout.scroll();layout.shift(250);layout.w.dispatchEvent(new layout.w.Event('resize'));assert.equal(layout.scroll(),before+250);
  layout.w.document.dispatchEvent(new layout.w.WheelEvent('wheel',{bubbles:true}));layout.shift(200);layout.w.dispatchEvent(new layout.w.Event('resize'));assert.equal(layout.scroll(),before+250);layout.api.close();layout.dom.window.close();
 });
-test('tall mobile sections are clipped to the usable viewport, with room to scroll final content clear of the guide',()=>{
+test('tall mobile sections retain their true bounds, with room to scroll final content clear of the guide',()=>{
  const layout=mobileLayout({height:568,targetHeight:1000,pageHeight:1900});layout.api.start();const {w}=layout,tip=w.document.querySelector('.gearly-tour-tip'),ring=w.document.querySelector('.gearly-tour-ring');
- assert.equal(tip.dataset.scrollable,'true');assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=parseFloat(tip.style.top)-12);
+ assert.equal(tip.dataset.scrollable,'true');assert.equal(parseFloat(ring.style.height),1010);
  w.document.dispatchEvent(new w.WheelEvent('wheel',{bubbles:true}));w.scrollTo({top:99999});w.dispatchEvent(new w.Event('scroll'));assert.ok(w.document.querySelector('#content').getBoundingClientRect().bottom<parseFloat(tip.style.top));
  layout.api.close();layout.dom.window.close();
 });
@@ -205,24 +205,24 @@ test('every published tour stop points to visible source content on its register
   const dom=new JSDOM(html),target=dom.window.document.querySelector(step.selector);assert.ok(target,step.title);assert.equal(target.closest('[hidden],[aria-hidden="true"],template'),null,step.title);dom.window.close();
  }
 });
-test('desktop spotlight stays inside the viewport and clear of its guide for a large section',()=>{
+test('desktop spotlight encloses the entire large section and uses a low guide dock',()=>{
  const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:1440});Object.defineProperty(w,'innerHeight',{value:900});
  w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:1084,top:640,right:1424,bottom:880,width:340,height:240};return {left:20,top:60,right:1420,bottom:1260,width:1400,height:1200};};
- api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=parseFloat(tip.style.top)-12);assert.equal(tip.dataset.scrollable,'true');assert.ok(w.document.querySelector('.gearly-tour-scroll-room'));api.close();assert.equal(w.document.querySelector('.gearly-tour-scroll-room'),null);dom.window.close();
+ api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(parseFloat(ring.style.height),1210);assert.equal(parseFloat(ring.style.width),1410);assert.equal(tip.dataset.layout,'dock');assert.equal(tip.dataset.scrollable,'true');assert.ok(w.document.querySelector('.gearly-tour-scroll-room'));api.close();assert.equal(w.document.querySelector('.gearly-tour-scroll-room'),null);dom.window.close();
 });
 test('each tour step has a fresh arrival cue and correctly advances its progress',()=>{
- const {dom,w,api}=setup();api.start();const first=w.document.querySelector('.gearly-tour-halo');assert.ok(first);assert.equal(w.document.querySelector('.gearly-tour-progress span').style.width,'50%');w.document.querySelector('[aria-label="Next"]').click();assert.notEqual(w.document.querySelector('.gearly-tour-halo'),first);assert.equal(w.document.querySelector('.gearly-tour-progress span').style.width,'100%');api.close();dom.window.close();
+ const {dom,w,api}=setup();api.start();const first=w.document.querySelector('.gearly-tour-halo');assert.ok(first);assert.equal(w.document.querySelectorAll('.gearly-tour-corner').length,4);assert.equal(w.document.querySelector('.gearly-tour-section-badge').textContent,'1 / 2 · Navigation');assert.equal(w.document.querySelector('.gearly-tour-progress span').style.width,'50%');w.document.querySelector('[aria-label="Next"]').click();assert.notEqual(w.document.querySelector('.gearly-tour-halo'),first);assert.equal(w.document.querySelector('.gearly-tour-progress span').style.width,'100%');api.close();dom.window.close();
 });
 
-test('short landscape viewports keep a visible spotlight beside the guide',()=>{
+test('short landscape viewports keep the section outline intact with a docked guide',()=>{
  const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:844});Object.defineProperty(w,'innerHeight',{value:390});let top=900;
  w.scrollTo=({top:scroll})=>{top=900-scroll;};
  w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:488,top:80,right:828,bottom:374,width:340,height:294};return {left:20,top,right:824,bottom:top+1000,width:804,height:1000};};
- api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(ring.hidden,false);assert.ok(parseFloat(ring.style.width)>=120);assert.ok(parseFloat(ring.style.left)+parseFloat(ring.style.width)<=parseFloat(tip.style.left)-12);assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=378);api.close();dom.window.close();
+ api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(ring.hidden,false);assert.ok(parseFloat(ring.style.width)>=120);assert.equal(parseFloat(ring.style.width),814);assert.equal(parseFloat(ring.style.height),1010);assert.equal(tip.dataset.layout,'dock');api.close();dom.window.close();
 });
 
-test('a laptop-height viewport exposes large sections beside the guide rather than only their heading',()=>{
+test('laptop highlights retain the entire section width rather than cutting through resource cards',()=>{
  const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:1440});Object.defineProperty(w,'innerHeight',{value:722});
  w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:1084,top:352,right:1424,bottom:706,width:340,height:354};return {left:40,top:220,right:1400,bottom:1220,width:1360,height:1000};};
- api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(ring.hidden,false);assert.ok(parseFloat(ring.style.height)>400);assert.ok(parseFloat(ring.style.left)+parseFloat(ring.style.width)<=parseFloat(tip.style.left)-12);api.close();dom.window.close();
+ api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(ring.hidden,false);assert.equal(parseFloat(ring.style.height),1010);assert.equal(parseFloat(ring.style.width),1370);assert.equal(tip.dataset.layout,'dock');api.close();dom.window.close();
 });
