@@ -155,30 +155,21 @@
     }
     // The outline always represents the entire section, including off-screen content.
     // Never close a false edge at the guide or viewport boundary.
-    active.tip.dataset.scrollable=r.height>Math.max(0,parseFloat(active.tip.style.top)-top)?'true':'false';
     active.ring.dataset.label=r.top>v.top+24?'true':'false';
     active.ring.hidden=r.bottom<=v.top || r.top>=v.top+v.height || r.right<=v.left || r.left>=v.left+v.width;
     active.ring.style.left=(r.left-5)+'px';active.ring.style.top=(r.top-5)+'px';
     active.ring.style.width=(r.width+10)+'px';active.ring.style.height=(r.height+10)+'px';
   }
   function positionTip(){
-    var v=tourViewport(),mobile=v.width<=600,r=active.element && active.element.getBoundingClientRect();
-    var dock=!mobile && r && r.width>v.width*.6;
-    active.tip.dataset.layout=dock?'dock':'card';
-    var width=mobile?v.width-24:dock?Math.min(1200,v.width-32):Math.min(340,v.width-24);
+    var v=tourViewport(),mobile=v.width<=600;
+    // The guide always stays in the same bottom dock, independent of the target.
+    active.tip.dataset.layout=mobile?'mobile-dock':'dock';
+    var width=mobile?v.width-24:Math.min(1200,v.width-32);
     active.tip.style.width=Math.max(0,width)+'px';
-    active.tip.style.maxHeight=mobile?Math.min(260,Math.max(100,v.height*.45))+'px':dock?Math.max(140,v.height*.5)+'px':'';
+    active.tip.style.maxHeight=mobile?Math.min(260,Math.max(100,v.height*.45))+'px':Math.max(140,v.height*.5)+'px';
     var height=active.tip.getBoundingClientRect().height || 220;
-    var left=v.left+(dock?(v.width-width)/2:Math.max(12,v.width-width-(mobile?12:16)));
-    var top=v.top+Math.max(12,v.height-height-(mobile?12:16));
-    if(r && !mobile && !dock){
-      // Prefer a clear gap beside, below, or above a smaller section.
-      if(r.right+16+width<=v.left+v.width-12){left=r.right+16;top=Math.max(v.top+12,Math.min(r.top,v.top+v.height-height-12));}
-      else if(r.left-width-16>=v.left+12){left=r.left-width-16;top=Math.max(v.top+12,Math.min(r.top,v.top+v.height-height-12));}
-      else if(r.bottom+16+height<=v.top+v.height-12)top=r.bottom+16;
-      else if(r.top-height-16>=v.top+12)top=r.top-height-16;
-    }
-    active.tip.style.left=left+'px';active.tip.style.top=top+'px';
+    active.tip.style.left=(v.left+(v.width-width)/2)+'px';
+    active.tip.style.top=(v.top+Math.max(12,v.height-height-(mobile?12:16)))+'px';
     if(!active.spacer){active.spacer=doc.createElement('div');active.spacer.className='gearly-tour-scroll-room';active.spacer.setAttribute('aria-hidden','true');active.spacer.setAttribute('inert','');doc.body.append(active.spacer);}
     var room=height+36+'px';if(active.spacer.style.height!==room)active.spacer.style.height=room;
   }
@@ -210,7 +201,6 @@
     if (index > 0) controls.appendChild(button('Back', function () { show(active.index - 1, -1); }));
     var next = button(index === steps.length - 1 ? 'Done' : 'Next', function () { if (active.index === steps.length - 1) complete(); else show(active.index + 1, 1); }); controls.appendChild(next); tip.appendChild(controls);
     if(index < steps.length-1){var following=steps[index+1],page=(config.data.pages || []).find(function(p){return p.url===following.page;}),cue=doc.createElement('p');cue.className='gearly-tour-destination';cue.textContent='Next: '+(!current(destination(following)) && page && page.title || following.title);tip.appendChild(cue);next.title=cue.textContent;}
-    var hint=doc.createElement('p');hint.className='gearly-tour-scroll-hint';hint.textContent='Scroll the page to explore this section.';tip.insertBefore(hint,controls);
     active.lastAlign=null;active.autoUntil=Date.now()+8000;
     if(active.observer){active.observer.disconnect();active.observer.observe(el);active.observer.observe(tip);}if(!mobileTour())scrollTarget(el);
     update(); scheduleUpdate(); next.focus({preventScroll:true});

@@ -147,7 +147,7 @@ test('mobile arrival corrects late layout shifts but stops auto-scrolling immedi
 });
 test('tall mobile sections retain their true bounds, with room to scroll final content clear of the guide',()=>{
  const layout=mobileLayout({height:568,targetHeight:1000,pageHeight:1900});layout.api.start();const {w}=layout,tip=w.document.querySelector('.gearly-tour-tip'),ring=w.document.querySelector('.gearly-tour-ring');
- assert.equal(tip.dataset.scrollable,'true');assert.equal(parseFloat(ring.style.height),1010);
+ assert.equal(parseFloat(ring.style.height),1010);
  w.document.dispatchEvent(new w.WheelEvent('wheel',{bubbles:true}));w.scrollTo({top:99999});w.dispatchEvent(new w.Event('scroll'));assert.ok(w.document.querySelector('#content').getBoundingClientRect().bottom<parseFloat(tip.style.top));
  layout.api.close();layout.dom.window.close();
 });
@@ -208,7 +208,7 @@ test('every published tour stop points to visible source content on its register
 test('desktop spotlight encloses the entire large section and uses a low guide dock',()=>{
  const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:1440});Object.defineProperty(w,'innerHeight',{value:900});
  w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:1084,top:640,right:1424,bottom:880,width:340,height:240};return {left:20,top:60,right:1420,bottom:1260,width:1400,height:1200};};
- api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(parseFloat(ring.style.height),1210);assert.equal(parseFloat(ring.style.width),1410);assert.equal(tip.dataset.layout,'dock');assert.equal(tip.dataset.scrollable,'true');assert.ok(w.document.querySelector('.gearly-tour-scroll-room'));api.close();assert.equal(w.document.querySelector('.gearly-tour-scroll-room'),null);dom.window.close();
+ api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(parseFloat(ring.style.height),1210);assert.equal(parseFloat(ring.style.width),1410);assert.equal(tip.dataset.layout,'dock');assert.ok(w.document.querySelector('.gearly-tour-scroll-room'));api.close();assert.equal(w.document.querySelector('.gearly-tour-scroll-room'),null);dom.window.close();
 });
 test('each tour step has a fresh arrival cue and correctly advances its progress',()=>{
  const {dom,w,api}=setup();api.start();const first=w.document.querySelector('.gearly-tour-halo');assert.ok(first);assert.equal(w.document.querySelectorAll('.gearly-tour-corner').length,4);assert.equal(w.document.querySelector('.gearly-tour-section-badge').textContent,'1 / 2 · Navigation');assert.equal(w.document.querySelector('.gearly-tour-progress span').style.width,'50%');w.document.querySelector('[aria-label="Next"]').click();assert.notEqual(w.document.querySelector('.gearly-tour-halo'),first);assert.equal(w.document.querySelector('.gearly-tour-progress span').style.width,'100%');api.close();dom.window.close();
@@ -225,4 +225,17 @@ test('laptop highlights retain the entire section width rather than cutting thro
  const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:1440});Object.defineProperty(w,'innerHeight',{value:722});
  w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:1084,top:352,right:1424,bottom:706,width:340,height:354};return {left:40,top:220,right:1400,bottom:1220,width:1360,height:1000};};
  api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(ring.hidden,false);assert.equal(parseFloat(ring.style.height),1010);assert.equal(parseFloat(ring.style.width),1370);assert.equal(tip.dataset.layout,'dock');api.close();dom.window.close();
+});
+
+test('Join and Member Points tour stops include the complete related flow',()=>{
+ const data=JSON.parse(readFileSync('assets/gearly/gearly-data.json','utf8'));
+ for(const [route,file,selectors] of [['join/','Join Page.html',['#newsletter-signup','#joinGroupMeStep','#asme-groupme-return','.join-flow-progress']],['member-points-page/','Member Points Page.html',['#leaderboard','#member-dashboard']]]){
+  const step=data.tour.steps.find(step=>step.page==='https://org.osu.edu/asme/'+route),dom=new JSDOM(readFileSync(file,'utf8')),target=dom.window.document.querySelector(step.selector);assert.ok(target);
+  for(const selector of selectors)assert.ok(target.querySelector(selector),route+' '+selector);dom.window.close();
+ }
+});
+test('the guide stays in the same bottom dock for narrow and wide targets without scroll-hint text',()=>{
+ const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:1440});Object.defineProperty(w,'innerHeight',{value:900});
+ w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:120,top:660,right:1320,bottom:884,width:1200,height:224};const narrow=this.id==='header';return {left:narrow?300:20,top:180,right:narrow?500:1420,bottom:500,width:narrow?200:1400,height:320};};
+ api.start();const tip=w.document.querySelector('.gearly-tour-tip'),placement=[tip.style.left,tip.style.top,tip.style.width];assert.equal(tip.dataset.layout,'dock');w.document.querySelector('[aria-label="Next"]').click();assert.deepEqual([tip.style.left,tip.style.top,tip.style.width],placement);assert.equal(tip.dataset.layout,'dock');assert.equal(tip.querySelector('.gearly-tour-scroll-hint'),null);assert.doesNotMatch(tip.textContent,/Scroll the page to explore/);api.close();dom.window.close();
 });

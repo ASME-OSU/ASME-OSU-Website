@@ -146,7 +146,6 @@ body:has(> .gearly-tour-offer) .gearly-launcher-greeting { display:none; }
 @keyframes gearly-offer-mobile-enter { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 
 /* Mobile walkthrough: keep a clear page viewport above a compact docked guide. */
-.gearly-tour-scroll-hint { display:none; }
 .gearly-tour-scroll-room { pointer-events:none; flex:none; }
 @media(max-width:600px) {
   .gearly-tour-tip { padding:12px 14px; border-radius:18px; font-size:13px; line-height:1.4; overscroll-behavior:contain; }
@@ -158,7 +157,6 @@ body:has(> .gearly-tour-offer) .gearly-launcher-greeting { display:none; }
   .gearly-tour-tip .gearly-tour-controls button { min-height:44px; padding:6px 10px; font-size:13px; }
   .gearly-tour-tip .gearly-tour-controls button[aria-label="Skip tour"] { font-size:22px; }
   .gearly-tour-tip .gearly-tour-destination { font-size:10px; margin-top:4px!important; }
-  .gearly-tour-tip[data-scrollable="true"] .gearly-tour-scroll-hint { display:block; margin:6px 0; color:inherit; opacity:.8; font-size:11px; }
 }
 
 /* One quiet arrival cue per step. Geometry stays immediate while scrolling. */
@@ -167,7 +165,6 @@ body:has(> .gearly-tour-offer) .gearly-launcher-greeting { display:none; }
 .gearly-tour-tip #gearly-tour-title,.gearly-tour-tip #gearly-tour-description { animation:gearly-tour-copy .24s ease-out both; }
 .gearly-tour-progress { height:3px; margin:12px 0 4px; overflow:hidden; border-radius:99px; background:rgb(128 128 128 / .18); }
 .gearly-tour-progress > span { display:block; height:100%; border-radius:inherit; background:#ba0c2f; }
-.gearly-tour-tip[data-scrollable="true"] .gearly-tour-scroll-hint { display:block; font-size:12px; opacity:.8; }
 @keyframes gearly-tour-arrive { from { opacity:.8; transform:scale(.99); } to { opacity:0; transform:scale(1.015); } }
 @keyframes gearly-tour-copy { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
 @media(prefers-reduced-motion:reduce) {
@@ -206,7 +203,6 @@ html[data-theme=light] .gearly-tour-ring { --tour-accent:#ba0c2f; }
 .gearly-tour-tip[data-layout=dock] #gearly-tour-description { grid-column:2; grid-row:3; margin:2px 0; font-size:13px; line-height:1.45; }
 .gearly-tour-tip[data-layout=dock] .gearly-tour-controls { grid-column:3; grid-row:1/4; margin:0; padding:0; flex-wrap:nowrap; position:static; }
 .gearly-tour-tip[data-layout=dock] .gearly-tour-progress { grid-column:1/-1; grid-row:4; margin:6px 0 0; }
-.gearly-tour-tip[data-layout=dock] .gearly-tour-scroll-hint { grid-column:2; grid-row:5; margin:0; font-size:11px; }
 .gearly-tour-tip[data-layout=dock] .gearly-tour-destination { display:none; }
 @media(max-width:980px) and (min-width:601px) {
   .gearly-tour-tip[data-layout=dock] { column-gap:10px; grid-template-columns:36px minmax(0,1fr) auto; padding:10px 12px; }

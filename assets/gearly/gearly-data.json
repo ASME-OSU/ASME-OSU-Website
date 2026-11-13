@@ -2160,9 +2160,9 @@
         "sprite": "gearly-calendar-presenting.webp"
       },
       {
-        "selector": "#newsletter-signup, [data-gearly=\"join-button\"]",
-        "title": "Stay informed",
-        "text": "Start with this email signup for chapter news and opportunities. The GroupMe invitation is in the next card. You can sign up after the tour.",
+        "selector": ".join-process-area",
+        "title": "Join in three steps",
+        "text": "Start with the email newsletter, join the chapter GroupMe for quick updates, then return for your welcome card. You can complete these steps after the tour.",
         "page": "https://org.osu.edu/asme/join/",
         "sprite": "gearly-double-thumbs-up.webp"
       },
@@ -2181,9 +2181,9 @@
         "sprite": "gearly-laptop-presenting.webp"
       },
       {
-        "selector": "#leaderboard, [data-gearly=\"leaderboard\"]",
-        "title": "Public member standings",
-        "text": "These are the published member standings. Find My Points offers a personal dashboard after the tour.",
+        "selector": ".asme-points-primary-grid",
+        "title": "Member points and standings",
+        "text": "See the published leaderboard and use Find My Points to look up your public attendance and points dashboard. The point values and attendance instructions are further down this page.",
         "page": "https://org.osu.edu/asme/member-points-page/",
         "sprite": "gearly-growth-chart.webp"
       },
