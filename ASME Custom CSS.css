@@ -13320,14 +13320,14 @@ body #page .asme-sponsor-page .sponsor-contact > .sponsor-contact-header {
 
 body #page .asme-sponsor-page .sponsor-contact-header h2 {
 
-  font-size: 26px !important;
+  font-size: clamp(32px, 2.5vw, 44px) !important;
   margin: 6px 0 10px !important;
 }
 
 body #page .asme-sponsor-page .sponsor-contact-header p {
 
-  font-size: 14px !important;
-  line-height: 1.5 !important;
+  font-size: clamp(18px, 1.2vw, 21px) !important;
+  line-height: 1.6 !important;
 }
 
 body #page .asme-sponsor-page .sponsor-contact > .sponsor-inquiry-form {
@@ -23314,7 +23314,7 @@ body #page .asme-sponsor-page .sponsor-tier-heading,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) 65px !important;
-  align-items: start !important;
+  align-items: center !important;
   column-gap: 10px !important;
   padding-right: 0 !important;
 }
@@ -23322,6 +23322,7 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-heading {
 body #page .asme-sponsor-page .sponsor-tier-name,
 html body #page .entry-content .asme-sponsor-page .sponsor-tier-name {
   grid-column: 1 !important;
+  grid-row: 1 !important;
   min-width: 0 !important;
 }
 
