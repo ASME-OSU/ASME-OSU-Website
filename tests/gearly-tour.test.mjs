@@ -246,3 +246,23 @@ test('page-transition feedback preserves the complete dock and offers only the e
  assert.equal(tip.querySelector('.gearly-tour-sprite'),sprite);assert.equal(tip.querySelector('.gearly-tour-count'),count);assert.equal(tip.querySelector('.gearly-tour-controls'),controls);assert.equal(tip.querySelector('.gearly-tour-progress'),progress);assert.deepEqual([tip.style.left,tip.style.top,tip.style.width],placement);
  assert.equal(tip.querySelector('#gearly-tour-description').getAttribute('role'),'status');assert.equal(tip.querySelector('[aria-label="Next"]').disabled,true);const skip=tip.querySelector('[aria-label="Skip tour"]');assert.equal(skip.disabled,false);skip.focus();home.w.document.dispatchEvent(new home.w.KeyboardEvent('keydown',{key:'Tab',bubbles:true,cancelable:true}));assert.equal(home.w.document.activeElement,skip);skip.click();assert.equal(home.w.document.querySelector('.gearly-tour-tip'),null);home.w.close();
 });
+
+test('restarting and canceling the tour repeatedly leaves no duplicate dialogs or inert page elements',()=>{
+ const {dom,w,api}=setup();for(let n=0;n<40;n++){
+  api.start();api.start();assert.equal(w.document.querySelectorAll('.gearly-tour').length,1);assert.equal(w.document.querySelectorAll('.gearly-tour-tip').length,1);
+  w.document.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(w.document.querySelector('.gearly-tour'),null);assert.equal(w.document.querySelector('[inert]'),null);assert.equal(w.document.querySelector('.gearly-tour-scroll-room'),null);
+ }dom.window.close();
+});
+test('canceling a pending page transition clears resumption and a replay starts cleanly',async()=>{
+ const storage=session(),page=await crossPage('https://org.osu.edu/asme/',storage,routeData);
+ for(let n=0;n<15;n++){
+  page.api.start();page.w.document.querySelector('[aria-label="Next"]').click();assert.ok(storage.getItem('asme-gearly-tour-3-session'));page.api.close();assert.equal(storage.getItem('asme-gearly-tour-3-session'),null);assert.equal(page.w.document.querySelector('[inert]'),null);
+ }
+ page.api.start();assert.equal(page.w.document.querySelector('#gearly-tour-title').textContent,'Home');page.api.close();page.w.close();
+});
+test('a loading dock remains keyboard-contained and clamps its reserved height after rotation',async()=>{
+ const page=await crossPage('https://org.osu.edu/asme/',session(),routeData);page.root.innerWidth=390;page.root.innerHeight=844;
+ page.w.HTMLElement.prototype.getBoundingClientRect=function(){return {left:12,top:100,right:378,bottom:400,width:366,height:this.classList.contains('gearly-tour-tip')?300:40};};
+ page.api.start();page.w.document.querySelector('[aria-label="Next"]').click();page.root.innerHeight=240;page.w.dispatchEvent(new page.w.Event('resize'));
+ const tip=page.w.document.querySelector('.gearly-tour-tip');assert.ok(parseFloat(tip.style.minHeight)<=parseFloat(tip.style.maxHeight));const skip=tip.querySelector('[aria-label="Skip tour"]');skip.focus();page.w.document.dispatchEvent(new page.w.KeyboardEvent('keydown',{key:'Tab',shiftKey:true,bubbles:true,cancelable:true}));assert.equal(page.w.document.activeElement,skip);page.api.close();page.w.close();
+});
