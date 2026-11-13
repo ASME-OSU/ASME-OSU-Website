@@ -24609,7 +24609,7 @@ html body #page .entry-content .asme-home.asme-home-refined :is(.ah-btn-p, .ah-b
   color: #fff !important;
 }
 html body #page .entry-content .asme-home.asme-home-refined :is(.ah-btn-p, .ah-btn-o) {
-  border-radius: 14px !important; font-weight: 700 !important;
+  border-radius: 999px !important; font-weight: 700 !important;
   text-shadow: 0 1px 3px rgba(6,16,35,.45) !important;
 }
 html body #page .entry-content .asme-home.asme-home-refined .ah-btn-p { border-color: rgba(255,255,255,.58) !important; }
