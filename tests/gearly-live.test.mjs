@@ -394,3 +394,82 @@ test('a next-week list has no arbitrary primary, while next named event selects 
   const week=await api.load('events',{query:'What events are there next week?',dateRange:{from:'2026-10-19',to:'2026-10-25'}});assert.equal(week.primaryEventId,undefined);
   const next=await api.load('events',{query:'Does the next MATLAB event have food?'});assert.equal(next.primaryEventId,'matlab-one');assert.match(next.text,/Food: The listing does not specify/);
 });
+
+test('event start-time refinements combine date, company and type in Eastern Time through DST',async()=>{
+  const source={checkedAt:'2026-01-01T12:00:00Z',events:[
+    {id:'winter-boundary',title:'Acme workshop',start:'2026-02-02T22:00:00Z'},
+    {id:'winter-after',title:'Acme workshop',start:'2026-02-02T23:00:00Z'},
+    {id:'summer-boundary',title:'Acme workshop',start:'2026-07-02T21:00:00Z'},
+    {id:'summer-after',title:'Acme workshop',start:'2026-07-02T22:00:00Z'},
+    {id:'wrong-type',title:'Acme social',start:'2026-07-02T22:00:00Z'},
+    {id:'wrong-company',title:'Other workshop',start:'2026-07-02T22:00:00Z'},
+    {id:'all-day',title:'Acme workshop',start:'2026-07-02',allDay:true}
+  ]};
+  const {api}=setup([source,source],'2026-01-01T12:00:00Z');
+  api.configure({companies:[{id:'acme',name:'Acme',aliases:[]}]});
+  const base={afterMinutes:1020,beforeMinutes:1140,eventType:'workshop',company:'acme'};
+  const winter=await api.load('events',{...base,dateRange:{from:'2026-02-02',to:'2026-02-02'}});
+  assert.deepEqual(Array.from(winter.cards,c=>c.id),['winter-after']);
+  const summer=await api.load('events',{...base,dateRange:{from:'2026-07-02',to:'2026-07-02'}});
+  assert.deepEqual(Array.from(summer.cards,c=>c.id),['summer-after']);
+});
+
+test('time boundaries are strict and independently cached, including midnight and all-day exclusion',async()=>{
+  const now='2026-01-01T12:00:00Z',source={checkedAt:now,events:[
+    {id:'midnight',title:'Midnight chapter activity',start:'2026-01-02T05:00:00Z'},
+    {id:'one',title:'One chapter activity',start:'2026-01-02T06:00:00Z'},
+    {id:'five',title:'Five chapter activity',start:'2026-01-02T10:00:00Z'},
+    {id:'all-day',title:'All-day chapter activity',start:'2026-01-02',allDay:true}
+  ]};
+  const {api,requests}=setup([source,source,source,source],now);
+  const after=await api.load('events',{afterMinutes:0});assert.deepEqual(Array.from(after.cards,c=>c.id),['one','five']);
+  const before=await api.load('events',{beforeMinutes:60});assert.deepEqual(Array.from(before.cards,c=>c.id),['midnight']);
+  const both=await api.load('events',{afterMinutes:0,beforeMinutes:300});assert.deepEqual(Array.from(both.cards,c=>c.id),['one']);
+  const none=await api.load('events',{beforeMinutes:0});assert.equal(none.cards.length,0);assert.match(none.text,/selected start time and other filters/);
+  await api.load('events',{afterMinutes:0});assert.equal(requests.length,4);
+});
+
+test('malformed time filters are ignored rather than silently narrowing or corrupting cached results',async()=>{
+  const now='2026-01-01T12:00:00Z',source={checkedAt:now,events:[{id:'one',title:'Chapter activity',start:'2026-01-02T06:00:00Z'}]};
+  const {api,requests}=setup([source],now);
+  for(const invalid of [-1,1440,NaN,Infinity,'60',60.5,null]){
+    const answer=await api.load('events',{afterMinutes:invalid,beforeMinutes:invalid});assert.equal(answer.cards[0].id,'one');
+  }
+  assert.equal(requests.length,1);
+});
+
+test('sheet read times remain distinct from source update times and retain cached read time',async()=>{
+  let now=+new Date('2026-01-01T12:00:00Z');
+  const {api,requests}=setup([gviz([['meeting','Meeting',5,null,'Meeting']]),gviz([['system_status','LIVE']]),gviz([[1,'Public Person','Autumn',20]])],()=>now);
+  const points=await api.load('points');assert.equal(points.updatedAt,null);assert.equal(points.checkedAt,new Date(now).toISOString());
+  now+=20000;const cached=await api.load('points');assert.equal(cached.checkedAt,points.checkedAt);
+  const leaderboard=await api.load('leaderboard');assert.equal(leaderboard.updatedAt,null);assert.equal(leaderboard.checkedAt,new Date(now).toISOString());assert.equal(requests.length,3);
+});
+
+test('member lookup reports row update separately from the cached public row read time',async()=>{
+  let now=+new Date('2026-01-01T12:00:00Z');
+  const {api}=setup([gviz([['system_status','LIVE']]),gviz([[1,'Public Person','Autumn',20,2,'Active','2025-12-30']]),gviz([['system_status','LIVE']])],()=>now);
+  const first=await api.load('member',{name:'Public Person'});assert.equal(first.updatedAt,'2025-12-30T00:00:00.000Z');assert.equal(first.checkedAt,new Date(now).toISOString());
+  now+=20000;const second=await api.load('member',{name:'Public Person'});assert.equal(second.checkedAt,first.checkedAt);assert.equal(second.updatedAt,first.updatedAt);
+});
+
+test('event replies expose retained filters including empty results and use verified company labels',async()=>{
+  const now='2026-01-01T12:00:00Z',source={checkedAt:now,events:[{id:'match',title:'Acme workshop',start:'2026-02-02T23:00:00Z'}]};
+  const {api}=setup([source,source,source],now);api.configure({companies:[{id:'acme',name:'Acme Engines',aliases:['Acme']}]});
+  const options={dateRange:{from:'2026-02-02',to:'2026-02-02'},company:'acme',eventType:'workshop',afterMinutes:1020,beforeMinutes:1140};
+  const match=await api.load('events',options);
+  assert.match(match.text,/Filters: 2026-02-02 · Acme Engines · workshop · starts after 5:00 PM Eastern · starts before 7:00 PM Eastern/);
+  const empty=await api.load('events',{...options,beforeMinutes:1080});assert.equal(empty.cards.length,0);assert.match(empty.text,/Filters: .*starts before 6:00 PM Eastern/);
+  // A result-selection request retrieves the exact item, so filters are not
+  // advertised as though they were applied to that selected-item answer.
+  const selected=await api.load('events',{...options,selectedEventId:'match'});assert.equal(selected.cards[0].id,'match');assert.doesNotMatch(selected.text,/Filters:/);
+});
+
+test('time filters exclude date-only events even when an allDay flag is missing',async()=>{
+  const now='2026-01-01T12:00:00Z',source={checkedAt:now,events:[
+    {id:'date-only',title:'Date-only chapter activity',start:'2026-01-02'},
+    {id:'timed',title:'Timed chapter activity',start:'2026-01-02T05:01:00Z'}
+  ]};
+  const {api}=setup([source],now);const answer=await api.load('events',{afterMinutes:0});
+  assert.deepEqual(Array.from(answer.cards,c=>c.id),['timed']);assert.match(answer.text,/starts after 12:00 AM Eastern/);
+});

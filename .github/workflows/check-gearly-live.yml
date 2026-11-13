@@ -1,0 +1,45 @@
+name: Check published Gearly content
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 */6 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gearly-live-health
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Check published targets and public sources
+        run: node scripts/check-gearly-live.mjs --output gearly-live-health.json
+      - name: Retain read-only health report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gearly-live-health
+          path: gearly-live-health.json
+          retention-days: 14
+      - name: Summarize health results
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          if (!fs.existsSync('gearly-live-health.json')) process.exit(0);
+          const report = JSON.parse(fs.readFileSync('gearly-live-health.json'));
+          const lines = [`Gearly checked ${report.checks.length} public pages/sources.`, '', ...report.errors.map(message => `- ERROR: ${message}`), ...report.warnings.map(message => `- WARNING: ${message}`)];
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\n') + '\n');
+          for (const warning of report.warnings) console.log('::warning::' + warning.replaceAll('\n',' '));
+          JS

@@ -1,0 +1,56 @@
+{
+  "note": "New release evaluation authored before implementing the six improvements. Once used for development it is a regression set, not an independent accuracy estimate.",
+  "single": [
+    ["hey Gearly, how do I get involved?", "join"],
+    ["pls show me the groupme link", "groupme"],
+    ["evnts", "events"],
+    ["how much are dues?", "dues"],
+    ["who can join?", "eligibility"],
+    ["career resources please", "careers"],
+    ["show the standings", "leaderboard"],
+    ["where are the chapter photos?", "gallery"],
+    ["who sponsors ASME?", "sponsors"],
+    ["who is the webmaster?", "webmaster"],
+    ["hello there buddy!", "greeting"],
+    ["tysm", "thanks"]
+  ],
+  "compound": [
+    ["How do I join and are there dues?", ["join", "dues"]],
+    ["Where is GroupMe and how do I join?", ["groupme", "join"]],
+    ["Who can join? Also, how much are dues?", ["eligibility", "dues"]],
+    ["Show upcoming events and where are career resources?", ["events", "careers"]],
+    ["Who is the president and who is the treasurer?", ["president", "treasurer"]],
+    ["How do I join; where is GroupMe; how much are dues?", ["join", "groupme", "dues"]],
+    ["Current sponsors plus sponsorship options", ["sponsors", "sponsorship"]],
+    ["How do points work and what are the point values?", ["member-points", "point-values"]]
+  ],
+  "noCompound": [
+    "Pratt and Whitney events",
+    "resume and cover letters",
+    "my points and how do I join",
+    "join and my bank password",
+    "not joining and no dues",
+    "take a tour and join",
+    "hello and thanks",
+    "join; dues; GroupMe; events"
+  ],
+  "refinement": [
+    ["only workshops", "eventType", "workshop"],
+    ["just socials", "eventType", "social"],
+    ["what about next month?", "dateRange", "next-month"],
+    ["anything after 5 pm?", "afterMinutes", 1020],
+    ["before 10 am", "beforeMinutes", 600],
+    ["after 17:30", "afterMinutes", 1050],
+    ["anything after 5?", "clarifyTime", true],
+    ["after 12 pm", "afterMinutes", 720],
+    ["before 12 am", "beforeMinutes", 0]
+  ],
+  "unsafeRefinement": [
+    "what about my chemistry exam tomorrow",
+    "where is it on another planet",
+    "delete the workshops",
+    "after 25 pm",
+    "only my bank events",
+    "what about tomorrow and my mortgage"
+  ]
+}
