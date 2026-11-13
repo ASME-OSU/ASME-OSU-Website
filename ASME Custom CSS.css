@@ -24611,8 +24611,10 @@ html body #page .entry-content .asme-home.asme-home-refined .ah-badge-year { fon
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero {
     grid-template-columns: minmax(0, 1fr) !important; min-height: 0 !important;
     align-items: start !important; align-content: start !important;
-    padding: 44px 20px 50px !important; gap: 24px !important;
+    padding: 44px 20px 88px !important; gap: 24px !important;
   }
+  /* Match the heading’s top inset below the photo slideshow controls. */
+  html body #page .entry-content .asme-home.asme-home-refined .ah-hero-dots { bottom: 44px !important; }
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero-overlay {
     background: linear-gradient(105deg, rgba(6,16,35,.82), rgba(6,16,35,.48)) !important;
   }
