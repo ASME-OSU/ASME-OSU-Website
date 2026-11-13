@@ -12,7 +12,8 @@ const server = http.createServer((req, res) => {
     const content = fs.readFileSync(path.join(root, selected), 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
     const embed = fs.readFileSync(path.join(root, 'Gearly Embed.html'), 'utf8').replaceAll('https://asme-osu.github.io/ASME-OSU-Website/', '/').replaceAll('.css?v=', '.css?scheme=' + (url.searchParams.get('scheme') === 'light' ? 'light' : 'dark') + '&v=');
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    return res.end(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Gearly review preview</title><link rel="stylesheet" href="/ASME%20Custom%20CSS.css?scheme=${url.searchParams.get('scheme') === 'light' ? 'light' : 'dark'}"><body><div id="page"><nav id="site-navigation" aria-label="Preview pages">${[...pages].map(p => `<a class="${p==='Join Page.html'?'asme-hd-join':''}" style="margin:8px" href="/?page=${encodeURIComponent(p)}">${p.replace(' Page.html', '')}</a>`).join('')}</nav><main class="entry-content">${content}</main></div>${url.searchParams.get("qa")==="member"?'<script src="/tests/fixtures/gearly-v2-browser.js"></script>':""}<script src="/Calendar%20Integration.js" defer></script><script src="/Gallery%20Integration.js" defer></script><script src="/Member%20Points%20Integration.js" defer></script>${embed}</body></html>`);
+    const html = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Gearly review preview</title><link rel="stylesheet" href="/ASME%20Custom%20CSS.css?scheme=${url.searchParams.get('scheme') === 'light' ? 'light' : 'dark'}"><body><div id="page"><nav id="site-navigation" aria-label="Preview pages">${[...pages].map(p => `<a class="${p==='Join Page.html'?'asme-hd-join':''}" style="margin:8px" href="/?page=${encodeURIComponent(p)}">${p.replace(' Page.html', '')}</a>`).join('')}</nav><main class="entry-content">${content}</main></div>${url.searchParams.get("qa")==="member"?'<script src="/tests/fixtures/gearly-v2-browser.js"></script>':""}<script src="/Calendar%20Integration.js" defer></script><script src="/Gallery%20Integration.js" defer></script><script src="/Member%20Points%20Integration.js" defer></script>${embed}</body></html>`;
+    return res.end(html);
   }
   let file;
   try { file = decodeURIComponent(url.pathname.slice(1)); } catch { res.writeHead(400); return res.end(); }
@@ -21,6 +22,8 @@ const server = http.createServer((req, res) => {
   if (!allowed || !target.startsWith(root + path.sep) || !fs.existsSync(target) || !fs.statSync(target).isFile()) { res.writeHead(404); return res.end(); }
   res.setHeader('Content-Type', types[path.extname(target)] || 'application/octet-stream');
   let bytes = fs.readFileSync(target);
+  // Local visual QA: hold the real transition state without changing production assets.
+  if(file==='assets/gearly/gearly-tour.js' && process.env.GEARLY_PREVIEW_HOLD_TOUR==='1')bytes=bytes.toString().replaceAll('root.location.assign(url);','void url;');
   if (file.endsWith('.css') && ['light', 'dark'].includes(url.searchParams.get('scheme'))) bytes = bytes.toString().replace(/prefers-color-scheme:\s*dark/g, url.searchParams.get('scheme') === 'light' ? 'max-width:0px' : 'min-width:0px');
   res.end(bytes);
 });
