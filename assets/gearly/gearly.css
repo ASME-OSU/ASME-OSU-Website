@@ -29,7 +29,8 @@
 .gearly-context { flex:none; display:flex; align-items:center; gap:6px; padding:0 14px; min-height:40px; font-size:12px; color:var(--gearly-muted); border-bottom:1px solid var(--gearly-border); }
 .gearly-context strong { color:var(--gearly-link); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .gearly-root .gearly-text-button { margin-left:auto; min-height:36px; padding:0 4px; border:0; border-radius:6px; background:transparent; color:var(--gearly-link); font-size:12px; font-weight:700; white-space:nowrap; }
-.gearly-messages { flex:1 1 auto; min-height:0; overflow-y:auto; overflow-x:hidden; padding:14px; overscroll-behavior:contain; }
+.gearly-feed { position:relative; display:flex; flex-direction:column; flex:1 1 auto; min-height:0; }
+.gearly-messages { overflow-anchor:none; flex:1 1 auto; min-height:0; overflow-y:auto; overflow-x:hidden; padding:14px; overscroll-behavior:contain; }
 .gearly-message { margin:0 0 10px; padding:11px 12px; border:1px solid var(--gearly-border); border-radius:16px; background:var(--gearly-soft); color:var(--gearly-fg); font-size:14px; line-height:1.5; overflow-wrap:anywhere; }
 .gearly-message p { margin:0; }
 .gearly-root .gearly-user { margin-left:32px; background:var(--gearly-accent); border-color:var(--gearly-accent); color:#fff; }
@@ -95,3 +96,7 @@ html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#242228; --g
 
 /* Preserve the separate answers in multi-part replies. */
 .gearly-message p { white-space: pre-line; }
+
+/* An overlay keeps the composer fixed without shifting the conversation. */
+.gearly-root .gearly-latest { position:absolute; right:14px; bottom:10px; z-index:2; min-height:44px; padding:8px 12px; border:1px solid var(--gearly-hero-border); border-radius:24px; background:var(--gearly-bg); color:var(--gearly-link); box-shadow:0 3px 12px #0002; font-size:13px; font-weight:700; }
+.gearly-root .gearly-latest:is(:hover,:focus-visible) { background:var(--gearly-soft); color:var(--gearly-link); }
