@@ -1,24 +1,13 @@
 {
-  "generatedAt": "2026-11-10T01:38:48.174Z",
-  "checkedAt": "2026-11-12T20:56:01.370Z",
-  "windowStart": "2026-11-05T20:56:01.337Z",
+  "generatedAt": "2026-11-13T01:57:08.580Z",
+  "checkedAt": "2026-11-13T01:57:08.580Z",
+  "windowStart": "2026-11-06T01:57:08.552Z",
   "windowEnd": "2029-08-01T00:00:00.000Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
   "sourceUrl": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
   "events": [
-    {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-11-05T22:30:00.000Z",
-      "title": "ASME MATLAB Info Session",
-      "start": "2026-11-05T22:30:00.000Z",
-      "end": "2026-11-05T23:30:00.000Z",
-      "allDay": false,
-      "location": "Scott Laboratory E141",
-      "description": "<p>Matlab info session</p>",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-10-28T02:48:15.000Z"
-    },
     {
       "id": "6007o04v43b5pioguflhf7p4qk@google.com::2026-11-11T12:00:00.000Z",
       "title": "Veterans Day observed - no classes, offices closed",
