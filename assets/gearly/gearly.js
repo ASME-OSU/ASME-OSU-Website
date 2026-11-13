@@ -6,11 +6,17 @@
   var idfCache = new WeakMap();
   function array(value){return Array.isArray(value)?value:[];}
   function normalize(value) { return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function isGreeting(value) {
+    var text=normalize(value).replace(/\b(?:gearly|gearley)\b/g,'').replace(/\s+/g,' ').trim();
+    return /^(?:(?:hi+|hello+|hey+|yo|howdy|hiya|sup|good morning|good afternoon|good evening)(?: there)?(?: friend| buddy| pal| mate)? ?)+$/.test(text);
+  }
   function conversationalText(value) {
+    if(isGreeting(value))return 'hello';
     // Remove conversational wrappers without discarding the actual question or its negation.
     return String(value || '').trim()
       .replace(/^(?:(?:hi+|hello+|hey+|yo|howdy|hiya|sup|good morning|good afternoon|good evening)\b[!,.\s]*(?:(?:gearly|gearley)\b[!,.\s]*)?)+/i, '')
       .replace(/^(?:gearly|gearley)\b[!,.\s]+/i, '')
+      .replace(/^(?:please|kindly)\s+/i, '')
       .replace(/\b(?:wanna)\b/gi, 'want to').replace(/\b(?:gonna)\b/gi, 'going to')
       .replace(/\bwhats\b/gi, 'what is').replace(/\b(?:pls|plz)\b/gi, 'please')
       .replace(/\b(?:yall|y’all|y'all)\b/gi, 'you').replace(/\b(?:u)\b/gi, 'you')
@@ -18,7 +24,7 @@
   }
   function socialReply(value) {
     var n=normalize(value).replace(/\b(?:gearly|gearley)\b/g,'').replace(/\s+/g,' ').trim();
-    if(/^(?:(?:hi+|hello+|hey+|yo|howdy|hiya|sup|good morning|good afternoon|good evening)(?: there)? ?)+$/.test(n))return 'Hey! 👋 Good to see you. What can I help you find—events, joining ASME, career tools, or something else on the website?';
+    if(isGreeting(value))return 'Hey! 👋 Good to see you. What can I help you find—events, joining ASME, career tools, or something else on the website?';
     n=normalize(conversationalText(value) || value).replace(/\b(?:gearly|gearley)\b/g,'').replace(/\s+/g,' ').trim();
     if(/^(?:how are you(?: doing)?|how (?:is it|s it|it s|its) going|hows it going|whats up|what is up|how have you been|you good)$/.test(n))return 'Hey! I’m ready to help you explore ASME. How’s your day going? You can also ask me about events, getting involved, or career resources.';
     if(/^(?:thanks(?: a lot| so much)?|thank you(?: so much)?|thx|ty|tysm|appreciate (?:it|you)|cheers|you rock|youre the best|that (?:helps|helped))$/.test(n))return 'You’re welcome! Glad I could help. Ask away if anything else comes up.';
@@ -127,9 +133,14 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
   function followupRequest(text) {
     var value=normalize(text);
     if(/^(?:tell me more|when is it|show me that)$/.test(value))return {index:0,kind:value==='tell me more'?'more':'select'};
-    var selected=value.match(/^(?:(?:show me|show|open|tell me about) )?(?:the )?(first|second|third|1st|2nd|3rd)(?: one| result| photo| event)?$/);
+    var selected=value.match(/^(?:(?:show me|show|open|tell me about) )?(?:the )?(first|second|third|fourth|fifth|1st|2nd|3rd|4th|5th)(?: one| result| photo| event)?$/);
     if(!selected)return null;
-    return {index:/^(?:second|2nd)$/.test(selected[1])?1:/^(?:third|3rd)$/.test(selected[1])?2:0,kind:'select'};
+    var indices={first:0,'1st':0,second:1,'2nd':1,third:2,'3rd':2,fourth:3,'4th':3,fifth:4,'5th':4};
+    return {index:indices[selected[1]],kind:'select'};
+  }
+  function dateOnlyFollowup(text) {
+    var value=normalize(text).replace(/^(?:what about|and) /,'').replace(/^on /,'').replace(/ please$/,'');
+    return /^(?:(?:this|next) (?:week|month)|today|tomorrow|tonight|(?:(?:this|next) )?(?:sunday|monday|tuesday|wednesday|thursday|friday|saturday)|\d{1,2} \d{1,2}(?: \d{4})?|(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?) \d{1,2}(?: \d{4})?)$/.test(value);
   }
   function match(data,text,state) {state=state || createState();var entities=extractEntities(text,data), n=normalize(text);
     var follow=!state.pendingQuestion && followupRequest(text);
@@ -140,7 +151,7 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
     if(memberIntent && (name || personalPoints(text) || state.pendingSlot === 'memberName')) return {kind:'answer',intent:memberIntent,score:1,candidates:[],entities:entities}; if(state.pendingQuestion && /^(the )?(first|second|third)( one)?$/.test(n)){var idx=/second/.test(n)?1:/third/.test(n)?2:0;text=state.pendingQuestion[idx] || text;n=normalize(text);entities=extractEntities(text,data);}
     if(state.lastEntity && /contact (him|her|them)|their email|his email|her email/.test(n)){return {kind:'answer',intent:{id:'contact-'+state.lastEntity,response:{text:'The Leadership page has current public contact details.',cards:[{title:'Leadership',url:new URL('leadership/',data.meta.siteBase || 'https://org.osu.edu/asme/').href}]}},score:1,candidates:[],entities:entities};}
     var clauseText=normalize(text);array(data.entities.companies).forEach(function(company){if(!company)return;[company.id,company.name].concat(array(company.aliases)).filter(function(alias){return typeof alias==='string' && /\band\b/.test(normalize(alias));}).forEach(function(alias){var brand=normalize(alias);if(contains(clauseText,brand))clauseText=(' '+clauseText+' ').split(' '+brand+' ').join(' company ').trim();});});var clauses=clauseText.split(/\s+(?:and|also|plus)\s+/i);if(clauses.length===2){var first=scoreIntents(data,clauses[0],state),other=scoreIntents(data,clauses[1],state);if(first[0] && other[0] && first[0].score>=data.fallback.highThreshold && other[0].score>=data.fallback.highThreshold && first[0].intent.id!==other[0].intent.id && (!first[1] || first[0].score-first[1].score>=data.fallback.clarifyThreshold || first[0].score===1) && (!other[1] || other[0].score-other[1].score>=data.fallback.clarifyThreshold || other[0].score===1))return {kind:'clarify',intent:first[0].intent,score:first[0].score,candidates:[first[0],other[0]],entities:entities};}var scores=scoreIntents(data,text,state), top=scores[0], second=scores[1], kind='fallback';if(top && top.score>=data.fallback.highThreshold && (!second || (top.score===1 && second.score<1) || top.score-second.score>=data.fallback.clarifyThreshold))kind='answer';else if(top && top.score>=data.fallback.lowThreshold)kind='clarify';
-    if(state.lastIntent && entities.dateRange && /^(what about|and|next|this)/.test(n)){top={intent:data.intents.find(function(i){return i.id===state.lastIntent;}),score:1};kind=top.intent?'answer':'fallback';}return {kind:kind,intent:top && top.intent,score:top?top.score:0,candidates:scores.slice(0,3),entities:entities}; }
+    if(prior && prior.liveSource==='events' && entities.dateRange && dateOnlyFollowup(n)){top={intent:prior,score:1};kind='answer';}return {kind:kind,intent:top && top.intent,score:top?top.score:0,candidates:scores.slice(0,3),entities:entities}; }
   var api={conversationalText:conversationalText,socialReply:socialReply,followupRequest:followupRequest,personalPoints:personalPoints,extractMemberName:extractMemberName,normalize:normalize,safeURL:safeURL,validateData:validateData,createState:createState,extractEntities:extractEntities,scoreIntents:scoreIntents,match:match};if(typeof module!=='undefined' && module.exports)module.exports=api;
   if(!root.document)return;
   var script=root.document.currentScript, base=new URL('.',script && script.src || root.location.href).href, data, state=createState(), panel, input, list, chips, launcher, avatar, activity, finishTyping, conversationGeneration = 0, privateTurn = false, memberCandidates = [], clarifyQuestion = null, lastCards = [];
@@ -355,14 +366,17 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
   function topicShortcuts() {
     return array(data.featuredTopics).filter(function(topic){return topic.tour || data.pages.some(function(page){return page.id===topic.pageId;});});
   }
+  function eventQuestionAllowed(text) {
+    return !/\b(?:dont|do not|never|cancel|delete|quit|leave|password|secret|private|chemistry|mortgage|bank|nba|another planet|reactor meltdown)\b/.test(normalize(text));
+  }
   function eventQuestion(text) {
     var n=normalize(text);
-    if(/\b(?:dont|do not|never|cancel|delete|quit|leave|password|secret|private|chemistry|mortgage|bank|nba|another planet|reactor meltdown)\b/.test(n))return false;
+    if(!eventQuestionAllowed(text))return false;
     return /\b(?:events?|meetings?|gbm|info sessions?|bar social|matlab|competitions?)\b/.test(n) &&
       /\b(?:next|upcoming|when|where|tonight|today|tomorrow|october|oct|november|nov|december|dec|january|jan|rsvp|register|registration|sign up|food|bring|laptop|before|under|21|will|can i|happen|this week|next week)\b/.test(n);
   }
   function eventFollowup(text) {
-    return /\b(?:it|that|there|they|them|its)\b/.test(normalize(text)) && /\b(?:rsvp|food|pizza|register|registration|bring|laptop|experience|knowledge|age|attend|where|when|location)\b/.test(normalize(text));
+    return eventQuestionAllowed(text) && /\b(?:it|that|there|they|them|its)\b/.test(normalize(text)) && /\b(?:rsvp|food|pizza|register|registration|bring|laptop|experience|knowledge|age|attend|where|when|location)\b/.test(normalize(text));
   }
   function pointHelp(text) {
     var n=normalize(text),url=new URL('member-points-page/',data.meta.siteBase).href;
@@ -372,11 +386,22 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
     return null;
   }
   async function ask(text){if(!data)return;open();text=String(text || '').trim().slice(0,500);if(!text)return;var requestGeneration=++conversationGeneration,started=Date.now();if(finishTyping)finishTyping();list.querySelectorAll('.gearly-shortcuts').forEach(function(node){node.remove();});list.querySelectorAll('.gearly-welcome').forEach(function(node){node.classList.remove('gearly-welcome');});input.value='';
+    if(/^(?:cancel|never mind|nevermind|forget it|not now|no thanks|stop)(?: please)?$/.test(normalize(text))){
+      privateTurn=false;message(text,'user');stopActivity();memberCandidates=[];clarifyQuestion=null;lastCards=[];
+      state.pendingQuestion=null;delete state.pendingSlot;state.slots={};state.lastIntent=null;state.lastEntity=null;state.lastLiveSource=null;state.lastResult=[];delete state.eventContextId;
+      if(await respond('No problem. What would you like help finding instead?',[],requestGeneration,started)){setChips(starterChips());persist();}return;
+    }
     var pageOverview=wantsPageHelp(text)?await pageHelp(text):null;
     if(requestGeneration!==conversationGeneration)return;
     if(pageOverview){privateTurn=false;message(text,'user');setAvatar('happy');if(await respond(pageOverview.text,pageOverview.cards,requestGeneration,started)){if(!state.pendingQuestion && !state.pendingSlot)setChips(pageOverview.chips);persist();}return;}
     var casual=socialReply(text);
     if(casual){privateTurn=false;message(text,'user');setAvatar('happy');if(await respond(casual,[],requestGeneration,started)){if(!state.pendingQuestion && !state.pendingSlot)setChips(starterChips());persist();}return;}
+    if(state.pendingSlot==='memberName'){
+      var fresh=match(data,conversationalText(text) || text,createState());
+      var topicText=normalize(conversationalText(text) || text),explicitTopic=!extractMemberName(text,state) || /^(?:what|where|when|who|how|why|can|could|would|do|does|is|are|show|open|take|bring|find|tell|give|help|join|sign|subscribe)\b/.test(topicText);
+      if(fresh.intent)explicitTopic=explicitTopic || topicText===normalize(fresh.intent.id) || topicText===normalize(fresh.intent.label) || fresh.intent.examples.some(function(example){return normalize(example)===topicText;});
+      if(explicitTopic && fresh.kind==='answer' && fresh.intent && !['my-points','member-points'].includes(fresh.intent.id)){delete state.pendingSlot;memberCandidates=[];}
+    }
     var originalText=text;text=conversationalText(text) || text;
     var followup=!state.pendingQuestion && followupRequest(text),selectedResult=followup?(lastCards[followup.index] || array(state.lastResult)[followup.index]):null;
     memberCandidates=[];privateTurn=Boolean(extractMemberName(text,state) || personalPoints(text) || state.pendingSlot==='memberName');message(originalText,'user');setAvatar('thinking');startActivity();var result=match(data,text,state), response;if(followup && !selectedResult && followup.kind==='select'){await respond(array(state.lastResult).length?'That answer has only '+state.lastResult.length+' result(s). Ask for the list again or select one of those results.':'Ask for events, photos, or resources first so I have a list to select from.',null,requestGeneration,started);return;}var previousIntent=state.lastIntent;var memberName=extractMemberName(text,state),wasPending=state.pendingSlot==='memberName';delete state.pendingSlot;
