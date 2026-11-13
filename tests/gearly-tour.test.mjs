@@ -220,3 +220,9 @@ test('short landscape viewports keep a visible spotlight beside the guide',()=>{
  w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:488,top:80,right:828,bottom:374,width:340,height:294};return {left:20,top,right:824,bottom:top+1000,width:804,height:1000};};
  api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(ring.hidden,false);assert.ok(parseFloat(ring.style.width)>=120);assert.ok(parseFloat(ring.style.left)+parseFloat(ring.style.width)<=parseFloat(tip.style.left)-12);assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=378);api.close();dom.window.close();
 });
+
+test('a laptop-height viewport exposes large sections beside the guide rather than only their heading',()=>{
+ const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:1440});Object.defineProperty(w,'innerHeight',{value:722});
+ w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:1084,top:352,right:1424,bottom:706,width:340,height:354};return {left:40,top:220,right:1400,bottom:1220,width:1360,height:1000};};
+ api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(ring.hidden,false);assert.ok(parseFloat(ring.style.height)>400);assert.ok(parseFloat(ring.style.left)+parseFloat(ring.style.width)<=parseFloat(tip.style.left)-12);api.close();dom.window.close();
+});

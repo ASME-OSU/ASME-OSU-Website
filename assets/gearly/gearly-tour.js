@@ -156,7 +156,7 @@
     var ringTop=r.top-5,ringBottom=r.bottom+5,ringLeft=r.left-5,ringRight=r.right+5;
     // Keep the spotlight inside the visible page area, clear of the docked guide.
     var tipLeft=parseFloat(active.tip.style.left),limit=v.top+v.height-12;
-    var beside=!mobile && v.height<=500 && tipLeft-r.left>=120;
+    var beside=!mobile && tipLeft-r.left>=240 && (v.height<=500 || parseFloat(active.tip.style.top)-Math.max(top,r.top)<Math.min(r.height,280));
     if(beside)ringRight=Math.min(ringRight,tipLeft-12);
     else if(mobile || r.right>tipLeft-12 && r.left<tipLeft+active.tip.getBoundingClientRect().width)limit=Math.min(limit,parseFloat(active.tip.style.top)-12);
     ringTop=Math.max(ringTop,top);ringBottom=Math.min(ringBottom,limit);
