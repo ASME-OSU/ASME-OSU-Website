@@ -60,7 +60,7 @@
     return Boolean(title) && !nonChapterPatterns.some(function(pattern){return pattern.test(title);});
   }
   // Topic words select a named event; ordinary calendar and logistics words do not.
-  var eventStop = new Set(('a an the is are was what where when how can could would will i we you me my our your please find show tell do does have has be there it its that this these those for of with on in to at and or asme chapter event events meeting meetings next upcoming tonight today tomorrow week month date dates time times eastern location venue info information session sessions social workshop company volunteering competition competitions project projects hands design involved through get into bring need laptop computer know knowledge prior experience before rsvp register registration food eat meal pizza age students student under attend attendance should preparation required requirements whether listed calendar october january february march april may june july august september november december jan feb mar apr jun jul aug sep oct nov dec').split(' '));
+  var eventStop = new Set(('a an the is are was what where when how can could would will i we you me my our your please find show tell do does have has be there it its that this these those for of with on in to at and or asme chapter event events meeting meetings after before am pm anything only just next upcoming tonight today tomorrow week month date dates time times eastern location venue info information session sessions social workshop company volunteering competition competitions project projects hands design involved through get into bring need laptop computer know knowledge prior experience before rsvp register registration food eat meal pizza age students student under attend attendance should preparation required requirements whether listed calendar october january february march april may june july august september november december jan feb mar apr jun jul aug sep oct nov dec').split(' '));
   function eventID(event) {
     return clean(event.id, 500) || 'event:' + words(event.title).slice(0, 400) + ':' + clean(event.start, 40);
   }
@@ -93,9 +93,26 @@
       return detail.label + ': The listing does not specify ' + detail.unknown + '.';
     }).join(' ');
   }
+  function eventFilterSummary(options) {
+    var filters = [], range = options.dateRange || {};
+    if (range.from || range.to) filters.push(range.from && range.to && range.from === range.to ? range.from : (range.from || 'any date') + ' to ' + (range.to || 'any date'));
+    if (options.company) {
+      var company = companies.find(function (entry) { return entry.id === options.company; });
+      filters.push(company ? clean(company.name, 100) : 'requested company');
+    }
+    if (options.eventType) filters.push(clean(options.eventType, 60).replace(/-/g, ' '));
+    ['afterMinutes', 'beforeMinutes'].forEach(function (key) {
+      var minutes = options[key];
+      if (!Number.isInteger(minutes)) return;
+      var hour = Math.floor(minutes / 60), minute = String(minutes % 60).padStart(2, '0');
+      filters.push((key === 'afterMinutes' ? 'starts after ' : 'starts before ') + (hour % 12 || 12) + ':' + minute + (hour < 12 ? ' AM' : ' PM') + ' Eastern');
+    });
+    return filters.length ? ' Filters: ' + filters.join(' · ') + '.' : '';
+  }
   function eventResult(data, options, updated) {
     var now = Date.now(), selectedID = options.selectedEventId || options.eventId;
     var requested = detailRequests(options.query), range = options.dateRange || {};
+    var timeFiltered = Number.isInteger(options.afterMinutes) || Number.isInteger(options.beforeMinutes);
     var sourceTime = date(updated), stale = !sourceTime || now - sourceTime.getTime() > 3 * 3600000;
     var eligible = data.events.filter(function (e) {
       return e && isChapterEvent(e) && e.cancelled !== true && !/^(cancelled|canceled)$/i.test(e.status || '') && date(e.start) && date(e.end || e.start) && +date(e.end || e.start) >= +date(e.start);
@@ -108,6 +125,15 @@
       if (allDayDates ? endDay < easternDay(now) : date(e.end || e.start).getTime() < now) return false;
       var firstDay = new Date(startDay * 86400000).toISOString().slice(0, 10), lastDay = new Date(endDay * 86400000).toISOString().slice(0, 10);
       if (range.from && lastDay < range.from || range.to && firstDay > range.to) return false;
+      if (timeFiltered) {
+        // All-day entries do not publish a clock time. Compare each start in
+        // Eastern Time so summer/winter offsets and overnight UTC dates agree.
+        if (e.allDay || /^\d{4}-\d{2}-\d{2}$/.test(e.start)) return false;
+        var clock = {};
+        new Intl.DateTimeFormat('en-US', {timeZone:'America/New_York', hour:'2-digit', minute:'2-digit', hourCycle:'h23'}).formatToParts(date(e.start)).forEach(function (part) { clock[part.type] = part.value; });
+        var minutes = Number(clock.hour) * 60 + Number(clock.minute);
+        if (Number.isInteger(options.afterMinutes) && minutes <= options.afterMinutes || Number.isInteger(options.beforeMinutes) && minutes >= options.beforeMinutes) return false;
+      }
       var text = clean(e.title) + ' ' + clean(e.description), company = companies.find(function (c) { return c.id === options.company; });
       if (options.company && !(company ? company.aliases.some(function (a) { return mentions(text, a); }) : mentions(text, options.company))) return false;
       if (options.eventType) {
@@ -133,13 +159,13 @@
     var ambiguous = requested.length && candidates.length > 1 && !primary;
     var cards = candidates.slice(0, 3).map(eventCard), message;
     if (selectedID && !candidates.length) message = 'The previously selected event is unavailable in this public calendar snapshot. Please choose an event from the calendar.';
-    else if (!candidates.length) message = stale ? "I can't confirm whether a chapter event matches because the public calendar snapshot is out of date or has no refresh date. Open the calendar for current details." : range.from || range.to ? "I don't see a chapter event listed for that date or date range in the public calendar." : options.company || options.eventType || named ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : "I don't see any upcoming chapter events listed in the public calendar.";
+    else if (!candidates.length) message = stale ? "I can't confirm whether a chapter event matches because the public calendar snapshot is out of date or has no refresh date. Open the calendar for current details." : timeFiltered ? 'No upcoming events match the selected start time and other filters in the public calendar snapshot. Times are Eastern; all-day events have no listed start time. Open the calendar for all events.' : range.from || range.to ? "I don't see a chapter event listed for that date or date range in the public calendar." : options.company || options.eventType || named ? 'No upcoming events match these filters in the public calendar snapshot. Open the calendar for all events.' : "I don't see any upcoming chapter events listed in the public calendar.";
     else if (ambiguous) message = 'Which event do you mean? Choose an event or give its title so I can check those details.';
     else {
       message = selectedID || named && candidates.length === 1 ? 'Public calendar listing for ' + clean(candidates[0].title, 150) + '.' : 'Upcoming chapter events in Eastern Time.';
       if (requested.length && primary) message += ' ' + eventDetails(candidates[0], requested);
     }
-    var value = result(message, cards, updated, 'Google Calendar · hourly snapshot');
+    var value = result(message + (selectedID ? '' : eventFilterSummary(options)), cards, updated, 'Google Calendar · hourly snapshot');
     value.availability = stale ? 'stale' : 'fresh';
     if (primary && cards.length && !ambiguous) value.primaryEventId = cards[0].id;
     if (ambiguous) value.needsEventSelection = true;
@@ -240,7 +266,7 @@
     return table('System_Status', 'select A,B where A is not null').then(function (statusRows) {
       var status = statusRows.find(function (row) { return clean(cell(row, 0)).toLowerCase() === 'system_status'; });
       if (!status || clean(cell(status, 1)).toUpperCase() !== 'LIVE') return result('The leaderboard is unavailable while the points system is not live.', [], null, 'Public leaderboard');
-      if (memberRows && Date.now() - memberTime < ttl) return memberResult(memberRows, options);
+      if (memberRows && Date.now() - memberTime < ttl) return checkedResult(memberResult(memberRows, options), memberTime);
       if (!memberPending) memberPending = table('Leaderboard_Public', 'select A,B,C,D,E,F,G,H,I,J,K,L,M,N,O where B is not null').then(function (rows) {
         memberGeneration++;
         memberRows = rows.map(function (raw, index) {
@@ -249,7 +275,7 @@
         memberTime = Date.now();
         return memberRows;
       }).finally(function () { memberPending = null; });
-      return memberPending.then(function (rows) { return memberResult(rows, options); });
+      return memberPending.then(function (rows) { return checkedResult(memberResult(rows, options), memberTime); });
     });
   }
   function date(value) { var d = new Date(value); return value && Number.isFinite(d.getTime()) ? d : null; }
@@ -281,6 +307,7 @@
   function table(name, query) { return request(sheet + '?headers=1&sheet=' + encodeURIComponent(name) + '&tq=' + encodeURIComponent(query) + '&tqx=out:json', true); }
   function cell(row, index) { return row && Array.isArray(row.c) && row.c[index] ? row.c[index].v : null; }
   function result(text, cards, updatedAt, sourceLabel) { return { text: text, cards: cards, updatedAt: stamp(updatedAt), sourceLabel: sourceLabel }; }
+  function checkedResult(value, checkedAt) { value.checkedAt = new Date(checkedAt || Date.now()).toISOString(); return value; }
   function unavailableResult(kind) {
     var value = result(kind === 'events' ? "I can't confirm chapter events because the public calendar is temporarily unavailable. Open the calendar or try again shortly." : 'This public source is temporarily unavailable. Try again shortly or open its website.', [], null, 'Unavailable');
     if (kind === 'events') value.availability = 'unavailable';
@@ -290,14 +317,14 @@
     if (kind === 'member') return loadMember(options);
     if (kind === 'leaderboard' || kind === 'points') {
       if (kind === 'points') return table('Point_Values_Public', 'select A,B,C,D,E,F where B is not null').then(function (rows) {
-        return result('Current public point values.', rows.map(function (r) { return { title: clean(cell(r, 4)) || clean(cell(r, 1)), text: Number.isFinite(Number(cell(r, 2))) && cell(r, 2) !== null ? String(Number(cell(r, 2))) + ' points' : '', url: pages + 'member-points-page/' }; }).filter(function (r) { return r.title && r.text; }).slice(0, 12), null, 'Public point values · read on request');
+        return checkedResult(result('Current public point values.', rows.map(function (r) { return { title: clean(cell(r, 4)) || clean(cell(r, 1)), text: Number.isFinite(Number(cell(r, 2))) && cell(r, 2) !== null ? String(Number(cell(r, 2))) + ' points' : '', url: pages + 'member-points-page/' }; }).filter(function (r) { return r.title && r.text; }).slice(0, 12), null, 'Public point values'));
       });
       return table('System_Status', 'select A,B where A is not null').then(function (rows) {
         var status = rows.find(function (r) { return clean(cell(r, 0)).toLowerCase() === 'system_status'; });
         if (!status || clean(cell(status, 1)).toUpperCase() !== 'LIVE') return result('The leaderboard is unavailable while the points system is not live.', [], null, 'Public leaderboard');
         return table('Leaderboard_Public', 'select A,B,C,D where B is not null').then(function (members) {
           var cards = members.map(function (r) { return { rank: Number(cell(r, 0)), title: clean(cell(r, 1), 100), points: cell(r, 3) === null ? NaN : Number(cell(r, 3)) }; }).filter(function (r) { return r.title && Number.isInteger(r.rank) && r.rank > 0 && Number.isFinite(r.points) && r.points >= 0; }).sort(function (a, b) { return a.rank - b.rank; }).slice(0, 10).map(function (r) { return { title: '#' + r.rank + ' ' + r.title, text: r.points + ' verified points', url: pages + 'member-points-page/' }; });
-          return result(cards.length ? 'Top verified public leaderboard totals.' : 'No public leaderboard totals are available yet.', cards, null, 'Sanitized public leaderboard · read on request');
+          return checkedResult(result(cards.length ? 'Top verified public leaderboard totals.' : 'No public leaderboard totals are available yet.', cards, null, 'Sanitized public leaderboard'));
         });
       });
     }
@@ -361,7 +388,7 @@
       if(options.eventRules && Array.isArray(options.eventRules.nonChapterTitlePatterns)){nonChapterPatterns=options.eventRules.nonChapterTitlePatterns.slice(0,50).map(function(pattern){try{return typeof pattern==='string'?new RegExp(pattern,'i'):null;}catch(_){return null;}}).filter(Boolean);}
       if (Array.isArray(options.companies)) {
         companies = options.companies.filter(function (company) { return company && typeof company.id === 'string' && typeof company.name === 'string'; }).slice(0, 100).map(function (company) {
-          return {id: clean(company.id, 100), aliases: [company.name].concat(Array.isArray(company.aliases) ? company.aliases : []).filter(function (alias) { return typeof alias === 'string' && alias.trim().length >= 2; }).map(function (alias) { return clean(alias, 100); })};
+          return {id: clean(company.id, 100), name: clean(company.name, 100), aliases: [company.name].concat(Array.isArray(company.aliases) ? company.aliases : []).filter(function (alias) { return typeof alias === 'string' && alias.trim().length >= 2; }).map(function (alias) { return clean(alias, 100); })};
         });
       }
       memberRows = null;
@@ -374,6 +401,7 @@
       var range = options.dateRange && typeof options.dateRange === 'object' ? options.dateRange : null;
       var normalized = { company: clean(options.company, 100), eventType: /^meetings?$/i.test(clean(options.eventType, 60)) ? '' : clean(options.eventType, 60) };
       if (range) { normalized.dateRange = {}; ['from', 'to'].forEach(function (name) { if (typeof range[name] === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(range[name])) normalized.dateRange[name] = range[name]; }); }
+      ['afterMinutes','beforeMinutes'].forEach(function (key) { if (Number.isInteger(options[key]) && options[key] >= 0 && options[key] < 1440) normalized[key] = options[key]; });
       normalized.query = clean(options.query, 500);
       normalized.selectedEventId = clean(options.selectedEventId || options.eventId, 500);
       normalized.name = clean(options.name, 60);

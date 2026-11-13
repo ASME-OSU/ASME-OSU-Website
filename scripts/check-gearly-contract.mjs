@@ -3,7 +3,73 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
 
-export async function checkContract(data, readSource) {
+// A single inventory is shared by local contracts and the read-only live audit.
+// Indexed targets are included so newly published section anchors cannot silently drift.
+export function registeredTargets(data, index = {records: []}) {
+  const pages = data.pages || [], targets = [];
+  const add = (page, selector, label, shared = false) => {
+    if (selector) targets.push({page, selector, label, shared});
+  };
+  for (const [i, step] of (data.tour?.steps || []).entries()) {
+    add(step.page, step.selector, `Tour step ${i + 1}`, /#(?:asme-site-header|site-navigation)\b/.test(step.selector || ''));
+  }
+  for (const page of pages) for (const section of page.sections || []) add(page.url, section.selector, `Section ${page.id}/${section.id}`);
+  for (const record of index.records || []) for (const section of record.sections || []) add(record.url, section.selector, `Indexed section ${section.id}`);
+  for (const intent of data.intents || []) {
+    if (intent.source?.section) add(intent.source.page, intent.source.section, `Source ${intent.id}`);
+    for (const action of intent.actions || []) {
+      add(action.page, action.selector, `Action ${intent.id}`);
+      for (const step of action.steps || []) add(step.page || action.page || data.meta?.siteBase || pages[0]?.url, step.selector, `Action step ${intent.id}`, !step.page && !action.page);
+    }
+  }
+  return targets;
+}
+
+export async function checkRegisteredTargets(data, index, readSource) {
+  const errors = [], docs = new Map();
+  async function document(page, shared) {
+    const key = page.sourceFile + (shared ? ':shared' : '');
+    if (!docs.has(key)) {
+      let html = await readSource(page.sourceFile);
+      if (shared) html += await readSource('Header.html') + await readSource('Footer.html');
+      const dom = new JSDOM(html);
+      if (shared) dom.window.document.querySelectorAll('template').forEach(template => template.parentNode.append(template.content.cloneNode(true)));
+      docs.set(key, dom);
+    }
+    return docs.get(key).window.document;
+  }
+  try {
+    for (const target of registeredTargets(data, index)) {
+      const page = (data.pages || []).find(page => page.url === target.page || page.id === target.page);
+      if (!page?.sourceFile) { errors.push(`${target.label}: page is not registered (${target.page}).`); continue; }
+      try {
+        const doc = await document(page, target.shared);
+        if (!doc.querySelector(target.selector)) errors.push(`${target.label}: selector ${target.selector} is missing from ${page.sourceFile}.`);
+      } catch (error) { errors.push(`${target.label}: ${error.message}`); }
+    }
+    // Only chapter-owned destinations are checked here. Third-party availability is
+    // deliberately left out of source validation, rather than making builds flaky.
+    const base = new URL(data.meta?.siteBase || 'https://org.osu.edu/asme/');
+    const links = (data.intents || []).flatMap(intent => [
+      ...(intent.response?.cards || []).map(card => ({url: card.url, label: `Card ${intent.id}`})),
+      ...(intent.actions || []).filter(action => action.url).map(action => ({url: action.url, label: `Link ${intent.id}`}))
+    ]);
+    for (const link of links) {
+      let url;
+      try { url = new URL(link.url); } catch { errors.push(`${link.label}: invalid URL.`); continue; }
+      if (url.origin !== base.origin || !url.pathname.startsWith(base.pathname)) continue;
+      const page = (data.pages || []).find(page => new URL(page.url).pathname.replace(/\/$/, '') === url.pathname.replace(/\/$/, ''));
+      if (!page) { errors.push(`${link.label}: chapter destination is not registered (${url.pathname}).`); continue; }
+      if (url.hash) {
+        const doc = await document(page, false);
+        if (!doc.getElementById(decodeURIComponent(url.hash.slice(1)))) errors.push(`${link.label}: fragment ${url.hash} is missing from ${page.sourceFile}.`);
+      }
+    }
+  } finally { for (const dom of docs.values()) dom.window.close(); }
+  return errors;
+}
+
+export async function checkContract(data, readSource, index = {records: []}) {
   const errors = [];
   const warnings = [];
   const documents = new Map();
@@ -11,24 +77,7 @@ export async function checkContract(data, readSource) {
     if (!documents.has(file)) documents.set(file, Promise.resolve().then(() => readSource(file)));
     return documents.get(file);
   }
-  const pages = data.pages || [];
-  for (const [index, step] of (data.tour?.steps || []).entries()) {
-    const page = pages.find(page => page.url === step.page || page.id === step.page);
-    if (!page?.sourceFile) {
-      errors.push(`Tour step ${index + 1}: page is not registered with a source file (${step.page}).`);
-      continue;
-    }
-    try {
-      let html = await source(page.sourceFile);
-      // WordPress composes the shared header with each page. Only the two
-      // shared navigation targets may be validated against that header source.
-      const sharedHeader = /#(?:asme-site-header|site-navigation)\b/.test(step.selector || '');
-      if (sharedHeader) html += await source('Header.html');
-      const doc = new JSDOM(html).window.document;
-      if(sharedHeader){const template=doc.querySelector('#asme-header-template');if(template)doc.body.append(template.content.cloneNode(true));}
-      if (!step.selector || !doc.querySelector(step.selector)) errors.push(`Tour step ${index + 1}: selector ${step.selector} is missing from ${page.sourceFile}.`);
-    } catch (error) { errors.push(`Tour step ${index + 1}: ${error.message}`); }
-  }
+  errors.push(...await checkRegisteredTargets(data, index, source));
   try {
     const manifest = JSON.parse(await source('data/points-source.json'));
     if (manifest.schemaVersion !== 1 || !data.meta?.sheetID || manifest.exportId !== data.meta.sheetID) errors.push('meta.sheetID differs from the approved points-source.json export ID.');
@@ -95,7 +144,8 @@ const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPat
 if (isMain) {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
   const data = JSON.parse(await fs.readFile(path.join(root, 'assets/gearly/gearly-data.json'), 'utf8'));
-  const result = await checkContract(data, file => fs.readFile(path.join(root, file), 'utf8'));
+  const index = JSON.parse(await fs.readFile(path.join(root, 'assets/gearly/gearly-index.json'), 'utf8'));
+  const result = await checkContract(data, file => fs.readFile(path.join(root, file), 'utf8'), index);
   result.warnings.forEach(warning => console.warn(`Gearly warning: ${warning}`));
   result.errors.forEach(error => console.error(`Gearly contract error: ${error}`));
   if (result.errors.length) process.exitCode = 1;

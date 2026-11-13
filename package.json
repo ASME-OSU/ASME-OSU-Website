@@ -14,6 +14,7 @@
     "build:navigation": "node scripts/build-navigation.mjs",
     "build": "npm run build:header && npm run build:sponsor && npm run build:navigation && npm run build:styles && npm run build:gearly",
     "build:styles": "node scripts/build-styles.mjs",
+    "check:gearly-live": "node scripts/check-gearly-live.mjs",
     "test:gearly": "node tests/gearly/run-tests.mjs && node --test tests/gearly-*.test.mjs",
     "preview:gearly": "node scripts/preview-gearly.mjs",
     "build:gearly": "node scripts/build-gearly-site.mjs && node scripts/build-gearly-index.mjs && node scripts/build-gearly-officers.mjs",

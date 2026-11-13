@@ -92,3 +92,6 @@ html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#242228; --g
 /* A persistent speaker portrait stays with each answer after the typing reveal. */
 .gearly-bot { position:relative; margin-left:30px; }
 .gearly-root .gearly-message-avatar { position:absolute; left:-32px; top:8px; width:26px; height:28px; object-fit:contain; }
+
+/* Preserve the separate answers in multi-part replies. */
+.gearly-message p { white-space: pre-line; }
