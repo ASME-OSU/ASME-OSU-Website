@@ -66,3 +66,14 @@ test('ASME meeting requests do not narrow the next event by meeting title',()=>{
   }
   assert.equal(e.extractEntities('next social meeting',siteData).eventType,'social');
 });
+
+test('casual wrappers preserve the question and do not turn mixed messages into small talk',()=>{
+ for(const [text,id] of [['Hey Gearly, how do I join? Thanks!','join'],['yo, where is the group chat pls','groupme'],['hi! show photos please','gallery'],['I wanna join','join'],["what's happening this week",'events'],['who runs the club','officer'],['how do i stay in the loop','newsletter']]){
+  const result=e.match(siteData,text);assert.equal(result.kind,'answer',text);assert.equal(result.intent.id,id,text);assert.equal(e.socialReply(text),null,text);
+ }
+ for(const text of ['hey can you find my instagram password','hi do not join','thanks but what about interstellar mortgages']){assert.equal(e.socialReply(text),null,text);assert.notEqual(e.match(siteData,text).kind,'answer',text);}
+});
+test('small talk accepts colloquial greetings, appreciation, acknowledgements and rough days',()=>{
+ for(const text of ['hi','hey Gearly!','hiya','howdy','good evening','how are you','whats up','thx','tysm','you rock','got it','sounds good','see ya','im overwhelmed','what can you help me with'])assert.ok(e.socialReply(text),text);
+ assert.equal(e.conversationalText("Hey Gearly, I don't want to join!"),"I don't want to join!");
+});

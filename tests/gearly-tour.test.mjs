@@ -6,7 +6,7 @@ const code=readFileSync(new URL('../assets/gearly/gearly-tour.js',import.meta.ur
 function setup(denied=false){
  const dom=new JSDOM('<button id="launch">Tour</button><header id="header">Navigation</header><section id="events">Events</section>',{url:'https://org.osu.edu/asme/',runScripts:'outside-only'});
  const {window:w}=dom;w.HTMLElement.prototype.getBoundingClientRect=function(){return {left:20,top:60,right:200,bottom:100,width:180,height:40};};
- if(denied)Object.defineProperty(w,'sessionStorage',{get(){throw Error('denied');}});
+ if(denied)for(const name of ['sessionStorage','localStorage'])Object.defineProperty(w,name,{get(){throw Error('denied');}});
  w.eval(code);w.GearlyTour.configure({data:{tour:{version:1,steps:[{selector:'#header',title:'Navigation',text:'Find sections'},{selector:'#missing',title:'Missing',text:'Skip me'},{selector:'#events',title:'Events',text:'Upcoming meetings'}]}}});
  return {dom,w,api:w.GearlyTour};
 }
@@ -38,9 +38,9 @@ test('modal tour blocks background actions and restores original inert attribute
  assert.ok(launch.hasAttribute('inert'));launch.click();assert.equal(clicked,0);launch.focus();assert.ok(w.document.querySelector('.gearly-tour-tip').contains(w.document.activeElement));
  api.close();assert.equal(launch.hasAttribute('inert'),false);assert.equal(header.getAttribute('inert'),'original');launch.click();assert.equal(clicked,1);
 });
-async function crossPage(url,storage,data){
+async function crossPage(url,storage,data,persistent){
  const {default:vm}=await import('node:vm');const dom=new JSDOM('<header id="header">Header</header><section id="events">Events</section>',{url});const w=dom.window;w.HTMLElement.prototype.getBoundingClientRect=()=>({left:20,top:60,right:200,bottom:100,width:180,height:40});
- const moves=[];const loc=new URL(url);loc.assign=value=>moves.push(value);const root={document:w.document,location:loc,innerWidth:320,innerHeight:640,getComputedStyle:w.getComputedStyle.bind(w),addEventListener:w.addEventListener.bind(w),removeEventListener:w.removeEventListener.bind(w),localStorage:w.localStorage,sessionStorage:storage};
+ const moves=[];const loc=new URL(url);loc.assign=value=>moves.push(value);const root={document:w.document,location:loc,innerWidth:320,innerHeight:640,getComputedStyle:w.getComputedStyle.bind(w),addEventListener:w.addEventListener.bind(w),removeEventListener:w.removeEventListener.bind(w),localStorage:persistent || w.localStorage,sessionStorage:storage};
  vm.runInNewContext(code,{window:root,URL,setTimeout,clearTimeout});root.GearlyTour.configure({data,assetBase:'https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/'});return {w,api:root.GearlyTour,moves,root};
 }
 const routeData={pages:[{url:'https://org.osu.edu/asme/',sourceFile:'Home Page.html'},{url:'https://org.osu.edu/asme/calendar/',sourceFile:'Calendar Page.html'}],tour:{version:3,steps:[{page:'https://org.osu.edu/asme/',selector:'#header',title:'Home',text:'Navigation',sprite:'gearly-smiling-wave.png'},{page:'https://org.osu.edu/asme/calendar/',selector:'#events',title:'Events',text:'Upcoming',sprite:'gearly-calendar-presenting.png'}]}};
@@ -111,7 +111,7 @@ test('speech bubble reuses the tour, offers both dismissals, and never duplicate
  const {dom,w,api}=setup();api.configure({assetBase:'https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/',data:{tour:{version:1,steps:[{selector:'#header',title:'Navigation',text:'Find sections'}]}}});
  api.offer();api.offer();const offer=w.document.querySelector('.gearly-tour-offer');
  assert.equal(w.document.querySelectorAll('.gearly-tour-offer').length,1);
- assert.equal(offer.querySelector('h2').textContent,'Take a tour');assert.equal(offer.querySelector('p').textContent,'Let Gearley show you around!');
+ assert.equal(offer.querySelector('h2').textContent,'Take a tour');assert.equal(offer.querySelector('p').textContent,'Let Gearly show you around!');
  assert.equal(offer.querySelector('.gearly-tour-offer-mascot').getAttribute('aria-hidden'),'true');assert.equal(offer.querySelectorAll('.gearly-tour-offer-circle').length,4);
  assert.match(offer.querySelector('img').src,/gearly-open-eyes-wave.webp$/);
  offer.querySelector('.gearly-tour-offer-start').click();assert.ok(w.document.querySelector('[role=dialog]'));assert.equal(w.document.querySelector('.gearly-tour-offer'),null);api.close();dom.window.close();
@@ -167,4 +167,56 @@ test('mobile PageDown and End reveal section content without moving the guide or
  w.document.dispatchEvent(new w.KeyboardEvent('keydown',{key:'PageDown',bubbles:true,cancelable:true}));assert.ok(layout.scroll()>before);assert.equal(tip.style.top,top);
  w.document.dispatchEvent(new w.KeyboardEvent('keydown',{key:'End',bubbles:true,cancelable:true}));assert.ok(Math.abs(w.document.querySelector('#content').getBoundingClientRect().bottom-(parseFloat(tip.style.top)-12))<1);
  const stopped=layout.scroll();layout.shift(150);w.dispatchEvent(new w.Event('resize'));assert.equal(layout.scroll(),stopped);layout.api.close();layout.dom.window.close();
+});
+
+for(const selector of ['.gearly-tour-offer-close','.gearly-tour-offer-later'])test(`tour ${selector} persists across pages, new sessions and tour revisions while replay remains available`,async()=>{
+ const persistent=session(),tab=session();
+ const home=await crossPage('https://org.osu.edu/asme/',tab,routeData,persistent);
+ home.api.offer();home.w.document.querySelector(selector).click();
+ assert.equal(persistent.getItem('asme-gearly-tour-dismissed'),'1');
+ const next=await crossPage('https://org.osu.edu/asme/calendar/',tab,routeData,persistent);
+ next.api.offer();assert.equal(next.w.document.querySelector('.gearly-tour-offer'),null);
+ const revised=structuredClone(routeData);revised.tour.version++;
+ const returning=await crossPage('https://org.osu.edu/asme/',session(),revised,persistent);
+ returning.api.offer();assert.equal(returning.w.document.querySelector('.gearly-tour-offer'),null);
+ returning.api.start();assert.ok(returning.w.document.querySelector('.gearly-tour'));returning.api.close();
+ for(const page of [home,next,returning])page.w.close();
+});
+test('legacy dismissal migrates and denied persistent storage falls back to the tab',async()=>{
+ const tab=session(),persistent=session();tab.setItem('asme-gearly-tour-3','dismissed');
+ const page=await crossPage('https://org.osu.edu/asme/',tab,routeData,persistent);page.api.offer();
+ assert.equal(page.w.document.querySelector('.gearly-tour-offer'),null);assert.equal(persistent.getItem('asme-gearly-tour-dismissed'),'1');page.w.close();
+ const denied={getItem(){throw Error('denied');},setItem(){throw Error('denied');}};
+ const fresh=session(),home=await crossPage('https://org.osu.edu/asme/',fresh,routeData,denied);home.api.offer();home.w.document.querySelector('.gearly-tour-offer-close').click();
+ const next=await crossPage('https://org.osu.edu/asme/calendar/',fresh,routeData,denied);next.api.offer();assert.equal(next.w.document.querySelector('.gearly-tour-offer'),null);home.w.close();next.w.close();
+});
+test('completed tours stay quiet in a new session',async()=>{
+ const persistent=session(),data={tour:{version:1,steps:[{selector:'#header',title:'Header',text:'Navigation'}]}};
+ const page=await crossPage('https://org.osu.edu/asme/',session(),data,persistent);page.api.start();page.w.document.querySelector('[aria-label="Done"]').click();
+ const next=await crossPage('https://org.osu.edu/asme/',session(),data,persistent);next.api.offer();assert.equal(next.w.document.querySelector('.gearly-tour-offer'),null);page.w.close();next.w.close();
+});
+
+test('every published tour stop points to visible source content on its registered page',()=>{
+ const data=JSON.parse(readFileSync('assets/gearly/gearly-data.json','utf8'));
+ assert.equal(data.tour.steps.length,data.tour.maxSteps);
+ for(const step of data.tour.steps){
+  const page=data.pages.find(page=>page.url===step.page);assert.ok(page,step.title);
+  const html=step.selector.includes('#asme-site-header')?readFileSync('Header.html','utf8').replace('<template id="asme-header-template">','').replace('</template>',''):readFileSync(page.sourceFile,'utf8');
+  const dom=new JSDOM(html),target=dom.window.document.querySelector(step.selector);assert.ok(target,step.title);assert.equal(target.closest('[hidden],[aria-hidden="true"],template'),null,step.title);dom.window.close();
+ }
+});
+test('desktop spotlight stays inside the viewport and clear of its guide for a large section',()=>{
+ const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:1440});Object.defineProperty(w,'innerHeight',{value:900});
+ w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:1084,top:640,right:1424,bottom:880,width:340,height:240};return {left:20,top:60,right:1420,bottom:1260,width:1400,height:1200};};
+ api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=parseFloat(tip.style.top)-12);assert.equal(tip.dataset.scrollable,'true');assert.ok(w.document.querySelector('.gearly-tour-scroll-room'));api.close();assert.equal(w.document.querySelector('.gearly-tour-scroll-room'),null);dom.window.close();
+});
+test('each tour step has a fresh arrival cue and correctly advances its progress',()=>{
+ const {dom,w,api}=setup();api.start();const first=w.document.querySelector('.gearly-tour-halo');assert.ok(first);assert.equal(w.document.querySelector('.gearly-tour-progress span').style.width,'50%');w.document.querySelector('[aria-label="Next"]').click();assert.notEqual(w.document.querySelector('.gearly-tour-halo'),first);assert.equal(w.document.querySelector('.gearly-tour-progress span').style.width,'100%');api.close();dom.window.close();
+});
+
+test('short landscape viewports keep a visible spotlight beside the guide',()=>{
+ const {dom,w,api}=setup();Object.defineProperty(w,'innerWidth',{value:844});Object.defineProperty(w,'innerHeight',{value:390});let top=900;
+ w.scrollTo=({top:scroll})=>{top=900-scroll;};
+ w.HTMLElement.prototype.getBoundingClientRect=function(){if(this.classList.contains('gearly-tour-tip'))return {left:488,top:80,right:828,bottom:374,width:340,height:294};return {left:20,top,right:824,bottom:top+1000,width:804,height:1000};};
+ api.start();const ring=w.document.querySelector('.gearly-tour-ring'),tip=w.document.querySelector('.gearly-tour-tip');assert.equal(ring.hidden,false);assert.ok(parseFloat(ring.style.width)>=120);assert.ok(parseFloat(ring.style.left)+parseFloat(ring.style.width)<=parseFloat(tip.style.left)-12);assert.ok(parseFloat(ring.style.top)+parseFloat(ring.style.height)<=378);api.close();dom.window.close();
 });

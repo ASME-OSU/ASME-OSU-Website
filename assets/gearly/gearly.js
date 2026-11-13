@@ -1,11 +1,33 @@
 /* Gearly: deterministic, local site guide. No query logging or generative service. */
 (function (root) {
   'use strict';
-  var VERSION = '2.0.0';
+  var VERSION = '2.1.0';
   var USE_IDF = true;
   var idfCache = new WeakMap();
   function array(value){return Array.isArray(value)?value:[];}
   function normalize(value) { return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function conversationalText(value) {
+    // Remove conversational wrappers without discarding the actual question or its negation.
+    return String(value || '').trim()
+      .replace(/^(?:(?:hi+|hello+|hey+|yo|howdy|hiya|sup|good morning|good afternoon|good evening)\b[!,.\s]*(?:(?:gearly|gearley)\b[!,.\s]*)?)+/i, '')
+      .replace(/^(?:gearly|gearley)\b[!,.\s]+/i, '')
+      .replace(/\b(?:wanna)\b/gi, 'want to').replace(/\b(?:gonna)\b/gi, 'going to')
+      .replace(/\bwhats\b/gi, 'what is').replace(/\b(?:pls|plz)\b/gi, 'please')
+      .replace(/\b(?:yall|y’all|y'all)\b/gi, 'you').replace(/\b(?:u)\b/gi, 'you')
+      .replace(/[,!\s]+(?:thanks|thank you|thx|ty|please)[!.\s]*$/i, '').trim();
+  }
+  function socialReply(value) {
+    var n=normalize(value).replace(/\b(?:gearly|gearley)\b/g,'').replace(/\s+/g,' ').trim();
+    if(/^(?:(?:hi+|hello+|hey+|yo|howdy|hiya|sup|good morning|good afternoon|good evening)(?: there)? ?)+$/.test(n))return 'Hey! 👋 Good to see you. What can I help you find—events, joining ASME, career tools, or something else on the website?';
+    n=normalize(conversationalText(value) || value).replace(/\b(?:gearly|gearley)\b/g,'').replace(/\s+/g,' ').trim();
+    if(/^(?:how are you(?: doing)?|how (?:is it|s it|it s|its) going|hows it going|whats up|what is up|how have you been|you good)$/.test(n))return 'Hey! I’m ready to help you explore ASME. How’s your day going? You can also ask me about events, getting involved, or career resources.';
+    if(/^(?:thanks(?: a lot| so much)?|thank you(?: so much)?|thx|ty|tysm|appreciate (?:it|you)|cheers|you rock|youre the best|that (?:helps|helped))$/.test(n))return 'You’re welcome! Glad I could help. Ask away if anything else comes up.';
+    if(/^(?:bye|goodbye|see ya|see you(?: later)?|catch you later|later|gotta go|have a (?:good|nice|great) (?:day|night))$/.test(n))return 'Take care! 👋 Hope to see you at an ASME event.';
+    if(/^(?:ok(?:ay)?|cool|awesome|nice|great|sounds good|got it|all good|perfect|sweet|bet|good|im good|doing well|pretty good)$/.test(n))return 'Sounds good! I’m here whenever you need a hand finding something.';
+    if(/^(?:im (?:confused|lost)|this is confusing|help|help me|i (?:need help|dont know where to start)|what can you (?:do|help (?:me )?with))$/.test(n))return 'Happy to help! You can ask how to join, what’s coming up, how member points work, who to contact, or where to find career tools and chapter resources. What are you looking for?';
+    if(/^(?:im (?:stressed|overwhelmed|having a rough day)|rough day|not great|not so good)$/.test(n))return 'That sounds like a tough day. If finding something on the ASME website would help, we can take it one step at a time. What do you need?';
+    return null;
+  }
   function safeURL(value) { if (typeof value !== 'string' || !value.trim()) return null; try { var u = new URL(value, root.location ? root.location.href : 'https://org.osu.edu/asme/'); return ['https:', 'http:', 'mailto:'].includes(u.protocol) ? u.href : null; } catch (_) { return null; } }
   function validateData(raw) {
     var errors = []; if (!raw || typeof raw !== 'object' || !raw.meta || typeof raw.meta!=='object' || !Array.isArray(raw.intents) || !Array.isArray(raw.pages)) return {data:null, errors:['Missing meta, intents, or pages']};
@@ -46,10 +68,10 @@
     return merged.map(function(w){if(w.length<4 || stopwords.has(w) || vocabulary.has(w))return w;var choices=Array.from(vocabulary).filter(function(v){return v.length>=4 && distance(w,v)<=1;});return choices.length===1?choices[0]:w;}).join(' ');
   }
   function scoreIntents(data,text,state) {
-    var queryEntities=extractEntities(text,data),n=prepareText(data,text),words=topicTokens(data,n);var slotTokens=new Set();if(queryEntities.company){var company=array(data.entities.companies).find(function(c){return c && c.id===queryEntities.company;});if(company)[company.id,company.name].concat(array(company.aliases)).filter(function(alias){return typeof alias==='string' && contains(n,alias);}).forEach(function(alias){topicTokens(data,alias).forEach(function(w){slotTokens.add(w);});});if(queryEntities.eventType)words=words.filter(function(w){return !slotTokens.has(w);});}if(/\b(?:hi|hello|hey|bye|goodbye|thanks|thank)\b/.test(expand(n,data)))words=words.filter(function(w){return w!=='gearly';});
+    var queryEntities=extractEntities(text,data),n=prepareText(data,conversationalText(text) || text),words=topicTokens(data,n);var slotTokens=new Set();if(queryEntities.company){var company=array(data.entities.companies).find(function(c){return c && c.id===queryEntities.company;});if(company)[company.id,company.name].concat(array(company.aliases)).filter(function(alias){return typeof alias==='string' && contains(n,alias);}).forEach(function(alias){topicTokens(data,alias).forEach(function(w){slotTokens.add(w);});});if(queryEntities.eventType)words=words.filter(function(w){return !slotTokens.has(w);});}if(/\b(?:hi|hello|hey|bye|goodbye|thanks|thank)\b/.test(expand(n,data)))words=words.filter(function(w){return w!=='gearly';});
     var expanded=expand(n,data);if(words.indexOf('gearly')<0)expanded=expanded.replace(/\bgearly\b/g,'');var expandedWords=new Set(topicTokens(data,expanded)),known=new Set();data.intents.forEach(function(intent){Object.keys(intent.keywords || {}).concat(intent.examples).forEach(function(k){topicTokens(data,k).forEach(function(w){known.add(w);});});});var knownWords=words.filter(function(w){return known.has(w);}),unknown=words.filter(function(w){return !known.has(w) && !slotTokens.has(w);});
     return data.intents.map(function(i){
-      var examples=i.examples.map(normalize),exact=examples.includes(n) || normalize(i.id)===n || (i.label && normalize(i.label)===n),weights=i.keywords || {},matched=new Set(),strongest=0;
+      var examples=i.examples.map(normalize),exact=examples.includes(n) || examples.includes(normalize(text)) || normalize(i.id)===n || (i.label && normalize(i.label)===n),weights=i.keywords || {},matched=new Set(),strongest=0;
       Object.keys(weights).forEach(function(k){if(contains(expanded,k)){strongest=Math.max(strongest,Number(weights[k]) || 1);topicTokens(data,k).forEach(function(w){matched.add(w);});}});
       var explained=words.filter(function(w){return matched.has(w);}).length,keyword=strongest && words.length ? .84*explained/words.length : 0,similarity=0;
       examples.forEach(function(example){var tokens=topicTokens(data,example);if(!tokens.length || !words.length)return;var common=tokens.filter(function(w){return expandedWords.has(w);}).length,precision=words.filter(function(w){return tokens.includes(w) || (matched.has(w) && common>0);}).length/words.length,recall=common/tokens.length;
@@ -119,7 +141,7 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
     if(state.lastEntity && /contact (him|her|them)|their email|his email|her email/.test(n)){return {kind:'answer',intent:{id:'contact-'+state.lastEntity,response:{text:'The Leadership page has current public contact details.',cards:[{title:'Leadership',url:new URL('leadership/',data.meta.siteBase || 'https://org.osu.edu/asme/').href}]}},score:1,candidates:[],entities:entities};}
     var clauseText=normalize(text);array(data.entities.companies).forEach(function(company){if(!company)return;[company.id,company.name].concat(array(company.aliases)).filter(function(alias){return typeof alias==='string' && /\band\b/.test(normalize(alias));}).forEach(function(alias){var brand=normalize(alias);if(contains(clauseText,brand))clauseText=(' '+clauseText+' ').split(' '+brand+' ').join(' company ').trim();});});var clauses=clauseText.split(/\s+(?:and|also|plus)\s+/i);if(clauses.length===2){var first=scoreIntents(data,clauses[0],state),other=scoreIntents(data,clauses[1],state);if(first[0] && other[0] && first[0].score>=data.fallback.highThreshold && other[0].score>=data.fallback.highThreshold && first[0].intent.id!==other[0].intent.id && (!first[1] || first[0].score-first[1].score>=data.fallback.clarifyThreshold || first[0].score===1) && (!other[1] || other[0].score-other[1].score>=data.fallback.clarifyThreshold || other[0].score===1))return {kind:'clarify',intent:first[0].intent,score:first[0].score,candidates:[first[0],other[0]],entities:entities};}var scores=scoreIntents(data,text,state), top=scores[0], second=scores[1], kind='fallback';if(top && top.score>=data.fallback.highThreshold && (!second || (top.score===1 && second.score<1) || top.score-second.score>=data.fallback.clarifyThreshold))kind='answer';else if(top && top.score>=data.fallback.lowThreshold)kind='clarify';
     if(state.lastIntent && entities.dateRange && /^(what about|and|next|this)/.test(n)){top={intent:data.intents.find(function(i){return i.id===state.lastIntent;}),score:1};kind=top.intent?'answer':'fallback';}return {kind:kind,intent:top && top.intent,score:top?top.score:0,candidates:scores.slice(0,3),entities:entities}; }
-  var api={followupRequest:followupRequest,personalPoints:personalPoints,extractMemberName:extractMemberName,normalize:normalize,safeURL:safeURL,validateData:validateData,createState:createState,extractEntities:extractEntities,scoreIntents:scoreIntents,match:match};if(typeof module!=='undefined' && module.exports)module.exports=api;
+  var api={conversationalText:conversationalText,socialReply:socialReply,followupRequest:followupRequest,personalPoints:personalPoints,extractMemberName:extractMemberName,normalize:normalize,safeURL:safeURL,validateData:validateData,createState:createState,extractEntities:extractEntities,scoreIntents:scoreIntents,match:match};if(typeof module!=='undefined' && module.exports)module.exports=api;
   if(!root.document)return;
   var script=root.document.currentScript, base=new URL('.',script && script.src || root.location.href).href, data, state=createState(), panel, input, list, chips, launcher, avatar, activity, finishTyping, conversationGeneration = 0, privateTurn = false, memberCandidates = [], clarifyQuestion = null, lastCards = [];
   var assetVersion=script && script.src ? new URL(script.src).searchParams.get('v') || VERSION : VERSION;
@@ -144,15 +166,14 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
     control.addEventListener('mouseenter',function(){image.src=active;});
     control.addEventListener('mouseleave',update);control.addEventListener('focusin',function(){image.src=active;});control.addEventListener('focusout',function(){root.setTimeout(update,0);});
   }
-  // One early greeting, then infrequent waves. Keep the same image geometry for both poses.
+  // Wave only in response to hover or keyboard focus; never schedule idle waves.
   function setupLauncherMotion(){
     var still=new URL(data.meta.sprites.launcher || data.meta.sprites.idle,base).href;
-    var config=data.meta.launcherAnimation || {},timer,objectURL,blob,epoch=0,lastPlayed=0,playing=false,loading=false,interacted=false;
+    var config=data.meta.launcherAnimation || {},timer,objectURL,blob,epoch=0,lastPlayed=0,playing=false,loading=false;
     var motion=root.matchMedia('(prefers-reduced-motion: reduce)');
     var face=el('img','gearly-avatar-image');face.alt='';face.width=72;face.height=72;face.src=still;launcher.prepend(face);
-    function eligible(){var connection=root.navigator.connection;return interacted && panel.hidden && !root.document.hidden && !motion.matches && !(connection && (connection.saveData || /(^|-)2g$/.test(connection.effectiveType))) && !!config.path;}
+    function eligible(){var connection=root.navigator.connection;return panel.hidden && !root.document.hidden && !motion.matches && !(connection && (connection.saveData || /(^|-)2g$/.test(connection.effectiveType))) && !!config.path;}
     function stop(){epoch++;root.clearTimeout(timer);playing=false;loading=false;face.src=still;launcher.dataset.animating='false';launcher.dataset.motion=motion.matches?'reduced-motion':'idle';if(objectURL){root.URL.revokeObjectURL(objectURL);objectURL=null;}}
-    function schedule(retry){if(eligible())timer=root.setTimeout(play,retry || (lastPlayed?60000+Math.round(Math.random()*30000):8000+Math.round(Math.random()*4000)));}
     async function play(){
       if(!eligible() || playing || loading)return;
       var turn=epoch;loading=true;root.clearTimeout(timer);launcher.dataset.motion='loading';
@@ -164,14 +185,14 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
         if(face.decode)await face.decode();
         if(turn!==epoch || !eligible())return;
         loading=false;playing=true;lastPlayed=Date.now();launcher.dataset.waveCount=String(Number(launcher.dataset.waveCount || 0)+1);launcher.dataset.animating='true';launcher.dataset.motion='playing';
-        timer=root.setTimeout(function(){stop();schedule();},config.durationMs || 6250);
-      }catch(_){if(turn!==epoch)return;blob=null;stop();launcher.dataset.motion='retry-wait';schedule(90000);}
+        timer=root.setTimeout(stop,config.durationMs || 6250);
+      }catch(_){if(turn!==epoch)return;blob=null;stop();launcher.dataset.motion='idle';}
     }
-    face.addEventListener('error',function(){if(face.src!==still){blob=null;stop();launcher.dataset.motion='retry-wait';schedule(90000);}});
-    function greet(){interacted=true;if(!lastPlayed || Date.now()-lastPlayed>=60000)play();}
+    face.addEventListener('error',function(){if(face.src!==still){blob=null;stop();launcher.dataset.motion='idle';}});
+    function greet(){if(!lastPlayed || Date.now()-lastPlayed>=60000)play();}
     launcher.addEventListener('mouseenter',greet);
     launcher.addEventListener('focusin',function(){if(launcher.matches(':focus-visible'))greet();});
-    syncLauncherMotion=function(){stop();schedule();};
+    syncLauncherMotion=stop;
     root.document.addEventListener('visibilitychange',syncLauncherMotion);
     if(motion.addEventListener)motion.addEventListener('change',syncLauncherMotion);
     syncLauncherMotion();
@@ -197,6 +218,18 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
       }
       a.append(el('strong','',card.title || 'Open page'));if(card.text)a.append(el('span','',card.text));if(new URL(url).origin!==root.location.origin){a.target='_blank';a.rel='noopener noreferrer';}item.append(a);});if(chips && chips.parentNode===list)list.insertBefore(item,chips);else list.append(item);list.scrollTop=list.scrollHeight;if(!privateTurn)state.history.push({text:text,who:who,cards:who==='bot' && !['leaderboard','my-points'].includes(state.lastIntent)?historyCards(cards):[]});state.history=state.history.slice(-50);persist();return item;}
   function currentPage(){var selected=new URLSearchParams(root.location.search).get('page');return data.pages.find(function(p){if(selected)return p.sourceFile===selected;try{return new URL(p.url,root.location.href).pathname.replace(/\/$/,'')===root.location.pathname.replace(/\/$/,'');}catch(_){return false;}}) || (root.location.hostname==='127.0.0.1'?data.pages.find(function(p){return p.id==='home';}):null);}
+  function wantsPageHelp(text) {
+    return /^(?:what (?:is this page|can i do (?:here|on this page)|is on this page|does this page (?:do|have))|(?:help me (?:with|understand)|explain|show me around) this page)$/.test(normalize(conversationalText(text) || text));
+  }
+  async function pageHelp(text) {
+    var page=currentPage();if(!page)return null;
+    var records=[];
+    try{if(root.GearlySearch && root.GearlySearch.records)records=await root.GearlySearch.records();}catch(_){}
+    var record=array(records).find(function(entry){return entry && entry.id===page.id && entry.url===page.url;});
+    var titles=record?array(record.sections).filter(function(section){return section && typeof section.title==='string';}).map(function(section){return section.title;}):array(page.sections).map(function(section){return section.title;});
+    titles=Array.from(new Set(titles)).slice(0,5);
+    return {text:'You’re on '+page.title+'. '+(titles.length?'This page includes '+titles.join(', ')+'. ':'')+'What would you like to explore?',cards:[{title:page.title,url:page.url}],chips:starterChips()};
+  }
   function starterChips(){var page=currentPage();return page && array(page.suggestions).length?page.suggestions:['Events','Join','Careers','Tour'];}
   function reducedMotion(){return root.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   function stopActivity(){if(activity){activity.remove();activity=null;}list.removeAttribute('aria-busy');}
@@ -338,8 +371,15 @@ if(i.id==='contact' && /\b(?:real|human|person)\b/.test(n) && /\b(?:help|ask|con
     if(/\b(?:earn|earning|point values|how.*get points)\b/.test(n))return {id:'student-point-help',text:'The published point values are listed below. To see your total and attendance, open Member Points and search your name.',cards:[{title:'Find your points',url:url}],liveSource:'points',explainLive:true};
     return null;
   }
-  async function ask(text){if(!data)return;open();text=String(text || '').trim().slice(0,500);if(!text)return;var requestGeneration=++conversationGeneration,started=Date.now();if(finishTyping)finishTyping();list.querySelectorAll('.gearly-shortcuts').forEach(function(node){node.remove();});list.querySelectorAll('.gearly-welcome').forEach(function(node){node.classList.remove('gearly-welcome');});input.value='';var followup=!state.pendingQuestion && followupRequest(text),selectedResult=followup?(lastCards[followup.index] || array(state.lastResult)[followup.index]):null;
-    memberCandidates=[];privateTurn=Boolean(extractMemberName(text,state) || personalPoints(text) || state.pendingSlot==='memberName');message(text,'user');setAvatar('thinking');startActivity();var result=match(data,text,state), response;if(followup && !selectedResult && followup.kind==='select'){await respond(array(state.lastResult).length?'That answer has only '+state.lastResult.length+' result(s). Ask for the list again or select one of those results.':'Ask for events, photos, or resources first so I have a list to select from.',null,requestGeneration,started);return;}var previousIntent=state.lastIntent;var memberName=extractMemberName(text,state),wasPending=state.pendingSlot==='memberName';delete state.pendingSlot;
+  async function ask(text){if(!data)return;open();text=String(text || '').trim().slice(0,500);if(!text)return;var requestGeneration=++conversationGeneration,started=Date.now();if(finishTyping)finishTyping();list.querySelectorAll('.gearly-shortcuts').forEach(function(node){node.remove();});list.querySelectorAll('.gearly-welcome').forEach(function(node){node.classList.remove('gearly-welcome');});input.value='';
+    var pageOverview=wantsPageHelp(text)?await pageHelp(text):null;
+    if(requestGeneration!==conversationGeneration)return;
+    if(pageOverview){privateTurn=false;message(text,'user');setAvatar('happy');if(await respond(pageOverview.text,pageOverview.cards,requestGeneration,started)){if(!state.pendingQuestion && !state.pendingSlot)setChips(pageOverview.chips);persist();}return;}
+    var casual=socialReply(text);
+    if(casual){privateTurn=false;message(text,'user');setAvatar('happy');if(await respond(casual,[],requestGeneration,started)){if(!state.pendingQuestion && !state.pendingSlot)setChips(starterChips());persist();}return;}
+    var originalText=text;text=conversationalText(text) || text;
+    var followup=!state.pendingQuestion && followupRequest(text),selectedResult=followup?(lastCards[followup.index] || array(state.lastResult)[followup.index]):null;
+    memberCandidates=[];privateTurn=Boolean(extractMemberName(text,state) || personalPoints(text) || state.pendingSlot==='memberName');message(originalText,'user');setAvatar('thinking');startActivity();var result=match(data,text,state), response;if(followup && !selectedResult && followup.kind==='select'){await respond(array(state.lastResult).length?'That answer has only '+state.lastResult.length+' result(s). Ask for the list again or select one of those results.':'Ask for events, photos, or resources first so I have a list to select from.',null,requestGeneration,started);return;}var previousIntent=state.lastIntent;var memberName=extractMemberName(text,state),wasPending=state.pendingSlot==='memberName';delete state.pendingSlot;
     var forceHandoff=array(data.handoffTopics).some(function(topic){return contains(normalize(text),topic);});
     if(root.GearlyStudent)await siteSnapshotReady;
     if(requestGeneration!==conversationGeneration)return;

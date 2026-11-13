@@ -105,3 +105,20 @@ test('joining answers agree with the student question rather than source FAQ pol
  const value=answer('Can I join ASME as an aerospace freshman?');
  assert.match(value.text,/^Yes\./);assert.doesNotMatch(value.text,/^No\.|Yes\. No\./);
 });
+
+test('specific website tools answer from published resource descriptions and links',()=>{
+ for(const [question,id,title] of [
+  ['Where can I see starting salaries?','salary-data','Career Employment & Starting Salaries'],
+  ['Where is the internship hourly pay data?','wage-data','Co-op & Internship Hourly Wages'],
+  ['Are there department seminars or research talks?','mae-events','OSU MAE Events'],
+  ['Does ASME have LinkedIn?','linkedin','ASME OSU LinkedIn'],
+  ['Where can I get cover letter help?','career-advising','ECS Career Advising'],
+  ['What is the Professional Experience Program?','experience','Co-ops & Internships'],
+  ['Where is the career packet?','career-packet','Career Packet']]){
+  const got=answer(question),entry=snapshot.student.resources.find(r=>r.title===title);
+  assert.ok(got,question);assert.equal(got.id,'student-'+id,question);assert.equal(got.text,entry.text);assert.equal(got.cards[0].url,entry.url);
+ }
+ const overview=answer('What tools and resources are on this website?');assert.equal(overview.id,'student-resource-overview');assert.equal(overview.cards.length,5);
+ assert.equal(answer('What are starting salaries?',{...snapshot,student:{...snapshot.student,resources:[]}}),null);
+ for(const q of ['what is the linkedin password','internship pay for my chemistry exam'])assert.equal(answer(q),null);
+});

@@ -365,7 +365,13 @@
         "become a member",
         "sign me up",
         "join asme",
-        "could you help me become part of the chapter"
+        "could you help me become part of the chapter",
+        "how do i get involved",
+        "i want to get involved",
+        "how do i get plugged in",
+        "i wanna join",
+        "how can i be part of asme",
+        "where do i sign up"
       ],
       "keywords": {
         "join": 3,
@@ -495,7 +501,9 @@
         "subscribe to the newsletter",
         "email newsletter signup",
         "how do i get announcements",
-        "mailing list"
+        "mailing list",
+        "how do i stay in the loop",
+        "how do i keep up with announcements"
       ],
       "keywords": {
         "newsletter": 3,
@@ -534,7 +542,10 @@
         "where is the groupme",
         "join the group chat",
         "groupme link",
-        "quick reminders"
+        "quick reminders",
+        "is there a group chat",
+        "where is the groupchat",
+        "how do i get in the group chat"
       ],
       "keywords": {
         "groupme": 3,
@@ -574,7 +585,12 @@
         "pull up upcoming events",
         "take me to the upcoming events section",
         "bring up the event schedule",
-        "what chapter events are coming soon"
+        "what chapter events are coming soon",
+        "what's happening this week",
+        "what's going on this week",
+        "anything going on soon",
+        "what are you guys up to this week",
+        "what is on the calendar"
       ],
       "keywords": {
         "events": 3,
@@ -756,7 +772,10 @@
         "what projects do you offer",
         "competitions and projects",
         "engineering competitions",
-        "hands on activities"
+        "hands on activities",
+        "do you build stuff",
+        "any hands on stuff",
+        "what can i help build"
       ],
       "keywords": {
         "projects": 3,
@@ -801,7 +820,9 @@
         "who are the officers",
         "executive board",
         "show leadership",
-        "current officers"
+        "current officers",
+        "who runs the club",
+        "who is in charge of the chapter"
       ],
       "keywords": {
         "officers": 3,
@@ -1068,7 +1089,9 @@
         "how do i contact asme",
         "email the chapter",
         "contact info",
-        "ask a human"
+        "ask a human",
+        "how can i talk to someone",
+        "can i reach a real person"
       ],
       "keywords": {
         "contact": 3,
@@ -1209,7 +1232,10 @@
         "resources page",
         "take me to the useful member tools",
         "where are administrative forms for members",
-        "where are the chapter admin forms"
+        "where are the chapter admin forms",
+        "what tools are on the website",
+        "what resources do you have",
+        "show me the useful links"
       ],
       "keywords": {
         "resources": 3,
@@ -1420,7 +1446,10 @@
         "resume guidance for students",
         "help with resumes",
         "where can I learn about internships",
-        "Are there resources for finding engineering internships?"
+        "Are there resources for finding engineering internships?",
+        "where can i get career help",
+        "i need help landing an internship",
+        "where do i start with my resume"
       ],
       "keywords": {
         "careers": 3,
@@ -1622,7 +1651,10 @@
         "hi",
         "hey",
         "good morning",
-        "yo"
+        "yo",
+        "hey there",
+        "hi there",
+        "hello there"
       ],
       "keywords": {
         "hello": 3,
@@ -1648,7 +1680,9 @@
         "thanks",
         "ty",
         "appreciate it",
-        "cheers"
+        "cheers",
+        "that helped thank you",
+        "got it thank you"
       ],
       "keywords": {
         "thanks": 3,
@@ -1696,7 +1730,10 @@
         "who are you",
         "are you ai",
         "what is gearly",
-        "are you a chatbot"
+        "are you a chatbot",
+        "what can you help with",
+        "what can you do",
+        "what do you know about the website"
       ],
       "keywords": {
         "gearly": 3,
@@ -2111,7 +2148,7 @@
       {
         "selector": "#asme-site-header, #site-navigation",
         "title": "Find your way around",
-        "text": "The navigation connects the chapter pages. On a small screen, its menu button reveals the links.",
+        "text": "Use Next and Back to explore the site. This navigation connects the chapter pages; on small screens, a menu button reveals the links.",
         "page": "https://org.osu.edu/asme/",
         "sprite": "gearly-open-eyes-wave.webp"
       },
@@ -2125,21 +2162,21 @@
       {
         "selector": "#newsletter-signup, [data-gearly=\"join-button\"]",
         "title": "Stay informed",
-        "text": "The email signup and GroupMe invitation keep members informed. After the tour, you can join here.",
+        "text": "Start with this email signup for chapter news and opportunities. The GroupMe invitation is in the next card. You can sign up after the tour.",
         "page": "https://org.osu.edu/asme/join/",
         "sprite": "gearly-double-thumbs-up.webp"
       },
       {
         "selector": ".acp-cal-card",
         "title": "Your chapter calendar",
-        "text": "Check the live chapter calendar for dates and details. Use Upcoming or Month to change the view, and subscribe from the top of this page.",
+        "text": "Check the chapter calendar for dates and details. After the tour, use Upcoming or Month to change the view, or subscribe from the top of the page.",
         "page": "https://org.osu.edu/asme/calendar/",
         "sprite": "gearly-calendar-presenting.webp"
       },
       {
         "selector": "#professional-dev",
         "title": "Useful resources",
-        "text": "Find the career packet, resume tools, and professional development links here. The page also collects engineering tools, forms, and member benefits.",
+        "text": "This section collects resume submission, career advising, Handshake, co-op and internship links, and national ASME resources. The featured Career Packet is further up this page.",
         "page": "https://org.osu.edu/asme/member-resources/",
         "sprite": "gearly-laptop-presenting.webp"
       },
