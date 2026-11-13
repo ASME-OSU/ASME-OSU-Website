@@ -466,13 +466,16 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--co
 
 /* About image captions share the hero’s translucent glass treatment. */
 html body #page .entry-content .asme-about-page .about-photo figcaption {
-  background-color: rgba(255,255,255,.065) !important;
+  background-color: rgba(6,16,35,.65) !important;
   background-image: linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.012)) !important;
   border: 1px solid rgba(255,255,255,.32) !important;
-  -webkit-backdrop-filter: blur(3px) saturate(1.15) !important;
-  backdrop-filter: blur(3px) saturate(1.15) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(1.15) !important;
+  backdrop-filter: blur(8px) saturate(1.15) !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.24), 0 8px 24px rgba(6,16,35,.16) !important;
   color: #fff !important;
+  padding: 12px 14px !important;
+  font-size: 14px !important; font-weight: 700 !important;
+  line-height: 1.4 !important; letter-spacing: .02em !important;
   text-shadow: 0 1px 4px rgba(6,16,35,.85) !important;
 }
 /* Replace only the stat cards’ top stripe with the Join benefit corner detail. */
