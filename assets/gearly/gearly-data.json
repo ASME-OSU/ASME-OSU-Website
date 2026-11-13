@@ -1651,7 +1651,10 @@
         "hi",
         "hey",
         "good morning",
-        "yo"
+        "yo",
+        "hey there",
+        "hi there",
+        "hello there"
       ],
       "keywords": {
         "hello": 3,
@@ -1677,7 +1680,9 @@
         "thanks",
         "ty",
         "appreciate it",
-        "cheers"
+        "cheers",
+        "that helped thank you",
+        "got it thank you"
       ],
       "keywords": {
         "thanks": 3,

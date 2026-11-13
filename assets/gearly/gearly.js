@@ -1,7 +1,7 @@
 /* Gearly: deterministic, local site guide. No query logging or generative service. */
 (function (root) {
   'use strict';
-  var VERSION = '2.0.0';
+  var VERSION = '2.1.0';
   var USE_IDF = true;
   var idfCache = new WeakMap();
   function array(value){return Array.isArray(value)?value:[];}
@@ -18,7 +18,7 @@
   }
   function socialReply(value) {
     var n=normalize(value).replace(/\b(?:gearly|gearley)\b/g,'').replace(/\s+/g,' ').trim();
-    if(/^(?:(?:hi+|hello+|hey+|yo|howdy|hiya|sup|good morning|good afternoon|good evening) ?)+$/.test(n))return 'Hey! 👋 Good to see you. What can I help you find—events, joining ASME, career tools, or something else on the website?';
+    if(/^(?:(?:hi+|hello+|hey+|yo|howdy|hiya|sup|good morning|good afternoon|good evening)(?: there)? ?)+$/.test(n))return 'Hey! 👋 Good to see you. What can I help you find—events, joining ASME, career tools, or something else on the website?';
     n=normalize(conversationalText(value) || value).replace(/\b(?:gearly|gearley)\b/g,'').replace(/\s+/g,' ').trim();
     if(/^(?:how are you(?: doing)?|how (?:is it|s it|it s|its) going|hows it going|whats up|what is up|how have you been|you good)$/.test(n))return 'Hey! I’m ready to help you explore ASME. How’s your day going? You can also ask me about events, getting involved, or career resources.';
     if(/^(?:thanks(?: a lot| so much)?|thank you(?: so much)?|thx|ty|tysm|appreciate (?:it|you)|cheers|you rock|youre the best|that (?:helps|helped))$/.test(n))return 'You’re welcome! Glad I could help. Ask away if anything else comes up.';
@@ -71,7 +71,7 @@
     var queryEntities=extractEntities(text,data),n=prepareText(data,conversationalText(text) || text),words=topicTokens(data,n);var slotTokens=new Set();if(queryEntities.company){var company=array(data.entities.companies).find(function(c){return c && c.id===queryEntities.company;});if(company)[company.id,company.name].concat(array(company.aliases)).filter(function(alias){return typeof alias==='string' && contains(n,alias);}).forEach(function(alias){topicTokens(data,alias).forEach(function(w){slotTokens.add(w);});});if(queryEntities.eventType)words=words.filter(function(w){return !slotTokens.has(w);});}if(/\b(?:hi|hello|hey|bye|goodbye|thanks|thank)\b/.test(expand(n,data)))words=words.filter(function(w){return w!=='gearly';});
     var expanded=expand(n,data);if(words.indexOf('gearly')<0)expanded=expanded.replace(/\bgearly\b/g,'');var expandedWords=new Set(topicTokens(data,expanded)),known=new Set();data.intents.forEach(function(intent){Object.keys(intent.keywords || {}).concat(intent.examples).forEach(function(k){topicTokens(data,k).forEach(function(w){known.add(w);});});});var knownWords=words.filter(function(w){return known.has(w);}),unknown=words.filter(function(w){return !known.has(w) && !slotTokens.has(w);});
     return data.intents.map(function(i){
-      var examples=i.examples.map(normalize),exact=examples.includes(n) || normalize(i.id)===n || (i.label && normalize(i.label)===n),weights=i.keywords || {},matched=new Set(),strongest=0;
+      var examples=i.examples.map(normalize),exact=examples.includes(n) || examples.includes(normalize(text)) || normalize(i.id)===n || (i.label && normalize(i.label)===n),weights=i.keywords || {},matched=new Set(),strongest=0;
       Object.keys(weights).forEach(function(k){if(contains(expanded,k)){strongest=Math.max(strongest,Number(weights[k]) || 1);topicTokens(data,k).forEach(function(w){matched.add(w);});}});
       var explained=words.filter(function(w){return matched.has(w);}).length,keyword=strongest && words.length ? .84*explained/words.length : 0,similarity=0;
       examples.forEach(function(example){var tokens=topicTokens(data,example);if(!tokens.length || !words.length)return;var common=tokens.filter(function(w){return expandedWords.has(w);}).length,precision=words.filter(function(w){return tokens.includes(w) || (matched.has(w) && common>0);}).length/words.length,recall=common/tokens.length;
