@@ -13320,13 +13320,14 @@ body #page .asme-sponsor-page .sponsor-contact > .sponsor-contact-header {
 
 body #page .asme-sponsor-page .sponsor-contact-header h2 {
 
-  font-size: clamp(32px, 2.5vw, 44px) !important;
-  margin: 6px 0 10px !important;
+  font-size: clamp(36px, 3.4vw, 56px) !important;
+  line-height: 1.12 !important;
+  margin: 10px 0 20px !important;
 }
 
 body #page .asme-sponsor-page .sponsor-contact-header p {
 
-  font-size: clamp(18px, 1.2vw, 21px) !important;
+  font-size: clamp(20px, 1.55vw, 24px) !important;
   line-height: 1.6 !important;
 }
 
@@ -19053,7 +19054,7 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card {
   min-width: 0 !important;
   min-height: 0 !important;
   height: auto !important;
-  padding: 22px 22px 18px !important;
+  padding: 40px 22px 22px !important;
   overflow: hidden !important;
   color: #5f6878 !important;
   background: #ffffff !important;
@@ -19419,7 +19420,7 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tiers-table > br {
   body #page .asme-sponsor-page .sponsor-tier-card,
   html body #page .entry-content .asme-sponsor-page .sponsor-tier-card {
     width: 100% !important;
-    padding: 20px 18px 16px !important;
+    padding: 38px 18px 20px !important;
   }
 
 
@@ -19572,9 +19573,9 @@ html body #page .entry-content .asme-sponsor-page .sponsor-tier-card:not(.sponso
 
   body #page .asme-sponsor-page .sponsor-tier-icon,
   html body #page .entry-content .asme-sponsor-page .sponsor-tier-icon {
-    background: #f8fafc !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 7px 18px rgba(2, 8, 23, 0.3) !important;
+    background: #304156 !important;
+    border-color: rgba(170, 192, 216, 0.22) !important;
+    box-shadow: none !important;
   }
 
   body #page .asme-sponsor-page .sponsor-tier-card--brutus .sponsor-tier-heading::after,
