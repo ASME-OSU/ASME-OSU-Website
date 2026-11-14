@@ -118,7 +118,7 @@
     var searchResults = header.querySelector('#asme-header-search-results');
     var menuButton = header.querySelector('.asme-hd-menu-toggle');
     var nav = header.querySelector('.asme-hd-nav');
-    var narrow = window.matchMedia('(max-width:979px)');
+    var narrow = window.matchMedia('(max-width:1199px)');
     search.action = home.href;
     searchButton.appendChild(icon('search')); menuButton.appendChild(icon('menu'));
     var siteSearchIndex = [

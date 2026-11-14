@@ -5,7 +5,7 @@ const marker = '/* ASME SHARED DESIGN SYSTEM START */';
 const end = '/* ASME SHARED DESIGN SYSTEM END */';
 const existing = fs.readFileSync(sourcePath, 'utf8');
 const legacy = existing.split(marker)[0].trimEnd();
-const shared = ['styles/design-system.css', 'styles/widescreen.css', 'styles/home-hero.css'].map(path => fs.readFileSync(path, 'utf8').trim()).join('\n\n');
+const shared = ['styles/design-system.css', 'styles/widescreen.css', 'styles/home-hero.css', 'styles/tablet.css'].map(path => fs.readFileSync(path, 'utf8').trim()).join('\n\n');
 const source = legacy + '\n\n' + marker + '\n' + shared + '\n' + end + '\n';
 // Preserve every rule and its order; no selector merging or cascade rewrites.
 const minified = generate(parse(source)) + '\n';

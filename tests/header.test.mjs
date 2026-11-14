@@ -81,10 +81,10 @@ test('Members dropdown keeps only its two existing CMS links with leading icons'
   assert.deepEqual(links.map(a=>a.textContent),['Member Resources','Member Points Page']);
   assert.deepEqual(links.map(a=>a.href),['https://org.osu.edu/asme/member-resources/','https://org.osu.edu/asme/member-points-page/']);
   assert.equal(links.every(a=>a.querySelector('svg.asme-hd-dropdown-link-icon[aria-hidden="true"]')),true);
-  assert.match(css,/@media \(min-width:980px\) \{[\s\S]*?\.asme-hd-dropdown-submenu \{[^}]*width:232px/);
-  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-submenu \{[^}]*border-radius:12px/);
-  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-submenu \{[^}]*margin:4px 0 10px;/);
-  assert.match(css,/@media \(max-width:979px\) \{[\s\S]*?\.asme-hd-submenu \.asme-hd-dropdown-link \{[^}]*min-height:46px/);
+  assert.match(css,/@media \(min-width:1200px\) \{[\s\S]*?\.asme-hd-dropdown-submenu \{[^}]*width:232px/);
+  assert.match(css,/@media \(max-width:1199px\) \{[\s\S]*?\.asme-hd-submenu \{[^}]*border-radius:12px/);
+  assert.match(css,/@media \(max-width:1199px\) \{[\s\S]*?\.asme-hd-submenu \{[^}]*margin:4px 0 10px;/);
+  assert.match(css,/@media \(max-width:1199px\) \{[\s\S]*?\.asme-hd-submenu \.asme-hd-dropdown-link \{[^}]*min-height:46px/);
   assert.doesNotMatch(css,/\.asme-hd-dropdown-link-icon \{display:none;\}/);
   s.close();
 });
@@ -123,6 +123,32 @@ test('mobile toggle focuses navigation and Escape closes it',()=>{
   assert.equal(button.getAttribute('aria-expanded'),'true');assert.equal(s.d.activeElement.textContent,'Home');
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
   assert.equal(button.getAttribute('aria-expanded'),'false');assert.equal(s.d.activeElement,button);s.close();
+});
+test('crossing the tablet navigation breakpoint closes panels and restores visible focus',()=>{
+  const media = new Map();
+  const s = setup({prepare(d) {
+    d.defaultView.matchMedia = query => {
+      const state = {matches: query === '(max-width:1199px)', addEventListener(type, callback) { this.changed = callback; }};
+      media.set(query, state);
+      return state;
+    };
+  }});
+  try {
+    const header = s.d.querySelector('#asme-site-header');
+    const toggle = s.d.querySelector('.asme-hd-menu-toggle');
+    const tablet = media.get('(max-width:1199px)');
+    assert.ok(tablet, 'script uses the same tablet boundary as the stylesheet');
+    toggle.click();
+    assert.ok(header.classList.contains('is-menu-open'));
+    tablet.matches = false;
+    tablet.changed();
+    assert.equal(header.classList.contains('is-menu-open'), false);
+    assert.equal(toggle.getAttribute('aria-expanded'), 'false');
+    s.d.querySelector('.asme-hd-link').focus();
+    tablet.matches = true;
+    tablet.changed();
+    assert.equal(s.d.activeElement, toggle, 'desktop navigation focus moves to the visible tablet toggle');
+  } finally { s.close(); }
 });
 test('mobile submenus remain independently expandable with keyboard dismissal',()=>{
   const s=setup();s.d.querySelector('.asme-hd-menu-toggle').click();
