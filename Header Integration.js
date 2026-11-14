@@ -55,6 +55,10 @@
     if (!order.every(function (name) { return entries.has(name); })) { restoreOriginalHeader(); return; }
     var header = template.content.firstElementChild.cloneNode(true);
     header.classList.add('asme-compact-header');
+    original.before(header);
+    // Keep the CMS menu usable while CSS is unavailable. A later stylesheet
+    // load can retry without leaving duplicate listeners from a failed attempt.
+    if (getComputedStyle(header).getPropertyValue('--asme-header-ready').trim() !== '1') { header.remove(); restoreOriginalHeader(); return; }
     header.querySelector('.asme-hd-title').textContent = 'ASME at Ohio State';
     var subtitle = header.querySelector('.asme-hd-subtitle');
     if (subtitle) subtitle.remove();
@@ -223,9 +227,6 @@
       if (narrow.matches && nav.contains(document.activeElement)) menuButton.focus();
       setMenu(false); setSearch(false);
     });
-    original.before(header);
-    // If the stylesheet fails to load, leave the original WordPress menu usable.
-    if (getComputedStyle(header).getPropertyValue('--asme-header-ready').trim() !== '1') { header.remove(); restoreOriginalHeader(); return; }
     // Take over the original header's exact layout space before hiding it. This
     // keeps the document from jumping up and down while the fixed bar initializes.
     var spacer = document.createElement('div');
@@ -340,5 +341,11 @@
       window.addEventListener('resize', offset);
     }
   }
+  var stylesheet = document.getElementById('asme-header-styles');
+  if (stylesheet) stylesheet.addEventListener('load', init);
+  window.addEventListener('load', init, { once:true });
+  window.addEventListener('pageshow', function () {
+    if (!document.getElementById('asme-site-header')) init();
+  });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once:true }); else init();
 })();

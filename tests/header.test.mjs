@@ -259,3 +259,23 @@ test('slow scrolling hides the header, reversal shows it, and keyboard focus rev
   scroll(180);assert.equal(header.classList.contains('asme-header-hidden'),false);
   s.close();
 });
+
+test('late header CSS recovers the CMS fallback without reloading or duplicating controls',()=>{
+  const s=setup({styles:false,prepare(d){
+    const link=d.createElement('link');link.id='asme-header-styles';link.rel='stylesheet';d.head.append(link);
+  }});
+  try {
+    assert.equal(s.d.querySelector('#asme-site-header'),null);
+    assert.equal(s.d.querySelector('#masthead').hidden,false);
+    const input=s.d.createElement('input');input.value='Keep my draft';s.d.querySelector('main').append(input);
+    const style=s.d.createElement('style');style.textContent=css;s.d.head.append(style);
+    s.d.querySelector('#asme-header-styles').dispatchEvent(new s.w.Event('load'));
+    assert.equal(s.d.querySelector('#masthead').hidden,true);
+    assert.equal(s.d.querySelectorAll('#asme-site-header').length,1);
+    assert.equal(input.value,'Keep my draft');
+    s.w.dispatchEvent(new s.w.Event('load'));s.w.dispatchEvent(new s.w.Event('pageshow'));
+    assert.equal(s.d.querySelectorAll('#asme-site-header').length,1);
+    s.d.querySelector('.asme-hd-menu-toggle').click();
+    assert.equal(s.d.querySelector('.asme-hd-menu-toggle').getAttribute('aria-expanded'),'true');
+  } finally {s.close();}
+});
