@@ -267,6 +267,49 @@
       var observer = new ResizeObserver(reserveSpace);
       observer.observe(header);
     }
+    // iPad browser shells can finish updating their viewport after the initial
+    // rotation event. Re-measure over a short, bounded settling window, and
+    // notify existing resize-driven components (including the photo grid).
+    var viewportTimers = [];
+    var viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+    function settleViewport(forceResize) {
+      var width = document.documentElement.getBoundingClientRect().width || window.innerWidth;
+      var changed = Math.abs(width - viewportWidth) > 1;
+      viewportWidth = width;
+      if (changed || forceResize) {
+        if (nav.contains(document.activeElement) && getComputedStyle(menuButton).display !== 'none') menuButton.focus();
+        setMenu(false); setSearch(false);
+        header.classList.remove('asme-header-hidden');
+        syncWidePageContainer();
+        reserveSpace();
+        window.dispatchEvent(new Event('resize'));
+      } else {
+        // Header height can settle after width, for example when fonts reflow.
+        reserveSpace();
+      }
+    }
+    function scheduleViewportSettlement() {
+      viewportTimers.forEach(function (timer) { window.clearTimeout(timer); });
+      viewportTimers = [0, 150, 400, 800].map(function (delay, index) {
+        return window.setTimeout(function () { window.requestAnimationFrame(function () { settleViewport(index === 0); }); }, delay);
+      });
+    }
+    window.addEventListener('orientationchange', scheduleViewportSettlement);
+    if (window.screen.orientation && window.screen.orientation.addEventListener) {
+      window.screen.orientation.addEventListener('change', scheduleViewportSettlement);
+    }
+    if (window.visualViewport) {
+      var visualWidth = window.visualViewport.width;
+      window.visualViewport.addEventListener('resize', function () {
+        var nextWidth = window.visualViewport.width;
+        var widthChanged = Math.abs(nextWidth - visualWidth) > 1;
+        visualWidth = nextWidth;
+        // Keyboard/browser-bar height changes and pinch zoom do not request a
+        // layout reset or dismiss the visitor's open search/navigation panel.
+        if (widthChanged && Math.abs(window.visualViewport.scale - 1) < 0.01) scheduleViewportSettlement();
+      });
+    }
+    window.addEventListener('pageshow', function (event) { if (event.persisted) scheduleViewportSettlement(); });
     header.addEventListener('focusin', function () { header.classList.remove('asme-header-hidden'); });
     var lastScroll = window.scrollY || 0;
     var travel = 0;

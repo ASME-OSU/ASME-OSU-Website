@@ -36,6 +36,66 @@ function setup({url='https://org.osu.edu/asme/',styles=true,prepare=()=>{}}={}) 
   w.eval(script);w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
   return {dom,w,d:w.document,close:()=>w.close()};
 }
+function rotationSetup() {
+  const pending = new Map();
+  let nextTimer = 0, height = 86, width = 1032, resizeCount = 0;
+  const s = setup({prepare(d) {
+    const w = d.defaultView;
+    w.setTimeout = callback => { pending.set(++nextTimer, callback); return nextTimer; };
+    w.clearTimeout = id => pending.delete(id);
+    d.documentElement.getBoundingClientRect = () => ({width});
+    Object.defineProperty(w, 'visualViewport', {value: Object.assign(new w.EventTarget(), {width, scale: 1})});
+    w.addEventListener('resize', () => resizeCount++);
+    const originalRect = w.HTMLElement.prototype.getBoundingClientRect;
+    w.HTMLElement.prototype.getBoundingClientRect = function () {
+      return this.id === 'asme-site-header' ? {height} : originalRect.call(this);
+    };
+  }});
+  return {...s, pending,
+    dimensions(nextWidth, nextHeight) { width = nextWidth; height = nextHeight; },
+    flush() { const callbacks = [...pending.values()]; pending.clear(); callbacks.forEach(callback => callback()); },
+    resizes() { return resizeCount; }
+  };
+}
+test('rotation remeasures late viewport dimensions without reloading or losing form values',()=>{
+  const s = rotationSetup();
+  try {
+    const input = s.d.createElement('input'); input.value = 'Preserved signup value'; s.d.querySelector('main').append(input);
+    s.d.querySelector('.asme-hd-menu-toggle').click();
+    s.w.dispatchEvent(new s.w.Event('orientationchange'));
+    const callbacks = [...s.pending.values()];
+    s.pending.clear();
+    callbacks.shift()();
+    s.dimensions(1376, 100);
+    callbacks.forEach(callback => callback());
+    assert.equal(s.d.querySelector('#asme-header-spacer').style.height, '112px');
+    assert.equal(s.d.querySelector('.asme-hd-menu-toggle').getAttribute('aria-expanded'), 'false');
+    assert.equal(input.value, 'Preserved signup value');
+    assert.equal(s.resizes(), 2, 'initial rotation and late width each notify resize-driven components');
+    s.dimensions(1032, 86);
+    s.w.dispatchEvent(new s.w.Event('orientationchange')); s.flush();
+    assert.equal(s.d.querySelector('#asme-header-spacer').style.height, '98px');
+    assert.equal(input.value, 'Preserved signup value');
+  } finally { s.close(); }
+});
+test('visual viewport width changes resync while keyboard height changes and pinch zoom preserve open panels',()=>{
+  const s = rotationSetup();
+  try {
+    const toggle = s.d.querySelector('.asme-hd-menu-toggle'); toggle.click();
+    const vv = s.w.visualViewport;
+    vv.dispatchEvent(new s.w.Event('resize')); s.flush();
+    assert.equal(toggle.getAttribute('aria-expanded'), 'true');
+    assert.equal(s.resizes(), 0);
+    vv.width = 700; vv.scale = 1.5; vv.dispatchEvent(new s.w.Event('resize')); s.flush();
+    assert.equal(toggle.getAttribute('aria-expanded'), 'true');
+    assert.equal(s.resizes(), 0);
+    vv.width = 1376; vv.scale = 1; s.dimensions(1376, 100);
+    vv.dispatchEvent(new s.w.Event('resize')); s.flush();
+    assert.equal(toggle.getAttribute('aria-expanded'), 'false');
+    assert.equal(s.d.querySelector('#asme-header-spacer').style.height, '112px');
+    assert.equal(s.resizes(), 1);
+  } finally { s.close(); }
+});
 test('shared brand is compact on Home and inner pages without changing the logo',()=>{
   const home=setup();const about=setup({url:'https://org.osu.edu/asme/aboutus/',prepare(d){
     const legacy=d.querySelector('#asme-header-template').content;
