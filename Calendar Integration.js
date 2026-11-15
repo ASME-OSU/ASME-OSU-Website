@@ -108,6 +108,8 @@
     if (!title || !description || !date || !location) return;
 
     if (!events.length) {
+      description.hidden = false;
+      location.hidden = false;
       title.textContent = 'Explore the ASME calendar';
       description.textContent = 'New meetings, company sessions, socials, and competitions are added throughout the semester.';
       date.textContent = 'Calendar available';
@@ -117,9 +119,11 @@
 
     var event = events[0];
     title.textContent = cleanText(event.title) || 'Upcoming ASME Event';
-    description.textContent = cleanText(event.description) || 'Join ASME OSU for our next chapter event. Check the full calendar for details and updates.';
+    description.textContent = cleanText(event.description);
+    description.hidden = !description.textContent;
     date.textContent = formatEventDate(event);
-    location.textContent = cleanText(event.location) || 'Location TBA';
+    location.textContent = cleanText(event.location);
+    location.hidden = !location.textContent;
   }
 
   function campaignPageFor(event) {

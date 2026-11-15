@@ -451,7 +451,8 @@
         var inset = 1;
         var right = width - inset;
         var bottom = height - inset;
-        var radius = Math.min(17, (width - 2) / 2, (height - 2) / 2);
+        var cardRadius = parseFloat(window.getComputedStyle(featuredOrbit.parentNode).borderTopLeftRadius) || 18;
+        var radius = Math.min(cardRadius - inset, (width - 2) / 2, (height - 2) / 2);
         var pathData = [
           'M', inset + radius, inset,
           'H', right - radius,
