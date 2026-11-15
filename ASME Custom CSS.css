@@ -24885,7 +24885,6 @@ html body #page .entry-content .asme-home .ah-featured-event {
   flex-wrap: wrap !important;
   align-items: center !important;
   gap: 28px 40px !important;
-  grid-column: 1 / -1 !important;
   box-sizing: border-box !important;
   min-height: 0 !important;
   padding: clamp(30px, 4vw, 64px) clamp(24px, 4.4vw, 72px) !important;
@@ -25001,9 +25000,6 @@ html body #page .entry-content .asme-home .ah-featured-orbit-line {
   .ah-event-ribbons .ah-ribbon-scarlet-start { stop-color: #ba0c2f; stop-opacity: .7; }
   .ah-event-ribbons .ah-ribbon-scarlet-end { stop-color: #ba0c2f; stop-opacity: .24; }
   html body #page .entry-content .asme-home .ah-event-calendar-icon { color: var(--event-text) !important; }
-}
-@media (min-width: 1600px) {
-  html body #page .entry-content .asme-home .ah-about { grid-column: 1 / -1 !important; }
 }
 @media (max-width: 768px) {
   html body #page .entry-content .asme-home .ah-featured-event {
