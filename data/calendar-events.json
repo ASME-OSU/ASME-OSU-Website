@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-13T01:57:08.580Z",
-  "checkedAt": "2026-11-15T02:49:32.590Z",
-  "windowStart": "2026-11-08T02:49:32.567Z",
+  "generatedAt": "2026-11-15T11:13:59.248Z",
+  "checkedAt": "2026-11-15T11:13:59.248Z",
+  "windowStart": "2026-11-08T11:13:59.233Z",
   "windowEnd": "2029-08-01T00:00:00.000Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
@@ -51,17 +51,6 @@
       "description": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
       "updated": "2026-07-09T23:06:03.000Z"
-    },
-    {
-      "id": "cgqu1b7nqiesqn2bf0s1gg7jki_R20260924T213000@google.com::2026-12-03T22:30:00.000Z",
-      "title": "ASME Sweets with SWE",
-      "start": "2026-12-03T22:30:00.000Z",
-      "end": "2026-12-03T23:30:00.000Z",
-      "allDay": false,
-      "location": "Scott Laboratory E141",
-      "description": "Sweets with SWE",
-      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
-      "updated": "2026-09-11T15:09:34.000Z"
     },
     {
       "id": "34m9rksc9kq64c7v1fp02jsrnv@google.com::2026-12-09T12:00:00.000Z",
