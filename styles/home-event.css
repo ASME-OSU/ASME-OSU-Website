@@ -59,6 +59,7 @@ html body #page .entry-content .asme-home .ah-featured-eyebrow {
   letter-spacing: .17em !important; text-transform: uppercase !important;
 }
 /* wpautop can insert a break after inline SVG; keep one centered row. */
+html body #page .entry-content .asme-home .ah-featured-event > br,
 html body #page .entry-content .asme-home .ah-featured-eyebrow > br { display: none !important; }
 html body #page .entry-content .asme-home .ah-featured-eyebrow > p { display: contents !important; margin: 0 !important; }
 html body #page .entry-content .asme-home .ah-featured-eyebrow .ah-event-label { display: block !important; min-width: 0 !important; }
