@@ -25001,6 +25001,14 @@ html body #page .entry-content .asme-home .ah-featured-orbit-line {
   .ah-event-ribbons .ah-ribbon-scarlet-end { stop-color: #ba0c2f; stop-opacity: .24; }
   html body #page .entry-content .asme-home .ah-event-calendar-icon { color: var(--event-text) !important; }
 }
+/* Standard desktop: a centered feature, inset from the full-width hero. */
+@media (min-width: 981px) and (max-width: 1799px) {
+  html body #page .entry-content .asme-home .ah-featured-event {
+    max-width: 1080px !important;
+    margin-inline: auto !important;
+    padding: 36px 40px !important;
+  }
+}
 @media (max-width: 768px) {
   html body #page .entry-content .asme-home .ah-featured-event {
     flex-direction: column !important; align-items: center !important; gap: 26px !important;
