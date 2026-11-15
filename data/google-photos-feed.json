@@ -2,8 +2,52 @@
   "schemaVersion": 1,
   "source": "Google Photos public shared album",
   "albumUrl": "https://photos.app.goo.gl/33pfCCghnJbXPzho9",
-  "generatedAt": "2026-11-14T16:05:22.371Z",
+  "generatedAt": "2026-11-15T16:34:04.096Z",
   "items": [
+    {
+      "id": "AF1QipNOZkJ0lM7gOugO2djA-HTFcFQZf08l3b5Ko4Rk",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipNOZkJ0lM7gOugO2djA-HTFcFQZf08l3b5Ko4Rk-742fa99e2c9d2bde-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipNOZkJ0lM7gOugO2djA-HTFcFQZf08l3b5Ko4Rk-742fa99e2c9d2bde-large.webp",
+      "width": 1500,
+      "height": 2000,
+      "alt": "Bar Social",
+      "category": "general",
+      "takenAt": "2026-10-24T00:39:43.395Z",
+      "order": 1
+    },
+    {
+      "id": "AF1QipM7RAZENOP3g3FE3Nc8dJVxJ26OfUh9eNCorPZk",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipM7RAZENOP3g3FE3Nc8dJVxJ26OfUh9eNCorPZk-effe68bc2c1b4fb9-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipM7RAZENOP3g3FE3Nc8dJVxJ26OfUh9eNCorPZk-effe68bc2c1b4fb9-large.webp",
+      "width": 2000,
+      "height": 1500,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "takenAt": "2026-10-24T00:36:50.119Z",
+      "order": 2
+    },
+    {
+      "id": "AF1QipMVFx5LkPTvl90MS9eK3wK1x9PPVb1BaqZofpp1",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipMVFx5LkPTvl90MS9eK3wK1x9PPVb1BaqZofpp1-63223f8637824a49-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipMVFx5LkPTvl90MS9eK3wK1x9PPVb1BaqZofpp1-63223f8637824a49-large.webp",
+      "width": 2000,
+      "height": 1500,
+      "alt": "Bar Social",
+      "category": "general",
+      "takenAt": "2026-10-24T00:28:22.172Z",
+      "order": 3
+    },
+    {
+      "id": "AF1QipNccSdzis2qONbW8VRL0oYyUYU9lGv3nBnnZd-0",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipNccSdzis2qONbW8VRL0oYyUYU9lGv3nBnnZd-0-6dfe4afdcade1c9f-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipNccSdzis2qONbW8VRL0oYyUYU9lGv3nBnnZd-0-6dfe4afdcade1c9f-large.webp",
+      "width": 2000,
+      "height": 1500,
+      "alt": "Barsocial",
+      "category": "general",
+      "takenAt": "2026-10-24T00:17:57.513Z",
+      "order": 4
+    },
     {
       "id": "AF1QipOdmEgAJMH1uVBU1x-BkrZRSkkH6eg9vQoSG2Kc",
       "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOdmEgAJMH1uVBU1x-BkrZRSkkH6eg9vQoSG2Kc-9f56b9ebd69bc771-thumb.webp",
@@ -13,7 +57,18 @@
       "alt": "ASME Pickleball Night",
       "category": "general",
       "takenAt": "2026-10-08T22:39:01.484Z",
-      "order": 1
+      "order": 5
+    },
+    {
+      "id": "AF1QipMNChwcGI_Nt7P_hq7OErQlS6q58fb3n1jQ50R3",
+      "thumbnailUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipMNChwcGI_Nt7P_hq7OErQlS6q58fb3n1jQ50R3-499efd50f8df57a0-thumb.webp",
+      "imageUrl": "https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipMNChwcGI_Nt7P_hq7OErQlS6q58fb3n1jQ50R3-499efd50f8df57a0-large.webp",
+      "width": 1500,
+      "height": 2000,
+      "alt": "ASME OSU chapter photo",
+      "category": "general",
+      "takenAt": "2026-10-08T21:57:22.272Z",
+      "order": 6
     },
     {
       "id": "AF1QipP2Ai8CJT2lzunN2fXngAOaR634vvdOeqbSUNnw",
@@ -24,7 +79,7 @@
       "alt": "Casino Night",
       "category": "general",
       "takenAt": "2026-09-17T22:35:20.172Z",
-      "order": 2
+      "order": 7
     },
     {
       "id": "AF1QipM6nRAjQsx-VI2UwtSceD2IeOtZ2NwL5cLaUeHs",
@@ -35,7 +90,7 @@
       "alt": "Members playing cards at ASME Casino Night",
       "category": "general",
       "takenAt": "2026-09-17T22:16:48.325Z",
-      "order": 3
+      "order": 8
     },
     {
       "id": "AF1QipPOYKhNGtBfRmpLdOpakPKyQXLvSvemeCrs6PGK",
@@ -46,7 +101,7 @@
       "alt": "Casino Night",
       "category": "general",
       "takenAt": "2026-09-17T22:13:50.503Z",
-      "order": 4
+      "order": 9
     },
     {
       "id": "AF1QipOVHctZbz7GkYNPTvX2EQUrHpuOYpDuvAAIxqPg",
@@ -57,7 +112,7 @@
       "alt": "Ice Cream Social",
       "category": "general",
       "takenAt": "2026-09-03T21:43:15.139Z",
-      "order": 5
+      "order": 10
     },
     {
       "id": "AF1QipNAAAAcACeFq79paEBhtdTF20Fbz41PhxtT2JDX",
@@ -68,7 +123,7 @@
       "alt": "ASME chapter presentation",
       "category": "general",
       "takenAt": "2026-09-02T21:36:11.905Z",
-      "order": 6
+      "order": 11
     }
   ]
 }
