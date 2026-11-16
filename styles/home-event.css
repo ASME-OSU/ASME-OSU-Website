@@ -136,6 +136,12 @@ html body #page .entry-content .asme-home .ah-featured-orbit-line {
   .ah-event-ribbons .ah-ribbon-scarlet-end { stop-color: #ba0c2f; stop-opacity: .24; }
   html body #page .entry-content .asme-home .ah-event-calendar-icon { color: var(--event-text) !important; }
 }
+/* Give the desktop calendar row a little extra clearance from the corner fold. */
+@media (min-width: 981px) {
+  html body #page .entry-content .asme-home .ah-featured-eyebrow {
+    padding-inline-start: 10px !important;
+  }
+}
 @media (max-width: 768px) {
   html body #page .entry-content .asme-home .ah-featured-event {
     flex-direction: column !important; align-items: center !important; gap: 26px !important;
