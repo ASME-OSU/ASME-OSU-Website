@@ -32,16 +32,17 @@
       var heading = clean(element.querySelector('h2')?.textContent);
       var years = heading.match(/(\d{4})\s*[–—-]\s*(\d{4})/);
       if (!years) return null;
-      var officers = Array.from(element.querySelectorAll('.lb-grid > article.leader-card')).map(function (card) {
-        var role = clean(card.querySelector('h3')?.textContent);
-        var name = clean(card.querySelector('h4')?.textContent);
+      var officers = Array.from(element.querySelectorAll('.lb-grid > article.leader-card, .team-grid > article.team-person')).map(function (card) {
+        var roleElement = card.querySelector('.team-role, h3');
+        var role = clean(roleElement?.getAttribute('aria-label') || roleElement?.textContent);
+        var name = clean(card.querySelector('.officer-name, h4')?.textContent);
         if (!role || !name) return null;
         var officer = { role: role, roleId: roleFor(role, roles), name: name };
         if (current) {
           var href = card.querySelector('a[href^="mailto:"]')?.getAttribute('href') || '';
           var email = href.slice(7).split('?')[0];
           officer.email = /^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/.test(email) ? email : '';
-          officer.photo = card.querySelector('.leader-photo')?.getAttribute('src') || '';
+          officer.photo = card.querySelector('.leader-photo, .team-portrait img')?.getAttribute('src') || '';
         }
         return officer;
       }).filter(Boolean);

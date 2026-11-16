@@ -13,6 +13,14 @@ const html = await fs.readFile(new URL('./fixtures/gearly-leadership.html', impo
 const snapshot = api.parseLeadership(new JSDOM(html).window.document, roles);
 const answer = (question, value = snapshot) => api.resolveLeadership(value, question, { roles });
 
+test('redesigned cards preserve officer labels, contacts and historical privacy', () => {
+  const document = new JSDOM(`<section class="lb-current-year"><h2>2026–2027 Executive Board</h2><div class="team-grid"><article class="team-person"><h3 class="team-role" aria-label="Vice President / Corporate Liaison">Vice President<span>Corporate Liaison</span></h3><div class="team-portrait"><img src="/officer.jpg"></div><h4 class="officer-name">Test Officer</h4><a aria-label="Email Test Officer" href="mailto:officer@example.test">Email</a></article></div></section><section class="lb-year-panel" hidden><h2>2025–2026 Executive Board</h2><div class="lb-grid"><article class="leader-card"><h3>President</h3><h4>Past Officer</h4><a href="mailto:past@example.test">Email</a></article></div></section>`).window.document;
+  const parsed = api.parseLeadership(document, roles);
+  assert.deepEqual(parsed.current.officers, [{role:'Vice President / Corporate Liaison', roleId:'vice-president', name:'Test Officer', email:'officer@example.test', photo:'/officer.jpg'}]);
+  assert.equal(parsed.current.label, '2026–2027');
+  assert.deepEqual(parsed.past[0].officers, [{role:'President',roleId:'president',name:'Past Officer'}]);
+});
+
 test('shared parser follows current markup, maps specific aliases, and strips historic contact fields', () => {
   assert.equal(snapshot.current.label, '2026–2027');
   assert.equal(snapshot.current.officers[1].roleId, 'robotics-coordinator');
