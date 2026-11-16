@@ -1,13 +1,28 @@
-<div class="asme-footer-inner asme-footer-v2">
+<style id="asme-footer-refinement-styles">
+/* Shared footer: aligned headings, centered identity, and useful location details. */
+body .asme-footer-v2.asme-footer-refined .asme-footer-grid { align-items: stretch !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-brand .asme-footer-logo { display: inline-flex !important; margin: 0 auto 20px !important; padding: 0 !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-logo img { width: 144px !important; max-height: 72px !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-contact { gap: 14px !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-contact p.asme-footer-organization,
+body .asme-footer-v2.asme-footer-refined .asme-footer-contact p.asme-footer-address { display: block !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; text-align: center !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-organization-name { display: block !important; text-align: center !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-icon-label { display: inline-block !important; position: relative !important; text-align: center !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-icon-label > svg { position: absolute !important; right: calc(100% + 9px) !important; top: 2px !important; width: 18px !important; height: 18px !important; margin: 0 !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-university { font-size: 14px !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-contact .asme-footer-address-link { display: inline-block !important; width: auto !important; max-width: 100% !important; min-height: 44px !important; margin: 0 !important; padding: 0 !important; color: inherit !important; font-size: 14px !important; line-height: 1.55 !important; text-align: center !important; text-decoration: none !important; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:hover { text-decoration: underline !important; text-underline-offset: 3px; }
+body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; border-radius: 3px; }
+</style>
+<div class="asme-footer-inner asme-footer-v2 asme-footer-refined">
   <div class="asme-footer-grid">
     <section class="asme-footer-col asme-footer-brand" aria-labelledby="asme-footer-brand-title">
+      <h3 id="asme-footer-brand-title">Ohio State ASME</h3>
       <a class="asme-footer-logo" href="https://org.osu.edu/asme/" aria-label="ASME Ohio State home">
         <img src="https://org.osu.edu/asme/files/2026/05/asme_osu_logo_horizontal_black.png" alt="ASME at The Ohio State University">
       </a>
-      <h3 id="asme-footer-brand-title">Ohio State ASME</h3>
       <div class="asme-footer-contact">
-        <p><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21h16M5 21V7l7-4 7 4v14M9 21v-8h6v8M8 9h.01M12 9h.01M16 9h.01"/></svg><span>American Society of Mechanical Engineers<br>@ The Ohio State University</span></p>
-        <p><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Scott Laboratory<br>Office N147</span></p>
+        <p class="asme-footer-address"><a class="asme-footer-address-link" href="https://www.google.com/maps/search/?api=1&amp;query=Scott+Laboratory%2C+201+W+19th+Avenue%2C+Columbus%2C+OH+43210" target="_blank" rel="noopener noreferrer" aria-label="View Scott Laboratory at 201 West 19th Avenue, Columbus, Ohio 43210 on Google Maps"><span class="asme-footer-address-text"><span class="asme-footer-icon-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Scott Laboratory · Office N147</span><br>201 W. 19th Avenue<br>Columbus, OH 43210</span></a></p>
         <p><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:asme@osu.edu">asme@osu.edu</a></p>
       </div>
     </section>

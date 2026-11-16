@@ -144,7 +144,7 @@
     var signup = signupNode ? { title: 'ASME OSU newsletter signup', url: new URL('join/#newsletter-signup', SITE).href, text: clean(signupNode.querySelector('.join-form-purpose')?.textContent) } : null;
     var location = Array.from(footer.querySelectorAll('.asme-footer-contact p span')).find(function (node) { return /office\s/i.test(node.textContent); });
     var officeLocation = '';
-    if (location) { var copy = location.cloneNode(true); copy.querySelectorAll('br').forEach(function (node) { node.replaceWith(', '); }); officeLocation = readable(copy); }
+    if (location) { var copy = location.cloneNode(true); copy.querySelectorAll('br').forEach(function (node) { node.replaceWith(', '); }); officeLocation = readable(copy).replace(/\s*·\s*/g, ', '); }
     return { resources: cards, signup: signup, groupme: groupme, officeLocation: officeLocation };
   }
   function tokens(value) { return Array.from(new Set(normalize(value).split(' ').filter(function (token) { return token.length > 2 && !stopwords.has(token); }))); }

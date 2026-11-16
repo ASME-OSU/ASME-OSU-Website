@@ -69,7 +69,7 @@ test('source edits flow into answers and destinations rather than a parallel pol
   docs[0].querySelector('[data-gearly="join-faq"] details p').textContent = 'All Ohio State students are welcome.';
   docs[1].querySelector('a[href*="forms.cloud.microsoft"]').href = 'https://forms.cloud.microsoft/r/UpdatedForm';
   docs[1].querySelector('a[href*="UpdatedForm"] .asme-resource-card-desc').textContent = 'The résumé book is shared with approved recruiting partners only.';
-  const location = docs[2].querySelector('.asme-footer-contact p:nth-child(2) span');
+  const location = docs[2].querySelector('.asme-footer-address-text');
   location.textContent = 'Scott Laboratory, Office N200';
   const changed = { ...snapshot, faqs: globalThis.GearlySite.parseFAQs(docs[0]), student: globalThis.GearlySite.parseStudentSources({ join: docs[0], resources: docs[1], footer: docs[2] }) };
   assert.match(answer('How do I join ASME?', changed).text, /All Ohio State students are welcome/);
