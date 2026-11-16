@@ -15,7 +15,82 @@ html body #page .entry-content .asme-leadership .team-person{display:flex;flex-d
 .asme-leadership svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;flex-shrink:0}.asme-leadership .linkedin-monogram{font:700 19px/1 Arial,sans-serif;letter-spacing:-.04em}
 .asme-leadership .role-guide{display:block;padding:40px;margin:48px 0;background:var(--panel);border:1px solid var(--cardline);border-radius:var(--asme-radius-card,20px)}.asme-leadership .role-guide-heading{margin-bottom:32px}.asme-leadership .role-guide-heading h2{font:400 34px/1.2 var(--display)!important;letter-spacing:-.035em!important;color:var(--ink)!important}.asme-leadership .role-guide-heading>p{font:400 16px/1.7 var(--text)!important;color:var(--muted)!important;margin-top:12px!important;max-width:none}.asme-leadership .role-guide-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);grid-auto-flow:column;gap:24px 64px}
 html body #page .entry-content .asme-leadership .role-guide-card{display:grid;grid-template-columns:24px 1fr;gap:8px 12px;align-content:start;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important}.asme-leadership .role-summary-icon{color:#ff6570;grid-column:1;grid-row:1 / 3;display:flex;padding-top:3px}.asme-leadership .role-summary-icon svg{width:22px;height:22px}.asme-leadership .role-guide-card h3{font:400 23px/1.2 var(--display)!important;letter-spacing:-.015em!important;color:var(--ink)!important}.asme-leadership .role-guide-card>p{grid-column:2;font:400 16px/1.6 var(--text)!important;color:var(--muted)!important}
-.asme-leadership .archive{padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:48px}.asme-leadership .archive summary{display:flex;align-items:center;justify-content:space-between;gap:24px;list-style:none;cursor:pointer}.asme-leadership .archive summary::-webkit-details-marker{display:none}.asme-leadership .archive .team-kicker{display:none}.asme-leadership .archive h2{font:400 30px/1.3 var(--display)!important;letter-spacing:-.03em!important;color:var(--ink)!important}.asme-leadership .archive-label{white-space:nowrap;display:flex;align-items:center;gap:24px;font:400 14px/1.5 var(--text);color:var(--muted)}.asme-leadership .archive-label b{font-size:28px;font-weight:400;transition:transform 150ms}.asme-leadership .archive[open] .archive-label b{transform:rotate(45deg)}.asme-leadership .lb-past-years{margin-top:32px}.asme-leadership .lb-past-label{display:none!important}.asme-leadership .lb-year-tabs{display:flex;flex-wrap:wrap;gap:8px}.asme-leadership .lb-year-tabs button{min-height:44px;padding:8px 12px!important;font:500 14px/1.4 var(--text)!important}.asme-leadership .lb-year-panel[hidden]{display:none!important}.asme-leadership .lb-year-panel-header{margin:24px 0!important}.asme-leadership .lb-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:16px!important}.asme-leadership .leader-card h3{font-size:13px!important}.asme-leadership .leader-card h4{font:400 24px/1.3 var(--display)!important}.asme-leadership .leader-card img{width:100px!important;height:110px!important;object-fit:cover!important}.asme-leadership .leader-card a{font-size:13px!important;overflow-wrap:anywhere}
+.asme-leadership .archive{padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:48px}.asme-leadership .archive summary{display:flex;align-items:center;justify-content:space-between;gap:24px;list-style:none;cursor:pointer}.asme-leadership .archive summary::-webkit-details-marker{display:none}.asme-leadership .archive .team-kicker{display:none}.asme-leadership .archive h2{font:400 30px/1.3 var(--display)!important;letter-spacing:-.03em!important;color:var(--ink)!important}.asme-leadership .archive-label{white-space:nowrap;display:flex;align-items:center;gap:24px;font:400 14px/1.5 var(--text);color:var(--muted)}.asme-leadership .archive-label b{font-size:28px;font-weight:400;transition:transform 150ms}.asme-leadership .archive[open] .archive-label b{transform:rotate(45deg)}.asme-leadership .lb-past-years{margin-top:32px}.asme-leadership .lb-past-label{display:none!important}.asme-leadership .lb-year-tabs{display:flex;flex-wrap:wrap;gap:8px}.asme-leadership .lb-year-tabs button{min-height:44px;padding:8px 12px!important;font:500 14px/1.4 var(--text)!important}.asme-leadership .lb-year-panel[hidden]{display:none!important}.asme-leadership .lb-year-panel-header{margin:24px 0!important}.asme-leadership .lb-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:16px!important}/* Archive cards keep titles, portraits and names in separate rows. */
+html body #page .entry-content .asme-leadership .archive .leader-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-width: 0;
+  padding: 20px 16px !important;
+  border: 1px solid var(--cardline) !important;
+  border-radius: var(--asme-radius-card,20px) !important;
+  background: var(--card) !important;
+  color: var(--ink) !important;
+  text-align: center;
+}
+.asme-leadership .archive .leader-card h3 {
+  position: static !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: fit-content !important;
+  max-width: 100%;
+  min-height: 42px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 6px 12px !important;
+  border: 1px solid var(--role-line) !important;
+  border-radius: 999px !important;
+  background: var(--role-bg) !important;
+  color: var(--role-ink) !important;
+  font: 600 13px/1.35 var(--text) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+.asme-leadership .archive .leader-card img {
+  position: static !important;
+  flex: 0 0 auto;
+  width: 110px !important;
+  height: 120px !important;
+  max-width: 100%;
+  margin: 0 !important;
+  border: 1px solid var(--cardline) !important;
+  border-radius: var(--asme-radius-control,12px) !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+.asme-leadership .archive .leader-card h4 {
+  width: 100%;
+  margin: 0 !important;
+  color: var(--ink) !important;
+  font: 400 24px/1.3 var(--display) !important;
+  letter-spacing: -.025em !important;
+  overflow-wrap: anywhere;
+}
+.asme-leadership .archive .leader-card a {
+  font-size: 13px !important;
+  overflow-wrap: anywhere;
+}
+.asme-leadership .archive .leader-card .contact-icon {
+  flex: 0 0 44px;
+  margin-top: auto !important;
+  background: #46596f !important;
+  border-color: #617790 !important;
+  color: #fff !important;
+}
+@media(max-width:900px) {
+  .asme-leadership .archive .lb-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+}
+@media(max-width:639px) {
+  html body #page .entry-content .asme-leadership .archive .leader-card { padding: 16px 10px !important; }
+  .asme-leadership .archive .leader-card h3 { min-height: 52px !important; padding: 6px 9px !important; font-size: 12px !important; }
+  .asme-leadership .archive .leader-card h4 { font-size: 20px !important; }
+}
+
 .asme-leadership .officer-election{display:flex;align-items:center;justify-content:space-between;gap:48px;padding:32px 40px;background:#bb0000;border:1px solid #bb0000;border-radius:var(--asme-radius-card,20px);overflow:hidden}.asme-leadership .election-intro h2{font:400 38px/1.15 var(--display)!important;letter-spacing:-.025em!important;color:#fff!important;margin:0 0 12px!important}.asme-leadership .election-intro>p{font:400 16px/1.7 var(--text)!important;color:#fff!important;max-width:650px}.asme-leadership .election-primary{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:48px;padding:12px 24px;border-radius:var(--asme-radius-control,12px);background:#fff;color:#a10000!important;font:500 16px/1.5 var(--text)!important;white-space:nowrap;flex-shrink:0;transition:background 150ms,transform 150ms}.asme-leadership .election-primary:hover{background:#f1f3f6;transform:translateY(-1px)}.asme-leadership .election-primary:active{transform:translateY(1px)}
 html body #page .inside-article:has(.asme-leadership){padding-top:8px!important}
 @media(hover:hover) and (pointer:fine){html body #page .asme-leadership .team-person{transition:transform 180ms,border-color 180ms,box-shadow 180ms}.asme-leadership .team-portrait img{transition:transform 400ms}html body #page .asme-leadership .team-person:hover,html body #page .asme-leadership .team-person:focus-within{transform:translateY(-2px);border-color:#7a94ad!important;box-shadow:0 8px 18px rgba(0,25,50,.12)!important}.asme-leadership .team-person:hover .team-portrait img,.asme-leadership .team-person:focus-within .team-portrait img{transform:scale(1.025)}}
