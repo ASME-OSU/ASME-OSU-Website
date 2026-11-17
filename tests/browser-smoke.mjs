@@ -173,6 +173,7 @@ test('newsletter preserves rejected input and advances focus only on confirmed s
   const email = page.locator('#EMAIL');
   await page.locator('#FIRSTNAME').fill('Browser');
   await page.locator('#LASTNAME').fill('Test');
+  await page.locator('#OSU_NUMBER').fill('browser.1');
   await page.locator('#GRADUATION_YEAR').fill('2028');
   await email.fill('browser.test@buckeyemail.osu.edu');
   await page.locator('.join-submit-button').click();
@@ -183,6 +184,21 @@ test('newsletter preserves rejected input and advances focus only on confirmed s
   await status.filter({ hasText: 'successfully added' }).waitFor();
   assert.equal(requests, 2);
   assert.equal(await page.locator('#joinGroupMeButton').evaluate(link => document.activeElement === link), true);
+});
+
+test('Join uses a full-width submit and Calendar includes Subscribe in its header', { timeout: 30_000 }, async t => {
+  for (const width of [390, 1440]) {
+    const join = await visit(t, 'join/', { width });
+    assert.equal(await join.locator('#OSU_NUMBER').evaluate(input => input.required), true);
+    assert.equal(await join.getByText('How we use your newsletter information', { exact: true }).count(), 0);
+    const sizes = await join.locator('.join-submit-button').evaluate(button => ({
+      button: button.getBoundingClientRect().width,
+      form: button.closest('form').getBoundingClientRect().width
+    }));
+    assert.ok(Math.abs(sizes.form - sizes.button) < 2, JSON.stringify(sizes));
+    const calendar = await visit(t, 'calendar/', { width });
+    assert.equal(await calendar.locator('.acp-header .acp-subscribe-btn').isVisible(), true);
+  }
 });
 
 test('Calendar feed outage offers a fallback and retry restores the upcoming list', { skip: live, timeout: 30_000 }, async t => {

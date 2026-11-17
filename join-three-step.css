@@ -65,7 +65,7 @@ html body #page .entry-content .asme-join-page.asme-join-three-step #newsletter-
 html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMeStep{grid-column:2!important;grid-row:2!important;padding:24px!important}
 html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return{grid-column:3!important;grid-row:2!important;padding:24px!important}
 html body #page .entry-content .asme-join-page.asme-join-three-step #asmeNewsletterForm{display:flex!important;flex-direction:column!important;flex:1 1 auto!important}
-html body #page .entry-content .asme-join-page.asme-join-three-step .join-submit-wrap{margin-top:auto!important;padding-top:20px!important}
+html body #page .entry-content .asme-join-page.asme-join-three-step .join-submit-wrap{display:block!important;margin-top:auto!important;padding-top:20px!important}
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-copy small{margin:0 0 18px!important}
 html body #page .entry-content .asme-join-page.asme-join-three-step .join-submit-button,html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-button,html body #page .entry-content .asme-join-page.asme-join-three-step #asme-groupme-return .asme-return-confirm{box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;height:52px!important;min-height:52px!important;max-height:52px!important;margin-bottom:0!important;padding:10px 12px!important}
 #asme-groupme-return .asme-return-reopen{margin:0 0 16px!important;padding:0!important}

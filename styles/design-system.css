@@ -662,7 +662,3 @@ html body #page .entry-content .asme-about-page .about-stat-item::after {
     border-color: rgba(30, 45, 70, .45) !important;
   }
 }
-
-html body #page .entry-content .asme-cal-page .acp-calendar-subscribe {
-  margin-block: 0 24px !important;
-}

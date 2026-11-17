@@ -18,7 +18,7 @@ function setup(fetch, fastTimeout = false) {
   w.eval(script);
   w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
   const form = w.document.querySelector('#asmeNewsletterForm');
-  for (const [name, value] of Object.entries({ FIRSTNAME: 'Test', LASTNAME: 'Member', EMAIL: 'test.1@osu.edu', GRADUATION_YEAR: '2028' })) form.elements.namedItem(name).value = value;
+  for (const [name, value] of Object.entries({ FIRSTNAME: 'Test', LASTNAME: 'Member', OSU_NUMBER: 'test.1', EMAIL: 'test.1@osu.edu', GRADUATION_YEAR: '2028' })) form.elements.namedItem(name).value = value;
   return { dom, w, form, button: form.querySelector('button'), status: w.document.querySelector('#asmeNewsletterStatus'), submit() { return form.dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); } };
 }
 test('confirmed acceptance stays inline and advances the existing wrapper once', async () => {
@@ -27,6 +27,7 @@ test('confirmed acceptance stays inline and advances the existing wrapper once',
     calls++;
     assert.equal(new URL(url).searchParams.get('isAjax'), '1');
     assert.equal(options.body.get('EMAIL'), 'test.1@osu.edu');
+    assert.equal(options.body.get('OSU_NUMBER'), 'test.1');
     assert.equal(options.body.has('html_type'), false);
     assert.equal(options.credentials, 'omit');
     return { ok: true, json: async () => ({ success: true, redirect: 'https://example.invalid/thank-you' }) };
@@ -89,6 +90,11 @@ test('invalid inputs and repeat clicks do not create extra requests', async () =
   s.form.elements.EMAIL.value = '';
   s.submit(); assert.equal(calls, 0);
   s.form.elements.EMAIL.value = 'test.1@osu.edu';
+  s.form.elements.OSU_NUMBER.value = '';
+  s.submit();
+  assert.equal(calls, 0);
+  assert.equal(s.form.elements.OSU_NUMBER.validity.valueMissing, true);
+  s.form.elements.OSU_NUMBER.value = 'test.1';
   s.submit(); s.submit(); assert.equal(calls, 1);
   finish({ ok: true, json: async () => ({ success: true }) });
   await tick();

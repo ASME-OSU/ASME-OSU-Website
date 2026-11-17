@@ -24539,10 +24539,6 @@ html body #page .entry-content .asme-about-page .about-stat-item::after {
   }
 }
 
-html body #page .entry-content .asme-cal-page .acp-calendar-subscribe {
-  margin-block: 0 24px !important;
-}
-
 /* Wide screens get compositions with more useful columns, not longer lines.
    Keep the existing 2100px site frame and all layouts below 1800px. */
 @media (min-width: 1800px) {
