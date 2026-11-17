@@ -5,7 +5,7 @@
       "id": "home",
       "title": "Home",
       "url": "https://org.osu.edu/asme/",
-      "description": "Connecting students, industry, and opportunity.",
+      "description": "Ohio State’s student chapter for company talks, workshops, and socials.",
       "keywords": [
         "home",
         "start"
@@ -20,7 +20,7 @@
         "Leadership",
         "What's Next"
       ],
-      "text": "American Society ofMechanical Engineers Connecting students, industry, and opportunity. New members welcome Sponsor interest open Join Events 466+Members 25+Events/yr 20+Partners Student SectionAchievement Award 2025–2026 Career Resource ASME Career Guide Resumes, interviews, career fairs, networking, internships, and evaluating offers. Open Career Guide → Featured Upcoming Event Explore the 2026–27 calendar Meetings, company sessions, socials, and competitions are already on the schedule. Calendar available ASME OSU View Calendar → About ASME OSU Build skills, connections, and community. ASME at Ohio State brings students interested in mechanical engineering together with employers, practical learning, service, leadership, and one another. Attend an event, meet the chapter, and choose the level of involvement that fits you. Learn about ASME OSU → Get Involved 🤝 Join ASME Become a member and get access to exclusive events, networking opportunities, and professional development resources. Join now → 📅 Events From company info sessions to socials and competitions, there is always something happening with ASME at OSU. See events → ⭐ Leadership Meet the team behind OSU ASME and learn about opportunities to take on leadership roles within the chapter. Meet the team → Upcoming Events What's Next",
+      "text": "American Society ofMechanical Engineers Ohio State’s student chapter for company talks, workshops, and socials. New members welcome Sponsor interest open Join Events 466+Members 25+Events/yr 20+Partners Student SectionAchievement Award 2025–2026 Career Resource ASME Career Guide Resumes, interviews, career fairs, networking, internships, and evaluating offers. Open Career Guide → Featured Upcoming Event Explore the 2026–27 calendar Meetings, company sessions, socials, and competitions are already on the schedule. Calendar available ASME OSU View Calendar → About ASME OSU Build skills, connections, and community. ASME at Ohio State brings students interested in mechanical engineering together with employers, practical learning, service, leadership, and one another. Attend an event, meet the chapter, and choose the level of involvement that fits you. Learn about ASME OSU → Open the Career Guide ↗ (opens in a new tab) Get Involved 🤝 Join ASME Get chapter updates about company sessions, socials, and professional development opportunities. Join now → 📅 Events From company info sessions to socials and competitions, there is always something happening with ASME at OSU. See events → ⭐ Leadership Meet the team behind OSU ASME and learn about opportunities to take on leadership roles within the chapter. Meet the team → Upcoming Events What's Next",
       "sections": [
         {
           "id": "home:#asmeFeaturedEvent",
@@ -65,11 +65,25 @@
           ]
         },
         {
+          "id": "home:#asmeFeaturedAction",
+          "pageId": "home",
+          "selector": "#asmeFeaturedAction",
+          "title": "Explore the 2026–27 calendar",
+          "snippet": "View Calendar →",
+          "keywords": [
+            "explore",
+            "the",
+            "2026",
+            "27",
+            "calendar"
+          ]
+        },
+        {
           "id": "home:[data-gearly='home-get-involved']",
           "pageId": "home",
           "selector": "[data-gearly='home-get-involved']",
           "title": "Get Involved",
-          "snippet": "American Society ofMechanical Engineers Connecting students, industry, and opportunity. New members welcome Sponsor interest open Join Events 466+Members 25+Events/yr 20+Partners Student SectionAchievement Award 2025–2026 Career Resource ASME Career Guide Resumes, interviews, career fairs,…",
+          "snippet": "American Society ofMechanical Engineers Ohio State’s student chapter for company talks, workshops, and socials. New members welcome Sponsor interest open Join Events 466+Members 25+Events/yr 20+Partners Student SectionAchievement Award 2025–2026 Career Resource ASME Career Guide Resumes, interviews…",
           "keywords": [
             "get",
             "involved"
@@ -80,7 +94,7 @@
           "pageId": "home",
           "selector": "[data-gearly='home-join']",
           "title": "Join ASME",
-          "snippet": "🤝 Join ASME Become a member and get access to exclusive events, networking opportunities, and professional development resources. Join now →",
+          "snippet": "🤝 Join ASME Get chapter updates about company sessions, socials, and professional development opportunities. Join now →",
           "keywords": [
             "join",
             "asme"
@@ -137,7 +151,7 @@
         "Get your welcome card.",
         "Frequently Asked Questions"
       ],
-      "text": "466+ Members 25+ Events / Year 2026 Chapter Achievement AwardASME recognition Join ASME OSU Get connected with Ohio State's engineering community. Meet employers, build friendships, and find your next opportunity with ASME OSU. Industry EventsMeet employers and learn about engineering careers. CommunityConnect with other mechanical engineering students. LeadershipFind ways to get involved beyond attending events. 1 Email newsletterFull announcements 2 GroupMeFast updates 3Welcome cardYour Buckeye keepsake Step 1 · Email Newsletter Join the newsletter. Chapter news, events, and opportunities—straight to your inbox. Please enable JavaScript to sign up here, or email asme@osu.edu for help. Step 2 · GroupMe Quick updates. Event reminders and chapter conversation, all in one place. Join, then come back for Step 3.Continue to GroupMe Step 3 · Welcome cardGet your welcome card.Return after joining GroupMe to get your card and celebrate. Questions Frequently Asked Questions New to ASME OSU? Here are a few quick answers before you join. Do I need to be a mechanical engineering major to join? No. ASME OSU is especially focused on mechanical engineering, but students from related engineering majors and anyone interested in design, manufacturing, robotics, energy, aerospace, automotive, or professional development are welcome. Is there a membership fee? Joining the ASME OSU newsletter and GroupMe is free. ASME National membership is separate: freshmen and first-year students receive their first year free when they enter their expected graduation date during signup. Other students can use code SECTION at checkout for 25% off. Any costs for special events, trips, or optional activities will be shared ahead of time. What kinds of events does ASME OSU host? We host company info sessions, technical talks, networking events, socials, resume and career development events, leadership opportunities, and occasional collaborations with other student organizations. Can first-year students join? Yes. First-year students are encouraged to join early. ASME is a great way to meet other students, learn about engineering careers, and start building connections before internship recruiting begins. How will I hear about upcoming events? Sign up for the email newsletter for full announcements and join the ASME OSU GroupMe for quick reminders and day-of updates. You can also check the events calendar and follow ASME OSU on social media. How can I get more involved beyond attending events? Come to meetings, talk with current officers, volunteer at events, and watch for leadership applications or committee opportunities. We are always looking for students who want to help shape the chapter.",
+      "text": "466+ Members 25+ Events / Year 2026 Chapter Achievement AwardASME recognition Join ASME OSU Get connected with Ohio State's engineering community. Meet employers, build friendships, and find your next opportunity with ASME OSU. Industry EventsMeet employers and learn about engineering careers. CommunityConnect with other mechanical engineering students. LeadershipFind ways to get involved beyond attending events. 1 Email newsletterFull announcements 2 GroupMeFast updates 3Welcome cardYour Buckeye keepsake Step 1 · Email Newsletter Join the newsletter. Get chapter news, events, and opportunities by email. Chapter updates are free. ASME National membership is separate. Please enable JavaScript to sign up here, or email asme@osu.edu for help. Step 2 · GroupMe Quick updates. Event reminders and chapter conversation, all in one place. Join, then come back for Step 3.Continue to GroupMe Step 3 · Welcome cardGet your welcome card.Return after joining GroupMe to get your card and celebrate. Questions Frequently Asked Questions New to ASME OSU? Here are a few quick answers before you join. Do I need to be a mechanical engineering major to join? No. ASME OSU is especially focused on mechanical engineering, but students from related engineering majors and anyone interested in design, manufacturing, robotics, energy, aerospace, automotive, or professional development are welcome. Is there a membership fee? Joining the ASME OSU newsletter and GroupMe is free. ASME National membership is separate: freshmen and first-year students receive their first year free when they enter their expected graduation date during signup. Other students can use code SECTION at checkout for 25% off. Any costs for special events, trips, or optional activities will be shared ahead of time. What kinds of events does ASME OSU host? We host company info sessions, technical talks, networking events, socials, resume and career development events, leadership opportunities, and occasional collaborations with other student organizations. Can first-year students join? Yes. First-year students are encouraged to join early. ASME is a great way to meet other students, learn about engineering careers, and start building connections before internship recruiting begins. How will I hear about upcoming events? Sign up for the email newsletter for full announcements and join the ASME OSU GroupMe for quick reminders and day-of updates. You can also check the events calendar and follow ASME OSU on social media. How can I get more involved beyond attending events? Come to meetings, talk with current officers, volunteer at events, and watch for leadership applications or committee opportunities. We are always looking for students who want to help shape the chapter.",
       "sections": [
         {
           "id": "join:[data-gearly='join-community']",
@@ -196,7 +210,7 @@
           "pageId": "join",
           "selector": "#newsletter-signup",
           "title": "Join the newsletter.",
-          "snippet": "Step 1 · Email Newsletter Join the newsletter. Chapter news, events, and opportunities—straight to your inbox. Please enable JavaScript to sign up here, or email asme@osu.edu for help.",
+          "snippet": "Step 1 · Email Newsletter Join the newsletter. Get chapter news, events, and opportunities by email. Chapter updates are free. ASME National membership is separate. Please enable JavaScript to sign up here, or email asme@osu.edu for help.",
           "keywords": [
             "join",
             "the",
@@ -283,7 +297,7 @@
       "id": "events",
       "title": "Events Calendar",
       "url": "https://org.osu.edu/asme/calendar/",
-      "description": "Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Subscribe once and new events will appear automatically in your calendar.",
+      "description": "Find upcoming chapter meetings, company sessions, socials, competitions, and career events.",
       "keywords": [
         "events",
         "schedule",
@@ -293,14 +307,14 @@
         "Events Calendar",
         "Next ASME events"
       ],
-      "text": "Ohio State ASME · Plan What’s Next Events Calendar Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Subscribe once and new events will appear automatically in your calendar. + Subscribe to Calendar Opens in Google Calendar Coming Up Next ASME events Chapter events ASME Events · Eastern Time Add it once Subscribe so schedule changes and new events appear automatically. Get reminders Follow @asmeohiostate for announcements and event-day updates. Have a question? Email asme@osu.edu and the executive board will help.",
+      "text": "Ohio State ASME · Plan What’s Next Events Calendar Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Coming Up Next ASME events Chapter events + Subscribe to Calendar Opens in Google Calendar ASME Events · Eastern Time Add it once Subscribe so schedule changes and new events appear automatically. Get reminders Follow @asmeohiostate for announcements and event-day updates. Have a question? Email asme@osu.edu and the executive board will help.",
       "sections": [
         {
           "id": "events:[data-gearly='events-upcoming']",
           "pageId": "events",
           "selector": "[data-gearly='events-upcoming']",
           "title": "Events Calendar",
-          "snippet": "Ohio State ASME · Plan What’s Next Events Calendar Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Subscribe once and new events will appear automatically in your calendar. + Subscribe to Calendar Opens in Google Calendar Coming Up Next ASME events Chapte…",
+          "snippet": "Ohio State ASME · Plan What’s Next Events Calendar Find upcoming chapter meetings, company sessions, socials, competitions, and career events. Coming Up Next ASME events Chapter events + Subscribe to Calendar Opens in Google Calendar ASME Events · Eastern Time Add it once Subscribe so schedule…",
           "keywords": [
             "events",
             "calendar"

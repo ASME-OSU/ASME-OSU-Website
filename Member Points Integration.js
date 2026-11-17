@@ -137,6 +137,18 @@
     var searchInput = document.getElementById('asmeMemberSearch');
     var searchLabel = document.querySelector('label[for="asmeMemberSearch"]');
     var searchResults = document.getElementById('asmeMemberSearchResults');
+    var searchStatus = document.getElementById('asmeMemberSearchStatus');
+    if (searchInput) searchInput.removeAttribute('aria-expanded');
+    if (searchResults) {
+      searchResults.setAttribute('role', 'region');
+      if (!searchStatus) {
+        searchStatus = document.createElement('p');
+        searchStatus.id = 'asmeMemberSearchStatus';
+        searchStatus.className = 'screen-reader-text';
+        searchStatus.setAttribute('role', 'status');
+        searchResults.before(searchStatus);
+      }
+    }
     var dashboard = document.getElementById('asmeMemberDashboardPanel');
     var dashboardState = showPointsLoading(rowsEl, document.getElementById('asmeMemberDashboardState'));
     var dashboardName = document.getElementById('asmeDashboardName');
@@ -163,7 +175,7 @@
 
     function updateSearchLabel() {
       if (!searchLabel) return;
-      searchLabel.hidden = Boolean(selectedMember && searchInput && searchInput.value === selectedMember.name);
+      searchLabel.classList.toggle('screen-reader-text', Boolean(selectedMember && searchInput && searchInput.value === selectedMember.name));
     }
 
     function setCurrentJumpLink(activeLink) {
@@ -470,7 +482,7 @@
 
     function hideSearchResults() {
       if (searchResults) { searchResults.hidden = true; searchResults.textContent = ''; }
-      if (searchInput) searchInput.setAttribute('aria-expanded', 'false');
+      if (searchStatus) searchStatus.textContent = '';
     }
 
     function renderMember(member) {
@@ -524,6 +536,7 @@
       updateSearchLabel();
       hideSearchResults();
       renderMember(member);
+      if (searchStatus) searchStatus.textContent = 'Points dashboard updated for ' + member.name + '.';
       if (scrollToDashboard) {
         var dashboardSection = document.getElementById('member-dashboard');
         if (dashboardSection) dashboardSection.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
@@ -545,27 +558,36 @@
         setDashboardState('Search your name above or select a leaderboard member to open your dashboard.');
         return;
       }
-      var exactMatch = members.find(function (member) { return member.name.toLowerCase() === clean.toLowerCase(); });
-      if (exactMatch) {
-        chooseMember(exactMatch, false);
+      var matches = matchingMembers(clean);
+      var exactMatches = matches.filter(function (member) { return member.name.toLowerCase() === clean.toLowerCase(); });
+      if (exactMatches.length === 1) {
+        chooseMember(exactMatches[0], false);
         return;
       }
-      var matches = matchingMembers(clean);
+      if (exactMatches.length > 1) matches = exactMatches;
       if (!matches.length) {
         var noMatch = document.createElement('p'); noMatch.className = 'asme-member-search-empty'; noMatch.textContent = 'No public name matches “' + clean + '”.'; searchResults.appendChild(noMatch);
+        if (searchStatus) searchStatus.textContent = noMatch.textContent;
       } else {
-        matches.slice(0, 8).forEach(function (member, index) {
+        var visibleMatches = matches.slice(0, 8);
+        visibleMatches.forEach(function (member, index) {
           var button = document.createElement('button'); button.type = 'button'; button.className = 'asme-member-search-result asme-data-enter';
           button.style.setProperty('--asme-data-delay', Math.min(index * 28, 140) + 'ms');
           var name = document.createElement('strong'); name.textContent = member.name;
           var meta = document.createElement('span'); meta.textContent = '#' + member.rank + ' · ' + member.points + ' pts';
           button.appendChild(name); button.appendChild(meta);
-          button.addEventListener('click', function () { chooseMember(member, false); });
+          button.addEventListener('click', function () {
+            searchInput.focus();
+            chooseMember(member, false);
+          });
           searchResults.appendChild(button);
         });
+        if (searchStatus) {
+          var resultCount = matches.length + (matches.length === 1 ? ' matching member.' : ' matching members.');
+          searchStatus.textContent = resultCount + (matches.length > visibleMatches.length ? ' Showing the first ' + visibleMatches.length + '. Refine your search for more.' : '') + ' Press Tab or Down Arrow to browse results.';
+        }
       }
       searchResults.hidden = false;
-      searchInput.setAttribute('aria-expanded', 'true');
     }
 
     function renderDashboard(status) {
@@ -590,11 +612,22 @@
         renderSearchResults(searchInput.value);
       });
       searchInput.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') hideSearchResults();
-        if (event.key === 'Enter') {
+        if (event.key === 'Escape' && searchResults && !searchResults.hidden) {
+          event.preventDefault();
+          hideSearchResults();
+        } else if (event.key === 'ArrowDown' && searchResults && !searchResults.hidden) {
+          var firstResult = searchResults.querySelector('button');
+          if (firstResult) { event.preventDefault(); firstResult.focus(); }
+        } else if (event.key === 'Enter') {
           var matches = matchingMembers(searchInput.value);
           if (matches.length === 1) { event.preventDefault(); chooseMember(matches[0], false); }
         }
+      });
+      if (searchResults) searchResults.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') return;
+        event.preventDefault();
+        searchInput.focus();
+        hideSearchResults();
       });
     }
 

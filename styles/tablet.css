@@ -47,15 +47,6 @@
     min-width: 44px !important; min-height: 44px !important;
     background: transparent !important; box-shadow: none !important;
   }
-  html body #page .entry-content .asme-home :is(.ah-hero-dot, .ah-spotlight-dot)::before {
-    content: ''; position: absolute; left: 50%; top: 50%;
-    width: 8px; height: 8px; border-radius: 999px;
-    background: rgb(255 255 255 / 65%); transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-  html body #page .entry-content .asme-home :is(.ah-hero-dot.active, .ah-spotlight-dot.is-active)::before {
-    width: 22px; background: #fff;
-  }
   html body #page .entry-content .asme-home :is(.ah-hero-dots, .ah-spotlight-dots) {
     gap: 0 !important;
   }

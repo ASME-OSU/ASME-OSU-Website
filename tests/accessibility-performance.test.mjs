@@ -16,30 +16,31 @@ function setup(html, reducedMotion = true) {
   w.eval(script); w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
   return { w, d: w.document, intervals, close: () => w.close() };
 }
-test('hero loads only the first image initially and keeps reduced motion manual without playback buttons', () => {
+test('hero loads only the first image initially and respects reduced motion', () => {
   const s = setup('<div class="ah-hero"><div id="ahSlides"></div><div id="ahDots"></div></div>');
   try {
     const slides = [...s.d.querySelectorAll('.ah-hero-slide')];
-    assert.equal(slides.filter(x => x.style.backgroundImage).length, 1);
+    assert.equal(slides.filter(x => x.querySelector('img')).length, 1);
     assert.equal(s.intervals.size, 0);
-    assert.equal(s.d.querySelector('.asme-rotation-toggle'), null);
+    assert.equal(s.d.querySelector('#ahDots').children.length, 5);
     s.d.querySelectorAll('.ah-hero-dot')[1].click();
-    assert.ok(slides[1].style.backgroundImage);
-    assert.equal(slides.filter(x => x.style.backgroundImage).length, 2);
+    assert.ok(slides[1].querySelector('img[srcset]'));
+    assert.equal(slides.filter(x => x.querySelector('img')).length, 2);
     assert.equal(s.d.querySelectorAll('.ah-hero-dot[aria-pressed="true"]').length, 1);
     assert.equal(s.intervals.size, 0);
   } finally { s.close(); }
 });
-test('hero pauses on keyboard focus and exposes manual controls even when autoplay is stopped', () => {
-  const s = setup('<div class="ah-hero"><div id="ahSlides"></div><div id="ahDots"></div></div>', false);
+test('homepage images and spotlight change only when selected', () => {
+  const s = setup(fs.readFileSync('Home Page.html', 'utf8'), false);
   try {
-    assert.equal(s.intervals.size, 1);
-    const dot = s.d.querySelectorAll('.ah-hero-dot')[2];
-    dot.focus(); dot.click();
-    assert.equal(s.intervals.size, 0);
-    assert.equal(dot.getAttribute('aria-pressed'), 'true');
-    assert.equal(s.d.querySelector('.asme-rotation-toggle'), null);
-    s.d.querySelector('.ah-hero').dispatchEvent(new s.w.MouseEvent('mouseleave'));
+    const dots = s.d.querySelectorAll('#ahDots > button');
+    assert.equal(dots.length, 5);
+    assert.equal(s.d.querySelectorAll('.ah-hero-slide img').length, 1);
+    dots[2].click();
+    assert.equal(dots[2].getAttribute('aria-pressed'), 'true');
+    const guide = s.d.querySelector('[data-spotlight-dot="1"]');
+    guide.click();
+    assert.equal(guide.getAttribute('aria-selected'), 'true');
     assert.equal(s.intervals.size, 0);
   } finally { s.close(); }
 });

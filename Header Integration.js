@@ -125,27 +125,49 @@
     var narrow = window.matchMedia('(max-width:1199px)');
     search.action = home.href;
     searchButton.appendChild(icon('search')); menuButton.appendChild(icon('menu'));
+    var sharedPages;
+    try { sharedPages = JSON.parse(template.getAttribute('data-asme-search-pages')); } catch (_) { sharedPages = null; }
+    var pagesById = new Map((Array.isArray(sharedPages) ? sharedPages : []).map(function (page) { return [page.id, page]; }));
+    var menuDestinations = new Map(Array.from(menu.querySelectorAll('a[href]'))
+      .filter(function (link) { return !link.getAttribute('href').startsWith('#'); })
+      .map(function (link) { return [label(link), link.href]; }));
+
+    function searchPage(id, menuLabel, title, copy, fallbackPath, aliases) {
+      var shared = pagesById.get(id);
+      return {
+        title: title || (shared && shared.title) || menuLabel,
+        href: menuDestinations.get(menuLabel) || (shared && shared.url) || new URL(fallbackPath, home.href).href,
+        copy: copy,
+        aliases: (aliases || []).concat((shared && shared.keywords) || []).join(' ')
+      };
+    }
     var siteSearchIndex = [
-      { title:'Home', href:home.href, copy:'ASME Ohio State chapter news, upcoming events, industry connections, and student community.' },
-      { title:'About ASME OSU', href:entries.get('About').link.href, copy:'Learn about the chapter, member experience, professional growth, and community.' },
-      { title:'Join ASME', href:entries.get('Join').link.href, copy:'Join the ASME OSU newsletter and GroupMe for chapter updates and opportunities.' },
-      { title:'Events Calendar', href:new URL('calendar/', home.href).href, copy:'Upcoming meetings, company sessions, socials, competitions, and career events.' },
-      { title:'Gallery', href:entries.get('Gallery').link.href, copy:'Photos and recent chapter moments from ASME OSU events and activities.' },
-      { title:'Leadership', href:entries.get('Leadership').link.href, copy:'Meet the executive board and learn about leadership opportunities.' },
-      { title:'Member Resources', href:new URL('member-resources/', home.href).href, copy:'National membership, career tools, forms, professional development, and chapter resources.' },
-      { title:'Member Points', href:new URL('member-points-page/', home.href).href, copy:'Find semester points, the leaderboard, attendance totals, and point values.' },
-      { title:'Sponsor ASME', href:new URL('sponsor-asme/', home.href).href, copy:'Sponsorship tiers, corporate partnerships, recruiting access, and support options.' },
-      { title:'Sponsors & Partners', href:new URL('current-sponsors/', home.href).href, copy:'Current ASME OSU sponsors, partners, and company supporters.' }
+      searchPage('home', 'Home', '', 'Chapter news, upcoming events, industry connections, and student community.', ''),
+      searchPage('about', 'About', 'About ASME OSU', 'Learn about the chapter, member experience, professional growth, and community.', 'aboutus/'),
+      searchPage('join', 'Join', 'Join ASME', 'Sign up for the newsletter and GroupMe for chapter updates.', 'join/', ['signup', 'membership']),
+      searchPage('events', 'Calendar', 'Events Calendar', 'Upcoming meetings, company sessions, socials, and competitions.', 'calendar/', ['schedule']),
+      searchPage('gallery', 'Gallery', '', 'Photos and recent chapter moments from ASME OSU events and activities.', 'pictures/', ['pictures']),
+      searchPage('leadership', 'Leadership', '', 'Meet the executive board and learn about leadership opportunities.', 'leadership/', ['officers']),
+      searchPage('resources', 'Member Resources', '', 'National membership, career tools, forms, and professional development.', 'member-resources/'),
+      searchPage('points', 'Member Points Page', 'Member Points', 'Find semester points, the leaderboard, attendance totals, and point values.', 'member-points-page/'),
+      searchPage('sponsorship', 'Sponsor ASME', '', 'Sponsorship tiers, corporate partnerships, recruiting access, and support options.', 'sponsor-asme/'),
+      searchPage('sponsors', 'Current Sponsors', 'Sponsors & Partners', 'Current ASME OSU sponsors, partners, and company supporters.', 'current-sponsors/'),
+      searchPage('career-guide', 'Career Guide', '', 'Open the Career Packet for resume, interview, career fair, and internship advice.', 'https://asme-osu.github.io/ASME-Career-Packet/', ['career packet']),
+      searchPage('privacy', 'Privacy Policy', 'Privacy & Terms', 'Read the chapter’s privacy policy, data practices, and terms.', 'privacy-policy/', ['cookies']),
+      searchPage('blog', 'Blog', 'Chapter News Archive', 'Find past event announcements and recaps from the chapter blog.', 'blog/', ['blog'])
     ];
-    function searchTerms(value) { return value.toLowerCase().trim().split(/\s+/).filter(Boolean); }
+    function searchTerms(value) { return value.toLowerCase().match(/[a-z0-9]+/g) || []; }
     function clearSearchResults() { searchResults.hidden = true; searchResults.replaceChildren(); }
     function renderSearchResults(value) {
       var terms = searchTerms(value);
       if (!terms.length) { clearSearchResults(); return []; }
       var matches = siteSearchIndex.map(function (entry) {
-        var haystack = (entry.title + ' ' + entry.copy).toLowerCase();
+        var title = entry.title.toLowerCase();
+        var aliases = entry.aliases.toLowerCase();
+        var copy = entry.copy.toLowerCase();
+        var haystack = title + ' ' + aliases + ' ' + copy;
         var score = terms.reduce(function (total, term) {
-          return total + (entry.title.toLowerCase().indexOf(term) !== -1 ? 3 : 0) + (entry.copy.toLowerCase().indexOf(term) !== -1 ? 1 : 0);
+          return total + (title.includes(term) ? 3 : 0) + (aliases.includes(term) ? 2 : 0) + (copy.includes(term) ? 1 : 0);
         }, 0);
         return { entry:entry, score:score, matches:terms.every(function (term) { return haystack.indexOf(term) !== -1; }) };
       }).filter(function (result) { return result.matches; }).sort(function (a, b) { return b.score - a.score || a.entry.title.localeCompare(b.entry.title); });

@@ -234,6 +234,39 @@ test('site search focuses input, returns public pages, and closes on Escape',()=
   assert.deepEqual([...s.d.querySelectorAll('.asme-hd-search-result strong')].map(x=>x.textContent),['Member Points']);
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(form.hidden,true);assert.equal(s.d.activeElement,button);s.close();
 });
+test('header search includes career guide aliases, privacy, and the news archive with older CMS markup', () => {
+  const s = setup();
+  try {
+    s.d.querySelector('.asme-hd-search-toggle').click();
+    const input = s.d.querySelector('#asme-header-query');
+    for (const [query, href] of [
+      ['career guide', 'https://asme-osu.github.io/ASME-Career-Packet/'],
+      ['career packet', 'https://asme-osu.github.io/ASME-Career-Packet/'],
+      ['privacy policy', 'https://org.osu.edu/asme/privacy-policy/'],
+      ['blog', 'https://org.osu.edu/asme/blog/']
+    ]) {
+      input.value = query;
+      input.dispatchEvent(new s.w.Event('input', { bubbles: true }));
+      assert.equal(s.d.querySelector('.asme-hd-search-result').href, href, query);
+    }
+  } finally { s.close(); }
+});
+
+test('header search uses shared keywords and the CMS navigation destination', () => {
+  const s = setup({ prepare(d) {
+    d.getElementById('asme-header-template').setAttribute('data-asme-search-pages', JSON.stringify([
+      { id: 'resources', title: 'Member Resources', url: 'https://org.osu.edu/asme/member-resources/', keywords: ['toolbox'] }
+    ]));
+    d.querySelector('#menu-item-1036 a[href$="/member-resources/"]').href = 'https://org.osu.edu/asme/custom-resources/';
+  } });
+  try {
+    s.d.querySelector('.asme-hd-search-toggle').click();
+    const input = s.d.querySelector('#asme-header-query');
+    input.value = 'toolbox!';
+    input.dispatchEvent(new s.w.Event('input', { bubbles: true }));
+    assert.equal(s.d.querySelector('.asme-hd-search-result').href, 'https://org.osu.edu/asme/custom-resources/');
+  } finally { s.close(); }
+});
 test('keeps the original CMS header usable if component CSS is unavailable',()=>{
   const s=setup({styles:false});assert.equal(s.d.querySelector('#asme-site-header'),null);assert.equal(s.d.querySelector('#masthead').hidden,false);s.close();
 });

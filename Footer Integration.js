@@ -153,6 +153,66 @@
     document.body.classList.add('asme-footer-spacing-ready');
   }
 
+  function setupSkipLink() {
+    var skip = document.querySelector('a.skip-link[href^="#"]');
+    var main = document.querySelector('main[id]');
+    if (!skip || !main) return;
+    if (!main.hasAttribute('tabindex')) main.tabIndex = -1;
+    skip.hash = main.id;
+    skip.addEventListener('click', function (event) {
+      if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      // Older CMS footers intercept fragment links for scrolling without moving focus.
+      main.focus({ preventScroll: true });
+    });
+  }
+
+  function removeEmptySponsorLinks() {
+    document.querySelectorAll('.asme-sponsors-page .sponsor-card').forEach(function (card) {
+      var titleLink = card.querySelector('h3 a[href]');
+      if (!titleLink) return;
+      card.querySelectorAll('a.sponsor-logo-link[href]').forEach(function (link) {
+        if (link.href !== titleLink.href || link.children.length || link.textContent.trim() ||
+            link.matches('[aria-label], [aria-labelledby], [title]')) return;
+        // CampusPress can split a logo anchor into a valid link and an empty duplicate.
+        var wrapper = link.parentElement;
+        link.remove();
+        if (wrapper.tagName === 'P' && !wrapper.attributes.length && !wrapper.children.length && !wrapper.textContent.trim()) {
+          wrapper.remove();
+        }
+      });
+    });
+  }
+
+  function prepareBlogArchive() {
+    var main = document.body.classList.contains('blog') && document.querySelector('main');
+    if (!main) return;
+    if (!main.querySelector('h1')) {
+      var intro = document.createElement('header');
+      intro.className = 'asme-blog-intro';
+      var title = document.createElement('h1');
+      title.textContent = 'Chapter news archive';
+      var copy = document.createElement('p');
+      copy.append('Browse past chapter updates, or ');
+      var calendar = document.createElement('a');
+      calendar.href = home + 'calendar/';
+      calendar.textContent = 'see upcoming events';
+      copy.append(calendar, '.');
+      intro.append(title, copy);
+      main.prepend(intro);
+    }
+    main.querySelectorAll('article').forEach(function (article) {
+      var title = article.querySelector('.entry-title');
+      if (!title || !title.textContent.trim()) return;
+      article.querySelectorAll(':is(.post-image, .post-thumbnail, .entry-thumbnail) a[href]').forEach(function (link) {
+        if (link.textContent.trim() || link.hasAttribute('aria-label') || link.hasAttribute('aria-labelledby') ||
+            link.hasAttribute('title') || Array.prototype.some.call(link.querySelectorAll('img[alt]'), function (image) {
+              return image.alt.trim();
+            })) return;
+        link.setAttribute('aria-label', title.textContent.trim());
+      });
+    });
+  }
+
   // Upgrade the existing CMS hero in place. The authored Home template matches
   // these values too; neither delivery path replaces slides or their controls.
   function refineHomeHero() {
@@ -169,7 +229,7 @@
     var eyebrow = hero.querySelector('.ah-hero-left > .ah-eyebrow');
     if (eyebrow) eyebrow.remove();
     var subtitle = hero.querySelector('.ah-sub');
-    if (subtitle) subtitle.textContent = 'Connecting students, industry, and opportunity.';
+    if (subtitle) subtitle.textContent = 'Ohio State’s student chapter for company talks, workshops, and socials.';
     var events = hero.querySelector('.ah-btns .ah-btn-o');
     if (events) events.textContent = 'Events';
     var awardLabel = hero.querySelector('[data-spotlight-slide="0"] .ah-badge-label');
@@ -179,6 +239,9 @@
   function ready() {
     start();
     refineHomeHero();
+    setupSkipLink();
+    removeEmptySponsorLinks();
+    prepareBlogArchive();
     window.setTimeout(function () { normalizePageMotion(); normalizeFooterSpacing(); }, 0);
     document.addEventListener('focusin', function (event) {
       var target = event.target;

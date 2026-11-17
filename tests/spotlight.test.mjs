@@ -53,25 +53,14 @@ test('reduced-motion keyboard users can select and reach the Career Guide', () =
   } finally { s.close(); }
 });
 
-test('spotlight rotation stays paused until both hover and keyboard focus leave', () => {
+test('spotlight stays on the visitor selection without a timer', () => {
   const s = setup();
   try {
-    const root = s.d.querySelector('#ahSpotlight');
     const dots = [...s.d.querySelectorAll('[data-spotlight-dot]')];
-    assert.equal(s.intervals.size, 1);
-    dots[1].focus();
     dots[1].click();
-    assert.equal(s.intervals.size, 0, 'click must not restart rotation while focused');
-    root.dispatchEvent(new s.w.MouseEvent('mouseenter'));
-    root.dispatchEvent(new s.w.MouseEvent('mouseleave'));
-    assert.equal(s.intervals.size, 0, 'mouse exit must preserve focus pause');
-    root.dispatchEvent(new s.w.MouseEvent('mouseenter'));
     s.d.querySelector('#outside').focus();
     s.flush();
-    assert.equal(s.intervals.size, 0, 'focus exit must preserve hover pause');
-    root.dispatchEvent(new s.w.MouseEvent('mouseleave'));
-    assert.equal(s.intervals.size, 1);
-    [...s.intervals.values()][0]();
-    assert.equal(dots[0].getAttribute('aria-selected'), 'true', 'rotation resumes after leaving');
+    assert.equal(s.intervals.size, 0);
+    assert.equal(dots[1].getAttribute('aria-selected'), 'true');
   } finally { s.close(); }
 });

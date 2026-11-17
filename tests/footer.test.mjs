@@ -46,3 +46,90 @@ test('normalizes pre-existing v2 Quick Link labels for centered layout', () => {
   assert.equal(link.lastChild.tagName.toLowerCase(), 'svg');
   dom.window.close();
 });
+
+test('updates previously published homepage hero copy to match the authored template', () => {
+  const dom = new JSDOM(`
+    <div class="asme-home"><div class="ah-hero">
+      <p class="ah-sub">Connecting students, industry, and opportunity.</p>
+    </div></div>
+  `, { url: 'https://org.osu.edu/asme/', runScripts: 'outside-only' });
+  const { window } = dom;
+  try {
+    window.eval(script);
+    window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
+
+    const expected = fs.readFileSync('Home Page.html', 'utf8').match(/<p class="ah-sub">([^<]+)<\/p>/)[1];
+    assert.equal(window.document.querySelector('.ah-sub').textContent, expected);
+  } finally {
+    window.close();
+  }
+});
+
+test('skip link moves focus to main even when a legacy footer cancels the click', () => {
+  const dom = new JSDOM(`
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header><a href="/asme/">Brand</a></header>
+    <div id="content"><main id="main"><a href="/asme/calendar/">Events</a></main></div>
+  `, { url: 'https://org.osu.edu/asme/', runScripts: 'outside-only' });
+  const { window } = dom;
+  try {
+    const link = window.document.querySelector('.skip-link');
+    const main = window.document.getElementById('main');
+    link.addEventListener('click', event => event.preventDefault());
+    window.eval(script);
+    window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
+    link.focus();
+    link.click();
+
+    assert.equal(link.hash, '#main');
+    assert.equal(main.getAttribute('tabindex'), '-1');
+    assert.equal(window.document.activeElement, main);
+  } finally {
+    window.close();
+  }
+});
+
+test('removes only empty sponsor duplicates introduced by CampusPress', () => {
+  const dom = new JSDOM(`
+    <div class="asme-sponsors-page"><article class="sponsor-card">
+      <a class="sponsor-logo-link" href="https://example.com/"><img alt="Sponsor"></a>
+      <p><a class="sponsor-logo-link" href="https://example.com/"></a></p>
+      <h3><a href="https://example.com/">Sponsor</a></h3>
+    </article></div>
+  `, { url: 'https://org.osu.edu/asme/', runScripts: 'outside-only' });
+  const { window } = dom;
+  try {
+    window.eval(script);
+    window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
+
+    const links = window.document.querySelectorAll('.sponsor-logo-link');
+    assert.equal(links.length, 1);
+    assert.equal(links[0].querySelector('img').alt, 'Sponsor');
+    assert.ok(window.document.querySelector('.sponsor-card h3 a'));
+    assert.equal(window.document.querySelector('.sponsor-card p'), null);
+  } finally {
+    window.close();
+  }
+});
+
+test('adds a Blog archive heading and names unnamed thumbnail links', () => {
+  const dom = new JSDOM(`
+    <body class="blog"><main>
+      <article>
+        <h2 class="entry-title"><a href="/entry/">Plant tour recap</a></h2>
+        <div class="post-image"><a href="/entry/"><img alt=""></a></div>
+      </article>
+    </main></body>
+  `, { url: 'https://org.osu.edu/asme/blog/', runScripts: 'outside-only' });
+  const { window } = dom;
+  try {
+    window.eval(script);
+    window.document.dispatchEvent(new window.Event('DOMContentLoaded'));
+
+    assert.equal(window.document.querySelector('main h1').textContent, 'Chapter news archive');
+    assert.equal(window.document.querySelector('.asme-blog-intro a').pathname, '/asme/calendar/');
+    assert.equal(window.document.querySelector('.post-image a').getAttribute('aria-label'), 'Plant tour recap');
+  } finally {
+    window.close();
+  }
+});

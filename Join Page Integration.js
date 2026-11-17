@@ -99,12 +99,15 @@
       if (groupMeProgress) groupMeProgress.classList.add('is-current');
       if (groupMeStep) {
         groupMeStep.classList.add('is-ready');
-        window.setTimeout(function () {
+        // Disabling the submit button may leave focus on the document body.
+        // Keep the user's place if they moved to another control while waiting.
+        if (form.contains(document.activeElement) || document.activeElement === document.body) {
+          if (groupMeButton) groupMeButton.focus({ preventScroll: true });
           groupMeStep.scrollIntoView({
             behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
             block: 'nearest'
           });
-        }, 250);
+        }
       }
     }
 

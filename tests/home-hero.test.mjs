@@ -10,6 +10,7 @@ test('legacy CMS hero is updated without replacing assets, destinations, or caro
   await new Promise(resolve=>w.addEventListener('load',resolve,{once:true}));
   const hero=d.querySelector('.ah-hero');
   const originalHero=hero.innerHTML;
+  const subtitle=hero.querySelector('.ah-sub').textContent;
   const belowFold=d.querySelector('.ah-featured-event').outerHTML;
   // Reproduce the previous CMS copy and WordPress's injected empty blocks.
   d.querySelector('.asme-home').classList.remove('asme-home-refined');
@@ -26,7 +27,7 @@ test('legacy CMS hero is updated without replacing assets, destinations, or caro
     w.eval(integration);
     await new Promise(resolve=>setTimeout(resolve,10));
     assert.equal(d.querySelector('.ah-eyebrow'),null);
-    assert.equal(d.querySelector('.ah-sub').textContent,'Connecting students, industry, and opportunity.');
+    assert.equal(d.querySelector('.ah-sub').textContent,subtitle);
     assert.equal(d.querySelector('.ah-btn-o').textContent,'Events');
     assert.equal(d.querySelector('[data-spotlight-slide="0"] .ah-badge-label'),null);
     assert.equal(d.querySelector('.ah-badge img'),award);

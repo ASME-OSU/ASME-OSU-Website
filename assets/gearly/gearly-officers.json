@@ -9,49 +9,49 @@
         "roleId": "president",
         "name": "Matthew Allen",
         "email": "allen.2906@osu.edu",
-        "photo": "https://org.osu.edu/asme/files/2026/05/Matthew-Allen-2.png"
+        "photo": "https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/leadership/matthew-allen-2-192.webp"
       },
       {
         "role": "Vice President / Corporate Liaison",
         "roleId": "vice-president",
         "name": "Jessica Wilson",
         "email": "wilson.5210@osu.edu",
-        "photo": "https://org.osu.edu/asme/files/2026/05/Jessie-Wilson.jpeg"
+        "photo": "https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/leadership/jessie-wilson-192.webp"
       },
       {
         "role": "Treasurer",
         "roleId": "treasurer",
         "name": "Aliyah Beitzel",
         "email": "beitzel.29@osu.edu",
-        "photo": "https://org.osu.edu/asme/files/2026/05/Aliyah-Beitzel.jpeg"
+        "photo": "https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/leadership/aliyah-beitzel-192.webp"
       },
       {
         "role": "Administrator",
         "roleId": "administrator",
         "name": "Kasper Szymczak",
         "email": "szymczak.28@osu.edu",
-        "photo": "https://org.osu.edu/asme/files/2026/07/Kasper-Szymczak.png"
+        "photo": "https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/leadership/kasper-szymczak-192.webp"
       },
       {
         "role": "Social Chair",
         "roleId": "social-chair",
         "name": "Max Sabio",
         "email": "sabio.4@osu.edu",
-        "photo": "https://org.osu.edu/asme/files/2026/05/Max-Sabio.png"
+        "photo": "https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/leadership/max-sabio-192.webp"
       },
       {
         "role": "Webmaster",
         "roleId": "webmaster",
         "name": "Margaux Rasalan",
         "email": "rasalan.1@osu.edu",
-        "photo": "https://org.osu.edu/asme/files/2026/04/Margaux_Rasalan.png"
+        "photo": "https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/leadership/margaux-rasalan-192.webp"
       },
       {
         "role": "E-Council Representative",
         "roleId": "ecouncil",
         "name": "Kyle Sandborn",
         "email": "sandborn.3@osu.edu",
-        "photo": "https://org.osu.edu/asme/files/2026/05/Kyle-Sandborn-e1778043609711.jpeg"
+        "photo": "https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/leadership/kyle-sandborn-e1778043609711-192.webp"
       }
     ]
   },

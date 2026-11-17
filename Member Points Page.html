@@ -50,9 +50,10 @@
           <label for="asmeMemberSearch">Search by name</label>
           <div class="asme-member-search-field">
             <span aria-hidden="true">⌕</span>
-            <input type="search" id="asmeMemberSearch" placeholder="Start typing a name…" autocomplete="off" disabled aria-controls="asmeMemberSearchResults" aria-expanded="false">
+            <input type="search" id="asmeMemberSearch" placeholder="Start typing a name…" autocomplete="off" disabled aria-controls="asmeMemberSearchResults">
           </div>
-          <div class="asme-member-search-results" id="asmeMemberSearchResults" aria-label="Matching members" hidden></div>
+          <p id="asmeMemberSearchStatus" class="screen-reader-text" role="status"></p>
+          <div class="asme-member-search-results" id="asmeMemberSearchResults" role="region" aria-label="Matching members" hidden></div>
         </div>
       </div>
 

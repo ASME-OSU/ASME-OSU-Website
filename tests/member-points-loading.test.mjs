@@ -17,6 +17,9 @@ function setup(oldMarkup = false, stallRank = false, reducedMotion = true) {
   if (oldMarkup) {
     w.document.querySelector('#asmeLeaderboardRows').textContent = 'Loading leaderboard…';
     w.document.querySelector('#asmeMemberDashboardState').outerHTML = '<p class="asme-member-dashboard-state" id="asmeMemberDashboardState" role="status">Loading dashboard…</p>';
+    w.document.querySelector('#asmeMemberSearch').setAttribute('aria-expanded', 'false');
+    w.document.querySelector('#asmeMemberSearchResults').removeAttribute('role');
+    w.document.querySelector('#asmeMemberSearchStatus').remove();
   }
   w.eval(script);
   w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
@@ -28,6 +31,58 @@ function setup(oldMarkup = false, stallRank = false, reducedMotion = true) {
   }
   return { dom, w, reply };
 }
+
+test('member search announces matches, supports keyboard entry, and restores focus after dismissal or selection', async () => {
+  const { dom, w, reply } = setup(true);
+  try {
+    await tick();
+    reply('System_Status', [['system_status', 'LIVE']]);
+    reply('Point_Values_Public', []);
+    await tick();
+    reply('Leaderboard_Public', [
+      [1, 'Alex A.', 'Fall 2026', 50, 2, 'Active', '2026-10-14'],
+      [2, 'Alex B.', 'Fall 2026', 40, 3, 'Active', '2026-10-15']
+    ]);
+    await tick();
+    const d = w.document;
+    const input = d.getElementById('asmeMemberSearch');
+    const results = d.getElementById('asmeMemberSearchResults');
+    const status = d.getElementById('asmeMemberSearchStatus');
+    function enterQuery(value) {
+      input.focus();
+      input.value = value;
+      input.dispatchEvent(new w.Event('input', { bubbles: true }));
+    }
+    function press(key) {
+      d.activeElement.dispatchEvent(new w.KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));
+    }
+
+    assert.equal(input.hasAttribute('aria-expanded'), false);
+    assert.equal(results.getAttribute('role'), 'region');
+    assert.equal(status.getAttribute('role'), 'status');
+    enterQuery('missing');
+    assert.match(status.textContent, /No public name matches/);
+    enterQuery('Alex');
+    assert.match(status.textContent, /2 matching members/);
+    const first = results.querySelector('button');
+    press('ArrowDown');
+    assert.equal(d.activeElement, first);
+    press('Escape');
+    assert.equal(results.hidden, true);
+    assert.equal(d.activeElement, input);
+    enterQuery('Alex');
+    press('ArrowDown');
+    d.activeElement.click();
+    assert.equal(d.activeElement, input);
+    assert.equal(input.value, 'Alex A.');
+    assert.match(status.textContent, /Points dashboard updated for Alex A/);
+    assert.equal(d.getElementById('asmeDashboardName').textContent, 'Alex A.');
+    enterQuery('B.');
+    assert.match(status.textContent, /1 matching member\./);
+    press('Enter');
+    assert.equal(d.getElementById('asmeDashboardName').textContent, 'Alex B.');
+  } finally { dom.window.close(); }
+});
 
 for (const oldMarkup of [false, true]) {
   test(`skeletons survive status loading and clear when members arrive (${oldMarkup ? 'legacy' : 'current'} markup)`, async () => {

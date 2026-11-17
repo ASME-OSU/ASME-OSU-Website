@@ -107,6 +107,22 @@
     var location = document.getElementById('asmeFeaturedLocation');
     if (!title || !description || !date || !location) return;
 
+    var action = document.getElementById('asmeFeaturedAction');
+    if (action) {
+      var details = events.length ? campaignPageFor(events[0]) : '';
+      action.href = details || 'https://org.osu.edu/asme/calendar/';
+      action.textContent = details ? 'View Event Details ↗' : 'View Calendar →';
+      if (details) {
+        action.target = '_blank';
+        action.rel = 'noopener noreferrer';
+        action.setAttribute('aria-label', 'View event details for ' + cleanText(events[0].title) + ' (opens in a new tab)');
+      } else {
+        action.removeAttribute('target');
+        action.removeAttribute('rel');
+        action.removeAttribute('aria-label');
+      }
+    }
+
     if (!events.length) {
       description.hidden = false;
       location.hidden = false;
@@ -184,7 +200,7 @@
       card.rel = 'noopener noreferrer';
       card.style.color = 'inherit';
       card.style.textDecoration = 'none';
-      card.setAttribute('aria-label', cleanText(event.title) + ' — find out more (opens in a new tab)');
+      card.setAttribute('aria-label', cleanText(event.title) + ' — view event details (opens in a new tab)');
     }
     dateBlock.className = 'acp-event-date';
     month.textContent = start ? monthLabel(start, event.allDay) : 'TBA';
@@ -204,7 +220,7 @@
     if (campaignPage) {
       var hint = document.createElement('p');
       hint.className = 'acp-event-more';
-      hint.textContent = 'Click on the event to find out more. ↗';
+      hint.textContent = 'View event details ↗';
       copy.appendChild(hint);
     }
 
@@ -387,7 +403,7 @@
     removeWordPressInfoArtifacts();
     initViewSwitch();
     removePreviewInterface();
-    if (document.getElementById('asmeCalendarUpcoming')) loadCampaigns();
+    if (document.getElementById('asmeCalendarUpcoming') || document.getElementById('asmeFeaturedAction')) loadCampaigns();
     if (document.getElementById('asmeFeaturedTitle') || document.getElementById('asmeCalendarUpcoming')) loadFeed();
   }
 

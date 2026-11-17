@@ -60,7 +60,7 @@
           <div class="join-form-heading">
             <div class="join-eyebrow">Step 1 · Email Newsletter</div>
             <h2>Join the newsletter.</h2>
-            <p class="join-form-purpose">Chapter news, events, and opportunities—straight to your inbox.</p>
+            <p class="join-form-purpose">Get chapter news, events, and opportunities by email. Chapter updates are free. <a href="https://www.asme.org/membership/student-membership">ASME National membership</a> is separate.</p>
           </div>
 
           <form class="join-form" id="asmeNewsletterForm" method="POST" action="https://4feb02eb.sibforms.com/serve/MUIFAIVgiRJdwrCatly2u3YwFNvTDqwxg6DZsZzxnF24o1z8gCDmG57LsJtx0IcnRxy65JAS00NPIkQqHgwhlzVEAa1EX4WL9XLMbHR8a-SbrmJDzxGyqfZOQ0x2i7eimtAmvDpAVxb6ziTDKCNr32FBDZrn__CpuUXGIgDImm3p_fz9a9goMXx1FlUfLPRacNRYi36oYJTcXh5Wqw==">
@@ -77,26 +77,27 @@
             </div>
 
             <div class="join-field">
-              <label for="OSU_NUMBER">OSU Name.#</label>
+              <label for="OSU_NUMBER">OSU Name.# (optional)</label>
               <input type="text" id="OSU_NUMBER" name="OSU_NUMBER" autocomplete="off" placeholder="buckeye.1234">
             </div>
 
             <div class="join-field-row">
               <div class="join-field">
                 <label for="GRADUATION_YEAR">Graduation Year *</label>
-                <input type="text" id="GRADUATION_YEAR" name="GRADUATION_YEAR" maxlength="4" placeholder="2028" required="">
+                <input type="text" id="GRADUATION_YEAR" name="GRADUATION_YEAR" inputmode="numeric" pattern="[0-9]{4}" title="Enter a four-digit graduation year, such as 2028." maxlength="4" placeholder="2028" required="">
               </div>
 
               <div class="join-field">
                 <label for="EMAIL">OSU Email *</label>
-                <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" placeholder="name.#@osu.edu" required="">
+                <input type="email" id="EMAIL" name="EMAIL" autocomplete="email" pattern="[^@]+@(?:[^@]+\.)?[oO][sS][uU]\.[eE][dD][uU]" title="Use your Ohio State email, including BuckeyeMail." placeholder="name.#@osu.edu" required="">
               </div>
             </div>
 
             <p class="join-form-status" id="asmeNewsletterStatus" role="status" aria-live="polite" hidden=""></p><div class="join-submit-wrap">
               <button type="submit" class="join-submit-button" disabled="">
-                <span>Complete step 1</span>
+                <span>Subscribe to chapter emails</span>
               </button>
+              <p class="join-form-purpose"><a href="https://org.osu.edu/asme/privacy-policy/#privacy-email">How we use your newsletter information</a></p>
             </div>
 
             
@@ -168,6 +169,6 @@
 
 </div>
 
-<script src="https://asme-osu.github.io/ASME-OSU-Website/Join%20Page%20Integration.js?v=20260905-inline-confirmation" defer></script>
+<script src="https://asme-osu.github.io/ASME-OSU-Website/Join%20Page%20Integration.js?v=20261117-audit1" defer></script>
 <script src="https://asme-osu.github.io/ASME-OSU-Website/celebration.js?v=20261101-sharing-carmen" defer></script>
 <!-- ASME JOIN CELEBRATION END -->

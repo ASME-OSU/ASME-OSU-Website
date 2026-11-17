@@ -258,7 +258,7 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
     /* ─────────────────────────────────────────
        6. SMOOTH SCROLL for anchor links
     ───────────────────────────────────────── */
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach(function (link) {
       link.addEventListener('click', function (e) {
         var fragment = link.getAttribute('href');
         if (!fragment || fragment === '#') return;
@@ -274,13 +274,28 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
     /* ─────────────────────────────────────────
        7. HOME HERO SLIDESHOW
     ───────────────────────────────────────── */
+    var photoBase = 'https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/';
     var ahSlides = [
-      { url: 'https://org.osu.edu/asme/files/2024/02/FallCareerFair_2.HEIC_-0de7b12be03c2f6b.png', focus: 'center 37%' },
-      { url: 'https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipOdmEgAJMH1uVBU1x-BkrZRSkkH6eg9vQoSG2Kc-9f56b9ebd69bc771-large.webp', focus: 'center 65%' },
-      { url: 'https://org.osu.edu/asme/files/2024/02/SpringCareerFair2024_2-583e2a7ffea08f33.png', focus: 'center 50%' },
-      { url: 'https://org.osu.edu/asme/files/2024/03/MicrosoftTeams-image-84f8ac384c4c262e.jpg',   focus: 'center center' },
-      { url: 'https://org.osu.edu/asme/files/2026/04/ASME_Barsocial_2025-e1777080033405.jpg',      focus: 'center 30%' }
+      { name: 'career-fair', widths: [640, 960, 1440, 1920], focus: 'center 37%' },
+      { name: 'pickleball-group', widths: [640, 960, 1440], focus: 'center 65%' },
+      { name: 'spring-career-fair', widths: [480, 768, 1100, 1440], focus: 'center 50%' },
+      { name: 'chapter-meeting', widths: [480, 768], focus: 'center center' },
+      { name: 'chapter-social', widths: [640, 960, 1380], focus: 'center 30%' }
     ];
+    var photoSizes = '(max-width: 640px) 640px, (max-width: 980px) calc(100vw - 32px), calc(100vw - 80px)';
+
+    function loadHeroPhoto(slide, photo) {
+      if (slide.querySelector('img')) return;
+      var image = document.createElement('img');
+      image.alt = '';
+      image.decoding = 'async';
+      image.sizes = photoSizes;
+      image.srcset = photo.widths.map(function (width) {
+        return photoBase + photo.name + '-' + width + '.webp ' + width + 'w';
+      }).join(', ');
+      image.src = photoBase + photo.name + '-' + photo.widths[photo.widths.length - 1] + '.webp';
+      slide.appendChild(image);
+    }
 
     var container     = document.getElementById('ahSlides');
     var dotsContainer = document.getElementById('ahDots');
@@ -289,18 +304,15 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
       var current = 0;
       var slides  = [];
       var dots    = [];
-      var timer   = null;
-      var heroPaused = reduceMotion;
-      var heroHovered = false;
-      var hero = container.closest('.ah-hero');
+      var leadSlide = container.querySelector('.ah-hero-slide');
 
       ahSlides.forEach(function (s, i) {
-        var el = document.createElement('div');
+        var el = i === 0 && leadSlide ? leadSlide : document.createElement('div');
         el.className = 'ah-hero-slide';
-        if (i === 0) el.style.backgroundImage = 'url(' + s.url + ')';
-        el.style.backgroundPosition = s.focus || 'center center';
+        el.style.setProperty('--ah-photo-position', s.focus);
+        if (i === 0) loadHeroPhoto(el, s);
         if (i === 0) el.classList.add('active');
-        container.appendChild(el);
+        if (el !== leadSlide) container.appendChild(el);
         slides.push(el);
 
         var dot = document.createElement('button');
@@ -308,7 +320,7 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
         dot.type = 'button';
         dot.setAttribute('aria-label', 'Show slide ' + (i + 1));
         dot.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-        dot.addEventListener('click', function () { goTo(i); restartTimer(); });
+        dot.addEventListener('click', function () { goTo(i); });
         dotsContainer.appendChild(dot);
         dots.push(dot);
       });
@@ -317,35 +329,18 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
         dots[current].setAttribute('aria-pressed', 'false');
         slides[current].classList.remove('active');
         dots[current].classList.remove('active');
-        current = (n + slides.length) % slides.length;
-        slides[current].style.backgroundImage = 'url(' + ahSlides[current].url + ')';
+        current = n;
+        loadHeroPhoto(slides[current], ahSlides[current]);
         dots[current].setAttribute('aria-pressed', 'true');
         slides[current].classList.add('active');
         dots[current].classList.add('active');
       }
 
-      function restartTimer() {
-        if (timer) clearInterval(timer);
-        timer = null;
-        if (!heroPaused && !heroHovered && !(hero && hero.contains(document.activeElement))) {
-          timer = setInterval(function () {
-            if (!document.hidden) goTo(current + 1);
-          }, 5000);
-        }
-      }
-
-      if (hero) {
-        hero.addEventListener('mouseenter', function () { heroHovered = true; restartTimer(); });
-        hero.addEventListener('mouseleave', function () { heroHovered = false; restartTimer(); });
-        hero.addEventListener('focusin', restartTimer);
-        hero.addEventListener('focusout', function () { window.setTimeout(restartTimer, 0); });
-      }
-      restartTimer();
     }
 
     /* ─────────────────────────────────────────
        8. HOME HERO SPOTLIGHT
-       Rotates between the chapter award and Career Guide.
+       Shows the chapter award and Career Guide.
     ───────────────────────────────────────── */
     var spotlight = document.getElementById('ahSpotlight');
 
@@ -353,9 +348,6 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
       var spotlightSlides = Array.prototype.slice.call(spotlight.querySelectorAll('[data-spotlight-slide]'));
       var spotlightDots = Array.prototype.slice.call(spotlight.querySelectorAll('[data-spotlight-dot]'));
       var spotlightCurrent = 0;
-      var spotlightTimer = null;
-      var spotlightHovered = false;
-      var spotlightPaused = reduceMotion;
       spotlightSlides.forEach(function (slide, i) {
         slide.id = 'ahSpotlightPanel' + i;
         slide.setAttribute('role', 'tabpanel');
@@ -385,27 +377,8 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
         });
       }
 
-      function stopSpotlight() {
-        if (spotlightTimer) {
-          clearInterval(spotlightTimer);
-          spotlightTimer = null;
-        }
-      }
-
-      function startSpotlight() {
-        stopSpotlight();
-        if (!spotlightPaused && spotlightSlides.length > 1 && !spotlightHovered && !spotlight.contains(document.activeElement)) {
-          spotlightTimer = setInterval(function () {
-            if (!document.hidden) showSpotlight(spotlightCurrent + 1);
-          }, 6500);
-        }
-      }
-
       spotlightDots.forEach(function (dot, i) {
-        dot.addEventListener('click', function () {
-          showSpotlight(i);
-          startSpotlight();
-        });
+        dot.addEventListener('click', function () { showSpotlight(i); });
         dot.addEventListener('keydown', function (event) {
           var next;
           if (event.key === 'ArrowRight') next = (i + 1) % spotlightDots.length;
@@ -414,29 +387,12 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
           else if (event.key === 'End') next = spotlightDots.length - 1;
           else return;
           event.preventDefault();
-          stopSpotlight();
           showSpotlight(next);
           spotlightDots[next].focus();
         });
       });
 
-      spotlight.addEventListener('mouseenter', function () {
-        spotlightHovered = true;
-        stopSpotlight();
-      });
-      spotlight.addEventListener('mouseleave', function () {
-        spotlightHovered = false;
-        startSpotlight();
-      });
-      spotlight.addEventListener('focusin', stopSpotlight);
-      spotlight.addEventListener('focusout', function () {
-        window.setTimeout(function () {
-          if (!spotlight.contains(document.activeElement)) startSpotlight();
-        }, 0);
-      });
-
       showSpotlight(0);
-      startSpotlight();
     }
 
     /* Keep one continuous featured-event runner at every card aspect ratio.
@@ -949,7 +905,7 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
 <script>
 (function () {
   var pointsScript = document.createElement('script');
-  pointsScript.src = 'https://asme-osu.github.io/ASME-OSU-Website/Member%20Points%20Integration.js?v=20261014-points-skeleton2';
+  pointsScript.src = 'https://asme-osu.github.io/ASME-OSU-Website/Member%20Points%20Integration.js?v=20261117-audit1';
   document.head.appendChild(pointsScript);
 })();
 </script>
@@ -957,30 +913,21 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
 <script>
 (function () {
   var calendarScript = document.createElement('script');
-  calendarScript.src = 'https://asme-osu.github.io/ASME-OSU-Website/Calendar%20Integration.js?v=20260827-3';
+  calendarScript.src = 'https://asme-osu.github.io/ASME-OSU-Website/Calendar%20Integration.js?v=20261117-audit1';
   calendarScript.defer = true;
   document.head.appendChild(calendarScript);
 })();
 </script>
 
 <!-- ASME GEARLY START -->
-<!-- Remove this block to disable Gearly. Deploy only after reviewing the PR. -->
-<link id="gearly-styles" rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly.css?v=20261113-reading">
-<link id="gearly-tour-styles" rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-tour.css?v=20261113-reading">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/7.1.0/fuse.min.js" defer></script>
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-tour.js?v=20261113-reading" defer></script>
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-search.js?v=20261113-reading" defer></script>
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-live.js?v=20261113-reading" defer></script>
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-content.js?v=20261113-reading" defer></script>
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-weighting.js?v=20261113-reading" defer></script>
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-site.js?v=20261113-reading" defer></script>
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-student.js?v=20261113-reading" defer></script>
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly.js?v=20261113-reading" defer></script>
+<!-- Remove this block to disable Gearly. -->
+<link id="gearly-styles" rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly.css?v=20261117-audit1">
+<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-bootstrap.js?v=20261117-audit1" defer></script>
 <!-- ASME GEARLY END -->
 
 <!-- ASME HEADER COMPONENT START -->
 <!-- Menu destinations and logo are populated from the existing WordPress header. -->
-<template id="asme-header-template">
+<template id="asme-header-template" data-asme-search-pages="[{&quot;id&quot;:&quot;home&quot;,&quot;title&quot;:&quot;Home&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/&quot;,&quot;keywords&quot;:[&quot;home&quot;,&quot;start&quot;]},{&quot;id&quot;:&quot;join&quot;,&quot;title&quot;:&quot;Join ASME&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/join/&quot;,&quot;keywords&quot;:[&quot;signup&quot;,&quot;newsletter&quot;,&quot;groupme&quot;,&quot;dues&quot;]},{&quot;id&quot;:&quot;events&quot;,&quot;title&quot;:&quot;Events Calendar&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/calendar/&quot;,&quot;keywords&quot;:[&quot;events&quot;,&quot;schedule&quot;,&quot;meetings&quot;]},{&quot;id&quot;:&quot;leadership&quot;,&quot;title&quot;:&quot;Leadership&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/leadership/&quot;,&quot;keywords&quot;:[&quot;officers&quot;,&quot;board&quot;]},{&quot;id&quot;:&quot;resources&quot;,&quot;title&quot;:&quot;Member Resources&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/member-resources/&quot;,&quot;keywords&quot;:[&quot;careers&quot;,&quot;resume&quot;,&quot;resources&quot;]},{&quot;id&quot;:&quot;points&quot;,&quot;title&quot;:&quot;Member Points&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/member-points-page/&quot;,&quot;keywords&quot;:[&quot;leaderboard&quot;,&quot;ranking&quot;,&quot;attendance&quot;,&quot;points&quot;]},{&quot;id&quot;:&quot;gallery&quot;,&quot;title&quot;:&quot;Gallery&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/pictures/&quot;,&quot;keywords&quot;:[&quot;photos&quot;,&quot;pictures&quot;]},{&quot;id&quot;:&quot;about&quot;,&quot;title&quot;:&quot;About ASME OSU&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/aboutus/&quot;,&quot;keywords&quot;:[&quot;about&quot;,&quot;projects&quot;,&quot;competitions&quot;]},{&quot;id&quot;:&quot;sponsors&quot;,&quot;title&quot;:&quot;Current Sponsors&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/current-sponsors/&quot;,&quot;keywords&quot;:[&quot;sponsors&quot;,&quot;companies&quot;]},{&quot;id&quot;:&quot;sponsorship&quot;,&quot;title&quot;:&quot;Sponsor ASME&quot;,&quot;url&quot;:&quot;https://org.osu.edu/asme/sponsor-asme/&quot;,&quot;keywords&quot;:[&quot;sponsorship&quot;,&quot;tiers&quot;,&quot;partnership&quot;]}]">
   <header id="asme-site-header" class="asme-compact-header" aria-label="ASME Ohio State">
     <a class="asme-hd-brand" aria-label="ASME Ohio State home">
       <span class="asme-hd-logo"></span>
@@ -1008,5 +955,5 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
 </template>
 
 <link id="asme-header-styles" rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/Header.css?v=20261114-headerload1">
-<script src="https://asme-osu.github.io/ASME-OSU-Website/Header%20Integration.js?v=20261114-headerload1" defer></script>
+<script src="https://asme-osu.github.io/ASME-OSU-Website/Header%20Integration.js?v=20261117-audit1" defer></script>
 <!-- ASME HEADER COMPONENT END -->

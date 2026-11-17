@@ -100,3 +100,30 @@ html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#242228; --g
 /* An overlay keeps the composer fixed without shifting the conversation. */
 .gearly-root .gearly-latest { position:absolute; right:14px; bottom:10px; z-index:2; min-height:44px; padding:8px 12px; border:1px solid var(--gearly-hero-border); border-radius:24px; background:var(--gearly-bg); color:var(--gearly-link); box-shadow:0 3px 12px #0002; font-size:13px; font-weight:700; }
 .gearly-root .gearly-latest:is(:hover,:focus-visible) { background:var(--gearly-soft); color:var(--gearly-link); }
+
+.gearly-launcher-text { display:none; }
+.gearly-load-status:not(:empty) {
+  position:absolute; right:0; bottom:calc(100% + 8px);
+  width:max-content; max-width:min(220px, calc(100vw - 24px)); padding:8px 12px;
+  border:1px solid var(--gearly-border); border-radius:12px;
+  background:var(--gearly-bg); color:var(--gearly-fg); font-size:13px;
+}
+@media (max-width:700px) {
+  .gearly-root--in-flow {
+    position:relative; inset:auto; z-index:auto;
+    display:flex; flex-flow:row wrap; align-items:center; gap:8px;
+    margin:16px 12px 0;
+  }
+  .gearly-root--in-flow .gearly-launcher {
+    display:flex; align-items:center; width:auto; height:44px; gap:4px; padding:0 13px 0 2px;
+    border-radius:24px;
+  }
+  .gearly-root.gearly-root--in-flow .gearly-launcher .gearly-avatar-image {
+    inset:auto; position:static; width:44px; height:44px; margin:0;
+  }
+  .gearly-root--in-flow .gearly-panel { z-index:9990; }
+  .gearly-root--in-flow .gearly-launcher-text { display:inline; color:var(--gearly-fg); font-weight:700; }
+  .gearly-root--in-flow .gearly-load-status:not(:empty) {
+    position:static; background:transparent; border:0; padding:0;
+  }
+}

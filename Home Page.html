@@ -4,13 +4,17 @@
   <!-- HERO with photo slideshow background -->
   <div class="ah-hero">
 
-    <div class="ah-hero-slides" id="ahSlides"></div>
+    <div class="ah-hero-slides" id="ahSlides" aria-hidden="true">
+      <div class="ah-hero-slide active" style="--ah-photo-position: center 37%;">
+        <img src="https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/career-fair-1440.webp" srcset="https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/career-fair-640.webp 640w, https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/career-fair-960.webp 960w, https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/career-fair-1440.webp 1440w, https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/career-fair-1920.webp 1920w" sizes="(max-width: 640px) 640px, (max-width: 980px) calc(100vw - 32px), calc(100vw - 80px)" width="1440" height="1080" alt="" fetchpriority="high" decoding="async">
+      </div>
+    </div>
     <div class="ah-hero-overlay"></div>
     <div class="ah-hero-dots" id="ahDots"></div>
 
     <div class="ah-hero-left">
       <h1 class="ah-title">American Society of<br>Mechanical Engineers</h1>
-      <p class="ah-sub">Connecting students, industry, and opportunity.</p>
+      <p class="ah-sub">Ohio State’s student chapter for company talks, workshops, and socials.</p>
       <div class="ah-status-row" aria-label="Chapter status">
         <span class="ah-status-pill">New members welcome</span>
         <span class="ah-status-pill">Sponsor interest open</span>
@@ -90,7 +94,7 @@
       </div>
     </div>
 
-    <a href="https://org.osu.edu/asme/calendar/" class="ah-featured-button">View Calendar →</a>
+    <a href="https://org.osu.edu/asme/calendar/" class="ah-featured-button" id="asmeFeaturedAction">View Calendar →</a>
   </div>
 
   <div class="ah-about">
@@ -99,8 +103,9 @@
       <h2 class="ah-section-title">Build skills, connections, and community.</h2>
       <p>ASME at Ohio State brings students interested in mechanical engineering together with employers, practical learning, service, leadership, and one another. Attend an event, meet the chapter, and choose the level of involvement that fits you.</p>
       <a href="https://org.osu.edu/asme/aboutus/" class="ah-about-link">Learn about ASME OSU →</a>
+      <a class="ah-about-link ah-stable-career-link" href="https://asme-osu.github.io/ASME-Career-Packet/" target="_blank" rel="noopener noreferrer">Open the Career Guide ↗<span class="asme-sr-only"> (opens in a new tab)</span></a>
     </div>
-    <div class="ah-community-photo"><img src="https://asme-osu.github.io/ASME-OSU-Website/assets/gallery/google-photos-auto/AF1QipMNChwcGI_Nt7P_hq7OErQlS6q58fb3n1jQ50R3-499efd50f8df57a0-large.webp" alt="ASME OSU members playing pickleball beside Ohio Stadium" width="1500" height="2000" loading="lazy" decoding="async" data-source="client"></div>
+    <div class="ah-community-photo"><img src="https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/pickleball-court-768.webp" srcset="https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/pickleball-court-480.webp 480w, https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/pickleball-court-768.webp 768w, https://asme-osu.github.io/ASME-OSU-Website/assets/optimized/home/pickleball-court-1100.webp 1100w" sizes="(max-width: 900px) calc(100vw - 64px), 48vw" alt="ASME OSU members playing pickleball beside Ohio Stadium" width="768" height="1024" loading="lazy" decoding="async" data-source="client"></div>
   </div>
 
   <h2 class="ah-section-title" data-gearly="home-get-involved">Get Involved</h2>
@@ -108,7 +113,7 @@
     <div class="ah-card" data-gearly="home-join">
       <div class="ah-card-icon">🤝</div>
       <h3>Join ASME</h3>
-      <p>Become a member and get access to exclusive events, networking opportunities, and professional development resources.</p>
+      <p>Get chapter updates about company sessions, socials, and professional development opportunities.</p>
       <a href="https://org.osu.edu/asme/join/" class="ah-card-button">Join now →</a>
     </div>
     <div class="ah-card" data-gearly="home-events">

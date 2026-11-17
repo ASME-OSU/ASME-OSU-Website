@@ -8,8 +8,11 @@ const first = { id: 'weekly::2090-10-22T21:30:00.000Z', title: 'ASME session', s
 const second = { id: 'weekly::2090-10-29T21:30:00.000Z', title: 'ASME session', start: '2090-10-29T21:30:00.000Z' };
 const third = { id: 'social::2090-10-30T21:30:00.000Z', title: 'ASME social', start: '2090-10-30T21:30:00.000Z' };
 const campaign = { id: 'asme-session', year: '2090-91', title: first.title, start: first.start, source: { uid: first.id } };
-async function page(campaigns, { offline = false, delayed = false } = {}) {
-  const dom = new JSDOM(markup, { url: 'https://org.osu.edu/asme/calendar/', runScripts: 'outside-only' });
+async function page(campaigns, { offline = false, delayed = false, home = false } = {}) {
+  const dom = new JSDOM(home ? fs.readFileSync('Home Page.html', 'utf8') : markup, {
+    url: home ? 'https://org.osu.edu/asme/' : 'https://org.osu.edu/asme/calendar/',
+    runScripts: 'outside-only'
+  });
   dom.window.matchMedia = () => ({ matches: false });
   dom.window.fetch = async url => {
     if (url.includes('/archive-index.json')) {
@@ -34,13 +37,26 @@ test('only matching published campaign links, including a delayed archive, open 
     assert.equal(cards[0].target, '_blank');
     assert.equal(cards[0].rel, 'noopener noreferrer');
     assert.match(cards[0].getAttribute('aria-label'), /opens in a new tab/);
-    assert.match(cards[0].textContent, /Click on the event to find out more/);
+    assert.match(cards[0].textContent, /View event details/);
     for (const card of cards.slice(1)) {
       assert.equal(card.tagName, 'ARTICLE');
       assert.equal(card.querySelector('.acp-event-more'), null);
       assert.equal(card.hasAttribute('tabindex'), false);
     }
   } finally { dom.window.close(); }
+});
+test('the homepage uses a matching event detail link and falls back to Calendar', async () => {
+  for (const [campaigns, expected] of [[[campaign], true], [[], false], [[{ ...campaign, cancelled: true }], false]]) {
+    const dom = await page(campaigns, { home: true, delayed: true });
+    try {
+      const action = dom.window.document.querySelector('#asmeFeaturedAction');
+      assert.equal(action.href, expected
+        ? 'https://asme-osu.github.io/ASME-Social-Hub/event.html?year=2090-91&id=asme-session'
+        : 'https://org.osu.edu/asme/calendar/');
+      assert.equal(action.target, expected ? '_blank' : '');
+      assert.match(action.textContent, expected ? /View Event Details/ : /View Calendar/);
+    } finally { dom.window.close(); }
+  }
 });
 test('deleted, cancelled, demo, unsafe, ambiguous, missing, and unavailable campaigns leave cards inert', async () => {
   const cases = [[], [{ ...campaign, deletedAt: '2090-10-01' }], [{ ...campaign, cancelled: true }], [{ ...campaign, demo: true }], [{ ...campaign, id: '../elsewhere' }], [campaign, { ...campaign, id: 'duplicate' }], [{ ...campaign, start: second.start }]];

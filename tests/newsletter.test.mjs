@@ -18,7 +18,7 @@ function setup(fetch, fastTimeout = false) {
   w.eval(script);
   w.document.dispatchEvent(new w.Event('DOMContentLoaded'));
   const form = w.document.querySelector('#asmeNewsletterForm');
-  for (const [name, value] of Object.entries({ FIRSTNAME: 'Test', LASTNAME: 'Member', EMAIL: 'test@example.invalid', GRADUATION_YEAR: '2028' })) form.elements.namedItem(name).value = value;
+  for (const [name, value] of Object.entries({ FIRSTNAME: 'Test', LASTNAME: 'Member', EMAIL: 'test.1@osu.edu', GRADUATION_YEAR: '2028' })) form.elements.namedItem(name).value = value;
   return { dom, w, form, button: form.querySelector('button'), status: w.document.querySelector('#asmeNewsletterStatus'), submit() { return form.dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); } };
 }
 test('confirmed acceptance stays inline and advances the existing wrapper once', async () => {
@@ -26,11 +26,12 @@ test('confirmed acceptance stays inline and advances the existing wrapper once',
   const s = setup(async (url, options) => {
     calls++;
     assert.equal(new URL(url).searchParams.get('isAjax'), '1');
-    assert.equal(options.body.get('EMAIL'), 'test@example.invalid');
+    assert.equal(options.body.get('EMAIL'), 'test.1@osu.edu');
     assert.equal(options.body.has('html_type'), false);
     assert.equal(options.credentials, 'omit');
     return { ok: true, json: async () => ({ success: true, redirect: 'https://example.invalid/thank-you' }) };
   });
+  s.button.focus();
   assert.equal(s.submit(), false, 'native form navigation is canceled');
   await tick();
   assert.match(s.status.className, /--success/);
@@ -39,6 +40,7 @@ test('confirmed acceptance stays inline and advances the existing wrapper once',
   assert.equal(s.w.location.href, 'https://org.osu.edu/asme/join/');
   assert.equal(s.form.hasAttribute('target'), false);
   assert.equal(s.w.document.querySelector('#joinNewsletterStep').classList.contains('is-complete'), true);
+  assert.equal(s.w.document.activeElement.id, 'joinGroupMeButton');
   s.submit();
   assert.equal(calls, 1);
   s.dom.window.close();
@@ -50,7 +52,7 @@ test('provider rejection preserves input and allows correction and retry', async
     : { ok: true, json: async () => ({ success: true }) }));
   s.submit(); await tick();
   assert.match(s.status.className, /--error/);
-  assert.equal(s.form.elements.EMAIL.value, 'test@example.invalid');
+  assert.equal(s.form.elements.EMAIL.value, 'test.1@osu.edu');
   assert.equal(s.button.disabled, false);
   assert.equal(s.form.elements.EMAIL.validationMessage, 'Please review your email.');
   s.form.elements.EMAIL.dispatchEvent(new s.w.Event('input', { bubbles: true }));
@@ -67,7 +69,7 @@ for (const [name, response] of [
   const s = setup(async () => ({ ok: true, json: response }));
   s.submit(); await tick();
   assert.match(s.status.className, /--error/);
-  assert.equal(s.form.elements.EMAIL.value, 'test@example.invalid');
+  assert.equal(s.form.elements.EMAIL.value, 'test.1@osu.edu');
   assert.equal(s.button.disabled, false);
   s.dom.window.close();
 });
@@ -77,7 +79,7 @@ test('timeout cancels the request, retains details, and does not claim acceptanc
   await new Promise(resolve => setTimeout(resolve, 30));
   assert.match(s.status.className, /--error/);
   assert.match(s.status.textContent, /could not confirm/);
-  assert.equal(s.form.elements.EMAIL.value, 'test@example.invalid');
+  assert.equal(s.form.elements.EMAIL.value, 'test.1@osu.edu');
   assert.equal(s.button.disabled, false);
   s.dom.window.close();
 });
@@ -86,9 +88,47 @@ test('invalid inputs and repeat clicks do not create extra requests', async () =
   const s = setup(() => { calls++; return new Promise(resolve => { finish = resolve; }); });
   s.form.elements.EMAIL.value = '';
   s.submit(); assert.equal(calls, 0);
-  s.form.elements.EMAIL.value = 'test@example.invalid';
+  s.form.elements.EMAIL.value = 'test.1@osu.edu';
   s.submit(); s.submit(); assert.equal(calls, 1);
   finish({ ok: true, json: async () => ({ success: true }) });
   await tick();
   s.dom.window.close();
+});
+
+test('requires a four-digit year and accepts OSU or BuckeyeMail addresses', async () => {
+  let calls = 0;
+  const s = setup(async () => {
+    calls++;
+    return { ok: true, json: async () => ({ success: true }) };
+  });
+  try {
+    s.form.elements.GRADUATION_YEAR.value = 'abcd';
+    s.submit();
+    assert.equal(calls, 0);
+    assert.equal(s.form.elements.GRADUATION_YEAR.validity.patternMismatch, true);
+    s.form.elements.GRADUATION_YEAR.value = '2028';
+    s.form.elements.EMAIL.value = 'test@example.invalid';
+    s.submit();
+    assert.equal(calls, 0);
+    assert.equal(s.form.elements.EMAIL.validity.patternMismatch, true);
+    s.form.elements.EMAIL.value = 'test.1@BuCkEyEmAiL.OSU.EDU';
+    s.submit();
+    await tick();
+    assert.equal(calls, 1);
+    assert.match(s.status.className, /--success/);
+  } finally { s.dom.window.close(); }
+});
+
+test('confirmation keeps focus on another control when users leave the form while waiting', async () => {
+  let finish;
+  const s = setup(() => new Promise(resolve => { finish = resolve; }));
+  try {
+    s.button.focus();
+    s.submit();
+    const movedFocus = s.w.document.getElementById('joinGroupMeProgress');
+    movedFocus.focus();
+    finish({ ok: true, json: async () => ({ success: true }) });
+    await tick();
+    assert.equal(s.w.document.activeElement, movedFocus);
+  } finally { s.dom.window.close(); }
 });
