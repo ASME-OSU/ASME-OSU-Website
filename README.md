@@ -72,7 +72,7 @@ Then hard refresh the site.
 
 Before saving a CampusPress page, follow the [page publishing guide](docs/campuspress-publishing.md). **Click Update in the Publish panel (`#publish`), not the profile/header area.** Use a fresh accessibility target, confirm **Page updated**, and verify the saved source and public page. A previous Update click opened Profile without saving; the guide documents the recovery.
 
-1. Edit the file in this repo.
+1. Edit the file in this repo. For CSS changes, run `npm run visual:baseline` first and `npm run visual:compare` after; see [Visual regression suite](docs/visual-regression.md).
 2. Commit the change.
 3. Push to `main`.
 4. If CSS changed, purge jsDelivr.
