@@ -108,22 +108,3 @@ html[data-theme=light] .gearly-root { --gearly-bg:#fff; --gearly-fg:#242228; --g
   border:1px solid var(--gearly-border); border-radius:12px;
   background:var(--gearly-bg); color:var(--gearly-fg); font-size:13px;
 }
-@media (max-width:700px) {
-  .gearly-root--in-flow {
-    position:relative; inset:auto; z-index:auto;
-    display:flex; flex-flow:row wrap; align-items:center; gap:8px;
-    margin:16px 12px 0;
-  }
-  .gearly-root--in-flow .gearly-launcher {
-    display:flex; align-items:center; width:auto; height:44px; gap:4px; padding:0 13px 0 2px;
-    border-radius:24px;
-  }
-  .gearly-root.gearly-root--in-flow .gearly-launcher .gearly-avatar-image {
-    inset:auto; position:static; width:44px; height:44px; margin:0;
-  }
-  .gearly-root--in-flow .gearly-panel { z-index:9990; }
-  .gearly-root--in-flow .gearly-launcher-text { display:inline; color:var(--gearly-fg); font-weight:700; }
-  .gearly-root--in-flow .gearly-load-status:not(:empty) {
-    position:static; background:transparent; border:0; padding:0;
-  }
-}

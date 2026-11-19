@@ -182,12 +182,6 @@ export async function render(browser, snapshot, { mode, url, width, scheme, stat
       return route.fulfill({ contentType: 'text/html', body: BLANK_FRAME });
     }
     const local = localFile(raw);
-    // Footer Integration's spacing pass and Gearly's in-flow launcher race to
-    // be the last block in <main>; the winner changes the footer gap by 4–20px.
-    // Hold Gearly until spacing has run so every screenshot uses the same order.
-    if (local && mode === 'replay' && local.endsWith('gearly-bootstrap.js')) {
-      await page.waitForFunction(() => document.body?.classList.contains('asme-footer-spacing-ready'), null, { timeout: 8000 }).catch(() => {});
-    }
     if (local) {
       let body = fs.readFileSync(local);
       if (injectCss && local.endsWith('.css') && local.includes('ASME Custom CSS')) body = Buffer.concat([body, Buffer.from('\n' + injectCss)]);

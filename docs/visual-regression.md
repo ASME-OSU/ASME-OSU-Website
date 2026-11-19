@@ -52,6 +52,5 @@ The injected rule must win the cascade to have any effect. Many current rules us
 
 - The live server answers bursts of requests with HTTP 429. Capture uses two workers, retries with back-off, never records an error response, and refuses to compare when a page was not recorded successfully. Run capture again to fill gaps.
 - Page HTML comes from the recording, so it reflects the live WordPress content. Edits to the HTML files in this repo (copy/paste blocks) do not appear until they are published and recaptured. Inline `<style>` blocks inside pages (the Join page's critical styles) are part of that HTML.
-- The Footer Integration spacing pass and the in-flow Gearly launcher both target the last block in `<main>`, and their load order changes the footer gap by 4–20px on the live site. Replay always loads Gearly after the spacing pass so screenshots are consistent.
 - Third-party embeds (Google Calendar iframe) are blank. Their internal styling is outside this repository.
 - Chromium only, at emulated sizes. This is not a cross-browser or physical-device test.
