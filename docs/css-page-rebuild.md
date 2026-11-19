@@ -34,6 +34,15 @@ If the comparison fails, restore the stylesheet files from git, fix the cause, a
 - **csso is not used.** Its restructuring turned `border: 1px solid var(--x)` plus a later `border-top` into `currentcolor` borders. Because the compiler's selectors are exact, identical blocks are merged with a simple pass instead.
 - **WordPress `<p>` wrappers.** Empty and non-empty `<p>` elements under the same parent need different styles, hence the `:empty` split.
 
+Found on Calendar:
+
+- **Classes that change by width or state.** The calendar script toggles `is-active` on the view buttons and picks the default view by screen width (list view at 700px and below). An element is tracked separately for each selector it carries, and entries sharing a selector are merged when they agree wherever both have a value.
+- **Missing source data in DevTools.** For many rules Chrome's protocol returns no source range. It then lists only longhands it has expanded itself, so `background: var(--asme-card)` arrives as empty placeholders and the value is lost. Rules from our stylesheet without source data are matched by `@media` and selector list against the compiler's own parse of the built CSS, and their declarations are used instead. The compiler reports how many it read this way, and any it could not find or found more than once.
+- **`> *` is not `*`.** Declarations from the page's universal rule are written once as `.page *` only when the original selector is exactly the wrapper followed by `*`. A rule for direct children (`.page > *`) at 1800px and up had been widened to every element.
+- **Strictest requirement wins.** Elements sharing a selector can face different competitors: an `<article>` card meets `body article { padding: 0 !important }` while link cards do not. A shorthand written back from longhands likewise faces every competitor any of its longhands faced. Both now keep the strictest `!important`/specificity requirement.
+
+Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winners the compiler records for matching elements, and `DEBUG_RAW=<selector text>` prints the raw DevTools entries for matching rules.
+
 ## Limits
 
 - Values are exact at the four sampled widths. Between them, a page now follows the four standard breakpoints instead of the legacy layer's 43. For example, a rule that switched at 900px now switches at 980px. Check widths between samples when reviewing a rebuilt page.
@@ -45,3 +54,6 @@ If the comparison fails, restore the stylesheet files from git, fix the cause, a
 | Page | `!important` before → after | Legacy rules reaching content before → after | Verified |
 | --- | --- | --- | --- |
 | About | 467 → 13 | 19 → 6 | 106/106 pixels + computed styles, Nov 19 2026 |
+| Calendar | 317 → 15 | 23 → 6 | 106/106 pixels + computed styles, Nov 19 2026 |
+
+Whole stylesheet after Calendar: 625 KB minified (76.1 KB gzipped), 8,293 `!important` (9,454 before Phase 1).

@@ -53,6 +53,36 @@ const normalize = selector => { try { return generate(parse(selector, { context:
 const cmp = (a, b) => (a.a - b.a) || (a.b - b.b) || (a.c - b.c);
 const zero = { a: 0, b: 0, c: 0 };
 
+// Chrome's DevTools protocol sometimes returns a rule without source data (no
+// range, empty text). It then lists only longhands it has expanded itself, and
+// a var() shorthand such as "background: var(--x)" comes back as empty
+// placeholders, losing the value. For those rules, the declarations are read
+// from our own parse of the built stylesheet, matched by @media and selectors.
+const SOURCE = (() => {
+  const index = new Map();
+  const visit = (list, media) => list.forEach(node => {
+    if (node.type === 'Atrule' && node.block) { if (!/keyframes/.test(node.name)) visit(node.block.children, media.concat(node.name === 'media' ? [generate(node.prelude)] : [])); return; }
+    if (node.type !== 'Rule') return;
+    const key = media.map(m => m.replace(/\s+/g, '')).join('&') + '|' + node.prelude.children.toArray().map(sel => generate(sel).replace(/\*(?=::?[a-z])/g, '')).join(',');
+    const decls = node.block.children.toArray().filter(d => d.type === 'Declaration').map(d => ({ name: d.property, value: generate(d.value).trim(), important: !!d.important }));
+    if (!index.has(key)) index.set(key, []);
+    index.get(key).push(decls);
+  });
+  visit(parse(fs.readFileSync('ASME Custom CSS.min.css', 'utf8')).children, []);
+  return index;
+})();
+const sourceStats = { used: 0, ambiguous: new Set(), missing: new Set() };
+function sourceDeclarations(rule) {
+  const media = (rule.media || []).filter(m => m.source === 'mediaRule').map(m => m.text.replace(/\s+/g, '')).reverse();
+  const key = media.join('&') + '|' + rule.selectorList.selectors.map(sel => normalize(sel.text).replace(/\*(?=::?[a-z])/g, '')).join(',');
+  const found = SOURCE.get(key);
+  if (!found) { sourceStats.missing.add(key.slice(0, 120)); return null; }
+  const distinct = new Set(found.map(d => JSON.stringify(d)));
+  if (distinct.size > 1) sourceStats.ambiguous.add(key.slice(0, 120));
+  sourceStats.used += 1;
+  return found[found.length - 1].map(d => ({ name: d.name, value: d.value, important: d.important }));
+}
+
 function winners(matched, inline, ourSheets) {
   // Returns Map(prop -> { value, important, owned, spec, sheet, kept: [competitors] })
   const decls = new Map();
@@ -67,7 +97,12 @@ function winners(matched, inline, ourSheets) {
     const isOwned = isOurs && matching.length > 0 && matching.every(s => owned(normalize(s.text)));
     const selectorText = matching.map(s => s.text).join(', ');
     const seen = new Set();
-    for (const p of rule.style.cssProperties) {
+    const fallback = isOurs && !rule.style.range ? sourceDeclarations(rule) : null;
+    const properties = fallback
+      ? fallback.map(d => ({ name: d.name, value: d.value + (d.important ? ' !important' : ''), important: d.important, longhandProperties: /var\(/i.test(d.value) || !LONGHANDS.has(d.name) ? undefined : expandLonghands(d.name, d.value) }))
+      : rule.style.cssProperties;
+    for (const p of properties) {
+      if (process.env.DEBUG_RAW && selectorText.includes(process.env.DEBUG_RAW) && /^background$/.test(p.name)) console.log('[raw]', JSON.stringify({ sel: selectorText.slice(0, 50), name: p.name, value: p.value, imp: p.important, implicit: p.implicit, disabled: p.disabled, parsedOk: p.parsedOk, lh: p.longhandProperties }));
       if (p.disabled || p.parsedOk === false || p.implicit) continue;
       // Shorthands containing var() are kept whole: Chrome expands them only
       // into the longhands it can resolve and drops the rest (border colors).
@@ -117,6 +152,11 @@ function winners(matched, inline, ourSheets) {
 
 // Shorthand -> longhands, read from Chrome on the first view.
 const LONGHANDS = new Map();
+// Expansions of shorthands from fallback rules, filled in from the page.
+const EXPANSIONS = new Map();
+function expandLonghands(name, value) {
+  return EXPANSIONS.get(name + ':' + value);
+}
 const SHORTHANDS = ['margin', 'padding', 'border', 'border-top', 'border-right', 'border-bottom', 'border-left', 'border-width', 'border-style', 'border-color', 'border-radius', 'border-image', 'border-block', 'border-inline', 'background', 'font', 'flex', 'flex-flow', 'grid', 'grid-template', 'grid-area', 'grid-row', 'grid-column', 'gap', 'inset', 'outline', 'transition', 'animation', 'list-style', 'overflow', 'place-items', 'place-content', 'place-self', 'text-decoration', 'columns', 'mask', 'margin-block', 'margin-inline', 'padding-block', 'padding-inline', 'inset-block', 'inset-inline', 'scroll-margin', 'scroll-padding', 'font-variant', 'white-space', 'container', 'text-emphasis'];
 
 // What the re-emitted declaration needs to beat every kept competitor.
@@ -152,6 +192,15 @@ await pool(VIEWS, 4, async view => {
       return [shorthand, [...style].filter(name => name !== shorthand)];
     })), SHORTHANDS);
     for (const [shorthand, longhands] of Object.entries(map)) if (longhands.length) LONGHANDS.set(shorthand, longhands);
+    // Expand every var()-free shorthand declaration in the stylesheet once, so
+    // fallback rules split into longhands exactly as Chrome would.
+    const pairs = [...new Set([...SOURCE.values()].flat(2).filter(d => LONGHANDS.has(d.name) && !/var\(/i.test(d.value)).map(d => d.name + '\u0000' + d.value))].map(x => x.split('\u0000'));
+    const expanded = await page.evaluate(list => list.map(([name, value]) => {
+      const style = document.createElement('div').style;
+      style.setProperty(name, value);
+      return [...style].filter(n => n !== name).map(n => ({ name: n, value: style.getPropertyValue(n) }));
+    }), pairs);
+    pairs.forEach(([name, value], i) => { if (expanded[i].length) EXPANSIONS.set(name + ':' + value, expanded[i]); });
   }
   const cdp = await context.newCDPSession(page);
   const sheets = new Map();
@@ -200,6 +249,9 @@ await pool(VIEWS, 4, async view => {
   }, [wrapperClass, CONTENT]);
 
   const record = (el, stateKey, map) => {
+    if (process.env.DEBUG_KEY && el.key.includes(process.env.DEBUG_KEY) && !stateKey) {
+      for (const [prop, win] of map) if (new RegExp(process.env.DEBUG_PROP || '.').test(prop)) console.log(`[debug] ${view.id} ${el.key} ${prop}: ${win.value} owned=${win.owned} rank=${win.rank} from=${(win.selectorText || '').slice(0, 60)}`);
+    }
     for (const [prop, win] of map) {
       if (!win.owned) continue;
       const states = el.states;
@@ -224,8 +276,12 @@ await pool(VIEWS, 4, async view => {
       if ([...base.values()].some(w => w.owned)) console.warn('Unkeyed element with owned styles at', view.id, i);
       continue;
     }
-    if (!perElement.has(info.id)) perElement.set(info.id, { key, outside: !info.key, empty: info.empty, nth: info.nth, ancestors: info.ancestors, exact: info.exact, states: new Map() });
-    const el = perElement.get(info.id);
+    // Classes can change with width or state (scripts toggle is-active), so an
+    // element is tracked per selector it has: each entry only holds the views
+    // where the element carried that selector.
+    const identity = info.id + '|' + key;
+    if (!perElement.has(identity)) perElement.set(identity, { key, outside: !info.key, empty: info.empty, nth: info.nth, ancestors: info.ancestors, exact: info.exact, states: new Map() });
+    const el = perElement.get(identity);
     record(el, '', base);
     for (const pseudo of result.pseudoElements || []) {
       if (!['before', 'after', 'placeholder', 'marker'].includes(pseudo.pseudoType)) continue;
@@ -257,18 +313,28 @@ await pool(VIEWS, 4, async view => {
 // ---- Give every element a selector that matches it and nothing else --------
 // Elements sharing a key must end up with identical styles; otherwise the key
 // is refined with :empty / :not(:empty), or :nth-child() as a last resort.
-const signature = el => JSON.stringify([...el.states].map(([state, props]) => [state, [...props].map(([prop, views]) => [prop, [...views].map(([v, d]) => [v, d.value]).sort()]).sort()]).sort());
+// Entries are compatible when they agree wherever both have a value (an
+// element may hold a selector only at some widths, e.g. while is-active).
+const compatible = list => {
+  const seen = new Map();
+  for (const el of list) for (const [state, props] of el.states) for (const [prop, views] of props) for (const [view, d] of views) {
+    const k = state + '|' + prop + '|' + view;
+    if (seen.has(k) && seen.get(k) !== d.value) return false;
+    seen.set(k, d.value);
+  }
+  return true;
+};
 const keyGroups = new Map();
 for (const el of perElement.values()) { if (!keyGroups.has(el.key)) keyGroups.set(el.key, []); keyGroups.get(el.key).push(el); }
 let refined = 0;
 for (const [key, members] of keyGroups) {
-  if (new Set(members.map(signature)).size < 2 || members[0].outside) continue;
+  if (members.length < 2 || members[0].outside || compatible(members)) continue;
   refined += 1;
-  // Members agree once split this way: every resulting key has one signature.
+  // A split works when every resulting key's members are compatible.
   const consistent = keyOf => {
-    const seen = new Map();
-    for (const el of members) { const k = keyOf(el); if (k == null) return false; const sig = signature(el); if (seen.has(k) && seen.get(k) !== sig) return false; seen.set(k, sig); }
-    return true;
+    const byKey = new Map();
+    for (const el of members) { const k = keyOf(el); if (k == null) return false; if (!byKey.has(k)) byKey.set(k, []); byKey.get(k).push(el); }
+    return [...byKey.values()].every(compatible);
   };
   const byEmpty = el => key + (el.empty ? ':empty' : ':not(:empty)');
   // Context: the nearest one or two classed ancestors (".card .label").
@@ -283,7 +349,7 @@ for (const [key, members] of keyGroups) {
   const view = VIEWS.find(v => v.id === '1280-light');
   const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + target.path, width: view.width, scheme: view.scheme });
   const keyed = new Map();
-  for (const [id, el] of perElement) if (!el.outside && el.states.size) { if (!keyed.has(el.key)) keyed.set(el.key, new Set()); keyed.get(el.key).add(id); }
+  for (const [identity, el] of perElement) if (!el.outside && el.states.size) { if (!keyed.has(el.key)) keyed.set(el.key, new Set()); keyed.get(el.key).add(identity.split('|')[0]); }
   const fixes = await page.evaluate(list => {
     const pathOf = el => {
       const parts = [];
@@ -315,7 +381,28 @@ await browser.close();
 // Merge elements into their final keys (members of a key now agree).
 for (const el of perElement.values()) {
   if (!el.states.size) continue;
-  if (!entries.has(el.key)) { entries.set(el.key, el.states); keyInfo.set(el.key, { outside: el.outside }); }
+  if (!entries.has(el.key)) { entries.set(el.key, new Map()); keyInfo.set(el.key, { outside: el.outside }); }
+  // Union the views of compatible entries that share the key.
+  const into = entries.get(el.key);
+  for (const [state, props] of el.states) {
+    if (!into.has(state)) into.set(state, new Map());
+    for (const [prop, views] of props) {
+      if (!into.get(state).has(prop)) into.get(state).set(prop, new Map());
+      for (const [view, d] of views) {
+        // Elements sharing a selector can face different competitors (an
+        // <article> meets "body article" rules a link does not): keep the
+        // strictest requirement.
+        const prev = into.get(state).get(prop).get(view);
+        if (prev) {
+          const a = prev.req; const b = d.req;
+          const important = a.important || b.important;
+          const tier = [a, b].filter(r => r.important === important);
+          const top = tier.reduce((m, r) => { const c = cmp(r.spec, m.spec); return c > 0 || (c === 0 && r.strict) ? r : m; }, { spec: zero, strict: false });
+          into.get(state).get(prop).set(view, { ...d, req: { important, spec: top.spec, strict: tier.some(r => r.strict && cmp(r.spec, top.spec) === 0) } });
+        } else into.get(state).get(prop).set(view, d);
+      }
+    }
+  }
 }
 
 // ---- Turn view sets into media conditions ------------------------------------
@@ -376,9 +463,13 @@ for (const states of entries.values()) {
       for (const { src, props: got } of bySrc.values()) {
         if (got.length !== src.longhands.length) continue;
         const first = props.get(got[0]).get(viewId);
+        // The shorthand must beat every competitor any of its longhands faced.
+        const reqs = got.map(prop => props.get(prop).get(viewId).req);
+        const important = reqs.some(r => r.important);
+        const top = reqs.filter(r => r.important === important).reduce((m, r) => { const c = cmp(r.spec, m.spec); return c > 0 || (c === 0 && r.strict) ? r : m; }, { spec: zero, strict: false });
         for (const prop of got) props.get(prop).delete(viewId);
         if (!props.has(src.name)) props.set(src.name, new Map());
-        props.get(src.name).set(viewId, { ...first, value: src.value, src: null });
+        props.get(src.name).set(viewId, { ...first, value: src.value, src: null, req: { important, spec: top.spec, strict: top.strict } });
       }
     }
     for (const [prop, views] of [...props]) if (!views.size) props.delete(prop);
@@ -387,7 +478,9 @@ for (const states of entries.values()) {
 
 // Declarations won by the page's universal rule (".page *") are written once
 // as a universal rule instead of on every element.
-const universal = from => (from || '').split(',').some(part => /\*(::?(before|after))?\s*$/.test(part.trim()));
+// Only a true descendant universal (".page *"), never "> *" (direct children).
+const universalPattern = new RegExp('\\.' + wrapperClass + '\\s+\\*(::?(before|after))?\\s*$');
+const universal = from => (from || '').split(',').some(part => universalPattern.test(part.trim()));
 
 const out = new Map();
 let decls = 0; let importantCount = 0;
@@ -583,6 +676,9 @@ const shared = sharedFiles.map(file => [file, stripOwned(fs.readFileSync(file, '
 console.log(`${name}: ${decls} declarations in ${[...byMedia.values()].reduce((t, r) => t + r.length, 0)} rules (${importantCount} !important); specificity levels used ${levelCount.join('/')} (plain / #page / html body #page .entry-content / doubled id)`);
 console.log(`Removes ${legacy.removedRules} legacy rules + ${legacy.removedSelectors - legacy.removedRules} selectors from mixed rules; ${shared.reduce((t, [, s]) => t + s.removedRules, 0)} shared rules + ${shared.reduce((t, [, s]) => t + s.removedSelectors - s.removedRules, 0)} selectors.`);
 console.log(`Compiled CSS: ${Math.round(Buffer.byteLength(css) / 1024)} KB`);
+if (sourceStats.used) console.log(`Read ${sourceStats.used} rule matches from the stylesheet source (DevTools gave no source data)${sourceStats.ambiguous.size ? `; ${sourceStats.ambiguous.size} ambiguous` : ''}${sourceStats.missing.size ? `; ${sourceStats.missing.size} not found` : ''}.`);
+for (const key of sourceStats.missing) console.warn('  not found in source:', key);
+for (const key of sourceStats.ambiguous) console.warn('  ambiguous in source (used the last):', key);
 if (!write) {
   fs.mkdirSync('tests/visual/.output', { recursive: true });
   fs.writeFileSync(`tests/visual/.output/${name}.compiled.css`, css);

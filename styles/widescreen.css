@@ -119,20 +119,20 @@
   html body #page .entry-content .asme-join-page .join-faq-list > :is(br, p:empty) { display: none !important; }
 
   /* Calendar: readable agenda beside the month view, with help below it. */
-  html body #page .entry-content .asme-cal-page { display: grid !important; grid-template-columns: minmax(420px, 1fr) minmax(0, 2.2fr) !important; gap: 24px !important; align-items: start !important; }
-  html body #page .entry-content .asme-cal-page > * { grid-column: 1 / -1; min-width: 0; }
-  html body #page .entry-content .asme-cal-page > :is(br, p:empty) { display: none !important; }
-  html body #page .entry-content .asme-cal-page .acp-header { margin: 0 !important; }
-  html body #page .entry-content .asme-cal-page .acp-header .acp-title { font-size: clamp(60px, 3vw, 76px) !important; }
-  html body #page .entry-content .asme-cal-page .acp-header .acp-sub { font-size: 20px !important; max-width: 64ch !important; line-height: 1.6 !important; }
-  html body #page .entry-content .asme-cal-page .acp-upcoming { grid-column: 1 !important; grid-row: 2 !important; padding: 28px !important; margin: 0 !important; }
-  html body #page .entry-content .asme-cal-page .acp-upcoming-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-  html body #page .entry-content .asme-cal-page .acp-event-card { min-height: 116px !important; padding: 20px !important; }
-  html body #page .entry-content .asme-cal-page .acp-event-copy h3 { font-size: 20px !important; }
-  html body #page .entry-content .asme-cal-page .acp-event-copy p { font-size: 15px !important; }
-  html body #page .entry-content .asme-cal-page .acp-cal-card { grid-column: 2 !important; grid-row: 2 / 4 !important; margin: 0 !important; }
-  html body #page .entry-content .asme-cal-page .acp-cal-card iframe { height: 780px !important; }
-  html body #page .entry-content .asme-cal-page .acp-info-strip { grid-column: 1 !important; grid-row: 3 !important; display: grid !important; grid-template-columns: 1fr !important; margin: 0 !important; gap: 16px !important; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   /* Leadership: photographs and names grow with their cards. */
   html body #page .entry-content .leadership-board .lb-grid { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)) !important; width: 100% !important; max-width: none !important; gap: 24px !important; }

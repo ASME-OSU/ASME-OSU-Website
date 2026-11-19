@@ -133,7 +133,6 @@ html body #page main[tabindex="-1"] { scroll-margin-block-start: 120px; }
 /* Maintain legibility across the original chapter page palettes. */
 @media (prefers-color-scheme: light) {
   html body #page .entry-content .asme-join-page :is(.join-intro,.join-form-heading,.join-faq-heading) .join-eyebrow,
-html body #page .entry-content .asme-cal-page #acp-calendar-label,
 html body #page .entry-content .asme-gallery-page :is(.gallery-eyebrow,.gallery-instagram-post-date,.gallery-instagram-swipe-hint,.gallery-archive-status,.gallery-archive-copy>p:not([class])),
 html body #page .entry-content .asme-sponsor-page :is(.sponsor-hero-copy,.sponsor-section-header) .sponsor-eyebrow,
 html body #page .entry-content .asme-sponsors-page :is(.sponsors-hero,.sponsors-section-header)>.sponsors-eyebrow,
@@ -159,8 +158,7 @@ html body.blog #page :is(.entry-content,.entry-summary)>p:first-child {
     --asme-readable-accent: #ff9aa7;
   }
 
-  html body #page .entry-content .asme-cal-page .acp-section-eyebrow,
-html body #page .entry-content .asme-gallery-page :is(.gallery-instagram-recent-header,.gallery-archive-copy) .gallery-instagram-eyebrow,
+  html body #page .entry-content .asme-gallery-page :is(.gallery-instagram-recent-header,.gallery-archive-copy) .gallery-instagram-eyebrow,
 html body #page .entry-content .asme-join-page .join-form-purpose>a,
 html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-heading .asme-section-label {
     color: var(--asme-readable-accent) !important;
@@ -450,7 +448,7 @@ html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card p { colo
   html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__divider { display: none !important; }
   html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__badge { width: 42px !important; height: 42px !important; margin: 0 !important; object-fit: contain !important; }
   html body #page .entry-content .asme-sponsors-page .sponsor-card__content { padding: 0 !important; width: 100% !important; min-width: 0 !important; }
-  html body #page .entry-content .asme-cal-page .acp-upcoming-heading { gap: 12px !important; margin-bottom: 20px !important; }
+  
   html body #page .entry-content .asme-home .ah-hero { min-height: 0 !important; }
   html body #page .entry-content .asme-home .ah-hero-left { padding-top: 30px !important; padding-bottom: 30px !important; }
   html body #page .entry-content .asme-join-page.asme-join-three-step .join-intro { height: auto !important; padding-top: 0 !important; }
