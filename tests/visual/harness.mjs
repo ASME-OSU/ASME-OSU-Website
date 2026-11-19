@@ -169,6 +169,10 @@ export async function render(browser, snapshot, { mode, url, width, scheme, stat
   });
   const page = await context.newPage();
   await page.addInitScript(SEEDED_RANDOM);
+  // Gearly offers a tour 4s after a visitor scrolls past 300px, so whether the
+  // invitation is on screen depends on timing. Start as a visitor who chose
+  // "Maybe later" so it never appears.
+  await page.addInitScript(() => { try { localStorage.setItem('asme-gearly-tour-dismissed', 'dismissed'); } catch {} });
   const time = mode === 'replay' && snapshot.capturedAt ? new Date(snapshot.capturedAt) : new Date();
   await page.clock.install({ time });
 
@@ -214,7 +218,7 @@ export async function render(browser, snapshot, { mode, url, width, scheme, stat
   page.on('requestfailed', request => inflight.delete(request));
   page.quiet = () => waitQuiet(page, inflight);
 
-  await page.goto(url, { waitUntil: 'load', timeout: 60_000 });
+  await page.goto(url, { waitUntil: 'load', timeout: 150_000 });
   await settle(page);
   if (mode === 'capture') await recordCandidates(page, snapshot);
   if (state) { await state.run(page); await page.quiet(); }

@@ -14,7 +14,7 @@ Pages and states are listed in `tests/visual/config.mjs`.
 
 1. **Capture** (`npm run visual:capture`) loads the live site once and records every response (page HTML, WordPress theme files, photos, data feeds) into `tests/visual/.snapshot/`.
 2. **Replay** serves that recording offline. Requests for this repository's own published files (`asme-osu.github.io/ASME-OSU-Website/…` and the jsDelivr copy) are answered from the working tree instead, so local CSS and JS edits show up. JSON data stays frozen: calendar events, Instagram and Google Photos feeds, the points sheet, and the Social Hub campaign archive. Only code changes can move a pixel.
-3. Each screenshot runs with a frozen clock (the capture time), seeded `Math.random`, reduced motion, software rendering in sRGB, and a blank frame in place of the Google Calendar embed.
+3. Each screenshot runs with a frozen clock (the capture time), seeded `Math.random`, reduced motion, software rendering in sRGB, and a blank frame in place of the Google Calendar embed. The visitor starts as one who chose "Maybe later" on Gearly's tour invitation, which otherwise appears on a 4-second timer.
 
 The snapshot, baselines and output are git-ignored. They are local to your machine, so capture and compare on the same computer.
 
@@ -37,6 +37,8 @@ After `visual:capture --fresh`, rewrite baselines from unchanged code before com
 - **Photos** (`<img>` and CSS background photos): the position and size of every photo must match exactly. Inside a photo, the average color change must stay under 12. Chromium rescales large photos with slightly different filters from run to run, which produces up to about 9 on text-heavy flyers. A missing or swapped photo scores over 100, and a 3px shift of the crop about 15. A 1–2px shift of the image inside an unchanged frame (`object-position`) can go unnoticed. A 3px band at photo edges is skipped because rounded-corner anti-aliasing varies.
 
 Adjust with `--photo-mean=N` or allow a few changed pixels with `--max-pixels=N`.
+
+- **Computed styles:** every element's and `::before`/`::after`'s final style values must also match. This catches cascade changes with no visible effect, such as a background that now matches its parent or a hidden element's color. Values the browser derives from layout (width, height, margins, offsets) and the scroll-reveal script's `--asme-delay` are skipped. Newly added custom properties are ignored until something uses them. Use `--pixels-only` for an intended redesign where only the look matters. Details are in `tests/visual/styles.mjs` and [css-foundation.md](css-foundation.md).
 
 ## Checking the harness
 

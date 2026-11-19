@@ -4,11 +4,13 @@
 //   --only=a,b        limit to job ids containing any of these terms
 //   --inject-css=...  append CSS to the main stylesheet (harness self-test)
 //   --max-pixels=N    allowed changed pixels per screenshot (default 0)
+//   --pixels-only     ignore computed-style differences (for intended redesigns)
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 import { chromium } from 'playwright';
 import { launch, render, Snapshot, VISUAL_DIR } from './harness.mjs';
+import { captureStyles, compareStyles } from './styles.mjs';
 import { ORIGIN, PAGES } from './config.mjs';
 import { jobs, option, pool } from './jobs.mjs';
 
@@ -21,6 +23,7 @@ const maxPixels = Number(option('max-pixels', '0'));
 const PHOTO_THRESHOLD = 48; // per-pixel change drawn on the diff image inside photos
 const PHOTO_MEAN = Number(option('photo-mean', '12'));
 const injectCss = option('inject-css') || undefined;
+const pixelsOnly = process.argv.includes('--pixels-only');
 
 const snapshot = new Snapshot();
 if (!snapshot.capturedAt) {
@@ -41,12 +44,13 @@ fs.rmSync(path.join(OUTPUT, 'missing.txt'), { force: true });
 const browser = await launch(chromium);
 const results = [];
 let done = 0;
-await pool(list, Number(option('workers', '4')), async job => {
+await pool(list, Number(option('workers', '3')), async job => {
   const file = path.join(target, job.id + '.png');
   try {
     const { page, context } = await render(browser, snapshot, { mode: 'replay', injectCss, ...job });
     fs.writeFileSync(file.replace(/\.png$/, '.json'), JSON.stringify(await photoBoxes(page)));
-    await page.screenshot({ path: file, fullPage: !job.state?.viewportOnly, animations: 'disabled', caret: 'hide', timeout: 60_000 });
+    fs.writeFileSync(file.replace(/\.png$/, '.styles.json'), JSON.stringify(await captureStyles(page)));
+    await page.screenshot({ path: file, fullPage: !job.state?.viewportOnly, animations: 'disabled', caret: 'hide', timeout: 150_000 });
     await context.close();
     results.push(update ? { id: job.id, status: 'baseline' } : await compare(job.id));
   } catch (error) {
@@ -158,14 +162,25 @@ async function compare(id) {
     return sum / ((ix1 - ix0) * (iy1 - iy0)) > PHOTO_MEAN;
   }).length;
   const sizeChanged = a.width !== b.width || a.height !== b.height;
-  const failed = changed > maxPixels || photosMoved || photosChanged > 0;
-  if (failed) await sharp(out, { raw: { width, height, channels: 4 } }).png().toFile(path.join(DIFF, id + '.png'));
+  const pixelsFailed = changed > maxPixels || photosMoved || photosChanged > 0;
+  const styles = compareStylesFor(id);
+  const failed = pixelsFailed || (!pixelsOnly && styles.total > 0);
+  if (pixelsFailed) await sharp(out, { raw: { width, height, channels: 4 } }).png().toFile(path.join(DIFF, id + '.png'));
   return {
-    id, status: failed ? 'changed' : 'same', changed,
+    id, status: pixelsFailed ? 'changed' : failed ? 'styles' : 'same', changed, styles,
     size: sizeChanged ? `${a.width}x${a.height} → ${b.width}x${b.height}` : undefined,
     region: box ? `x ${box.x0}–${box.x1}, y ${box.y0}–${box.y1}` : undefined,
     photos: [photosMoved && `photo boxes differ (${baseBoxes.length} → ${currentBoxes.length})`, photosChanged && `${photosChanged} photo(s) changed`].filter(Boolean).join(', ') || undefined
   };
+}
+
+function compareStylesFor(id) {
+  const read = dir => {
+    const file = path.join(dir, id + '.styles.json');
+    return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;
+  };
+  const before = read(BASELINE); const after = read(CURRENT);
+  return before && after ? compareStyles(before, after) : { total: 0, changes: [] };
 }
 
 results.sort((x, y) => x.id.localeCompare(y.id));
@@ -176,7 +191,10 @@ if (snapshot.missing.size) {
   fs.writeFileSync(path.join(OUTPUT, 'missing.txt'), [...snapshot.missing].sort().join('\n') + '\n');
   console.log(`${snapshot.missing.size} requests were not in the snapshot (listed in tests/visual/.output/missing.txt). Run \`npm run visual:capture\` to add them.`);
 }
-for (const r of bad) console.log(`${r.status.toUpperCase().padEnd(11)} ${r.id}${r.changed ? `  ${r.changed} px` : ''}${r.size ? `  size ${r.size}` : ''}${r.region ? `  (${r.region})` : ''}${r.photos ? `  ${r.photos}` : ''}${r.message ? `  ${r.message}` : ''}`);
+for (const r of bad) {
+  console.log(`${r.status.toUpperCase().padEnd(11)} ${r.id}${r.changed ? `  ${r.changed} px` : ''}${r.size ? `  size ${r.size}` : ''}${r.region ? `  (${r.region})` : ''}${r.photos ? `  ${r.photos}` : ''}${r.styles?.total ? `  ${r.styles.total} element style(s) differ` : ''}${r.message ? `  ${r.message}` : ''}`);
+  for (const change of (r.styles?.changes || []).slice(0, 3)) console.log(`            ${change.key.slice(-70)}  ${change.props.slice(0, 2).join('; ').slice(0, 140)}`);
+}
 console.log(update
   ? `Wrote ${results.length - bad.length} baselines${bad.length ? `, ${bad.length} failed` : ''}.`
   : `${results.length - bad.length}/${results.length} screenshots match. Report: tests/visual/.output/report.html`);
@@ -189,7 +207,8 @@ function writeReport(rows) {
     <section><h2>${esc(r.id)} <small>${esc(r.status)}${r.changed ? ` · ${r.changed} px` : ''}${r.size ? ` · ${esc(r.size)}` : ''}${r.region ? ` · ${esc(r.region)}` : ''}</small></h2>
     ${r.status === 'changed' ? `<div class="row"><figure><img src="../.baseline/${esc(r.id)}.png"><figcaption>Baseline</figcaption></figure>
     <figure><img src="current/${esc(r.id)}.png"><figcaption>Current</figcaption></figure>
-    <figure><img src="diff/${esc(r.id)}.png"><figcaption>Changed pixels</figcaption></figure></div>` : `<p>${esc(r.message || '')}</p>`}</section>`).join('')
+    <figure><img src="diff/${esc(r.id)}.png"><figcaption>Changed pixels</figcaption></figure></div>` : `<p>${esc(r.message || '')}</p>`}
+    ${r.styles?.total ? `<details${r.status === 'styles' ? ' open' : ''}><summary>${r.styles.total} element(s) with different computed styles</summary><ul>${r.styles.changes.map(c => `<li><code>${esc(c.key)}</code><br>${c.props.map(esc).join('<br>')}</li>`).join('')}</ul></details>` : ''}</section>`).join('')
     : '<p>All screenshots match the baseline.</p>';
   fs.writeFileSync(path.join(OUTPUT, 'report.html'), `<!doctype html><meta charset="utf-8"><title>Visual diff</title>
   <style>body{font:14px system-ui;margin:24px;background:#f4f5f7}h2{font-size:15px}small{color:#666;font-weight:400}

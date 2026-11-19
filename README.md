@@ -50,7 +50,7 @@ Then hard refresh the site.
 
 | File | WordPress location | Purpose |
 | --- | --- | --- |
-| `ASME Custom CSS.css` | Header stylesheet link from GitHub/jsDelivr | Site-wide styling, responsive fixes, dark mode, navigation, footer, and page-specific polish. |
+| `ASME Custom CSS.css` | Header stylesheet link from GitHub/jsDelivr | Site-wide styling, responsive fixes, dark mode, navigation, footer, and page-specific polish. Built in layers by `npm run build:styles`: edit `styles/tokens.css` and `styles/foundation.css` for the generated foundation block, and only the legacy section in this file by hand. See [Stylesheet foundation](docs/css-foundation.md). |
 | `Home Page.html` | Home page custom HTML block | Home hero, stats, quick links, and event preview content. |
 | `About Us Page.html` | About page custom HTML block | About ASME OSU content, mission, and pillars. |
 | `Join Page.html` | Join page custom HTML block | Join/signup content, GroupMe connection step, and FAQ. |
