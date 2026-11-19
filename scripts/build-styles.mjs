@@ -25,7 +25,13 @@ const hoisted = [];
 legacy = legacy.replace(/^\s*(@charset\s+"[^"]*";|@import\s+(?:url\([^)]*\)|"[^"]*"|'[^']*')[^;\n]*;)\s*$/gm, (_, rule) => { hoisted.push(rule); return ''; }).trim();
 const foundation = ['styles/tokens.css', 'styles/foundation.css'].filter(path => fs.existsSync(path)).map(read).join('\n\n');
 const shared = ['styles/design-system.css', 'styles/widescreen.css', 'styles/home-hero.css', 'styles/tablet.css', 'styles/home-event.css'].map(read).join('\n\n');
-const source = (hoisted.length ? hoisted.join('\n') + '\n\n' : '') + (foundation ? FOUNDATION_START + '\n' + foundation + '\n' + FOUNDATION_END + '\n\n' : '') + legacy + '\n\n' + marker + '\n' + shared + '\n' + end + '\n';
+// 4. pages: styles/pages/<page>.css, rebuilt page by page (Phase 2). They come
+//    last so they win ties against anything left in the layers above.
+const pageDir = 'styles/pages';
+const pages = fs.existsSync(pageDir) ? fs.readdirSync(pageDir).filter(f => f.endsWith('.css')).sort().map(f => read(`${pageDir}/${f}`)).join('\n\n') : '';
+const PAGES_START = '/* ASME PAGES START */';
+const PAGES_END = '/* ASME PAGES END */';
+const source = (hoisted.length ? hoisted.join('\n') + '\n\n' : '') + (foundation ? FOUNDATION_START + '\n' + foundation + '\n' + FOUNDATION_END + '\n\n' : '') + legacy + '\n\n' + marker + '\n' + shared + '\n' + end + '\n' + (pages ? '\n' + PAGES_START + '\n' + pages + '\n' + PAGES_END + '\n' : '');
 // Browsers silently ignore an @import that follows any other rule.
 let sawRule = false;
 for (const node of parse(source).children) {

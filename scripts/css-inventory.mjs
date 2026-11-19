@@ -62,7 +62,7 @@ export function inventory(css) {
 // Classes and ids a selector requires. Anything inside :not(), :is(), :where()
 // or :has() is ignored, which can only make a rule look reachable on more
 // pages, never fewer.
-function requirements(selector) {
+export function requirements(selector) {
   const needs = { classes: new Set(), ids: new Set() };
   try {
     walk(parse(selector, { context: 'selector' }), {

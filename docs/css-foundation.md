@@ -60,3 +60,5 @@ The visual suite (`docs/visual-regression.md`) now also compares computed styles
 - Values the browser reports from layout (width, height, margins, offsets). These vary with load timing, and screenshots already check layout.
 
 Newly defined custom properties (the tokens) are ignored until something uses them; changed or removed ones are reported.
+
+Phase 2 (rebuilding pages one at a time) is described in [css-page-rebuild.md](css-page-rebuild.md).

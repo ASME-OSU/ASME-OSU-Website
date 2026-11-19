@@ -31,3 +31,17 @@ test('tokens define a dark value for every color that changes in dark mode', () 
     assert.match(dark, new RegExp(name + ':'), name + ' has a dark-mode value');
   }
 });
+
+test('rebuilt page styles come last and keep !important rare', () => {
+  const pages = fs.readdirSync(new URL('../styles/pages/', import.meta.url)).filter(f => f.endsWith('.css'));
+  assert.ok(pages.includes('about.css'));
+  const start = source.indexOf('/* ASME PAGES START */');
+  assert.ok(start > source.indexOf('/* ASME SHARED DESIGN SYSTEM END */'), 'pages layer follows the shared layer');
+  for (const file of pages) {
+    const css = fs.readFileSync(new URL('../styles/pages/' + file, import.meta.url), 'utf8');
+    const declarations = (css.match(/:[^;{}]+;/g) || []).length;
+    const important = (css.match(/!important/g) || []).length;
+    // Rebuilt pages need !important only to beat shared rules not yet rebuilt.
+    assert.ok(important / declarations < 0.05, `${file}: ${important} of ${declarations} declarations use !important`);
+  }
+});

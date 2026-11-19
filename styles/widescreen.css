@@ -101,13 +101,13 @@
   html body #page .entry-content .asme-home .ah-section-title { font-size: 36px !important; }
 
   /* About: fill the introduction and use both halves of section headings. */
-  html body #page .entry-content .asme-about-page .about-hero-copy { padding: var(--asme-wide-pad) !important; }
-  html body #page .entry-content .asme-about-page .about-hero-copy h1 { font-size: clamp(64px, 3.4vw, 84px) !important; max-width: none !important; }
-  html body #page .entry-content .asme-about-page .about-hero-copy > p { max-width: 58ch !important; font-size: 20px !important; line-height: 1.65 !important; }
-  html body #page .entry-content .asme-about-page .about-section-heading { display: grid !important; grid-template-columns: 1fr 1fr !important; align-items: center !important; gap: 48px !important; }
-  html body #page .entry-content .asme-about-page .about-section-heading > div { max-width: none !important; }
-  html body #page .entry-content .asme-about-page .about-section-heading > p { max-width: 64ch !important; margin: 0 !important; font-size: 18px !important; }
-  html body #page .entry-content .asme-about-page .about-section-heading h2 { max-width: none !important; font-size: 40px !important; }
+  
+  
+  
+  
+  
+  
+  
 
   /* Join: readable introduction and FAQ answers that don't span the monitor. */
   /* These selectors also outrank the legacy stylesheet embedded in Join HTML. */
