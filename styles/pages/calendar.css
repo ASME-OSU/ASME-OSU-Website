@@ -61,7 +61,6 @@
 
 .asme-cal-page .acp-header-right>p:not(.acp-subscribe-note) {
   margin-bottom: 0px;
-  display: none;
 }
 
 .asme-cal-page .acp-subscribe-note {
@@ -206,9 +205,7 @@
 }
 
 .asme-cal-page .acp-cal-identity>br,
-.asme-cal-page .acp-view-switch>br,
-.asme-cal-page .acp-cal-topbar>p,
-.asme-cal-page .acp-info-strip>p {
+.asme-cal-page .acp-view-switch>br {
   display: none;
 }
 
@@ -309,12 +306,6 @@
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-.asme-cal-page .acp-info-item>p,
-.asme-cal-page .acp-info-copy>p {
-  margin: 0;
-  padding: 0;
 }
 
 .asme-cal-page .acp-info-title {
@@ -786,8 +777,8 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
 
   .asme-cal-page .acp-live-badge {
     color: rgb(22,101,52);
-    border: 1px solid #bbf7d0;
     background: #f0fdf4;
+    border: 1px solid #bbf7d0;
   }
 
   .asme-cal-page .acp-event-card.acp-event-card--next {
@@ -813,8 +804,8 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
-    background-color: #ffffff;
     border-color: #e4e7ec;
+    background-color: #ffffff;
   }
 
   .asme-cal-page .acp-cal-topbar {
@@ -826,8 +817,8 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
   }
 
   .asme-cal-page .acp-view-button.is-active {
-    background: var(--asme-c-heading);
     box-shadow: rgba(15,52,96,0.18) 0px 5px 12px;
+    background: var(--asme-c-heading);
   }
 
   .asme-cal-page .acp-info-strip {
@@ -836,8 +827,8 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
 
   .asme-cal-page .acp-info-icon {
     color: rgb(15,52,96);
-    border: 1px solid #dbe5f0;
     background: #eff6ff;
+    border: 1px solid #dbe5f0;
   }
 
   .asme-cal-page .acp-title {
@@ -875,8 +866,8 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
     border-image-outset: 0;
     border-image-repeat: stretch;
     color: rgb(134,239,172);
-    background: #123526;
     border-color: #265c45;
+    background: #123526;
   }
 
   .asme-cal-page .acp-event-card.acp-event-card--next,
@@ -919,8 +910,8 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
   }
 
   .asme-cal-page .acp-view-button.is-active {
-    background: #2563eb;
     box-shadow: rgba(37,99,235,0.32) 0px 5px 12px;
+    background: #2563eb;
   }
 
   .asme-cal-page .acp-cal-card>p>iframe {
@@ -942,21 +933,27 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
     border-image-outset: 0;
     border-image-repeat: stretch;
     color: rgb(147,197,253);
-    background: #183859;
     border-color: #2f4c6c;
+    background: #183859;
   }
 
 }
 
 /* Carried over unchanged: rules for conditions the compiler does not reproduce
    from its test views (motion preference, orientation, print) and pseudo-elements
-   DevTools does not report (::placeholder). */
+   DevTools does not report (::placeholder), overlays outside the page content
+   such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
+   [aria-*]) whose values change while the page is used. */
 @media (prefers-reduced-motion: no-preference) {
   body #page .asme-cal-page .acp-subscribe-btn:focus-visible {
     outline: 3px solid rgba(187,0,0,0.42)!important;
     outline-offset: 4px!important;
   }
 
+}
+
+.acp-cal-dot:nth-child(2) {
+  background: #fdbc40;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -988,6 +985,15 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
 
 }
 
+body #page .asme-cal-page .acp-info-strip>p:empty,
+body #page .asme-cal-page .acp-header-right>p:empty,
+body #page .asme-cal-page .acp-info-item>p:empty,
+html body #page .entry-content .asme-cal-page .acp-info-strip>p:empty,
+html body #page .entry-content .asme-cal-page .acp-header-right>p:empty,
+html body #page .entry-content .asme-cal-page .acp-info-item>p:empty {
+  display: none!important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   body #page .asme-cal-page .acp-subscribe-btn,
   html body #page .entry-content .asme-cal-page .acp-subscribe-btn {
@@ -995,6 +1001,36 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
     animation-play-state: running!important;
     transform-origin: center!important;
     will-change: box-shadow,scale,filter;
+  }
+
+}
+
+body #page .asme-cal-page .acp-live-badge>span,
+html body #page .entry-content .asme-cal-page .acp-live-badge>span {
+  width: 7px!important;
+  height: 7px!important;
+  border-radius: 50%!important;
+  background: #16a34a!important;
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.14)!important;
+}
+
+body #page .asme-cal-page .acp-cal-topbar>p:empty,
+html body #page .entry-content .asme-cal-page .acp-cal-topbar>p:empty {
+  display: none!important;
+}
+
+body #page .asme-cal-page .acp-info-item p:empty,
+body #page .asme-cal-page .acp-info-item p[hidden],
+html body #page .entry-content .asme-cal-page .acp-info-item p:empty,
+html body #page .entry-content .asme-cal-page .acp-info-item p[hidden] {
+  display: none!important;
+  margin: 0!important;
+  padding: 0!important;
+}
+
+@media (min-width: 1800px) {
+  html body #page .entry-content .asme-cal-page>:is(br,p:empty) {
+    display: none!important;
   }
 
 }

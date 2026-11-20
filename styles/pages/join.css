@@ -1,0 +1,1627 @@
+/* /asme/join/ page styles, compiled from the legacy and shared layers by
+   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
+   by hand from here on and verify with npm run visual:compare. */
+.asme-join-page,
+.asme-join-page *,
+#page .asme-join-page *,
+html body #page#page .entry-content .asme-join-page * {
+  box-sizing: border-box;
+}
+
+.asme-join-page .join-stats-bar {
+  display: grid;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.asme-join-page>section:nth-child(1)>div:nth-child(1),
+.asme-join-page>section:nth-child(1)>div:nth-child(2) {
+  max-height: none;
+  display: flex;
+  text-align: center;
+  position: relative;
+  box-shadow: none;
+}
+
+.asme-join-page .join-proof-num {
+  min-height: 0px;
+  max-height: none;
+  font-family: "DM Serif Display",Georgia,serif;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.asme-join-page .join-proof-stat>br {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+.asme-join-page .join-proof-label {
+  min-height: 0px;
+  max-height: none;
+  font-family: "DM Sans",sans-serif;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.asme-join-page>section:nth-child(1)>div:nth-child(2)::before,
+.asme-join-page>section:nth-child(1)>div:nth-child(2):hover::before,
+.asme-join-page>section:nth-child(1)>div:nth-child(2):focus-visible::before,
+.asme-join-page .join-proof-award::before,
+.asme-join-page .join-proof-award:hover::before,
+.asme-join-page .join-proof-award:focus-visible::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1px;
+}
+
+.asme-join-page .join-proof-award {
+  max-height: none;
+  font-family: "DM Sans",sans-serif;
+  display: flex;
+  text-align: center;
+  position: relative;
+  box-shadow: none;
+  letter-spacing: 0.02em;
+}
+
+.asme-join-page .join-proof-award-icon {
+  min-height: 0px;
+  max-height: none;
+  line-height: 1;
+}
+
+.asme-join-page .join-award-copy,
+.asme-join-page .join-award-copy>strong,
+.asme-join-page .join-intro.join-hero-copy>h1,
+.asme-join-page .join-groupme-step.join-groupme-card>p,
+.asme-join-page .join-welcome-keepsake,
+.asme-join-page .join-keepsake-name,
+.asme-join-page .join-welcome-card>h3,
+.asme-join-page .join-welcome-card>p,
+.asme-join-page .join-process-content>p,
+.asme-join-page .join-faq-item>p>strong {
+  min-height: 0px;
+  max-height: none;
+}
+
+.asme-join-page .join-main-layout {
+  min-height: 0px;
+  max-height: none;
+  display: grid;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.asme-join-page .join-intro.join-hero-copy {
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  box-shadow: none;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  border: 0;
+}
+
+.asme-join-page .join-intro.join-hero-copy .join-eyebrow,
+.asme-join-page .join-form-heading .join-eyebrow {
+  min-height: 0px;
+  max-height: none;
+  display: block;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.asme-join-page .join-intro.join-hero-copy>p,
+.asme-join-page .join-form-purpose,
+.asme-join-page .join-faq-heading>h2 {
+  min-height: 0px;
+  max-height: none;
+  margin: 0;
+}
+
+.asme-join-page .join-benefits.join-highlights {
+  min-height: 0px;
+  max-height: none;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+
+.asme-join-page .join-benefit-card {
+  max-height: none;
+  height: auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 38px minmax(0,1fr);
+  align-items: center;
+  background: var(--asme-c-surface);
+  border-radius: 12px;
+  margin: 0;
+}
+
+.asme-join-page .join-benefit-icon {
+  max-height: none;
+  min-height: 0px;
+  margin-top: 0px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  display: grid;
+  height: 38px;
+  width: 38px;
+  place-items: center;
+}
+
+.asme-join-page .join-benefit-icon>br,
+.asme-join-page .join-benefit-card>br,
+.asme-join-page .join-field>br,
+.asme-join-page .join-submit-button>br,
+.asme-join-page .join-form>p>br {
+  display: none;
+}
+
+.asme-join-page .join-benefit-icon>svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.asme-join-page .join-benefit-copy {
+  max-height: none;
+  min-height: 0px;
+  height: auto;
+  margin-top: 0px;
+  padding: 0;
+  color: var(--asme-c-muted);
+  font-size: 12px;
+  line-height: 1.45;
+  display: block;
+  min-width: 0;
+}
+
+.asme-join-page .join-benefit-copy>strong {
+  max-height: none;
+  min-height: 0px;
+  height: auto;
+  padding: 0;
+  font-weight: 700;
+  display: block;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 2px;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.asme-join-page .join-benefit-copy>span {
+  max-height: none;
+  min-height: 0px;
+  height: auto;
+  padding: 0;
+  display: block;
+  margin: 0;
+}
+
+.asme-join-page .join-benefits.join-highlights>p {
+  min-height: 0px;
+  max-height: none;
+  font-size: 15px;
+  line-height: 1.62;
+  margin: 0;
+}
+
+.asme-join-page .join-process-area {
+  min-width: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.asme-join-page .join-flow-progress {
+  max-height: none;
+  min-height: 64px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-image-source: none;
+  border-image-slice: 100%;
+  border-image-width: 1;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  box-shadow: none;
+  margin: 0 0 14px;
+  border-radius: 14px;
+}
+
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current,
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome {
+  max-height: none;
+  color: rgb(102,120,142);
+  text-decoration: none;
+}
+
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current .join-flow-progress-number {
+  min-height: 0px;
+  max-height: none;
+  display: grid;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-image-source: none;
+  border-image-slice: 100%;
+  border-image-width: 1;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  font-weight: 800;
+  line-height: 1;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--asme-c-on-accent);
+  border-color: #ba0c2f;
+  background: #ba0c2f;
+}
+
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current>span:not(.join-flow-progress-number),
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme>span:not(.join-flow-progress-number),
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome>span:not(.join-flow-progress-number) {
+  min-height: 0px;
+  max-height: none;
+  display: flex;
+  min-width: 0px;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current>span>strong,
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme>span>strong,
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome>span>strong {
+  min-height: 0px;
+  max-height: none;
+  line-height: 1.25;
+}
+
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current>span>small,
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme>span>small,
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome>span>small {
+  line-height: 1.25;
+}
+
+.asme-join-page .join-flow-progress>p {
+  min-height: 0px;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+}
+
+.asme-join-page .join-flow-progress-line {
+  min-height: 0px;
+  max-height: none;
+  height: 2px;
+  border-radius: 999px;
+}
+
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme {
+  color: rgb(102,120,142);
+  text-decoration: none;
+}
+
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme .join-flow-progress-number,
+.asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome .join-flow-progress-number {
+  min-height: 0px;
+  max-height: none;
+  display: grid;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-image-source: none;
+  border-image-slice: 100%;
+  border-image-width: 1;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  font-weight: 800;
+  line-height: 1;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.asme-join-page .join-process-content {
+  min-height: 0px;
+  max-height: none;
+  width: 100%;
+  margin: 0;
+}
+
+.asme-join-page .join-email-card {
+  min-height: 0px;
+  max-height: none;
+  height: 100%;
+  margin: 0;
+  background: var(--asme-c-surface);
+}
+
+.asme-join-page .join-form-heading {
+  min-height: 0px;
+  max-height: none;
+  margin: 0 0 18px;
+  padding: 0 0 15px;
+}
+
+.asme-join-page .join-form-heading>h2 {
+  min-height: 0px;
+  max-height: none;
+  margin: 0 0 8px;
+}
+
+.asme-join-page .join-form-heading>p:not(.join-form-purpose) {
+  min-height: 0px;
+  max-height: none;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.asme-join-page .join-form {
+  min-height: 0px;
+  max-height: none;
+  grid-template-columns: 1fr;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 14px;
+}
+
+.asme-join-page .join-field-row {
+  min-height: 0px;
+  max-height: none;
+  display: grid;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.asme-join-page .join-field {
+  max-height: none;
+  min-height: 0px;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 0px;
+  margin-left: 0px;
+  gap: 7px;
+  padding: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.asme-join-page .join-field>label {
+  min-height: 0px;
+  max-height: none;
+  display: block;
+  font-family: "DM Sans",sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+
+.asme-join-page .join-field>input {
+  font-family: "DM Sans",sans-serif;
+  line-height: 1.2;
+  min-height: 42px;
+  max-height: 42px;
+  display: block;
+  height: 42px;
+  margin: 0;
+  border-radius: 10px;
+  outline: none;
+}
+
+.asme-join-page .join-field-row>p,
+.asme-join-page .join-form>p:not(.join-form-status),
+.asme-join-page .join-form>p>input:not(.join-hidden-field) {
+  min-height: 0px;
+  max-height: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.asme-join-page .join-form-status {
+  min-height: 0px;
+  max-height: none;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.5;
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+.asme-join-page .join-submit-wrap {
+  min-height: 0px;
+  max-height: none;
+  justify-content: center;
+  position: static;
+  top: auto;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+.asme-join-page .join-submit-button {
+  --join-action-hover:  #ad0e28;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  color: var(--asme-c-on-accent);
+  cursor: pointer;
+  appearance: none;
+  border: 0;
+  background: #c8102e;
+  box-shadow: none;
+}
+
+.asme-join-page .join-submit-button>span {
+  min-height: 0px;
+  max-height: none;
+  display: block;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.asme-join-page .join-hidden-field {
+  min-height: 0px;
+  max-height: none;
+  display: none;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.asme-join-page .join-email-card>p {
+  min-height: 0px;
+  max-height: none;
+  display: none;
+  height: 0px;
+  margin: 0;
+  padding: 0;
+}
+
+.asme-join-page .join-groupme-step.join-groupme-card {
+  position: relative;
+  margin: 0;
+}
+
+.asme-join-page .join-groupme-step-icon {
+  max-height: none;
+  border-radius: 13px;
+}
+
+.asme-join-page .join-groupme-logo {
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke: none;
+  visibility: visible;
+}
+
+.asme-join-page .join-groupme-step-copy {
+  min-height: 0px;
+  max-height: none;
+  min-width: 0px;
+  width: 100%;
+}
+
+.asme-join-page .join-groupme-step-copy .join-eyebrow {
+  min-height: 0px;
+  max-height: none;
+  display: block;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  text-transform: uppercase;
+}
+
+.asme-join-page .join-groupme-step-copy>h3 {
+  min-height: 0px;
+  max-height: none;
+  margin: 0 0 9px;
+}
+
+.asme-join-page>div:nth-child(2)>section:nth-child(2)>div:nth-child(2)>aside:nth-child(2)>div:nth-child(2)>p:nth-child(3) {
+  min-height: 0px;
+  max-height: none;
+  margin: 0 0 18px;
+}
+
+.asme-join-page>div:nth-child(2)>section:nth-child(2)>div:nth-child(2)>aside:nth-child(2)>div:nth-child(2)>p:nth-child(4) {
+  min-height: 0px;
+  max-height: none;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: auto 0 0;
+  padding: 0;
+  gap: 8px;
+}
+
+.asme-join-page .join-groupme-step-copy>p>small {
+  display: block;
+}
+
+.asme-join-page .join-groupme-button {
+  --join-action-hover:  #ad0e28;
+  color: var(--asme-c-on-accent);
+  text-decoration: none;
+  border: 1px solid #2474d8;
+  background: #2474d8;
+  margin-right: 0px;
+  margin-left: 0px;
+  box-shadow: none;
+}
+
+.asme-join-page .join-groupme-button::before,
+.asme-join-page .join-groupme-button:hover::before,
+.asme-join-page .join-groupme-button:focus-visible::before {
+  width: 18px;
+  height: 21px;
+  flex: 0 0 18px;
+  background: url(https://asme-osu.github.io/ASME-OSU-Website/assets/groupme-mark.svg)center/contain no-repeat;
+}
+
+.asme-join-page .join-groupme-button:hover {
+  outline: none;
+}
+
+.asme-join-page .join-welcome-visual {
+  max-height: none;
+}
+
+.asme-join-page .join-welcome-card .join-eyebrow {
+  min-height: 0px;
+  max-height: none;
+  display: block;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  color: var(--asme-c-subtle);
+  text-transform: uppercase;
+}
+
+.asme-join-page .asme-return-confirm {
+  --join-action-hover:  #ad0e28;
+  box-shadow: none;
+}
+
+.asme-join-page .join-faq-section {
+  box-sizing: border-box;
+  border: 1px solid var(--asme-c-border);
+  border-radius: 18px;
+  margin-top: 32px;
+}
+
+.asme-join-page .join-faq-heading {
+  min-height: 0px;
+  max-height: none;
+  display: grid;
+  align-items: end;
+  text-align: left;
+  margin: 0 auto 28px;
+}
+
+.asme-join-page .join-faq-heading .join-eyebrow {
+  min-height: 0px;
+  max-height: none;
+  display: block;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  text-transform: uppercase;
+  grid-column: 1/-1;
+}
+
+.asme-join-page .join-faq-heading>p {
+  min-height: 0px;
+  max-height: none;
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.asme-join-page .join-faq-list {
+  min-height: 0px;
+  max-height: none;
+  display: grid;
+  width: 100%;
+  column-count: initial;
+  margin: 0 auto;
+}
+
+.asme-join-page .join-faq-item {
+  interpolate-size: allow-keywords;
+  display: block;
+  width: 100%;
+  break-inside: auto;
+  border: 1px solid var(--asme-c-border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.asme-join-page .join-faq-item>summary {
+  position: relative;
+  cursor: pointer;
+  font-family: "DM Sans",sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+  list-style: none;
+  padding: 17px 50px 17px 18px;
+}
+
+.asme-join-page .join-faq-item>summary::after,
+.asme-join-page .join-faq-item>summary:hover::after,
+.asme-join-page .join-faq-item>summary:focus-visible::after {
+  content: "+";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--asme-c-accent);
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.asme-join-page .join-faq-item>p {
+  min-height: 0px;
+  max-height: none;
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0;
+  padding: 0 18px 18px;
+}
+
+.asme-join-page .join-form-heading>h2 {
+  font-family: "DM Serif Display",serif!important;
+  font-weight: 400!important;
+}
+
+.asme-join-page .join-groupme-step-copy>h3 {
+  font-family: "DM Serif Display",Georgia,serif!important;
+}
+
+.asme-join-page .join-faq-heading>h2 {
+  font-weight: 400!important;
+}
+
+#page .asme-join-page .join-intro.join-hero-copy>h1 {
+  font-family: "DM Serif Display",Georgia,serif!important;
+  font-weight: 400!important;
+}
+
+#page .asme-join-page .join-field>label {
+  transition: color 180ms ease!important;
+}
+
+#page .asme-join-page .join-submit-button:focus-visible,
+#page .asme-join-page .join-groupme-button:focus-visible {
+  outline: 3px solid var(--asme-c-focus)!important;
+  outline-offset: 3px!important;
+  box-shadow: rgb(255,255,255) 0px 0px 0px 3px!important;
+}
+
+#page .asme-join-page .asme-return-confirm:focus-visible {
+  outline-offset: 3px!important;
+  outline: 3px solid var(--asme-c-focus)!important;
+  box-shadow: rgb(255,255,255) 0px 0px 0px 3px!important;
+}
+
+#page .asme-join-page .join-faq-item>summary {
+  transition: background-color 180ms ease,color 180ms ease!important;
+}
+
+#page .asme-join-page .join-faq-item>summary::after,
+#page .asme-join-page .join-faq-item>summary:hover::after,
+#page .asme-join-page .join-faq-item>summary:focus-visible::after {
+  transition: transform 220ms cubic-bezier(0.22,1,0.36,1),color 180ms ease!important;
+}
+
+html body #page .entry-content .asme-join-page .join-submit-button {
+  text-align: center;
+}
+
+html body #page .entry-content .asme-join-page>section:nth-child(1)>div:nth-child(1),
+html body #page .entry-content .asme-join-page>section:nth-child(1)>div:nth-child(2) {
+  align-items: center!important;
+  min-width: 0!important;
+  justify-content: center!important;
+  margin: 0!important;
+  border: 0!important;
+  border-radius: 0!important;
+  background: transparent!important;
+  flex-direction: column!important;
+}
+
+html body #page .entry-content .asme-join-page .join-submit-button {
+  font-weight: 700!important;
+}
+
+html body #page .entry-content .asme-join-page .join-groupme-button {
+  white-space: normal!important;
+}
+
+html body #page .entry-content .asme-join-page .join-faq-section {
+  width: 100%!important;
+}
+
+html body #page#page .entry-content .asme-join-page .join-proof-award {
+  align-items: center!important;
+  justify-content: center!important;
+  min-width: 0!important;
+  margin: 0!important;
+  border: 0!important;
+  border-radius: 0!important;
+  background: transparent!important;
+}
+
+html body #page#page .entry-content .asme-join-page .join-groupme-button {
+  margin-bottom: 0px!important;
+}
+
+@media (max-width: 1799px) {
+  .asme-join-page .join-intro.join-hero-copy>p {
+    line-height: 1.62;
+  }
+
+  .asme-join-page .join-faq-section {
+    max-width: none;
+  }
+
+  .asme-join-page .join-faq-list {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+    column-gap: initial;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .asme-join-page {
+    padding-top: 8px;
+  }
+
+  .asme-join-page * {
+    box-sizing: border-box;
+  }
+
+  .asme-join-page>section:nth-child(1)>div:nth-child(1),
+  .asme-join-page>section:nth-child(1)>div:nth-child(2),
+  .asme-join-page .join-proof-award {
+    width: auto;
+  }
+
+  .asme-join-page .join-intro.join-hero-copy>h1 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    max-width: 15ch;
+    margin-bottom: 12px;
+  }
+
+  .asme-join-page .join-groupme-step.join-groupme-card {
+    height: auto;
+    grid-template-columns: 36px minmax(0px,1fr);
+  }
+
+  .asme-join-page .join-groupme-button {
+    align-self: flex-start;
+  }
+
+}
+
+@media (max-width: 979px) {
+  .asme-join-page {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .asme-join-page>section:nth-child(1)>div:nth-child(1),
+  .asme-join-page>section:nth-child(1)>div:nth-child(2),
+  .asme-join-page .join-proof-award {
+    flex: 0 1 auto;
+  }
+
+  .asme-join-page .join-intro.join-hero-copy {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    align-self: start;
+  }
+
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome {
+    min-height: 0px;
+  }
+
+  .asme-join-page .join-faq-section {
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px 22px;
+  }
+
+  .asme-join-page .join-faq-heading {
+    max-width: 1180px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .asme-join-page .join-faq-heading .join-eyebrow {
+    margin-bottom: 0px;
+  }
+
+  .asme-join-page .join-faq-heading>h2 {
+    font-size: 30px;
+  }
+
+  .asme-join-page .join-faq-list {
+    max-width: 1180px;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .asme-join-page {
+    padding-top: 12px;
+  }
+
+  .asme-join-page .join-intro.join-hero-copy>h1 {
+    max-width: none;
+    margin: 0 0 16px;
+  }
+
+  .asme-join-page .join-groupme-step.join-groupme-card {
+    height: 100%;
+  }
+
+  html body #page#page .entry-content .asme-join-page .join-proof-award {
+    line-height: 1.35!important;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .asme-join-page .join-groupme-step.join-groupme-card {
+    grid-template-columns: 38px 48px minmax(0,1fr);
+  }
+
+  .asme-join-page .join-groupme-button {
+    align-self: stretch;
+  }
+
+}
+
+@media (min-width: 980px) {
+  .asme-join-page * {
+    box-sizing: border-box;
+  }
+
+  .asme-join-page>section:nth-child(1)>div:nth-child(1),
+  .asme-join-page>section:nth-child(1)>div:nth-child(2) {
+    flex: 1 1 0;
+  }
+
+  .asme-join-page .join-proof-award {
+    flex: 1.35 1 0;
+  }
+
+  .asme-join-page .join-benefits.join-highlights {
+    display: grid;
+  }
+
+  .asme-join-page .join-groupme-step.join-groupme-card {
+    grid-template-columns: 34px 46px minmax(0px,1fr);
+  }
+
+  .asme-join-page>div:nth-child(2)>section:nth-child(2)>div:nth-child(2)>aside:nth-child(2)>div:nth-child(2)>p:nth-child(4) {
+    transform: translateY(14px);
+  }
+
+  .asme-join-page .join-groupme-button {
+    align-self: flex-start;
+  }
+
+  .asme-join-page .join-faq-section {
+    padding-top: 38px;
+    padding-bottom: 38px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 28px;
+    padding-left: 28px;
+  }
+
+  .asme-join-page .join-faq-heading {
+    grid-template-columns: minmax(240px,0.85fr) minmax(320px,1.15fr);
+    gap: 28px;
+    max-width: none;
+    width: 100%;
+  }
+
+  .asme-join-page .join-faq-heading .join-eyebrow {
+    margin-bottom: -10px;
+  }
+
+  .asme-join-page .join-faq-heading>h2 {
+    font-size: 38px;
+  }
+
+  .asme-join-page .join-faq-list {
+    max-width: none;
+  }
+
+}
+
+@media (min-width: 980px) and (max-width: 1799px) {
+  .asme-join-page {
+    width: 100%;
+    max-width: none;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+}
+
+@media (min-width: 1800px) {
+  .asme-join-page .join-intro.join-hero-copy>p {
+    line-height: 1.65;
+  }
+
+  .asme-join-page .join-faq-list {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 16px 24px;
+  }
+
+  html body #page#page .entry-content .asme-join-page .join-main-layout {
+    grid-template-columns: minmax(400px,1fr) minmax(0px,3fr)!important;
+    gap: 32px!important;
+  }
+
+  html body #page#page .entry-content .asme-join-page .join-intro.join-hero-copy>h1 {
+    font-size: clamp(42px,2.3vw,58px)!important;
+  }
+
+  html body #page#page .entry-content .asme-join-page .join-intro.join-hero-copy>p {
+    font-size: 18px!important;
+    max-width: 44ch!important;
+  }
+
+}
+
+@media (prefers-color-scheme: light) {
+  .asme-join-page .join-stats-bar {
+    color: rgb(23,53,84);
+    border: 1px solid #d8e2ee;
+    background: #edf3f9;
+  }
+
+  .asme-join-page .join-proof-num,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current>span>strong,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme>span>strong,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome>span>strong {
+    color: rgb(23,53,84);
+  }
+
+  .asme-join-page .join-intro.join-hero-copy .join-eyebrow,
+  .asme-join-page .join-form-heading .join-eyebrow,
+  .asme-join-page .join-faq-heading .join-eyebrow {
+    color: var(--asme-c-readable-muted);
+  }
+
+  .asme-join-page .join-intro.join-hero-copy>p,
+  .asme-join-page .join-benefit-copy>span {
+    color: #667085;
+  }
+
+  .asme-join-page .join-benefit-copy>strong {
+    color: #073b68;
+  }
+
+  .asme-join-page .join-benefits.join-highlights>p,
+  .asme-join-page .join-form-purpose,
+  .asme-join-page .join-form-heading>p:not(.join-form-purpose),
+  .asme-join-page .join-faq-heading>p,
+  .asme-join-page .join-faq-item>p {
+    color: var(--asme-c-muted);
+  }
+
+  .asme-join-page .join-flow-progress {
+    color: rgb(23,53,84);
+    border-color: #d8e2ee;
+    background: #fff;
+  }
+
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current .join-flow-progress-number {
+    box-shadow: rgb(255,240,243) 0px 0px 0px 4px;
+  }
+
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current>span>small,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme>span>small,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome>span>small,
+  .asme-join-page .join-groupme-step-copy .join-eyebrow,
+  .asme-join-page .join-groupme-step-copy>p>small {
+    color: rgb(82,98,119);
+  }
+
+  .asme-join-page .join-flow-progress-line {
+    background: #d8e2ee;
+  }
+
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme .join-flow-progress-number,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome .join-flow-progress-number {
+    color: rgb(82,98,119);
+    box-shadow: none;
+    border-color: #c5d1df;
+    background: #f4f7fb;
+  }
+
+  .asme-join-page .join-email-card {
+    border: 1px solid rgba(10,45,80,0.1);
+  }
+
+  .asme-join-page .join-form-heading {
+    border-bottom: 1px solid #eef1f5;
+  }
+
+  .asme-join-page .join-field>label,
+  .asme-join-page .join-faq-item>summary {
+    color: var(--asme-c-heading);
+  }
+
+  .asme-join-page .join-field>input {
+    color: var(--asme-c-text);
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+  }
+
+  .asme-join-page .join-form-status {
+    color: rgb(25,59,99);
+    border: 1px solid #b7c7db;
+    background: #eef4fb;
+  }
+
+  .asme-join-page .join-groupme-step.join-groupme-card {
+    border: 1px solid rgba(45,120,215,0.14);
+    background: linear-gradient(180deg,#f4f8ff 0%,#eef5ff 100%);
+  }
+
+  .asme-join-page .join-groupme-step-icon {
+    color: rgb(31,105,197);
+  }
+
+  .asme-join-page>div:nth-child(2)>section:nth-child(2)>div:nth-child(2)>aside:nth-child(2)>div:nth-child(2)>p:nth-child(3),
+  .asme-join-page>div:nth-child(2)>section:nth-child(2)>div:nth-child(2)>aside:nth-child(2)>div:nth-child(2)>p:nth-child(4) {
+    color: rgb(83,103,126);
+  }
+
+  .asme-join-page .join-faq-section {
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(238,241,246);
+  }
+
+  .asme-join-page .join-faq-item {
+    background: #f9fafb;
+  }
+
+  .asme-join-page .join-faq-item>summary:hover {
+    background: rgba(187,0,0,0.045);
+  }
+
+  .asme-join-page .join-intro.join-hero-copy>h1,
+  .asme-join-page .join-form-heading>h2 {
+    color: #073b68!important;
+  }
+
+  .asme-join-page .join-groupme-step-copy>h3 {
+    color: rgb(18,63,115)!important;
+  }
+
+  .asme-join-page .join-faq-heading>h2 {
+    color: var(--asme-c-heading)!important;
+  }
+
+  html body #page .entry-content .asme-join-page>section:nth-child(1)>div:nth-child(2):hover::before,
+  html body #page .entry-content .asme-join-page>section:nth-child(1)>div:nth-child(2):focus-visible::before,
+  html body #page#page .entry-content .asme-join-page>section:nth-child(1)>div:nth-child(2)::before,
+  html body #page#page .entry-content .asme-join-page .join-proof-award::before,
+  html body #page#page .entry-content .asme-join-page .join-proof-award:hover::before,
+  html body #page#page .entry-content .asme-join-page .join-proof-award:focus-visible::before {
+    background: #cdd9e7!important;
+  }
+
+  html body #page#page .entry-content .asme-join-page .join-proof-label,
+  html body #page#page .entry-content .asme-join-page .join-award-copy>small {
+    color: rgb(82,98,119)!important;
+  }
+
+  html body #page#page .entry-content .asme-join-page .join-proof-award,
+  html body #page#page .entry-content .asme-join-page .join-proof-award-icon,
+  html body #page#page .entry-content .asme-join-page .join-award-copy>strong {
+    color: rgb(23,53,84)!important;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  .asme-join-page {
+    color: var(--asme-c-text);
+    background: transparent;
+  }
+
+  .asme-join-page .join-stats-bar {
+    color: #ffffff;
+    border: 0;
+    background: #073b68;
+  }
+
+  .asme-join-page .join-proof-num {
+    color: #ffffff;
+  }
+
+  .asme-join-page .join-intro.join-hero-copy {
+    color: var(--asme-c-text);
+  }
+
+  .asme-join-page .join-intro.join-hero-copy .join-eyebrow,
+  .asme-join-page .join-form-heading .join-eyebrow,
+  .asme-join-page .join-faq-heading .join-eyebrow {
+    color: var(--asme-c-subtle);
+  }
+
+  .asme-join-page .join-benefit-copy>strong,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current>span>strong,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme>span>strong,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome>span>strong {
+    color: rgb(248,250,252);
+  }
+
+  .asme-join-page .join-benefit-copy>span {
+    color: rgb(203,213,225);
+  }
+
+  .asme-join-page .join-flow-progress {
+    border-color: #31465f;
+    background: #111f33;
+  }
+
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current .join-flow-progress-number {
+    box-shadow: rgba(186,12,47,0.11) 0px 0px 0px 4px;
+  }
+
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--newsletter.is-current>span>small,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme>span>small,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome>span>small {
+    color: rgb(159,176,196);
+  }
+
+  .asme-join-page .join-flow-progress-line {
+    background: #3b536e;
+  }
+
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--groupme .join-flow-progress-number,
+  .asme-join-page .join-flow-progress-step.join-flow-progress-step--welcome .join-flow-progress-number {
+    color: rgb(185,201,219);
+    border-color: #46617e;
+    background: #20344d;
+  }
+
+  .asme-join-page .join-email-card {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-color: #293a52;
+  }
+
+  .asme-join-page .join-form-heading {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: #293a52;
+  }
+
+  .asme-join-page .join-form-purpose>a {
+    color: var(--asme-readable-accent);
+  }
+
+  .asme-join-page .join-field>label {
+    color: #dbeafe;
+  }
+
+  .asme-join-page .join-field>input {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+  }
+
+  .asme-join-page .join-form-status {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    background: #172a42;
+    border-color: #35516f;
+  }
+
+  .asme-join-page .join-groupme-step.join-groupme-card {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    background: linear-gradient(180deg,#172a42 0%,#14243a 100%);
+    border-color: #304a67;
+  }
+
+  .asme-join-page .join-groupme-step-icon {
+    color: rgb(152,201,255);
+  }
+
+  .asme-join-page .join-faq-section {
+    background: var(--asme-c-surface);
+    border-color: var(--asme-c-border);
+  }
+
+  .asme-join-page .join-faq-item {
+    background: var(--asme-card-soft, #111f33);
+    border-color: var(--asme-c-border);
+  }
+
+  .asme-join-page .join-faq-item>summary {
+    color: rgb(255,255,255);
+  }
+
+  .asme-join-page .join-faq-item>summary:hover {
+    background: rgba(239,68,68,0.08);
+  }
+
+  .asme-join-page .join-intro.join-hero-copy>h1,
+  .asme-join-page .join-form-heading>h2,
+  .asme-join-page .join-groupme-step-copy>h3 {
+    color: rgb(248,250,252)!important;
+  }
+
+  .asme-join-page .join-intro.join-hero-copy>p,
+  .asme-join-page .join-faq-heading>p,
+  .asme-join-page .join-faq-item>p {
+    color: rgb(203,213,225)!important;
+  }
+
+  .asme-join-page .join-form-status {
+    color: rgb(219,233,248)!important;
+  }
+
+  .asme-join-page>div:nth-child(2)>section:nth-child(2)>div:nth-child(2)>aside:nth-child(2)>div:nth-child(2)>p:nth-child(3),
+  .asme-join-page>div:nth-child(2)>section:nth-child(2)>div:nth-child(2)>aside:nth-child(2)>div:nth-child(2)>p:nth-child(4) {
+    color: rgb(189,202,218)!important;
+  }
+
+  .asme-join-page .join-faq-heading>h2 {
+    color: rgb(255,255,255)!important;
+  }
+
+}
+
+/* Carried over unchanged: rules for conditions the compiler does not reproduce
+   from its test views (motion preference, orientation, print) and pseudo-elements
+   DevTools does not report (::placeholder), overlays outside the page content
+   such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
+   [aria-*]) whose values change while the page is used. */
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-join-page .join-groupme-button,
+  body #page .asme-join-page .join-groupme-step,
+  html body #page .entry-content .asme-join-page .join-groupme-button,
+  html body #page .entry-content .asme-join-page .join-groupme-step {
+    transition: none!important;
+  }
+
+}
+
+body #page .asme-join-page .join-form-purpose strong,
+html body #page .entry-content .asme-join-page .join-form-purpose strong {
+  font-weight: 800!important;
+}
+
+body #page .asme-join-page .join-form-status[hidden],
+html body #page .entry-content .asme-join-page .join-form-status[hidden] {
+  display: none!important;
+}
+
+body #page .asme-join-page .join-submit-button:disabled,
+html body #page .entry-content .asme-join-page .join-submit-button:disabled {
+  cursor: wait!important;
+  opacity: 0.78!important;
+  transform: none!important;
+}
+
+.asme-join-page p:empty {
+  display: none!important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .asme-join-page .join-field input::placeholder {
+    color: var(--asme-soft)!important;
+  }
+
+}
+
+.asme-join-page .join-faq-item summary::-webkit-details-marker {
+  display: none!important;
+}
+
+.asme-join-page .join-faq-item[open] summary {
+  padding-bottom: 10px!important;
+}
+
+.asme-join-page .join-faq-item[open] summary::after {
+  content: "−"!important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-faq-item {
+    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-faq-item:hover {
+    transform: translateY(-4px)!important;
+    box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-submit-button {
+    transition: transform 0.18s ease,background 0.18s ease,border-color 0.18s ease!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-submit-button:hover {
+    transform: translateY(-2px)!important;
+  }
+
+}
+
+@media (min-width: 700px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-join-page .join-proof-stat,
+  body #page .asme-join-page .join-proof-award,
+  html body #page .entry-content .asme-join-page .join-proof-stat,
+  html body #page .entry-content .asme-join-page .join-proof-award {
+    width: 100%!important;
+    min-width: 0!important;
+    min-height: 62px!important;
+    margin: 0!important;
+    padding: 9px 10px!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    justify-content: center!important;
+    gap: 4px!important;
+    background: rgba(255,255,255,0.07)!important;
+    border: 1px solid rgba(255,255,255,0.12)!important;
+    border-radius: 12px!important;
+    box-sizing: border-box!important;
+    line-height: 1.2!important;
+  }
+
+}
+
+@media (min-width: 700px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-join-page .join-proof-award {
+    font-size: 10px!important;
+    white-space: normal!important;
+  }
+
+}
+
+body #page .asme-join-page .join-proof-stat>p,
+body #page .asme-join-page .join-proof-award>br,
+body #page .asme-join-page .join-proof-award>p,
+html body #page .entry-content .asme-join-page .join-proof-stat>p,
+html body #page .entry-content .asme-join-page .join-proof-award>br,
+html body #page .entry-content .asme-join-page .join-proof-award>p {
+  display: none!important;
+  margin: 0!important;
+  padding: 0!important;
+}
+
+body #page .asme-join-page .join-faq-item[open] summary::after {
+  content: "+"!important;
+  transform: translateY(-50%) rotate(45deg)!important;
+}
+
+@supports selector(details: : details-content) {
+  body #page .asme-join-page .join-faq-item::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition: block-size 300ms cubic-bezier(0.22,1,0.36,1),opacity 200ms ease,content-visibility 300ms allow-discrete;
+  }
+
+}
+
+@supports selector(details: : details-content) {
+  body #page .asme-join-page .join-faq-item[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+
+}
+
+body #page .asme-join-page .join-field:focus-within label {
+  color: #ef4444!important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-join-page .join-faq-item::details-content,
+  body #page .asme-join-page .join-field input {
+    animation: none!important;
+    transition: none!important;
+  }
+
+}
+
+body #page .asme-join-page .join-form-purpose strong,
+html body #page .entry-content .asme-join-page .join-form-purpose strong {
+  display: block!important;
+  margin-bottom: 3px!important;
+  color: #ba0c2f!important;
+}
+
+body #page .asme-join-page .join-groupme-step-icon svg:not(.join-groupme-logo),
+html body #page .entry-content .asme-join-page .join-groupme-step-icon svg:not(.join-groupme-logo) {
+  visibility: hidden!important;
+}
+
+body #page .asme-join-page .join-groupme-step-icon:has(.join-groupme-logo),
+html body #page .entry-content .asme-join-page .join-groupme-step-icon:has(.join-groupme-logo) {
+  background-image: none!important;
+}
+
+html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):is(:hover,:focus-visible) {
+  background: var(--join-action-hover)!important;
+  border-color: var(--join-action-hover)!important;
+  transform: translateY(-1px)!important;
+}
+
+html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):active {
+  transform: translateY(0)!important;
+}
+
+html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):is(:disabled,[aria-disabled="true"]) {
+  transform: none!important;
+  transition: none!important;
+}
+
+html body #page .entry-content .asme-join-page .join-submit-button:disabled:hover {
+  background: #c8102e!important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm),
+  html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):is(:hover,:focus-visible,:active) {
+    transform: none!important;
+    transition: none!important;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  html body #page .entry-content .asme-join-page .join-form-purpose strong {
+    color: #ffb4b4!important;
+  }
+
+}
+
+@media (min-width: 1800px) {
+  html body #page .entry-content .asme-join-page .join-faq-list>:is(br,p:empty) {
+    display: none!important;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  html body #page .entry-content .asme-join-page a[href*="privacy-policy"] {
+    color: #ffb4c3!important;
+  }
+
+}

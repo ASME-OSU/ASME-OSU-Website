@@ -107,7 +107,28 @@ const modeled = media => !media.includes(',') && media.replace(/\s+/g, '').split
 // <body>, body-level state classes) targets states the compiler never renders,
 // so it is carried verbatim instead of derived.
 const contentClasses = new Set();
+// Owned selectors that matched an element in at least one view. One that never
+// matches targets a state the suite does not render (a later sign-up step,
+// an open dialog), so it is carried verbatim instead of being dropped.
+const OWNED_SELECTORS = (() => {
+  const list = new Set();
+  const visit = nodes => nodes.forEach(node => {
+    if (node.type === 'Atrule' && node.block) { if (!/keyframes/.test(node.name)) visit(node.block.children); return; }
+    if (node.type === 'Rule' && node.prelude.children) node.prelude.children.forEach(sel => { const text = generate(sel); if (owned(text)) list.add(text); });
+  });
+  visit(parse(fs.readFileSync('ASME Custom CSS.min.css', 'utf8')).children);
+  return [...list];
+})();
+const matchedSelectors = new Set();
 const withinContent = (selector, classes) => [...requirements(selector).classes].every(c => classes.has(c));
+
+// Selectors whose match depends on state that changes while the page is used
+// (a [hidden] status message, [aria-expanded], :empty, :checked). Their values
+// hold only in the state the compiler happened to render, so they are never
+// derived; the rules are carried verbatim.
+const DYNAMIC_ATTRIBUTE = /\[\s*(hidden|open|disabled|checked|selected|readonly|required|inert|style|aria-[\w-]+|data-[\w-]+)\b/i;
+const DYNAMIC_PSEUDO = /:(empty|has|checked|disabled|enabled|invalid|valid|user-invalid|user-valid|placeholder-shown|target|focus-within|open|closed|read-only|read-write|indeterminate|defined|popover-open|modal|playing|paused)(?![\w-])/i;
+const dynamic = selector => DYNAMIC_ATTRIBUTE.test(selector) || DYNAMIC_PSEUDO.test(selector);
 
 function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
   // Returns Map(prop -> { value, important, owned, spec, sheet, kept: [competitors] })
@@ -121,7 +142,7 @@ function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
     const spec = matching.map(s => s.specificity || zero).sort(cmp).pop() || zero;
     const isOurs = ourSheets.has(rule.styleSheetId);
     const inModeledMedia = (rule.media || []).filter(m => m.source === 'mediaRule').every(m => modeled(m.text));
-    const isOwned = isOurs && inModeledMedia && matching.length > 0 && matching.every(s => owned(normalize(s.text)) && withinContent(normalize(s.text), viewClasses));
+    const isOwned = isOurs && inModeledMedia && matching.length > 0 && matching.every(s => owned(normalize(s.text)) && withinContent(normalize(s.text), viewClasses) && !dynamic(normalize(s.text)));
     const selectorText = matching.map(s => s.text).join(', ');
     const seen = new Set();
     const fallback = isOurs && !rule.style.range ? sourceDeclarations(rule) : null;
@@ -146,7 +167,7 @@ function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
         if (seen.has(key)) continue; seen.add(key);
         // Owned selectors under unmodeled media are carried to the end of the
         // page file, so they compete as later rules: beating them needs more.
-        const carriedRule = isOurs && !inModeledMedia && matching.length > 0 && matching.every(sel => owned(normalize(sel.text)));
+        const carriedRule = isOurs && matching.length > 0 && matching.every(sel => owned(normalize(sel.text))) && (!inModeledMedia || matching.some(sel => dynamic(normalize(sel.text))));
         push(part.name, { value, important: !!p.important, owned: isOwned, spec, sheet: rule.styleSheetId, ours: isOurs && !carriedRule, order, selectorText, src });
       }
     }
@@ -250,6 +271,11 @@ await pool(VIEWS, 4, async view => {
   const { nodeIds } = await cdp.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: CONTENT });
   // Element keys: a selector describing each element, computed in the page.
   const viewClasses = new Set(await page.evaluate(content => [...new Set([...document.querySelectorAll(content)].flatMap(el => [...el.classList]))], CONTENT));
+  (await page.evaluate(list => list.filter(sel => {
+    const bare = sel.replace(/::?(before|after|placeholder|marker|selection|first-line|first-letter|backdrop|-webkit-[a-z-]+|-moz-[a-z-]+)(\([^)]*\))?/g, '')
+      .replace(/:(hover|focus|focus-visible|focus-within|active|visited|checked|disabled|target|placeholder-shown)(?![\w-])/g, '').trim() || '*';
+    try { return !!document.querySelector(bare); } catch { return true; }
+  }), OWNED_SELECTORS)).forEach(sel => matchedSelectors.add(sel));
   viewClasses.forEach(c => contentClasses.add(c));
   const keys = await page.evaluate(([wrapper, content]) => {
     const dynamic = new Set(['asme-animate', 'asme-reveal', 'is-visible', 'asme-page-last-block', 'asme-page-bottom-frame', 'asme-footer-spacer']);
@@ -732,7 +758,8 @@ function stripOwned(text) {
     const unmodeled = chain.some(at => at.name !== 'media' || !modeled(at.prelude));
     const opaquePseudo = sel => /::(?!before\b|after\b)[a-z-]+/i.test(sel);
     const outsideContent = sel => !withinContent(sel, contentClasses);
-    const mine = selectors.filter(s => owned(generate(s))).map(s => generate(s)).filter(sel => (unmodeled || opaquePseudo(sel) || outsideContent(sel)) && reachesPage(sel));
+    const neverMatched = sel => !matchedSelectors.has(sel);
+    const mine = selectors.filter(s => owned(generate(s))).map(s => generate(s)).filter(sel => (unmodeled || opaquePseudo(sel) || outsideContent(sel) || neverMatched(sel) || dynamic(sel)) && reachesPage(sel));
     if (mine.length) carried.push({ chain, selectors: mine, block: generate(node.block) });
     removedSelectors += selectors.length - keep.length;
     if (!keep.length) { removedRules += 1; edits.push([node.loc.start.offset, node.loc.end.offset, '']); }
@@ -759,7 +786,7 @@ const sharedFiles = ['styles/design-system.css', 'styles/widescreen.css', 'style
 const shared = sharedFiles.map(file => [file, stripOwned(fs.readFileSync(file, 'utf8'))]);
 if (carried.length) {
   const raw = carried.map(({ chain, selectors, block }) => chain.reduceRight((inner, at) => `@${at.name} ${at.prelude}{${inner}}`, `${selectors.join(',')}${block}`)).join('\n');
-  css += '\n/* Carried over unchanged: rules for conditions the compiler does not reproduce\n   from its test views (motion preference, orientation, print) and pseudo-elements\n   DevTools does not report (::placeholder), and overlays outside the page content\n   such as the gallery lightbox. */\n' + pretty(raw);
+  css += '\n/* Carried over unchanged: rules for conditions the compiler does not reproduce\n   from its test views (motion preference, orientation, print) and pseudo-elements\n   DevTools does not report (::placeholder), overlays outside the page content\n   such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,\n   [aria-*]) whose values change while the page is used. */\n' + pretty(raw);
 }
 
 console.log(`${name}: ${decls} declarations in ${[...byMedia.values()].reduce((t, r) => t + r.length, 0)} rules (${importantCount} !important); specificity levels used ${levelCount.join('/')} (plain / #page / html body #page .entry-content / doubled id)`);

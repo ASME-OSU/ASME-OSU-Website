@@ -56,35 +56,4 @@
 }
 
 /* Full-width newsletter first; the two follow-up steps share the next row. */
-@media (min-width: 901px) and (max-width: 1199px) {
-  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-process-area {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    grid-template-rows: auto !important; row-gap: 12px !important;
-  }
-  html body #page .entry-content .asme-join-page.asme-join-three-step section.join-process-area::before,
-  html body #page .entry-content .asme-join-page.asme-join-three-step #joinNewsletterStep::after,
-  html body #page .entry-content .asme-join-page.asme-join-three-step #joinGroupMeProgress::after { display: none !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step div#joinNewsletterStep { grid-column: 1 / -1 !important; grid-row: 1 !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step div#newsletter-signup { grid-column: 1 / -1 !important; grid-row: 2 !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step a#joinGroupMeProgress { grid-column: 1 !important; grid-row: 3 !important; margin-top: 12px !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step div#joinWelcomeProgress { grid-column: 2 !important; grid-row: 3 !important; margin-top: 12px !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step aside#joinGroupMeStep { grid-column: 1 !important; grid-row: 4 !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step section#asme-groupme-return { grid-column: 2 !important; grid-row: 4 !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step div.join-flow-progress-step,
-  html body #page .entry-content .asme-join-page.asme-join-three-step a.join-flow-progress-step {
-    border: 1px solid #d8dee7 !important; border-radius: 12px !important;
-    background: #f5f7fb !important; min-height: 56px !important; padding: 12px 20px !important;
-  }
-  html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon,
-  html body #page .entry-content .asme-join-page.asme-join-three-step .join-welcome-visual { margin-bottom: 20px !important; }
-}
 
-@media (prefers-color-scheme: dark) {
-  html body #page .entry-content .asme-join-page a[href*="privacy-policy"] { color: #ffb4c3 !important; }
-  @media (min-width: 901px) and (max-width: 1199px) {
-    html body #page .entry-content .asme-join-page.asme-join-three-step div.join-flow-progress-step,
-    html body #page .entry-content .asme-join-page.asme-join-three-step a.join-flow-progress-step {
-      background: #111f33 !important; border-color: #31465f !important;
-    }
-  }
-}

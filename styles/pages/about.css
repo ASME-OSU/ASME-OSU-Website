@@ -73,11 +73,6 @@
 
 .asme-about-page .about-hero-actions>br,
 .asme-about-page .about-hero-badges>br,
-.asme-about-page .about-pillars>p,
-.asme-about-page .about-photo-strip>p,
-.asme-about-page .about-stats-strip>p,
-.asme-about-page .about-award-inner>p,
-.asme-about-page .about-semester-grid>p,
 .asme-about-page .about-cta-buttons>br {
   display: none;
 }
@@ -183,15 +178,9 @@
   margin: 0;
 }
 
-.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:not(:empty),
-.asme-about-page .about-section-heading.about-section-heading--compact>p:not(:empty) {
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
+.asme-about-page .about-section-heading.about-section-heading--compact>p {
   line-height: 1.65;
-}
-
-.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:empty,
-.asme-about-page .about-section-heading.about-section-heading--compact>p:empty {
-  line-height: 1.65;
-  display: none;
 }
 
 .asme-about-page .about-pillars {
@@ -553,10 +542,8 @@
     max-width: 640px;
   }
 
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:not(:empty),
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:empty,
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:not(:empty),
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:empty {
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
+  .asme-about-page .about-section-heading.about-section-heading--compact>p {
     max-width: 720px;
     font-size: 14px;
   }
@@ -708,10 +695,8 @@
     min-height: 0px;
   }
 
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:not(:empty),
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:empty,
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:not(:empty),
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:empty {
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
+  .asme-about-page .about-section-heading.about-section-heading--compact>p {
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -924,10 +909,8 @@
     max-width: 20ch;
   }
 
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:not(:empty),
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:empty,
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:not(:empty),
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:empty {
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
+  .asme-about-page .about-section-heading.about-section-heading--compact>p {
     margin: 12px 0 0;
   }
 
@@ -981,10 +964,8 @@
     max-width: none;
   }
 
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:not(:empty),
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:empty,
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:not(:empty),
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:empty {
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
+  .asme-about-page .about-section-heading.about-section-heading--compact>p {
     max-width: 64ch;
     font-size: 18px;
     margin: 0;
@@ -1034,10 +1015,8 @@
     background: #f3f6fa;
   }
 
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:not(:empty),
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:empty,
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:not(:empty),
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:empty {
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
+  .asme-about-page .about-section-heading.about-section-heading--compact>p {
     color: var(--asme-c-readable-muted);
   }
 
@@ -1158,11 +1137,9 @@
   }
 
   .asme-about-page .about-hero-copy>p,
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:not(:empty),
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:empty,
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
   .asme-about-page .about-pillar>p,
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:not(:empty),
-  .asme-about-page .about-section-heading.about-section-heading--compact>p:empty,
+  .asme-about-page .about-section-heading.about-section-heading--compact>p,
   .asme-about-page .about-semester-step>p {
     color: rgb(195,207,221)!important;
   }
@@ -1171,7 +1148,9 @@
 
 /* Carried over unchanged: rules for conditions the compiler does not reproduce
    from its test views (motion preference, orientation, print) and pseudo-elements
-   DevTools does not report (::placeholder). */
+   DevTools does not report (::placeholder), overlays outside the page content
+   such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
+   [aria-*]) whose values change while the page is used. */
 @media (prefers-reduced-motion: no-preference) {
   .about-pillar {
     transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
@@ -1185,6 +1164,28 @@
     box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
   }
 
+}
+
+body #page .asme-about-page .about-pillars>p:empty,
+body #page .asme-about-page .about-photo-strip>p:empty,
+body #page .asme-about-page .about-stats-strip>p:empty,
+body #page .asme-about-page .about-semester-grid>p:empty,
+body #page .asme-about-page .about-award-inner>p:empty,
+body #page .asme-about-page .about-section-heading>p:empty,
+html body #page .entry-content .asme-about-page .about-pillars>p:empty,
+html body #page .entry-content .asme-about-page .about-photo-strip>p:empty,
+html body #page .entry-content .asme-about-page .about-stats-strip>p:empty,
+html body #page .entry-content .asme-about-page .about-semester-grid>p:empty,
+html body #page .entry-content .asme-about-page .about-award-inner>p:empty,
+html body #page .entry-content .asme-about-page .about-section-heading>p:empty {
+  display: none!important;
+}
+
+body #page .asme-about-page .about-stat-item>p,
+html body #page .entry-content .asme-about-page .about-stat-item>p {
+  display: none!important;
+  margin: 0!important;
+  padding: 0!important;
 }
 
 @media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {

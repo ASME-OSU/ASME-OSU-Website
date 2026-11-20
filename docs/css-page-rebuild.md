@@ -12,6 +12,7 @@ node scripts/css-compile-page.mjs about                # dry run: stats + previe
 node scripts/css-compile-page.mjs about --write --tokens
 npm run build:styles
 npm run visual:compare                                 # must be 106/106, pixels and computed styles
+npm run test:browser                                   # interactive flows the screenshots cannot see (sign-up, retry)
 ```
 
 If the comparison fails, restore the stylesheet files from git, fix the cause, and compile again. The compiler reads the page's current rules, so it must run against the unmodified layers.
@@ -62,6 +63,11 @@ Found on Gallery:
 - **Overlays outside the page content.** The footer script appends the photo lightbox to `<body>` and gives it its open-state classes only on click. The compiler examines only the page content and never clicks, so it carries verbatim any owned selector that needs a class never found inside the page content (the lightbox, body-level state classes such as `asme-lightbox-open-body`). Gallery's carried section is large (127 `!important`) for this reason: it holds the lightbox's rules unchanged.
 - **Script layouts follow image load order.** The gallery script plans justified rows from each photo's aspect ratio, read from the loaded image or, before it loads, from its `width`/`height` attributes. One photo's file is 303×227 while its attributes say 768×576; that 0.1% difference decides between `span 4` and `span 5`. The harness now fires one `resize` after everything has loaded so scripts lay out again from final inputs. That fixed most cases, but `gallery--768` still varies between runs with the same stylesheet, matching on some runs and not others. Visitors can see either layout too. Treat a difference limited to two gallery photos' column spans there as noise.
 
+Found on Join:
+
+- **State combinations the suite never renders.** After a sign-up, the script moves the steps along with `is-current`/`is-complete`. A rule such as `.join-step--groupme.is-current` combines classes that each appear on the page, but never together in any rendered state. The compiler now tests every page-owned selector against each view and carries verbatim any that never match.
+- **State-dependent selectors are never derived.** `.join-form-status[hidden] { display: none !important }` won in every rendered view, because the status message is hidden until a form is submitted. It was written as an unconditional `display: none`, so the confirmation and error messages never appeared. The screenshots could not show it; `npm run test:browser` (the newsletter flow) did. Selectors using attributes that change at runtime (`[hidden]`, `[open]`, `[disabled]`, `[aria-*]`, `[data-*]`) or pseudo-classes such as `:empty`, `:has()`, `:checked` and `:invalid` are now carried verbatim and compete as later rules. All pages were recompiled with this fix, and `test:browser` is part of every page's verification.
+
 Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winners the compiler records for matching elements, and `DEBUG_RAW=<selector text>` prints the raw DevTools entries for matching rules.
 
 ## Limits
@@ -74,14 +80,15 @@ Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winner
 
 | Page | `!important` before → after (derived + carried) | Verified |
 | --- | --- | --- |
-| About | 467 → 13 + 11 | 106/106 pixels + computed styles |
-| Calendar | 317 → 15 + 10 | 106/106 pixels + computed styles |
-| Privacy | 0 → 0 (4 rules) | 106/106 pixels + computed styles |
-| Sponsor ASME + Current Sponsors (group) | 1,866 → 185 + 85 | 106/106 pixels + computed styles |
-| Gallery | 779 → 18 + 127 | 105/106; `gallery--768` varies run to run (see below) |
-| Leadership | 67 → 5 (legacy layer) | 106/106 pixels + computed styles (see below) |
+| About | 467 → 13 + 15 | screenshots + computed styles + browser tests |
+| Calendar | 317 → 15 + 21 | screenshots + computed styles + browser tests |
+| Privacy | 0 → 0 (4 rules) | screenshots + computed styles + browser tests |
+| Sponsor ASME + Current Sponsors (group) | 1,866 → 186 + 233 | screenshots + browser tests; see note on Current Sponsors 768px |
+| Gallery | 779 → 18 + 149 | screenshots + browser tests; `gallery--768` varies run to run |
+| Leadership | 67 → 5 + 61 | screenshots + computed styles + browser tests |
+| Join | 825 → 51 + 57 | screenshots + computed styles + browser tests (newsletter flow) |
 
-All pages were recompiled together from the Phase 1 stylesheet with the final compiler on November 19, 2026. Whole stylesheet compared with Phase 1: 635 → 610 KB minified (77.2 → 74.3 KB gzipped), 9,056 → 6,631 `!important`. "Carried" rules are copied verbatim (motion preference, orientation, `::placeholder`) and keep their original `!important`. The sponsor pages' derived rules still need `!important` in about 8% of declarations to beat site-wide button and form-field rules. That falls once those shared rules are rebuilt.
+All eight pages were recompiled together from the Phase 1 stylesheet with the final compiler on November 20, 2026. Result: 102/106 screenshots match in pixels and computed styles, and all 9 browser tests pass. Whole stylesheet compared with Phase 1: 9,056 → 5,428 `!important`, 77.2 → 73.4 KB gzipped. The carried sections hold rules copied verbatim, with their original `!important` (motion preference, orientation, `::placeholder`, overlays, state-dependent selectors). They are larger than the size savings because state-dependent rules can no longer be merged into derived ones. The four differences: `gallery--768` (light and dark), the timing-dependent justified row, and `current-sponsors--768` (light and dark), where four empty, zero-height WordPress `<p>` elements in the logo cards now occupy a different grid cell (pixel-identical).
 
 Privacy was already clean in the stylesheet. Its styling is a scoped `<style id="asme-privacy-styles">` block inside `Privacy Policy Page.html` (63 rules, 3 `!important`, its own `--pp-*` colors), published with the page through CampusPress. Only the tablet table-of-contents rules lived in `styles/*.css`; they moved to `styles/pages/privacy.css`. Moving the inline block into the stylesheet would also mean republishing the page (see `docs/privacy-page-publishing.md`), so it stays where it is. The 6 shared rules still reaching Privacy are the site-wide ones every page shares.
 

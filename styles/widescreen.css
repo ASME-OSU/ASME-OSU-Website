@@ -69,12 +69,12 @@
 
   /* Join: readable introduction and FAQ answers that don't span the monitor. */
   /* These selectors also outrank the legacy stylesheet embedded in Join HTML. */
-  html body #page .entry-content .asme-join-page.asme-join-three-step div.join-main-layout { grid-template-columns: minmax(400px, 1fr) minmax(0, 3fr) !important; gap: 32px !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step .join-intro.join-hero-copy h1 { font-size: clamp(42px, 2.3vw, 58px) !important; }
-  html body #page .entry-content .asme-join-page.asme-join-three-step .join-intro.join-hero-copy > p { max-width: 44ch !important; font-size: 18px !important; line-height: 1.65 !important; }
-  html body #page .entry-content .asme-join-page .join-faq-list { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px 24px !important; align-items: start !important; }
-  html body #page .entry-content .asme-join-page .join-faq-item { margin: 0 !important; }
-  html body #page .entry-content .asme-join-page .join-faq-list > :is(br, p:empty) { display: none !important; }
+  
+  
+  
+  
+  
+  
 
   /* Calendar: readable agenda beside the month view, with help below it. */
   
