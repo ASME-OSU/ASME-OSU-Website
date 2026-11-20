@@ -50,7 +50,7 @@ Then hard refresh the site.
 
 | File | WordPress location | Purpose |
 | --- | --- | --- |
-| `ASME Custom CSS.css` | Header stylesheet link from GitHub/jsDelivr | Site-wide styling, responsive fixes, dark mode, navigation, footer, and page-specific polish. |
+| `ASME Custom CSS.css` | Header stylesheet link from GitHub/jsDelivr | Site-wide styling, responsive fixes, dark mode, navigation, footer, and page-specific polish. Built in layers by `npm run build:styles`: edit `styles/tokens.css` and `styles/foundation.css` for the generated foundation block, and only the legacy section in this file by hand. See [Stylesheet foundation](docs/css-foundation.md). |
 | `Home Page.html` | Home page custom HTML block | Home hero, stats, quick links, and event preview content. |
 | `About Us Page.html` | About page custom HTML block | About ASME OSU content, mission, and pillars. |
 | `Join Page.html` | Join page custom HTML block | Join/signup content, GroupMe connection step, and FAQ. |
@@ -72,7 +72,7 @@ Then hard refresh the site.
 
 Before saving a CampusPress page, follow the [page publishing guide](docs/campuspress-publishing.md). **Click Update in the Publish panel (`#publish`), not the profile/header area.** Use a fresh accessibility target, confirm **Page updated**, and verify the saved source and public page. A previous Update click opened Profile without saving; the guide documents the recovery.
 
-1. Edit the file in this repo.
+1. Edit the file in this repo. For CSS changes, run `npm run visual:baseline` first and `npm run visual:compare` after; see [Visual regression suite](docs/visual-regression.md).
 2. Commit the change.
 3. Push to `main`.
 4. If CSS changed, purge jsDelivr.

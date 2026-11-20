@@ -1,0 +1,329 @@
+/* Site-wide base: CSS variables, element defaults, theme containers and the
+   scroll-reveal animation. Built ahead of the legacy layer by build-styles.mjs.
+   Page and component styles do not belong here. */
+
+:root {
+  --asme-page-width: 2200px;
+  --asme-content-width: 1700px;
+  --asme-gutter: 12px;
+  --asme-sidebar-width: 320px;
+  --asme-gap: 16px;
+
+  --asme-navy: #0f3460;
+  --asme-blue: #1a6cb8;
+  --asme-text: #1a1a2e;
+  --asme-muted: #6b7280;
+  --asme-soft: #9ca3af;
+  --asme-bg: #f4f5f7;
+  --asme-card: #ffffff;
+  --asme-line: #e5e7eb;
+  --asme-chip: #e8f4fd;
+  --asme-shadow: 0 6px 20px rgba(15, 52, 96, 0.08);
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--asme-bg) !important;
+  color: var(--asme-text) !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--asme-navy);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+a:hover {
+  color: var(--asme-blue);
+}
+
+.site,
+#page,
+.site-content,
+#content,
+.site-inner,
+.wrap,
+.content-sidebar-wrap,
+#primary,
+.content-area,
+#main,
+.site-main {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+.site-content,
+#content.site-content,
+.site-content .wrap,
+.content-sidebar-wrap {
+  max-width: var(--asme-page-width) !important;
+  margin: 0 auto !important;
+  padding: 16px var(--asme-gutter) 0 !important;
+}
+
+.page #primary,
+.page .content-area,
+.page .site-main,
+.page .entry-content {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.entry-content {
+  flex: 1 !important;
+  padding: 0 12px 4px !important;
+}
+
+@media (max-width:1100px) {
+  :root {
+      --asme-sidebar-width: 260px;
+    }
+}
+
+@media (max-width:768px) {
+  :root {
+      --asme-gutter: 8px;
+    }
+}
+
+@media (max-width:768px) {
+  .site-content,
+    #content.site-content,
+    .site-content .wrap,
+    .content-sidebar-wrap {
+      padding-left: 6px !important;
+      padding-right: 6px !important;
+    }
+}
+
+:root {
+  --osu-scarlet: #BB0000;
+  --osu-scarlet-dark: #8F0000;
+  --osu-scarlet-light: #f5e6e6;
+  --osu-gold: #C8AA6E;
+}
+
+@media (prefers-color-scheme:dark) {
+  :root {
+      --asme-bg: #07111f;
+      --asme-card: #0f1b2d;
+      --asme-card-soft: #111f33;
+      --asme-line: #26364f;
+      --asme-text: #f8fafc;
+      --asme-muted: #cbd5e1;
+      --asme-soft: #94a3b8;
+      --asme-navy: #f8fafc;
+      --asme-blue: #93c5fd;
+      --asme-chip: #1e293b;
+      --osu-scarlet: #bb0000;
+      --osu-scarlet-dark: #990000;
+    }
+}
+
+.site-content,
+#content.site-content,
+.site-content .wrap,
+.content-sidebar-wrap,
+#primary,
+.content-area,
+#main,
+.site-main,
+.entry-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+@media (max-width:768px) {
+  html,
+    body {
+      overflow-x: hidden !important;
+    }
+}
+
+@media (max-width:768px) {
+  body .site,
+    body #page,
+    body .site-content,
+    body #content,
+    body #content.site-content,
+    body .site-content .wrap,
+    body .content-sidebar-wrap,
+    body #primary,
+    body .content-area,
+    body #main,
+    body .site-main,
+    body article,
+    body article.page,
+    body .inside-article,
+    body .entry-content {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      box-sizing: border-box !important;
+    }
+}
+
+:root {
+  --asme-motion-distance: 18px;
+  --asme-motion-duration: 0.55s;
+  --asme-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion:no-preference) {
+  .asme-reveal,
+    .asme-animate {
+      opacity: 0;
+      transform: translateY(var(--asme-motion-distance));
+      transition:
+        opacity var(--asme-motion-duration) var(--asme-motion-ease),
+        transform var(--asme-motion-duration) var(--asme-motion-ease),
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+      transition-delay: var(--asme-delay, 0ms);
+      will-change: opacity, transform;
+    }
+}
+
+@media (prefers-reduced-motion:no-preference) {
+  .asme-reveal.is-visible,
+    .asme-animate.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .asme-reveal,
+    .asme-animate {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+}
+
+.entry-content,
+.page-content,
+.site-main,
+.content-area,
+main#main {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+@media (prefers-color-scheme:light) {
+  body {
+      background-color: #f5f7fa !important;
+    }
+}
+
+@media (prefers-color-scheme:light) {
+  .site-content,
+    #content {
+      background-color: #f5f7fa !important;
+    }
+}
+
+@media (min-width:1920px) {
+  :root {
+      --asme-content-width: 2100px;
+    }
+}
+
+:root {
+  --asme-glass-light: rgba(255, 255, 255, 0.82);
+  --asme-glass-light-strong: rgba(255, 255, 255, 0.92);
+  --asme-glass-dark: rgba(10, 24, 42, 0.86);
+  --asme-glass-line: rgba(255, 255, 255, 0.56);
+  --asme-glass-shadow: 0 14px 38px rgba(15, 52, 96, 0.14);
+}
+
+@media (min-width:981px) {
+  body.page #content.site-content,
+    body.page .site-content {
+      box-sizing: border-box !important;
+      width: calc(100% - 80px) !important;
+      max-width: 2100px !important;
+      margin-right: auto !important;
+      margin-left: auto !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+}
+
+@media (min-width:981px) {
+  body.page #content.site-content > .wrap,
+    body.page .site-content > .wrap,
+    body.page .site-content .wrap,
+    body.page #content.site-content > .content-sidebar-wrap,
+    body.page .site-content > .content-sidebar-wrap,
+    body.page .content-sidebar-wrap,
+    body.page #primary,
+    body.page .content-area,
+    body.page #main,
+    body.page .site-main,
+    body.page article.page,
+    body.page .inside-article,
+    body.page .entry-content {
+      box-sizing: border-box !important;
+      width: 100% !important;
+      max-width: none !important;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+}
+
+@media (min-width:769px) and (max-width:980px) {
+  body.page #content.site-content,
+    body.page .site-content {
+      box-sizing: border-box !important;
+      width: calc(100% - 40px) !important;
+      max-width: none !important;
+      margin-right: auto !important;
+      margin-left: auto !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+}
+
+@media (min-width:769px) and (max-width:980px) {
+  body.page #content.site-content > .wrap,
+    body.page .site-content > .wrap,
+    body.page .site-content .wrap,
+    body.page #content.site-content > .content-sidebar-wrap,
+    body.page .site-content > .content-sidebar-wrap,
+    body.page .content-sidebar-wrap,
+    body.page #primary,
+    body.page .content-area,
+    body.page #main,
+    body.page .site-main,
+    body.page article.page,
+    body.page .inside-article,
+    body.page .entry-content {
+      box-sizing: border-box !important;
+      width: 100% !important;
+      max-width: none !important;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+}

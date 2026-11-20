@@ -1,0 +1,39 @@
+/* /asme/privacy-policy/ page styles, compiled from the legacy and shared layers by
+   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
+   by hand from here on and verify with npm run visual:compare. */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .asme-privacy-page .pp-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+  }
+
+  .asme-privacy-page .pp-nav>strong {
+    flex-basis: 100%;
+  }
+
+  .asme-privacy-page .pp-nav>a {
+    align-items: center;
+    min-height: 44px;
+  }
+
+  #page .asme-privacy-page .pp-layout {
+    gap: 28px;
+    grid-template-columns: minmax(0px,1fr);
+  }
+
+  #page .asme-privacy-page .pp-nav {
+    position: static;
+  }
+
+  #page .asme-privacy-page .pp-nav>strong {
+    margin-bottom: 4px;
+  }
+
+  #page .asme-privacy-page .pp-nav>a {
+    display: inline-flex;
+    padding: 8px 0;
+  }
+
+}

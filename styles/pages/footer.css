@@ -1,0 +1,1132 @@
+/* /asme/ page styles, compiled from the legacy and shared layers by
+   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
+   by hand from here on and verify with npm run visual:compare. */
+.asme-footer-inner {
+  text-align: center;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+}
+
+.asme-footer-inner .asme-footer-grid {
+  border-bottom: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  justify-items: stretch;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-brand {
+  flex-direction: column;
+  align-items: center;
+  display: block;
+  padding-bottom: 0px;
+  min-width: 0px;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3 {
+  position: relative;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 0 0 13px;
+  line-height: 1.08;
+  margin-bottom: 21px;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3::after,
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3:hover::after,
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3:focus-visible::after,
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3::after,
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3:hover::after,
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3:focus-visible::after,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3::after,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3:hover::after,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3:focus-visible::after {
+  content: "";
+  position: absolute;
+  width: 52px;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--asme-c-accent);
+  bottom: 0px;
+}
+
+.asme-footer-inner .asme-footer-logo {
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+  width: auto;
+  text-decoration: none;
+}
+
+.asme-footer-inner .asme-footer-logo:hover,
+.asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link):hover,
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a:hover,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme):hover,
+.asme-footer-inner .asme-footer-linkedin:hover,
+.asme-footer-inner .asme-footer-groupme:hover {
+  color: var(--asme-c-accent);
+}
+
+.asme-footer-inner .asme-footer-logo:focus-visible,
+.asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link):focus-visible,
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a:focus-visible,
+.asme-footer-inner .asme-footer-login:focus-visible,
+.asme-footer-inner.asme-footer-inner.asme-footer-inner .asme-footer-address-link:focus-visible {
+  border-radius: 3px;
+}
+
+.asme-footer-inner .asme-footer-logo>img {
+  display: block;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.asme-footer-inner .asme-footer-contact {
+  display: grid;
+}
+
+.asme-footer-inner .asme-footer-address {
+  text-decoration: none;
+  line-height: 1.45;
+}
+
+.asme-footer-inner .asme-footer-address-link {
+  font-style: inherit;
+  font-variant-ligatures: inherit;
+  font-variant-caps: inherit;
+  font-variant-numeric: inherit;
+  font-variant-east-asian: inherit;
+  font-variant-alternates: inherit;
+  font-variant-position: inherit;
+  font-variant-emoji: inherit;
+  font-weight: inherit;
+  font-stretch: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-size-adjust: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-language-override: inherit;
+}
+
+.asme-footer-inner .asme-footer-icon-label>svg,
+.asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>svg:nth-child(1),
+.asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>svg:nth-child(1),
+.asme-footer-inner .asme-footer-login>svg {
+  display: block;
+  flex: 0 0 auto;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: currentcolor;
+}
+
+.asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+  text-decoration: none;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.asme-footer-inner .asme-footer-contact>p>svg {
+  display: block;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: currentcolor;
+  margin-top: 1px;
+}
+
+.asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link) {
+  text-decoration: none;
+  display: inline;
+  width: auto;
+  margin: 0;
+  text-align: inherit;
+  font-style: inherit;
+  font-variant-ligatures: inherit;
+  font-variant-caps: inherit;
+  font-variant-numeric: inherit;
+  font-variant-east-asian: inherit;
+  font-variant-alternates: inherit;
+  font-variant-position: inherit;
+  font-variant-emoji: inherit;
+  font-weight: inherit;
+  font-stretch: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-size-adjust: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-language-override: inherit;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links,
+.asme-footer-inner .asme-footer-col.asme-footer-connect {
+  flex-direction: column;
+  align-items: center;
+  display: block;
+  min-width: 0px;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+  position: relative;
+  padding: 0 0 13px;
+  line-height: 1.08;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li {
+  margin: 0;
+  padding: 0;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+  text-decoration: none;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a>svg {
+  display: block;
+  flex: 0 0 auto;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: currentcolor;
+  width: 17px;
+  height: 17px;
+  color: rgb(113,131,157);
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+.asme-footer-inner .asme-footer-linkedin,
+.asme-footer-inner .asme-footer-groupme {
+  text-decoration: none;
+  align-items: center;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.asme-footer-inner .asme-footer-linkedin>svg {
+  display: block;
+  flex: 0 0 auto;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: none;
+  fill: currentcolor;
+}
+
+.asme-footer-inner .asme-footer-groupme-icon {
+  display: block;
+  flex: 0 0 auto;
+  -webkit-mask: url(https://asme-osu.github.io/ASME-OSU-Website/assets/groupme-mark.svg)center/contain no-repeat;
+  background-color: currentcolor;
+}
+
+.asme-footer-inner .asme-footer-bottom {
+  flex-wrap: wrap;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  text-align: center;
+}
+
+.asme-footer-inner .asme-footer-bottom>span {
+  opacity: 1;
+  display: block;
+  width: auto;
+  margin: 0;
+  color: inherit;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.asme-footer-inner .asme-footer-login {
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+  font-weight: 400!important;
+  font-family: "DM Serif Display",Georgia,serif!important;
+}
+
+.asme-footer-inner .asme-footer-login:hover {
+  color: var(--asme-c-accent)!important;
+}
+
+@media (max-width: 1099px) {
+  .asme-footer-inner .asme-footer-grid {
+    column-gap: 0px;
+    grid-template-columns: 1.12fr 0.88fr;
+    row-gap: 42px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    padding-left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-address {
+    align-items: flex-start;
+  }
+
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    display: flex;
+    align-items: flex-start;
+    width: auto;
+    text-align: left;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    text-align: left;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:focus-visible::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:focus-visible::after {
+    left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    text-align: left;
+    grid-column: 1/-1;
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    position: relative;
+  }
+
+  .asme-footer-inner .asme-footer-login {
+    align-items: center;
+    opacity: 0.25;
+  }
+
+  .asme-footer-inner .asme-footer-login:hover {
+    opacity: 0.7;
+  }
+
+  .asme-footer-inner .asme-footer-login>svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .asme-footer-inner .asme-footer-login {
+    display: none!important;
+  }
+
+}
+
+@media (max-width: 1919px) {
+  .asme-footer-inner {
+    max-width: 1440px;
+  }
+
+}
+
+@media (max-width: 479px) {
+  .asme-footer-inner {
+    width: calc(100% - 28px);
+    padding-top: 36px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    padding-top: 28px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    font-size: 27px;
+  }
+
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    gap: 11px;
+    font-size: 14px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 28px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+    gap: 10px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    min-height: 92px;
+    padding: 13px 8px;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .asme-footer-inner {
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-grid {
+    display: block;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    padding-right: 0px;
+    text-align: center;
+    border: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3 {
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:focus-visible::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .asme-footer-inner .asme-footer-contact {
+    justify-items: start;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    border: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 20px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul {
+    gap: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    min-height: 52px;
+    padding: 9px 2px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+    grid-template-columns: repeat(2,minmax(0px,1fr));
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>svg:nth-child(1),
+  .asme-footer-inner .asme-footer-linkedin>svg,
+  .asme-footer-inner .asme-footer-groupme-icon,
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>svg:nth-child(1) {
+    width: 25px;
+    height: 25px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    box-sizing: border-box;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 40px;
+    padding: 25px 8px 30px;
+    min-height: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom>span {
+    white-space: normal;
+    max-width: 330px;
+    font-size: 13px;
+  }
+
+  .asme-footer-inner.asme-footer-inner .asme-footer-logo {
+    justify-content: center!important;
+  }
+
+}
+
+@media (min-width: 480px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    padding-top: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    font-size: 15px;
+  }
+
+}
+
+@media (min-width: 480px) and (max-width: 1099px) {
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    gap: 13px;
+  }
+
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .asme-footer-inner {
+    padding-top: 42px;
+    width: min(100% - 40px,480px);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    font-size: 29px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    padding: 32px 0 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+    gap: 12px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    min-height: 98px;
+    padding: 15px 10px;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .asme-footer-inner {
+    padding: 56px 0 0;
+  }
+
+  .asme-footer-inner .asme-footer-grid {
+    display: grid;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    padding-right: 42px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3 {
+    font-size: 28px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    margin: 0 0 25px;
+    font-size: 28px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul {
+    gap: 8px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    min-height: 34px;
+    padding: 3px 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    min-height: 30px;
+    padding: 1px 0;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>svg:nth-child(1),
+  .asme-footer-inner .asme-footer-linkedin>svg,
+  .asme-footer-inner .asme-footer-groupme-icon,
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>svg:nth-child(1) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    min-height: 86px;
+    margin: 46px 0 0;
+    padding: 22px 16px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom>span {
+    max-width: none;
+    font-size: 14px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1099px) {
+  .asme-footer-inner {
+    width: min(960px,-48px + 100vw);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3 {
+    text-align: left;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:focus-visible::after {
+    left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    padding: 0 42px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+    gap: 24px;
+    grid-template-columns: repeat(4,max-content);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    display: inline-flex;
+    gap: 14px;
+    width: auto;
+  }
+
+}
+
+@media (min-width: 1100px) {
+  .asme-footer-inner {
+    position: relative;
+  }
+
+  .asme-footer-inner .asme-footer-grid {
+    gap: 0;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    position: relative;
+    padding-left: 42px;
+    border-left: 0;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:focus-visible::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:focus-visible::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:focus-visible::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .asme-footer-inner .asme-footer-contact {
+    justify-items: center;
+  }
+
+  .asme-footer-inner .asme-footer-address {
+    row-gap: 13px;
+    grid-template-columns: 22px minmax(0,max-content) 22px;
+    column-gap: 13px;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .asme-footer-inner .asme-footer-address-link,
+  .asme-footer-inner .asme-footer-contact>p>svg,
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>svg:nth-child(1),
+  .asme-footer-inner .asme-footer-linkedin>svg,
+  .asme-footer-inner .asme-footer-groupme-icon,
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>svg:nth-child(1) {
+    grid-column: 1;
+  }
+
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    row-gap: 13px;
+    display: grid;
+    grid-template-columns: 22px minmax(0,max-content) 22px;
+    column-gap: 13px;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link) {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    position: relative;
+    padding-right: 42px;
+    padding-left: 42px;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:focus-visible::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:focus-visible::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    row-gap: 16px;
+    display: grid;
+    grid-template-columns: 17px max-content 17px;
+    column-gap: 16px;
+    justify-content: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a>span {
+    grid-column: 2;
+    min-width: max-content;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a>svg {
+    grid-column: 3;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    position: relative;
+    padding-right: 42px;
+    padding-left: 42px;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+    gap: 11px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    row-gap: 14px;
+    display: grid;
+    grid-template-columns: 22px minmax(0,max-content) 22px;
+    column-gap: 14px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>span:nth-child(2),
+  .asme-footer-inner .asme-footer-linkedin>span,
+  .asme-footer-inner .asme-footer-groupme>span:not(.asme-footer-groupme-icon),
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>span:nth-child(2) {
+    grid-column: 2;
+    text-align: center;
+  }
+
+  .asme-footer-inner.asme-footer-inner .asme-footer-logo {
+    justify-content: center!important;
+  }
+
+  .asme-footer-inner.asme-footer-inner .asme-footer-login {
+    right: calc((100vw - 100%)/-2 + 4px)!important;
+    bottom: 4px!important;
+  }
+
+}
+
+@media (min-width: 1100px) and (max-width: 1919px) {
+  .asme-footer-inner {
+    width: min(1440px,-64px + 100vw);
+  }
+
+}
+
+@media (min-width: 1920px) {
+  .asme-footer-inner {
+    width: min(2100px,calc(100vw - 80px));
+    max-width: min(2100px,calc(100vw - 80px));
+    left: auto;
+  }
+
+}
+
+@media (prefers-color-scheme: light) {
+  .asme-footer-inner {
+    border-right-color: rgb(228,231,236);
+    border-bottom-color: rgb(228,231,236);
+    border-left-color: rgb(228,231,236);
+    color: rgb(23,52,95);
+  }
+
+  .asme-footer-inner .asme-footer-logo,
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address),
+  .asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link),
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    color: rgb(56,81,111);
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    border-top: 1px solid #d7dee8;
+    color: rgb(82,107,146);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    color: rgb(17,61,122)!important;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (max-width: 1099px) {
+  .asme-footer-inner .asme-footer-login {
+    color: rgb(56,81,111);
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (max-width: 767px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    border-bottom: 1px solid #d7dee8;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    border: 1px solid #d7dee8;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (min-width: 768px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    border-left: 1px solid #d7dee8;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (min-width: 1100px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:focus-visible::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:focus-visible::before {
+    background: #d7dee8;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    border-left: 1px solid #d7dee8;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  .asme-footer-inner {
+    color: rgb(232,240,251);
+  }
+
+  .asme-footer-inner .asme-footer-logo,
+  .asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link),
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    color: rgb(200,216,239);
+  }
+
+  .asme-footer-inner .asme-footer-logo>img {
+    filter: brightness(0) invert(1);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    color: rgb(200,216,239);
+    border-color: #2a4262;
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: #2a4262;
+    color: rgb(200,216,239);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    color: rgb(255,255,255)!important;
+  }
+
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    color: rgb(200,216,239)!important;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 1099px) {
+  .asme-footer-inner .asme-footer-login {
+    color: rgb(200,216,239);
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 767px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-color: #2a4262;
+    background: #0f1b2d;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 768px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-color: #2a4262;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 768px) and (max-width: 1099px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    border-color: #2a4262;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    border-top-color: rgb(42,66,98);
+    border-right-color: rgb(42,66,98);
+    border-bottom-color: rgb(42,66,98);
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 1100px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    border-top-color: rgb(42,66,98);
+    border-right-color: rgb(42,66,98);
+    border-bottom-color: rgb(42,66,98);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:focus-visible::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:focus-visible::before {
+    background: #2a4262;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-color: #2a4262;
+  }
+
+}
+
+/* Carried over unchanged: rules for conditions the compiler does not reproduce
+   from its test views (motion preference, orientation, print) and pseudo-elements
+   DevTools does not report (::placeholder), overlays outside the page content
+   such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
+   [aria-*]) whose values change while the page is used. */
+@media (max-width: 1180px),(hover: none) and (pointer: coarse) {
+  .asme-footer-login {
+    display: none!important;
+  }
+
+}
+
+@media (max-width: 768px),(hover: none) and (pointer: coarse) {
+  .asme-footer-col>a:not(.asme-footer-login) {
+    display: inline-flex!important;
+    min-height: 44px!important;
+    padding: 8px 12px!important;
+    margin-bottom: 0!important;
+    align-items: center!important;
+    justify-content: center!important;
+    box-sizing: border-box!important;
+    touch-action: manipulation;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  body:has(.asme-members-page) .asme-footer-inner {
+    background: transparent!important;
+    background-color: transparent!important;
+  }
+
+}
+
+@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-bottom {
+    position: static!important;
+  }
+
+}
+
+@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-login {
+    display: grid!important;
+    place-items: center!important;
+    position: absolute!important;
+    top: auto!important;
+    right: 8px!important;
+    bottom: 8px!important;
+    width: 30px!important;
+    height: 30px!important;
+    margin: 0!important;
+    padding: 0!important;
+    transform: none!important;
+    color: inherit!important;
+    opacity: .26!important;
+  }
+
+}
+
+@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-login:hover,
+  body .asme-footer-v2 .asme-footer-login:focus-visible {
+    opacity: 1!important;
+  }
+
+}
+
+@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-login svg {
+    width: 17px!important;
+    height: 17px!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .asme-footer-v2 a,
+  body .asme-footer-v2 .asme-footer-links li a svg {
+    transition: none!important;
+  }
+
+}

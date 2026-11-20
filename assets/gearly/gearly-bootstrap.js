@@ -29,13 +29,8 @@
   status.setAttribute('role', 'status');
   host.append(launcher, status);
 
-  var main = document.querySelector('main');
-  if (main) {
-    host.classList.add('gearly-root--in-flow');
-    main.append(host);
-  } else {
-    document.body.append(host);
-  }
+  // The launcher floats in the lower-right corner on every screen size.
+  document.body.append(host);
 
   var scriptLoads = new Map();
   var loading = null;

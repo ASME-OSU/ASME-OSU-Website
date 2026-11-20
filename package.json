@@ -19,7 +19,10 @@
     "test:gearly": "node tests/gearly/run-tests.mjs && node --test tests/gearly-*.test.mjs",
     "preview:gearly": "node scripts/preview-gearly.mjs",
     "build:gearly": "node scripts/build-gearly-site.mjs && node scripts/build-gearly-index.mjs && node scripts/build-gearly-officers.mjs",
-    "audit:css": "node scripts/audit-css-cascade.mjs"
+    "audit:css": "node scripts/audit-css-cascade.mjs",
+    "visual:capture": "node tests/visual/capture.mjs",
+    "visual:baseline": "node tests/visual/run.mjs --update",
+    "visual:compare": "node tests/visual/run.mjs"
   },
   "dependencies": {
     "@marcus5914/google-photos-album-image-url-fetch": "1.1.0",
