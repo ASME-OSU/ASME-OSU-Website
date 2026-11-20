@@ -514,7 +514,45 @@
   color: rgb(195,207,221)!important;
 }
 
-@media (max-width: 1799px) {
+@media (max-width: 1099px) {
+  .asme-about-page {
+    gap: 18px;
+  }
+
+  .asme-about-page .about-hero {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .asme-about-page .about-hero-copy,
+  .asme-about-page .about-hero-image,
+  .asme-about-page .about-hero-image>img {
+    min-height: 0px;
+  }
+
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
+  .asme-about-page .about-section-heading.about-section-heading--compact>p {
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 14px;
+  }
+
+  .asme-about-page .about-stats-strip {
+    grid-template-columns: repeat(2,minmax(0px,1fr));
+  }
+
+}
+
+@media (max-width: 1279px) {
+  .asme-about-page .about-pillar,
+  .asme-about-page .about-semester-step {
+    min-height: 0px;
+  }
+
+}
+
+@media (max-width: 1699px) {
   .asme-about-page .about-hero-copy>h1 {
     margin: 0 0 14px;
   }
@@ -532,6 +570,9 @@
     gap: 8px;
   }
 
+}
+
+@media (max-width: 1919px) {
   .asme-about-page .about-section-heading:not(.about-section-heading--compact),
   .asme-about-page .about-section-heading.about-section-heading--compact {
     display: block;
@@ -556,7 +597,7 @@
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 639px) {
   .asme-about-page .about-hero-copy {
     padding: 28px 22px;
   }
@@ -671,38 +712,15 @@
 
 }
 
-@media (max-width: 979px) {
+@media (max-width: 899px) {
   .asme-about-page {
-    gap: 18px;
     margin-right: auto;
     margin-left: auto;
     width: calc(-24px + 100vw);
     max-width: calc(-24px + 100vw);
   }
 
-  .asme-about-page .about-hero {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0px;
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .asme-about-page .about-hero-copy,
-  .asme-about-page .about-hero-image,
-  .asme-about-page .about-hero-image>img,
-  .asme-about-page .about-semester-step {
-    min-height: 0px;
-  }
-
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
-  .asme-about-page .about-section-heading.about-section-heading--compact>p {
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-top: 14px;
-  }
-
+  .asme-about-page .about-hero,
   .asme-about-page .about-pillars {
     width: 100%;
     max-width: 100%;
@@ -714,11 +732,6 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    min-height: 0px;
-  }
-
-  .asme-about-page .about-stats-strip {
-    grid-template-columns: repeat(2,minmax(0px,1fr));
   }
 
   .asme-about-page .about-award-inner {
@@ -727,7 +740,7 @@
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .asme-about-page .about-hero-actions,
   .asme-about-page .about-cta-buttons {
     display: flex;
@@ -792,24 +805,7 @@
 
 }
 
-@media (min-width: 768px) and (max-width: 1799px) {
-  .asme-about-page .about-hero-copy>p {
-    font-size: 15px;
-    line-height: 1.58;
-  }
-
-  .asme-about-page .about-hero-badges {
-    margin-top: 12px;
-  }
-
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2,
-  .asme-about-page .about-section-heading.about-section-heading--compact>div>h2 {
-    font-size: clamp(30px,3vw,43px);
-  }
-
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
+@media (min-width: 640px) and (max-width: 1099px) {
   .asme-about-page .about-hero-copy {
     padding: 34px 30px;
   }
@@ -821,11 +817,6 @@
 
   .asme-about-page .about-hero-image {
     aspect-ratio: 16/7;
-  }
-
-  .asme-about-page .about-pillars,
-  .asme-about-page .about-semester-grid {
-    grid-template-columns: repeat(2,minmax(0px,1fr));
   }
 
   .asme-about-page .about-photo-strip {
@@ -841,10 +832,6 @@
     height: 250px;
   }
 
-  .asme-about-page .about-award-inner {
-    text-align: center;
-  }
-
   html body #page .entry-content .asme-about-page .about-hero-copy>h1 {
     line-height: 1.12!important;
     font-size: clamp(32px,4.5vw,40px)!important;
@@ -852,7 +839,52 @@
 
 }
 
-@media (min-width: 980px) {
+@media (min-width: 640px) and (max-width: 1279px) {
+  .asme-about-page .about-pillars,
+  .asme-about-page .about-semester-grid {
+    grid-template-columns: repeat(2,minmax(0px,1fr));
+  }
+
+}
+
+@media (min-width: 640px) and (max-width: 1699px) {
+  .asme-about-page .about-hero-copy>p {
+    font-size: 15px;
+    line-height: 1.58;
+  }
+
+  .asme-about-page .about-hero-badges {
+    margin-top: 12px;
+  }
+
+}
+
+@media (min-width: 640px) and (max-width: 1919px) {
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2,
+  .asme-about-page .about-section-heading.about-section-heading--compact>div>h2 {
+    font-size: clamp(30px,3vw,43px);
+  }
+
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  .asme-about-page .about-award-inner {
+    text-align: center;
+  }
+
+}
+
+@media (min-width: 900px) and (max-width: 1919px) {
+  .asme-about-page {
+    width: 100%;
+    max-width: none;
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+}
+
+@media (min-width: 1100px) {
   .asme-about-page {
     gap: 20px;
   }
@@ -868,16 +900,6 @@
     min-height: 430px;
   }
 
-  .asme-about-page .about-pillars,
-  .asme-about-page .about-stats-strip,
-  .asme-about-page .about-semester-grid {
-    grid-template-columns: repeat(4,minmax(0px,1fr));
-  }
-
-  .asme-about-page .about-pillar {
-    min-height: 200px;
-  }
-
   .asme-about-page .about-photo-strip {
     grid-template-columns: 1.3fr 0.85fr 0.85fr;
   }
@@ -887,20 +909,13 @@
     height: 270px;
   }
 
-  .asme-about-page .about-semester-step {
-    min-height: 160px;
+  .asme-about-page .about-stats-strip {
+    grid-template-columns: repeat(4,minmax(0px,1fr));
   }
 
 }
 
-@media (min-width: 980px) and (max-width: 1799px) {
-  .asme-about-page {
-    width: 100%;
-    max-width: none;
-    margin-right: 0px;
-    margin-left: 0px;
-  }
-
+@media (min-width: 1100px) and (max-width: 1699px) {
   .asme-about-page .about-hero-copy {
     padding: 36px 40px;
   }
@@ -909,6 +924,9 @@
     max-width: 20ch;
   }
 
+}
+
+@media (min-width: 1100px) and (max-width: 1919px) {
   .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
   .asme-about-page .about-section-heading.about-section-heading--compact>p {
     margin: 12px 0 0;
@@ -916,23 +934,29 @@
 
 }
 
-@media (min-width: 1800px) {
-  .asme-about-page .about-hero-copy {
-    padding: var(--asme-wide-pad);
+@media (min-width: 1280px) {
+  .asme-about-page .about-pillars,
+  .asme-about-page .about-semester-grid {
+    grid-template-columns: repeat(4,minmax(0px,1fr));
   }
 
+  .asme-about-page .about-pillar {
+    min-height: 200px;
+  }
+
+  .asme-about-page .about-semester-step {
+    min-height: 160px;
+  }
+
+}
+
+@media (min-width: 1700px) {
   .asme-about-page .about-hero-copy>h1 {
     margin-top: 0px;
     margin-right: 0px;
     margin-left: 0px;
-    margin-bottom: 24px;
     max-width: none;
-  }
-
-  .asme-about-page .about-hero-copy>p {
-    max-width: 58ch;
-    font-size: 20px;
-    line-height: 1.65;
+    margin-bottom: 24px;
   }
 
   .asme-about-page .about-hero-actions {
@@ -943,6 +967,32 @@
   .asme-about-page .about-hero-badges {
     gap: 12px;
     margin-top: 20px;
+  }
+
+}
+
+@media (min-width: 1700px) and (max-width: 1919px) {
+  .asme-about-page .about-hero-copy {
+    padding: 48px;
+  }
+
+  .asme-about-page .about-hero-copy>p {
+    max-width: 68ch;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+}
+
+@media (min-width: 1920px) {
+  .asme-about-page .about-hero-copy {
+    padding: var(--asme-wide-pad);
+  }
+
+  .asme-about-page .about-hero-copy>p {
+    max-width: 58ch;
+    font-size: 20px;
+    line-height: 1.65;
   }
 
   .asme-about-page .about-section-heading:not(.about-section-heading--compact),

@@ -876,7 +876,109 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   margin: 0!important;
 }
 
-@media (max-width: 1799px) {
+@media (max-width: 1099px) {
+  .asme-sponsors-page .sponsors-hero,
+  .asme-sponsors-page .sponsors-featured {
+    padding: 24px 22px;
+  }
+
+  .asme-sponsors-page .sponsors-tier-cards.sponsors-tier-cards--brutus {
+    align-items: stretch;
+  }
+
+  .asme-sponsors-page .sponsor-ribbon__tier {
+    margin-bottom: 22px;
+  }
+
+  .asme-sponsors-page .sponsor-ribbon>p,
+  .asme-sponsors-page .sponsor-card__content>p:not(.sponsor-card__description) {
+    font-size: 15px;
+  }
+
+  .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark {
+    margin-bottom: 24px;
+  }
+
+  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-card__content .sponsor-card__name {
+    font-size: clamp(19px,5.1vw,21px);
+  }
+
+  .asme-sponsors-page .sponsor-card__divider {
+    width: 86%;
+    margin: 14px 0 20px;
+  }
+
+  .asme-sponsors-page .sponsor-card__description {
+    max-width: 38ch;
+  }
+
+  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-card__content .sponsor-card__name {
+    line-height: 1.15;
+  }
+
+  .asme-sponsors-page .sponsors-lower-tier-row {
+    grid-template-columns: minmax(0px,1fr);
+  }
+
+  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko .sponsor-card-tier-badge,
+  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier .sponsor-card-tier-badge,
+  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier .sponsor-card-tier-badge,
+  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier .sponsor-card-tier-badge {
+    top: 16px;
+    right: 16px;
+  }
+
+  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
+    max-width: 100%;
+    gap: 14px;
+  }
+
+  .asme-sponsors-page .sponsors-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 22px;
+  }
+
+  #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
+  #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg {
+    height: auto!important;
+  }
+
+  #page .asme-sponsors-page .sponsor-card__content>p:not(.sponsor-card__description),
+  html body #page#page .entry-content .asme-sponsors-page .sponsor-ribbon>p {
+    grid-column: 1/-1!important;
+    grid-row: 3!important;
+  }
+
+  #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-card__content .sponsor-card__name,
+  #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-card__content .sponsor-card__name {
+    grid-column: 1!important;
+    grid-row: 2!important;
+    padding-right: 0px!important;
+  }
+
+  html body #page .entry-content .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark,
+  html body #page .entry-content .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured {
+    grid-column: 1/-1!important;
+    grid-row: 1!important;
+  }
+
+  html body #page#page .entry-content .asme-sponsors-page .sponsor-card__description {
+    align-self: auto!important;
+    grid-column: 1/-1!important;
+    grid-row: 3!important;
+  }
+
+}
+
+@media (max-width: 1279px) {
+  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
+    display: grid;
+  }
+
+}
+
+@media (max-width: 1919px) {
   .asme-sponsors-page .sponsors-hero>h1 {
     margin-top: 0px;
     margin-right: 0px;
@@ -892,6 +994,28 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsors-tier-block.sponsors-tier-block--brutus {
     max-width: 1180px;
     margin: 0 auto;
+  }
+
+}
+
+@media (max-width: 479px) {
+  .asme-sponsors-page .sponsor-card__watermark {
+    display: none;
+  }
+
+  .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured {
+    height: 95px;
+  }
+
+}
+
+@media (max-width: 639px) {
+  .asme-sponsors-page .sponsor-card__watermark {
+    opacity: 0.015;
+  }
+
+  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
+    grid-template-columns: 1fr;
   }
 
 }
@@ -968,7 +1092,8 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     padding: 34px 14px 32px 4px;
   }
 
-  .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark {
+  .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark,
+  .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured {
     align-self: center;
     justify-self: start;
   }
@@ -990,11 +1115,6 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     line-height: 1.5;
   }
 
-  .asme-sponsors-page .sponsor-card__watermark {
-    display: none;
-    opacity: 0.015;
-  }
-
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-ribbon {
     flex: 0 0 92px;
     position: static;
@@ -1010,12 +1130,6 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     border-radius: 10px;
     gap: 12px;
     min-width: 0px;
-  }
-
-  .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured {
-    align-self: center;
-    justify-self: start;
-    height: 95px;
   }
 
   .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured>img {
@@ -1131,10 +1245,6 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     min-width: 0px;
   }
 
-  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
-    grid-template-columns: 1fr;
-  }
-
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg {
     padding: 16px!important;
@@ -1153,7 +1263,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
 }
 
-@media (max-width: 979px) {
+@media (max-width: 899px) {
   .asme-sponsors-page {
     width: calc(100vw - 24px);
     max-width: calc(100vw - 24px);
@@ -1161,8 +1271,9 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     margin-left: auto;
   }
 
-  .asme-sponsors-page .sponsors-hero {
-    padding: 24px 22px;
+  .asme-sponsors-page .sponsors-hero,
+  .asme-sponsors-page .sponsors-partners,
+  .asme-sponsors-page .sponsors-cta {
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -1172,7 +1283,6 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsors-featured {
-    padding: 24px 22px;
     max-width: 100%;
     min-width: 0;
     margin-left: auto;
@@ -1180,107 +1290,39 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     box-sizing: border-box;
   }
 
-  .asme-sponsors-page .sponsors-tier-cards.sponsors-tier-cards--brutus {
-    align-items: stretch;
+}
+
+@media (min-width: 480px) {
+  .asme-sponsors-page .sponsor-card__watermark {
+    display: block;
   }
 
-  .asme-sponsors-page .sponsor-ribbon__tier {
-    margin-bottom: 22px;
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured {
+    height: 100px;
   }
 
-  .asme-sponsors-page .sponsor-ribbon>p,
-  .asme-sponsors-page .sponsor-card__content>p:not(.sponsor-card__description) {
-    font-size: 15px;
+}
+
+@media (min-width: 640px) {
+  .asme-sponsors-page .sponsor-card__watermark {
+    opacity: 0.02;
   }
 
-  .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark {
-    margin-bottom: 24px;
-  }
+}
 
-  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-card__content .sponsor-card__name {
-    font-size: clamp(19px,5.1vw,21px);
-  }
-
-  .asme-sponsors-page .sponsor-card__divider {
-    width: 86%;
-    margin: 14px 0 20px;
-  }
-
-  .asme-sponsors-page .sponsor-card__description {
-    max-width: 38ch;
-  }
-
-  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-card__content .sponsor-card__name {
-    line-height: 1.15;
-  }
-
-  .asme-sponsors-page .sponsors-lower-tier-row {
-    grid-template-columns: minmax(0px,1fr);
-  }
-
-  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko .sponsor-card-tier-badge,
-  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier .sponsor-card-tier-badge,
-  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier .sponsor-card-tier-badge,
-  .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier .sponsor-card-tier-badge {
-    top: 16px;
-    right: 16px;
-  }
-
-  .asme-sponsors-page .sponsors-partners {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-  }
-
+@media (min-width: 640px) and (max-width: 1099px) {
   .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
-    display: grid;
-    max-width: 100%;
-    gap: 14px;
+    grid-template-columns: repeat(2,minmax(0px,1fr));
   }
 
-  .asme-sponsors-page .sponsors-cta {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 24px 22px;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-  }
+}
 
-  #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
-  #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg {
-    height: auto!important;
-  }
-
-  #page .asme-sponsors-page .sponsor-card__content>p:not(.sponsor-card__description),
-  html body #page#page .entry-content .asme-sponsors-page .sponsor-ribbon>p {
-    grid-column: 1/-1!important;
-    grid-row: 3!important;
-  }
-
-  #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-card__content .sponsor-card__name,
-  #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-card__content .sponsor-card__name {
-    grid-column: 1!important;
-    grid-row: 2!important;
-    padding-right: 0px!important;
-  }
-
-  html body #page .entry-content .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark,
-  html body #page .entry-content .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured {
-    grid-column: 1/-1!important;
-    grid-row: 1!important;
-  }
-
-  html body #page#page .entry-content .asme-sponsors-page .sponsor-card__description {
-    align-self: auto!important;
-    grid-column: 1/-1!important;
-    grid-row: 3!important;
+@media (min-width: 640px) and (max-width: 1279px) {
+  html body #page#page .entry-content .asme-sponsors-page .sponsors-tier-cards.sponsors-tier-cards--brutus {
+    grid-template-columns: minmax(0px,1fr)!important;
   }
 
 }
@@ -1301,11 +1343,6 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-ribbon__badge {
     height: auto;
     margin: 0 auto;
-  }
-
-  .asme-sponsors-page .sponsor-card__watermark {
-    display: block;
-    opacity: 0.02;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko .sponsor-logo-link:not(.sponsor-logo-area):not(.sponsor-logo-area--featured):not(.sponsor-logo-area--wordmark) .sponsor-logo-frame {
@@ -1329,15 +1366,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
 }
 
-@media (min-width: 768px) and (max-width: 1799px) {
-  .asme-sponsors-page .sponsors-top-tier-grid {
-    max-width: 1180px;
-    margin: 0 auto 30px;
-  }
-
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
+@media (min-width: 768px) and (max-width: 1099px) {
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-ribbon {
     border-radius: 20px 20px 0 0;
     flex: 0 0 180px;
@@ -1400,10 +1429,6 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     font-size: 30px;
   }
 
-  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
-    grid-template-columns: repeat(2,minmax(0px,1fr));
-  }
-
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg {
     gap: 34px!important;
@@ -1414,13 +1439,27 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     margin-top: 18px!important;
   }
 
-  html body #page#page .entry-content .asme-sponsors-page .sponsors-tier-cards.sponsors-tier-cards--brutus {
-    grid-template-columns: minmax(0px,1fr)!important;
+}
+
+@media (min-width: 768px) and (max-width: 1919px) {
+  .asme-sponsors-page .sponsors-top-tier-grid {
+    max-width: 1180px;
+    margin: 0 auto 30px;
   }
 
 }
 
-@media (min-width: 980px) {
+@media (min-width: 900px) and (max-width: 1919px) {
+  .asme-sponsors-page {
+    width: 100%;
+    max-width: none;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+}
+
+@media (min-width: 1100px) {
   .asme-sponsors-page .sponsors-hero {
     padding: 42px 46px;
   }
@@ -1621,18 +1660,6 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     padding-right: 0px;
   }
 
-  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
-    grid-template-columns: repeat(6,minmax(0px,1fr));
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-  }
-
-  .asme-sponsors-page .sponsor-card.sponsor-card-partner {
-    flex: 0 1 calc((100% - 90px)/6);
-    min-width: 0px;
-  }
-
   .asme-sponsors-page .sponsors-cta {
     padding: 30px 34px;
     align-items: center;
@@ -1650,17 +1677,38 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
 }
 
-@media (min-width: 980px) and (max-width: 1799px) {
-  .asme-sponsors-page {
-    width: 100%;
-    max-width: none;
-    margin-right: 0;
-    margin-left: 0;
+@media (min-width: 1100px) and (max-width: 1279px) {
+  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
+    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
   }
 
+}
+
+@media (min-width: 1100px) and (max-width: 1919px) {
   .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
     gap: 18px;
     max-width: min(1480px,-96px + 100vw);
+  }
+
+}
+
+@media (min-width: 1280px) {
+  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
+    grid-template-columns: repeat(6,minmax(0px,1fr));
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .asme-sponsors-page .sponsor-card.sponsor-card-partner {
+    flex: 0 1 calc((100% - 90px)/6);
+    min-width: 0px;
+  }
+
+}
+
+@media (min-width: 1280px) and (max-width: 1919px) {
+  .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
     display: flex;
   }
 
@@ -1670,7 +1718,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1920px) {
   .asme-sponsors-page .sponsors-hero {
     display: grid;
     grid-template-columns: 1.1fr 1fr;

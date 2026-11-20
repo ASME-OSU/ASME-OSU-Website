@@ -28,20 +28,23 @@ render() {
   done
   echo
   if grep -q "^--- browser tests" "$LOG" 2>/dev/null && ! grep -q "^# fail" "$LOG"; then
-    stage="4 of 4: browser tests (about 2 minutes)"
+    stage="5 of 5: browser tests (about 2 minutes)"
+  elif grep -q "^--- in-between widths" "$LOG" 2>/dev/null; then
+    shots=$(find "$ROOT/tests/visual/.output/current" -name '*--[0-9]*--*.png' -newer "$LOG.widths-marker" 2>/dev/null | wc -l | tr -d ' ')
+    stage="4 of 5: in-between widths check (480 to 1700px, 144 screenshots, about 10 minutes)"
   elif grep -q "^--- screenshots" "$LOG" 2>/dev/null && ! grep -q "screenshots match" "$LOG"; then
     shots=$(find "$ROOT/tests/visual/.output/current" -name '*.png' -newer "$ROOT/styles/pages/home.css" 2>/dev/null | wc -l | tr -d ' ')
-    stage="3 of 4: screenshot check, $shots / 106 taken (about 5 minutes)"
+    stage="3 of 5: screenshot check, $shots / 106 taken (about 5 minutes)"
   elif [ "$done_count" -lt "$total" ]; then
-    stage="1 of 4: rebuilding pages, $done_count / $total done"
+    stage="1 of 5: rebuilding pages, $done_count / $total done"
   elif grep -q "^# fail" "$LOG" 2>/dev/null; then
     stage="finished"
   else
-    stage="2 of 4: building the stylesheet"
+    stage="2 of 5: building the stylesheet"
   fi
   echo "Stage: $stage"
   if [ -z "$running" ] && [ "$stage" != "finished" ]; then echo "  (nothing is running right now)"; fi
-  if grep -q "screenshots match" "$LOG" 2>/dev/null; then
+  if grep -q "^--- browser tests" "$LOG" 2>/dev/null; then
     echo
     echo "Results:"
     grep -E "screenshots match" "$LOG" | sed 's/ Report:.*//; s/^/  /'

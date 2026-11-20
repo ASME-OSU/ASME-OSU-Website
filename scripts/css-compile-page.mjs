@@ -49,9 +49,12 @@ if (!group.has(name)) group.add(name);
 const emitOnly = process.argv.includes('--emit');
 const stripOnly = process.argv.includes('--strip');
 
-// Views and the width ranges they stand for (mobile-first breakpoints).
-const WIDTHS = [375, 768, 1280, 1920];
-const BOUNDS = [0, 768, 980, 1800];
+// Views and the width ranges they stand for (mobile-first breakpoints). Ten
+// widths keep the layouts the legacy CSS had between phone, tablet and
+// desktop (iPads, small laptops); each sampled width applies from itself up
+// to the next one.
+const WIDTHS = [375, 480, 640, 768, 900, 1100, 1280, 1440, 1700, 1920];
+const BOUNDS = [0, 480, 640, 768, 900, 1100, 1280, 1440, 1700, 1920];
 const SCHEMES = ['light', 'dark'];
 const VIEWS = WIDTHS.flatMap((width, w) => SCHEMES.map(scheme => ({ width, w, scheme, id: `${width}-${scheme}` })));
 
@@ -647,9 +650,13 @@ const prefixes = [
   '', // .wrapper ...
   '#page ',
   'html body #page .entry-content ',
-  'html body #page#page .entry-content '
+  'html body #page#page .entry-content ',
+  // Two more steps for rules from page-level <style> blocks that load after
+  // the bundle (Join's inline three-step styles at 901-1199px).
+  'html body #page#page .entry-content.entry-content ',
+  'html body #page#page#page .entry-content '
 ];
-const PREFIX_SPEC = [zero, { a: 1, b: 0, c: 0 }, { a: 1, b: 1, c: 2 }, { a: 2, b: 1, c: 2 }];
+const PREFIX_SPEC = [zero, { a: 1, b: 0, c: 0 }, { a: 1, b: 1, c: 2 }, { a: 2, b: 1, c: 2 }, { a: 2, b: 2, c: 2 }, { a: 3, b: 1, c: 2 }];
 // Components sit outside #page, so they gain specificity by repeating their
 // own root class instead (".footer.footer ...").
 if (component) {

@@ -448,8 +448,7 @@
 .asme-gallery-page .gallery-item.gallery-item--google-photos.is-landscape,
 .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos),
 .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible),
-.asme-gallery-page .gallery-item.is-square,
-.asme-gallery-page .gallery-item.is-portrait.is-last-visible {
+.asme-gallery-page .gallery-item.is-square {
   float: none;
   width: auto;
   max-width: none;
@@ -619,7 +618,43 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
   box-shadow: rgba(15,52,96,0.13) 0px 14px 30px!important;
 }
 
-@media (max-width: 1799px) {
+@media (max-width: 1099px) {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+    align-items: center;
+    gap: 24px;
+  }
+
+  .asme-gallery-page .gallery-instagram-actions {
+    margin: 0;
+  }
+
+}
+
+@media (max-width: 1699px) {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+    justify-content: center;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy {
+    max-width: 780px;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
+    margin: 0 0 12px;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy>h2 {
+    margin: 0 0 16px;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy>p {
+    max-width: 540px;
+    margin: 0 0 22px;
+  }
+
+}
+
+@media (max-width: 1919px) {
   .asme-gallery-page .gallery-hero {
     padding: 34px 38px;
     margin-bottom: 24px;
@@ -634,9 +669,9 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     font-size: 15px;
   }
 
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact,
+  .asme-gallery-page .gallery-instagram-recent {
     margin: 0 0 28px;
-    justify-content: center;
   }
 
   .asme-gallery-page .gallery-instagram-media {
@@ -647,28 +682,13 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     object-fit: cover;
   }
 
-  .asme-gallery-page .gallery-instagram-copy {
-    max-width: 780px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-    margin: 0 0 12px;
-  }
-
   .asme-gallery-page .gallery-instagram-copy>h2 {
-    margin: 0 0 16px;
     line-height: 1.04;
   }
 
   .asme-gallery-page .gallery-instagram-copy>p {
-    max-width: 540px;
-    margin: 0 0 22px;
     font-size: 16px;
     line-height: 1.7;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent {
-    margin: 0 0 28px;
   }
 
   .asme-gallery-page .gallery-instagram-recent-header>div>h2 {
@@ -698,11 +718,88 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 639px) {
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
     border-radius: 20px;
-    grid-template-columns: 1fr;
     padding: 18px;
+  }
+
+  .asme-gallery-page .gallery-instagram-media {
+    max-width: 300px;
+    width: min(100%,300px);
+  }
+
+  .asme-gallery-page .gallery-instagram-copy>h2 {
+    font-size: 30px;
+  }
+
+  .asme-gallery-page .gallery-instagram-actions {
+    display: grid;
+  }
+
+  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
+    width: 100%;
+  }
+
+  .asme-gallery-page .gallery-instagram-recent {
+    padding: 20px 16px 16px;
+    border-radius: 20px;
+  }
+
+  .asme-gallery-page .gallery-instagram-all {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
+    gap: 9px;
+  }
+
+  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-portrait,
+  .asme-gallery-page .gallery-icon.landscape>a>img:not(.attachment-large):not(.size-large),
+  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-landscape,
+  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos),
+  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos) .gallery-icon.landscape .attachment-large.size-large,
+  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible),
+  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible) .gallery-icon.portrait .attachment-large.size-large,
+  .asme-gallery-page .gallery-item.is-square,
+  .asme-gallery-page .gallery-item.is-square .gallery-icon.portrait .attachment-large.size-large,
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
+    border-radius: 14px;
+  }
+
+  .asme-gallery-page .gallery-icon.landscape>a::after,
+  .asme-gallery-page .gallery-icon.landscape>a:hover::after,
+  .asme-gallery-page .gallery-icon.landscape>a:focus-visible::after,
+  .asme-gallery-page .gallery-icon.portrait>a::after,
+  .asme-gallery-page .gallery-icon.portrait>a:hover::after,
+  .asme-gallery-page .gallery-icon.portrait>a:focus-visible::after {
+    right: 10px;
+    bottom: 9px;
+    left: 10px;
+    font-size: 10px;
+  }
+
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
+    border-radius: 14px;
+  }
+
+  #page .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
+    aspect-ratio: 16/9!important;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+    grid-template-columns: 1fr;
   }
 
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::before,
@@ -715,11 +812,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     height: 11%;
   }
 
-  .asme-gallery-page .gallery-instagram-media {
-    max-width: 300px;
-    width: min(100%,300px);
-  }
-
   .asme-gallery-page .gallery-instagram-copy {
     text-align: center;
     justify-self: center;
@@ -729,16 +821,11 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     justify-content: center;
   }
 
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    font-size: 30px;
-  }
-
   .asme-gallery-page .gallery-instagram-copy>p {
     margin-inline: auto;
   }
 
   .asme-gallery-page .gallery-instagram-actions {
-    display: grid;
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
@@ -746,7 +833,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
   .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
     overflow-wrap: anywhere;
-    width: 100%;
   }
 
   .asme-gallery-page .gallery-instagram-follow {
@@ -755,20 +841,10 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     white-space: normal;
   }
 
-  .asme-gallery-page .gallery-instagram-recent {
-    padding: 20px 16px 16px;
-    border-radius: 20px;
-  }
-
   .asme-gallery-page .gallery-instagram-recent-header {
     align-items: start;
     flex-direction: column;
     gap: 12px;
-  }
-
-  .asme-gallery-page .gallery-instagram-all {
-    width: 100%;
-    justify-content: center;
   }
 
   .asme-gallery-page .gallery-instagram-swipe-hint {
@@ -833,40 +909,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     margin-top: -10px;
   }
 
-  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
-    gap: 9px;
-  }
-
-  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-portrait,
-  .asme-gallery-page .gallery-icon.landscape>a>img:not(.attachment-large):not(.size-large),
-  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-landscape,
-  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos),
-  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos) .gallery-icon.landscape .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible),
-  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible) .gallery-icon.portrait .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-square,
-  .asme-gallery-page .gallery-item.is-square .gallery-icon.portrait .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible,
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
-    border-radius: 14px;
-  }
-
-  .asme-gallery-page .gallery-icon.landscape>a::after,
-  .asme-gallery-page .gallery-icon.landscape>a:hover::after,
-  .asme-gallery-page .gallery-icon.landscape>a:focus-visible::after,
-  .asme-gallery-page .gallery-icon.portrait>a::after,
-  .asme-gallery-page .gallery-icon.portrait>a:hover::after,
-  .asme-gallery-page .gallery-icon.portrait>a:focus-visible::after {
-    right: 10px;
-    bottom: 9px;
-    left: 10px;
-    font-size: 10px;
-  }
-
-  #page .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
-    aspect-ratio: 16/9!important;
-  }
-
   html body #page .entry-content .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
     text-align: center;
   }
@@ -877,7 +919,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (max-width: 979px) {
+@media (max-width: 899px) {
   .asme-gallery-page {
     width: calc(100vw - 24px);
     max-width: calc(100vw - 24px);
@@ -895,23 +937,73 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     box-sizing: border-box;
   }
 
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    align-items: center;
-    gap: 24px;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    margin: 0;
-  }
-
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact,
   .asme-gallery-page .gallery-instagram-recent {
     border-radius: 24px;
   }
 
+  .asme-gallery-page .gallery-instagram-media {
+    width: 100%;
+  }
+
+  .asme-gallery-page .gallery-instagram-actions {
+    display: flex;
+  }
+
+  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
+    gap: 12px;
+  }
+
+  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-portrait,
+  .asme-gallery-page .gallery-icon.landscape>a>img:not(.attachment-large):not(.size-large),
+  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-landscape,
+  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos),
+  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos) .gallery-icon.landscape .attachment-large.size-large,
+  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible),
+  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible) .gallery-icon.portrait .attachment-large.size-large,
+  .asme-gallery-page .gallery-item.is-square,
+  .asme-gallery-page .gallery-item.is-square .gallery-icon.portrait .attachment-large.size-large,
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
+    border-radius: 18px;
+  }
+
+  .asme-gallery-page .gallery-icon.landscape>a::after,
+  .asme-gallery-page .gallery-icon.landscape>a:hover::after,
+  .asme-gallery-page .gallery-icon.landscape>a:focus-visible::after,
+  .asme-gallery-page .gallery-icon.portrait>a::after,
+  .asme-gallery-page .gallery-icon.portrait>a:hover::after,
+  .asme-gallery-page .gallery-icon.portrait>a:focus-visible::after {
+    right: 14px;
+    bottom: 13px;
+    left: 14px;
+    font-size: 12px;
+  }
+
+}
+
+@media (min-width: 640px) and (max-width: 1919px) {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+    padding: clamp(22px,3vw,34px);
+  }
+
+  .asme-gallery-page .gallery-instagram-media {
+    max-width: 330px;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy>h2 {
+    font-size: clamp(30px,3vw,42px);
+  }
+
+  .asme-gallery-page .gallery-instagram-recent {
+    padding: clamp(22px,3vw,32px);
+  }
+
+}
+
+@media (min-width: 768px) {
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::before,
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::before,
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::before {
@@ -924,14 +1016,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::after {
     width: 50%;
     height: 27%;
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    width: 100%;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    display: flex;
   }
 
   .asme-gallery-page .gallery-instagram-swipe-hint {
@@ -959,57 +1043,18 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     margin: -10px 0 0;
   }
 
-  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
-    gap: 12px;
-  }
+}
 
-  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-portrait,
-  .asme-gallery-page .gallery-icon.landscape>a>img:not(.attachment-large):not(.size-large),
-  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-landscape,
-  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos),
-  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos) .gallery-icon.landscape .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible),
-  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible) .gallery-icon.portrait .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-square,
-  .asme-gallery-page .gallery-item.is-square .gallery-icon.portrait .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible,
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
-    border-radius: 18px;
-  }
-
-  .asme-gallery-page .gallery-icon.landscape>a::after,
-  .asme-gallery-page .gallery-icon.landscape>a:hover::after,
-  .asme-gallery-page .gallery-icon.landscape>a:focus-visible::after,
-  .asme-gallery-page .gallery-icon.portrait>a::after,
-  .asme-gallery-page .gallery-icon.portrait>a:hover::after,
-  .asme-gallery-page .gallery-icon.portrait>a:focus-visible::after {
-    right: 14px;
-    bottom: 13px;
-    left: 14px;
-    font-size: 12px;
+@media (min-width: 768px) and (max-width: 1099px) {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+    grid-template-columns: minmax(260px,0.8fr) minmax(0px,1.2fr);
   }
 
 }
 
-@media (min-width: 768px) and (max-width: 1799px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    padding: clamp(22px,3vw,34px);
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    max-width: 330px;
-  }
-
+@media (min-width: 768px) and (max-width: 1919px) {
   .asme-gallery-page .gallery-instagram-copy {
     padding-left: clamp(20px,2.5vw,48px);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    font-size: clamp(30px,3vw,42px);
-  }
-
-  .asme-gallery-page .gallery-instagram-recent {
-    padding: clamp(22px,3vw,32px);
   }
 
   .asme-gallery-page .gallery-instagram-recent-header {
@@ -1023,20 +1068,21 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (min-width: 768px) and (max-width: 979px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    grid-template-columns: minmax(260px,0.8fr) minmax(0px,1.2fr);
+@media (min-width: 768px) and (max-width: 899px) {
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
   }
 
 }
 
-@media (min-width: 980px) {
-  .asme-gallery-page .gallery-instagram-copy {
-    display: flex;
-    flex-direction: column;
-    align-self: stretch;
-  }
-
+@media (min-width: 900px) {
   .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
     margin-right: 0px;
     margin-left: 0px;
@@ -1044,7 +1090,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (min-width: 980px) and (max-width: 1799px) {
+@media (min-width: 900px) and (max-width: 1919px) {
   .asme-gallery-page {
     width: 100%;
     max-width: none;
@@ -1052,16 +1098,38 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     margin-left: 0;
   }
 
+}
+
+@media (min-width: 1100px) {
+  .asme-gallery-page .gallery-instagram-copy {
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+}
+
+@media (min-width: 1100px) and (max-width: 1279px) {
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
+  }
+
+}
+
+@media (min-width: 1100px) and (max-width: 1699px) {
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
     gap: clamp(30px,4vw,52px);
     grid-template-columns: minmax(300px,330px) minmax(0px,780px);
-    align-items: stretch;
   }
 
   .asme-gallery-page .gallery-instagram-copy {
-    padding-top: 22px;
-    padding-right: 0px;
-    padding-bottom: 14px;
+    display: flex;
   }
 
   .asme-gallery-page .gallery-instagram-actions {
@@ -1074,7 +1142,102 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1100px) and (max-width: 1919px) {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+    align-items: stretch;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy {
+    padding-top: 22px;
+    padding-right: 0px;
+    padding-bottom: 14px;
+  }
+
+}
+
+@media (min-width: 1440px) {
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
+  }
+
+}
+
+@media (min-width: 1700px) {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+    justify-content: stretch;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy {
+    grid-template-rows: auto auto auto;
+    align-content: center;
+    max-width: none;
+    grid-template-columns: minmax(0px,1.25fr) minmax(320px,0.75fr);
+  }
+
+  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
+    grid-column: 1/-1;
+    grid-row: 1;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy>h2 {
+    grid-column: 1;
+    grid-row: 2/4;
+    align-self: start;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy>p {
+    grid-column: 2;
+    grid-row: 2;
+    max-width: none;
+  }
+
+  .asme-gallery-page .gallery-instagram-actions {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+}
+
+@media (min-width: 1700px) and (max-width: 1919px) {
+  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
+    gap: clamp(56px,4vw,88px);
+    grid-template-columns: minmax(300px,360px) minmax(0px,1fr);
+  }
+
+  .asme-gallery-page .gallery-instagram-copy {
+    display: grid;
+    row-gap: 10px;
+    column-gap: clamp(40px,3.5vw,72px);
+  }
+
+  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 2px;
+  }
+
+  .asme-gallery-page .gallery-instagram-copy>h2,
+  .asme-gallery-page .gallery-instagram-copy>p {
+    margin: 0;
+  }
+
+  .asme-gallery-page .gallery-instagram-actions {
+    align-self: start;
+    margin: 4px 0 0;
+    padding-top: 0px;
+  }
+
+}
+
+@media (min-width: 1920px) {
   .asme-gallery-page {
     display: grid;
     gap: var(--asme-wide-gap);
@@ -1112,7 +1275,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     grid-column: 1;
     grid-row: 2;
     gap: var(--asme-wide-gap);
-    justify-content: stretch;
     padding: 32px;
     margin: 0;
     align-self: stretch;
@@ -1131,36 +1293,25 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
   }
 
   .asme-gallery-page .gallery-instagram-copy {
-    grid-template-rows: auto auto auto;
-    align-content: center;
-    grid-template-columns: minmax(0px,1.25fr) minmax(320px,0.75fr);
+    display: flex;
     justify-content: center;
     align-items: flex-start;
-    max-width: none;
     gap: 0;
     padding: 0 0 0 clamp(20px,2.5vw,48px);
   }
 
   .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-    grid-column: 1/-1;
-    grid-row: 1;
     margin: 0 0 16px;
   }
 
   .asme-gallery-page .gallery-instagram-copy>h2 {
     text-wrap: balance;
-    grid-column: 1;
-    grid-row: 2/4;
-    align-self: start;
     line-height: 1.1;
     margin: 0 0 20px;
     font-size: clamp(36px,2vw,48px);
   }
 
   .asme-gallery-page .gallery-instagram-copy>p {
-    grid-column: 2;
-    grid-row: 2;
-    max-width: none;
     font-size: 18px;
     line-height: 1.65;
     margin: 0 0 24px;
@@ -1168,8 +1319,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
   .asme-gallery-page .gallery-instagram-actions {
     margin: 0;
-    grid-column: 2;
-    grid-row: 3;
     padding: 0;
     align-self: auto;
   }
@@ -1280,7 +1429,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     background-clip: initial;
     background-color: initial;
     background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20320%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22.8%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23F8E9ED%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%23E8A6B2%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FAFAFB%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%221%22%20x2%3D%22.9%22%20y2%3D%220%22%3E%3Cstop%20stop-color%3D%22%23F8E9ED%22%20stop-opacity%3D%22.15%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23BA0C2F%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F7F8FA%22%20stop-opacity%3D%22.1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M0%200H1000C720%2022%20580%2074%20385%2091C213%20105%20105%20100%200%20155Z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M0%20295C125%20153%20315%2083%20485%2015C579%20-23%20689%20-40%20780%20-48L509%20-40C321%2048%20161%2047%200%20108Z%22%20fill%3D%22url%28%23b%29%22%2F%3E%3C%2Fsvg%3E);
-    opacity: .2;
+    opacity: 0.2;
   }
 
   .asme-gallery-page .gallery-instagram-media {
@@ -1363,10 +1512,52 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
+@media (prefers-color-scheme: light) and (min-width: 640px) and (max-width: 767px) {
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
+  }
+
+}
+
 @media (prefers-color-scheme: light) and (min-width: 768px) {
   .asme-gallery-page .gallery-instagram-copy {
     border-left-width: 1px;
     border-left-style: solid;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (min-width: 900px) and (max-width: 1099px) {
+  .asme-gallery-page .gallery-item.is-last-visible.is-portrait {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (min-width: 1280px) and (max-width: 1439px) {
+  .asme-gallery-page .gallery-item.is-last-visible.is-portrait {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
   }
 
 }
@@ -1404,7 +1595,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::after,
   .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::after {
     background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20320%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22.8%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23450e26%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%2397142e%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23390f23%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%221%22%20x2%3D%22.9%22%20y2%3D%220%22%3E%3Cstop%20stop-color%3D%22%23680e28%22%20stop-opacity%3D%22.15%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23b21a38%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%234d1428%22%20stop-opacity%3D%22.1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M0%200H1000C720%2022%20580%2074%20385%2091C213%20105%20105%20100%200%20155Z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M0%20295C125%20153%20315%2083%20485%2015C579%20-23%20689%20-40%20780%20-48L509%20-40C321%2048%20161%2047%200%20108Z%22%20fill%3D%22url%28%23b%29%22%2F%3E%3C%2Fsvg%3E)no-repeat center/100% 100%;
-    opacity: 0.6;
+    opacity: .6;
   }
 
   .asme-gallery-page .gallery-instagram-media {
@@ -1477,9 +1668,51 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
+@media (prefers-color-scheme: dark) and (min-width: 640px) and (max-width: 767px) {
+  .asme-gallery-page .gallery-item.is-last-visible.is-portrait {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
+  }
+
+}
+
 @media (prefers-color-scheme: dark) and (min-width: 768px) {
   .asme-gallery-page .gallery-instagram-copy {
     border-left: 1px solid rgba(203,213,225,.3);
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 900px) and (max-width: 1099px) {
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 1280px) and (max-width: 1439px) {
+  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
+    float: none;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
   }
 
 }

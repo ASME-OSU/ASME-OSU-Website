@@ -18,7 +18,8 @@ export const PAGES = [
   { name: 'blog', path: '/asme/blog/' }
 ];
 
-export const WIDTHS = [375, 768, 1280, 1920];
+// VISUAL_WIDTHS=480,900 runs the suite at other widths (in-between checks).
+export const WIDTHS = process.env.VISUAL_WIDTHS ? process.env.VISUAL_WIDTHS.split(',').map(Number) : [375, 768, 1280, 1920];
 export const SCHEMES = ['light', 'dark'];
 
 const settle = page => page.waitForTimeout(700);

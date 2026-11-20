@@ -58,3 +58,11 @@ The injected rule must win the cascade to have any effect. Many current rules us
 - Chromium only, at emulated sizes. This is not a cross-browser or physical-device test.
 
 To watch a long run, `sh tests/visual/watch.sh <log file>` in a second terminal shows how many screenshots each stage has written, what is running, and the end of the log.
+
+Run the suite at other widths with `VISUAL_WIDTHS`, for example to check sizes between the four standard ones:
+
+```bash
+VISUAL_WIDTHS=480,640,900,1100,1440,1700 node tests/visual/run.mjs --update --only=--480--,--640--,--900--,--1100--,--1440--,--1700--
+```
+
+Take the reference with the stylesheet you trust, then run without `--update` after the change.

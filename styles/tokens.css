@@ -5,12 +5,16 @@
    dark-mode value, so "--asme-navy" style names that turn white in dark mode are
    not repeated here. Legacy variables stay until the rules using them are rebuilt.
 
-   Breakpoints (media queries cannot use variables), mobile-first:
-     560px   small phones
-     768px   phones → tablets
-     980px   tablets → laptops (the header switches to the full menu here)
-     1800px  widescreen
-   Legacy rules use 43 different widths; rebuilt rules use only these four. */
+   Breakpoints (media queries cannot use variables), mobile-first. Rebuilt
+   page files use these ten, one per width the compiler samples, so layouts
+   between phone, tablet and desktop (iPads, small laptops) stay as they were:
+     480, 640    larger phones
+     768, 900    tablets in portrait
+     1100        tablets in landscape, small laptops
+     1280, 1440  laptops
+     1700, 1920  widescreen
+   The header switches to its full menu at 980px (Header.css). Legacy rules
+   used 43 different widths. */
 :root {
   /* Color: text */
   --asme-c-text: #1a1a2e;

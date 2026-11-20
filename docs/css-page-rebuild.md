@@ -24,7 +24,7 @@ If the comparison fails, restore the stylesheet files from git, fix the cause, a
 1. It renders the page at 375, 768, 1280 and 1920px in light and dark mode. For every element in the page content, including `::before`/`::after`, `:hover` and `:focus-visible`, it asks the DevTools protocol for the matched rules in cascade order.
 2. A matched selector is **owned** when the classes and ids it requires appear on this page and on no other rendered page. Where an owned declaration wins, its value is re-emitted.
 3. Each element gets an exact selector: its classes with `:not(.variant)` for any element carrying the same classes plus more. Elements that share a selector but are styled differently are separated by `:empty`, then by their nearest classed ancestor, then by position.
-4. Values are written mobile-first for the four breakpoints in `styles/tokens.css` (768, 980, 1800) and light/dark. Each declaration gets only as much specificity and `!important` as the remaining shared rules competing with it require.
+4. Values are written mobile-first for ten sampled widths (375, 480, 640, 768, 900, 1100, 1280, 1440, 1700 and 1920px) and light/dark. Each sampled width's value applies from that width up to the next. Each declaration gets only as much specificity and `!important` as the remaining shared rules competing with it require.
 5. With `--tokens`, legacy variables become their token names, and literal light/dark color pairs that equal a token's pair become that token.
 6. With `--write`, owned selectors are deleted from the legacy layer and `styles/*.css`; rules left empty disappear, and mixed rules keep their other selectors. `styles/pages/*.css` is built after every other layer.
 
@@ -95,7 +95,7 @@ Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winner
 
 ## Limits
 
-- Values are exact at the four sampled widths. Between them, a page now follows the four standard breakpoints instead of the legacy layer's 43. For example, a rule that switched at 900px now switches at 980px. Check widths between samples when reviewing a rebuilt page.
+- Values are exact at the ten sampled widths. Between two samples, a page follows the lower one, so a legacy rule that switched at 560px or 980px now switches at 640px or 1100px. The first version sampled only four widths (375, 768, 1280, 1920). At 480, 640, 900 and 1100px, pages then stretched their phone or tablet layout (single-column cards and full-width buttons on About at 640px, Home's cards stacked at 900px). An in-between check against the Phase 1 stylesheet showed this, and the compiler moved to ten widths so iPads and small laptops keep their layouts. The rebuild verification includes that check (`VISUAL_WIDTHS=480,640,900,1100,1440,1700`).
 - States the suite does not render (error and loading messages, focus inside forms other than the forced ones) keep their legacy rules if those rules' names exist elsewhere, or move with the page if they are page-only names. Review such states by hand.
 - Remaining `!important` in a page file beats a shared rule that has not been rebuilt yet (global heading fonts, dark-mode paragraph colors). It goes away when that shared rule is rebuilt.
 
@@ -104,17 +104,19 @@ Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winner
 | Page | `!important` before → after (derived + carried) | Verified |
 | --- | --- | --- |
 | About | 467 → 13 + 15 | screenshots + computed styles + browser tests |
-| Calendar | 317 → 15 + 21 | screenshots + computed styles + browser tests |
+| Calendar | 317 → 19 + 21 | screenshots + computed styles + browser tests |
 | Privacy | 0 → 0 (4 rules) | screenshots + computed styles + browser tests |
 | Sponsor ASME + Current Sponsors (group) | 1,866 → 186 + 233 | screenshots + browser tests; Current Sponsors 768px note below |
 | Gallery | 779 → 18 + 149 | screenshots + browser tests; `gallery--768` varies run to run |
 | Leadership | 67 → 5 + 61 | screenshots + computed styles + browser tests |
-| Join | 825 → 48 + 57 | screenshots + computed styles + browser tests (newsletter flow) |
+| Join | 825 → 109 + 57 | screenshots + computed styles + browser tests (newsletter flow); see Join note below |
 | Member Resources + Member Points (group) | 983 → 45 + 123 | screenshots + computed styles + browser tests |
-| Home | 1,359 → 49 + 70 | screenshots (incl. menu, search, header fallback) + computed styles + browser tests (slideshow, carousels) |
+| Home | 1,359 → 63 + 70 | screenshots (incl. menu, search, header fallback) + computed styles + browser tests (slideshow, carousels) |
 | Footer (component) | ~396 → 11 + 28 | all 106 screenshots (it is on every page) + browser tests |
 
-All eleven pages and the footer were recompiled together from the Phase 1 stylesheet with the final compiler on November 20, 2026. Result: 103/106 screenshots match in pixels and computed styles, and all 9 browser tests pass. The Join page's GroupMe button was checked directly in its normal, hover and focus states, in light and dark, and is identical. Whole stylesheet compared with Phase 1: 9,056 → 2,953 `!important`, 77.2 → 71.0 KB gzipped (596 KB minified). The legacy layer is down to 546 rules: the theme header fallback, the Blog page, states the suite never renders, and theme-state rules. The carried sections hold rules copied verbatim, with their original `!important`. The three differences: `gallery--768`, the timing-dependent justified row, and `current-sponsors--768` (light and dark), where four empty, zero-height WordPress `<p>` elements in the logo cards occupy a different grid cell (pixel-identical).
+All eleven pages and the footer were recompiled together from the Phase 1 stylesheet with the final compiler on November 20, 2026. Result with ten sampled widths: 102/106 screenshots match in pixels and computed styles, 141/144 at the in-between widths (480–1700px, compared with Phase 1), and all 9 browser tests pass. The Join page's GroupMe button was checked directly in its normal, hover and focus states, in light and dark, and is identical. Whole stylesheet compared with Phase 1: 9,056 → 3,031 `!important`, 77.2 → 75.1 KB gzipped (651 KB minified). The ten-width version is about 4 KB larger gzipped than the four-width one (71.0 KB): more width ranges, in exchange for tablets and small laptops keeping their layouts. The legacy layer is down to 546 rules: the theme header fallback, the Blog page, states the suite never renders, and theme-state rules. The carried sections hold rules copied verbatim, with their original `!important`. The differences: `gallery--768` and `gallery--900--dark` (the timing-dependent justified row, 1px), and `current-sponsors--768`/`--900` (light and dark), where four empty, zero-height WordPress `<p>` elements in the logo cards occupy a different grid cell (pixel-identical).
+
+Join's derived `!important` rose from 48 to 109 with ten widths. Its WordPress content carries an inline `<style>` block of about 400 `!important` declarations with breakpoints from 520 to 1279px; at the added widths more of those apply and have to be matched. `tests/css-foundation.test.mjs` gives Join a 16% budget (other pages 10%) until that block moves out of the page HTML.
 
 Privacy was already clean in the stylesheet. Its styling is a scoped `<style id="asme-privacy-styles">` block inside `Privacy Policy Page.html` (63 rules, 3 `!important`, its own `--pp-*` colors), published with the page through CampusPress. Only the tablet table-of-contents rules lived in `styles/*.css`; they moved to `styles/pages/privacy.css`. Moving the inline block into the stylesheet would also mean republishing the page (see `docs/privacy-page-publishing.md`), so it stays where it is. The 6 shared rules still reaching Privacy are the site-wide ones every page shares.
 

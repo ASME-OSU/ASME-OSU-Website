@@ -119,7 +119,7 @@ html body #page#page .entry-content .asme-leadership .leader-card {
   text-align: center;
 }
 
-@media (max-width: 979px) {
+@media (max-width: 899px) {
   .asme-leadership .lb-current-year {
     width: 100%;
     max-width: 100%;
@@ -158,7 +158,7 @@ html body #page#page .entry-content .asme-leadership .leader-card {
 
 }
 
-@media (min-width: 980px) {
+@media (min-width: 900px) {
   .asme-leadership .contact-icon:not(.officer-linkedin):not(.officer-mail) {
     line-height: 1.4;
   }
