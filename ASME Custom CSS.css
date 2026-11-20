@@ -2259,70 +2259,15 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* Individual card */
-.leader-card {
-  background: #ffffff !important;
-  border: 1px solid #e5e7eb !important;
-  border-radius: 18px !important;
-  padding: 20px 16px 16px !important;
-  text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  transition: transform 0.18s, box-shadow 0.18s !important;
-}
-
-.leader-card:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 8px 24px rgba(15, 52, 96, 0.1) !important;
-}
 
 /* Role title → pill badge */
-.leader-card h3 {
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 9px !important;
-  font-weight: 700 !important;
-
-  border-radius: 20px !important;
-  padding: 3px 10px !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
-  margin: 0 0 12px !important;
-  min-height: 0 !important;
-  width: auto !important;
-}
 
 /* Photo */
-.leader-photo {
-  width: 90px !important;
-  height: 90px !important;
-  border-radius: 14px !important;
-  object-fit: cover !important;
-  object-position: center top !important;
-  margin: 0 auto 12px !important;
-  display: block !important;
-  border: 2px solid #e8f4fd !important;
-  background: #eef2f7 !important;
-}
 
 /* Name */
-.leader-card h4 {
-  font-family: 'DM Serif Display', serif !important;
-  font-size: 16px !important;
-  color: #0f3460 !important;
-  font-weight: 400 !important;
-  margin: 0 0 6px !important;
-  line-height: 1.2 !important;
-}
 
 /* Email */
-.leader-card a,
-.leader-card p {
-  font-size: 11px !important;
-  color: #1a6cb8 !important;
-  word-break: break-all !important;
-  line-height: 1.4 !important;
-  margin: 0 !important;
-}
+
 /* =============================================
    ABOUT PAGE
    ============================================= */
@@ -3275,106 +3220,23 @@ h1, h2, h3, h4, h5, h6,
    LEADERSHIP — Auto grid + accordion
    ============================================= */
 
-.lb-current-year {
-  margin-bottom: 40px;
-}
-
-.lb-current-header,
-.lb-year-panel-header {
+.lb-current-header {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.lb-year-panel-header {
-  margin-bottom: 22px;
-}
-
 .lb-current-header::before,
-.lb-current-header::after,
-.lb-year-panel-header::before,
-.lb-year-panel-header::after {
+.lb-current-header::after {
   content: '';
   flex: 1;
   height: 1px;
   background: #e5e7eb;
 }
 
-.lb-past-years {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 32px;
-}
-
-.lb-past-label {
-  margin-bottom: 16px;
-  text-align: center;
-  color: #9ca3af;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.lb-year-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 28px;
-}
-
-.lb-year-tab {
-  appearance: none;
-  padding: 7px 18px;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
-  color: #4b5563;
-  font-size: 12px;
-  font-family: inherit;
-  font-weight: 600;
-  line-height: 1.2;
-  cursor: pointer;
-  transition: background 0.18s, color 0.18s, border-color 0.18s;
-  user-select: none;
-}
-
-.lb-year-tab:focus-visible {
-  outline: 3px solid rgba(187, 0, 0, 0.35);
-  outline-offset: 2px;
-}
-
-.lb-year-tab.active {
-
-  color: #fff;
-
-}
-
-.lb-year-panel {
-  display: none;
-  animation: lb-fade-in 0.3s ease;
-}
-
-.lb-year-panel.active {
-  display: block;
-}
-
 @keyframes lb-fade-in {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.lb-year-panel-header h2,
-.lb-year-panel-header h3 {
-  background: #6b7280 !important;
-  color: #fff !important;
-  border-radius: 999px !important;
-  padding: 7px 20px !important;
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  white-space: nowrap !important;
-  margin: 0 !important;
 }
 
 .leadership-board .lb-grid {
@@ -3459,8 +3321,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .cat-links a,
-.tags-links a,
-.leader-card h3 {
+.tags-links a {
   background: var(--osu-scarlet-light) !important;
   color: var(--osu-scarlet) !important;
 }
@@ -3471,15 +3332,8 @@ h1, h2, h3, h4, h5, h6,
   color: #ffffff !important;
 }
 
-.lb-current-header h2,
-.lb-year-tab.active {
+.lb-current-header h2 {
   background: var(--osu-scarlet) !important;
-  border-color: var(--osu-scarlet) !important;
-}
-
-.lb-year-tab:hover {
-  background: var(--osu-scarlet-light) !important;
-  color: var(--osu-scarlet) !important;
   border-color: var(--osu-scarlet) !important;
 }
 
@@ -4315,7 +4169,6 @@ h1, h2, h3, h4, h5, h6,
 .asme-home .ah-cards-grid>.ah-card,
 .ah-calendar-section,
 .about-mission,
-.leader-card,
 .asme-join-page .join-hero-copy,
 .asme-join-page .join-form-card {
     background: var(--asme-card) !important;
@@ -4685,7 +4538,6 @@ h6,
 
 /* Blog/archive/search: force more space below header */
 body.blog #content,
-body.archive #content,
 body.search #content {
   padding-top: 30px !important;
 }
@@ -4698,7 +4550,6 @@ body.search .content-sidebar-wrap {
 }
 
 body.blog .site-main,
-body.archive .site-main,
 body.search .site-main {
   padding-top: 0 !important;
   margin-top: 0 !important;
@@ -4876,8 +4727,6 @@ body .join-hero,
 body .join-hero-copy,
 body .join-form-card,
 body .join-faq-section,
-body .lb-current-year,
-body .lb-past-years,
 body.search article,
 body #secondary .widget,
 body .sidebar .widget {
@@ -5192,8 +5041,7 @@ body .sidebar .widget {
     justify-content: center !important;
   }
 
-  body .leadership-board .lb-grid .leader-card,
-  body .leader-card {
+  body .leadership-board .lb-grid .leader-card {
     width: 100% !important;
     max-width: none !important;
     min-width: 0 !important;
@@ -5202,21 +5050,11 @@ body .sidebar .widget {
     padding: 18px 12px 16px !important;
   }
 
-  body .leader-photo {
-    width: min(120px, 34vw) !important;
-    height: min(120px, 34vw) !important;
-  }
+  
 
-  body .leader-card h4 {
-    font-size: clamp(18px, 5vw, 24px) !important;
-    line-height: 1.08 !important;
-  }
+  
 
-  body .leader-card a,
-  body .leader-card p {
-    font-size: clamp(12px, 3.6vw, 15px) !important;
-    line-height: 1.3 !important;
-  }
+  
 }
 
 /* =============================================
@@ -5240,7 +5078,6 @@ body .sidebar .widget {
   
 
   .ah-card,
-.leader-card,
 .join-faq-item,
 body .asme-home .ah-impact-mini,
 body .asme-home .ah-featured-event {
@@ -5252,7 +5089,6 @@ body .asme-home .ah-featured-event {
   }
 
   .ah-card:hover,
-.leader-card:hover,
 .join-faq-item:hover,
 body .asme-home .ah-impact-mini:hover,
 body .asme-home .ah-featured-event:hover {
@@ -5260,13 +5096,9 @@ body .asme-home .ah-featured-event:hover {
     box-shadow: 0 12px 32px rgba(15, 52, 96, 0.14) !important;
   }
 
-  .leader-photo {
-    transition: transform 0.35s ease, filter 0.25s ease !important;
-  }
+  
 
-  .leader-card:hover .leader-photo {
-    transform: scale(1.04) !important;
-  }
+  
 
   
 
@@ -6272,7 +6104,6 @@ body .ah-impact-mini,
 body .ah-featured-event,
 body .join-form-card,
 body .about-history,
-body .leader-card,
 body .join-faq-item {
     background-color: #ffffff !important;
     border-color: #e4e7ec !important;
@@ -6284,8 +6115,7 @@ body .join-faq-item {
   }
 
   body .ah-about-text p,
-body .ah-card p,
-body .leader-card p {
+body .ah-card p {
     color: #4b5563 !important;
   }
 
@@ -8690,9 +8520,7 @@ body.archive #page .page-header {
 }
 
 body.blog #page .site-main,
-body.archive #page .site-main,
-body.blog #page #main,
-body.archive #page #main {
+body.blog #page #main {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 20px !important;
@@ -8708,16 +8536,14 @@ body.archive #page .content-sidebar-wrap::before {
 }
 
 /* Full-width blog header card (sits above the grid) */
-body.blog #page .site-main > .posts-navigation,
-body.archive #page .site-main > .posts-navigation,
-body.blog #page .site-main > nav,
-body.archive #page .site-main > nav {
+body.blog #page .site-main>.posts-navigation,
+body.archive #page .site-main>.posts-navigation,
+body.blog #page .site-main>nav {
   grid-column: 1 / -1 !important;
 }
 
 /* Blog article cards */
-body.blog #page article,
-body.archive #page article {
+body.blog #page article {
   display: flex !important;
   flex-direction: column !important;
   margin: 0 !important;
@@ -8731,8 +8557,7 @@ body.archive #page article {
   transition: transform 0.18s ease, box-shadow 0.18s ease !important;
 }
 
-body.blog #page article:hover,
-body.archive #page article:hover {
+body.blog #page article:hover {
   transform: translateY(-3px) !important;
   box-shadow: 0 8px 28px rgba(15, 52, 96, 0.10) !important;
 }
@@ -8829,24 +8654,21 @@ body.archive #page .posted-by {
 /* Excerpt */
 body.blog #page .entry-content,
 body.blog #page .entry-summary,
-body.archive #page .entry-content,
 body.archive #page .entry-summary {
   display: block !important;
   flex: 1 !important;
   padding: 0 20px 8px !important;
 }
 
-body.blog #page .entry-content > *,
-body.blog #page .entry-summary > *,
-body.archive #page .entry-content > *,
-body.archive #page .entry-summary > * {
+body.blog #page .entry-content>*,
+body.blog #page .entry-summary>*,
+body.archive #page .entry-summary>* {
   display: none !important;
 }
 
-body.blog #page .entry-content > p:first-child,
-body.blog #page .entry-summary > p:first-child,
-body.archive #page .entry-content > p:first-child,
-body.archive #page .entry-summary > p:first-child {
+body.blog #page .entry-content>p:first-child,
+body.blog #page .entry-summary>p:first-child,
+body.archive #page .entry-summary>p:first-child {
   display: -webkit-box !important;
   overflow: hidden !important;
   -webkit-box-orient: vertical !important;
@@ -8865,9 +8687,7 @@ body.blog #page article .entry-content .wp-block-image,
 body.blog #page article .entry-summary .wp-block-image,
 body.blog #page article .entry-content .gallery,
 body.blog #page article .entry-summary .gallery,
-body.archive #page article .entry-content img,
 body.archive #page article .entry-summary img,
-body.archive #page article .entry-content figure,
 body.archive #page article .entry-summary figure,
 body.archive #page article .entry-content .wp-block-image,
 body.archive #page article .entry-summary .wp-block-image,
@@ -9019,8 +8839,7 @@ body.archive #page .content-sidebar-wrap {
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  body.blog #page article,
-  body.archive #page article {
+  body.blog #page article {
     background: #0f1b2d !important;
     border-color: #1e3050 !important;
   }
@@ -9037,10 +8856,9 @@ body.archive #page .content-sidebar-wrap {
     color: #f87171 !important;
   }
 
-  body.blog #page .entry-content > p:first-child,
-  body.blog #page .entry-summary > p:first-child,
-  body.archive #page .entry-content > p:first-child,
-  body.archive #page .entry-summary > p:first-child {
+  body.blog #page .entry-content>p:first-child,
+body.blog #page .entry-summary>p:first-child,
+body.archive #page .entry-summary>p:first-child {
     color: #94a3b8 !important;
   }
 
@@ -9080,9 +8898,7 @@ body.archive #page .content-sidebar-wrap {
 /* Mobile */
 @media (max-width: 900px) {
   body.blog #page .site-main,
-  body.archive #page .site-main,
-  body.blog #page #main,
-  body.archive #page #main {
+body.blog #page #main {
     grid-template-columns: 1fr !important;
   }
 
@@ -21991,6 +21807,230 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 html body .asme-lightbox[hidden] {
   display: none!important;
+}
+
+/* /asme/leadership/ page styles, compiled from the legacy and shared layers by
+   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
+   by hand from here on and verify with npm run visual:compare. */
+.asme-leadership .lb-past-years {
+  padding-top: 32px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.asme-leadership .lb-past-label {
+  margin-bottom: 16px;
+  text-align: center;
+  color: rgb(156,163,175);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.asme-leadership .lb-year-tabs {
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.asme-leadership .lb-year-tab.active {
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-image-source: none;
+  border-image-slice: 100%;
+  border-image-width: 1;
+  border-image-outset: 0;
+  border-image-repeat: stretch;
+  cursor: pointer;
+  appearance: none;
+  user-select: none;
+  border-radius: 999px;
+  color: var(--asme-c-on-accent);
+  background: var(--asme-c-accent);
+  border-color: var(--asme-c-accent);
+}
+
+.asme-leadership .lb-year-tab.active:hover {
+  color: var(--asme-c-accent);
+  background: var(--osu-scarlet-light);
+}
+
+.asme-leadership .lb-year-tab:not(.active) {
+  color: rgb(75,85,99);
+  cursor: pointer;
+  appearance: none;
+  user-select: none;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+}
+
+.asme-leadership .lb-year-tab:not(.active):hover {
+  color: var(--asme-c-accent);
+  background: var(--osu-scarlet-light);
+  border-color: var(--asme-c-accent);
+}
+
+.asme-leadership .lb-year-panel.active {
+  display: block;
+}
+
+.asme-leadership .lb-year-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.asme-leadership .lb-year-panel-header::before,
+.asme-leadership .lb-year-panel-header::after,
+.asme-leadership .lb-year-panel-header:hover::before,
+.asme-leadership .lb-year-panel-header:hover::after,
+.asme-leadership .lb-year-panel-header:focus-visible::before,
+.asme-leadership .lb-year-panel-header:focus-visible::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #e5e7eb;
+}
+
+.asme-leadership .lb-year-panel-header>h2 {
+  padding: 7px 20px;
+  background: #6b7280;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.asme-leadership .leader-card:hover {
+  box-shadow: rgba(15,52,96,0.1) 0px 8px 24px;
+}
+
+.asme-leadership .leader-photo {
+  display: block;
+  background: #eef2f7;
+}
+
+.asme-leadership .contact-icon:not(.officer-linkedin):not(.officer-mail) {
+  word-break: break-all;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+
+.asme-leadership .leader-card:hover {
+  transform: translateY(-3px)!important;
+}
+
+html body #page#page .entry-content .asme-leadership .leader-card {
+  text-align: center;
+}
+
+@media (max-width: 979px) {
+  .asme-leadership .lb-current-year {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .asme-leadership .lb-past-years {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .asme-leadership .leader-card {
+    flex: none;
+  }
+
+  .asme-leadership .contact-icon:not(.officer-linkedin):not(.officer-mail) {
+    line-height: 1.3;
+  }
+
+  .asme-leadership .leader-card {
+    width: 100%!important;
+    max-width: none!important;
+    min-width: 0px!important;
+    margin: 0!important;
+  }
+
+  #page .asme-leadership .lb-current-year {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+@media (min-width: 980px) {
+  .asme-leadership .contact-icon:not(.officer-linkedin):not(.officer-mail) {
+    line-height: 1.4;
+  }
+
+}
+
+/* Carried over unchanged: rules for conditions the compiler does not reproduce
+   from its test views (motion preference, orientation, print) and pseudo-elements
+   DevTools does not report (::placeholder), and overlays outside the page content
+   such as the gallery lightbox. */
+body.archive .site-main {
+  padding-top: 0!important;
+  margin-top: 0!important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .leader-card {
+    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .leader-card:hover {
+    transform: translateY(-4px)!important;
+    box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .leader-photo {
+    transition: transform 0.35s ease,filter 0.25s ease!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .leader-card:hover .leader-photo {
+    transform: scale(1.04)!important;
+  }
+
+}
+
+body.archive #page .site-main {
+  display: grid!important;
+  grid-template-columns: repeat(2,minmax(0,1fr))!important;
+  gap: 20px!important;
+  column-count: unset!important;
+  align-items: start!important;
+}
+
+body.archive #page .site-main>nav {
+  grid-column: 1/-1!important;
+}
+
+@media (max-width: 900px) {
+  body.archive #page .site-main {
+    grid-template-columns: 1fr!important;
+  }
+
 }
 
 /* /asme/privacy-policy/ page styles, compiled from the legacy and shared layers by

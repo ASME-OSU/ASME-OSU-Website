@@ -17,7 +17,7 @@ export const PAGE_SCOPES = {
   join: ['asme-join-page'],
   calendar: ['asme-cal-page'],
   gallery: ['asme-gallery-page'],
-  leadership: ['leadership-board'],
+  leadership: ['asme-leadership', 'leadership-board'],
   'sponsor-asme': ['asme-sponsor-page'],
   'current-sponsors': ['asme-sponsors-page'],
   'member-resources': ['asme-member-resources-page'],
