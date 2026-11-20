@@ -201,10 +201,11 @@
   line-height: 1;
   letter-spacing: 0.02em;
   color: rgba(255,255,255,0.86);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.32),0 8px 24px rgba(2,8,23,0.12);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
   backdrop-filter: blur(12px) saturate(135%);
-  box-shadow: rgba(255,255,255,0.32) 0px 1px 0px inset,rgba(2,8,23,0.12) 0px 8px 24px;
-  border-color: rgba(255,255,255,0.34);
   background-image: linear-gradient(135deg,rgba(255,255,255,0.13),rgba(255,255,255,0.035));
+  border-color: rgba(255,255,255,0.34);
 }
 
 .asme-home .ah-status-pill::before,
@@ -268,12 +269,12 @@
   background: var(--osu-scarlet-dark);
   opacity: 1;
   border-color: rgba(255,255,255,.72);
-  background-color: rgba(187,0,0,0.88);
+  background-color: rgba(187,0,0,.88);
 }
 
 .asme-home .ah-btn-p:focus-visible {
   border-color: rgba(255,255,255,.72);
-  background-color: rgba(187,0,0,0.88);
+  background-color: rgba(187,0,0,.88);
 }
 
 .asme-home .ah-btn-o {
@@ -285,6 +286,7 @@
   background-origin: initial;
   background-clip: initial;
   text-decoration: none;
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
   border: 1px solid rgba(255,255,255,.32);
   backdrop-filter: blur(3px) saturate(1.15);
   background-color: rgba(255,255,255,0.067);
@@ -354,6 +356,7 @@
   text-align: center;
   text-transform: uppercase;
   word-spacing: normal;
+  letter-spacing: 0px;
   color: rgba(255,255,255,0.55);
   font-size: 8px;
   line-height: 1.5;
@@ -414,11 +417,12 @@
   position: absolute;
   inset: 0;
   box-sizing: border-box;
+  background-color: rgba(255,255,255,0.065);
+  background-image: linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.012));
   border-color: rgba(255,255,255,0.26);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.24),0 10px 26px rgba(2,8,23,0.10);
+  -webkit-backdrop-filter: blur(3px) saturate(115%);
   backdrop-filter: blur(3px) saturate(115%);
-  background-color: rgba(255,255,255,0.067);
-  background-image: linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.01));
-  box-shadow: rgba(255,255,255,0.24) 0px 1px 0px inset,rgba(2,8,23,0.1) 0px 10px 26px;
   visibility: visible;
   pointer-events: auto;
   opacity: 1;
@@ -482,8 +486,9 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.24),0 10px 26px rgba(2,8,23,0.10);
+  -webkit-backdrop-filter: blur(3px) saturate(115%);
   backdrop-filter: blur(3px) saturate(115%);
-  box-shadow: rgba(255,255,255,0.24) 0px 1px 0px inset,rgba(2,8,23,0.1) 0px 10px 26px;
   border-color: rgba(255,255,255,0.26);
   background-color: rgba(255,255,255,0.067);
   background-image: linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.01));
@@ -739,7 +744,7 @@
 
 .asme-home>div:nth-child(3)>div:nth-child(5)>div:nth-child(4)>span:nth-child(1),
 .asme-home>div:nth-child(3)>div:nth-child(5)>div:nth-child(4)>span:nth-child(3) {
-  -webkit-backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -830,7 +835,7 @@
   border: 1px solid var(--asme-c-border);
   flex-direction: column;
   border-radius: 16px;
-  min-height: 0;
+  min-height: 0px;
 }
 
 .asme-home .ah-about-text {
@@ -944,7 +949,7 @@
   border-radius: 20px;
   overflow: hidden;
   margin-top: 24px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 
 .asme-home .ah-calendar-heading {
@@ -957,16 +962,16 @@
 }
 
 .asme-home .ah-calendar-mini {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .asme-home .ah-calendar-mini>iframe {
   display: block;
   width: 100%;
   border: 0;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .asme-home .ah-title {
@@ -975,6 +980,10 @@
 
 .asme-home .ah-sub {
   color: rgb(241,245,249)!important;
+}
+
+.asme-home .ah-stats {
+  margin: 18px 0 0!important;
 }
 
 .asme-home .ah-career-guide-copy {
@@ -1083,10 +1092,6 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 html body #page .entry-content .asme-home .ah-featured-button:hover {
   transform: translateY(-2px)!important;
-}
-
-html body #page#page .entry-content .asme-home .ah-stats {
-  margin: 18px 0 0;
 }
 
 @media (max-width: 1799px) {
@@ -1292,10 +1297,6 @@ html body #page#page .entry-content .asme-home .ah-stats {
     text-align: center;
   }
 
-  .asme-home .ah-stat-l {
-    letter-spacing: 0px;
-  }
-
   .asme-home .ah-hero-right {
     flex: 1 1 100%;
     text-align: center;
@@ -1346,7 +1347,7 @@ html body #page#page .entry-content .asme-home .ah-stats {
   }
 
   .asme-home .ah-event-ribbons {
-    opacity: .55;
+    opacity: 0.55;
   }
 
   .asme-home .ah-featured-event>p:empty,
@@ -1406,8 +1407,8 @@ html body #page#page .entry-content .asme-home .ah-stats {
   }
 
   .asme-home .ah-about-text {
-    grid-template-columns: minmax(300px,0.9fr) minmax(360px,1.1fr);
     gap: 0 32px;
+    grid-template-columns: minmax(300px,0.9fr) minmax(360px,1.1fr);
   }
 
   .asme-home .ah-about-text .ah-eyebrow-dark:not(.ah-featured-eyebrow) {
@@ -1589,10 +1590,6 @@ html body #page#page .entry-content .asme-home .ah-stats {
     font-size: 11px;
   }
 
-  .asme-home .ah-stat-l {
-    letter-spacing: 0;
-  }
-
   .asme-home .ah-hero-right {
     flex: 0 0 auto;
     justify-self: end;
@@ -1686,8 +1683,8 @@ html body #page#page .entry-content .asme-home .ah-stats {
   }
 
   .asme-home .ah-cards-grid {
-    grid-template-columns: repeat(3,minmax(0,1fr));
     margin: 0 0 28px;
+    grid-template-columns: repeat(3,minmax(0px,1fr));
   }
 
   .asme-home .ah-calendar-mini>iframe {

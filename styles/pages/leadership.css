@@ -10,11 +10,11 @@
 .asme-leadership .lb-past-label {
   margin-bottom: 16px;
   text-align: center;
+  color: #9ca3af;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgb(156,163,175);
 }
 
 .asme-leadership .lb-year-tabs {
@@ -55,9 +55,9 @@
   background: #f3f4f6;
   border: 1px solid #e5e7eb;
   border-radius: 999px;
+  color: #4b5563;
   cursor: pointer;
   user-select: none;
-  color: rgb(75,85,99);
 }
 
 .asme-leadership .lb-year-tab:not(.active):hover {

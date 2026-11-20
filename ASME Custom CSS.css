@@ -1536,53 +1536,6 @@ h1, h2, h3, h4, h5, h6,
   visibility: visible !important;
 }
 
-.asme-footer-inner {
-  margin: 0 auto !important;
-  padding: 0 !important;
-  color: var(--asme-text) !important;
-}
-
-.asme-footer-grid {
-  gap: 32px !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  border-bottom: none !important;
-}
-
-.asme-footer-col h3 {
-  margin: 0 0 12px !important;
-  color: var(--asme-navy) !important;
-  font-family: 'DM Serif Display', serif !important;
-  font-size: 18px !important;
-  font-weight: 400 !important;
-}
-
-.asme-footer-col p,
-.asme-footer-col a {
-  display: block !important;
-  margin: 0 auto 8px !important;
-  color: #374151 !important;
-  font-size: 14px !important;
-  line-height: 1.7 !important;
-  text-decoration: none !important;
-}
-
-.asme-footer-bottom {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 28px 0 0 !important;
-  padding: 18px 0 0 !important;
-  border-top: none !important;
-
-}
-
-.asme-footer-bottom span {
-  max-width: none !important;
-  color: var(--asme-navy) !important;
-  opacity: 1 !important;
-  font-size: 13px !important;
-}
-
 /* =============================================
    RESPONSIVE
    ============================================= */
@@ -1720,46 +1673,7 @@ h1, h2, h3, h4, h5, h6,
    Keeps footer columns and copyright centered.
    ============================================= */
 .site-footer,
-#colophon,
-.asme-footer-inner,
-.asme-footer-grid,
-.asme-footer-col,
-.asme-footer-bottom {
-  text-align: center !important;
-}
-
-.asme-footer-inner {
-  width: 100% !important;
-  max-width: 1440px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-.asme-footer-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  justify-items: center !important;
-  align-items: start !important;
-}
-
-.asme-footer-col {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-.asme-footer-col p,
-.asme-footer-col a {
-  width: auto !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  text-align: center !important;
-}
-
-.asme-footer-bottom span {
-  display: block !important;
-  width: auto !important;
-  margin: 0 auto !important;
+#colophon {
   text-align: center !important;
 }
 
@@ -1919,9 +1833,7 @@ h1, h2, h3, h4, h5, h6,
 
   
 
-  .asme-footer-grid {
-    grid-template-columns: 1fr !important;
-  }
+  
 }
 
 @media (max-width: 400px) {
@@ -2031,10 +1943,6 @@ h1, h2, h3, h4, h5, h6,
 .lb-current-header h2 {
   background: var(--osu-scarlet) !important;
   border-color: var(--osu-scarlet) !important;
-}
-
-.asme-footer-col a:hover {
-  color: var(--osu-scarlet) !important;
 }
 
 .page-numbers.current,
@@ -2608,15 +2516,9 @@ textarea::placeholder {
     border-color: var(--asme-line) !important;
   }
 
-  .asme-footer-col h3,
-  .asme-footer-bottom span {
-    color: #ffffff !important;
-  }
+  
 
-  .asme-footer-col p,
-  .asme-footer-col a {
-    color: var(--asme-muted) !important;
-  }
+  
 }
 
   /* Mobile menu button contrast */
@@ -3514,38 +3416,10 @@ body .asme-home .ah-about-impact {
    FOOTER + PAGE BOTTOM POLISH
    ============================================= */
 
-.asme-footer-bottom {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-}
-
-.asme-footer-login {
-  display: flex !important;
-  align-items: center !important;
-  color: inherit !important;
-  font-size: 11px !important;
-  opacity: 0.25 !important;
-  text-decoration: none !important;
-  transition: opacity 0.2s ease !important;
-}
-
-.asme-footer-login:hover {
-  opacity: 0.7 !important;
-}
-
 /* Keep the admin shortcut on desktop, where site editing is practical. */
-@media (max-width: 1180px), (hover: none) and (pointer: coarse) {
-  .asme-footer-login {
-    display: none !important;
-  }
-}
 
 /* Comfortable touch targets without adding more footer content. */
 @media (max-width: 768px), (hover: none) and (pointer: coarse) {
-  .asme-footer-col > a:not(.asme-footer-login),
   .asme-footer-social a {
     display: inline-flex !important;
     min-height: 44px !important;
@@ -3561,24 +3435,6 @@ body .asme-home .ah-about-impact {
 }
 
 /* Give the copyright room to wrap instead of touching phone edges. */
-@media (max-width: 640px) {
-  .asme-footer-bottom {
-    justify-content: center !important;
-    padding: 12px 16px 0 !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
-  }
-
-  .asme-footer-bottom > span {
-    display: block !important;
-    width: 100% !important;
-    max-width: 320px !important;
-    margin: 0 auto !important;
-    line-height: 1.5 !important;
-    text-align: center !important;
-    white-space: normal !important;
-  }
-}
 
 .entry-content>*:last-child,
 .page-content>*:last-child {
@@ -3670,8 +3526,7 @@ body .about-history {
     border-color: #e4e7ec !important;
   }
 
-  body .about-mission,
-  body .asme-footer-inner {
+  body .about-mission {
     border-color: #e4e7ec !important;
   }
 
@@ -4371,10 +4226,7 @@ body #page .asme-members-page .asme-points-feature-name {
     border-top-color: #26364f !important;
   }
 
-  body:has(.asme-members-page) .asme-footer-inner {
-    background: transparent !important;
-    background-color: transparent !important;
-  }
+  
 }
 
 /* MEMBER POINTS - clean step number icons.
@@ -5846,8 +5698,7 @@ body #page .asme-points-page-v2 .asme-event-type-bar,
   
 
   body .site-header .inside-header,
-  body #masthead .inside-header,
-  body .asme-footer-inner {
+body #masthead .inside-header {
     width: min(2100px, calc(100vw - 80px)) !important;
     max-width: min(2100px, calc(100vw - 80px)) !important;
     margin-right: auto !important;
@@ -5898,337 +5749,51 @@ body #page .asme-points-page-v2 .asme-event-type-bar,
   color: #17345f !important;
 }
 
-body .asme-footer-inner.asme-footer-v2 {
-  width: min(1440px, calc(100vw - 64px)) !important;
-  max-width: 1440px !important;
-  margin: 0 auto !important;
-  padding: 56px 0 0 !important;
-  color: #17345f !important;
-}
-
-body .asme-footer-v2 .asme-footer-grid {
-  display: grid !important;
-  grid-template-columns: 1.2fr 1fr 0.88fr !important;
-  gap: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  align-items: start !important;
-  justify-items: stretch !important;
-}
-
-body .asme-footer-v2 .asme-footer-col {
-  display: block !important;
-  min-width: 0 !important;
-  padding: 0 42px !important;
-  text-align: left !important;
-}
-
-body .asme-footer-v2 .asme-footer-col + .asme-footer-col {
-  border-left: 1px solid #d7dee8 !important;
-}
-
-body .asme-footer-v2 .asme-footer-brand { padding-left: 0 !important; }
-body .asme-footer-v2 .asme-footer-connect { padding-right: 0 !important; }
-
-body .asme-footer-v2 h3 {
-  position: relative !important;
-  margin: 0 0 25px !important;
-  padding: 0 0 13px !important;
-  color: #113d7a !important;
-  font-family: 'DM Serif Display', Georgia, serif !important;
-  font-size: 28px !important;
-  font-weight: 400 !important;
-  line-height: 1.08 !important;
-  text-align: left !important;
-}
-
-body .asme-footer-v2 h3::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 52px !important;
-  height: 3px !important;
-  border-radius: 99px !important;
-  background: #bb0000 !important;
-}
-
-body .asme-footer-v2 .asme-footer-logo {
-  display: inline-flex !important;
-  width: auto !important;
-  margin: 0 0 17px !important;
-  padding: 0 !important;
-  text-decoration: none !important;
-}
-
-body .asme-footer-v2 .asme-footer-logo img {
-  display: block !important;
-  width: 168px !important;
-  height: auto !important;
-  max-height: 84px !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
-  object-fit: contain !important;
-  object-position: left center !important;
-}
-
-body .asme-footer-v2 .asme-footer-brand h3 { margin-bottom: 21px !important; }
-
-body .asme-footer-v2 .asme-footer-contact {
-  display: grid !important;
-  gap: 13px !important;
-}
-
-body .asme-footer-v2 .asme-footer-contact p {
-  display: flex !important;
-  align-items: flex-start !important;
-  gap: 13px !important;
-  width: auto !important;
-  margin: 0 !important;
-  color: #38516f !important;
-  font-size: 15px !important;
-  line-height: 1.45 !important;
-  text-align: left !important;
-}
-
-body .asme-footer-v2 svg {
-  display: block !important;
-  flex: 0 0 auto !important;
-  width: 22px !important;
-  height: 22px !important;
-  fill: none !important;
-  stroke: currentColor !important;
-  stroke-width: 1.8 !important;
-  stroke-linecap: round !important;
-  stroke-linejoin: round !important;
-}
-
-body .asme-footer-v2 .asme-footer-contact svg { margin-top: 1px !important; }
-
-body .asme-footer-v2 a {
-  color: #38516f !important;
-  text-decoration: none !important;
-  transition: color .18s ease, transform .18s ease !important;
-}
-
-body .asme-footer-v2 a:hover { color: #bb0000 !important; }
-body .asme-footer-v2 a:focus-visible { outline: 3px solid #bb0000 !important; outline-offset: 4px !important; border-radius: 3px !important; }
-
-body .asme-footer-v2 .asme-footer-contact a {
-  display: inline !important;
-  width: auto !important;
-  margin: 0 !important;
-  font: inherit !important;
-  text-align: inherit !important;
-}
-
-body .asme-footer-v2 ul {
-  display: grid !important;
-  gap: 8px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-}
-
-body .asme-footer-v2 li { margin: 0 !important; padding: 0 !important; }
-
-body .asme-footer-v2 .asme-footer-links li a {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 16px !important;
-  width: 100% !important;
-  min-height: 34px !important;
-  margin: 0 !important;
-  padding: 3px 0 !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  line-height: 1.3 !important;
-  text-align: left !important;
-}
-
-body .asme-footer-v2 .asme-footer-links li a svg {
-  width: 17px !important;
-  height: 17px !important;
-  color: #71839d !important;
-  transition: transform .18s ease !important;
-}
-
-body .asme-footer-v2 .asme-footer-links li a:hover svg,
-body .asme-footer-v2 .asme-footer-links li a:focus-visible svg { transform: translateX(3px) !important; }
-
-body .asme-footer-v2 .asme-footer-connect ul { gap: 11px !important; }
-
-body .asme-footer-v2 .asme-footer-connect li a {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 14px !important;
-  width: auto !important;
-  min-height: 30px !important;
-  margin: 0 !important;
-  padding: 1px 0 !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  line-height: 1.3 !important;
-  text-align: left !important;
-}
-
 /* Connect links are plain rows on desktop and tablet; cards are reserved for mobile. */
-@media (min-width: 721px) {
-  body .asme-footer-v2 .asme-footer-connect li a {
-    background: transparent !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-  }
-}
-
-body .asme-footer-v2 .asme-footer-linkedin svg {
-  fill: currentColor !important;
-  stroke: none !important;
-}
-
-body .asme-footer-v2 .asme-footer-groupme-icon {
-  display: block !important;
-  flex: 0 0 auto !important;
-  width: 22px !important;
-  height: 22px !important;
-  background-color: currentColor !important;
-  -webkit-mask: url('https://asme-osu.github.io/ASME-OSU-Website/assets/groupme-mark.svg') center / contain no-repeat !important;
-  mask: url('https://asme-osu.github.io/ASME-OSU-Website/assets/groupme-mark.svg') center / contain no-repeat !important;
-}
-
-body .asme-footer-v2 .asme-footer-bottom {
-  position: relative !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  max-width: none !important;
-  min-height: 86px !important;
-  margin: 46px 0 0 !important;
-  padding: 22px 16px !important;
-  border-top: 1px solid #d7dee8 !important;
-  color: #526b92 !important;
-  text-align: center !important;
-}
-
-body .asme-footer-v2 .asme-footer-login { display: none !important; }
-
-@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
-  body .asme-footer-v2 .asme-footer-bottom { position: static !important; }
-  body .asme-footer-v2 .asme-footer-login {
-    display: grid !important;
-    place-items: center !important;
-    position: absolute !important;
-    top: auto !important;
-    right: 8px !important;
-    bottom: 8px !important;
-    width: 30px !important;
-    height: 30px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    transform: none !important;
-    color: inherit !important;
-    opacity: .26 !important;
-  }
-  body .asme-footer-v2 .asme-footer-login:hover,
-  body .asme-footer-v2 .asme-footer-login:focus-visible { opacity: 1 !important; }
-  body .asme-footer-v2 .asme-footer-login svg { width: 17px !important; height: 17px !important; }
-}
-
-body .asme-footer-v2 .asme-footer-bottom span {
-  display: block !important;
-  width: auto !important;
-  max-width: none !important;
-  margin: 0 !important;
-  color: inherit !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 1.45 !important;
-  text-align: center !important;
-}
-
-@media (max-width: 980px) {
-  body .asme-footer-inner.asme-footer-v2 { width: min(960px, calc(100vw - 48px)) !important; }
-  body .asme-footer-v2 .asme-footer-grid { grid-template-columns: 1.12fr 0.88fr !important; row-gap: 42px !important; }
-  body .asme-footer-v2 .asme-footer-connect { grid-column: 1 / -1 !important; padding-left: 0 !important; border-left: 0 !important; }
-  body .asme-footer-v2 .asme-footer-connect ul { grid-template-columns: repeat(4, max-content) !important; gap: 24px !important; }
-}
 
 @media (max-width: 720px) {
   .site-footer:has(.asme-footer-v2),
   #colophon:has(.asme-footer-v2) { margin-top: 28px !important; }
-  body .asme-footer-inner.asme-footer-v2 { width: min(100% - 40px, 480px) !important; padding-top: 42px !important; }
-  body .asme-footer-v2 .asme-footer-grid { display: block !important; }
-  body .asme-footer-v2 .asme-footer-col { padding: 32px 0 0 !important; border: 0 !important; }
-  body .asme-footer-v2 .asme-footer-col + .asme-footer-col { border-left: 0 !important; }
-  body .asme-footer-v2 .asme-footer-brand { padding-top: 0 !important; border-top: 0 !important; }
-  body .asme-footer-v2 .asme-footer-brand { text-align: center !important; }
-  body .asme-footer-v2 .asme-footer-brand .asme-footer-logo { justify-content: center !important; }
-  body .asme-footer-v2 .asme-footer-brand h3 { text-align: center !important; }
-  body .asme-footer-v2 .asme-footer-brand h3::after { left: 50% !important; transform: translateX(-50%) !important; }
-  body .asme-footer-v2 .asme-footer-brand .asme-footer-contact { justify-items: start !important; }
-  body .asme-footer-v2 h3 { margin-bottom: 20px !important; font-size: 29px !important; }
-  body .asme-footer-v2 .asme-footer-logo { margin-bottom: 20px !important; }
-  body .asme-footer-v2 .asme-footer-logo img { width: 190px !important; max-height: 92px !important; }
-  body .asme-footer-v2 .asme-footer-contact { gap: 12px !important; }
-  body .asme-footer-v2 .asme-footer-contact p { font-size: 15px !important; }
-  body .asme-footer-v2 .asme-footer-links ul { gap: 0 !important; }
-  body .asme-footer-v2 .asme-footer-links li a { min-height: 52px !important; padding: 9px 2px !important; border-bottom: 1px solid #d7dee8 !important; }
-  body .asme-footer-v2 .asme-footer-connect ul { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
-  body .asme-footer-v2 .asme-footer-connect li a { display: flex !important; flex-direction: column !important; justify-content: center !important; gap: 9px !important; width: 100% !important; min-height: 98px !important; padding: 15px 10px !important; border: 1px solid #d7dee8 !important; border-radius: 8px !important; text-align: center !important; }
-  body .asme-footer-v2 .asme-footer-connect li a svg { width: 25px !important; height: 25px !important; }
-  body .asme-footer-v2 .asme-footer-groupme-icon { width: 25px !important; height: 25px !important; }
-  body .asme-footer-v2 .asme-footer-bottom { min-height: 0 !important; margin-top: 40px !important; padding: 25px 8px 30px !important; }
-  body .asme-footer-v2 .asme-footer-bottom span { max-width: 330px !important; font-size: 13px !important; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
 
 /* The Fold cover screen is narrow enough that the section rules read as stray bars.
    Keep a single, centered content column while retaining the link-list separators. */
-@media (max-width: 390px) {
-  body .asme-footer-inner.asme-footer-v2 { width: calc(100% - 28px) !important; padding-top: 36px !important; }
-  body .asme-footer-v2 .asme-footer-col { padding-top: 28px !important; }
-  body .asme-footer-v2 h3 { font-size: 27px !important; }
-  body .asme-footer-v2 .asme-footer-logo img { width: 176px !important; }
-  body .asme-footer-v2 .asme-footer-contact p { gap: 11px !important; font-size: 14px !important; }
-  body .asme-footer-v2 .asme-footer-connect ul { gap: 10px !important; }
-  body .asme-footer-v2 .asme-footer-connect li a { min-height: 92px !important; padding: 13px 8px !important; }
-}
 
 @media (prefers-color-scheme: dark) {
   .site-footer:has(.asme-footer-v2),
   #colophon:has(.asme-footer-v2) { background: #07111f !important; border-top-color: #bb0000 !important; color: #e8f0fb !important; }
-  body .asme-footer-inner.asme-footer-v2 { color: #e8f0fb !important; }
-  body .asme-footer-v2 .asme-footer-col + .asme-footer-col,
-  body .asme-footer-v2 .asme-footer-bottom,
-  body .asme-footer-v2 .asme-footer-col,
-  body .asme-footer-v2 .asme-footer-links li a { border-color: #2a4262 !important; }
-  body .asme-footer-v2 h3 { color: #ffffff !important; }
-  body .asme-footer-v2 .asme-footer-contact p,
-  body .asme-footer-v2 a,
-  body .asme-footer-v2 .asme-footer-bottom { color: #c8d8ef !important; }
-  body .asme-footer-v2 .asme-footer-logo img { filter: brightness(0) invert(1) !important; }
-}
-
-@media (prefers-color-scheme: dark) and (max-width: 720px) {
-  body .asme-footer-v2 .asme-footer-connect li a { border-color: #2a4262 !important; background: #0f1b2d !important; }
+  
+  
+  
+  
+  
 }
 
 /* This comes after the dark palette so its generic column border cannot return
    on tablet or on a Fold cover screen. */
-@media (max-width: 980px) {
-  body .asme-footer-v2 .asme-footer-col.asme-footer-connect { border-left: 0 !important; }
-}
-
-@media (max-width: 720px) {
-  body .asme-footer-v2 .asme-footer-col.asme-footer-col { border: 0 !important; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body .asme-footer-v2 a,
-  body .asme-footer-v2 .asme-footer-links li a svg { transition: none !important; }
-}
 
 /* ============================================================
    CURRENT SPONSORS — MOBILE BRUTUS BADGE ALIGNMENT
@@ -6868,99 +6433,10 @@ html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-tie-note {
 /* Keep WordPress auto-formatting from becoming extra grid items. */
 
 /* Keep the redesigned footer aligned with the shared wide-page grid. */
-@media (min-width: 1920px) {
-  body .asme-footer-inner.asme-footer-v2 {
-    position: relative !important;
-    width: min(2100px, calc(100vw - 80px)) !important;
-    max-width: min(2100px, calc(100vw - 80px)) !important;
-  }
-}
 
 /* FOOTER ALIGNMENT — the transformed footer is a direct body child on this
    theme. Keep the wide frame genuinely centered, give both dividers the same
    run, and anchor the low-contrast admin control to its bottom-right corner. */
-@media (min-width: 981px) {
-  body .asme-footer-inner.asme-footer-v2 { position: relative !important; }
-  body .asme-footer-v2 .asme-footer-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    align-items: stretch !important;
-  }
-
-  body .asme-footer-v2 .asme-footer-col {
-    position: relative !important;
-    padding-right: 42px !important;
-    padding-left: 42px !important;
-    border-left: 0 !important;
-    text-align: center !important;
-  }
-  body .asme-footer-v2 .asme-footer-col + .asme-footer-col::before {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    width: 1px !important;
-    background: #d7dee8 !important;
-  }
-  body .asme-footer-v2 .asme-footer-logo { justify-content: center !important; }
-  body .asme-footer-v2 h3 { text-align: center !important; }
-  body .asme-footer-v2 h3::after { left: 50% !important; transform: translateX(-50%) !important; }
-  body .asme-footer-v2 .asme-footer-contact { justify-items: center !important; }
-  body .asme-footer-v2 .asme-footer-contact p {
-    display: grid !important;
-    grid-template-columns: 22px minmax(0, max-content) 22px !important;
-    column-gap: 13px !important;
-    align-items: start !important;
-    justify-content: center !important;
-    width: 100% !important;
-    text-align: center !important;
-  }
-  body .asme-footer-v2 .asme-footer-contact p > :first-child { grid-column: 1 !important; }
-  body .asme-footer-v2 .asme-footer-contact p > :nth-child(2) { grid-column: 2 !important; min-width: 0 !important; }
-  body .asme-footer-v2 .asme-footer-links li a {
-    display: grid !important;
-    grid-template-columns: 17px max-content 17px !important;
-    column-gap: 16px !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  body .asme-footer-v2 .asme-footer-links li a > span {
-    grid-column: 2 !important;
-    min-width: max-content !important;
-    white-space: nowrap !important;
-    text-align: center !important;
-  }
-  body .asme-footer-v2 .asme-footer-links li a > svg { grid-column: 3 !important; }
-  body .asme-footer-v2 .asme-footer-connect li a {
-    display: grid !important;
-    grid-template-columns: 22px minmax(0, max-content) 22px !important;
-    column-gap: 14px !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-  }
-  body .asme-footer-v2 .asme-footer-connect li a > :first-child { grid-column: 1 !important; }
-  body .asme-footer-v2 .asme-footer-connect li a > span:last-child { grid-column: 2 !important; text-align: center !important; }
-
-  /* The footer frame is centered and width-constrained. Offset this subtle
-     control by its outer gutter so it reaches the true page corner. */
-  body .asme-footer-v2 .asme-footer-login {
-    right: calc((100vw - 100%) / -2 + 4px) !important;
-    bottom: 4px !important;
-  }
-}
-
-@media (prefers-color-scheme: dark) and (min-width: 981px) {
-  body .asme-footer-v2 .asme-footer-col + .asme-footer-col::before { background: #2a4262 !important; }
-}
-
-@media (min-width: 1920px) {
-  body .asme-footer-inner.asme-footer-v2 {
-    left: auto !important;
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
-}
 
 /* WIDE DESKTOP — all primary pages follow one shared visual container. */
 @media (min-width: 1920px) {
@@ -12451,6 +11927,1078 @@ html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus 
 
 }
 
+/* /asme/ page styles, compiled from the legacy and shared layers by
+   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
+   by hand from here on and verify with npm run visual:compare. */
+.asme-footer-inner {
+  text-align: center;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+}
+
+.asme-footer-inner .asme-footer-grid {
+  border-bottom: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  justify-items: stretch;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-brand,
+.asme-footer-inner .asme-footer-col.asme-footer-connect {
+  flex-direction: column;
+  align-items: center;
+  display: block;
+  padding-bottom: 0px;
+  min-width: 0px;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3 {
+  position: relative;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 0 0 13px;
+  line-height: 1.08;
+  margin-bottom: 21px;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3::after,
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3:hover::after,
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3:focus-visible::after,
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3::after,
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3:hover::after,
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3:focus-visible::after,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3::after,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3:hover::after,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3:focus-visible::after {
+  content: "";
+  position: absolute;
+  width: 52px;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--asme-c-accent);
+  bottom: 0px;
+}
+
+.asme-footer-inner .asme-footer-logo {
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+  width: auto;
+  text-decoration: none;
+}
+
+.asme-footer-inner .asme-footer-logo:hover,
+.asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link):hover,
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a:hover,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme):hover,
+.asme-footer-inner .asme-footer-linkedin:hover,
+.asme-footer-inner .asme-footer-groupme:hover {
+  color: var(--asme-c-accent);
+}
+
+.asme-footer-inner .asme-footer-logo:focus-visible,
+.asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link):focus-visible,
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a:focus-visible,
+.asme-footer-inner .asme-footer-login:focus-visible,
+.asme-footer-inner.asme-footer-inner.asme-footer-inner .asme-footer-address-link:focus-visible {
+  border-radius: 3px;
+}
+
+.asme-footer-inner .asme-footer-logo>img {
+  display: block;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.asme-footer-inner .asme-footer-contact {
+  display: grid;
+}
+
+.asme-footer-inner .asme-footer-address {
+  text-decoration: none;
+  line-height: 1.45;
+}
+
+.asme-footer-inner .asme-footer-address-link {
+  font-style: inherit;
+  font-variant-ligatures: inherit;
+  font-variant-caps: inherit;
+  font-variant-numeric: inherit;
+  font-variant-east-asian: inherit;
+  font-variant-alternates: inherit;
+  font-variant-position: inherit;
+  font-variant-emoji: inherit;
+  font-weight: inherit;
+  font-stretch: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-size-adjust: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-language-override: inherit;
+}
+
+.asme-footer-inner .asme-footer-icon-label>svg,
+.asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>svg:nth-child(1),
+.asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>svg:nth-child(1),
+.asme-footer-inner .asme-footer-login>svg {
+  display: block;
+  flex: 0 0 auto;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: currentcolor;
+}
+
+.asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+  text-decoration: none;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.asme-footer-inner .asme-footer-contact>p>svg {
+  display: block;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: currentcolor;
+  margin-top: 1px;
+}
+
+.asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link) {
+  text-decoration: none;
+  display: inline;
+  width: auto;
+  margin: 0;
+  text-align: inherit;
+  font-style: inherit;
+  font-variant-ligatures: inherit;
+  font-variant-caps: inherit;
+  font-variant-numeric: inherit;
+  font-variant-east-asian: inherit;
+  font-variant-alternates: inherit;
+  font-variant-position: inherit;
+  font-variant-emoji: inherit;
+  font-weight: inherit;
+  font-stretch: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-optical-sizing: inherit;
+  font-size-adjust: inherit;
+  font-kerning: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-language-override: inherit;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links {
+  flex-direction: column;
+  align-items: center;
+  display: block;
+  min-width: 0px;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+  position: relative;
+  padding: 0 0 13px;
+  line-height: 1.08;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li {
+  margin: 0;
+  padding: 0;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+  text-decoration: none;
+  width: 100%;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+  align-items: center;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a>svg {
+  display: block;
+  flex: 0 0 auto;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: currentcolor;
+  width: 17px;
+  height: 17px;
+  color: rgb(113,131,157);
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+.asme-footer-inner .asme-footer-linkedin,
+.asme-footer-inner .asme-footer-groupme {
+  text-decoration: none;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  align-items: center;
+}
+
+.asme-footer-inner .asme-footer-linkedin>svg {
+  display: block;
+  flex: 0 0 auto;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: none;
+  fill: currentcolor;
+}
+
+.asme-footer-inner .asme-footer-groupme-icon {
+  display: block;
+  flex: 0 0 auto;
+  -webkit-mask: url(https://asme-osu.github.io/ASME-OSU-Website/assets/groupme-mark.svg)center/contain no-repeat;
+  background-color: currentcolor;
+}
+
+.asme-footer-inner .asme-footer-bottom {
+  flex-wrap: wrap;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  text-align: center;
+}
+
+.asme-footer-inner .asme-footer-bottom>span {
+  opacity: 1;
+  display: block;
+  width: auto;
+  margin: 0;
+  color: inherit;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.asme-footer-inner .asme-footer-login {
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+.asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+.asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+  font-weight: 400!important;
+  font-family: "DM Serif Display",Georgia,serif!important;
+}
+
+.asme-footer-inner .asme-footer-login:hover {
+  color: var(--asme-c-accent)!important;
+}
+
+@media (max-width: 1799px) {
+  .asme-footer-inner {
+    max-width: 1440px;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .asme-footer-inner {
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    width: calc(100% - 28px);
+    padding-top: 36px;
+  }
+
+  .asme-footer-inner .asme-footer-grid {
+    display: block;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    padding-right: 0px;
+    text-align: center;
+    padding-top: 28px;
+    border: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3 {
+    text-align: center;
+    font-size: 27px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:focus-visible::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .asme-footer-inner .asme-footer-contact {
+    justify-items: start;
+  }
+
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    gap: 11px;
+    font-size: 14px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 28px;
+    border: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    font-size: 27px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul {
+    gap: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    min-height: 52px;
+    padding: 9px 2px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    padding-top: 28px;
+    border: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+    grid-template-columns: repeat(2,minmax(0px,1fr));
+    gap: 10px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    border-radius: 8px;
+    text-align: center;
+    min-height: 92px;
+    padding: 13px 8px;
+  }
+
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>svg:nth-child(1),
+  .asme-footer-inner .asme-footer-linkedin>svg,
+  .asme-footer-inner .asme-footer-groupme-icon,
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>svg:nth-child(1) {
+    width: 25px;
+    height: 25px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    box-sizing: border-box;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 40px;
+    padding: 25px 8px 30px;
+    min-height: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom>span {
+    white-space: normal;
+    max-width: 330px;
+    font-size: 13px;
+  }
+
+  .asme-footer-inner.asme-footer-inner .asme-footer-logo {
+    justify-content: center!important;
+  }
+
+}
+
+@media (max-width: 979px) {
+  .asme-footer-inner .asme-footer-grid {
+    column-gap: 0px;
+    grid-template-columns: 1.12fr 0.88fr;
+    row-gap: 42px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    padding-left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-address {
+    align-items: flex-start;
+  }
+
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    display: flex;
+    align-items: flex-start;
+    width: auto;
+    text-align: left;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    text-align: left;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:focus-visible::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:focus-visible::after {
+    left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    text-align: left;
+    padding-right: 0px;
+    grid-column: 1/-1;
+    padding-left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    position: relative;
+  }
+
+  .asme-footer-inner .asme-footer-login {
+    align-items: center;
+    opacity: 0.25;
+  }
+
+  .asme-footer-inner .asme-footer-login:hover {
+    opacity: 0.7;
+  }
+
+  .asme-footer-inner .asme-footer-login>svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .asme-footer-inner .asme-footer-login {
+    display: none!important;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .asme-footer-inner {
+    padding: 56px 0 0;
+  }
+
+  .asme-footer-inner .asme-footer-grid {
+    display: grid;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    padding-top: 0px;
+    padding-right: 42px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3 {
+    font-size: 28px;
+  }
+
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    font-size: 15px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    margin: 0 0 25px;
+    font-size: 28px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul {
+    gap: 8px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    min-height: 34px;
+    padding: 3px 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    padding-top: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    min-height: 30px;
+    padding: 1px 0;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>svg:nth-child(1),
+  .asme-footer-inner .asme-footer-linkedin>svg,
+  .asme-footer-inner .asme-footer-groupme-icon,
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>svg:nth-child(1) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    min-height: 86px;
+    margin: 46px 0 0;
+    padding: 22px 16px;
+  }
+
+  .asme-footer-inner .asme-footer-bottom>span {
+    max-width: none;
+    font-size: 14px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .asme-footer-inner {
+    width: min(960px,-48px + 100vw);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3 {
+    text-align: left;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:focus-visible::after {
+    left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    gap: 13px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    padding: 0 42px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    border-left: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+    gap: 24px;
+    grid-template-columns: repeat(4,max-content);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    display: inline-flex;
+    gap: 14px;
+    width: auto;
+  }
+
+}
+
+@media (min-width: 980px) {
+  .asme-footer-inner {
+    position: relative;
+  }
+
+  .asme-footer-inner .asme-footer-grid {
+    gap: 0;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    position: relative;
+    padding-left: 42px;
+    border-left: 0;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3:focus-visible::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:focus-visible::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:focus-visible::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .asme-footer-inner .asme-footer-contact {
+    justify-items: center;
+  }
+
+  .asme-footer-inner .asme-footer-address {
+    row-gap: 13px;
+    column-gap: 13px;
+    align-items: start;
+    justify-content: center;
+    grid-template-columns: 22px minmax(0px,max-content) 22px;
+  }
+
+  .asme-footer-inner .asme-footer-address-link,
+  .asme-footer-inner .asme-footer-contact>p>svg,
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>svg:nth-child(1),
+  .asme-footer-inner .asme-footer-linkedin>svg,
+  .asme-footer-inner .asme-footer-groupme-icon,
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>svg:nth-child(1) {
+    grid-column: 1;
+  }
+
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    row-gap: 13px;
+    display: grid;
+    column-gap: 13px;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    grid-template-columns: 22px minmax(0px,max-content) 22px;
+  }
+
+  .asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link) {
+    grid-column: 2;
+    min-width: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    position: relative;
+    padding-right: 42px;
+    padding-left: 42px;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:focus-visible::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:focus-visible::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    row-gap: 16px;
+    display: grid;
+    grid-template-columns: 17px max-content 17px;
+    column-gap: 16px;
+    justify-content: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a>span {
+    grid-column: 2;
+    min-width: max-content;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a>svg {
+    grid-column: 3;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    position: relative;
+    padding-right: 42px;
+    padding-left: 42px;
+    text-align: center;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul {
+    gap: 11px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    row-gap: 14px;
+    display: grid;
+    column-gap: 14px;
+    justify-content: center;
+    width: 100%;
+    grid-template-columns: 22px minmax(0px,max-content) 22px;
+  }
+
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(1)>a:nth-child(1)>span:nth-child(2),
+  .asme-footer-inner .asme-footer-linkedin>span,
+  .asme-footer-inner .asme-footer-groupme>span:not(.asme-footer-groupme-icon),
+  .asme-footer-inner>div:nth-child(1)>nav:nth-child(3)>ul:nth-child(2)>li:nth-child(4)>a:nth-child(1)>span:nth-child(2) {
+    grid-column: 2;
+    text-align: center;
+  }
+
+  .asme-footer-inner.asme-footer-inner .asme-footer-logo {
+    justify-content: center!important;
+  }
+
+  .asme-footer-inner.asme-footer-inner .asme-footer-login {
+    bottom: 4px!important;
+    right: calc(50% + 4px - 50vw)!important;
+  }
+
+}
+
+@media (min-width: 980px) and (max-width: 1799px) {
+  .asme-footer-inner {
+    width: min(1440px,-64px + 100vw);
+  }
+
+}
+
+@media (min-width: 1800px) {
+  .asme-footer-inner {
+    width: min(2100px,calc(100vw - 80px));
+    max-width: min(2100px,calc(100vw - 80px));
+    left: auto;
+  }
+
+}
+
+@media (prefers-color-scheme: light) {
+  .asme-footer-inner {
+    border-right-color: rgb(228,231,236);
+    border-bottom-color: rgb(228,231,236);
+    border-left-color: rgb(228,231,236);
+    color: rgb(23,52,95);
+  }
+
+  .asme-footer-inner .asme-footer-logo,
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address),
+  .asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link),
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    color: rgb(56,81,111);
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    border-top: 1px solid #d7dee8;
+    color: rgb(82,107,146);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    color: rgb(17,61,122)!important;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (max-width: 767px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    border-bottom: 1px solid #d7dee8;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    border: 1px solid #d7dee8;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (max-width: 979px) {
+  .asme-footer-inner .asme-footer-login {
+    color: rgb(56,81,111);
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (min-width: 768px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    border-left: 1px solid #d7dee8;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (min-width: 980px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:focus-visible::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:focus-visible::before {
+    background: #d7dee8;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    border-left: 1px solid #d7dee8;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  .asme-footer-inner {
+    color: rgb(232,240,251);
+  }
+
+  .asme-footer-inner .asme-footer-logo,
+  .asme-footer-inner .asme-footer-contact>p>a:not(.asme-footer-address-link),
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    color: rgb(200,216,239);
+  }
+
+  .asme-footer-inner .asme-footer-logo>img {
+    filter: brightness(0) invert(1);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    color: rgb(200,216,239);
+    border-color: #2a4262;
+  }
+
+  .asme-footer-inner .asme-footer-bottom {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: #2a4262;
+    color: rgb(200,216,239);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-brand>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    color: rgb(255,255,255)!important;
+  }
+
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    color: rgb(200,216,239)!important;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 767px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>ul>li>a:not(.asme-footer-linkedin):not(.asme-footer-groupme),
+  .asme-footer-inner .asme-footer-linkedin,
+  .asme-footer-inner .asme-footer-groupme {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-color: #2a4262;
+    background: #0f1b2d;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 979px) {
+  .asme-footer-inner .asme-footer-login {
+    color: rgb(200,216,239);
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 768px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-links {
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-color: #2a4262;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 768px) and (max-width: 979px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    border-color: #2a4262;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    border-top-color: rgb(42,66,98);
+    border-right-color: rgb(42,66,98);
+    border-bottom-color: rgb(42,66,98);
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 980px) {
+  .asme-footer-inner .asme-footer-col.asme-footer-brand {
+    border-top-color: rgb(42,66,98);
+    border-right-color: rgb(42,66,98);
+    border-bottom-color: rgb(42,66,98);
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-links:focus-visible::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:hover::before,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect:focus-visible::before {
+    background: #2a4262;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-color: #2a4262;
+  }
+
+}
+
+/* Carried over unchanged: rules for conditions the compiler does not reproduce
+   from its test views (motion preference, orientation, print) and pseudo-elements
+   DevTools does not report (::placeholder), overlays outside the page content
+   such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
+   [aria-*]) whose values change while the page is used. */
+@media (max-width: 1180px),(hover: none) and (pointer: coarse) {
+  .asme-footer-login {
+    display: none!important;
+  }
+
+}
+
+@media (max-width: 768px),(hover: none) and (pointer: coarse) {
+  .asme-footer-col>a:not(.asme-footer-login) {
+    display: inline-flex!important;
+    min-height: 44px!important;
+    padding: 8px 12px!important;
+    margin-bottom: 0!important;
+    align-items: center!important;
+    justify-content: center!important;
+    box-sizing: border-box!important;
+    touch-action: manipulation;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  body:has(.asme-members-page) .asme-footer-inner {
+    background: transparent!important;
+    background-color: transparent!important;
+  }
+
+}
+
+@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-bottom {
+    position: static!important;
+  }
+
+}
+
+@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-login {
+    display: grid!important;
+    place-items: center!important;
+    position: absolute!important;
+    top: auto!important;
+    right: 8px!important;
+    bottom: 8px!important;
+    width: 30px!important;
+    height: 30px!important;
+    margin: 0!important;
+    padding: 0!important;
+    transform: none!important;
+    color: inherit!important;
+    opacity: .26!important;
+  }
+
+}
+
+@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-login:hover,
+  body .asme-footer-v2 .asme-footer-login:focus-visible {
+    opacity: 1!important;
+  }
+
+}
+
+@media (min-width: 980px) and (hover: hover) and (pointer: fine) {
+  body .asme-footer-v2 .asme-footer-login svg {
+    width: 17px!important;
+    height: 17px!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .asme-footer-v2 a,
+  body .asme-footer-v2 .asme-footer-links li a svg {
+    transition: none!important;
+  }
+
+}
+
 /* /asme/pictures/ page styles, compiled from the legacy and shared layers by
    scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
@@ -13564,12 +14112,12 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     align-items: center;
     grid-column: 1;
     grid-row: 2;
-    grid-template-columns: minmax(280px,.8fr) minmax(0,1.2fr);
     gap: var(--asme-wide-gap);
     justify-content: stretch;
     padding: 32px;
     margin: 0;
     align-self: stretch;
+    grid-template-columns: minmax(280px,0.8fr) minmax(0px,1.2fr);
   }
 
   .asme-gallery-page .gallery-instagram-media {
@@ -13733,7 +14281,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     background-clip: initial;
     background-color: initial;
     background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20320%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22.8%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23F8E9ED%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%23E8A6B2%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FAFAFB%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%221%22%20x2%3D%22.9%22%20y2%3D%220%22%3E%3Cstop%20stop-color%3D%22%23F8E9ED%22%20stop-opacity%3D%22.15%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23BA0C2F%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F7F8FA%22%20stop-opacity%3D%22.1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M0%200H1000C720%2022%20580%2074%20385%2091C213%20105%20105%20100%200%20155Z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M0%20295C125%20153%20315%2083%20485%2015C579%20-23%20689%20-40%20780%20-48L509%20-40C321%2048%20161%2047%200%20108Z%22%20fill%3D%22url%28%23b%29%22%2F%3E%3C%2Fsvg%3E);
-    opacity: 0.2;
+    opacity: .2;
   }
 
   .asme-gallery-page .gallery-instagram-media {
@@ -14571,10 +15119,11 @@ html body .asme-lightbox[hidden] {
   line-height: 1;
   letter-spacing: 0.02em;
   color: rgba(255,255,255,0.86);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.32),0 8px 24px rgba(2,8,23,0.12);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
   backdrop-filter: blur(12px) saturate(135%);
-  box-shadow: rgba(255,255,255,0.32) 0px 1px 0px inset,rgba(2,8,23,0.12) 0px 8px 24px;
-  border-color: rgba(255,255,255,0.34);
   background-image: linear-gradient(135deg,rgba(255,255,255,0.13),rgba(255,255,255,0.035));
+  border-color: rgba(255,255,255,0.34);
 }
 
 .asme-home .ah-status-pill::before,
@@ -14638,12 +15187,12 @@ html body .asme-lightbox[hidden] {
   background: var(--osu-scarlet-dark);
   opacity: 1;
   border-color: rgba(255,255,255,.72);
-  background-color: rgba(187,0,0,0.88);
+  background-color: rgba(187,0,0,.88);
 }
 
 .asme-home .ah-btn-p:focus-visible {
   border-color: rgba(255,255,255,.72);
-  background-color: rgba(187,0,0,0.88);
+  background-color: rgba(187,0,0,.88);
 }
 
 .asme-home .ah-btn-o {
@@ -14655,6 +15204,7 @@ html body .asme-lightbox[hidden] {
   background-origin: initial;
   background-clip: initial;
   text-decoration: none;
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
   border: 1px solid rgba(255,255,255,.32);
   backdrop-filter: blur(3px) saturate(1.15);
   background-color: rgba(255,255,255,0.067);
@@ -14724,6 +15274,7 @@ html body .asme-lightbox[hidden] {
   text-align: center;
   text-transform: uppercase;
   word-spacing: normal;
+  letter-spacing: 0px;
   color: rgba(255,255,255,0.55);
   font-size: 8px;
   line-height: 1.5;
@@ -14784,11 +15335,12 @@ html body .asme-lightbox[hidden] {
   position: absolute;
   inset: 0;
   box-sizing: border-box;
+  background-color: rgba(255,255,255,0.065);
+  background-image: linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.012));
   border-color: rgba(255,255,255,0.26);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.24),0 10px 26px rgba(2,8,23,0.10);
+  -webkit-backdrop-filter: blur(3px) saturate(115%);
   backdrop-filter: blur(3px) saturate(115%);
-  background-color: rgba(255,255,255,0.067);
-  background-image: linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.01));
-  box-shadow: rgba(255,255,255,0.24) 0px 1px 0px inset,rgba(2,8,23,0.1) 0px 10px 26px;
   visibility: visible;
   pointer-events: auto;
   opacity: 1;
@@ -14852,8 +15404,9 @@ html body .asme-lightbox[hidden] {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.24),0 10px 26px rgba(2,8,23,0.10);
+  -webkit-backdrop-filter: blur(3px) saturate(115%);
   backdrop-filter: blur(3px) saturate(115%);
-  box-shadow: rgba(255,255,255,0.24) 0px 1px 0px inset,rgba(2,8,23,0.1) 0px 10px 26px;
   border-color: rgba(255,255,255,0.26);
   background-color: rgba(255,255,255,0.067);
   background-image: linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.01));
@@ -15109,7 +15662,7 @@ html body .asme-lightbox[hidden] {
 
 .asme-home>div:nth-child(3)>div:nth-child(5)>div:nth-child(4)>span:nth-child(1),
 .asme-home>div:nth-child(3)>div:nth-child(5)>div:nth-child(4)>span:nth-child(3) {
-  -webkit-backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(12px) saturate(135%);
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -15200,7 +15753,7 @@ html body .asme-lightbox[hidden] {
   border: 1px solid var(--asme-c-border);
   flex-direction: column;
   border-radius: 16px;
-  min-height: 0;
+  min-height: 0px;
 }
 
 .asme-home .ah-about-text {
@@ -15314,7 +15867,7 @@ html body .asme-lightbox[hidden] {
   border-radius: 20px;
   overflow: hidden;
   margin-top: 24px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 
 .asme-home .ah-calendar-heading {
@@ -15327,16 +15880,16 @@ html body .asme-lightbox[hidden] {
 }
 
 .asme-home .ah-calendar-mini {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .asme-home .ah-calendar-mini>iframe {
   display: block;
   width: 100%;
   border: 0;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .asme-home .ah-title {
@@ -15345,6 +15898,10 @@ html body .asme-lightbox[hidden] {
 
 .asme-home .ah-sub {
   color: rgb(241,245,249)!important;
+}
+
+.asme-home .ah-stats {
+  margin: 18px 0 0!important;
 }
 
 .asme-home .ah-career-guide-copy {
@@ -15453,10 +16010,6 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 html body #page .entry-content .asme-home .ah-featured-button:hover {
   transform: translateY(-2px)!important;
-}
-
-html body #page#page .entry-content .asme-home .ah-stats {
-  margin: 18px 0 0;
 }
 
 @media (max-width: 1799px) {
@@ -15662,10 +16215,6 @@ html body #page#page .entry-content .asme-home .ah-stats {
     text-align: center;
   }
 
-  .asme-home .ah-stat-l {
-    letter-spacing: 0px;
-  }
-
   .asme-home .ah-hero-right {
     flex: 1 1 100%;
     text-align: center;
@@ -15716,7 +16265,7 @@ html body #page#page .entry-content .asme-home .ah-stats {
   }
 
   .asme-home .ah-event-ribbons {
-    opacity: .55;
+    opacity: 0.55;
   }
 
   .asme-home .ah-featured-event>p:empty,
@@ -15776,8 +16325,8 @@ html body #page#page .entry-content .asme-home .ah-stats {
   }
 
   .asme-home .ah-about-text {
-    grid-template-columns: minmax(300px,0.9fr) minmax(360px,1.1fr);
     gap: 0 32px;
+    grid-template-columns: minmax(300px,0.9fr) minmax(360px,1.1fr);
   }
 
   .asme-home .ah-about-text .ah-eyebrow-dark:not(.ah-featured-eyebrow) {
@@ -15959,10 +16508,6 @@ html body #page#page .entry-content .asme-home .ah-stats {
     font-size: 11px;
   }
 
-  .asme-home .ah-stat-l {
-    letter-spacing: 0;
-  }
-
   .asme-home .ah-hero-right {
     flex: 0 0 auto;
     justify-self: end;
@@ -16056,8 +16601,8 @@ html body #page#page .entry-content .asme-home .ah-stats {
   }
 
   .asme-home .ah-cards-grid {
-    grid-template-columns: repeat(3,minmax(0,1fr));
     margin: 0 0 28px;
+    grid-template-columns: repeat(3,minmax(0px,1fr));
   }
 
   .asme-home .ah-calendar-mini>iframe {
@@ -16706,9 +17251,9 @@ html body #page#page .entry-content .asme-join-page * {
 .asme-join-page .join-proof-num {
   max-height: none;
   min-height: 0px;
+  font-family: "DM Serif Display",Georgia,serif;
   font-weight: 400;
   line-height: 1;
-  font-family: "DM Serif Display",Georgia,serif;
 }
 
 .asme-join-page .join-proof-stat>br {
@@ -16733,8 +17278,8 @@ html body #page#page .entry-content .asme-join-page * {
 .asme-join-page .join-proof-award:focus-visible::before {
   content: "";
   position: absolute;
+  left: 0;
   width: 1px;
-  left: 0px;
 }
 
 .asme-join-page .join-proof-award {
@@ -16779,6 +17324,7 @@ html body #page#page .entry-content .asme-join-page * {
 .asme-join-page .join-intro.join-hero-copy {
   justify-content: center;
   width: 100%;
+  min-height: 0;
   margin: 0;
   padding-right: 0px;
   padding-bottom: 0px;
@@ -16787,7 +17333,6 @@ html body #page#page .entry-content .asme-join-page * {
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  min-height: 0px;
 }
 
 .asme-join-page .join-intro.join-hero-copy .join-eyebrow,
@@ -16819,12 +17364,12 @@ html body #page#page .entry-content .asme-join-page * {
   max-height: none;
   height: auto;
   display: grid;
+  grid-template-columns: 38px minmax(0,1fr);
   align-items: center;
+  min-height: 0;
   margin: 0;
   border-radius: 12px;
   background: var(--asme-c-surface);
-  grid-template-columns: 38px minmax(0px,1fr);
-  min-height: 0px;
 }
 
 .asme-join-page .join-benefit-icon {
@@ -16852,10 +17397,10 @@ html body #page#page .entry-content .asme-join-page * {
   width: 21px;
   height: 21px;
   fill: none;
+  stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke: currentcolor;
 }
 
 .asme-join-page .join-benefit-copy {
@@ -16868,7 +17413,7 @@ html body #page#page .entry-content .asme-join-page * {
   font-size: 12px;
   line-height: 1.45;
   display: block;
-  min-width: 0px;
+  min-width: 0;
 }
 
 .asme-join-page .join-benefit-copy>strong {
@@ -16904,12 +17449,12 @@ html body #page#page .entry-content .asme-join-page * {
 }
 
 .asme-join-page .join-process-area {
+  min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
   box-shadow: none;
-  min-width: 0px;
 }
 
 .asme-join-page .join-flow-progress {
@@ -17284,7 +17829,12 @@ html body #page#page .entry-content .asme-join-page * {
 }
 
 .asme-join-page .join-groupme-button:hover {
+  background-color: rgb(24,95,173);
   outline: none;
+}
+
+.asme-join-page .join-groupme-button:focus-visible {
+  background-color: rgb(24,95,173);
 }
 
 .asme-join-page .join-welcome-visual {
@@ -17410,8 +17960,8 @@ html body #page#page .entry-content .asme-join-page * {
 }
 
 #page .asme-join-page .join-intro.join-hero-copy>h1 {
-  font-weight: 400!important;
   font-family: "DM Serif Display",Georgia,serif!important;
+  font-weight: 400!important;
 }
 
 #page .asme-join-page .join-field>label {
@@ -17442,13 +17992,13 @@ html body #page .entry-content .asme-join-page .join-submit-button {
 
 html body #page .entry-content .asme-join-page>section:nth-child(1)>div:nth-child(1),
 html body #page .entry-content .asme-join-page>section:nth-child(1)>div:nth-child(2) {
+  min-width: 0!important;
   align-items: center!important;
   justify-content: center!important;
   margin: 0!important;
   border: 0!important;
   border-radius: 0!important;
   background: transparent!important;
-  min-width: 0px!important;
   flex-direction: column!important;
 }
 
@@ -17465,13 +18015,13 @@ html body #page .entry-content .asme-join-page .join-faq-section {
 }
 
 html body #page#page .entry-content .asme-join-page .join-proof-award {
+  min-width: 0!important;
   align-items: center!important;
   justify-content: center!important;
   margin: 0!important;
   border: 0!important;
   border-radius: 0!important;
   background: transparent!important;
-  min-width: 0px!important;
 }
 
 html body #page#page .entry-content .asme-join-page .join-groupme-button {
@@ -17607,7 +18157,7 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
 
 @media (min-width: 768px) and (max-width: 979px) {
   .asme-join-page .join-groupme-step.join-groupme-card {
-    grid-template-columns: 38px 48px minmax(0px,1fr);
+    grid-template-columns: 38px 48px minmax(0,1fr);
   }
 
   .asme-join-page .join-groupme-button {
@@ -17735,11 +18285,11 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
 
   .asme-join-page .join-intro.join-hero-copy>p,
   .asme-join-page .join-benefit-copy>span {
-    color: rgb(102,112,133);
+    color: #667085;
   }
 
   .asme-join-page .join-benefit-copy>strong {
-    color: rgb(7,59,104);
+    color: #073b68;
   }
 
   .asme-join-page .join-benefits.join-highlights>p,
@@ -17841,7 +18391,7 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
 
   .asme-join-page .join-intro.join-hero-copy>h1,
   .asme-join-page .join-form-heading>h2 {
-    color: rgb(7,59,104)!important;
+    color: #073b68!important;
   }
 
   .asme-join-page .join-groupme-step-copy>h3 {
@@ -17883,12 +18433,11 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
   .asme-join-page .join-stats-bar {
     border: 0;
     background: #073b68;
-    color: rgb(255,255,255);
+    color: #ffffff;
   }
 
-  .asme-join-page .join-proof-num,
-  .asme-join-page .join-faq-item>summary {
-    color: rgb(255,255,255);
+  .asme-join-page .join-proof-num {
+    color: #ffffff;
   }
 
   .asme-join-page .join-intro.join-hero-copy {
@@ -18035,6 +18584,10 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
     border-color: var(--asme-c-border);
   }
 
+  .asme-join-page .join-faq-item>summary {
+    color: rgb(255,255,255);
+  }
+
   .asme-join-page .join-faq-item>summary:hover {
     background: rgba(239,68,68,0.08);
   }
@@ -18052,7 +18605,7 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
   }
 
   .asme-join-page .join-form-status {
-    color: #dbe9f8!important;
+    color: rgb(219,233,248)!important;
   }
 
   .asme-join-page>div:nth-child(2)>section:nth-child(2)>div:nth-child(2)>aside:nth-child(2)>div:nth-child(2)>p:nth-child(3),
@@ -18306,11 +18859,11 @@ html body #page .entry-content .asme-join-page .join-submit-button:disabled:hove
 .asme-leadership .lb-past-label {
   margin-bottom: 16px;
   text-align: center;
+  color: #9ca3af;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgb(156,163,175);
 }
 
 .asme-leadership .lb-year-tabs {
@@ -18351,9 +18904,9 @@ html body #page .entry-content .asme-join-page .join-submit-button:disabled:hove
   background: #f3f4f6;
   border: 1px solid #e5e7eb;
   border-radius: 999px;
+  color: #4b5563;
   cursor: pointer;
   user-select: none;
-  color: rgb(75,85,99);
 }
 
 .asme-leadership .lb-year-tab:not(.active):hover {
@@ -18691,8 +19244,8 @@ body.archive #page article .entry-content figure {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: flex-start;
+  min-height: 0;
   padding: 0;
-  min-height: 0px;
 }
 
 .asme-points-page-v2 .asme-member-hero-copy {
@@ -18789,10 +19342,28 @@ body.archive #page article .entry-content figure {
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
-.asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(1)>a:nth-child(1),
+.asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(1)>a:nth-child(1) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  line-height: 1;
+  text-decoration: none;
+  background: var(--m-card, #ffffff);
+  border: 1px solid var(--m-border, #e4e7ec);
+  min-height: 36px;
+  font-weight: 750;
+  box-sizing: border-box;
+}
+
+.asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(1)>a:nth-child(1):hover {
+  background: var(--m-light-navy, #eef2f8);
+}
+
 .asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(2)>a:nth-child(1),
 .asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(3)>a:nth-child(1),
 .asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(4)>a:nth-child(1) {
@@ -18817,10 +19388,10 @@ body.archive #page article .entry-content figure {
   border: 1px solid var(--m-border, #e4e7ec);
   border-radius: var(--m-radius, 14px);
   display: flex;
+  min-width: 0;
   margin: 0;
   flex-direction: column;
   overflow: hidden;
-  min-width: 0px;
 }
 
 .asme-points-page-v2 .asme-leaderboard-header {
@@ -18833,7 +19404,7 @@ body.archive #page article .entry-content figure {
 
 .asme-points-page-v2 .asme-leaderboard-heading {
   width: 100%;
-  min-width: 0px;
+  min-width: 0;
 }
 
 .asme-points-page-v2 .asme-leaderboard-kicker {
@@ -19141,9 +19712,9 @@ body.archive #page article .entry-content figure {
   border-image-width: 1;
   border-image-outset: 0;
   border-image-repeat: stretch;
+  min-width: 0;
   margin: 0;
   box-sizing: border-box;
-  min-width: 0px;
 }
 
 .asme-points-page-v2 .asme-member-dashboard-heading {
@@ -20029,8 +20600,8 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
   }
 
   .asme-points-page-v2 .asme-member-dashboard-heading {
+    grid-template-columns: minmax(0,1fr) minmax(230px,300px);
     gap: 20px;
-    grid-template-columns: minmax(0px,1fr) minmax(230px,300px);
   }
 
   .asme-points-page-v2 .asme-member-dashboard-state {
@@ -20143,10 +20714,10 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
 
   .asme-points-page-v2 .asme-leaderboard-heading {
     display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
     grid-template-rows: auto auto;
     column-gap: 16px;
     align-items: center;
-    grid-template-columns: minmax(0px,1fr) auto;
   }
 
   .asme-points-page-v2 .asme-leaderboard-kicker {
@@ -20183,8 +20754,8 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
   }
 
   .asme-points-page-v2 .asme-points-primary-grid {
+    grid-template-columns: minmax(0,0.88fr) minmax(0,1.12fr);
     gap: 22px;
-    grid-template-columns: minmax(0px,0.88fr) minmax(0px,1.12fr);
   }
 
 }
@@ -20250,14 +20821,14 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
   .asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(4)>a:nth-child(1) {
     border-color: #cbd7e5;
     background: #ffffff;
-    color: rgb(23,59,104);
-    box-shadow: rgba(15,52,96,0.055) 0px 4px 12px;
+    color: #173b68;
+    box-shadow: 0 4px 12px rgba(15,52,96,0.055);
   }
 
   .asme-points-page-v2 .asme-leaderboard-preview.asme-leaderboard-featured {
     border-color: #ccd8e6;
     background: #ffffff;
-    box-shadow: rgba(15,52,96,0.09) 0px 14px 34px;
+    box-shadow: 0 14px 34px rgba(15,52,96,0.09);
   }
 
   .asme-points-page-v2 .asme-leaderboard-header {
@@ -20370,13 +20941,13 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
   .asme-points-page-v2 .asme-leaderboard-caption,
   .asme-points-page-v2 .asme-section-desc,
   .asme-points-page-v2 .asme-point-values-compact>summary>span>small {
-    color: rgb(82,97,115);
+    color: #526173;
   }
 
   .asme-points-page-v2 .asme-member-dashboard.asme-member-dashboard--search {
     border-color: #ccd8e6;
     background: linear-gradient(145deg,#f9fbfe 0%,#f2f6fb 100%);
-    box-shadow: rgba(15,52,96,0.08) 0px 14px 34px;
+    box-shadow: 0 14px 34px rgba(15,52,96,0.08);
   }
 
   .asme-points-page-v2 .asme-member-search-wrap>label,
@@ -20400,14 +20971,14 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
   .asme-points-page-v2 .asme-member-dashboard-state {
     border: 1px dashed #b9c8da;
     background: rgba(255,255,255,0.72);
-    color: rgb(82,97,115);
+    color: #526173;
   }
 
   .asme-points-page-v2 .asme-member-dashboard-state::before,
   .asme-points-page-v2 .asme-member-dashboard-state:hover::before,
   .asme-points-page-v2 .asme-member-dashboard-state:focus-visible::before {
     background: #e8eef7;
-    color: rgb(23,59,104);
+    color: #173b68;
   }
 
   .asme-points-page-v2 .asme-member-dashboard-panel {
@@ -20558,8 +21129,8 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
   .asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(4)>a:nth-child(1) {
     border-color: #344965;
     background: #101e32;
-    color: rgb(219,229,242);
-    box-shadow: rgba(2,8,23,0.2) 0px 5px 14px;
+    color: #dbe5f2;
+    box-shadow: 0 5px 14px rgba(2,8,23,0.2);
   }
 
   .asme-points-page-v2>nav:nth-child(2)>ul:nth-child(1)>li:nth-child(2)>a:nth-child(1):hover,
@@ -20573,15 +21144,15 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
   .asme-points-page-v2 .asme-member-dashboard.asme-member-dashboard--search {
     border-color: #30435f;
     background: #101d31;
-    box-shadow: rgba(2,8,23,0.25) 0px 16px 36px;
+    box-shadow: 0 16px 36px rgba(2,8,23,0.25);
   }
 
   .asme-points-page-v2 .asme-leaderboard-header {
     border-top-color: rgb(38,54,79);
     border-right-color: rgb(38,54,79);
     border-left-color: rgb(38,54,79);
+    border-bottom-color: #30435f;
     background: linear-gradient(105deg,#152740 0%,#122237 100%);
-    border-bottom-color: rgb(48,67,95);
   }
 
   .asme-points-page-v2 .asme-leaderboard-kicker .asme-section-label,
@@ -20744,14 +21315,14 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
     border-image-repeat: stretch;
     border-color: #3a4f6b;
     background: #15253b;
-    color: rgb(211,220,232);
+    color: #d3dce8;
   }
 
   .asme-points-page-v2 .asme-member-dashboard-state::before,
   .asme-points-page-v2 .asme-member-dashboard-state:hover::before,
   .asme-points-page-v2 .asme-member-dashboard-state:focus-visible::before {
     background: #223a5a;
-    color: rgb(191,219,254);
+    color: #bfdbfe;
   }
 
   .asme-points-page-v2 .asme-member-dashboard-panel {
@@ -20826,7 +21397,7 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
   }
 
   .asme-points-page-v2 .asme-point-values-compact>summary>span>small {
-    color: rgb(184,196,212);
+    color: #b8c4d4;
   }
 
   .asme-points-page-v2 .asme-point-value-chip.asme-data-enter {
@@ -20914,7 +21485,7 @@ html body #page .entry-content .asme-points-page-v2 .asme-point-values-compact {
 
   .asme-points-page-v2 .asme-leaderboard-caption,
   .asme-points-page-v2 .asme-section-desc {
-    color: rgb(184,196,212)!important;
+    color: #b8c4d4!important;
   }
 
 }
@@ -21508,6 +22079,7 @@ html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-panel
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
@@ -24024,7 +24596,6 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
 .asme-sponsor-page .sponsor-contact .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-row .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-modal-dialog .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>input {
-  border: 1px solid var(--asme-c-border);
   border-radius: 999px;
   outline: none;
   width: 100%;
@@ -24045,7 +24616,6 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>select,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>select {
-  border: 1px solid var(--asme-c-border);
   border-radius: 999px;
   outline: none;
   width: 100%;
@@ -24068,7 +24638,6 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>textarea,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>textarea {
-  border: 1px solid var(--asme-c-border);
   outline: none;
   width: 100%;
   box-sizing: border-box;
@@ -24196,7 +24765,14 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
   color: rgba(255,255,255,0.72)!important;
 }
 
+.asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row .sponsor-form-group>input,
+.asme-sponsor-page .sponsor-contact .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>input,
+.asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>textarea {
+  border: 1px solid var(--asme-c-border)!important;
+}
+
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>select {
+  border: 1px solid var(--asme-c-border)!important;
   background-attachment: initial!important;
   background-origin: initial!important;
   background-clip: initial!important;
@@ -24209,11 +24785,13 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-row .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-modal-dialog .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>textarea {
+  border: 1px solid var(--asme-c-border)!important;
   border-color: #e5e7eb!important;
   color: rgb(18,57,99)!important;
 }
 
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>select {
+  border: 1px solid var(--asme-c-border)!important;
   background-color: rgb(248,250,252)!important;
   background-attachment: initial!important;
   background-origin: initial!important;
@@ -24794,6 +25372,16 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
     background: #073b68;
   }
 
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--gray .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--scarlet .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--buckeye .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--blocko .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--custom .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-form-submit {
+    background: var(--asme-c-heading);
+  }
+
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus {
     color: rgb(95,104,120);
     background: #ffffff;
@@ -24842,10 +25430,6 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) {
     border-right-color: currentcolor;
     border-bottom-color: currentcolor;
-  }
-
-  .asme-sponsor-page .sponsor-form-submit {
-    background: var(--asme-c-heading);
   }
 
   .asme-sponsor-page .sponsor-form-submit:hover {

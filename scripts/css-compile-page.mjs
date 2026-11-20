@@ -24,9 +24,20 @@ import { launch, render, Snapshot } from '../tests/visual/harness.mjs';
 import { PAGE_SCOPES, requirements } from './css-inventory.mjs';
 
 const name = process.argv[2];
-const target = PAGES.find(page => page.name === name);
-if (!target || !PAGE_SCOPES[name]) throw new Error(`Usage: node scripts/css-compile-page.mjs <${Object.keys(PAGE_SCOPES).join('|')}> [--write]`);
-const wrapperClass = PAGE_SCOPES[name][0];
+// Shared components appear on every page. They are compiled like a page, but
+// rooted at their own element: a selector is owned when it needs a class found
+// only inside the component (on every page), and the component is rendered on
+// one representative page.
+const COMPONENTS = {
+  footer: { root: 'asme-footer-inner', page: 'home' },
+  // The original theme header: hidden while the custom header (Header.css,
+  // not part of this bundle) is loaded, shown if it fails to load.
+  header: { root: 'site-header', page: 'home' }
+};
+const component = COMPONENTS[name] || null;
+const target = PAGES.find(page => page.name === (component ? component.page : name));
+if (!target || (!component && !PAGE_SCOPES[name])) throw new Error(`Usage: node scripts/css-compile-page.mjs <${[...Object.keys(PAGE_SCOPES), ...Object.keys(COMPONENTS)].join('|')}> [--write]`);
+const wrapperClass = component ? component.root : PAGE_SCOPES[name][0];
 const write = process.argv.includes('--write');
 // Pages that share styles (the two sponsor pages) are compiled as a group: a
 // selector is owned when every rendered page it can match is in the group.
@@ -47,10 +58,54 @@ const VIEWS = WIDTHS.flatMap((width, w) => SCHEMES.map(scheme => ({ width, w, sc
 // ---- Selector ownership ---------------------------------------------------
 const rendered = JSON.parse(fs.readFileSync('tests/visual/.output/classes.json', 'utf8'));
 const pageSets = Object.entries(rendered).map(([page, s]) => [page, new Set(s.classes), new Set(s.ids)]);
+// Component mode: which classes and ids occur inside the component and which
+// occur anywhere else, across every page.
+const componentSets = component ? await (async () => {
+  const pre = await launch(chromium); const snap = new Snapshot();
+  const inside = new Set(); const outside = new Set(); const ids = new Set(); const pageClassLists = [];
+  await pool(PAGES, 4, async pg => {
+    const { page, context } = await render(pre, snap, { mode: 'replay', url: ORIGIN + pg.path, width: 1280, scheme: 'light' });
+    const r = await page.evaluate(root => {
+      const roots = [...document.querySelectorAll('.' + root)];
+      const ins = new Set(); const out = new Set(); const idList = new Set(); const byPath = {};
+      const pathOf = el => { const parts = []; for (let n = el; n && n.parentElement; n = n.parentElement) parts.unshift(n.tagName + (Array.prototype.indexOf.call(n.parentElement.children, n) + 1)); return parts.join('>'); };
+      for (const el of document.querySelectorAll('*')) {
+        const within = roots.some(node => node.contains(el));
+        el.classList.forEach(c => (within ? ins : out).add(c));
+        if (within && el.id) idList.add(el.id);
+        if (within) byPath[pathOf(el)] = [...el.classList];
+      }
+      return { ins: [...ins], out: [...out], ids: [...idList], byPath };
+    }, component.root);
+    r.ins.forEach(c => inside.add(c)); r.out.forEach(c => outside.add(c)); r.ids.forEach(i => ids.add(i));
+    pageClassLists.push(r.byPath);
+    await context.close();
+  });
+  await pre.close();
+  // Classes an element has on some pages but not others (the theme menu's
+  // current-menu-item) are page state: kept out of keys, and rules needing
+  // them are carried verbatim.
+  const varying = new Set();
+  const paths = new Set(pageClassLists.flatMap(list => Object.keys(list)));
+  for (const path of paths) {
+    const lists = pageClassLists.map(list => new Set(list[path] || []));
+    const all = new Set(lists.flatMap(l => [...l]));
+    for (const c of all) if (!lists.every(l => l.has(c))) varying.add(c);
+  }
+  return { inside, exclusive: new Set([...inside].filter(c => !outside.has(c) && !varying.has(c))), ids, varying };
+})() : null;
+
 const ownedCache = new Map();
 function owned(selector) {
   if (ownedCache.has(selector)) return ownedCache.get(selector);
   const needs = requirements(selector);
+  if (componentSets) {
+    const result = needs.classes.size + needs.ids.size > 0
+      && [...needs.classes].every(c => componentSets.inside.has(c)) && [...needs.ids].every(i => componentSets.ids.has(i))
+      && ([...needs.classes].some(c => componentSets.exclusive.has(c)) || needs.ids.size > 0);
+    ownedCache.set(selector, result);
+    return result;
+  }
   const pages = pageSets.filter(([, classes, ids]) => [...needs.classes].every(c => classes.has(c)) && [...needs.ids].every(i => ids.has(i))).map(([page]) => page);
   const result = needs.classes.size + needs.ids.size > 0 && pages.length >= 1 && pages.every(page => group.has(page));
   ownedCache.set(selector, result);
@@ -128,7 +183,8 @@ const withinContent = (selector, classes) => [...requirements(selector).classes]
 // derived; the rules are carried verbatim.
 const DYNAMIC_ATTRIBUTE = /\[\s*(hidden|open|disabled|checked|selected|readonly|required|inert|style|aria-[\w-]+|data-[\w-]+)\b/i;
 const DYNAMIC_PSEUDO = /:(empty|has|checked|disabled|enabled|invalid|valid|user-invalid|user-valid|placeholder-shown|target|focus-within|open|closed|read-only|read-write|indeterminate|defined|popover-open|modal|playing|paused)(?![\w-])/i;
-const dynamic = selector => DYNAMIC_ATTRIBUTE.test(selector) || DYNAMIC_PSEUDO.test(selector);
+const dynamic = selector => DYNAMIC_ATTRIBUTE.test(selector) || DYNAMIC_PSEUDO.test(selector)
+  || (componentSets ? [...requirements(selector).classes].some(c => componentSets.varying.has(c)) : false);
 
 function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
   // Returns Map(prop -> { value, important, owned, spec, sheet, kept: [competitors] })
@@ -181,7 +237,7 @@ function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
         // Owned selectors under unmodeled media are carried to the end of the
         // page file, so they compete as later rules: beating them needs more.
         const carriedRule = isOurs && matching.length > 0 && matching.every(sel => owned(normalize(sel.text))) && (!inModeledMedia || matching.some(sel => dynamic(normalize(sel.text))));
-        push(part.name, { value, important: !!p.important, owned: isOwned, spec, sheet: rule.styleSheetId, ours: isOurs && !carriedRule, order: order + position / 10000, selectorText, src });
+        push(part.name, { value, important: !!p.important, owned: isOwned, carried: carriedRule, spec, sheet: rule.styleSheetId, ours: isOurs && !carriedRule, order: order + position / 10000, selectorText, src });
       }
     }
   });
@@ -190,9 +246,26 @@ function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
     push(p.name, { value: p.value.replace(/\s*!\s*important\s*$/i, '').trim(), important: !!p.important, owned: false, inline: true, spec: { a: 9, b: 0, c: 0 }, order: 1e9 });
   }
   const out = new Map();
+  const pick = list => { const important = list.filter(d => d.important); return important.length ? important[important.length - 1] : list[list.length - 1]; };
   for (const [prop, list] of decls) {
-    const important = list.filter(d => d.important);
-    const win = important.length ? important[important.length - 1] : list[list.length - 1];
+    let win = pick(list);
+    // When a carried rule wins (a state such as [hidden] or the current menu
+    // item), keep the value that wins without it as the element's base
+    // style. The carried rule comes later in the file and still overrides it
+    // whenever the state applies.
+    // Base values beneath carried state rules were tried (see the docs) but
+    // could outrank state rules that apply on other pages or after
+    // interaction, so they stay off: a carried winner records nothing.
+    if (win.carried && !process.env.BASE_BENEATH_STATE) continue;
+    if (win.carried) {
+      const carriedWin = win;
+      const rest = list.filter(d => !d.carried);
+      if (!rest.length) continue;
+      win = pick(rest);
+      // The base must stay weaker than the carried state rule above it.
+      out.set(prop, { ...win, kept: rest.filter(d => !d.owned && d !== win), ceiling: { important: carriedWin.important, spec: carriedWin.spec } });
+      continue;
+    }
     out.set(prop, { ...win, kept: list.filter(d => !d.owned && d !== win) });
   }
   // A shorthand kept whole (it uses var()) and its longhands compete: the one
@@ -214,10 +287,17 @@ function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
   // Competitors written as a shorthand kept whole (var()) are filed under the
   // shorthand, so a longhand winner must also face them: a shared
   // "border-radius: var(--x) !important" competes with border-*-radius.
+  // And the reverse: a shorthand winner kept whole faces competitors filed
+  // under its longhands (a theme's background-color against background).
   for (const [prop, win] of out) {
     for (const [other, list] of decls) {
-      if (other === prop || !(LONGHANDS.get(other) || []).includes(prop)) continue;
-      for (const d of list) if (!d.owned && !win.kept.includes(d)) win.kept.push(d);
+      if (other === prop) continue;
+      const related = (LONGHANDS.get(other) || []).includes(prop) || (LONGHANDS.get(prop) || []).includes(other);
+      if (!related) continue;
+      // Only competitors the winner actually beat (lower cascade priority).
+      // A later rule that overrides part of it (an active state's
+      // background-image over a base background) must keep winning.
+      for (const d of list) if (!d.owned && !win.kept.includes(d) && rank(d) < rank(win)) win.kept.push(d);
     }
   }
   return out;
@@ -254,7 +334,7 @@ const perElement = new Map();
 
 // Only the page content is examined: page-owned selectors cannot reach the
 // shared header and footer. Views run in parallel.
-const CONTENT = '.entry-content, .entry-content *';
+const CONTENT = component ? `.${component.root}, .${component.root} *` : '.entry-content, .entry-content *';
 const started = Date.now();
 await pool(VIEWS, 4, async view => {
   const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + target.path, width: view.width, scheme: view.scheme });
@@ -290,8 +370,8 @@ await pool(VIEWS, 4, async view => {
     try { return !!document.querySelector(bare); } catch { return true; }
   }), OWNED_SELECTORS)).forEach(sel => matchedSelectors.add(sel));
   viewClasses.forEach(c => contentClasses.add(c));
-  const keys = await page.evaluate(([wrapper, content]) => {
-    const dynamic = new Set(['asme-animate', 'asme-reveal', 'is-visible', 'asme-page-last-block', 'asme-page-bottom-frame', 'asme-footer-spacer']);
+  const keys = await page.evaluate(([wrapper, content, varying]) => {
+    const dynamic = new Set(['asme-animate', 'asme-reveal', 'is-visible', 'asme-page-last-block', 'asme-page-bottom-frame', 'asme-footer-spacer', ...varying]);
     const esc = cls => CSS.escape(cls);
     // Class compounds are made exact: if another element on the page carries
     // the same classes plus more (a --variant), exclude those extras.
@@ -326,7 +406,7 @@ await pool(VIEWS, 4, async view => {
       exact: (() => { const wrap = el.closest('.' + wrapper); if (!wrap || el === wrap) return null; const parts = []; for (let node = el; node !== wrap; node = node.parentElement) parts.unshift(node.tagName.toLowerCase() + ':nth-child(' + (Array.prototype.indexOf.call(node.parentElement.children, node) + 1) + ')'); return '.' + wrapper + ' > ' + parts.join(' > '); })(),
       interactive: el.matches('a[href], button, summary, input, select, textarea') && !!el.closest('.' + wrapper)
     }));
-  }, [wrapperClass, CONTENT]);
+  }, [wrapperClass, CONTENT, componentSets ? [...componentSets.varying] : []]);
 
   const record = (el, stateKey, map) => {
     if (process.env.DEBUG_KEY && el.key.includes(process.env.DEBUG_KEY) && !stateKey) {
@@ -338,7 +418,7 @@ await pool(VIEWS, 4, async view => {
       if (!states.has(stateKey)) states.set(stateKey, new Map());
       const props = states.get(stateKey);
       if (!props.has(prop)) props.set(prop, new Map());
-      props.get(prop).set(view.id, { value: win.value, req: requirement(win), from: win.selectorText, src: win.src, rank: win.rank + (stateKey ? 0 : 0) });
+      props.get(prop).set(view.id, { value: win.value, req: requirement(win), from: win.selectorText, src: win.src, rank: win.rank, ceiling: win.ceiling });
     }
   };
 
@@ -495,7 +575,17 @@ for (const [key, members] of keyGroups) {
   }, [...keyed].map(([key, ids]) => [key, [...ids]]));
   for (const [key, exclude, count, problem] of fixes) {
     if (problem) { console.warn(`Selector ${key} ${problem}; check the visual diff.`); continue; }
-    if (!exclude) { console.warn(`Selector ${key} also matches ${count} other element(s) that no class separates; check the visual diff.`); continue; }
+    if (!exclude) {
+      // No class separates them. Components pin each member to its exact
+      // position (the footer's Connect links). On pages, pinned selectors
+      // became specific enough to beat state rules (Member Points' active
+      // jump link), so pages only warn, as verified before.
+      if (component) {
+        console.warn(`Selector ${key} also matches ${count} other element(s) that no class separates; using exact positions.`);
+        for (const el of perElement.values()) if (el.key === key && el.exact) el.key = el.exact;
+      } else console.warn(`Selector ${key} also matches ${count} other element(s) that no class separates; check the visual diff.`);
+      continue;
+    }
     const suffix = exclude.map(c => `:not(.${c})`).join('');
     for (const el of perElement.values()) if (el.key === key) el.key = key + suffix;
   }
@@ -560,6 +650,15 @@ const prefixes = [
   'html body #page#page .entry-content '
 ];
 const PREFIX_SPEC = [zero, { a: 1, b: 0, c: 0 }, { a: 1, b: 1, c: 2 }, { a: 2, b: 1, c: 2 }];
+// Components sit outside #page, so they gain specificity by repeating their
+// own root class instead (".footer.footer ...").
+if (component) {
+  prefixes.length = 0; PREFIX_SPEC.length = 0;
+  for (let n = 0; n < 6; n += 1) { prefixes.push(n); PREFIX_SPEC.push({ a: 0, b: n, c: 0 }); }
+}
+const applyPrefix = (level, selector) => (component
+  ? selector.replace(new RegExp('^\\.' + wrapperClass + '(?![\\w-])'), '.' + wrapperClass + ('.' + wrapperClass).repeat(level))
+  : prefixes[level] + selector);
 const add = (a, b) => ({ a: a.a + b.a, b: a.b + b.b, c: a.c + b.c });
 function baseSpec(selector) {
   // Approximate specificity of the generated key selector (no :is/:not used).
@@ -607,7 +706,7 @@ for (const states of entries.values()) {
 // Only a true descendant universal (".page *"), never "> *" (direct children).
 // Any wrapper class of a page in the group counts (".asme-members-page *" is
 // shared by both member pages); the rule is written once for this page.
-const wrapperClasses = [...new Set([...group].flatMap(page => PAGE_SCOPES[page] || []))].map(c => c.replace(/[-]/g, '\\-'));
+const wrapperClasses = [...new Set([wrapperClass, ...[...group].flatMap(page => PAGE_SCOPES[page] || [])])].map(c => c.replace(/[-]/g, '\\-'));
 const universalPattern = new RegExp('\\.(' + wrapperClasses.join('|') + ')\\s+\\*(::?(before|after))?\\s*$');
 const universal = from => (from || '').split(',').some(part => universalPattern.test(part.trim()));
 
@@ -665,26 +764,37 @@ for (const [key, states] of entries) {
         byValue.get(d.value).views.add(viewId); byValue.get(d.value).reqs.push(d.req);
       }
       for (const [value, { views: set, reqs }] of byValue) {
-        const important = reqs.some(r => r.important);
-        const need = reqs.filter(r => r.important === important).reduce((m, r) => {
+        const needsImportant = reqs.some(r => r.important);
+        const need = reqs.filter(r => r.important === needsImportant).reduce((m, r) => {
           const c = cmp(r.spec, m.spec);
           return c > 0 || (c === 0 && r.strict) ? { spec: r.spec, strict: r.strict || m.strict } : m;
         }, { spec: zero, strict: false });
         const fromUniversal = !outside && [...views.values()].every(d => universal(d.from));
         const selector = fromUniversal ? '.' + wrapperClass + ' *' + stateKey.replace(/^:(hover|focus-visible)/, '') : key + stateKey;
         let level = 0;
+        let important = needsImportant;
+        // A base value under a carried state rule must stay weaker than it:
+        // not !important when the state rule is not, and no more specific.
+        const ceilings = [...views.values()].filter(d => d.value === value && d.ceiling).map(d => d.ceiling);
+        if (ceilings.length && important && ceilings.some(c => !c.important)) continue;
         if (!outside) {
           const own = baseSpec(selector);
-          while (level < prefixes.length - 1) {
-            const c = cmp(add(own, PREFIX_SPEC[level]), need.spec);
-            if (c > 0 || (c === 0 && !need.strict)) break;
-            level += 1;
+          const enough = l => { const c = cmp(add(own, PREFIX_SPEC[l]), need.spec); return c > 0 || (c === 0 && !need.strict); };
+          while (level < prefixes.length - 1 && !enough(level)) level += 1;
+          const tooStrong = l => ceilings.some(c => c.important === important && cmp(add(own, PREFIX_SPEC[l]), c.spec) > 0);
+          if (tooStrong(level)) continue;
+          // Repeated classes cannot outrank an id (components sit outside
+          // #page). Against normal competitors, !important wins instead.
+          if (!enough(level)) {
+            if (!important) { important = true; level = 0; }
+            else console.warn(`Cannot outrank a competitor for ${prop} on ${selector}; check the visual diff.`);
           }
+          if (ceilings.length && important && ceilings.some(c => !c.important)) continue;
         }
         for (const media of mediaFor(set)) {
           const group = `${outside ? 'x' : level}|${important}|${media}`;
           if (!out.has(group)) out.set(group, new Map());
-          const sel = outside ? selector : prefixes[level] + selector;
+          const sel = outside ? selector : applyPrefix(level, selector);
           if (!out.get(group).has(sel)) out.get(group).set(sel, []);
           out.get(group).get(sel).push({ text: `${prop}: ${value}${important ? ' !important' : ''}`, rank: Math.min(...[...views.values()].filter(d => d.value === value).map(d => d.rank ?? 0)) });
           decls += 1; if (important) importantCount += 1; if (!outside) levelCount[level] += 1;
@@ -769,7 +879,8 @@ function pretty(text) {
 // Owned selectors in rules under unmodeled media, carried into the page file
 // verbatim (with their @media chain) when they can reach this page.
 const carried = [];
-const pageClasses = new Set(rendered[name].classes); const pageIds = new Set(rendered[name].ids);
+const pageClasses = new Set(component ? Object.values(rendered).flatMap(r => r.classes) : rendered[name].classes);
+const pageIds = new Set(component ? Object.values(rendered).flatMap(r => r.ids) : rendered[name].ids);
 const reachesPage = selector => { const needs = requirements(selector); return [...needs.classes].every(c => pageClasses.has(c)) && [...needs.ids].every(i => pageIds.has(i)); };
 
 function stripOwned(text) {

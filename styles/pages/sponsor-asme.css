@@ -961,7 +961,6 @@
 .asme-sponsor-page .sponsor-contact .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-row .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-modal-dialog .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>input {
-  border: 1px solid var(--asme-c-border);
   border-radius: 999px;
   outline: none;
   width: 100%;
@@ -982,7 +981,6 @@
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>select,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>select {
-  border: 1px solid var(--asme-c-border);
   border-radius: 999px;
   outline: none;
   width: 100%;
@@ -1005,7 +1003,6 @@
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>textarea,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>textarea {
-  border: 1px solid var(--asme-c-border);
   outline: none;
   width: 100%;
   box-sizing: border-box;
@@ -1133,7 +1130,14 @@
   color: rgba(255,255,255,0.72)!important;
 }
 
+.asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row .sponsor-form-group>input,
+.asme-sponsor-page .sponsor-contact .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>input,
+.asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>textarea {
+  border: 1px solid var(--asme-c-border)!important;
+}
+
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>select {
+  border: 1px solid var(--asme-c-border)!important;
   background-attachment: initial!important;
   background-origin: initial!important;
   background-clip: initial!important;
@@ -1146,11 +1150,13 @@
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-row .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-modal-dialog .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>textarea {
+  border: 1px solid var(--asme-c-border)!important;
   border-color: #e5e7eb!important;
   color: rgb(18,57,99)!important;
 }
 
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>select {
+  border: 1px solid var(--asme-c-border)!important;
   background-color: rgb(248,250,252)!important;
   background-attachment: initial!important;
   background-origin: initial!important;
@@ -1731,6 +1737,16 @@
     background: #073b68;
   }
 
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--gray .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--scarlet .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--buckeye .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--blocko .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--custom .sponsor-tier-cta:hover,
+  .asme-sponsor-page .sponsor-form-submit {
+    background: var(--asme-c-heading);
+  }
+
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus {
     color: rgb(95,104,120);
     background: #ffffff;
@@ -1779,10 +1795,6 @@
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) {
     border-right-color: currentcolor;
     border-bottom-color: currentcolor;
-  }
-
-  .asme-sponsor-page .sponsor-form-submit {
-    background: var(--asme-c-heading);
   }
 
   .asme-sponsor-page .sponsor-form-submit:hover {
