@@ -28,6 +28,15 @@ const target = PAGES.find(page => page.name === name);
 if (!target || !PAGE_SCOPES[name]) throw new Error(`Usage: node scripts/css-compile-page.mjs <${Object.keys(PAGE_SCOPES).join('|')}> [--write]`);
 const wrapperClass = PAGE_SCOPES[name][0];
 const write = process.argv.includes('--write');
+// Pages that share styles (the two sponsor pages) are compiled as a group: a
+// selector is owned when every rendered page it can match is in the group.
+// Compile each page with --emit (writes only its page file), then run once
+// with --strip to remove the group's selectors from the layers.
+const groupArg = (process.argv.find(a => a.startsWith('--group=')) || '').slice(8);
+const group = new Set(groupArg ? groupArg.split(',') : [name]);
+if (!group.has(name)) group.add(name);
+const emitOnly = process.argv.includes('--emit');
+const stripOnly = process.argv.includes('--strip');
 
 // Views and the width ranges they stand for (mobile-first breakpoints).
 const WIDTHS = [375, 768, 1280, 1920];
@@ -43,7 +52,7 @@ function owned(selector) {
   if (ownedCache.has(selector)) return ownedCache.get(selector);
   const needs = requirements(selector);
   const pages = pageSets.filter(([, classes, ids]) => [...needs.classes].every(c => classes.has(c)) && [...needs.ids].every(i => ids.has(i))).map(([page]) => page);
-  const result = needs.classes.size + needs.ids.size > 0 && pages.length === 1 && pages[0] === name;
+  const result = needs.classes.size + needs.ids.size > 0 && pages.length >= 1 && pages.every(page => group.has(page));
   ownedCache.set(selector, result);
   return result;
 }
@@ -80,8 +89,18 @@ function sourceDeclarations(rule) {
   const distinct = new Set(found.map(d => JSON.stringify(d)));
   if (distinct.size > 1) sourceStats.ambiguous.add(key.slice(0, 120));
   sourceStats.used += 1;
-  return found[found.length - 1].map(d => ({ name: d.name, value: d.value, important: d.important }));
+  // The same selector and media can occur several times with different
+  // declarations; merge them in source order (later ones win).
+  const merged = new Map();
+  for (const decls of found) for (const d of decls) { merged.delete(d.name); merged.set(d.name, d); }
+  return [...merged.values()].map(d => ({ name: d.name, value: d.value, important: d.important }));
 }
+
+// Media the compiler can reproduce: widths and color scheme. Rules under any
+// other condition (motion preference, orientation, print, hover capability)
+// are never re-derived from the test views; they are carried over verbatim.
+const MODELED_PART = /^(screen|all)?$|^\((max|min)-width:\d+(\.\d+)?px\)$|^\(prefers-color-scheme:(dark|light)\)$/;
+const modeled = media => !media.includes(',') && media.replace(/\s+/g, '').split(/and/).every(part => MODELED_PART.test(part));
 
 function winners(matched, inline, ourSheets) {
   // Returns Map(prop -> { value, important, owned, spec, sheet, kept: [competitors] })
@@ -94,7 +113,8 @@ function winners(matched, inline, ourSheets) {
     const matching = m.matchingSelectors.map(i => selectors[i]);
     const spec = matching.map(s => s.specificity || zero).sort(cmp).pop() || zero;
     const isOurs = ourSheets.has(rule.styleSheetId);
-    const isOwned = isOurs && matching.length > 0 && matching.every(s => owned(normalize(s.text)));
+    const inModeledMedia = (rule.media || []).filter(m => m.source === 'mediaRule').every(m => modeled(m.text));
+    const isOwned = isOurs && inModeledMedia && matching.length > 0 && matching.every(s => owned(normalize(s.text)));
     const selectorText = matching.map(s => s.text).join(', ');
     const seen = new Set();
     const fallback = isOurs && !rule.style.range ? sourceDeclarations(rule) : null;
@@ -117,7 +137,10 @@ function winners(matched, inline, ourSheets) {
         if (value === '') continue;
         const key = part.name + '|' + value + '|' + p.important;
         if (seen.has(key)) continue; seen.add(key);
-        push(part.name, { value, important: !!p.important, owned: isOwned, spec, sheet: rule.styleSheetId, ours: isOurs, order, selectorText, src });
+        // Owned selectors under unmodeled media are carried to the end of the
+        // page file, so they compete as later rules: beating them needs more.
+        const carriedRule = isOurs && !inModeledMedia && matching.length > 0 && matching.every(sel => owned(normalize(sel.text)));
+        push(part.name, { value, important: !!p.important, owned: isOwned, spec, sheet: rule.styleSheetId, ours: isOurs && !carriedRule, order, selectorText, src });
       }
     }
   });
@@ -147,6 +170,15 @@ function winners(matched, inline, ourSheets) {
     if (parts(prop).every(l => later.some(([other]) => parts(other).includes(l)))) out.delete(prop);
   }
   for (const [prop, win] of out) win.rank = rank(win);
+  // Competitors written as a shorthand kept whole (var()) are filed under the
+  // shorthand, so a longhand winner must also face them: a shared
+  // "border-radius: var(--x) !important" competes with border-*-radius.
+  for (const [prop, win] of out) {
+    for (const [other, list] of decls) {
+      if (other === prop || !(LONGHANDS.get(other) || []).includes(prop)) continue;
+      for (const d of list) if (!d.owned && !win.kept.includes(d)) win.kept.push(d);
+    }
+  }
   return out;
 }
 
@@ -268,6 +300,13 @@ await pool(VIEWS, 4, async view => {
     const result = await cdp.send('CSS.getMatchedStylesForNode', { nodeId });
     const base = winners(result.matchedCSSRules, result.inlineStyle, ourSheets);
     const hasOwned = [...base.values()].some(w => w.owned) || (result.pseudoElements || []).some(p => p.matches.some(m => m.rule.styleSheetId && ourSheets.has(m.rule.styleSheetId)));
+    // Every element inside the page is registered with the views it appears
+    // in, even without owned styles, so selectors shared with it are checked.
+    if (info.key) {
+      const identity = info.id + '|' + info.key;
+      if (!perElement.has(identity)) perElement.set(identity, { key: info.key, outside: false, empty: info.empty, nth: info.nth, ancestors: info.ancestors, exact: info.exact, states: new Map(), views: new Set() });
+      perElement.get(identity).views.add(view.id);
+    }
     if (!hasOwned && !info.interactive) continue;
     // Elements outside the page wrapper (rare) are keyed by the owned selector text.
     const keyFor = map => info.key || [...map.values()].find(w => w.owned)?.selectorText || null;
@@ -280,14 +319,19 @@ await pool(VIEWS, 4, async view => {
     // element is tracked per selector it has: each entry only holds the views
     // where the element carried that selector.
     const identity = info.id + '|' + key;
-    if (!perElement.has(identity)) perElement.set(identity, { key, outside: !info.key, empty: info.empty, nth: info.nth, ancestors: info.ancestors, exact: info.exact, states: new Map() });
+    if (!perElement.has(identity)) perElement.set(identity, { key, outside: !info.key, empty: info.empty, nth: info.nth, ancestors: info.ancestors, exact: info.exact, states: new Map(), views: new Set() });
     const el = perElement.get(identity);
+    el.views.add(view.id);
     record(el, '', base);
     for (const pseudo of result.pseudoElements || []) {
-      if (!['before', 'after', 'placeholder', 'marker'].includes(pseudo.pseudoType)) continue;
-      record(el, '::' + pseudo.pseudoType, winners(pseudo.matches, null, ourSheets));
+      // DevTools calls ::placeholder "input-placeholder".
+      const pseudoName = { 'input-placeholder': 'placeholder' }[pseudo.pseudoType] || pseudo.pseudoType;
+      if (!['before', 'after', 'placeholder', 'marker'].includes(pseudoName)) continue;
+      record(el, '::' + pseudoName, winners(pseudo.matches, null, ourSheets));
     }
-    if (info.interactive) {
+    // Hover and focus effects are not limited to links and buttons (cards lift
+    // on hover), so every element with owned styles is probed.
+    if (info.interactive || hasOwned) {
       for (const state of ['hover', 'focus-visible']) {
         await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [state] });
         const forced = await cdp.send('CSS.getMatchedStylesForNode', { nodeId });
@@ -315,12 +359,18 @@ await pool(VIEWS, 4, async view => {
 // is refined with :empty / :not(:empty), or :nth-child() as a last resort.
 // Entries are compatible when they agree wherever both have a value (an
 // element may hold a selector only at some widths, e.g. while is-active).
+// Entries are compatible when, in every view both appear in, they carry the
+// same value for every property; a value one has and the other lacks counts
+// as a difference (the shared selector would impose it on the other).
+const valueAt = (el, state, prop, view) => el.states.get(state)?.get(prop)?.get(view)?.value;
 const compatible = list => {
-  const seen = new Map();
-  for (const el of list) for (const [state, props] of el.states) for (const [prop, views] of props) for (const [view, d] of views) {
-    const k = state + '|' + prop + '|' + view;
-    if (seen.has(k) && seen.get(k) !== d.value) return false;
-    seen.set(k, d.value);
+  for (let i = 0; i < list.length; i += 1) for (let j = i + 1; j < list.length; j += 1) {
+    const [a, b] = [list[i], list[j]];
+    for (const [x, y] of [[a, b], [b, a]]) {
+      for (const [state, props] of x.states) for (const [prop, views] of props) for (const [view, d] of views) {
+        if (y.views.has(view) && valueAt(y, state, prop, view) !== d.value) return false;
+      }
+    }
   }
   return true;
 };
@@ -339,7 +389,12 @@ for (const [key, members] of keyGroups) {
   const byEmpty = el => key + (el.empty ? ':empty' : ':not(:empty)');
   // Context: the nearest one or two classed ancestors (".card .label").
   const own = key.slice(key.indexOf(' ') + 1);
-  const byContext = depth => el => (el.ancestors.length >= depth ? '.' + wrapperClass + ' ' + el.ancestors.slice(0, depth).reverse().join(' ') + ' ' + own : null);
+  // Ancestors already in the selector (the anchor of "card > p") are skipped,
+  // or the result would require the anchor nested inside itself.
+  const byContext = depth => el => {
+    const extra = el.ancestors.filter(a => !own.split(/\s+>\s+|\s+/).includes(a));
+    return extra.length >= depth ? '.' + wrapperClass + ' ' + extra.slice(0, depth).reverse().join(' ') + ' ' + own : null;
+  };
   const strategy = [byEmpty, byContext(1), byContext(2)].find(consistent) || (el => el.exact || key + `:nth-child(${el.nth})`);
   for (const el of members) el.key = strategy(el);
 }
@@ -358,7 +413,11 @@ for (const [key, members] of keyGroups) {
     };
     return list.map(([key, ids]) => {
       const members = new Set(ids);
-      const matched = [...document.querySelectorAll(key)];
+      let matched;
+      try { matched = [...document.querySelectorAll(key)]; } catch { return [key, null, 0, 'invalid selector']; }
+      const hits = new Set(matched.map(pathOf));
+      const missing = [...members].filter(id => !hits.has(id)).length;
+      if (missing) return [key, null, 0, `matches only ${members.size - missing} of its ${members.size} element(s)`];
       const extras = matched.filter(el => !members.has(pathOf(el)));
       if (!extras.length) return null;
       const memberEls = matched.filter(el => members.has(pathOf(el)));
@@ -368,7 +427,8 @@ for (const [key, members] of keyGroups) {
       return [key, covered ? exclude : null, extras.length];
     }).filter(Boolean);
   }, [...keyed].map(([key, ids]) => [key, [...ids]]));
-  for (const [key, exclude, count] of fixes) {
+  for (const [key, exclude, count, problem] of fixes) {
+    if (problem) { console.warn(`Selector ${key} ${problem}; check the visual diff.`); continue; }
     if (!exclude) { console.warn(`Selector ${key} also matches ${count} other element(s) that no class separates; check the visual diff.`); continue; }
     const suffix = exclude.map(c => `:not(.${c})`).join('');
     for (const el of perElement.values()) if (el.key === key) el.key = key + suffix;
@@ -637,23 +697,38 @@ function pretty(text) {
 }
 
 // ---- Remove owned selectors from the source layers ---------------------------
+// Owned selectors in rules under unmodeled media, carried into the page file
+// verbatim (with their @media chain) when they can reach this page.
+const carried = [];
+const pageClasses = new Set(rendered[name].classes); const pageIds = new Set(rendered[name].ids);
+const reachesPage = selector => { const needs = requirements(selector); return [...needs.classes].every(c => pageClasses.has(c)) && [...needs.ids].every(i => pageIds.has(i)); };
+
 function stripOwned(text) {
   let removedRules = 0; let removedSelectors = 0;
   const ast = parse(text, { positions: true });
   const edits = [];
-  walk(ast, {
-    visit: 'Rule',
-    enter(node) {
-      if (this.atrule && /keyframes/.test(this.atrule.name)) return;
-      if (!node.prelude.children) return;
-      const selectors = node.prelude.children.toArray();
-      const keep = selectors.filter(s => !owned(generate(s)));
-      if (keep.length === selectors.length) return;
-      removedSelectors += selectors.length - keep.length;
-      if (!keep.length) { removedRules += 1; edits.push([node.loc.start.offset, node.loc.end.offset, '']); }
-      else edits.push([node.prelude.loc.start.offset, node.prelude.loc.end.offset, keep.map(s => generate(s)).join(',\n')]);
+  const visit = (list, chain) => list.forEach(node => {
+    if (node.type === 'Atrule' && node.block) {
+      if (/keyframes/.test(node.name)) return;
+      visit(node.block.children, chain.concat([{ name: node.name, prelude: node.prelude ? generate(node.prelude) : '' }]));
+      return;
     }
+    if (node.type !== 'Rule' || !node.prelude.children) return;
+    const selectors = node.prelude.children.toArray();
+    const keep = selectors.filter(s => !owned(generate(s)));
+    if (keep.length === selectors.length) return;
+    // Carried verbatim: rules under unmodeled media, and selectors for
+    // pseudo-elements DevTools does not report (::placeholder lives in the
+    // input's internal shadow DOM; also ::selection, scrollbar parts).
+    const unmodeled = chain.some(at => at.name !== 'media' || !modeled(at.prelude));
+    const opaquePseudo = sel => /::(?!before\b|after\b)[a-z-]+/i.test(sel);
+    const mine = selectors.filter(s => owned(generate(s))).map(s => generate(s)).filter(sel => (unmodeled || opaquePseudo(sel)) && reachesPage(sel));
+    if (mine.length) carried.push({ chain, selectors: mine, block: generate(node.block) });
+    removedSelectors += selectors.length - keep.length;
+    if (!keep.length) { removedRules += 1; edits.push([node.loc.start.offset, node.loc.end.offset, '']); }
+    else edits.push([node.prelude.loc.start.offset, node.prelude.loc.end.offset, keep.map(s => generate(s)).join(',\n')]);
   });
+  visit(ast.children, []);
   for (const [start, end, replacement] of edits.sort((a, b) => b[0] - a[0])) text = text.slice(0, start) + replacement + text.slice(end);
   // Drop @media/@supports left empty.
   for (let pass = 0; pass < 3; pass += 1) {
@@ -672,6 +747,10 @@ const endAt = full.indexOf('/* ASME SHARED DESIGN SYSTEM START */');
 const legacy = stripOwned(full.slice(startAt, endAt));
 const sharedFiles = ['styles/design-system.css', 'styles/widescreen.css', 'styles/home-hero.css', 'styles/tablet.css', 'styles/home-event.css'];
 const shared = sharedFiles.map(file => [file, stripOwned(fs.readFileSync(file, 'utf8'))]);
+if (carried.length) {
+  const raw = carried.map(({ chain, selectors, block }) => chain.reduceRight((inner, at) => `@${at.name} ${at.prelude}{${inner}}`, `${selectors.join(',')}${block}`)).join('\n');
+  css += '\n/* Carried over unchanged: rules for conditions the compiler does not reproduce\n   from its test views (motion preference, orientation, print) and pseudo-elements\n   DevTools does not report (::placeholder). */\n' + pretty(raw);
+}
 
 console.log(`${name}: ${decls} declarations in ${[...byMedia.values()].reduce((t, r) => t + r.length, 0)} rules (${importantCount} !important); specificity levels used ${levelCount.join('/')} (plain / #page / html body #page .entry-content / doubled id)`);
 console.log(`Removes ${legacy.removedRules} legacy rules + ${legacy.removedSelectors - legacy.removedRules} selectors from mixed rules; ${shared.reduce((t, [, s]) => t + s.removedRules, 0)} shared rules + ${shared.reduce((t, [, s]) => t + s.removedSelectors - s.removedRules, 0)} selectors.`);
@@ -679,7 +758,15 @@ console.log(`Compiled CSS: ${Math.round(Buffer.byteLength(css) / 1024)} KB`);
 if (sourceStats.used) console.log(`Read ${sourceStats.used} rule matches from the stylesheet source (DevTools gave no source data)${sourceStats.ambiguous.size ? `; ${sourceStats.ambiguous.size} ambiguous` : ''}${sourceStats.missing.size ? `; ${sourceStats.missing.size} not found` : ''}.`);
 for (const key of sourceStats.missing) console.warn('  not found in source:', key);
 for (const key of sourceStats.ambiguous) console.warn('  ambiguous in source (used the last):', key);
-if (!write) {
+if (stripOnly) {
+  fs.writeFileSync(FILE, full.slice(0, startAt) + legacy.text + full.slice(endAt));
+  for (const [file, s] of shared) fs.writeFileSync(file, s.text);
+  console.log(`Removed the selectors owned by ${[...group].join(' + ')}. Run npm run build:styles next.`);
+} else if (emitOnly) {
+  fs.mkdirSync('styles/pages', { recursive: true });
+  fs.writeFileSync(`styles/pages/${name}.css`, css);
+  console.log(`Wrote styles/pages/${name}.css (layers untouched; run --strip once every page in the group is emitted).`);
+} else if (!write) {
   fs.mkdirSync('tests/visual/.output', { recursive: true });
   fs.writeFileSync(`tests/visual/.output/${name}.compiled.css`, css);
   console.log(`Preview: tests/visual/.output/${name}.compiled.css (dry run; nothing changed)`);

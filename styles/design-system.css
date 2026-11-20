@@ -134,10 +134,6 @@ html body #page main[tabindex="-1"] { scroll-margin-block-start: 120px; }
 @media (prefers-color-scheme: light) {
   html body #page .entry-content .asme-join-page :is(.join-intro,.join-form-heading,.join-faq-heading) .join-eyebrow,
 html body #page .entry-content .asme-gallery-page :is(.gallery-eyebrow,.gallery-instagram-post-date,.gallery-instagram-swipe-hint,.gallery-archive-status,.gallery-archive-copy>p:not([class])),
-html body #page .entry-content .asme-sponsor-page :is(.sponsor-hero-copy,.sponsor-section-header) .sponsor-eyebrow,
-html body #page .entry-content .asme-sponsors-page :is(.sponsors-hero,.sponsors-section-header)>.sponsors-eyebrow,
-html body #page .entry-content .asme-sponsors-page .sponsors-section-sub,
-html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards--brutus .sponsor-card__description,
 html body.blog #page :is(.entry-meta,.posted-on,.entry-date),
 html body.blog #page :is(.entry-content,.entry-summary)>p:first-child {
     color: var(--asme-readable-muted) !important;
@@ -170,9 +166,7 @@ html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-headi
 }
 
 /* Keep text readable while cards and populated results enter the viewport. */
-html body #page .entry-content .asme-sponsors-page .sponsor-card.asme-reveal {
-  opacity: 1 !important;
-}
+
 html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-row.asme-data-enter {
   animation: none !important;
 }
@@ -275,10 +269,8 @@ html body .asme-lightbox[hidden] { display: none !important; }
 /* Page motion: keep entrances separate from hover feedback. Legacy card hover
    shorthands omitted opacity and caused reveal fades to jump to full opacity. */
 @media (prefers-reduced-motion: no-preference) {
-  html body #page .entry-content :is(.asme-reveal, .asme-animate),
-  html body.blog #page article.asme-reveal,
-  /* Editorial sponsor cards have more specific legacy hover shorthands. */
-  html body #page .entry-content .asme-sponsors-page .sponsor-card.asme-reveal.asme-animate {
+  html body #page .entry-content :is(.asme-reveal,.asme-animate),
+html body.blog #page article.asme-reveal {
     transition: opacity 360ms ease, transform 360ms cubic-bezier(.22, 1, .36, 1),
       box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease !important;
     transition-delay: var(--asme-delay, 0ms), var(--asme-delay, 0ms), 0ms, 0ms, 0ms !important;
@@ -287,9 +279,8 @@ html body .asme-lightbox[hidden] { display: none !important; }
   html body.blog #page article.asme-reveal.is-visible {
     will-change: auto !important;
   }
-  html body #page .entry-content :is(.asme-reveal, .asme-animate).is-visible:hover,
-  html body.blog #page article.asme-reveal.is-visible:hover,
-  html body #page .entry-content .asme-sponsors-page .sponsor-card.asme-reveal.asme-animate.is-visible:hover {
+  html body #page .entry-content :is(.asme-reveal,.asme-animate).is-visible:hover,
+html body.blog #page article.asme-reveal.is-visible:hover {
     transition-delay: 0s !important;
   }
 }
@@ -422,32 +413,21 @@ html body #page .entry-content .asme-members-page .asme-resource-group-title {
   font-family: var(--asme-font-sans) !important; font-size: 17px !important;
   line-height: 1.4 !important; letter-spacing: .02em !important;
 }
-html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card p { color: #4b5563 !important; }
+
 .gallery-instagram-carousel-pause { width: auto !important; padding: 0 12px !important; font-size: 12px !important; }
 .acp-feed-notice { grid-column: 1 / -1; margin: 8px 0 0; font-size: 14px; }
-@media (prefers-color-scheme: dark) {
-  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card h3 { color: #f8fafc !important; }
-  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card p { color: #dbe4ef !important; }
-}
+
 @media (max-width: 700px) {
-  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card h3 { color: #f8fafc !important; }
-  html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card p { color: #dbe4ef !important; }
-  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial {
-    display: flex !important; flex-direction: column !important; gap: 16px !important;
-    padding: 20px !important; min-height: 0 !important; height: auto !important;
-  }
-  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon {
-    position: static !important; width: auto !important; min-width: 0 !important;
-    height: auto !important; min-height: 0 !important; max-width: none !important; max-height: none !important; align-self: stretch !important; flex-direction: row !important; justify-content: space-between !important; padding: 10px 14px !important;
-    clip-path: none !important; border-radius: 10px !important; display: flex !important;
-    align-items: center !important; gap: 12px !important;
-  }
-  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__tier { font-size: 12px !important; }
-  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__tier br { display: contents !important; }
-  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__tier br::after { content: ' '; }
-  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__divider { display: none !important; }
-  html body #page .entry-content .asme-sponsors-page .sponsor-card--editorial .sponsor-ribbon__badge { width: 42px !important; height: 42px !important; margin: 0 !important; object-fit: contain !important; }
-  html body #page .entry-content .asme-sponsors-page .sponsor-card__content { padding: 0 !important; width: 100% !important; min-width: 0 !important; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   html body #page .entry-content .asme-home .ah-hero { min-height: 0 !important; }
   html body #page .entry-content .asme-home .ah-hero-left { padding-top: 30px !important; padding-bottom: 30px !important; }

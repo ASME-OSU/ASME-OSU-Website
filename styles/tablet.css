@@ -52,9 +52,7 @@
   }
   html body #page .entry-content .asme-home .ah-hero-dots { bottom: 0 !important; }
   html body #page .entry-content .asme-home.asme-home-refined .ah-hero { padding-bottom: 48px !important; }
-  html body #page .entry-content .asme-sponsors-page .sponsors-tier-cards.sponsors-tier-cards--brutus {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
+  
 }
 
 /* Full-width newsletter first; the two follow-up steps share the next row. */
@@ -79,17 +77,6 @@
   }
   html body #page .entry-content .asme-join-page.asme-join-three-step .join-groupme-step-icon,
   html body #page .entry-content .asme-join-page.asme-join-three-step .join-welcome-visual { margin-bottom: 20px !important; }
-}
-
-@media (min-width: 761px) and (max-width: 979px) {
-  html body #page .entry-content .asme-privacy-page .pp-layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  html body #page .entry-content .asme-privacy-page .pp-nav {
-    position: static; display: flex; flex-wrap: wrap; gap: 4px 20px;
-  }
-  html body #page .entry-content .asme-privacy-page .pp-nav strong { flex-basis: 100%; margin-bottom: 4px; }
-  html body #page .entry-content .asme-privacy-page .pp-nav a {
-    display: inline-flex; align-items: center; min-height: 44px; padding: 8px 0;
-  }
 }
 
 @media (prefers-color-scheme: dark) {

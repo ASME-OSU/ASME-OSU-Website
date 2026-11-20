@@ -1,5 +1,5 @@
 /* /asme/aboutus/ page styles, compiled from the legacy and shared layers by
-   scripts/css-compile-page.mjs on 2026-11-19. Each declaration reproduces the value
+   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
 .asme-about-page {
@@ -45,7 +45,9 @@
 }
 
 .asme-about-page .about-hero-copy>p,
-.asme-about-page .about-award-badge-wrap {
+.asme-about-page .about-pillar>p,
+.asme-about-page .about-award-badge-wrap,
+.asme-about-page .about-semester-step>p {
   margin: 0;
 }
 
@@ -122,7 +124,9 @@
   border-radius: 999px;
 }
 
-.asme-about-page .about-hero-badge::before {
+.asme-about-page .about-hero-badge::before,
+.asme-about-page .about-hero-badge:hover::before,
+.asme-about-page .about-hero-badge:focus-visible::before {
   content: "";
   width: 6px;
   height: 6px;
@@ -227,14 +231,6 @@
   margin: 0 0 9px;
 }
 
-.asme-about-page .about-pillar>p,
-.asme-about-page .about-semester-step>p {
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-}
-
 .asme-about-page .about-section-heading.about-section-heading--compact {
   margin-top: 0px;
   margin-right: 0px;
@@ -324,7 +320,9 @@
   position: relative;
 }
 
-.asme-about-page .about-stat-item::after {
+.asme-about-page .about-stat-item::after,
+.asme-about-page .about-stat-item:hover::after,
+.asme-about-page .about-stat-item:focus-visible::after {
   content: "";
   position: absolute;
   top: 10px;
@@ -1167,6 +1165,62 @@
   .asme-about-page .about-section-heading.about-section-heading--compact>p:empty,
   .asme-about-page .about-semester-step>p {
     color: rgb(195,207,221)!important;
+  }
+
+}
+
+/* Carried over unchanged: rules for conditions the compiler does not reproduce
+   from its test views (motion preference, orientation, print) and pseudo-elements
+   DevTools does not report (::placeholder). */
+@media (prefers-reduced-motion: no-preference) {
+  .about-pillar {
+    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .about-pillar:hover {
+    transform: translateY(-4px)!important;
+    box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
+  }
+
+}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero {
+    grid-template-columns: 1fr!important;
+    gap: 14px!important;
+  }
+
+}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero-copy {
+    min-height: 0!important;
+    padding: 34px 36px!important;
+  }
+
+}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero-copy h1 {
+    max-width: 17ch!important;
+  }
+
+}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero-image {
+    min-height: 0!important;
+    aspect-ratio: 16/7!important;
+  }
+
+}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero-image img {
+    min-height: 0!important;
   }
 
 }

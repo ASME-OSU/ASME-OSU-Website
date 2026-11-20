@@ -1,5 +1,5 @@
 /* /asme/calendar/ page styles, compiled from the legacy and shared layers by
-   scripts/css-compile-page.mjs on 2026-11-19. Each declaration reproduces the value
+   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
 .asme-cal-page {
@@ -20,7 +20,9 @@
   border-radius: 24px;
 }
 
-.asme-cal-page .acp-header::before {
+.asme-cal-page .acp-header::before,
+.asme-cal-page .acp-header:hover::before,
+.asme-cal-page .acp-header:focus-visible::before {
   display: none;
   content: none;
 }
@@ -243,6 +245,20 @@
   border-radius: 999px;
 }
 
+.asme-cal-page .acp-view-button.is-active {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  min-height: 32px;
+  margin: 0;
+  border: 0;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: var(--asme-c-on-accent);
+}
+
 .asme-cal-page .acp-view-button:not(.is-active) {
   font-family: inherit;
   font-size: 11px;
@@ -256,20 +272,6 @@
   border: 0;
   padding: 7px 12px;
   border-radius: 999px;
-}
-
-.asme-cal-page .acp-view-button.is-active {
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 800;
-  line-height: 1;
-  cursor: pointer;
-  min-height: 32px;
-  margin: 0;
-  border: 0;
-  padding: 7px 12px;
-  border-radius: 999px;
-  color: var(--asme-c-on-accent);
 }
 
 .asme-cal-page .acp-cal-card>p>iframe {
@@ -942,6 +944,57 @@ html body #page .entry-content .asme-cal-page .acp-upcoming-heading>div>h2 {
     color: rgb(147,197,253);
     background: #183859;
     border-color: #2f4c6c;
+  }
+
+}
+
+/* Carried over unchanged: rules for conditions the compiler does not reproduce
+   from its test views (motion preference, orientation, print) and pseudo-elements
+   DevTools does not report (::placeholder). */
+@media (prefers-reduced-motion: no-preference) {
+  body #page .asme-cal-page .acp-subscribe-btn:focus-visible {
+    outline: 3px solid rgba(187,0,0,0.42)!important;
+    outline-offset: 4px!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .acp-info-item {
+    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .acp-info-item:hover {
+    transform: translateY(-4px)!important;
+    box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .acp-subscribe-btn {
+    transition: transform 0.18s ease,background 0.18s ease,border-color 0.18s ease!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .acp-subscribe-btn:hover {
+    transform: translateY(-2px)!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body #page .asme-cal-page .acp-subscribe-btn,
+  html body #page .entry-content .asme-cal-page .acp-subscribe-btn {
+    animation: asme-calendar-subscribe-pulse 2s ease-in-out infinite!important;
+    animation-play-state: running!important;
+    transform-origin: center!important;
+    will-change: box-shadow,scale,filter;
   }
 
 }
