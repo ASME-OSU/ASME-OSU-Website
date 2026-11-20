@@ -3,18 +3,18 @@
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
 .asme-leadership .lb-past-years {
-  padding-top: 32px;
   border-top: 1px solid #e5e7eb;
+  padding-top: 32px;
 }
 
 .asme-leadership .lb-past-label {
   margin-bottom: 16px;
   text-align: center;
-  color: rgb(156,163,175);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: rgb(156,163,175);
 }
 
 .asme-leadership .lb-year-tabs {
@@ -23,6 +23,7 @@
 }
 
 .asme-leadership .lb-year-tab.active {
+  appearance: none;
   border-top-width: 1px;
   border-right-width: 1px;
   border-bottom-width: 1px;
@@ -36,33 +37,32 @@
   border-image-width: 1;
   border-image-outset: 0;
   border-image-repeat: stretch;
-  cursor: pointer;
-  appearance: none;
-  user-select: none;
   border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
   color: var(--asme-c-on-accent);
   background: var(--asme-c-accent);
   border-color: var(--asme-c-accent);
 }
 
 .asme-leadership .lb-year-tab.active:hover {
-  color: var(--asme-c-accent);
   background: var(--osu-scarlet-light);
+  color: var(--asme-c-accent);
 }
 
 .asme-leadership .lb-year-tab:not(.active) {
-  color: rgb(75,85,99);
-  cursor: pointer;
   appearance: none;
-  user-select: none;
   background: #f3f4f6;
   border: 1px solid #e5e7eb;
   border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  color: rgb(75,85,99);
 }
 
 .asme-leadership .lb-year-tab:not(.active):hover {
-  color: var(--asme-c-accent);
   background: var(--osu-scarlet-light);
+  color: var(--asme-c-accent);
   border-color: var(--asme-c-accent);
 }
 
@@ -83,15 +83,15 @@
 .asme-leadership .lb-year-panel-header:focus-visible::before,
 .asme-leadership .lb-year-panel-header:focus-visible::after {
   content: "";
-  height: 1px;
   flex: 1;
+  height: 1px;
   background: #e5e7eb;
 }
 
 .asme-leadership .lb-year-panel-header>h2 {
-  padding: 7px 20px;
   background: #6b7280;
   border-radius: 999px;
+  padding: 7px 20px;
   white-space: nowrap;
 }
 
@@ -121,19 +121,19 @@ html body #page#page .entry-content .asme-leadership .leader-card {
 
 @media (max-width: 979px) {
   .asme-leadership .lb-current-year {
-    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    box-sizing: border-box;
   }
 
   .asme-leadership .lb-past-years {
-    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     min-width: 0;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
   }
 
   .asme-leadership .leader-card {
@@ -147,8 +147,8 @@ html body #page#page .entry-content .asme-leadership .leader-card {
   .asme-leadership .leader-card {
     width: 100%!important;
     max-width: none!important;
-    min-width: 0px!important;
     margin: 0!important;
+    min-width: 0px!important;
   }
 
   #page .asme-leadership .lb-current-year {

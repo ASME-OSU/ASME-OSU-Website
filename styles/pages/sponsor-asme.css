@@ -39,10 +39,10 @@
 }
 
 .asme-sponsor-page .sponsor-hero-copy>p {
+  line-height: 1.7;
   margin-top: 0px;
   margin-right: 0px;
   margin-left: 0px;
-  line-height: 1.7;
   margin-bottom: 22px;
 }
 
@@ -51,8 +51,8 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: var(--asme-c-on-accent);
   background: var(--asme-c-accent);
+  color: var(--asme-c-on-accent);
 }
 
 .asme-sponsor-page .sponsor-primary-button:hover {
@@ -62,15 +62,15 @@
 .asme-sponsor-page .sponsor-hero-panel {
   border-radius: 18px;
   background: linear-gradient(135deg,#BB0000 0%,#7a0000 100%);
+  align-self: start;
   display: flex;
-  align-content: flex-start;
   flex-direction: column;
   justify-content: flex-start;
+  align-content: flex-start;
   height: auto;
-  min-height: 0px;
-  align-self: start;
   block-size: auto;
   max-height: none;
+  min-height: 0px;
 }
 
 .asme-sponsor-page .sponsor-panel-stat {
@@ -80,12 +80,12 @@
   position: static;
   margin: 0;
   overflow: visible;
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0;
+  text-align: center;
 }
 
 .asme-sponsor-page .sponsor-stat-inner {
@@ -95,29 +95,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: none;
+  gap: 8px;
   width: 100%;
   height: auto;
-  min-height: 0px;
-  gap: 8px;
+  flex: 0 0 auto;
   margin: 0;
   padding: 0;
-  flex: 0 0 auto;
+  transform: none;
+  min-height: 0px;
 }
 
 .asme-sponsor-page .sponsor-stat-inner>strong {
   color: var(--asme-c-on-accent);
   letter-spacing: -0.5px;
-  font-weight: 800;
+  position: static;
+  inset: auto;
+  transform: none;
   display: block;
   font-size: 54px;
-  position: static;
-  transform: none;
-  inset: auto;
-  line-height: 1;
-  text-align: center;
+  font-weight: 800;
   margin: 0;
   padding: 0;
+  line-height: 1;
+  text-align: center;
 }
 
 .asme-sponsor-page .sponsor-stat-inner>br,
@@ -126,20 +126,20 @@
 }
 
 .asme-sponsor-page .sponsor-stat-inner>span {
-  color: rgba(255,255,255,0.72);
   font-weight: 700;
+  color: rgba(255,255,255,0.72);
   opacity: 0.7;
+  position: static;
+  inset: auto;
+  transform: none;
+  display: block;
   font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  display: block;
-  position: static;
-  transform: none;
-  inset: auto;
-  line-height: 1;
-  text-align: center;
   margin: 0;
   padding: 0;
+  line-height: 1;
+  text-align: center;
 }
 
 .asme-sponsor-page .sponsor-panel-stat>p,
@@ -188,14 +188,14 @@
 }
 
 .asme-sponsor-page .sponsor-see-current-link {
-  color: var(--asme-c-heading);
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   margin-top: 10px;
   font-size: 13px;
   font-weight: 700;
+  color: var(--asme-c-heading);
   text-decoration: none;
-  gap: 4px;
 }
 
 .asme-sponsor-page .sponsor-see-current-link:hover {
@@ -212,17 +212,16 @@
   gap: 0;
   --sponsor-tier-color:  #8f959c;
   flex-direction: column;
-  box-sizing: border-box;
-  display: grid;
   position: relative;
   isolation: isolate;
+  display: grid;
   grid-template-rows: auto auto 1fr auto;
+  box-sizing: border-box;
+  height: auto;
+  overflow: hidden;
+  transform: none;
   min-width: 0px;
   min-height: 0px;
-  height: auto;
-  transform: none;
-  overflow: hidden;
-  background-image: none;
   background-position-x: initial;
   background-position-y: initial;
   background-size: initial;
@@ -230,6 +229,7 @@
   background-attachment: initial;
   background-origin: initial;
   background-clip: initial;
+  background-image: none;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--gray::before,
@@ -253,20 +253,20 @@
   content: "";
   position: absolute;
   z-index: 2;
-  top: 0px;
-  right: 0px;
   bottom: auto;
-  left: 0px;
   display: block;
   width: auto;
   height: 18px;
-  background: var(--sponsor-tier-color);
-  box-shadow: none;
-  transform: none;
   margin: 0;
   padding: 0;
+  background: var(--sponsor-tier-color);
   border: 0;
   border-radius: 0;
+  box-shadow: none;
+  transform: none;
+  top: 0px;
+  right: 0px;
+  left: 0px;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--gray::after,
@@ -335,55 +335,55 @@
   position: relative;
   z-index: 1;
   row-gap: 12px;
-  min-height: 0px;
+  margin: 1px 0 6px;
   padding-top: 0px;
   padding-bottom: 0px;
   padding-left: 0px;
-  margin: 1px 0 6px;
   border: 0;
   background: none;
-  column-gap: 10px;
-  padding-right: 0px;
+  min-height: 0px;
   display: grid;
-  grid-template-columns: minmax(0px,1fr) 65px;
   align-items: center;
+  column-gap: 10px;
+  grid-template-columns: minmax(0px,1fr) 65px;
+  padding-right: 0px;
 }
 
 .asme-sponsor-page .sponsor-tier-icon {
   flex: 0 0 48px;
-  box-sizing: border-box;
-  object-fit: contain;
-  display: block;
   z-index: 3;
   top: 10px;
   right: -2px;
-  object-position: center center;
-  transform: none;
+  display: block;
+  box-sizing: border-box;
   margin: 0;
   padding: 8px;
   border-radius: 14px;
-  height: 65px;
-  max-width: 100%;
-  width: 65px;
+  object-fit: contain;
+  transform: none;
+  object-position: center center;
   position: static;
-  min-width: 0px;
-  min-height: 0px;
-  max-height: none;
   grid-column: 2;
   grid-row: 1;
+  width: 65px;
+  max-width: 100%;
+  height: 65px;
+  max-height: none;
+  min-width: 0px;
+  min-height: 0px;
 }
 
 .asme-sponsor-page .sponsor-tier-name {
-  min-width: 0px;
   grid-column: 1;
   grid-row: 1;
+  min-width: 0px;
+  max-width: none;
+  margin: 0;
   font-family: var(--asme-font-serif, Georgia, "Times New Roman", serif);
   font-weight: 700;
   line-height: 1.05;
-  max-width: none;
   letter-spacing: -0.02em;
   text-transform: none;
-  margin: 0;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--gray .sponsor-tier-price,
@@ -394,35 +394,35 @@
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--custom .sponsor-tier-price {
   position: relative;
   z-index: 1;
+  margin: 0 0 12px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.015em;
-  margin: 0 0 12px;
 }
 
 .asme-sponsor-page .sponsor-tier-perks {
   position: relative;
   z-index: 1;
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
+  gap: 5px;
   margin: 0 0 14px;
   padding: 0;
   list-style: none;
-  gap: 5px;
-  flex: 0 0 auto;
 }
 
 .asme-sponsor-page .sponsor-tier-perks>li {
   position: relative;
-  font-size: 15px;
-  line-height: 1.35;
   display: grid;
-  grid-template-columns: 18px minmax(0px,1fr);
+  gap: 8px;
   margin: 0;
   padding: 0;
-  border: 0;
-  gap: 8px;
   background: none;
+  border: 0;
+  font-size: 15px;
+  line-height: 1.35;
+  grid-template-columns: 18px minmax(0px,1fr);
 }
 
 .asme-sponsor-page .sponsor-tier-perks>li::before,
@@ -431,19 +431,19 @@
   left: 0px;
   content: "✓";
   position: static;
-  font-weight: 800;
   display: block;
   width: auto;
   height: auto;
-  box-shadow: none;
-  font-size: 15px;
-  line-height: 1.35;
-  transform: none;
   margin: 0;
   padding: 0;
   background: none;
   border: 0;
   border-radius: 0;
+  box-shadow: none;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.35;
+  transform: none;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--gray>p:not(.sponsor-tier-price),
@@ -462,7 +462,6 @@
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--buckeye .sponsor-tier-cta,
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--blocko .sponsor-tier-cta,
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--custom .sponsor-tier-cta {
-  font: inherit;
   font-style: inherit;
   font-variant-ligatures: inherit;
   font-variant-caps: inherit;
@@ -478,43 +477,42 @@
   font-feature-settings: inherit;
   font-variation-settings: inherit;
   font-language-override: inherit;
-  box-sizing: border-box;
-  font-family: var(--asme-font-sans, Arial, sans-serif);
-  font-size: 16px;
-  margin-top: auto;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--asme-c-on-accent);
-  cursor: pointer;
   display: flex;
-  text-align: center;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   width: 100%;
   min-height: 42px;
-  box-shadow: none;
-  transform: none;
-  border: 0;
+  margin-top: auto;
   padding: 9px 16px;
+  border: 0;
   border-radius: 12px;
+  box-shadow: none;
+  cursor: pointer;
+  font-family: var(--asme-font-sans, Arial, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
   text-decoration: none;
+  transform: none;
+  color: var(--asme-c-on-accent);
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--scarlet {
   gap: 0;
   --sponsor-tier-color:  #ba0c2f;
   flex-direction: column;
-  box-sizing: border-box;
-  display: grid;
   position: relative;
   isolation: isolate;
+  display: grid;
   grid-template-rows: auto auto 1fr auto;
+  box-sizing: border-box;
+  height: auto;
+  overflow: hidden;
+  transform: none;
   min-width: 0px;
   min-height: 0px;
-  height: auto;
-  transform: none;
-  overflow: hidden;
-  background-image: none;
   background-position-x: initial;
   background-position-y: initial;
   background-size: initial;
@@ -522,23 +520,23 @@
   background-attachment: initial;
   background-origin: initial;
   background-clip: initial;
+  background-image: none;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--buckeye {
   gap: 0;
   --sponsor-tier-color:  #c96b18;
   flex-direction: column;
-  box-sizing: border-box;
-  display: grid;
   position: relative;
   isolation: isolate;
+  display: grid;
   grid-template-rows: auto auto 1fr auto;
+  box-sizing: border-box;
+  height: auto;
+  overflow: hidden;
+  transform: none;
   min-width: 0px;
   min-height: 0px;
-  height: auto;
-  transform: none;
-  overflow: hidden;
-  background-image: none;
   background-position-x: initial;
   background-position-y: initial;
   background-size: initial;
@@ -546,23 +544,23 @@
   background-attachment: initial;
   background-origin: initial;
   background-clip: initial;
+  background-image: none;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--blocko {
   gap: 0;
   --sponsor-tier-color:  #202020;
   flex-direction: column;
-  box-sizing: border-box;
-  display: grid;
   position: relative;
   isolation: isolate;
+  display: grid;
   grid-template-rows: auto auto 1fr auto;
+  box-sizing: border-box;
+  height: auto;
+  overflow: hidden;
+  transform: none;
   min-width: 0px;
   min-height: 0px;
-  height: auto;
-  transform: none;
-  overflow: hidden;
-  background-image: none;
   background-position-x: initial;
   background-position-y: initial;
   background-size: initial;
@@ -570,45 +568,45 @@
   background-attachment: initial;
   background-origin: initial;
   background-clip: initial;
+  background-image: none;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus {
   gap: 0;
   --sponsor-tier-color:  #ba0c2f;
   flex-direction: column;
-  box-sizing: border-box;
-  display: grid;
   position: relative;
   isolation: isolate;
+  display: grid;
   grid-template-rows: auto auto 1fr auto;
+  box-sizing: border-box;
+  height: auto;
+  overflow: hidden;
+  transform: none;
   min-width: 0px;
   min-height: 0px;
-  height: auto;
-  transform: none;
-  overflow: hidden;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus::after,
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus:hover::after,
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus:focus-visible::after {
   content: "";
-  display: block;
   position: absolute;
   z-index: 0;
   top: -100px;
   right: -100px;
+  display: block;
   width: 220px;
   height: 220px;
-  pointer-events: none;
   border-radius: 50%;
   background: rgba(186,12,47,0.035);
+  pointer-events: none;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-heading {
   position: relative;
   z-index: 1;
   row-gap: 12px;
-  min-height: 0px;
   margin-top: 1px;
   margin-right: 0px;
   margin-left: 0px;
@@ -617,11 +615,12 @@
   padding-left: 0px;
   border: 0;
   background: none;
-  column-gap: 10px;
-  padding-right: 0px;
+  min-height: 0px;
   display: grid;
-  grid-template-columns: minmax(0px,1fr) 65px;
   align-items: center;
+  column-gap: 10px;
+  grid-template-columns: minmax(0px,1fr) 65px;
+  padding-right: 0px;
   margin-bottom: 12px;
 }
 
@@ -631,24 +630,23 @@
   content: "◆  PREMIER TIER";
   display: inline-flex;
   align-items: center;
+  margin: 12px 0 0;
+  padding: 8px 15px;
+  border-radius: 999px;
   font-family: var(--asme-font-sans, Arial, sans-serif);
   font-size: 14px;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: 0.075em;
   text-transform: uppercase;
-  margin: 12px 0 0;
-  padding: 8px 15px;
-  border-radius: 999px;
+  grid-column: 1/-1;
   box-sizing: border-box;
   width: 100%;
   max-width: 100%;
-  grid-column: 1/-1;
   white-space: normal;
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-cta {
-  font: inherit;
   font-style: inherit;
   font-variant-ligatures: inherit;
   font-variant-caps: inherit;
@@ -664,43 +662,43 @@
   font-feature-settings: inherit;
   font-variation-settings: inherit;
   font-language-override: inherit;
-  box-sizing: border-box;
-  font-family: var(--asme-font-sans, Arial, sans-serif);
-  font-size: 16px;
-  margin-top: auto;
-  font-weight: 700;
-  line-height: 1.2;
-  cursor: pointer;
   display: flex;
-  text-align: center;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   width: 100%;
   min-height: 42px;
-  box-shadow: none;
-  transform: none;
-  border: 0;
+  margin-top: auto;
   padding: 9px 16px;
+  border: 0;
   border-radius: 12px;
+  box-shadow: none;
+  cursor: pointer;
+  font-family: var(--asme-font-sans, Arial, sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
   text-decoration: none;
-  color: var(--asme-c-on-accent);
+  transform: none;
   background: #ba0c2f;
+  color: var(--asme-c-on-accent);
 }
 
 .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--custom {
   gap: 0;
   --sponsor-tier-color:  #123f6d;
   flex-direction: column;
-  box-sizing: border-box;
-  display: grid;
   position: relative;
   isolation: isolate;
+  display: grid;
   grid-template-rows: auto auto 1fr auto;
+  box-sizing: border-box;
+  height: auto;
+  overflow: hidden;
+  transform: none;
   min-width: 0px;
   min-height: 0px;
-  height: auto;
-  transform: none;
-  overflow: hidden;
 }
 
 .asme-sponsor-page .sponsor-donation {
@@ -708,10 +706,10 @@
   display: grid;
   align-items: center;
   isolation: isolate;
-  box-shadow: rgba(9,28,52,0.24) 0px 22px 52px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.12);
   background: radial-gradient(circle at 88% 20%,rgba(187,0,0,0.34),transparent 31%),linear-gradient(135deg,#091c34 0%,#0f3460 62%,#173f6d 100%);
+  box-shadow: rgba(9,28,52,0.24) 0px 22px 52px;
 }
 
 .asme-sponsor-page .sponsor-donation::after,
@@ -731,36 +729,36 @@
 .asme-sponsor-page .sponsor-donation-kicker {
   display: inline-flex;
   align-items: center;
-  color: rgba(255,255,255,0.68);
+  gap: 9px;
+  margin: 0 0 10px;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.14em;
   line-height: 1.2;
   text-transform: uppercase;
-  gap: 9px;
-  margin: 0 0 10px;
+  color: rgba(255,255,255,0.68);
 }
 
 .asme-sponsor-page .sponsor-donation-kicker>span {
   width: 8px;
   height: 8px;
-  box-shadow: rgba(239,68,68,0.14) 0px 0px 0px 5px;
   border-radius: 50%;
   background: #ef4444;
+  box-shadow: rgba(239,68,68,0.14) 0px 0px 0px 5px;
 }
 
 .asme-sponsor-page .sponsor-donation-copy>h2 {
-  line-height: 1.06;
   max-width: 620px;
-  letter-spacing: -0.025em;
   margin: 0 0 10px;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
 }
 
 .asme-sponsor-page .sponsor-donation-copy>p {
   max-width: 640px;
+  margin: 0;
   font-size: 16px;
   line-height: 1.6;
-  margin: 0;
 }
 
 .asme-sponsor-page .sponsor-donation-action {
@@ -773,54 +771,54 @@
 }
 
 .asme-sponsor-page .sponsor-donation-button {
-  color: rgb(15,52,96);
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: rgba(0,0,0,0.18) 0px 10px 28px;
-  text-decoration: none;
   gap: 18px;
   border: 1px solid rgba(255,255,255,0.92);
   background: var(--asme-c-on-accent);
+  text-decoration: none;
+  color: rgb(15,52,96);
+  box-shadow: rgba(0,0,0,0.18) 0px 10px 28px;
 }
 
 .asme-sponsor-page .sponsor-donation-button:hover {
-  color: var(--asme-c-accent);
+  border-color: var(--asme-c-on-accent);
   background-color: rgb(248,250,252);
+  outline: 3px solid rgba(255,255,255,0.28);
   outline-offset: 3px;
   transform: translateY(-2px);
-  border-color: var(--asme-c-on-accent);
-  outline: 3px solid rgba(255,255,255,0.28);
+  color: var(--asme-c-accent);
 }
 
 .asme-sponsor-page .sponsor-donation-button:focus-visible {
-  color: var(--asme-c-accent);
+  border-color: var(--asme-c-on-accent);
   background-color: rgb(248,250,252);
   transform: translateY(-2px);
-  border-color: var(--asme-c-on-accent);
+  color: var(--asme-c-accent);
 }
 
 .asme-sponsor-page .sponsor-donation-button>svg {
   width: 22px;
   height: 22px;
   fill: none;
-  stroke: var(--asme-c-accent);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  stroke: var(--asme-c-accent);
 }
 
 .asme-sponsor-page .sponsor-donation-note {
   display: grid;
-  grid-template-columns: 22px minmax(0px,1fr);
-  align-items: start;
-  backdrop-filter: blur(8px);
   gap: 11px;
+  align-items: start;
   margin: 0;
   padding: 13px 15px;
   border: 1px solid rgba(255,255,255,0.13);
   border-radius: 11px;
   background: rgba(4,18,35,0.34);
+  backdrop-filter: blur(8px);
+  grid-template-columns: 22px minmax(0px,1fr);
 }
 
 .asme-sponsor-page .sponsor-donation-note>svg {
@@ -828,35 +826,35 @@
   height: 21px;
   margin-top: 1px;
   fill: none;
-  stroke: rgb(252,165,165);
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
+  stroke: rgb(252,165,165);
 }
 
 .asme-sponsor-page .sponsor-donation-note>p:empty {
   flex-direction: column;
+  gap: 2px;
+  margin: 0;
   font-size: 12.5px;
   line-height: 1.45;
-  margin: 0;
-  gap: 2px;
 }
 
 .asme-sponsor-page .sponsor-donation-note>p:not(:empty) {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  margin: 0;
   font-size: 12.5px;
   line-height: 1.45;
-  margin: 0;
-  gap: 2px;
 }
 
 .asme-sponsor-page .sponsor-donation-note>p>strong {
-  font-weight: 800;
-  color: var(--asme-c-on-accent);
   font-size: 11px;
+  font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--asme-c-on-accent);
 }
 
 .asme-sponsor-page .sponsor-donation-note>p>span>b {
@@ -867,10 +865,11 @@
 .asme-sponsor-page .sponsor-contact {
   justify-content: space-between;
   display: grid;
-  align-items: stretch;
-  width: 100%;
+  gap: 0;
   max-width: none;
+  width: 100%;
   margin-top: 0px;
+  padding: 0;
   border-top-width: 1px;
   border-right-width: 1px;
   border-bottom-width: 1px;
@@ -885,9 +884,8 @@
   border-image-outset: 0;
   border-image-repeat: stretch;
   border-radius: 16px;
-  padding: 0;
-  gap: 0;
   overflow: hidden;
+  align-items: stretch;
   background: var(--asme-c-surface);
 }
 
@@ -900,22 +898,24 @@
 }
 
 .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro>h2 {
-  font-size: clamp(36px,3.4vw,56px);
   line-height: 1.12;
   margin: 10px 0 20px;
+  font-size: clamp(36px,3.4vw,56px);
 }
 
 .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro>p {
   margin: 0;
   max-width: 760px;
-  font-size: clamp(20px,1.55vw,24px);
   line-height: 1.6;
+  font-size: clamp(20px,1.55vw,24px);
 }
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 14px;
+  padding: 28px 30px;
   border-right-width: medium;
   border-bottom-width: medium;
   border-right-style: none;
@@ -925,11 +925,9 @@
   border-image-width: 1;
   border-image-outset: 0;
   border-image-repeat: stretch;
+  border-radius: 0;
   width: 100%;
   max-width: none;
-  border-radius: 0;
-  padding: 28px 30px;
-  gap: 14px;
   margin: 0;
 }
 
@@ -941,8 +939,8 @@
 .asme-sponsor-page .sponsor-form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   margin: 0;
+  gap: 4px;
 }
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row .sponsor-form-group>label,
@@ -955,23 +953,23 @@
 }
 
 .asme-sponsor-page .sponsor-form-required {
-  color: var(--asme-c-accent);
   margin-left: 2px;
+  color: var(--asme-c-accent);
 }
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-contact .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-row .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-modal-dialog .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>input {
-  box-sizing: border-box;
-  font-family: "DM Sans",sans-serif;
   border: 1px solid var(--asme-c-border);
-  width: 100%;
   border-radius: 999px;
   outline: none;
-  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "DM Sans",sans-serif;
   min-height: 40px;
   padding: 8px 14px;
+  font-size: 13px;
 }
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row>p,
@@ -984,20 +982,20 @@
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>select,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>select {
-  box-sizing: border-box;
-  font-family: "DM Sans",sans-serif;
   border: 1px solid var(--asme-c-border);
-  width: 100%;
   border-radius: 999px;
   outline: none;
-  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "DM Sans",sans-serif;
+  min-height: 40px;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 14px;
-  min-height: 40px;
-  padding-right: 56px;
+  font-size: 13px;
   appearance: none;
   -webkit-appearance: none;
+  padding-right: 56px;
 }
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group .sponsor-form-optional,
@@ -1007,32 +1005,32 @@
 
 .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>textarea,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>textarea {
-  box-sizing: border-box;
-  font-family: "DM Sans",sans-serif;
-  width: 100%;
   border: 1px solid var(--asme-c-border);
   outline: none;
-  resize: vertical;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "DM Sans",sans-serif;
   border-radius: 16px;
-  font-size: 13px;
+  resize: vertical;
   min-height: 70px;
   padding: 8px 14px;
+  font-size: 13px;
 }
 
 .asme-sponsor-page .sponsor-form-submit {
   display: block;
-  cursor: pointer;
-  font-weight: 700;
-  font-family: "DM Sans",sans-serif;
   margin: 4px auto 0;
   border-radius: 999px;
   border: none;
-  color: var(--asme-c-on-accent);
+  cursor: pointer;
+  font-weight: 700;
+  font-family: "DM Sans",sans-serif;
   text-decoration: none;
+  color: var(--asme-c-on-accent);
   width: 100%;
   text-align: center;
-  font-size: 14px;
   padding: 12px 20px;
+  font-size: 14px;
 }
 
 .asme-sponsor-page .sponsor-form-submit:hover {
@@ -1041,8 +1039,8 @@
 
 .asme-sponsor-page .sponsor-modal {
   position: fixed;
-  z-index: 9999;
   inset: 0;
+  z-index: 9999;
   box-sizing: border-box;
   align-items: center;
   justify-items: center;
@@ -1050,42 +1048,42 @@
 
 .asme-sponsor-page .sponsor-modal-backdrop {
   position: absolute;
-  backdrop-filter: blur(6px);
   inset: 0;
   background: rgba(2,8,23,0.68);
+  backdrop-filter: blur(6px);
 }
 
 .asme-sponsor-page .sponsor-modal-dialog {
   position: relative;
   z-index: 1;
-  box-shadow: rgba(2,8,23,0.32) 0px 28px 80px;
   overflow: auto;
   border-radius: 18px;
   background: var(--asme-c-surface);
+  box-shadow: rgba(2,8,23,0.32) 0px 28px 80px;
   margin: auto;
 }
 
 .asme-sponsor-page .sponsor-modal-close {
-  color: rgb(18,57,99);
-  cursor: pointer;
   position: absolute;
   top: 16px;
   right: 16px;
   z-index: 2;
   width: 36px;
   height: 36px;
-  background: #f1f5f9;
   border: 0;
   border-radius: 999px;
-  font-family: Inter,Arial,sans-serif;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 1;
+  background: #f1f5f9;
+  cursor: pointer;
+  color: rgb(18,57,99);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   padding: 0;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  font-family: Inter,Arial,sans-serif;
 }
 
 .asme-sponsor-page .sponsor-modal-header .sponsor-eyebrow {
@@ -1099,13 +1097,13 @@
 }
 
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal {
+  background: var(--asme-c-on-accent);
   display: flex;
   flex-direction: column;
-  background: var(--asme-c-on-accent);
   gap: 20px;
   box-shadow: none;
-  border-radius: 0;
   border: 0;
+  border-radius: 0;
 }
 
 .asme-sponsor-page .sponsor-hero-copy>h1 {
@@ -1114,8 +1112,8 @@
 
 .asme-sponsor-page .sponsor-section-header>h2,
 .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro>h2 {
-  font-family: "DM Serif Display",serif!important;
   font-weight: 400!important;
+  font-family: "DM Serif Display",serif!important;
 }
 
 .asme-sponsor-page .sponsor-benefit-card>h3 {
@@ -1139,30 +1137,30 @@
   background-attachment: initial!important;
   background-origin: initial!important;
   background-clip: initial!important;
-  background-image: url(data:image/svg+xml,%3Csvg\ width=\'18\'\ height=\'18\'\ viewBox=\'0\ 0\ 24\ 24\'\ fill=\'none\'\ stroke=\'%23123963\'\ stroke-width=\'2.5\'\ stroke-linecap=\'round\'\ stroke-linejoin=\'round\'\ xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath\ d=\'m6\ 9\ 6\ 6\ 6-6\'/%3E%3C/svg%3E)!important;
-  background-size: 18px 18px!important;
   background-repeat: no-repeat!important;
   background-position: right 20px center!important;
+  background-size: 18px 18px!important;
+  background-image: url(data:image/svg+xml,%3Csvg\ width=\'18\'\ height=\'18\'\ viewBox=\'0\ 0\ 24\ 24\'\ fill=\'none\'\ stroke=\'%23123963\'\ stroke-width=\'2.5\'\ stroke-linecap=\'round\'\ stroke-linejoin=\'round\'\ xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath\ d=\'m6\ 9\ 6\ 6\ 6-6\'/%3E%3C/svg%3E)!important;
 }
 
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-row .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-modal-dialog .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>input,
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>textarea {
-  color: rgb(18,57,99)!important;
   border-color: #e5e7eb!important;
+  color: rgb(18,57,99)!important;
 }
 
 .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal .sponsor-form-group>select {
-  color: rgb(18,57,99)!important;
   background-color: rgb(248,250,252)!important;
   background-attachment: initial!important;
   background-origin: initial!important;
   background-clip: initial!important;
   border-color: #e5e7eb!important;
-  background-image: url(data:image/svg+xml,%3Csvg\ width=\'18\'\ height=\'18\'\ viewBox=\'0\ 0\ 24\ 24\'\ fill=\'none\'\ stroke=\'%23123963\'\ stroke-width=\'2.5\'\ stroke-linecap=\'round\'\ stroke-linejoin=\'round\'\ xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath\ d=\'m6\ 9\ 6\ 6\ 6-6\'/%3E%3C/svg%3E)!important;
-  background-size: 18px 18px!important;
+  color: rgb(18,57,99)!important;
   background-repeat: no-repeat!important;
   background-position: right 20px center!important;
+  background-size: 18px 18px!important;
+  background-image: url(data:image/svg+xml,%3Csvg\ width=\'18\'\ height=\'18\'\ viewBox=\'0\ 0\ 24\ 24\'\ fill=\'none\'\ stroke=\'%23123963\'\ stroke-width=\'2.5\'\ stroke-linecap=\'round\'\ stroke-linejoin=\'round\'\ xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath\ d=\'m6\ 9\ 6\ 6\ 6-6\'/%3E%3C/svg%3E)!important;
 }
 
 #page .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--gray .sponsor-tier-cta:focus-visible,
@@ -1170,14 +1168,14 @@
 #page .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--buckeye .sponsor-tier-cta:focus-visible,
 #page .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--blocko .sponsor-tier-cta:focus-visible,
 #page .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--custom .sponsor-tier-cta:focus-visible {
-  outline-offset: 3px!important;
   outline: 3px solid rgba(7,59,104,0.28)!important;
+  outline-offset: 3px!important;
 }
 
 #page .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-cta:focus-visible {
-  outline-offset: 3px!important;
   outline-style: solid!important;
   outline-width: 3px!important;
+  outline-offset: 3px!important;
   outline-color: rgba(186,12,47,0.3)!important;
 }
 
@@ -1186,8 +1184,8 @@
 }
 
 #page .asme-sponsor-page .sponsor-donation-button:focus-visible {
-  outline-offset: 3px!important;
   outline: 3px solid rgba(255,255,255,0.28)!important;
+  outline-offset: 3px!important;
 }
 
 #page .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row .sponsor-form-group>label,
@@ -1211,8 +1209,8 @@
     margin-top: 0px;
     margin-right: 0px;
     margin-left: 0px;
-    margin-bottom: 12px;
     font-size: 32px;
+    margin-bottom: 12px;
   }
 
   .asme-sponsor-page .sponsor-section-header>p {
@@ -1237,8 +1235,8 @@
 
 @media (max-width: 767px) {
   .asme-sponsor-page .sponsor-benefit-card {
-    border: 1px solid rgba(147,197,253,0.18);
     background: #142236;
+    border: 1px solid rgba(147,197,253,0.18);
     overflow: hidden;
   }
 
@@ -1281,8 +1279,8 @@
     margin-top: 0px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 30px;
     gap: 24px;
+    margin-bottom: 30px;
     padding: 30px 22px 24px;
     border-radius: 18px;
   }
@@ -1296,8 +1294,8 @@
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) {
-    color: rgb(248,250,252);
     background: #142236;
+    color: rgb(248,250,252);
   }
 
   .asme-sponsor-page .sponsor-form-row {
@@ -1318,22 +1316,22 @@
   }
 
   .asme-sponsor-page .sponsor-modal-dialog {
-    width: min(100%,-24px + 100vw);
     max-height: calc(100dvh - 48px);
+    width: min(100%,-24px + 100vw);
   }
 
   .asme-sponsor-page .sponsor-modal-header {
     padding-top: 32px;
     padding-bottom: 0px;
-    padding-right: 20px;
     padding-left: 20px;
+    padding-right: 20px;
   }
 
   .asme-sponsor-page .sponsor-inquiry-form.sponsor-inquiry-form--modal {
     padding-top: 28px;
     padding-bottom: 34px;
-    padding-right: 20px;
     padding-left: 20px;
+    padding-right: 20px;
   }
 
   .asme-sponsor-page .sponsor-benefit-card {
@@ -1359,15 +1357,15 @@
     background-attachment: initial!important;
     background-origin: initial!important;
     background-clip: initial!important;
-    color: rgb(248,250,252)!important;
-    background-color: rgb(15,27,45)!important;
     border-color: #2d4261!important;
+    background-color: rgb(15,27,45)!important;
+    color: rgb(248,250,252)!important;
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>select {
-    color: rgb(248,250,252)!important;
-    background-color: rgb(15,27,45)!important;
     border-color: #2d4261!important;
+    background-color: rgb(15,27,45)!important;
+    color: rgb(248,250,252)!important;
   }
 
   html body #page .entry-content .asme-sponsor-page .sponsor-benefit-card {
@@ -1388,17 +1386,17 @@
     gap: 26px;
     grid-template-columns: 1fr;
     padding: 24px 22px;
-    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     min-width: 0;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
   }
 
   .asme-sponsor-page .sponsor-hero-panel {
-    padding: 24px;
     gap: 12px;
+    padding: 24px;
   }
 
   .asme-sponsor-page .sponsor-panel-stat {
@@ -1408,12 +1406,12 @@
 
   .asme-sponsor-page .sponsor-section {
     padding: 24px 22px;
-    box-sizing: border-box;
     width: 100%;
     max-width: 100%;
     min-width: 0;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
   }
 
   .asme-sponsor-page .sponsor-benefit-grid,
@@ -1423,8 +1421,8 @@
 
   .asme-sponsor-page .sponsor-contact {
     flex-direction: column;
-    box-sizing: border-box;
     min-width: 0;
+    box-sizing: border-box;
     grid-template-columns: 1fr;
   }
 
@@ -1479,8 +1477,8 @@
   }
 
   .asme-sponsor-page .sponsor-modal-dialog {
-    width: min(1120px,-64px + 100vw);
     max-height: calc(100dvh - 112px);
+    width: min(1120px,-64px + 100vw);
   }
 
   .asme-sponsor-page .sponsor-modal-header {
@@ -1503,8 +1501,8 @@
 
 @media (min-width: 768px) and (max-width: 979px) {
   .asme-sponsor-page .sponsor-tiers-table {
-    grid-template-columns: repeat(2,minmax(0px,1fr));
     gap: 20px;
+    grid-template-columns: repeat(2,minmax(0px,1fr));
   }
 
   .asme-sponsor-page .sponsor-donation {
@@ -1519,12 +1517,12 @@
   }
 
   .asme-sponsor-page .sponsor-hero-panel {
-    box-sizing: border-box;
     justify-self: stretch;
     width: 100%;
     max-width: none;
-    padding: 16px;
+    box-sizing: border-box;
     gap: 9px;
+    padding: 16px;
   }
 
   .asme-sponsor-page .sponsor-panel-stat {
@@ -1562,13 +1560,13 @@
   }
 
   .asme-sponsor-page .sponsor-tiers-table {
-    grid-template-columns: repeat(3,minmax(0px,1fr));
     gap: 24px;
+    grid-template-columns: repeat(3,minmax(0px,1fr));
   }
 
   .asme-sponsor-page .sponsor-donation {
-    grid-template-columns: minmax(0px,1fr) minmax(330px,0.72fr);
     gap: clamp(36px,6vw,84px);
+    grid-template-columns: minmax(0px,1fr) minmax(330px,0.72fr);
   }
 
   .asme-sponsor-page .sponsor-contact {
@@ -1585,20 +1583,20 @@
 @media (min-width: 1800px) {
   .asme-sponsor-page {
     display: grid;
-    grid-template-columns: minmax(0px,4fr) minmax(0px,7fr);
     gap: 0 32px;
+    grid-template-columns: minmax(0px,4fr) minmax(0px,7fr);
   }
 
   .asme-sponsor-page>p,
   .asme-sponsor-page .sponsor-section,
   .asme-sponsor-page .sponsor-modal {
-    min-width: 0px;
     grid-column: 1/-1;
+    min-width: 0px;
   }
 
   .asme-sponsor-page .sponsor-hero {
-    min-width: 0px;
     grid-column: 1/-1;
+    min-width: 0px;
     grid-template-columns: 1.2fr 1fr;
     gap: 64px;
   }
@@ -1616,8 +1614,8 @@
     max-width: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: center;
     gap: 8px 48px;
+    align-items: center;
   }
 
   .asme-sponsor-page .sponsor-section-header .sponsor-eyebrow {
@@ -1625,8 +1623,8 @@
   }
 
   .asme-sponsor-page .sponsor-section-header>h2 {
-    font-size: 40px;
     margin: 0;
+    font-size: 40px;
   }
 
   .asme-sponsor-page .sponsor-section-header>p {
@@ -1634,26 +1632,26 @@
   }
 
   .asme-sponsor-page .sponsor-tiers-table {
-    grid-template-columns: repeat(6,minmax(0px,1fr));
     gap: 18px;
+    grid-template-columns: repeat(6,minmax(0px,1fr));
   }
 
   .asme-sponsor-page .sponsor-donation {
     min-width: 0px;
-    grid-template-columns: minmax(0px,1fr);
+    grid-column: 1;
     align-content: center;
     gap: 32px;
-    margin: 0;
     padding: 40px;
-    grid-column: 1;
+    margin: 0;
+    grid-template-columns: minmax(0px,1fr);
   }
 
   .asme-sponsor-page .sponsor-contact {
     min-width: 0px;
+    grid-column: 2;
     margin-left: 0px;
     margin-right: 0px;
     grid-template-columns: minmax(0px,1fr);
-    grid-column: 2;
   }
 
   .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro {
@@ -1699,14 +1697,14 @@
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--buckeye,
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--blocko {
     background-color: rgb(255,255,255);
-    color: rgb(95,104,120);
     border: 1px solid rgba(10,45,80,0.08);
+    color: rgb(95,104,120);
   }
 
   .asme-sponsor-page .sponsor-tier-icon {
-    box-shadow: rgba(15,35,55,0.08) 0px 5px 15px;
     background: #ffffff;
     border: 1px solid rgba(10,45,80,0.08);
+    box-shadow: rgba(15,35,55,0.08) 0px 5px 15px;
   }
 
   .asme-sponsor-page .sponsor-tier-name,
@@ -1742,9 +1740,9 @@
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-heading::after,
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-heading:hover::after,
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-heading:focus-visible::after {
-    color: rgb(186,12,47);
     background: rgba(186,12,47,0.07);
     border: 1.5px solid rgba(186,12,47,0.2);
+    color: rgb(186,12,47);
   }
 
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--brutus .sponsor-tier-price {
@@ -1758,8 +1756,8 @@
   }
 
   .asme-sponsor-page .sponsor-contact {
-    box-shadow: rgba(15,23,42,0.08) 0px 18px 44px;
     border-color: #e5e7eb;
+    box-shadow: rgba(15,23,42,0.08) 0px 18px 44px;
   }
 
   .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro,
@@ -1853,15 +1851,15 @@
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row .sponsor-form-group>input,
   .asme-sponsor-page .sponsor-contact .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>input,
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>textarea {
-    color: rgb(18,57,99);
-    border-color: #e5e7eb;
     background: #f8fafc;
+    border-color: #e5e7eb;
+    color: rgb(18,57,99);
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>select {
-    color: rgb(18,57,99);
     background-color: rgb(248,250,252);
     border-color: #e5e7eb;
+    color: rgb(18,57,99);
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group .sponsor-form-optional {
@@ -1897,8 +1895,8 @@
 
 @media (prefers-color-scheme: dark) {
   .asme-sponsor-page {
-    color: var(--asme-c-text);
     background: transparent;
+    color: var(--asme-c-text);
   }
 
   .asme-sponsor-page .sponsor-hero,
@@ -1931,8 +1929,8 @@
     border-image-outset: 0;
     border-image-repeat: stretch;
     background-color: rgb(24,40,59);
-    color: rgb(195,206,219);
     border-color: rgba(148,163,184,0.2);
+    color: rgb(195,206,219);
   }
 
   .asme-sponsor-page .sponsor-tier-icon {
@@ -1949,9 +1947,9 @@
     border-image-width: 1;
     border-image-outset: 0;
     border-image-repeat: stretch;
-    box-shadow: none;
     background: #304156;
     border-color: rgba(170,192,216,0.22);
+    box-shadow: none;
   }
 
   .asme-sponsor-page .sponsor-tier-perks>li {
@@ -2007,9 +2005,9 @@
     border-image-width: 1;
     border-image-outset: 0;
     border-image-repeat: stretch;
-    color: rgb(255,140,160);
     background: rgba(186,12,47,0.18);
     border-color: rgba(255,113,138,0.32);
+    color: rgb(255,140,160);
   }
 
   .asme-sponsor-page .sponsor-tier-card.sponsor-tier-card--custom {
@@ -2033,8 +2031,8 @@
 
   .asme-sponsor-page .sponsor-contact {
     color: var(--asme-c-text);
-    box-shadow: none;
     border-color: rgba(255,255,255,0.12);
+    box-shadow: none;
   }
 
   .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro {
@@ -2154,8 +2152,8 @@
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) {
-    color: rgb(248,250,252);
     background: #142236;
+    color: rgb(248,250,252);
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row .sponsor-form-group>label,
@@ -2172,7 +2170,7 @@
   }
 
   .asme-sponsor-page .sponsor-benefit-card>p {
-    color: #dbe4ef!important;
+    color: rgb(219,228,239)!important;
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-row .sponsor-form-group>input,
@@ -2186,15 +2184,15 @@
     background-attachment: initial!important;
     background-origin: initial!important;
     background-clip: initial!important;
-    color: rgb(248,250,252)!important;
-    background-color: rgb(15,27,45)!important;
     border-color: #2d4261!important;
+    background-color: rgb(15,27,45)!important;
+    color: rgb(248,250,252)!important;
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group>select {
-    color: rgb(248,250,252)!important;
-    background-color: rgb(15,27,45)!important;
     border-color: #2d4261!important;
+    background-color: rgb(15,27,45)!important;
+    color: rgb(248,250,252)!important;
   }
 
 }

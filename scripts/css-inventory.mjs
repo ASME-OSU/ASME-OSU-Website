@@ -21,7 +21,7 @@ export const PAGE_SCOPES = {
   'sponsor-asme': ['asme-sponsor-page'],
   'current-sponsors': ['asme-sponsors-page'],
   'member-resources': ['asme-member-resources-page'],
-  'member-points': ['asme-members-page', 'asme-points-page-v2'],
+  'member-points': ['asme-points-page-v2', 'asme-members-page'],
   privacy: ['asme-privacy-page']
 };
 const CHROME = {

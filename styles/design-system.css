@@ -102,13 +102,9 @@ html body.blog #page :is(.entry-content,.entry-summary)>p:first-child {
     color: var(--asme-readable-muted) !important;
   }
 
-  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-row > .asme-leaderboard-meta {
-    color: var(--asme-readable-muted) !important;
-  }
+  
 
-  html body #page .entry-content .asme-points-page-v2 #asmeLeaderboardStatus.asme-live-indicator {
-    color: var(--asme-readable-success) !important;
-  }
+  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -117,20 +113,12 @@ html body.blog #page :is(.entry-content,.entry-summary)>p:first-child {
     --asme-readable-accent: #ff9aa7;
   }
 
-  html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-heading .asme-section-label {
-    color: var(--asme-readable-accent) !important;
-  }
+  
 
-  html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-featured .asme-leaderboard-row:not([class*="asme-leaderboard-row--rank-"]) .asme-leaderboard-rank {
-    color: var(--asme-readable-muted) !important;
-  }
+  
 }
 
 /* Keep text readable while cards and populated results enter the viewport. */
-
-html body #page .entry-content .asme-points-page-v2 .asme-leaderboard-row.asme-data-enter {
-  animation: none !important;
-}
 
 html body.blog #page .site-main > .asme-blog-intro {
   grid-column: 1 / -1;
@@ -301,8 +289,7 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row { 
 html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row .asme-leaderboard-avatar { background:transparent !important; }
 html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row .asme-leaderboard-avatar .asme-points-skeleton-bar { height:32px; border-radius:50%; }
 html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row .asme-leaderboard-member { width:75%; }
-html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state:not([hidden]),
-html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-panel:not([hidden]) { min-height:400px !important; }
+
 html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state--loading { display:block !important; padding:0 !important; }
 html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state--loading::before { display:none !important; }
 html body #page .entry-content .asme-points-page-v2 .asme-points-summary-skeleton { width:100%; }
@@ -317,8 +304,7 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-activi
 @keyframes asme-points-skeleton-pulse { 50% { opacity:.24; } }
 @media (max-width:600px) {
   html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-state:not([hidden]),
-  html body #page .entry-content .asme-points-page-v2 .asme-member-dashboard-panel:not([hidden]) { min-height:510px !important; }
+  
 }
 @media (prefers-color-scheme:dark) { html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-row { color:#cbd5e1 !important; } }
 @media (prefers-reduced-motion:reduce) { html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-bar { animation:none !important; } }
@@ -327,10 +313,6 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-skeleton-activi
 html body #page .entry-content .asme-points-page-v2 .asme-points-summary-skeleton .asme-points-skeleton-bar { animation: none !important; }
 
 /* Component surface tokens keep light and dark card text paired. */
-html body #page .entry-content .asme-members-page .asme-resource-group-title {
-  font-family: var(--asme-font-sans) !important; font-size: 17px !important;
-  line-height: 1.4 !important; letter-spacing: .02em !important;
-}
 
 .gallery-instagram-carousel-pause { width: auto !important; padding: 0 12px !important; font-size: 12px !important; }
 .acp-feed-notice { grid-column: 1 / -1; margin: 8px 0 0; font-size: 14px; }

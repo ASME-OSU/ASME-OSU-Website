@@ -68,6 +68,15 @@ Found on Join:
 - **State combinations the suite never renders.** After a sign-up, the script moves the steps along with `is-current`/`is-complete`. A rule such as `.join-step--groupme.is-current` combines classes that each appear on the page, but never together in any rendered state. The compiler now tests every page-owned selector against each view and carries verbatim any that never match.
 - **State-dependent selectors are never derived.** `.join-form-status[hidden] { display: none !important }` won in every rendered view, because the status message is hidden until a form is submitted. It was written as an unconditional `display: none`, so the confirmation and error messages never appeared. The screenshots could not show it; `npm run test:browser` (the newsletter flow) did. Selectors using attributes that change at runtime (`[hidden]`, `[open]`, `[disabled]`, `[aria-*]`, `[data-*]`) or pseudo-classes such as `:empty`, `:has()`, `:checked` and `:invalid` are now carried verbatim and compete as later rules. All pages were recompiled with this fix, and `test:browser` is part of every page's verification.
 
+Found on the member pages:
+
+- **Duplicate rules map one to one.** When DevTools gives no source data, the compiler looks the rule up in the built stylesheet. The same selector and media can occur several times with different declarations (the leaderboard rows have several). Identical selectors match the same elements with the same specificity, and DevTools lists them in source order, so the n-th match for an element is the n-th occurrence in the source. Merging all occurrences, as before, mixed values between them.
+- **Each page needs a wrapper class no other page has.** Both member pages carry `.asme-members-page`. Member Points' rules were keyed on it and so also hit Member Resources. `PAGE_SCOPES` now lists `.asme-points-page-v2` first for Member Points.
+- **In a group, carry only what matches no group page.** A selector that never matched on Member Resources was copied verbatim into its page file, while Member Points derived the same rule. Every page file lands in one bundle, so the carried copy overrode the derived one on Member Points. Each compile in a group now also tests the owned selectors against the other group pages, and carries a selector only if it matches nowhere in the group.
+
+- **Declaration order within a rule.** A rule with `border: 1px solid #ebc6cc !important` followed by `border-left: 4px solid var(--asme-scarlet) !important` gave both the same priority, so the earlier 1px pink left border could be emitted after the red one. Each declaration now carries its position in the rule as a tiebreaker.
+- **Universal rules on a shared wrapper.** `.asme-members-page *::before` was not recognized as a page-wide universal rule (the page's own wrapper is `.asme-member-resources-page`), so it was written once per element: one rule with about 770 selectors, around 80 KB per member page file. Any wrapper class of a page in the group now counts.
+
 Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winners the compiler records for matching elements, and `DEBUG_RAW=<selector text>` prints the raw DevTools entries for matching rules.
 
 ## Limits
@@ -83,12 +92,13 @@ Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winner
 | About | 467 → 13 + 15 | screenshots + computed styles + browser tests |
 | Calendar | 317 → 15 + 21 | screenshots + computed styles + browser tests |
 | Privacy | 0 → 0 (4 rules) | screenshots + computed styles + browser tests |
-| Sponsor ASME + Current Sponsors (group) | 1,866 → 186 + 233 | screenshots + browser tests; see note on Current Sponsors 768px |
+| Sponsor ASME + Current Sponsors (group) | 1,866 → 186 + 233 | screenshots + browser tests; Current Sponsors 768px note below |
 | Gallery | 779 → 18 + 149 | screenshots + browser tests; `gallery--768` varies run to run |
 | Leadership | 67 → 5 + 61 | screenshots + computed styles + browser tests |
-| Join | 825 → 51 + 57 | screenshots + computed styles + browser tests (newsletter flow) |
+| Join | 825 → 48 + 57 | screenshots + computed styles + browser tests (newsletter flow) |
+| Member Resources + Member Points (group) | 983 → 45 + 123 | screenshots + computed styles + browser tests |
 
-All eight pages were recompiled together from the Phase 1 stylesheet with the final compiler on November 20, 2026. Result: 102/106 screenshots match in pixels and computed styles, and all 9 browser tests pass. Whole stylesheet compared with Phase 1: 9,056 → 5,428 `!important`, 77.2 → 73.4 KB gzipped. The carried sections hold rules copied verbatim, with their original `!important` (motion preference, orientation, `::placeholder`, overlays, state-dependent selectors). They are larger than the size savings because state-dependent rules can no longer be merged into derived ones. The four differences: `gallery--768` (light and dark), the timing-dependent justified row, and `current-sponsors--768` (light and dark), where four empty, zero-height WordPress `<p>` elements in the logo cards now occupy a different grid cell (pixel-identical).
+All ten pages were recompiled together from the Phase 1 stylesheet with the final compiler on November 20, 2026. Result: 102/106 screenshots match in pixels and computed styles, and all 9 browser tests pass. Whole stylesheet compared with Phase 1: 9,056 → 4,497 `!important`, 77.2 → 72.8 KB gzipped (607 KB minified). The carried sections hold rules copied verbatim, with their original `!important` (motion preference, orientation, `::placeholder`, overlays, state-dependent selectors). The four differences: `gallery--768` (light and dark), the timing-dependent justified row, and `current-sponsors--768` (light and dark), where four empty, zero-height WordPress `<p>` elements in the logo cards occupy a different grid cell (pixel-identical).
 
 Privacy was already clean in the stylesheet. Its styling is a scoped `<style id="asme-privacy-styles">` block inside `Privacy Policy Page.html` (63 rules, 3 `!important`, its own `--pp-*` colors), published with the page through CampusPress. Only the tablet table-of-contents rules lived in `styles/*.css`; they moved to `styles/pages/privacy.css`. Moving the inline block into the stylesheet would also mean republishing the page (see `docs/privacy-page-publishing.md`), so it stays where it is. The 6 shared rules still reaching Privacy are the site-wide ones every page shares.
 

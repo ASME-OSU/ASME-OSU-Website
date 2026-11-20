@@ -81,19 +81,19 @@ const SOURCE = (() => {
   return index;
 })();
 const sourceStats = { used: 0, ambiguous: new Set(), missing: new Set() };
-function sourceDeclarations(rule) {
+function sourceDeclarations(rule, occurrence = 0) {
   const media = (rule.media || []).filter(m => m.source === 'mediaRule').map(m => m.text.replace(/\s+/g, '')).reverse();
   const key = media.join('&') + '|' + rule.selectorList.selectors.map(sel => normalize(sel.text).replace(/\*(?=::?[a-z])/g, '')).join(',');
   const found = SOURCE.get(key);
   if (!found) { sourceStats.missing.add(key.slice(0, 120)); return null; }
-  const distinct = new Set(found.map(d => JSON.stringify(d)));
-  if (distinct.size > 1) sourceStats.ambiguous.add(key.slice(0, 120));
   sourceStats.used += 1;
   // The same selector and media can occur several times with different
-  // declarations; merge them in source order (later ones win).
-  const merged = new Map();
-  for (const decls of found) for (const d of decls) { merged.delete(d.name); merged.set(d.name, d); }
-  return [...merged.values()].map(d => ({ name: d.name, value: d.value, important: d.important }));
+  // declarations. Identical selectors match the same elements with the same
+  // specificity, and DevTools lists them in source order, so the n-th such
+  // rule matched for an element is the n-th occurrence in the source.
+  if (occurrence >= found.length) sourceStats.ambiguous.add(key.slice(0, 120));
+  const decls = found[Math.min(occurrence, found.length - 1)];
+  return decls.map(d => ({ name: d.name, value: d.value, important: d.important }));
 }
 
 // Media the compiler can reproduce: widths and color scheme. Rules under any
@@ -133,6 +133,7 @@ const dynamic = selector => DYNAMIC_ATTRIBUTE.test(selector) || DYNAMIC_PSEUDO.t
 function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
   // Returns Map(prop -> { value, important, owned, spec, sheet, kept: [competitors] })
   const decls = new Map();
+  const occurrences = new Map();
   const push = (prop, entry) => { if (!decls.has(prop)) decls.set(prop, []); decls.get(prop).push(entry); };
   matched.forEach((m, order) => {
     const rule = m.rule;
@@ -145,11 +146,23 @@ function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
     const isOwned = isOurs && inModeledMedia && matching.length > 0 && matching.every(s => owned(normalize(s.text)) && withinContent(normalize(s.text), viewClasses) && !dynamic(normalize(s.text)));
     const selectorText = matching.map(s => s.text).join(', ');
     const seen = new Set();
-    const fallback = isOurs && !rule.style.range ? sourceDeclarations(rule) : null;
+    // Count every matched copy of a duplicated rule, with or without source
+    // data, so the n-th match always pairs with the n-th copy in the source.
+    let fallback = null;
+    if (isOurs) {
+      const occurrenceKey = (rule.media || []).map(m => m.text).join('&') + '|' + rule.selectorList.text;
+      const n = occurrences.get(occurrenceKey) || 0;
+      occurrences.set(occurrenceKey, n + 1);
+      if (!rule.style.range) fallback = sourceDeclarations(rule, n);
+    }
     const properties = fallback
       ? fallback.map(d => ({ name: d.name, value: d.value + (d.important ? ' !important' : ''), important: d.important, longhandProperties: /var\(/i.test(d.value) || !LONGHANDS.has(d.name) ? undefined : expandLonghands(d.name, d.value) }))
       : rule.style.cssProperties;
+    // Within one rule, later declarations win; their position breaks ties
+    // between a shorthand and a later longhand (border, then border-left).
+    let position = 0;
     for (const p of properties) {
+      position += 1;
       if (process.env.DEBUG_RAW && selectorText.includes(process.env.DEBUG_RAW) && /^background$/.test(p.name)) console.log('[raw]', JSON.stringify({ sel: selectorText.slice(0, 50), name: p.name, value: p.value, imp: p.important, implicit: p.implicit, disabled: p.disabled, parsedOk: p.parsedOk, lh: p.longhandProperties }));
       if (p.disabled || p.parsedOk === false || p.implicit) continue;
       // Shorthands containing var() are kept whole: Chrome expands them only
@@ -168,7 +181,7 @@ function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
         // Owned selectors under unmodeled media are carried to the end of the
         // page file, so they compete as later rules: beating them needs more.
         const carriedRule = isOurs && matching.length > 0 && matching.every(sel => owned(normalize(sel.text))) && (!inModeledMedia || matching.some(sel => dynamic(normalize(sel.text))));
-        push(part.name, { value, important: !!p.important, owned: isOwned, spec, sheet: rule.styleSheetId, ours: isOurs && !carriedRule, order, selectorText, src });
+        push(part.name, { value, important: !!p.important, owned: isOwned, spec, sheet: rule.styleSheetId, ours: isOurs && !carriedRule, order: order + position / 10000, selectorText, src });
       }
     }
   });
@@ -389,6 +402,24 @@ await pool(VIEWS, 4, async view => {
   console.log(`Compiled ${view.id}: ${nodeIds.length} elements (${Math.round((Date.now() - started) / 1000)}s elapsed)`);
 });
 
+// In a group, a selector that matches on another group page is derived by that
+// page's compile, so it must not be carried here (the carried copy would land
+// in the shared bundle and override the derived one). Test the other pages too.
+for (const other of group) {
+  if (other === name) continue;
+  const otherPage = PAGES.find(page => page.name === other);
+  await pool(VIEWS, 4, async view => {
+    const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + otherPage.path, width: view.width, scheme: view.scheme });
+    (await page.evaluate(list => list.filter(sel => {
+      const bare = sel.replace(/::?(before|after|placeholder|marker|selection|first-line|first-letter|backdrop|-webkit-[a-z-]+|-moz-[a-z-]+)(\([^)]*\))?/g, '')
+        .replace(/:(hover|focus|focus-visible|focus-within|active|visited|checked|disabled|target|placeholder-shown)(?![\w-])/g, '').trim() || '*';
+      try { return !!document.querySelector(bare); } catch { return true; }
+    }), OWNED_SELECTORS)).forEach(sel => matchedSelectors.add(sel));
+    await context.close();
+  });
+  console.log(`Checked owned selectors against ${other} too.`);
+}
+
 // ---- Give every element a selector that matches it and nothing else --------
 // Elements sharing a key must end up with identical styles; otherwise the key
 // is refined with :empty / :not(:empty), or :nth-child() as a last resort.
@@ -574,7 +605,10 @@ for (const states of entries.values()) {
 // Declarations won by the page's universal rule (".page *") are written once
 // as a universal rule instead of on every element.
 // Only a true descendant universal (".page *"), never "> *" (direct children).
-const universalPattern = new RegExp('\\.' + wrapperClass + '\\s+\\*(::?(before|after))?\\s*$');
+// Any wrapper class of a page in the group counts (".asme-members-page *" is
+// shared by both member pages); the rule is written once for this page.
+const wrapperClasses = [...new Set([...group].flatMap(page => PAGE_SCOPES[page] || []))].map(c => c.replace(/[-]/g, '\\-'));
+const universalPattern = new RegExp('\\.(' + wrapperClasses.join('|') + ')\\s+\\*(::?(before|after))?\\s*$');
 const universal = from => (from || '').split(',').some(part => universalPattern.test(part.trim()));
 
 const out = new Map();
