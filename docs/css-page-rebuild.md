@@ -4,18 +4,18 @@ Each page's styling is spread across the legacy layer, page-only rules in `style
 
 ## Steps
 
+Phase 2 is finished: day-to-day style changes are edits to `styles/pages/<page>.css` followed by `npm run build:styles`. Never recompile a page you have edited by hand; the compiler regenerates its file from scratch. The compiler is only for moving more rules out of the legacy layer, or for redoing the migration.
+
 ```bash
-node tests/visual/collect-classes.mjs                  # refresh class lists (after content changes)
-npm run visual:baseline                                # before touching anything
-node scripts/css-page-rules.mjs about                  # what styles the page today
-node scripts/css-compile-page.mjs about                # dry run: stats + preview in tests/visual/.output/
-node scripts/css-compile-page.mjs about --write --tokens
-npm run build:styles
-npm run visual:compare                                 # must be 106/106, pixels and computed styles
-npm run test:browser                                   # interactive flows the screenshots cannot see (sign-up, retry)
+node scripts/css-rebuild.mjs gallery --verify    # one page (its group too), then its screenshots and browser tests
+node scripts/css-rebuild.mjs --verify            # every page, then the full check
+JOBS=2 node scripts/css-rebuild.mjs …            # pages built at once (default: half the cores, at most 4)
+sh tests/visual/watch.sh /tmp/rebuild.log        # live progress, if the run's output goes to that log
 ```
 
-If the comparison fails, restore the stylesheet files from git, fix the cause, and compile again. The compiler reads the page's current rules, so it must run against the unmodified layers.
+`scripts/css-rebuild.mjs` compiles every page against the same input, the Phase 1 stylesheet (commit `5cb11bb`) with no page files, so pages do not depend on each other. They build in parallel, and one page can be redone alone in about 10 to 15 minutes instead of rerunning the whole chain. Each compile writes only its page file (`--emit`) and the list of rules its live widgets use (`styles/live/<page>.json`). Then every page's owned rules are removed from the shared layers with `--strip`, which renders nothing and takes seconds, and the stylesheet is built once. On an 8-core Mac, 4 compiles at once overloaded the machine (each ran 2 to 3 times slower), so use `JOBS=2` there.
+
+The first versions compiled pages one after another, each from the layers the previous page left. Fixing one page meant rerunning the whole chain (over an hour).
 
 ## How the compiler works
 
@@ -76,6 +76,14 @@ Found on the member pages:
 
 - **Declaration order within a rule.** A rule with `border: 1px solid #ebc6cc !important` followed by `border-left: 4px solid var(--asme-scarlet) !important` gave both the same priority, so the earlier 1px pink left border could be emitted after the red one. Each declaration now carries its position in the rule as a tiebreaker.
 - **Universal rules on a shared wrapper.** `.asme-members-page *::before` was not recognized as a page-wide universal rule (the page's own wrapper is `.asme-member-resources-page`), so it was written once per element: one rule with about 770 selectors, around 80 KB per member page file. Any wrapper class of a page in the group now counts.
+
+## Live widgets: rules left in place
+
+Parts that scripts change while the page is used (slides and tabs with `is-active`, Join's `is-current` steps, gallery filters), and lists built from live data (the points leaderboard and its loading skeleton, calendar cards, gallery photos), are never derived. The compiler sees one state and one data set, so derived rules break the other states. The first rebuild did exactly that: Home's second highlight slide (the Career Guide) had no rule for its active state and showed an empty card, and leaderboard rows 6 to 10 were pinned by position (`div:nth-child(6)`), so the loading skeleton's first rows collapsed.
+
+A class counts as live when a site script adds, toggles or removes it (read from the repository's `*.js` files, except steady ones such as the scroll-reveal `is-visible`), or when it belongs to a live data list (`LIVE_DATA` in the compiler). Before deriving anything, a first pass finds every owned rule that reaches an element inside a live widget, in any view (`styles/live/<page>.json`). Those rules, and every rule naming a live class, stay exactly where they are in the shared layers. They are not moved to the page file, because there, as the last rules, they overrode site-wide rules they used to lose to (the calendar cards' corner radius). The main pass treats them as competitors, so derived rules for the rest of the page still outrank them as before.
+
+The visual suite has two states for this: `home--spotlight-2` (the second highlight slide) and `member-points--leaderboard-loading` (the skeleton).
 
 ## Shared components: footer and header
 

@@ -113,6 +113,21 @@
     status.textContent = 'Opening Gearly…';
     loadGuide();
   });
+  // A tour step or "Show me" card that opened this page left a note in
+  // sessionStorage (gearly-tour.js). Load the guide now so it highlights the
+  // section and continues the tour, instead of waiting for a scroll or click.
+  function tourInProgress() {
+    try {
+      var storage = window.sessionStorage;
+      if (storage.getItem('asme-gearly-section-v1')) return true;
+      for (var i = 0; i < storage.length; i += 1) {
+        if (/^asme-gearly-tour-.+-session$/.test(storage.key(i))) return true;
+      }
+    } catch (_) {}
+    return false;
+  }
+  if (tourInProgress()) loadGuide();
+
   var connection = window.navigator.connection;
   if (!(connection && (connection.saveData || /(^|-)2g$/.test(connection.effectiveType)))) {
     window.addEventListener('scroll', loadAfterReading, { passive: true });

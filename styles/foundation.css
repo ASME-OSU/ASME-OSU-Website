@@ -327,3 +327,20 @@ main#main {
       padding-left: 0 !important;
     }
 }
+
+/* Text for screen readers only, such as "(opens in a new tab)" after a link.
+   Visually hidden on every page; it was defined only for Member Resources, so
+   on Home the Career Guide link showed the text. !important keeps page rules
+   that style a link's spans (display, size) from revealing it. */
+.asme-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

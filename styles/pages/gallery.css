@@ -24,316 +24,6 @@
   line-height: 1.7;
 }
 
-.asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-  position: relative;
-  display: grid;
-  overflow: hidden;
-  border: 1px solid var(--asme-c-border);
-  isolation: isolate;
-}
-
-.asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::before,
-.asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::before,
-.asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto auto 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::after,
-.asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::after,
-.asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  inset: auto 0 0 auto;
-  transform: rotate(180deg);
-}
-
-.asme-gallery-page .gallery-instagram-media {
-  display: block;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #dfe5ec;
-  isolation: isolate;
-  min-width: 0px;
-  aspect-ratio: 4/5;
-  position: relative;
-  z-index: 1;
-}
-
-.asme-gallery-page .gallery-instagram-media::after,
-.asme-gallery-page .gallery-instagram-media:hover::after,
-.asme-gallery-page .gallery-instagram-media:focus-visible::after {
-  content: "";
-  position: absolute;
-  inset: 48%0 0;
-  z-index: 1;
-  background: linear-gradient(to top,rgba(3,10,22,0.62),transparent);
-  pointer-events: none;
-}
-
-.asme-gallery-page .gallery-instagram-loading-art {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  place-items: center;
-  overflow: hidden;
-  background: linear-gradient(135deg,#e8eef6 0%,#d9e3ef 48%,#edf2f7 100%);
-  display: none;
-}
-
-.asme-gallery-page .gallery-instagram-loading-art::before,
-.asme-gallery-page .gallery-instagram-loading-art:hover::before,
-.asme-gallery-page .gallery-instagram-loading-art:focus-visible::before {
-  content: "";
-  position: absolute;
-  inset: -45%;
-  background: linear-gradient(115deg,transparent 38%,rgba(255,255,255,0.72) 50%,transparent 62%);
-}
-
-.asme-gallery-page .gallery-instagram-loading-art>span {
-  position: relative;
-  z-index: 1;
-  width: 42px;
-  height: 42px;
-  border-top-width: 3px;
-  border-right-width: 3px;
-  border-bottom-width: 3px;
-  border-left-width: 3px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-right-color: rgba(15,52,96,0.2);
-  border-bottom-color: rgba(15,52,96,0.2);
-  border-left-color: rgba(15,52,96,0.2);
-  border-image-source: none;
-  border-image-slice: 100%;
-  border-image-width: 1;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  border-radius: 50%;
-  border-top-color: var(--asme-c-accent);
-}
-
-.asme-gallery-page .gallery-instagram-media>img {
-  position: absolute;
-  inset: 0;
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  border: 0;
-  object-position: center center;
-}
-
-.asme-gallery-page .gallery-instagram-media-label {
-  position: absolute;
-  right: 16px;
-  bottom: 14px;
-  left: 16px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--asme-c-on-accent);
-}
-
-.asme-gallery-page .gallery-instagram-media-label>span {
-  padding: 6px 9px;
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 999px;
-  background: rgba(5,14,28,0.62);
-  backdrop-filter: blur(8px);
-}
-
-.asme-gallery-page .gallery-instagram-copy {
-  min-width: 0px;
-  position: relative;
-  z-index: 1;
-}
-
-.asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: .75em;
-}
-
-.asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow::before,
-.asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow:hover::before,
-.asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow:focus-visible::before {
-  content: "";
-  flex: 0 0 .28em;
-  align-self: stretch;
-  background: #ba0c2f;
-}
-
-.asme-gallery-page .gallery-instagram-copy>h2 {
-  overflow-wrap: anywhere;
-  letter-spacing: -0.025em;
-}
-
-.asme-gallery-page .gallery-instagram-copy>p {
-  overflow-wrap: anywhere;
-}
-
-.asme-gallery-page .gallery-instagram-actions {
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  border: 1px solid transparent;
-  text-decoration: none;
-  color: var(--asme-c-on-accent);
-}
-
-.asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary:hover,
-.asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary:focus-visible {
-  transform: translateY(-2px);
-}
-
-.asme-gallery-page .gallery-instagram-actions>br,
-.asme-gallery-page .gallery-archive-filters>br {
-  display: none;
-}
-
-.asme-gallery-page .gallery-instagram-follow {
-  min-height: 44px;
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1.2;
-  text-underline-offset: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 18px;
-  border-radius: 999px;
-  text-decoration: none;
-}
-
-.asme-gallery-page .gallery-instagram-recent {
-  border: 1px solid var(--asme-c-border);
-  background: var(--asme-c-surface);
-}
-
-.asme-gallery-page .gallery-instagram-recent-header {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 0 20px;
-}
-
-.asme-gallery-page .gallery-instagram-recent-header .gallery-instagram-eyebrow {
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-left: 0px;
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 7px;
-}
-
-.asme-gallery-page .gallery-instagram-recent-header>div>h2 {
-  margin: 0;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-}
-
-.asme-gallery-page .gallery-instagram-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  flex: 0 0 auto;
-  padding: 9px 13px;
-  border: 1px solid var(--asme-c-border);
-  border-radius: 999px;
-  color: var(--asme-c-heading);
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1.2;
-  text-decoration: none;
-}
-
-.asme-gallery-page .gallery-instagram-all:hover,
-.asme-gallery-page .gallery-instagram-all:focus-visible {
-  border-color: rgba(187,0,0,0.4);
-  transform: translateY(-1px);
-  color: var(--asme-c-accent);
-}
-
-.asme-gallery-page .gallery-instagram-post-card {
-  display: grid;
-  overflow: hidden;
-  border: 1px solid var(--asme-c-border);
-  color: var(--asme-c-text);
-  text-decoration: none;
-  min-width: 0px;
-}
-
-.asme-gallery-page .gallery-instagram-post-card:hover,
-.asme-gallery-page .gallery-instagram-post-card:focus-visible {
-  border-color: rgba(187,0,0,0.34);
-  transform: translateY(-3px);
-}
-
-.asme-gallery-page .gallery-instagram-post-image {
-  position: relative;
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  background: #e7ebf0;
-  aspect-ratio: 4/5;
-}
-
-.asme-gallery-page .gallery-instagram-post-image>img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  border: 0;
-  object-fit: cover;
-}
-
-.asme-gallery-page .gallery-instagram-post-copy {
-  display: grid;
-  align-content: start;
-  gap: 5px;
-  min-height: 88px;
-}
-
-.asme-gallery-page .gallery-instagram-post-date {
-  font-size: 10px;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.asme-gallery-page .gallery-instagram-post-copy>strong {
-  color: var(--asme-c-heading);
-}
-
 .asme-gallery-page .gallery-archive-header {
   display: grid;
   gap: 20px 28px;
@@ -342,27 +32,15 @@
 }
 
 .asme-gallery-page .gallery-archive-copy {
+  min-width: 0;
   max-width: 720px;
-  min-width: 0px;
-}
-
-.asme-gallery-page .gallery-archive-copy .gallery-instagram-eyebrow {
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-left: 0px;
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
 }
 
 .asme-gallery-page .gallery-archive-copy>h2 {
   margin: 0 0 8px;
+  font-size: clamp(28px,3.2vw,40px);
   line-height: 1.08;
   letter-spacing: -0.02em;
-  font-size: clamp(28px,3.2vw,40px);
 }
 
 .asme-gallery-page .gallery-archive-copy>p {
@@ -377,45 +55,13 @@
   gap: 8px;
 }
 
-.asme-gallery-page .gallery-archive-filter.is-active {
-  min-height: 38px;
-  margin: 0;
-  padding: 8px 13px;
-  border: 1px solid var(--asme-c-border);
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1;
-  cursor: pointer;
-  border-color: var(--asme-c-accent);
-  color: var(--asme-c-on-accent);
-  box-shadow: rgba(187,0,0,0.18) 0px 8px 18px;
-}
-
-.asme-gallery-page .gallery-archive-filter.is-active:hover,
-.asme-gallery-page .gallery-archive-filter.is-active:focus-visible {
-  transform: translateY(-1px);
-}
-
-.asme-gallery-page .gallery-archive-filter:not(.is-active) {
-  min-height: 38px;
-  margin: 0;
-  padding: 8px 13px;
-  border: 1px solid var(--asme-c-border);
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1;
-  cursor: pointer;
+.asme-gallery-page .gallery-archive-filters>br {
+  display: none;
 }
 
 .asme-gallery-page .gallery-archive-filter:not(.is-active):hover,
 .asme-gallery-page .gallery-archive-filter:not(.is-active):focus-visible {
-  border-color: rgba(187,0,0,0.42);
   transform: translateY(-1px);
-  color: var(--asme-c-accent);
 }
 
 .asme-gallery-page .gallery-archive-status {
@@ -438,220 +84,14 @@
   white-space: nowrap;
 }
 
-.asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
-  display: grid;
-  grid-auto-flow: row;
-  margin-top: 0px;
-}
-
-.asme-gallery-page .gallery-item.gallery-item--google-photos.is-portrait,
-.asme-gallery-page .gallery-item.gallery-item--google-photos.is-landscape,
-.asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos),
-.asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible),
-.asme-gallery-page .gallery-item.is-square {
-  float: none;
-  width: auto;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-}
-
-.asme-gallery-page .gallery-icon.landscape,
-.asme-gallery-page .gallery-icon.portrait {
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.asme-gallery-page .gallery-icon.landscape>a,
-.asme-gallery-page .gallery-icon.portrait>a {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  display: block;
-  overflow: hidden;
-  border-radius: inherit;
-  position: relative;
-  isolation: isolate;
-}
-
-.asme-gallery-page .gallery-icon.landscape>a::before,
-.asme-gallery-page .gallery-icon.portrait>a::before {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-  border-bottom-right-radius: inherit;
-  border-bottom-left-radius: inherit;
-  content: "";
-  inset: 45%0 0;
-  z-index: 1;
-  background: linear-gradient(to top,rgba(3,10,22,0.76),transparent);
-}
-
-.asme-gallery-page .gallery-icon.landscape>a::after,
-.asme-gallery-page .gallery-icon.portrait>a::after {
-  letter-spacing: 0.03em;
-  position: absolute;
-  z-index: 2;
-  font-weight: 800;
-  opacity: 0;
-  transform: translateY(7px);
-  pointer-events: none;
-  content: attr(data-gallery-label);
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  line-height: 1.3;
-  text-align: left;
-  backdrop-filter: none;
-  color: var(--asme-c-on-accent);
-}
-
-.asme-gallery-page .gallery-icon.landscape>a:hover::before,
-.asme-gallery-page .gallery-icon.landscape>a:focus-visible::before,
-.asme-gallery-page .gallery-icon.portrait>a:hover::before,
-.asme-gallery-page .gallery-icon.portrait>a:focus-visible::before {
-  position: absolute;
-  pointer-events: none;
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-  border-bottom-right-radius: inherit;
-  border-bottom-left-radius: inherit;
-  content: "";
-  inset: 45%0 0;
-  z-index: 1;
-  background: linear-gradient(to top,rgba(3,10,22,0.76),transparent);
-  opacity: 1;
-  transform: translateY(0px);
-}
-
-.asme-gallery-page .gallery-icon.landscape>a:hover::after,
-.asme-gallery-page .gallery-icon.landscape>a:focus-visible::after,
-.asme-gallery-page .gallery-icon.portrait>a:hover::after,
-.asme-gallery-page .gallery-icon.portrait>a:focus-visible::after {
-  letter-spacing: 0.03em;
-  position: absolute;
-  z-index: 2;
-  font-weight: 800;
-  pointer-events: none;
-  content: attr(data-gallery-label);
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  line-height: 1.3;
-  text-align: left;
-  backdrop-filter: none;
-  color: var(--asme-c-on-accent);
-  opacity: 1;
-  transform: translateY(0px);
-}
-
-.asme-gallery-page .gallery-icon.landscape>a>img:not(.attachment-large):not(.size-large),
-.asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos) .gallery-icon.landscape .attachment-large.size-large,
-.asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible) .gallery-icon.portrait .attachment-large.size-large,
-.asme-gallery-page .gallery-item.is-square .gallery-icon.portrait .attachment-large.size-large,
-.asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
-  display: block;
-  max-width: none;
-  max-height: none;
-  object-position: center center;
-  border: none;
-  box-shadow: none;
-  min-height: 0px;
-}
-
-.asme-gallery-page .gallery-instagram-copy>h2 {
-  font-family: var(--asme-font-serif, Georgia, serif)!important;
-}
-
-.asme-gallery-page .gallery-instagram-recent-header>div>h2,
 .asme-gallery-page .gallery-archive-copy>h2 {
   color: var(--asme-c-heading)!important;
 }
 
-#page .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
-  transition: transform 180ms ease,background-color 180ms ease,border-color 180ms ease,box-shadow 180ms ease!important;
-}
-
-#page .asme-gallery-page .gallery-instagram-follow {
-  transition: color 180ms ease,text-decoration-color 180ms ease!important;
-}
-
-#page .asme-gallery-page .gallery-instagram-all {
-  transition: border-color 180ms ease,color 180ms ease,transform 180ms ease!important;
-}
-
-#page .asme-gallery-page .gallery-archive-filter.is-active,
-#page .asme-gallery-page .gallery-archive-filter:not(.is-active) {
-  transition: background-color 180ms ease,border-color 180ms ease,color 180ms ease,transform 180ms ease!important;
-}
-
-#page .asme-gallery-page .gallery-icon.landscape>a::before,
-#page .asme-gallery-page .gallery-icon.landscape>a:hover::before,
-#page .asme-gallery-page .gallery-icon.landscape>a:focus-visible::before,
-#page .asme-gallery-page .gallery-icon.portrait>a::before,
-#page .asme-gallery-page .gallery-icon.portrait>a:hover::before,
-#page .asme-gallery-page .gallery-icon.portrait>a:focus-visible::before {
-  transition: opacity 220ms ease!important;
-}
-
-#page .asme-gallery-page .gallery-icon.landscape>a::after,
-#page .asme-gallery-page .gallery-icon.landscape>a:hover::after,
-#page .asme-gallery-page .gallery-icon.landscape>a:focus-visible::after,
-#page .asme-gallery-page .gallery-icon.portrait>a::after,
-#page .asme-gallery-page .gallery-icon.portrait>a:hover::after,
-#page .asme-gallery-page .gallery-icon.portrait>a:focus-visible::after {
-  transition: opacity 220ms ease,transform 220ms ease!important;
-}
-
-html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:hover,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:focus-visible {
-  box-shadow: rgba(15,52,96,0.13) 0px 14px 30px!important;
-}
-
-@media (max-width: 1099px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    align-items: center;
-    gap: 24px;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    margin: 0;
-  }
-
-}
-
-@media (max-width: 1699px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    justify-content: center;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy {
-    max-width: 780px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-    margin: 0 0 12px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    margin: 0 0 16px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>p {
-    max-width: 540px;
-    margin: 0 0 22px;
-  }
-
+#page .asme-gallery-page .gallery-archive-filter:not(.is-active):hover,
+#page .asme-gallery-page .gallery-archive-filter:not(.is-active):focus-visible {
+  border-color: rgba(187,0,0,0.42)!important;
+  color: var(--asme-c-accent)!important;
 }
 
 @media (max-width: 1919px) {
@@ -669,217 +109,13 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     font-size: 15px;
   }
 
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact,
-  .asme-gallery-page .gallery-instagram-recent {
-    margin: 0 0 28px;
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    justify-self: center;
-  }
-
-  .asme-gallery-page .gallery-instagram-media>img {
-    object-fit: cover;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    line-height: 1.04;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>p {
-    font-size: 16px;
-    line-height: 1.7;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-header>div>h2 {
-    font-size: clamp(27px,3vw,36px);
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-grid {
-    grid-template-columns: repeat(3,minmax(0px,1fr));
-  }
-
-  .asme-gallery-page .gallery-instagram-post-card {
-    grid-template-rows: auto 1fr;
-  }
-
-  .asme-gallery-page .gallery-instagram-post-copy {
-    padding: 14px 15px 16px;
-  }
-
-  .asme-gallery-page .gallery-instagram-post-copy>strong {
-    font-size: 15px;
-    line-height: 1.35;
-  }
-
   .asme-gallery-page .gallery-archive-header {
     margin: clamp(34px,5vw,58px)0 22px;
   }
 
 }
 
-@media (max-width: 639px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    border-radius: 20px;
-    padding: 18px;
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    max-width: 300px;
-    width: min(100%,300px);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    font-size: 30px;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    display: grid;
-  }
-
-  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
-    width: 100%;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent {
-    padding: 20px 16px 16px;
-    border-radius: 20px;
-  }
-
-  .asme-gallery-page .gallery-instagram-all {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
-    gap: 9px;
-  }
-
-  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-portrait,
-  .asme-gallery-page .gallery-icon.landscape>a>img:not(.attachment-large):not(.size-large),
-  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-landscape,
-  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos),
-  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos) .gallery-icon.landscape .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible),
-  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible) .gallery-icon.portrait .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-square,
-  .asme-gallery-page .gallery-item.is-square .gallery-icon.portrait .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
-    border-radius: 14px;
-  }
-
-  .asme-gallery-page .gallery-icon.landscape>a::after,
-  .asme-gallery-page .gallery-icon.landscape>a:hover::after,
-  .asme-gallery-page .gallery-icon.landscape>a:focus-visible::after,
-  .asme-gallery-page .gallery-icon.portrait>a::after,
-  .asme-gallery-page .gallery-icon.portrait>a:hover::after,
-  .asme-gallery-page .gallery-icon.portrait>a:focus-visible::after {
-    right: 10px;
-    bottom: 9px;
-    left: 10px;
-    font-size: 10px;
-  }
-
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-    border-radius: 14px;
-  }
-
-  #page .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
-    aspect-ratio: 16/9!important;
-  }
-
-}
-
 @media (max-width: 767px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    grid-template-columns: 1fr;
-  }
-
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::after,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::after,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::after {
-    width: 78%;
-    height: 11%;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy {
-    text-align: center;
-    justify-self: center;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-    justify-content: center;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>p {
-    margin-inline: auto;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-  }
-
-  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
-    overflow-wrap: anywhere;
-  }
-
-  .asme-gallery-page .gallery-instagram-follow {
-    overflow-wrap: anywhere;
-    text-align: center;
-    white-space: normal;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-header {
-    align-items: start;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .asme-gallery-page .gallery-instagram-swipe-hint {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin: -3px 0 12px;
-    font-size: 11px;
-    font-weight: 750;
-    line-height: 1.2;
-  }
-
-  .asme-gallery-page .gallery-instagram-swipe-hint::before,
-  .asme-gallery-page .gallery-instagram-swipe-hint:hover::before,
-  .asme-gallery-page .gallery-instagram-swipe-hint:focus-visible::before {
-    font-size: 14px;
-    content: "↔";
-    color: var(--asme-c-accent);
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-grid {
-    display: flex;
-    gap: 12px;
-    margin-right: -4px;
-    padding: 0 4px 8px 0;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
-  }
-
-  .asme-gallery-page .gallery-instagram-post-card {
-    flex: 0 0 min(78vw,300px);
-    scroll-snap-align: start;
-  }
-
   .asme-gallery-page .gallery-archive-header {
     grid-template-columns: 1fr;
     align-items: start;
@@ -894,11 +130,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     scrollbar-width: none;
   }
 
-  .asme-gallery-page .gallery-archive-filter.is-active,
-  .asme-gallery-page .gallery-archive-filter:not(.is-active) {
-    flex: 0 0 auto;
-  }
-
   .asme-gallery-page .gallery-archive-status {
     margin-right: 0px;
     margin-bottom: 0px;
@@ -907,14 +138,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     grid-column: 1;
     justify-self: start;
     margin-top: -10px;
-  }
-
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
-    text-align: center;
-  }
-
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
-    white-space: normal!important;
   }
 
 }
@@ -927,8 +150,7 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     margin-left: auto;
   }
 
-  .asme-gallery-page .gallery-hero,
-  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
+  .asme-gallery-page .gallery-hero {
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -939,96 +161,10 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (min-width: 640px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact,
-  .asme-gallery-page .gallery-instagram-recent {
-    border-radius: 24px;
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    width: 100%;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    display: flex;
-  }
-
-  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
-    gap: 12px;
-  }
-
-  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-portrait,
-  .asme-gallery-page .gallery-icon.landscape>a>img:not(.attachment-large):not(.size-large),
-  .asme-gallery-page .gallery-item.gallery-item--google-photos.is-landscape,
-  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos),
-  .asme-gallery-page .gallery-item.is-landscape:not(.gallery-item--google-photos) .gallery-icon.landscape .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible),
-  .asme-gallery-page .gallery-item.is-portrait:not(.gallery-item--google-photos):not(.is-last-visible) .gallery-icon.portrait .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-square,
-  .asme-gallery-page .gallery-item.is-square .gallery-icon.portrait .attachment-large.size-large,
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible .gallery-icon.portrait .attachment-large.size-large {
-    border-radius: 18px;
-  }
-
-  .asme-gallery-page .gallery-icon.landscape>a::after,
-  .asme-gallery-page .gallery-icon.landscape>a:hover::after,
-  .asme-gallery-page .gallery-icon.landscape>a:focus-visible::after,
-  .asme-gallery-page .gallery-icon.portrait>a::after,
-  .asme-gallery-page .gallery-icon.portrait>a:hover::after,
-  .asme-gallery-page .gallery-icon.portrait>a:focus-visible::after {
-    right: 14px;
-    bottom: 13px;
-    left: 14px;
-    font-size: 12px;
-  }
-
-}
-
-@media (min-width: 640px) and (max-width: 1919px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    padding: clamp(22px,3vw,34px);
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    max-width: 330px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    font-size: clamp(30px,3vw,42px);
-  }
-
-  .asme-gallery-page .gallery-instagram-recent {
-    padding: clamp(22px,3vw,32px);
-  }
-
-}
-
 @media (min-width: 768px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::before {
-    width: 44%;
-    height: 24%;
-  }
-
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::after,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::after,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::after {
-    width: 50%;
-    height: 27%;
-  }
-
-  .asme-gallery-page .gallery-instagram-swipe-hint {
-    display: none;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-grid {
-    display: grid;
-  }
-
   .asme-gallery-page .gallery-archive-header {
+    grid-template-columns: minmax(0,1fr) auto;
     align-items: end;
-    grid-template-columns: minmax(0px,1fr) auto;
   }
 
   .asme-gallery-page .gallery-archive-filters {
@@ -1045,51 +181,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (min-width: 768px) and (max-width: 1099px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    grid-template-columns: minmax(260px,0.8fr) minmax(0px,1.2fr);
-  }
-
-}
-
-@media (min-width: 768px) and (max-width: 1919px) {
-  .asme-gallery-page .gallery-instagram-copy {
-    padding-left: clamp(20px,2.5vw,48px);
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-header {
-    align-items: end;
-    gap: 20px;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-grid {
-    gap: 14px;
-  }
-
-}
-
-@media (min-width: 768px) and (max-width: 899px) {
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-  }
-
-}
-
-@media (min-width: 900px) {
-  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
-    margin-right: 0px;
-    margin-left: 0px;
-  }
-
-}
-
 @media (min-width: 900px) and (max-width: 1919px) {
   .asme-gallery-page {
     width: 100%;
@@ -1100,154 +191,15 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (min-width: 1100px) {
-  .asme-gallery-page .gallery-instagram-copy {
-    flex-direction: column;
-    align-self: stretch;
-  }
-
-}
-
-@media (min-width: 1100px) and (max-width: 1279px) {
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-  }
-
-}
-
-@media (min-width: 1100px) and (max-width: 1699px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    gap: clamp(30px,4vw,52px);
-    grid-template-columns: minmax(300px,330px) minmax(0px,780px);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy {
-    display: flex;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-top: auto;
-    padding-top: 24px;
-  }
-
-}
-
-@media (min-width: 1100px) and (max-width: 1919px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    align-items: stretch;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy {
-    padding-top: 22px;
-    padding-right: 0px;
-    padding-bottom: 14px;
-  }
-
-}
-
-@media (min-width: 1440px) {
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-  }
-
-}
-
-@media (min-width: 1700px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    justify-content: stretch;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy {
-    grid-template-rows: auto auto auto;
-    align-content: center;
-    max-width: none;
-    grid-template-columns: minmax(0px,1.25fr) minmax(320px,0.75fr);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-    grid-column: 1/-1;
-    grid-row: 1;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    grid-column: 1;
-    grid-row: 2/4;
-    align-self: start;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>p {
-    grid-column: 2;
-    grid-row: 2;
-    max-width: none;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-}
-
-@media (min-width: 1700px) and (max-width: 1919px) {
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    gap: clamp(56px,4vw,88px);
-    grid-template-columns: minmax(300px,360px) minmax(0px,1fr);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy {
-    display: grid;
-    row-gap: 10px;
-    column-gap: clamp(40px,3.5vw,72px);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-left: 0px;
-    margin-bottom: 2px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2,
-  .asme-gallery-page .gallery-instagram-copy>p {
-    margin: 0;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    align-self: start;
-    margin: 4px 0 0;
-    padding-top: 0px;
-  }
-
-}
-
 @media (min-width: 1920px) {
   .asme-gallery-page {
     display: grid;
+    grid-template-columns: minmax(0,2.1fr) minmax(420px,1fr);
     gap: var(--asme-wide-gap);
     align-items: start;
-    grid-template-columns: minmax(0px,2.1fr) minmax(420px,1fr);
   }
 
   .asme-gallery-page .gallery-hero {
-    grid-column: 1/-1;
-    min-width: 0px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: var(--asme-wide-gap);
@@ -1269,112 +221,8 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     font-size: 20px;
   }
 
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    min-width: 0px;
-    align-items: center;
-    grid-column: 1;
-    grid-row: 2;
-    gap: var(--asme-wide-gap);
-    padding: 32px;
-    margin: 0;
-    align-self: stretch;
-    grid-template-columns: minmax(280px,0.8fr) minmax(0px,1.2fr);
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    max-width: none;
-    margin: 0;
-    align-self: center;
-    justify-self: start;
-  }
-
-  .asme-gallery-page .gallery-instagram-media>img {
-    object-fit: contain;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0;
-    padding: 0 0 0 clamp(20px,2.5vw,48px);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-    margin: 0 0 16px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    text-wrap: balance;
-    line-height: 1.1;
-    margin: 0 0 20px;
-    font-size: clamp(36px,2vw,48px);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>p {
-    font-size: 18px;
-    line-height: 1.65;
-    margin: 0 0 24px;
-  }
-
-  .asme-gallery-page .gallery-instagram-actions {
-    margin: 0;
-    padding: 0;
-    align-self: auto;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent {
-    min-width: 0px;
-    grid-column: 2;
-    grid-row: 2;
-    margin: 0;
-    padding: 28px;
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-header {
-    align-items: start;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-header>div>h2 {
-    font-size: 32px;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    flex: 1;
-    align-content: center;
-  }
-
-  .asme-gallery-page .gallery-instagram-post-card {
-    grid-template-rows: auto;
-    align-items: center;
-    grid-template-columns: 112px minmax(0px,1fr);
-  }
-
-  .asme-gallery-page .gallery-instagram-post-copy {
-    padding: 16px;
-  }
-
-  .asme-gallery-page .gallery-instagram-post-copy>strong {
-    font-size: 18px;
-    line-height: 1.4;
-  }
-
   .asme-gallery-page .gallery-archive-header {
-    grid-column: 1/-1;
-    min-width: 0px;
     margin: 8px 0 0;
-  }
-
-  .asme-gallery-page .gallery.galleryid-111.gallery-columns-3.gallery-size-large.asme-gallery-justified {
-    grid-column: 1/-1;
-    min-width: 0px;
   }
 
 }
@@ -1384,180 +232,12 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     background: #ffffff;
   }
 
-  .asme-gallery-page .gallery-eyebrow,
-  .asme-gallery-page .gallery-instagram-swipe-hint,
-  .asme-gallery-page .gallery-instagram-post-date,
-  .asme-gallery-page .gallery-archive-copy>p,
-  .asme-gallery-page .gallery-archive-status {
-    color: var(--asme-c-readable-muted);
-  }
-
   .asme-gallery-page .gallery-hero>p {
     color: var(--asme-c-muted);
   }
 
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    background: radial-gradient(ellipse at 3% 0%,rgba(232,166,178,.16),transparent 43%),radial-gradient(ellipse at 100% 100%,rgba(232,166,178,.12),transparent 38%),linear-gradient(135deg,#f7f8fa,#ffffff 55%,#fafafb);
-    border-color: rgba(30,45,70,.12);
-    box-shadow: rgba(30,45,70,0.07) 0px 12px 36px;
-  }
-
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::before {
-    background-position-x: center;
-    background-position-y: center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: initial;
-    background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20320%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22.8%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23F8E9ED%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%23E8A6B2%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FAFAFB%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%221%22%20x2%3D%22.9%22%20y2%3D%220%22%3E%3Cstop%20stop-color%3D%22%23F8E9ED%22%20stop-opacity%3D%22.15%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23BA0C2F%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F7F8FA%22%20stop-opacity%3D%22.1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M0%200H1000C720%2022%20580%2074%20385%2091C213%20105%20105%20100%200%20155Z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M0%20295C125%20153%20315%2083%20485%2015C579%20-23%20689%20-40%20780%20-48L509%20-40C321%2048%20161%2047%200%20108Z%22%20fill%3D%22url%28%23b%29%22%2F%3E%3C%2Fsvg%3E);
-    opacity: 0.3;
-  }
-
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::after,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::after,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::after {
-    background-position-x: center;
-    background-position-y: center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: initial;
-    background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20320%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22.8%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23F8E9ED%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%23E8A6B2%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23FAFAFB%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%221%22%20x2%3D%22.9%22%20y2%3D%220%22%3E%3Cstop%20stop-color%3D%22%23F8E9ED%22%20stop-opacity%3D%22.15%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23BA0C2F%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F7F8FA%22%20stop-opacity%3D%22.1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M0%200H1000C720%2022%20580%2074%20385%2091C213%20105%20105%20100%200%20155Z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M0%20295C125%20153%20315%2083%20485%2015C579%20-23%20689%20-40%20780%20-48L509%20-40C321%2048%20161%2047%200%20108Z%22%20fill%3D%22url%28%23b%29%22%2F%3E%3C%2Fsvg%3E);
-    opacity: 0.2;
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    box-shadow: rgba(30,45,70,0.12) 0px 0px 0px 1px,rgba(30,45,70,0.12) 0px 10px 28px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy {
-    border-left-color: rgba(30,45,70,0.16);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow,
-  .asme-gallery-page .gallery-instagram-copy>p {
-    color: rgb(86,97,116);
-  }
-
-  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
-    background: #ba0c2f;
-    box-shadow: rgba(186,12,47,0.14) 0px 6px 16px;
-  }
-
-  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary:hover,
-  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary:focus-visible {
-    background-color: rgb(152,10,39);
-  }
-
-  .asme-gallery-page .gallery-instagram-follow {
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-image-source: none;
-    border-image-slice: 100%;
-    border-image-width: 1;
-    border-image-outset: 0;
-    border-image-repeat: stretch;
-    border-color: rgba(30,45,70,.3);
-    background: transparent;
-    color: rgb(23,32,51);
-  }
-
-  .asme-gallery-page .gallery-instagram-follow:hover,
-  .asme-gallery-page .gallery-instagram-follow:focus-visible {
-    background-color: rgb(237,240,244);
-    border-color: rgba(30,45,70,.45);
-  }
-
-  .asme-gallery-page .gallery-instagram-recent {
-    box-shadow: rgba(15,52,96,0.08) 0px 14px 36px;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-header .gallery-instagram-eyebrow,
-  .asme-gallery-page .gallery-archive-copy .gallery-instagram-eyebrow {
-    color: rgb(187,0,0);
-  }
-
-  .asme-gallery-page .gallery-instagram-post-card {
-    background: var(--asme-card-soft, #f8fafc);
-  }
-
-  .asme-gallery-page .gallery-archive-filter.is-active {
-    background: #bb0000;
-  }
-
-  .asme-gallery-page .gallery-archive-filter:not(.is-active) {
-    background: var(--asme-c-surface);
-    color: var(--asme-c-heading);
-  }
-
   .asme-gallery-page .gallery-hero>h1 {
     color: var(--asme-c-heading)!important;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    color: rgb(23,32,51)!important;
-  }
-
-}
-
-@media (prefers-color-scheme: light) and (min-width: 640px) and (max-width: 767px) {
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-  }
-
-}
-
-@media (prefers-color-scheme: light) and (min-width: 768px) {
-  .asme-gallery-page .gallery-instagram-copy {
-    border-left-width: 1px;
-    border-left-style: solid;
-  }
-
-}
-
-@media (prefers-color-scheme: light) and (min-width: 900px) and (max-width: 1099px) {
-  .asme-gallery-page .gallery-item.is-last-visible.is-portrait {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-  }
-
-}
-
-@media (prefers-color-scheme: light) and (min-width: 1280px) and (max-width: 1439px) {
-  .asme-gallery-page .gallery-item.is-last-visible.is-portrait {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
   }
 
 }
@@ -1574,81 +254,8 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
     color: var(--asme-c-text);
   }
 
-  .asme-gallery-page .gallery-eyebrow,
-  .asme-gallery-page .gallery-instagram-post-date {
+  .asme-gallery-page .gallery-eyebrow {
     color: var(--asme-c-subtle);
-  }
-
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact {
-    box-shadow: rgba(0,0,0,0.28) 0px 18px 48px;
-    background: radial-gradient(ellipse at 3% 0%,rgba(123,17,43,.3),transparent 43%),radial-gradient(ellipse at 100% 100%,rgba(111,18,42,.24),transparent 38%),#0b1624;
-    border-color: #344457;
-  }
-
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::before,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::before {
-    background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20320%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22.8%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23450e26%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%2397142e%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23390f23%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%221%22%20x2%3D%22.9%22%20y2%3D%220%22%3E%3Cstop%20stop-color%3D%22%23680e28%22%20stop-opacity%3D%22.15%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23b21a38%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%234d1428%22%20stop-opacity%3D%22.1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M0%200H1000C720%2022%20580%2074%20385%2091C213%20105%20105%20100%200%20155Z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M0%20295C125%20153%20315%2083%20485%2015C579%20-23%20689%20-40%20780%20-48L509%20-40C321%2048%20161%2047%200%20108Z%22%20fill%3D%22url%28%23b%29%22%2F%3E%3C%2Fsvg%3E)no-repeat center/100% 100%;
-  }
-
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact::after,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:hover::after,
-  .asme-gallery-page .gallery-instagram-feature.gallery-instagram-feature--compact:focus-visible::after {
-    background: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20320%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%22.8%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23450e26%22%20stop-opacity%3D%22.6%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%2397142e%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23390f23%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%221%22%20x2%3D%22.9%22%20y2%3D%220%22%3E%3Cstop%20stop-color%3D%22%23680e28%22%20stop-opacity%3D%22.15%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23b21a38%22%20stop-opacity%3D%22.8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%234d1428%22%20stop-opacity%3D%22.1%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M0%200H1000C720%2022%20580%2074%20385%2091C213%20105%20105%20100%200%20155Z%22%20fill%3D%22url%28%23a%29%22%2F%3E%3Cpath%20d%3D%22M0%20295C125%20153%20315%2083%20485%2015C579%20-23%20689%20-40%20780%20-48L509%20-40C321%2048%20161%2047%200%20108Z%22%20fill%3D%22url%28%23b%29%22%2F%3E%3C%2Fsvg%3E)no-repeat center/100% 100%;
-    opacity: .6;
-  }
-
-  .asme-gallery-page .gallery-instagram-media {
-    box-shadow: rgba(15,23,42,0.18) 0px 16px 34px;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy .gallery-instagram-eyebrow {
-    color: rgb(241,243,246);
-  }
-
-  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary {
-    background: #bb0000;
-    box-shadow: rgba(187,0,0,0.2) 0px 10px 24px;
-  }
-
-  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary:hover,
-  .asme-gallery-page .gallery-instagram-button.gallery-instagram-button--primary:focus-visible {
-    background-color: rgb(153,0,0);
-  }
-
-  .asme-gallery-page .gallery-instagram-follow {
-    border: 1px solid #cbd0d8;
-    color: rgb(248,250,252);
-  }
-
-  .asme-gallery-page .gallery-instagram-recent {
-    box-shadow: rgba(0,0,0,0.24) 0px 14px 36px;
-  }
-
-  .asme-gallery-page .gallery-instagram-recent-header .gallery-instagram-eyebrow,
-  .asme-gallery-page .gallery-archive-copy .gallery-instagram-eyebrow {
-    color: var(--asme-readable-accent);
-  }
-
-  .asme-gallery-page .gallery-instagram-post-card {
-    background: #17253a;
-  }
-
-  .asme-gallery-page .gallery-archive-filter.is-active {
-    background: #d81820;
-  }
-
-  .asme-gallery-page .gallery-archive-filter:not(.is-active) {
-    background: #17253a;
-    color: rgb(248,250,252);
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>h2 {
-    color: rgb(248,250,252)!important;
-  }
-
-  .asme-gallery-page .gallery-instagram-copy>p {
-    color: rgb(214,220,229)!important;
   }
 
   .asme-gallery-page .gallery-archive-copy>p {
@@ -1661,489 +268,59 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card:f
 
 }
 
-@media (prefers-color-scheme: dark) and (max-width: 767px) {
-  .asme-gallery-page .gallery-instagram-swipe-hint {
-    color: var(--asme-c-subtle)!important;
-  }
-
-}
-
-@media (prefers-color-scheme: dark) and (min-width: 640px) and (max-width: 767px) {
-  .asme-gallery-page .gallery-item.is-last-visible.is-portrait {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-  }
-
-}
-
-@media (prefers-color-scheme: dark) and (min-width: 768px) {
-  .asme-gallery-page .gallery-instagram-copy {
-    border-left: 1px solid rgba(203,213,225,.3);
-  }
-
-}
-
-@media (prefers-color-scheme: dark) and (min-width: 900px) and (max-width: 1099px) {
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-  }
-
-}
-
-@media (prefers-color-scheme: dark) and (min-width: 1280px) and (max-width: 1439px) {
-  .asme-gallery-page .gallery-item.is-portrait.is-last-visible {
-    float: none;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 18px;
-    box-shadow: rgba(15,52,96,0.1) 0px 10px 28px;
-  }
-
-}
-
 /* Carried over unchanged: rules for conditions the compiler does not reproduce
    from its test views (motion preference, orientation, print) and pseudo-elements
    DevTools does not report (::placeholder), overlays outside the page content
    such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
    [aria-*]) whose values change while the page is used. */
-@media (max-width: 760px) {
-  body #page .asme-gallery-page .gallery-archive-filters::-webkit-scrollbar,
-  html body #page .entry-content .asme-gallery-page .gallery-archive-filters::-webkit-scrollbar {
-    display: none!important;
-  }
-
+@media (max-width:760px){body #page .asme-gallery-page .gallery-archive-filters::-webkit-scrollbar,html body #page .entry-content .asme-gallery-page .gallery-archive-filters::-webkit-scrollbar{display:none!important}
 }
-
-@media (max-width: 760px) {
-  body #page .asme-gallery-page .gallery-instagram-recent-grid::-webkit-scrollbar,
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid::-webkit-scrollbar {
-    display: none!important;
-  }
-
+.asme-gallery-page .gallery br{display:none!important}
+.asme-lightbox-open-body{overflow:hidden!important}
+.asme-lightbox{position:fixed!important;inset:0!important;z-index:99999!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:28px!important;background:rgba(4,10,20,0.86)!important;backdrop-filter:blur(14px)!important;opacity:0!important;pointer-events:none!important;transition:opacity 0.22s ease!important}
+.asme-lightbox.active{opacity:1!important;pointer-events:auto!important}
+.asme-lightbox-content{position:relative!important;display:grid!important;grid-template-rows:minmax(0,1fr) auto!important;width:min(1120px,94vw)!important;max-height:88vh!important;overflow:hidden!important;background:#0f1b2d!important;border:1px solid rgba(255,255,255,0.18)!important;border-radius:18px!important;box-shadow:0 24px 80px rgba(0,0,0,0.45)!important}
+.asme-lightbox-content img{display:block!important;width:100%!important;height:100%!important;max-height:calc(88vh - 72px)!important;object-fit:contain!important;background:#050b14!important;transition:opacity 0.16s ease!important}
+.asme-lightbox-bar{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;min-height:64px!important;padding:14px 16px!important;background:rgba(15,27,45,0.96)!important;border-top:1px solid rgba(255,255,255,0.12)!important}
+.asme-lightbox-caption{min-width:0!important;overflow:hidden!important;color:#e5e7eb!important;font-size:13px!important;font-weight:700!important;line-height:1.35!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+.asme-lightbox-actions{display:flex!important;flex:0 0 auto!important;gap:8px!important}
+.asme-lightbox-actions a,.asme-lightbox-close,.asme-lightbox-prev,.asme-lightbox-next{display:inline-flex!important;align-items:center!important;justify-content:center!important;border:1px solid rgba(255,255,255,0.18)!important;background:rgba(255,255,255,0.1)!important;color:#ffffff!important;text-decoration:none!important;cursor:pointer!important;transition:transform 0.16s ease,background 0.16s ease,border-color 0.16s ease!important}
+.asme-lightbox-actions a{height:36px!important;padding:0 13px!important;border-radius:999px!important;font-size:12px!important;font-weight:850!important}
+.asme-lightbox-actions a:hover,.asme-lightbox-actions a:focus,.asme-lightbox-close:hover,.asme-lightbox-close:focus,.asme-lightbox-prev:hover,.asme-lightbox-prev:focus,.asme-lightbox-next:hover,.asme-lightbox-next:focus{background:#bb0000!important;border-color:#bb0000!important;color:#ffffff!important;transform:translateY(-1px)!important}
+.asme-lightbox-close{position:absolute!important;top:18px!important;right:18px!important;z-index:2!important;width:42px!important;height:42px!important;padding:0!important;border-radius:50%!important;font-size:26px!important;line-height:1!important}
+.asme-lightbox-prev,.asme-lightbox-next{position:absolute!important;top:50%!important;z-index:2!important;width:46px!important;height:58px!important;padding:0!important;border-radius:999px!important;font-size:34px!important;line-height:1!important;transform:translateY(-50%)!important}
+.asme-lightbox-prev:hover,.asme-lightbox-prev:focus,.asme-lightbox-next:hover,.asme-lightbox-next:focus{transform:translateY(-50%) scale(1.03)!important}
+.asme-lightbox-prev{left:18px!important}
+.asme-lightbox-next{right:18px!important}
+@media (max-width:768px){.asme-lightbox{padding:14px!important}
 }
-
-body #page .asme-gallery-page .gallery-instagram-media>br,
-body #page .asme-gallery-page .gallery-instagram-media>p:empty,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-media>br,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-media>p:empty {
-  display: none!important;
+@media (max-width:768px){.asme-lightbox-content{width:96vw!important;max-height:84vh!important;border-radius:14px!important}
 }
-
-@media (prefers-reduced-motion: reduce) {
-  body #page .asme-gallery-page .gallery-instagram-media img,
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-media img {
-    transition: none!important;
-  }
-
+@media (max-width:768px){.asme-lightbox-content img{max-height:calc(84vh - 118px)!important}
 }
-
-.asme-gallery-page .gallery br {
-  display: none!important;
+@media (max-width:768px){.asme-lightbox-bar{flex-direction:column!important;align-items:stretch!important;gap:10px!important;padding:12px!important}
 }
-
-.asme-lightbox-open-body {
-  overflow: hidden!important;
+@media (max-width:768px){.asme-lightbox-caption{white-space:normal!important;text-align:center!important}
 }
-
-.asme-lightbox {
-  position: fixed!important;
-  inset: 0!important;
-  z-index: 99999!important;
-  display: flex!important;
-  align-items: center!important;
-  justify-content: center!important;
-  padding: 28px!important;
-  background: rgba(4,10,20,0.86)!important;
-  backdrop-filter: blur(14px)!important;
-  opacity: 0!important;
-  pointer-events: none!important;
-  transition: opacity 0.22s ease!important;
+@media (max-width:768px){.asme-lightbox-actions{width:100%!important}
 }
-
-.asme-lightbox.active {
-  opacity: 1!important;
-  pointer-events: auto!important;
+@media (max-width:768px){.asme-lightbox-actions a{flex:1 1 0!important}
 }
-
-.asme-lightbox-content {
-  position: relative!important;
-  display: grid!important;
-  grid-template-rows: minmax(0,1fr) auto!important;
-  width: min(1120px,94vw)!important;
-  max-height: 88vh!important;
-  overflow: hidden!important;
-  background: #0f1b2d!important;
-  border: 1px solid rgba(255,255,255,0.18)!important;
-  border-radius: 18px!important;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.45)!important;
+@media (max-width:768px){.asme-lightbox-close{top:10px!important;right:10px!important}
 }
-
-.asme-lightbox-content img {
-  display: block!important;
-  width: 100%!important;
-  height: 100%!important;
-  max-height: calc(88vh - 72px)!important;
-  object-fit: contain!important;
-  background: #050b14!important;
-  transition: opacity 0.16s ease!important;
+@media (max-width:768px){.asme-lightbox-prev,.asme-lightbox-next{width:38px!important;height:50px!important;font-size:28px!important}
 }
-
-.asme-lightbox-bar {
-  display: flex!important;
-  align-items: center!important;
-  justify-content: space-between!important;
-  gap: 16px!important;
-  min-height: 64px!important;
-  padding: 14px 16px!important;
-  background: rgba(15,27,45,0.96)!important;
-  border-top: 1px solid rgba(255,255,255,0.12)!important;
+@media (max-width:768px){.asme-lightbox-prev{left:10px!important}
 }
-
-.asme-lightbox-caption {
-  min-width: 0!important;
-  overflow: hidden!important;
-  color: #e5e7eb!important;
-  font-size: 13px!important;
-  font-weight: 700!important;
-  line-height: 1.35!important;
-  text-overflow: ellipsis!important;
-  white-space: nowrap!important;
+@media (max-width:768px){.asme-lightbox-next{right:10px!important}
 }
-
-.asme-lightbox-actions {
-  display: flex!important;
-  flex: 0 0 auto!important;
-  gap: 8px!important;
+@media (prefers-reduced-motion:no-preference){.asme-gallery-page .gallery-item img{transition:transform 0.35s ease,filter 0.25s ease!important}
 }
-
-.asme-lightbox-actions a,
-.asme-lightbox-close,
-.asme-lightbox-prev,
-.asme-lightbox-next {
-  display: inline-flex!important;
-  align-items: center!important;
-  justify-content: center!important;
-  border: 1px solid rgba(255,255,255,0.18)!important;
-  background: rgba(255,255,255,0.1)!important;
-  color: #ffffff!important;
-  text-decoration: none!important;
-  cursor: pointer!important;
-  transition: transform 0.16s ease,background 0.16s ease,border-color 0.16s ease!important;
+@media (prefers-reduced-motion:no-preference){.asme-gallery-page .gallery-item:hover img{transform:scale(1.04)!important}
 }
-
-.asme-lightbox-actions a {
-  height: 36px!important;
-  padding: 0 13px!important;
-  border-radius: 999px!important;
-  font-size: 12px!important;
-  font-weight: 850!important;
+.asme-lightbox-content{transition:opacity 160ms ease,transform 220ms cubic-bezier(0.22,1,0.36,1)!important}
+@media (prefers-reduced-motion:reduce){.asme-lightbox-content{animation:none!important;transition:none!important}
 }
-
-.asme-lightbox-actions a:hover,
-.asme-lightbox-actions a:focus,
-.asme-lightbox-close:hover,
-.asme-lightbox-close:focus,
-.asme-lightbox-prev:hover,
-.asme-lightbox-prev:focus,
-.asme-lightbox-next:hover,
-.asme-lightbox-next:focus {
-  background: #bb0000!important;
-  border-color: #bb0000!important;
-  color: #ffffff!important;
-  transform: translateY(-1px)!important;
-}
-
-.asme-lightbox-close {
-  position: absolute!important;
-  top: 18px!important;
-  right: 18px!important;
-  z-index: 2!important;
-  width: 42px!important;
-  height: 42px!important;
-  padding: 0!important;
-  border-radius: 50%!important;
-  font-size: 26px!important;
-  line-height: 1!important;
-}
-
-.asme-lightbox-prev,
-.asme-lightbox-next {
-  position: absolute!important;
-  top: 50%!important;
-  z-index: 2!important;
-  width: 46px!important;
-  height: 58px!important;
-  padding: 0!important;
-  border-radius: 999px!important;
-  font-size: 34px!important;
-  line-height: 1!important;
-  transform: translateY(-50%)!important;
-}
-
-.asme-lightbox-prev:hover,
-.asme-lightbox-prev:focus,
-.asme-lightbox-next:hover,
-.asme-lightbox-next:focus {
-  transform: translateY(-50%) scale(1.03)!important;
-}
-
-.asme-lightbox-prev {
-  left: 18px!important;
-}
-
-.asme-lightbox-next {
-  right: 18px!important;
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox {
-    padding: 14px!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-content {
-    width: 96vw!important;
-    max-height: 84vh!important;
-    border-radius: 14px!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-content img {
-    max-height: calc(84vh - 118px)!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-bar {
-    flex-direction: column!important;
-    align-items: stretch!important;
-    gap: 10px!important;
-    padding: 12px!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-caption {
-    white-space: normal!important;
-    text-align: center!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-actions {
-    width: 100%!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-actions a {
-    flex: 1 1 0!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-close {
-    top: 10px!important;
-    right: 10px!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-prev,
-  .asme-lightbox-next {
-    width: 38px!important;
-    height: 50px!important;
-    font-size: 28px!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-prev {
-    left: 10px!important;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .asme-lightbox-next {
-    right: 10px!important;
-  }
-
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .asme-gallery-page .gallery-item img {
-    transition: transform 0.35s ease,filter 0.25s ease!important;
-  }
-
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .asme-gallery-page .gallery-item:hover img {
-    transform: scale(1.04)!important;
-  }
-
-}
-
-body #page .asme-gallery-page .gallery-instagram-copy>p:empty,
-body #page .asme-gallery-page .gallery-instagram-post-card>br,
-body #page .asme-gallery-page .gallery-instagram-post-copy>br,
-body #page .asme-gallery-page .gallery-instagram-post-image>br,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-copy>p:empty,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card>br,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-post-copy>br,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image>br {
-  display: none!important;
-}
-
-.asme-lightbox-content {
-  transition: opacity 160ms ease,transform 220ms cubic-bezier(0.22,1,0.36,1)!important;
-}
-
-@media (hover: none) {
-  body #page .asme-gallery-page .gallery-item a::before,
-  body #page .asme-gallery-page .gallery-item a::after {
-    display: none!important;
-  }
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body #page .asme-gallery-page .gallery-item a::before,
-  body #page .asme-gallery-page .gallery-item a::after,
-  .asme-lightbox-content {
-    animation: none!important;
-    transition: none!important;
-  }
-
-}
-
-body #page .asme-gallery-page .gallery-instagram-copy>p strong,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-copy>p strong {
-  color: var(--asme-text)!important;
-}
-
-body #page .asme-gallery-page .gallery-instagram-feature--compact>br,
-body #page .asme-gallery-page .gallery-instagram-feature--compact>p:empty,
-body #page .asme-gallery-page .gallery-instagram-recent>br,
-body #page .asme-gallery-page .gallery-instagram-recent>p:empty,
-body #page .asme-gallery-page .gallery-instagram-recent-grid>br,
-body #page .asme-gallery-page .gallery-instagram-recent-grid>p:empty,
-body #page .asme-gallery-page .gallery-instagram-recent-header>p:empty,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact>br,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact>p:empty,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-recent>br,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-recent>p:empty,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid>br,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-grid>p:empty,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-recent-header>p:empty {
-  display: none!important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body #page .asme-gallery-page .gallery-instagram-media img,
-  body #page .asme-gallery-page .gallery-instagram-post-card,
-  body #page .asme-gallery-page .gallery-instagram-post-image img,
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-media img,
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-card,
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-post-image img {
-    transition: none!important;
-  }
-
-}
-
-body #page .asme-gallery-page .gallery-instagram-media[href*="DcZw1nCiX_H"] img,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-media[href*="DcZw1nCiX_H"] img {
-  visibility: hidden!important;
-}
-
-body #page .asme-gallery-page .gallery-instagram-media[href*="DcZw1nCiX_H"]::before,
-html body #page .entry-content .asme-gallery-page .gallery-instagram-media[href*="DcZw1nCiX_H"]::before {
-  content: ""!important;
-  position: absolute!important;
-  top: 50%!important;
-  left: 50%!important;
-  z-index: 3!important;
-  width: 42px!important;
-  height: 42px!important;
-  margin: -21px 0 0-21px!important;
-  border: 3px solid rgba(15,52,96,0.2)!important;
-  border-top-color: #bb0000!important;
-  border-radius: 50%!important;
-  animation: asme-instagram-spinner 800ms linear infinite!important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body #page .asme-gallery-page .gallery-instagram-loading-art::before,
-  body #page .asme-gallery-page .gallery-instagram-loading-art>span,
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-loading-art::before,
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-loading-art>span {
-    animation: none!important;
-  }
-
-}
-
-@media (hover: none) {
-  body #page .asme-gallery-page .gallery .gallery-item a::before,
-  body #page .asme-gallery-page .gallery .gallery-item a::after,
-  html body #page .entry-content .asme-gallery-page .gallery .gallery-item a::before,
-  html body #page .entry-content .asme-gallery-page .gallery .gallery-item a::after {
-    display: block!important;
-    opacity: 1!important;
-    transform: none!important;
-  }
-
-}
-
-html body .asme-lightbox[hidden] {
-  display: none!important;
-}
-
-@media (prefers-color-scheme: light) {
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-button--primary:is(:hover,:focus-visible) {
-    background: #980a27!important;
-  }
-
-}
-
-@media (prefers-color-scheme: light) {
-  html body #page .entry-content .asme-gallery-page .gallery-instagram-feature--compact .gallery-instagram-follow:is(:hover,:focus-visible) {
-    background: #edf0f4!important;
-    border-color: rgba(30,45,70,.45)!important;
-  }
-
-}
-
-@media (min-width: 1800px) {
-  html body #page .entry-content .asme-gallery-page>:is(br,p:empty) {
-    display: none!important;
-  }
-
+html body .asme-lightbox[hidden]{display:none!important}
+@media (min-width:1800px){html body #page .entry-content .asme-gallery-page>:is(br,p:empty){display:none!important}
 }

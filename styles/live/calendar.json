@@ -1,0 +1,22 @@
+[
+ "body #page .asme-cal-page .acp-event-card",
+ "body #page .asme-cal-page .acp-event-card--next",
+ "body #page .asme-cal-page .acp-event-copy h3",
+ "body #page .asme-cal-page .acp-event-copy p",
+ "body #page .asme-cal-page .acp-event-date",
+ "body #page .asme-cal-page .acp-event-date span",
+ "body #page .asme-cal-page .acp-event-date strong",
+ "body #page .asme-cal-page .acp-event-location",
+ "body #page .asme-cal-page .acp-view-button",
+ "body #page .asme-cal-page .acp-view-button.is-active",
+ "html body #page .entry-content .asme-cal-page .acp-event-card",
+ "html body #page .entry-content .asme-cal-page .acp-event-card--next",
+ "html body #page .entry-content .asme-cal-page .acp-event-copy h3",
+ "html body #page .entry-content .asme-cal-page .acp-event-copy p",
+ "html body #page .entry-content .asme-cal-page .acp-event-date",
+ "html body #page .entry-content .asme-cal-page .acp-event-date span",
+ "html body #page .entry-content .asme-cal-page .acp-event-date strong",
+ "html body #page .entry-content .asme-cal-page .acp-event-location",
+ "html body #page .entry-content .asme-cal-page .acp-view-button",
+ "html body #page .entry-content .asme-cal-page .acp-view-button.is-active"
+]

@@ -126,7 +126,7 @@ for (const example of [
   });
 }
 
-test('the mobile homepage has tappable dots and manual rotation', { timeout: 30_000 }, async t => {
+test('the mobile homepage has tappable dots and rotates on its own', { timeout: 30_000 }, async t => {
   const page = await visit(t, '', { clock: true, reducedMotion: 'no-preference' });
   const dots = page.locator('.ah-hero-dot');
   assert.equal(await dots.count(), 5);
@@ -137,26 +137,27 @@ test('the mobile homepage has tappable dots and manual rotation', { timeout: 30_
   assert.ok(sizes.every(({ width, height }) => width >= 24 && height >= 24), JSON.stringify(sizes));
   assert.equal(await page.locator('#ahDots > button').count(), 5);
   const currentPhoto = page.locator('.ah-hero-dot[aria-pressed="true"]');
-  await page.clock.runFor(7000);
-  assert.equal(await currentPhoto.getAttribute('aria-label'), 'Show slide 1');
+  await page.clock.runFor(5500);
+  assert.equal(await currentPhoto.getAttribute('aria-label'), 'Show slide 2');
   await dots.nth(2).click({ force: true });
   assert.equal(await currentPhoto.getAttribute('aria-label'), 'Show slide 3');
 });
 
-test('both desktop carousels stay on the selected slide without playback controls', { timeout: 30_000 }, async t => {
+test('both desktop carousels rotate on their own and hold while pointed at', { timeout: 30_000 }, async t => {
   const page = await visit(t, '', { width: 1440, clock: true, reducedMotion: 'no-preference' });
   assert.equal(await page.locator('#ahDots > button').count(), 5);
   const currentPhoto = page.locator('.ah-hero-dot[aria-pressed="true"]');
   const currentSpotlight = page.locator('.ah-spotlight-dot[aria-selected="true"]');
   const firstSpotlight = await currentSpotlight.getAttribute('aria-label');
   await page.clock.runFor(7000);
-  assert.equal(await currentPhoto.getAttribute('aria-label'), 'Show slide 1');
-  assert.equal(await currentSpotlight.getAttribute('aria-label'), firstSpotlight);
-  await page.locator('.ah-hero-dot').nth(2).click({ force: true });
-  await page.locator('.ah-spotlight-dot').nth(1).click({ force: true });
-  await page.clock.runFor(7000);
-  assert.equal(await currentPhoto.getAttribute('aria-label'), 'Show slide 3');
+  assert.equal(await currentPhoto.getAttribute('aria-label'), 'Show slide 2');
   assert.notEqual(await currentSpotlight.getAttribute('aria-label'), firstSpotlight);
+  // Clicking a spotlight dot leaves the pointer over the hero: both pause.
+  await page.locator('.ah-hero-dot').nth(2).click({ force: true });
+  await page.locator('.ah-spotlight-dot').nth(0).click({ force: true });
+  await page.clock.runFor(14000);
+  assert.equal(await currentPhoto.getAttribute('aria-label'), 'Show slide 3');
+  assert.equal(await currentSpotlight.getAttribute('aria-label'), firstSpotlight);
 });
 
 test('newsletter preserves rejected input and advances focus only on confirmed signup', { skip: live, timeout: 30_000 }, async t => {

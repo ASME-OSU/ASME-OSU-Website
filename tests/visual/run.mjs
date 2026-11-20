@@ -41,6 +41,11 @@ fs.mkdirSync(target, { recursive: true });
 if (!update) { fs.rmSync(DIFF, { recursive: true, force: true }); fs.mkdirSync(DIFF, { recursive: true }); }
 fs.rmSync(path.join(OUTPUT, 'missing.txt'), { force: true });
 
+// Progress for tests/visual/watch.sh: line 1 is the total, then one line per
+// finished screenshot (id and result).
+const PROGRESS = path.join(OUTPUT, 'progress.txt');
+fs.writeFileSync(PROGRESS, `${list.length} ${process.env.VISUAL_WIDTHS ? 'in-between' : 'standard'}\n`);
+fs.writeFileSync(path.join(OUTPUT, 'progress-jobs.txt'), list.map(job => job.id).join('\n') + '\n');
 const browser = await launch(chromium);
 const results = [];
 let done = 0;
@@ -57,6 +62,8 @@ await pool(list, Number(option('workers', '3')), async job => {
     results.push({ id: job.id, status: 'error', message: error.message.split('\n')[0] });
   }
   done += 1;
+  const last = results[results.length - 1];
+  fs.appendFileSync(PROGRESS, `${job.id} ${last && last.id === job.id ? last.status : ''}\n`);
   if (process.stdout.isTTY) process.stdout.write(`\r${update ? 'Baseline' : 'Compared'} ${done}/${list.length}`);
 });
 await browser.close();

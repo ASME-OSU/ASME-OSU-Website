@@ -14,26 +14,20 @@
   padding-left: 0;
 }
 
-.asme-member-resources-page *,
-.asme-member-resources-page *::before,
-.asme-member-resources-page *::after {
-  box-sizing: border-box;
-}
-
 .asme-member-resources-page>p:not(.asme-page-meta) {
   display: none;
+  height: 0;
+  min-height: 0;
   margin: 0;
   padding: 0;
   border: 0;
-  height: 0px;
-  min-height: 0px;
 }
 
 .asme-member-resources-page .asme-member-hero {
   position: relative;
   overflow: hidden;
+  min-height: 0;
   margin-bottom: 22px;
-  min-height: 0px;
 }
 
 .asme-member-resources-page .asme-member-hero::before,
@@ -42,8 +36,8 @@
   content: "";
   position: absolute;
   inset: 0;
+  background-image: repeating-linear-gradient(45deg,transparent,transparent 28px,rgba(255,255,255,0.025) 28px,rgba(255,255,255,0.025) 29px);
   pointer-events: none;
-  background-image: repeating-linear-gradient(45deg,transparent,transparent 28px,rgba(255,255,255,0.024) 28px,rgba(255,255,255,0.024) 29px);
 }
 
 .asme-member-resources-page .asme-member-hero::after,
@@ -51,12 +45,12 @@
 .asme-member-resources-page .asme-member-hero:focus-visible::after {
   content: "";
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 4px;
   background: var(--m-scarlet, #bb0000);
   border-radius: 18px 18px 0 0;
-  top: 0px;
-  left: 0px;
-  right: 0px;
 }
 
 .asme-member-resources-page .asme-member-hero-inner {
@@ -70,14 +64,14 @@
 
 .asme-member-resources-page .asme-member-hero-copy {
   flex: 1;
-  min-width: 0px;
+  min-width: 0;
 }
 
 .asme-member-resources-page .asme-member-eyebrow {
   display: inline-block;
   text-transform: uppercase;
-  margin-bottom: 10px;
   color: rgba(255,255,255,0.55);
+  margin-bottom: 10px;
 }
 
 .asme-member-resources-page .asme-member-hero-copy>h1 {
@@ -98,38 +92,6 @@
   gap: 10px;
   flex-wrap: wrap;
   padding-top: 4px;
-}
-
-.asme-member-resources-page .asme-member-hero-meta .asme-status-badge.asme-status-badge--resource {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-image-source: none;
-  border-image-slice: 100%;
-  border-image-width: 1;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  white-space: nowrap;
-  cursor: default;
-  user-select: none;
-  min-height: 24px;
-  background: #e8f4fd;
-  border-color: #c7d9ee;
-  color: rgb(15,52,96);
 }
 
 .asme-member-resources-page .asme-info-banner.asme-info-banner--blue {
@@ -183,18 +145,18 @@
   height: 28px;
   min-width: 28px;
   min-height: 28px;
+  margin-bottom: 0;
   border-radius: 999px;
-  margin-bottom: 0px;
 }
 
 .asme-member-resources-page .asme-info-banner-icon.asme-resource-svg-icon.asme-resource-svg-icon--info>svg {
   display: block;
   fill: none;
+  stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   overflow: visible;
-  stroke: currentcolor;
   width: 14px;
   height: 14px;
 }
@@ -229,7 +191,6 @@
   position: sticky;
   top: 8px;
   z-index: 5;
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
   background-position-x: initial;
   background-position-y: initial;
   background-size: initial;
@@ -242,6 +203,7 @@
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
@@ -251,7 +213,6 @@
 }
 
 .asme-member-resources-page .asme-jump-nav>li>a {
-  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -264,14 +225,14 @@
 }
 
 .asme-member-resources-page .asme-resource-group.asme-resource-group--start {
-  padding-top: 0px;
+  padding-top: 0;
   margin-bottom: 40px;
   margin-top: 4px;
 }
 
 .asme-member-resources-page .asme-resource-group.asme-resource-group--start .asme-resource-group-header,
 .asme-member-resources-page .asme-resource-group:not(.asme-resource-group--start) .asme-resource-group-header {
-  margin-top: 0px;
+  margin-top: 0;
   background: transparent;
   display: flex;
   flex-direction: row;
@@ -308,11 +269,11 @@
 .asme-member-resources-page .asme-member-grid.asme-member-grid--career-tools>p,
 .asme-member-resources-page .asme-member-grid.asme-member-grid--2col.asme-member-grid--career-data>p,
 .asme-member-resources-page .asme-member-grid.asme-member-grid--2col:not(.asme-member-grid--career-data)>p {
+  height: 0;
+  min-height: 0;
   margin: 0;
   padding: 0;
   border: 0;
-  height: 0px;
-  min-height: 0px;
 }
 
 .asme-member-resources-page .asme-resource-card.asme-resource-card--accented.asme-resource-card--primary,
@@ -382,7 +343,7 @@
   background: #eef2f8;
   border: 1px solid #d8e2ee;
   box-shadow: none;
-  color: rgb(15,52,96);
+  color: #0f3460;
 }
 
 .asme-member-resources-page .asme-resource-card-icon.asme-resource-svg-icon.asme-resource-svg-icon--national>svg,
@@ -399,11 +360,11 @@
   width: 20px;
   height: 20px;
   fill: none;
+  stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   overflow: visible;
-  stroke: currentcolor;
 }
 
 .asme-member-resources-page .asme-resource-card-title {
@@ -418,9 +379,9 @@
   margin-top: 0px;
   margin-right: 0px;
   margin-left: 0px;
-  margin-bottom: 0px;
-  opacity: 1;
+  margin-bottom: 0;
   color: var(--asme-c-muted);
+  opacity: 1;
   flex: 1;
 }
 
@@ -431,36 +392,6 @@
   border-top: 1px solid var(--m-border, #e4e7ec);
   padding-top: 12px;
   margin-top: auto;
-}
-
-.asme-member-resources-page .asme-status-badge.asme-status-badge--featured,
-.asme-member-resources-page .asme-resource-card-footer:not(.asme-resource-card-footer--actions) .asme-status-badge.asme-status-badge--resource {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-image-source: none;
-  border-image-slice: 100%;
-  border-image-width: 1;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  white-space: nowrap;
-  cursor: default;
-  user-select: none;
-  min-height: 24px;
 }
 
 .asme-member-resources-page .asme-resource-card-arrow {
@@ -524,12 +455,12 @@
   overflow: hidden;
   border: 1px solid #d8e2ee;
   box-shadow: none;
-  color: rgb(15,52,96);
+  color: #0f3460;
   background: #f0f4f8;
 }
 
 .asme-member-resources-page .asme-resource-group:not(.asme-resource-group--start) {
-  padding-top: 0px;
+  padding-top: 0;
   margin-bottom: 40px;
 }
 
@@ -580,92 +511,8 @@
   flex-wrap: wrap;
 }
 
-.asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--resource {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-image-source: none;
-  border-image-slice: 100%;
-  border-image-width: 1;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  white-space: nowrap;
-  cursor: default;
-  user-select: none;
-  text-decoration: none;
-}
-
-.asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--external {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-image-source: none;
-  border-image-slice: 100%;
-  border-image-width: 1;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  white-space: nowrap;
-  cursor: default;
-  user-select: none;
-  color: var(--asme-c-muted);
-  text-decoration: none;
-}
-
+.asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--external,
 .asme-member-resources-page .asme-resource-card-footer:not(.asme-resource-card-footer--actions) .asme-status-badge.asme-status-badge--external {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-image-source: none;
-  border-image-slice: 100%;
-  border-image-width: 1;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  white-space: nowrap;
-  cursor: default;
-  user-select: none;
-  min-height: 24px;
   color: var(--asme-c-muted);
 }
 
@@ -692,8 +539,8 @@
 .asme-member-resources-page .asme-member-grid.asme-member-grid--career-tools {
   display: grid;
   margin-bottom: 32px;
-  gap: 14px;
   grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+  gap: 14px;
 }
 
 .asme-member-resources-page .asme-resource-card.asme-resource-card--accented:not(.asme-resource-card--primary):not(.asme-resource-card--secondary) {
@@ -846,11 +693,11 @@
   font-size: 12px;
   text-align: center;
   display: none;
+  height: 0;
+  min-height: 0;
   margin: 0;
   padding: 0;
   border: 0;
-  height: 0px;
-  min-height: 0px;
 }
 
 .asme-member-resources-page .asme-page-meta>a {
@@ -903,7 +750,6 @@
 #page .asme-member-resources-page .asme-resource-card.asme-resource-card--accented.asme-resource-card--primary:focus-visible,
 #page .asme-member-resources-page .asme-resource-card.asme-resource-card--accented.asme-resource-card--secondary:focus-visible,
 #page .asme-member-resources-page .asme-resource-card.asme-resource-card--secondary:not(.asme-resource-card--accented):focus-visible,
-#page .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--resource:focus-visible,
 #page .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--external:focus-visible,
 #page .asme-member-resources-page .asme-resource-card:not(.asme-resource-card--accented):not(.asme-resource-card--actions):not(.asme-resource-card--primary):not(.asme-resource-card--scarlet):not(.asme-resource-card--secondary):focus-visible,
 #page .asme-member-resources-page .asme-resource-card.asme-resource-card--accented:not(.asme-resource-card--primary):not(.asme-resource-card--secondary):focus-visible,
@@ -916,7 +762,7 @@
 #page .asme-member-resources-page .asme-resource-group:not(.asme-resource-group--start) .asme-resource-group-header .asme-resource-group-title {
   font-family: var(--asme-font-sans)!important;
   line-height: 1.4!important;
-  letter-spacing: 0.02em!important;
+  letter-spacing: .02em!important;
 }
 
 @media (max-width: 1919px) {
@@ -960,12 +806,6 @@
     padding: 6px 14px;
   }
 
-  .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--resource,
-  .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--external {
-    padding: 4px 12px;
-    min-height: 24px;
-  }
-
 }
 
 @media (max-width: 767px) {
@@ -984,6 +824,7 @@
     scroll-padding-left: 2px;
     scrollbar-width: thin;
     scrollbar-color: rgba(15,52,96,0.38) rgba(15,52,96,0.08);
+    -webkit-overflow-scrolling: touch;
     grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
     display: flex;
     flex-wrap: nowrap;
@@ -998,12 +839,12 @@
   .asme-member-resources-page .asme-resource-card.asme-resource-card--accented.asme-resource-card--primary,
   .asme-member-resources-page .asme-resource-card.asme-resource-card--accented.asme-resource-card--secondary,
   .asme-member-resources-page .asme-resource-card.asme-resource-card--secondary:not(.asme-resource-card--accented) {
-    min-height: 0px;
+    min-height: 0;
     scroll-snap-align: start;
     flex: 0 0 min(300px,82vw);
+    min-width: min(300px,82vw);
     height: auto;
     align-self: stretch;
-    min-width: min(300px,82vw);
   }
 
   .asme-member-resources-page .asme-member-grid.asme-member-grid--3col,
@@ -1015,7 +856,7 @@
   .asme-member-resources-page .asme-resource-card:not(.asme-resource-card--accented):not(.asme-resource-card--actions):not(.asme-resource-card--primary):not(.asme-resource-card--scarlet):not(.asme-resource-card--secondary),
   .asme-member-resources-page .asme-resource-card.asme-resource-card--accented:not(.asme-resource-card--primary):not(.asme-resource-card--secondary),
   .asme-member-resources-page .asme-resource-card.asme-resource-card--scarlet {
-    min-height: 0px;
+    min-height: 0;
   }
 
   .asme-member-resources-page .asme-resource-subgroup-header {
@@ -1071,11 +912,10 @@
 }
 
 @media (min-width: 640px) and (max-width: 1279px) {
-  .asme-member-resources-page .asme-jump-nav>li>a,
-  .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--resource,
-  .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--external {
+  .asme-member-resources-page .asme-jump-nav>li>a {
     justify-content: center;
     min-height: 44px;
+    box-sizing: border-box;
     padding: 10px 14px;
   }
 
@@ -1121,12 +961,12 @@
   }
 
   .asme-member-resources-page .asme-member-grid.asme-member-grid--2col.asme-member-grid--career-data {
-    grid-template-columns: repeat(2,minmax(0px,1fr));
+    grid-template-columns: repeat(2,minmax(0,1fr));
   }
 
   .asme-member-resources-page .asme-member-grid.asme-member-grid--2col:not(.asme-member-grid--career-data) {
-    max-width: 640px;
     grid-template-columns: repeat(2,1fr);
+    max-width: 640px;
   }
 
   .asme-member-resources-page .asme-member-cta {
@@ -1198,12 +1038,6 @@
 @media (min-width: 1280px) {
   .asme-member-resources-page .asme-jump-nav>li>a {
     padding: 6px 14px;
-  }
-
-  .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--resource,
-  .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--external {
-    padding: 4px 12px;
-    min-height: 24px;
   }
 
 }
@@ -1279,25 +1113,23 @@
     background-color: var(--m-navy, #0f3460);
   }
 
-  .asme-member-resources-page .asme-info-banner.asme-info-banner--blue,
-  .asme-member-resources-page .asme-resource-card-footer:not(.asme-resource-card-footer--actions) .asme-status-badge.asme-status-badge--resource,
-  .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--resource {
+  .asme-member-resources-page .asme-info-banner.asme-info-banner--blue {
     background: #e8f4fd;
     border-color: #c7d9ee;
-    color: rgb(15,52,96);
+    color: #0f3460;
   }
 
   .asme-member-resources-page .asme-info-banner-icon.asme-resource-svg-icon.asme-resource-svg-icon--info {
     background: rgba(15,52,96,0.1);
     border-color: rgba(15,52,96,0.14);
-    color: rgb(15,52,96);
+    color: #0f3460;
   }
 
   .asme-member-resources-page .asme-info-banner.asme-info-banner--blue>p:empty,
   .asme-member-resources-page .asme-info-banner.asme-info-banner--blue>p:not(:empty),
   .asme-member-resources-page .asme-info-banner.asme-info-banner--blue>p>strong,
   .asme-member-resources-page .asme-resource-card-title {
-    color: rgb(15,52,96);
+    color: #0f3460;
   }
 
   .asme-member-resources-page .asme-jump-nav>li>a {
@@ -1336,19 +1168,17 @@
 
   .asme-member-resources-page .asme-resource-card-footer:not(.asme-resource-card-footer--actions),
   .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions {
-    border-top-color: rgb(228,231,236);
+    border-top-color: #e4e7ec;
   }
 
-  .asme-member-resources-page .asme-status-badge.asme-status-badge--featured,
-  .asme-member-resources-page .asme-resource-card-icon.asme-resource-svg-icon.asme-resource-svg-icon--email,
-  .asme-member-resources-page .asme-resource-card.asme-resource-card--scarlet .asme-resource-card-icon.asme-resource-svg-icon.asme-resource-svg-icon--blog {
+  .asme-member-resources-page .asme-status-badge.asme-status-badge--featured {
     background: #fff0f0;
+    color: #bb0000;
     border-color: #fecdd3;
-    color: rgb(187,0,0);
   }
 
   .asme-member-resources-page .asme-resource-card-arrow {
-    color: rgb(156,163,175);
+    color: #9ca3af;
   }
 
   .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--external,
@@ -1359,6 +1189,13 @@
 
   .asme-member-resources-page .asme-resource-subgroup-header>p {
     color: var(--m-muted, #667085);
+  }
+
+  .asme-member-resources-page .asme-resource-card-icon.asme-resource-svg-icon.asme-resource-svg-icon--email,
+  .asme-member-resources-page .asme-resource-card.asme-resource-card--scarlet .asme-resource-card-icon.asme-resource-svg-icon.asme-resource-svg-icon--blog {
+    background: #fff0f0;
+    border-color: #fecdd3;
+    color: #bb0000;
   }
 
   .asme-member-resources-page .asme-member-cta-copy>p:not(:empty),
@@ -1403,29 +1240,29 @@
 
   .asme-member-resources-page .asme-member-hero,
   .asme-member-resources-page .asme-member-cta {
-    background-color: rgb(15,52,96);
+    background-color: #0f3460;
   }
 
   .asme-member-resources-page .asme-info-banner.asme-info-banner--blue {
     background: #0f1f3a;
     border-color: #26364f;
-    color: rgb(219,234,254);
+    color: #dbeafe;
   }
 
   .asme-member-resources-page .asme-info-banner-icon.asme-resource-svg-icon.asme-resource-svg-icon--info {
     background: rgba(147,197,253,0.12);
     border-color: rgba(147,197,253,0.18);
-    color: rgb(147,197,253);
+    color: #93c5fd;
   }
 
   .asme-member-resources-page .asme-info-banner.asme-info-banner--blue>p>strong {
-    color: rgb(219,234,254);
+    color: #dbeafe;
   }
 
   .asme-member-resources-page .asme-jump-nav>li>a {
     background: #0f1b2d;
     border-color: #26364f;
-    color: rgb(226,232,240);
+    color: #e2e8f0;
   }
 
   .asme-member-resources-page .asme-jump-nav>li>a:hover {
@@ -1458,34 +1295,27 @@
   }
 
   .asme-member-resources-page .asme-resource-card-title {
-    color: rgb(255,255,255);
+    color: #ffffff;
   }
 
   .asme-member-resources-page .asme-resource-card-footer:not(.asme-resource-card-footer--actions),
   .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions {
-    border-top-color: rgb(38,54,79);
+    border-top-color: #26364f;
   }
 
   .asme-member-resources-page .asme-status-badge.asme-status-badge--featured {
     background: #2d0000;
+    color: #f87171;
     border-color: #7f1d1d;
-    color: rgb(248,113,113);
   }
 
   .asme-member-resources-page .asme-resource-card-arrow,
   .asme-member-resources-page .asme-page-meta>a {
-    color: rgb(147,197,253);
-  }
-
-  .asme-member-resources-page .asme-resource-card-footer:not(.asme-resource-card-footer--actions) .asme-status-badge.asme-status-badge--resource,
-  .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--resource {
-    background: #0f1f3a;
-    border-color: #26364f;
-    color: rgb(147,197,253);
+    color: #93c5fd;
   }
 
   .asme-member-resources-page .asme-resource-group:not(.asme-resource-group--start) .asme-resource-group-header {
-    border-bottom-color: rgb(38,54,79);
+    border-bottom-color: #26364f;
   }
 
   .asme-member-resources-page .asme-resource-card-footer.asme-resource-card-footer--actions .asme-status-badge.asme-status-badge--external,
@@ -1498,7 +1328,7 @@
   .asme-member-resources-page .asme-resource-card.asme-resource-card--scarlet .asme-resource-card-icon.asme-resource-svg-icon.asme-resource-svg-icon--blog {
     background: #2d0000;
     border-color: #7f1d1d;
-    color: rgb(252,165,165);
+    color: #fca5a5;
   }
 
   .asme-member-resources-page .asme-btn.asme-btn--ghost {
@@ -1523,8 +1353,8 @@
     border-image-width: 1;
     border-image-outset: 0;
     border-image-repeat: stretch;
-    border-color: rgba(255,255,255,0.2);
     background-color: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
   }
 
   .asme-member-resources-page .asme-btn.asme-btn--ghost:hover {
@@ -1533,20 +1363,20 @@
 
   .asme-member-resources-page .asme-info-banner.asme-info-banner--blue>p:empty,
   .asme-member-resources-page .asme-info-banner.asme-info-banner--blue>p:not(:empty) {
-    color: rgb(219,234,254)!important;
+    color: #dbeafe!important;
   }
 
   .asme-member-resources-page .asme-resource-group.asme-resource-group--start .asme-resource-group-header .asme-resource-group-title {
-    color: rgb(252,165,165)!important;
+    color: #fca5a5!important;
   }
 
   .asme-member-resources-page .asme-resource-subgroup-header>h3 {
-    color: rgb(248,250,252)!important;
+    color: #f8fafc!important;
   }
 
   .asme-member-resources-page .asme-resource-subgroup-header>p,
   .asme-member-resources-page .asme-page-meta {
-    color: rgb(148,163,184)!important;
+    color: #94a3b8!important;
   }
 
 }
@@ -1556,213 +1386,40 @@
    DevTools does not report (::placeholder), overlays outside the page content
    such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
    [aria-*]) whose values change while the page is used. */
-.asme-member-resources-page>br {
-  display: none!important;
-  height: 0!important;
-  margin: 0!important;
-  padding: 0!important;
+.asme-member-resources-page>br{display:none!important;height:0!important;margin:0!important;padding:0!important}
+.asme-member-resources-page .asme-member-grid>br{display:none!important;height:0!important;margin:0!important;padding:0!important}
+body #page .asme-member-resources-page>br,body #page .asme-member-resources-page p:empty,body #page .asme-member-resources-page .asme-member-grid>br{display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important}
+body:has(.asme-member-resources-page) .asme-members-page,body:has(.asme-member-resources-page) .asme-member-resources-page,body:has(.asme-member-resources-page) .asme-resource-group{background:#ffffff!important;background-color:#ffffff!important}
+body:has(.asme-member-resources-page) .asme-member-resources-page{--m-bg:  #f5f7fa !important;--m-card:  #ffffff !important;--m-border:  #e4e7ec !important;--m-text:  #1a1a2e !important;--m-muted:  #6b7280 !important;--m-navy:  #0f3460 !important;--m-scarlet:  #bb0000 !important;--m-light-navy:  #e8f4fd !important;--m-blue-soft:  #e8f4fd !important;--m-shadow:  0 6px 20px rgba(15, 52, 96, 0.08) !important;background:#f5f7fa!important;background-color:#f5f7fa!important;color:#1a1a2e!important}
+@media (prefers-color-scheme:dark){body:has(.asme-member-resources-page) .asme-member-resources-page{--m-bg:  #07111f !important;--m-card:  #0f1b2d !important;--m-border:  #26364f !important;--m-text:  #f8fafc !important;--m-muted:  #cbd5e1 !important;--m-navy:  #f8fafc !important;--m-scarlet:  #bb0000 !important;--m-light-navy:  #1e293b !important;--m-blue-soft:  #0f1f3a !important;--m-shadow:  none !important;background:#07111f!important;background-color:#07111f!important;color:#f8fafc!important}
 }
-
-.asme-member-resources-page .asme-member-grid>br {
-  display: none!important;
-  height: 0!important;
-  margin: 0!important;
-  padding: 0!important;
+body #page .asme-member-resources-page .asme-member-grid>br,body #page .asme-member-resources-page .asme-member-grid>p:empty{display:none!important}
+@media (max-width:640px){body #page .asme-member-resources-page #getting-started .asme-member-grid::-webkit-scrollbar{height:6px}
 }
-
-body #page .asme-member-resources-page>br,
-body #page .asme-member-resources-page p:empty,
-body #page .asme-member-resources-page .asme-member-grid>br {
-  display: none!important;
-  height: 0!important;
-  min-height: 0!important;
-  margin: 0!important;
-  padding: 0!important;
-  border: 0!important;
+@media (max-width:640px){body #page .asme-member-resources-page #getting-started .asme-member-grid::-webkit-scrollbar-track{border-radius:999px;background:rgba(15,52,96,0.08)}
 }
-
-body:has(.asme-member-resources-page) .asme-members-page,
-body:has(.asme-member-resources-page) .asme-member-resources-page,
-body:has(.asme-member-resources-page) .asme-resource-group {
-  background: #ffffff!important;
-  background-color: #ffffff!important;
+@media (max-width:640px){body #page .asme-member-resources-page #getting-started .asme-member-grid::-webkit-scrollbar-thumb{border-radius:999px;background:rgba(15,52,96,0.38)}
 }
-
-body:has(.asme-member-resources-page) .asme-member-resources-page {
-  --m-bg:  #f5f7fa !important;
-  --m-card:  #ffffff !important;
-  --m-border:  #e4e7ec !important;
-  --m-text:  #1a1a2e !important;
-  --m-muted:  #6b7280 !important;
-  --m-navy:  #0f3460 !important;
-  --m-scarlet:  #bb0000 !important;
-  --m-light-navy:  #e8f4fd !important;
-  --m-blue-soft:  #e8f4fd !important;
-  --m-shadow:  0 6px 20px rgba(15, 52, 96, 0.08) !important;
-  background: #f5f7fa!important;
-  background-color: #f5f7fa!important;
-  color: #1a1a2e!important;
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--chapter{background:#e3e9f7!important;border-color:#c9d6ec!important;color:#0f3460!important}
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--calendar{background:#eff6ff!important;border-color:#bfdbfe!important;color:#2563eb!important}
+@media (prefers-color-scheme:dark){body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--chapter{background:#162d52!important;border-color:#284263!important;color:#93c5fd!important}
 }
-
-@media (prefers-color-scheme: dark) {
-  body:has(.asme-member-resources-page) .asme-member-resources-page {
-    --m-bg:  #07111f !important;
-    --m-card:  #0f1b2d !important;
-    --m-border:  #26364f !important;
-    --m-text:  #f8fafc !important;
-    --m-muted:  #cbd5e1 !important;
-    --m-navy:  #f8fafc !important;
-    --m-scarlet:  #bb0000 !important;
-    --m-light-navy:  #1e293b !important;
-    --m-blue-soft:  #0f1f3a !important;
-    --m-shadow:  none !important;
-    background: #07111f!important;
-    background-color: #07111f!important;
-    color: #f8fafc!important;
-  }
-
+@media (prefers-color-scheme:dark){body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--calendar{background:#1e3a5f!important;border-color:#2f5f99!important;color:#60a5fa!important}
 }
-
-body #page .asme-member-resources-page .asme-member-grid>br,
-body #page .asme-member-resources-page .asme-member-grid>p:empty {
-  display: none!important;
+@media (prefers-color-scheme:dark){body #page .asme-members-page:not(.asme-member-resources-page) .asme-info-banner--blue{background-color:#162d52!important;border-color:#26364f!important;color:#93c5fd!important}
 }
-
-@media (max-width: 640px) {
-  body #page .asme-member-resources-page #getting-started .asme-member-grid::-webkit-scrollbar {
-    height: 6px;
-  }
-
+@media (prefers-color-scheme:dark){body #page .asme-members-page:not(.asme-member-resources-page) .asme-info-banner--blue p,body #page .asme-members-page:not(.asme-member-resources-page) .asme-info-banner--blue strong,body #page .asme-members-page:not(.asme-member-resources-page) .asme-info-banner--blue a{color:#93c5fd!important;opacity:1!important}
 }
-
-@media (max-width: 640px) {
-  body #page .asme-member-resources-page #getting-started .asme-member-grid::-webkit-scrollbar-track {
-    border-radius: 999px;
-    background: rgba(15,52,96,0.08);
-  }
-
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-icon,body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-title,body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-desc,body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-footer{display:flex!important}
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-title,body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-desc{display:block!important}
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>br,body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>p:empty,body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>.asme-resource-card:empty,body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>.asme-resource-card:not(:has(.asme-resource-card-title)),body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>:not(.asme-resource-card):not(:has(.asme-resource-card-title)):not(:has(.asme-resource-card-desc)){display:none!important}
+body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>p:has(>br:only-child),body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>p:has(>.asme-resource-card:empty){display:none!important}
+@media (prefers-color-scheme:dark){body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-group,body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid{background-color:transparent!important}
 }
-
-@media (max-width: 640px) {
-  body #page .asme-member-resources-page #getting-started .asme-member-grid::-webkit-scrollbar-thumb {
-    border-radius: 999px;
-    background: rgba(15,52,96,0.38);
-  }
-
+@media (prefers-color-scheme:dark){body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card{background-color:#0f1b2d!important}
 }
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--chapter {
-  background: #e3e9f7!important;
-  border-color: #c9d6ec!important;
-  color: #0f3460!important;
+@media (prefers-reduced-transparency:reduce){body #page .asme-member-resources-page .asme-jump-nav,body #page .asme-members-page .asme-jump-nav{background:var(--asme-card, #ffffff)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 }
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--calendar {
-  background: #eff6ff!important;
-  border-color: #bfdbfe!important;
-  color: #2563eb!important;
-}
-
-@media (prefers-color-scheme: dark) {
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--chapter {
-    background: #162d52!important;
-    border-color: #284263!important;
-    color: #93c5fd!important;
-  }
-
-}
-
-@media (prefers-color-scheme: dark) {
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-svg-icon--calendar {
-    background: #1e3a5f!important;
-    border-color: #2f5f99!important;
-    color: #60a5fa!important;
-  }
-
-}
-
-@media (prefers-color-scheme: dark) {
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-info-banner--blue {
-    background-color: #162d52!important;
-    border-color: #26364f!important;
-    color: #93c5fd!important;
-  }
-
-}
-
-@media (prefers-color-scheme: dark) {
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-info-banner--blue p,
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-info-banner--blue strong,
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-info-banner--blue a {
-    color: #93c5fd!important;
-    opacity: 1!important;
-  }
-
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-icon,
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-title,
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-desc,
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-footer {
-  display: flex!important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-title,
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card>span.asme-resource-card-desc {
-  display: block!important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>br,
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>p:empty,
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>.asme-resource-card:empty,
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>.asme-resource-card:not(:has(.asme-resource-card-title)),
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>:not(.asme-resource-card):not(:has(.asme-resource-card-title)):not(:has(.asme-resource-card-desc)) {
-  display: none!important;
-}
-
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>p:has(>br:only-child),
-body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid>p:has(>.asme-resource-card:empty) {
-  display: none!important;
-}
-
-@media (prefers-color-scheme: dark) {
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-group,
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-member-grid {
-    background-color: transparent!important;
-  }
-
-}
-
-@media (prefers-color-scheme: dark) {
-  body #page .asme-members-page:not(.asme-member-resources-page) .asme-resource-card {
-    background-color: #0f1b2d!important;
-  }
-
-}
-
-@media (prefers-reduced-transparency: reduce) {
-  body #page .asme-member-resources-page .asme-jump-nav,
-  body #page .asme-members-page .asme-jump-nav {
-    background: var(--asme-card, #ffffff)!important;
-    -webkit-backdrop-filter: none!important;
-    backdrop-filter: none!important;
-  }
-
-}
-
-body #page .asme-member-resources-page .asme-member-grid>.asme-resource-card:not(:has(.asme-resource-card-title)),
-body #page .asme-member-resources-page .asme-member-grid>p>.asme-resource-card:not(:has(.asme-resource-card-title)),
-html body #page .entry-content .asme-member-resources-page .asme-member-grid>.asme-resource-card:not(:has(.asme-resource-card-title)),
-html body #page .entry-content .asme-member-resources-page .asme-member-grid>p>.asme-resource-card:not(:has(.asme-resource-card-title)) {
-  display: none!important;
-}
-
-body #page .asme-member-resources-page .asme-member-grid>p:has(>.asme-resource-card),
-html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:has(>.asme-resource-card) {
-  display: contents!important;
-}
-
-body #page .asme-member-resources-page .asme-member-grid>p:has(>.asme-resource-card)>br,
-html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:has(>.asme-resource-card)>br {
-  display: none!important;
-}
+body #page .asme-member-resources-page .asme-member-grid>.asme-resource-card:not(:has(.asme-resource-card-title)),body #page .asme-member-resources-page .asme-member-grid>p>.asme-resource-card:not(:has(.asme-resource-card-title)),html body #page .entry-content .asme-member-resources-page .asme-member-grid>.asme-resource-card:not(:has(.asme-resource-card-title)),html body #page .entry-content .asme-member-resources-page .asme-member-grid>p>.asme-resource-card:not(:has(.asme-resource-card-title)){display:none!important}
+body #page .asme-member-resources-page .asme-member-grid>p:has(>.asme-resource-card),html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:has(>.asme-resource-card){display:contents!important}
+body #page .asme-member-resources-page .asme-member-grid>p:has(>.asme-resource-card)>br,html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:has(>.asme-resource-card)>br{display:none!important}
