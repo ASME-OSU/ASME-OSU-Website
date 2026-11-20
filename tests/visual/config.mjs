@@ -67,6 +67,29 @@ export const STATES = [
     }
   },
   {
+    // The hero's highlight card after switching to its second slide (the
+    // Career Guide); the script moves is-active between the two slides.
+    name: 'spotlight-2', page: 'home', width: 1280, viewportOnly: true,
+    async run(page) {
+      await page.locator('.ah-spotlight-dot').nth(1).click();
+      await page.waitForTimeout(900);
+    }
+  },
+  {
+    // The leaderboard's loading skeleton, as the page shows it before the
+    // points data arrives (markup from Member Points Integration.js).
+    name: 'leaderboard-loading', page: 'member-points', width: 1280,
+    async run(page) {
+      await page.evaluate(() => {
+        const bar = '<span class="asme-points-skeleton-bar"></span>';
+        const cell = name => `<span class="asme-leaderboard-${name}">${bar}</span>`;
+        const row = `<div class="asme-leaderboard-row asme-points-skeleton-row" aria-hidden="true">${['rank', 'avatar', 'member', 'meta', 'score'].map(cell).join('')}</div>`;
+        document.querySelector('#asmeLeaderboardRows').innerHTML = '<span class="asme-points-loading-label">Loading leaderboard…</span>' + row.repeat(10);
+      });
+      await settle(page);
+    }
+  },
+  {
     // The bootstrap restores the theme header when the component cannot load.
     name: 'header-fallback', page: 'home', width: 1280, viewportOnly: true, blockHeader: true,
     async run(page) { await page.waitForTimeout(4200); }

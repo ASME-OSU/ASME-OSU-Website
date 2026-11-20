@@ -3,7 +3,7 @@
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
 .asme-sponsors-page {
-  padding-top: 0px;
+  padding-top: 0;
   box-sizing: border-box;
   padding-right: 0;
   padding-left: 0;
@@ -29,7 +29,7 @@
 .asme-sponsors-page .sponsors-featured {
   border: 1px solid var(--asme-c-border);
   border-radius: 18px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   display: block;
   width: 100%;
 }
@@ -65,9 +65,9 @@
 
 .asme-sponsors-page .sponsors-top-tier-grid>p {
   display: none;
+  height: 0;
   margin: 0;
   padding: 0;
-  height: 0px;
 }
 
 .asme-sponsors-page .sponsors-tier-block.sponsors-tier-block--brutus {
@@ -117,13 +117,13 @@
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
+  color: var(--asme-c-on-accent);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
   padding: 3px 12px;
   border-radius: 999px;
-  color: var(--asme-c-on-accent);
   background: linear-gradient(135deg,#0f3460,#1a4a7a);
   font-size: 9px;
   display: none;
@@ -138,6 +138,7 @@
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:focus-visible::after {
   position: absolute;
   z-index: 0;
+  top: 0;
   left: -32%;
   width: 30%;
   height: 3px;
@@ -146,7 +147,6 @@
   border-radius: 999px;
   opacity: 0;
   pointer-events: none;
-  top: 0px;
   content: none;
 }
 
@@ -157,18 +157,18 @@
   align-items: center;
   margin: 0;
   border: 0;
+  color: var(--asme-c-on-accent);
   text-align: center;
   box-sizing: border-box;
-  color: var(--asme-c-on-accent);
-  min-height: 0px;
+  min-height: 0;
 }
 
 .asme-sponsors-page .sponsor-ribbon__tier {
+  color: var(--asme-c-on-accent);
   font-family: var(--asme-font-sans, Inter, system-ui, sans-serif);
   font-weight: 750;
   line-height: 1.35;
   text-transform: uppercase;
-  color: var(--asme-c-on-accent);
 }
 
 .asme-sponsors-page .sponsor-ribbon__divider {
@@ -213,7 +213,7 @@
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  filter: drop-shadow(rgba(0,0,0,0.24) 0px 6px 12px);
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.24));
 }
 
 .asme-sponsors-page .sponsor-card__content {
@@ -222,10 +222,10 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  min-width: 0;
   margin: 0;
   overflow: hidden;
   box-sizing: border-box;
-  min-width: 0px;
 }
 
 .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark {
@@ -243,7 +243,7 @@
   box-sizing: border-box;
   justify-content: flex-start;
   box-shadow: none;
-  min-height: 0px;
+  min-height: 0;
 }
 
 .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark>img {
@@ -278,9 +278,9 @@
   position: relative;
   z-index: 2;
   display: grid;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
   align-items: center;
   gap: 9px;
-  grid-template-columns: minmax(0px,1fr) auto minmax(0px,1fr);
 }
 
 .asme-sponsors-page .sponsor-card__divider>span {
@@ -390,9 +390,7 @@
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier,
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier {
   position: relative;
-  flex-grow: unset;
-  flex-shrink: unset;
-  flex-basis: unset;
+  flex: unset;
   align-self: stretch;
 }
 
@@ -403,13 +401,13 @@
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
+  color: var(--asme-c-on-accent);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
   padding: 3px 12px;
   border-radius: 999px;
-  color: var(--asme-c-on-accent);
   background: #1c1c1c;
   font-size: 9px;
   display: none;
@@ -420,12 +418,12 @@
   object-fit: contain;
   opacity: 1;
   box-sizing: border-box;
-  filter: drop-shadow(rgba(0,0,0,0.22) 0px 6px 10px);
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.22));
   border: 0;
   background: var(--asme-c-on-accent);
   border-radius: 10px;
   padding: 4px;
-  box-shadow: rgba(15,23,42,0.16) 0px 10px 22px,rgba(15,23,42,0.08) 0px 0px 0px 1px;
+  box-shadow: 0 10px 22px rgba(15,23,42,0.16),0 0 0 1px rgba(15,23,42,0.08);
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko>br,
@@ -488,6 +486,7 @@
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
+  color: var(--asme-c-on-accent);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -495,7 +494,6 @@
   white-space: nowrap;
   padding: 3px 12px;
   border-radius: 999px;
-  color: var(--asme-c-on-accent);
   background: var(--asme-c-accent);
   display: none;
   content: none;
@@ -506,13 +504,13 @@
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier .sponsor-card-tier-badge {
   object-fit: contain;
   opacity: 1;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.24));
   box-sizing: border-box;
-  filter: drop-shadow(rgba(0,0,0,0.24) 0px 6px 10px);
   border: 0;
   background: var(--asme-c-on-accent);
   border-radius: 10px;
   padding: 4px;
-  box-shadow: rgba(15,23,42,0.16) 0px 10px 22px,rgba(15,23,42,0.08) 0px 0px 0px 1px;
+  box-shadow: 0 10px 22px rgba(15,23,42,0.16),0 0 0 1px rgba(15,23,42,0.08);
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier .sponsor-logo-link:not(.sponsor-logo-area):not(.sponsor-logo-area--featured):not(.sponsor-logo-area--wordmark) .sponsor-logo-frame {
@@ -549,13 +547,13 @@
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
+  color: var(--asme-c-on-accent);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
   padding: 3px 12px;
   border-radius: 999px;
-  color: var(--asme-c-on-accent);
   background: var(--asme-c-accent);
   font-size: 9px;
   display: none;
@@ -647,7 +645,7 @@
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-partner:hover {
-  box-shadow: rgba(15,52,96,0.08) 0px 6px 18px;
+  box-shadow: 0 6px 18px rgba(15,52,96,0.08);
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-partner .sponsor-logo-link:not(.sponsor-logo-area):not(.sponsor-logo-area--featured):not(.sponsor-logo-area--wordmark) .sponsor-logo-frame {
@@ -681,16 +679,16 @@
   margin: 0;
   font-size: 14px;
   line-height: 1.2;
-  letter-spacing: 0px;
+  letter-spacing: 0;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-partner>h3>a {
   text-decoration: none;
+  font-family: "DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   font-size: 14px;
   font-weight: 800;
   line-height: 1.2;
-  font-family: "DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  letter-spacing: 0px;
+  letter-spacing: 0;
 }
 
 .asme-sponsors-page .sponsors-cta {
@@ -742,8 +740,8 @@
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier>h3,
 .asme-sponsors-page .sponsors-partners .sponsors-section-header>h2,
 .asme-sponsors-page .sponsors-cta>div>h2 {
-  font-weight: 400!important;
   font-family: "DM Serif Display",serif!important;
+  font-weight: 400!important;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
@@ -794,8 +792,8 @@
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-partner>h3 {
-  font-weight: 800!important;
   font-family: "DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  font-weight: 800!important;
 }
 
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
@@ -834,7 +832,7 @@
   padding-top: 0px!important;
   padding-bottom: 0px!important;
   padding-left: 0px!important;
-  margin-top: 0px!important;
+  margin-top: 0!important;
   align-self: stretch!important;
   width: 100%!important;
 }
@@ -852,7 +850,7 @@
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier>p,
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier>p {
   align-self: start!important;
-  margin-top: 0px!important;
+  margin-top: 0!important;
 }
 
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko>h3,
@@ -860,7 +858,7 @@
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier>h3,
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier>h3 {
   align-self: end!important;
-  margin-bottom: 0px!important;
+  margin-bottom: 0!important;
 }
 
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier {
@@ -917,7 +915,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsors-lower-tier-row {
-    grid-template-columns: minmax(0px,1fr);
+    grid-template-columns: minmax(0,1fr);
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko .sponsor-card-tier-badge,
@@ -954,7 +952,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-card__content .sponsor-card__name {
     grid-column: 1!important;
     grid-row: 2!important;
-    padding-right: 0px!important;
+    padding-right: 0!important;
   }
 
   html body #page .entry-content .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark,
@@ -1031,7 +1029,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg {
     flex-direction: column;
-    min-height: 0px;
+    min-height: 0;
     align-content: start;
     gap: 16px;
   }
@@ -1040,6 +1038,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     flex: 0 0 92px;
     position: static;
     width: auto;
+    min-width: 0;
     max-width: none;
     align-self: stretch;
     flex-direction: row;
@@ -1048,9 +1047,8 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     clip-path: none;
     border-radius: 10px;
     gap: 12px;
-    min-width: 0px;
-    max-height: 340px;
     height: clamp(330px,79vw,340px);
+    max-height: 340px;
   }
 
   .asme-sponsors-page .sponsor-ribbon__tier {
@@ -1078,7 +1076,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     margin: 0;
     align-self: start;
     width: 100%;
-    min-width: 0px;
+    min-width: 0;
   }
 
   .asme-sponsors-page .sponsor-ribbon__badge {
@@ -1104,13 +1102,13 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-card__content .sponsor-card__name {
+    min-width: 0;
     overflow-wrap: anywhere;
-    min-width: 0px;
   }
 
   .asme-sponsors-page .sponsor-card__description {
     width: 100%;
-    min-width: 0px;
+    min-width: 0;
     font-size: 17px;
     line-height: 1.5;
   }
@@ -1119,6 +1117,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     flex: 0 0 92px;
     position: static;
     width: auto;
+    min-width: 0;
     height: auto;
     max-width: none;
     max-height: none;
@@ -1129,7 +1128,6 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     clip-path: none;
     border-radius: 10px;
     gap: 12px;
-    min-width: 0px;
   }
 
   .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured>img {
@@ -1137,8 +1135,8 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-card__content .sponsor-card__name {
+    min-width: 0;
     overflow-wrap: anywhere;
-    min-width: 0px;
     margin: 18px 0 0;
     font-size: 21px;
   }
@@ -1158,12 +1156,12 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     column-gap: 16px;
     display: grid;
     height: auto;
+    grid-template-columns: minmax(0,1fr);
     grid-template-rows: auto auto auto;
+    min-height: 0;
     row-gap: 12px;
     align-items: start;
     align-content: start;
-    grid-template-columns: minmax(0px,1fr);
-    min-height: 0px;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko .sponsor-card-tier-badge,
@@ -1193,8 +1191,8 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko .sponsor-logo-link:not(.sponsor-logo-area):not(.sponsor-logo-area--featured):not(.sponsor-logo-area--wordmark) .sponsor-logo-frame {
     margin: 0;
     padding: 8px;
-    height: 92px;
     width: min(100%,156px);
+    height: 92px;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko>p,
@@ -1207,7 +1205,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     grid-column: 1;
     grid-row: 3;
     width: 100%;
-    min-width: 0px;
+    min-width: 0;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko>h3 {
@@ -1218,17 +1216,17 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     grid-column: 1;
     grid-row: 2;
     width: 100%;
+    min-width: 0;
     padding-right: 54px;
     overflow-wrap: anywhere;
-    min-width: 0px;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier .sponsor-logo-link:not(.sponsor-logo-area):not(.sponsor-logo-area--featured):not(.sponsor-logo-area--wordmark) .sponsor-logo-frame,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier .sponsor-logo-link:not(.sponsor-logo-area):not(.sponsor-logo-area--featured):not(.sponsor-logo-area--wordmark) .sponsor-logo-frame,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier .sponsor-logo-link:not(.sponsor-logo-area):not(.sponsor-logo-area--featured):not(.sponsor-logo-area--wordmark) .sponsor-logo-frame {
     margin: 0;
-    height: 92px;
     width: min(100%,156px);
+    height: 92px;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier>h3,
@@ -1240,9 +1238,9 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     grid-column: 1;
     grid-row: 2;
     width: 100%;
+    min-width: 0;
     padding-right: 54px;
     overflow-wrap: anywhere;
-    min-width: 0px;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
@@ -1256,8 +1254,8 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier {
     width: 100%!important;
     max-width: 100%!important;
+    min-width: 0!important;
     margin: 0!important;
-    min-width: 0px!important;
     padding: 18px!important;
   }
 
@@ -1315,14 +1313,14 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
 @media (min-width: 640px) and (max-width: 1099px) {
   .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
-    grid-template-columns: repeat(2,minmax(0px,1fr));
+    grid-template-columns: repeat(2,minmax(0,1fr));
   }
 
 }
 
 @media (min-width: 640px) and (max-width: 1279px) {
   html body #page#page .entry-content .asme-sponsors-page .sponsors-tier-cards.sponsors-tier-cards--brutus {
-    grid-template-columns: minmax(0px,1fr)!important;
+    grid-template-columns: minmax(0,1fr)!important;
   }
 
 }
@@ -1333,7 +1331,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     position: relative;
     flex-direction: column;
     align-self: flex-start;
-    clip-path: polygon(0px 0px,100% 0px,100% 86%,50% 100%,0px 86%);
+    clip-path: polygon(0 0,100%0,100% 86%,50% 100%,0 86%);
   }
 
   .asme-sponsors-page .sponsor-ribbon__divider {
@@ -1397,8 +1395,8 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark>img {
-    max-height: 110px;
     width: min(100%,620px);
+    max-height: 110px;
   }
 
   .asme-sponsors-page .sponsor-card__description {
@@ -1478,7 +1476,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     align-content: center;
     gap: 22px;
     height: 100%;
-    min-height: 0px;
+    min-height: 0;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-ribbon,
@@ -1584,7 +1582,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     gap: 16px;
     width: 100%;
     align-items: stretch;
-    grid-template-columns: repeat(2,minmax(0px,1fr));
+    grid-template-columns: repeat(2,minmax(0,1fr));
     grid-auto-rows: auto;
   }
 
@@ -1595,12 +1593,12 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     text-align: left;
     column-gap: 16px;
     display: grid;
+    grid-template-columns: minmax(104px,118px) minmax(0,1fr) 44px;
     grid-template-rows: auto auto;
     padding: 16px 16px;
     align-items: center;
     align-content: center;
     row-gap: 4px;
-    grid-template-columns: minmax(104px,118px) minmax(0px,1fr) 44px;
     min-height: 138px;
     height: auto;
   }
@@ -1657,7 +1655,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     margin-left: 0px;
     grid-column: 2;
     grid-row: 1;
-    padding-right: 0px;
+    padding-right: 0;
   }
 
   .asme-sponsors-page .sponsors-cta {
@@ -1671,8 +1669,8 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier {
     width: 100%!important;
     max-width: 100%!important;
+    min-width: 0!important;
     margin: 0!important;
-    min-width: 0px!important;
   }
 
 }
@@ -1687,14 +1685,14 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 @media (min-width: 1100px) and (max-width: 1919px) {
   .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
     gap: 18px;
-    max-width: min(1480px,-96px + 100vw);
+    max-width: min(1480px,calc(100vw - 96px));
   }
 
 }
 
 @media (min-width: 1280px) {
   .asme-sponsors-page .sponsors-grid.sponsors-grid-partners {
-    grid-template-columns: repeat(6,minmax(0px,1fr));
+    grid-template-columns: repeat(6,minmax(0,1fr));
     flex-wrap: wrap;
     justify-content: center;
     align-items: stretch;
@@ -1702,7 +1700,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
   .asme-sponsors-page .sponsor-card.sponsor-card-partner {
     flex: 0 1 calc((100% - 90px)/6);
-    min-width: 0px;
+    min-width: 0;
   }
 
 }
@@ -1713,7 +1711,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-partner {
-    max-width: calc(16.6667% - 15px);
+    max-width: calc((100% - 90px)/6);
   }
 
 }
@@ -1800,7 +1798,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg {
     background: #ffffff;
     border: 1px solid rgba(10,45,80,0.05);
-    color: rgb(7,59,104);
+    color: #073b68;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:hover,
@@ -1811,7 +1809,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-ribbon,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-ribbon {
     background: linear-gradient(180deg,#06345f 0%,#003b70 55%,#002f59 100%);
-    box-shadow: rgba(255,255,255,0.1) 0px 1px 0px inset;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
   }
 
   .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark {
@@ -1822,7 +1820,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsor-card__name>a {
-    color: rgb(7,59,104);
+    color: #073b68;
   }
 
   .asme-sponsors-page .sponsor-card__divider>span,
@@ -1849,11 +1847,11 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-partner>h3>a {
-    color: rgb(55,65,81);
+    color: #374151;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-partner>h3>a:hover {
-    color: rgb(15,52,96);
+    color: #0f3460;
   }
 
   .asme-sponsors-page .sponsors-featured .sponsors-section-header>h2,
@@ -1864,21 +1862,21 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-card__content .sponsor-card__name,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-card__content .sponsor-card__name {
-    color: rgb(7,59,104)!important;
+    color: #073b68!important;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-partner>h3 {
-    color: rgb(55,65,81)!important;
+    color: #374151!important;
   }
 
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg {
-    box-shadow: rgba(23,43,64,0.07) 0px 10px 26px,rgba(23,43,64,0.03) 0px 2px 6px!important;
+    box-shadow: 0 10px 26px rgba(23,43,64,0.07),0 2px 6px rgba(23,43,64,0.03)!important;
   }
 
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:hover,
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:hover {
-    box-shadow: rgba(15,35,55,0.11) 0px 16px 36px,rgba(15,35,55,0.05) 0px 3px 10px!important;
+    box-shadow: 0 16px 36px rgba(15,35,55,0.11),0 3px 10px rgba(15,35,55,0.05)!important;
   }
 
 }
@@ -1919,9 +1917,9 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
     border-image-width: 1;
     border-image-outset: 0;
     border-image-repeat: stretch;
+    color: #e6edf5;
     background: #18283b;
     border-color: rgba(148,163,184,0.22);
-    color: rgb(230,237,245);
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:hover,
@@ -1932,7 +1930,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-ribbon,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-ribbon {
     background: linear-gradient(180deg,#0b4675 0%,#073b68 56%,#052f55 100%);
-    box-shadow: rgba(255,255,255,0.12) 0px 1px 0px inset,rgba(2,8,23,0.24) 0px 8px 20px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12),0 8px 20px rgba(2,8,23,0.24);
   }
 
   .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark {
@@ -1943,7 +1941,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsor-card__name>a {
-    color: rgb(245,248,252);
+    color: #f5f8fc;
   }
 
   .asme-sponsors-page .sponsor-card__divider>span,
@@ -1953,7 +1951,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
   .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--featured {
     border: 1px solid rgba(125,211,252,0.16);
-    box-shadow: rgba(2,8,23,0.24) 0px 8px 22px;
+    box-shadow: 0 8px 22px rgba(2,8,23,0.24);
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko {
@@ -1972,7 +1970,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko>h3>a {
-    color: rgb(229,231,235);
+    color: #e5e7eb;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier {
@@ -1994,7 +1992,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier>h3>a,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier>h3>a,
   .asme-sponsors-page .sponsor-card.sponsor-card-partner>h3>a {
-    color: rgb(255,255,255);
+    color: #ffffff;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier {
@@ -2038,27 +2036,27 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-card__content .sponsor-card__name,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg .sponsor-card__content .sponsor-card__name {
-    color: rgb(245,248,252)!important;
+    color: #f5f8fc!important;
   }
 
   .asme-sponsors-page .sponsor-card__description {
-    color: rgb(195,206,219)!important;
+    color: #c3cedb!important;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko>p,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko>h3 {
-    color: rgb(229,231,235)!important;
+    color: #e5e7eb!important;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier>p {
-    color: rgb(195,207,221)!important;
+    color: #c3cfdd!important;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier>h3,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier>h3,
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier>h3,
   .asme-sponsors-page .sponsor-card.sponsor-card-partner>h3 {
-    color: rgb(255,255,255)!important;
+    color: #ffffff!important;
   }
 
   .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier>p,
@@ -2068,12 +2066,12 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
 
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt,
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg {
-    box-shadow: rgba(2,8,23,0.32) 0px 14px 34px,rgba(2,8,23,0.22) 0px 3px 8px!important;
+    box-shadow: 0 14px 34px rgba(2,8,23,0.32),0 3px 8px rgba(2,8,23,0.22)!important;
   }
 
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:hover,
   #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:hover {
-    box-shadow: rgba(2,8,23,0.4) 0px 18px 40px,rgba(2,8,23,0.26) 0px 4px 12px!important;
+    box-shadow: 0 18px 40px rgba(2,8,23,0.4),0 4px 12px rgba(2,8,23,0.26)!important;
   }
 
 }

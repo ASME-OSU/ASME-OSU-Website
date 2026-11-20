@@ -305,6 +305,9 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
       var slides  = [];
       var dots    = [];
       var leadSlide = container.querySelector('.ah-hero-slide');
+      var timer = null;
+      var heroHovered = false;
+      var hero = container.closest('.ah-hero');
 
       ahSlides.forEach(function (s, i) {
         var el = i === 0 && leadSlide ? leadSlide : document.createElement('div');
@@ -320,7 +323,7 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
         dot.type = 'button';
         dot.setAttribute('aria-label', 'Show slide ' + (i + 1));
         dot.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-        dot.addEventListener('click', function () { goTo(i); });
+        dot.addEventListener('click', function () { goTo(i); restartTimer(); });
         dotsContainer.appendChild(dot);
         dots.push(dot);
       });
@@ -329,18 +332,37 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
         dots[current].setAttribute('aria-pressed', 'false');
         slides[current].classList.remove('active');
         dots[current].classList.remove('active');
-        current = n;
+        current = (n + slides.length) % slides.length;
         loadHeroPhoto(slides[current], ahSlides[current]);
         dots[current].setAttribute('aria-pressed', 'true');
         slides[current].classList.add('active');
         dots[current].classList.add('active');
       }
 
+      // Advance every 5 seconds; pause while hovered or focused, when the tab
+      // is hidden, and for visitors who ask for reduced motion.
+      function restartTimer() {
+        if (timer) clearInterval(timer);
+        timer = null;
+        if (!reduceMotion && slides.length > 1 && !heroHovered && !(hero && hero.contains(document.activeElement))) {
+          timer = setInterval(function () {
+            if (!document.hidden) goTo(current + 1);
+          }, 5000);
+        }
+      }
+
+      if (hero) {
+        hero.addEventListener('mouseenter', function () { heroHovered = true; restartTimer(); });
+        hero.addEventListener('mouseleave', function () { heroHovered = false; restartTimer(); });
+        hero.addEventListener('focusin', restartTimer);
+        hero.addEventListener('focusout', function () { window.setTimeout(restartTimer, 0); });
+      }
+      restartTimer();
     }
 
     /* ─────────────────────────────────────────
        8. HOME HERO SPOTLIGHT
-       Shows the chapter award and Career Guide.
+       Rotates between the chapter award and Career Guide.
     ───────────────────────────────────────── */
     var spotlight = document.getElementById('ahSpotlight');
 
@@ -348,6 +370,8 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
       var spotlightSlides = Array.prototype.slice.call(spotlight.querySelectorAll('[data-spotlight-slide]'));
       var spotlightDots = Array.prototype.slice.call(spotlight.querySelectorAll('[data-spotlight-dot]'));
       var spotlightCurrent = 0;
+      var spotlightTimer = null;
+      var spotlightHovered = false;
       spotlightSlides.forEach(function (slide, i) {
         slide.id = 'ahSpotlightPanel' + i;
         slide.setAttribute('role', 'tabpanel');
@@ -377,8 +401,27 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
         });
       }
 
+      function stopSpotlight() {
+        if (spotlightTimer) {
+          clearInterval(spotlightTimer);
+          spotlightTimer = null;
+        }
+      }
+
+      function startSpotlight() {
+        stopSpotlight();
+        if (!reduceMotion && spotlightSlides.length > 1 && !spotlightHovered && !spotlight.contains(document.activeElement)) {
+          spotlightTimer = setInterval(function () {
+            if (!document.hidden) showSpotlight(spotlightCurrent + 1);
+          }, 6500);
+        }
+      }
+
       spotlightDots.forEach(function (dot, i) {
-        dot.addEventListener('click', function () { showSpotlight(i); });
+        dot.addEventListener('click', function () {
+          showSpotlight(i);
+          startSpotlight();
+        });
         dot.addEventListener('keydown', function (event) {
           var next;
           if (event.key === 'ArrowRight') next = (i + 1) % spotlightDots.length;
@@ -387,12 +430,29 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
           else if (event.key === 'End') next = spotlightDots.length - 1;
           else return;
           event.preventDefault();
+          stopSpotlight();
           showSpotlight(next);
           spotlightDots[next].focus();
         });
       });
 
+      spotlight.addEventListener('mouseenter', function () {
+        spotlightHovered = true;
+        stopSpotlight();
+      });
+      spotlight.addEventListener('mouseleave', function () {
+        spotlightHovered = false;
+        startSpotlight();
+      });
+      spotlight.addEventListener('focusin', stopSpotlight);
+      spotlight.addEventListener('focusout', function () {
+        window.setTimeout(function () {
+          if (!spotlight.contains(document.activeElement)) startSpotlight();
+        }, 0);
+      });
+
       showSpotlight(0);
+      startSpotlight();
     }
 
     /* Keep one continuous featured-event runner at every card aspect ratio.
@@ -921,8 +981,8 @@ body .asme-footer-v2.asme-footer-refined .asme-footer-address-link:focus-visible
 
 <!-- ASME GEARLY START -->
 <!-- Remove this block to disable Gearly. -->
-<link id="gearly-styles" rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly.css?v=20261120-phase2">
-<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-bootstrap.js?v=20261120-phase2" defer></script>
+<link id="gearly-styles" rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly.css?v=20261120-fix1">
+<script src="https://asme-osu.github.io/ASME-OSU-Website/assets/gearly/gearly-bootstrap.js?v=20261120-fix1" defer></script>
 <!-- ASME GEARLY END -->
 
 <!-- ASME HEADER COMPONENT START -->

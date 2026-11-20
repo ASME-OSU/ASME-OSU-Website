@@ -53,14 +53,19 @@ test('reduced-motion keyboard users can select and reach the Career Guide', () =
   } finally { s.close(); }
 });
 
-test('spotlight stays on the visitor selection without a timer', () => {
+test('spotlight keeps the visitor selection, then rotates on from it once focus leaves', () => {
   const s = setup();
   try {
     const dots = [...s.d.querySelectorAll('[data-spotlight-dot]')];
+    dots[1].focus();
     dots[1].click();
+    assert.equal(s.intervals.size, 0, 'no rotation while a dot has focus');
+    assert.equal(dots[1].getAttribute('aria-selected'), 'true');
     s.d.querySelector('#outside').focus();
     s.flush();
-    assert.equal(s.intervals.size, 0);
-    assert.equal(dots[1].getAttribute('aria-selected'), 'true');
+    assert.equal(s.intervals.size, 1, 'rotation resumes after focus leaves');
+    assert.equal(dots[1].getAttribute('aria-selected'), 'true', 'the selection stays until the next tick');
+    [...s.intervals.values()][0]();
+    assert.equal(dots[0].getAttribute('aria-selected'), 'true');
   } finally { s.close(); }
 });

@@ -7,21 +7,463 @@
   flex-direction: column;
   padding-top: 8px;
   box-sizing: border-box;
-  padding-right: 0px;
-  padding-left: 0px;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .asme-about-page *,
-.asme-about-page *::before,
-.asme-about-page *::after {
+.asme-about-page>p::before,
+.asme-about-page>p::after,
+.asme-about-page>p:hover::before,
+.asme-about-page>p:hover::after,
+.asme-about-page>p:focus-visible::before,
+.asme-about-page>p:focus-visible::after,
+.asme-about-page .about-hero::before,
+.asme-about-page .about-hero::after,
+.asme-about-page .about-hero:hover::before,
+.asme-about-page .about-hero:hover::after,
+.asme-about-page .about-hero:focus-visible::before,
+.asme-about-page .about-hero:focus-visible::after,
+.asme-about-page .about-hero-copy::before,
+.asme-about-page .about-hero-copy::after,
+.asme-about-page .about-hero-copy:hover::before,
+.asme-about-page .about-hero-copy:hover::after,
+.asme-about-page .about-hero-copy:focus-visible::before,
+.asme-about-page .about-hero-copy:focus-visible::after,
+.asme-about-page .about-eyebrow::before,
+.asme-about-page .about-eyebrow::after,
+.asme-about-page .about-eyebrow:hover::before,
+.asme-about-page .about-eyebrow:hover::after,
+.asme-about-page .about-eyebrow:focus-visible::before,
+.asme-about-page .about-eyebrow:focus-visible::after,
+.asme-about-page .about-hero-copy>h1::before,
+.asme-about-page .about-hero-copy>h1::after,
+.asme-about-page .about-hero-copy>h1:hover::before,
+.asme-about-page .about-hero-copy>h1:hover::after,
+.asme-about-page .about-hero-copy>h1:focus-visible::before,
+.asme-about-page .about-hero-copy>h1:focus-visible::after,
+.asme-about-page .about-hero-copy>p::before,
+.asme-about-page .about-hero-copy>p::after,
+.asme-about-page .about-hero-copy>p:hover::before,
+.asme-about-page .about-hero-copy>p:hover::after,
+.asme-about-page .about-hero-copy>p:focus-visible::before,
+.asme-about-page .about-hero-copy>p:focus-visible::after,
+.asme-about-page .about-hero-actions::before,
+.asme-about-page .about-hero-actions::after,
+.asme-about-page .about-hero-actions:hover::before,
+.asme-about-page .about-hero-actions:hover::after,
+.asme-about-page .about-hero-actions:focus-visible::before,
+.asme-about-page .about-hero-actions:focus-visible::after,
+.asme-about-page .about-cta-btn.about-cta-btn--primary::before,
+.asme-about-page .about-cta-btn.about-cta-btn--primary::after,
+.asme-about-page .about-cta-btn.about-cta-btn--primary:hover::before,
+.asme-about-page .about-cta-btn.about-cta-btn--primary:hover::after,
+.asme-about-page .about-cta-btn.about-cta-btn--primary:focus-visible::before,
+.asme-about-page .about-cta-btn.about-cta-btn--primary:focus-visible::after,
+.asme-about-page .about-hero-actions>br::before,
+.asme-about-page .about-hero-actions>br::after,
+.asme-about-page .about-hero-actions>br:hover::before,
+.asme-about-page .about-hero-actions>br:hover::after,
+.asme-about-page .about-hero-actions>br:focus-visible::before,
+.asme-about-page .about-hero-actions>br:focus-visible::after,
+.asme-about-page .about-cta-btn.about-cta-btn--outline::before,
+.asme-about-page .about-cta-btn.about-cta-btn--outline::after,
+.asme-about-page .about-cta-btn.about-cta-btn--outline:hover::before,
+.asme-about-page .about-cta-btn.about-cta-btn--outline:hover::after,
+.asme-about-page .about-cta-btn.about-cta-btn--outline:focus-visible::before,
+.asme-about-page .about-cta-btn.about-cta-btn--outline:focus-visible::after,
+.asme-about-page .about-hero-badges::before,
+.asme-about-page .about-hero-badges::after,
+.asme-about-page .about-hero-badges:hover::before,
+.asme-about-page .about-hero-badges:hover::after,
+.asme-about-page .about-hero-badges:focus-visible::before,
+.asme-about-page .about-hero-badges:focus-visible::after,
+.asme-about-page .about-hero-badge::after,
+.asme-about-page .about-hero-badge:hover::after,
+.asme-about-page .about-hero-badge:focus-visible::after,
+.asme-about-page .about-hero-badges>br::before,
+.asme-about-page .about-hero-badges>br::after,
+.asme-about-page .about-hero-badges>br:hover::before,
+.asme-about-page .about-hero-badges>br:hover::after,
+.asme-about-page .about-hero-badges>br:focus-visible::before,
+.asme-about-page .about-hero-badges>br:focus-visible::after,
+.asme-about-page .about-hero-image::before,
+.asme-about-page .about-hero-image::after,
+.asme-about-page .about-hero-image:hover::before,
+.asme-about-page .about-hero-image:hover::after,
+.asme-about-page .about-hero-image:focus-visible::before,
+.asme-about-page .about-hero-image:focus-visible::after,
+.asme-about-page .about-hero-image>img::before,
+.asme-about-page .about-hero-image>img::after,
+.asme-about-page .about-hero-image>img:hover::before,
+.asme-about-page .about-hero-image>img:hover::after,
+.asme-about-page .about-hero-image>img:focus-visible::before,
+.asme-about-page .about-hero-image>img:focus-visible::after,
+.asme-about-page .about-experience::before,
+.asme-about-page .about-experience::after,
+.asme-about-page .about-experience:hover::before,
+.asme-about-page .about-experience:hover::after,
+.asme-about-page .about-experience:focus-visible::before,
+.asme-about-page .about-experience:focus-visible::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact):hover::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact):hover::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact):focus-visible::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact):focus-visible::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div:hover::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div:hover::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div:focus-visible::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div:focus-visible::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label:hover::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label:hover::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label:focus-visible::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label:focus-visible::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2:hover::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2:hover::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2:focus-visible::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2:focus-visible::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>p::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>p::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>p:hover::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>p:hover::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>p:focus-visible::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>p:focus-visible::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:hover::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:hover::after,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:focus-visible::before,
+.asme-about-page .about-section-heading:not(.about-section-heading--compact)>p:focus-visible::after,
+.asme-about-page .about-pillars::before,
+.asme-about-page .about-pillars::after,
+.asme-about-page .about-pillars:hover::before,
+.asme-about-page .about-pillars:hover::after,
+.asme-about-page .about-pillars:focus-visible::before,
+.asme-about-page .about-pillars:focus-visible::after,
+.asme-about-page .about-pillar::before,
+.asme-about-page .about-pillar::after,
+.asme-about-page .about-pillar:hover::before,
+.asme-about-page .about-pillar:hover::after,
+.asme-about-page .about-pillar:focus-visible::before,
+.asme-about-page .about-pillar:focus-visible::after,
+.asme-about-page .about-pillar-icon::before,
+.asme-about-page .about-pillar-icon::after,
+.asme-about-page .about-pillar-icon:hover::before,
+.asme-about-page .about-pillar-icon:hover::after,
+.asme-about-page .about-pillar-icon:focus-visible::before,
+.asme-about-page .about-pillar-icon:focus-visible::after,
+.asme-about-page .about-pillar>h3::before,
+.asme-about-page .about-pillar>h3::after,
+.asme-about-page .about-pillar>h3:hover::before,
+.asme-about-page .about-pillar>h3:hover::after,
+.asme-about-page .about-pillar>h3:focus-visible::before,
+.asme-about-page .about-pillar>h3:focus-visible::after,
+.asme-about-page .about-pillar>p::before,
+.asme-about-page .about-pillar>p::after,
+.asme-about-page .about-pillar>p:hover::before,
+.asme-about-page .about-pillar>p:hover::after,
+.asme-about-page .about-pillar>p:focus-visible::before,
+.asme-about-page .about-pillar>p:focus-visible::after,
+.asme-about-page .about-pillars>p::before,
+.asme-about-page .about-pillars>p::after,
+.asme-about-page .about-pillars>p:hover::before,
+.asme-about-page .about-pillars>p:hover::after,
+.asme-about-page .about-pillars>p:focus-visible::before,
+.asme-about-page .about-pillars>p:focus-visible::after,
+.asme-about-page .about-action::before,
+.asme-about-page .about-action::after,
+.asme-about-page .about-action:hover::before,
+.asme-about-page .about-action:hover::after,
+.asme-about-page .about-action:focus-visible::before,
+.asme-about-page .about-action:focus-visible::after,
+.asme-about-page .about-section-heading.about-section-heading--compact::before,
+.asme-about-page .about-section-heading.about-section-heading--compact::after,
+.asme-about-page .about-section-heading.about-section-heading--compact:hover::before,
+.asme-about-page .about-section-heading.about-section-heading--compact:hover::after,
+.asme-about-page .about-section-heading.about-section-heading--compact:focus-visible::before,
+.asme-about-page .about-section-heading.about-section-heading--compact:focus-visible::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div:hover::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div:hover::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div:focus-visible::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div:focus-visible::after,
+.asme-about-page .about-section-heading.about-section-heading--compact .about-section-label::before,
+.asme-about-page .about-section-heading.about-section-heading--compact .about-section-label::after,
+.asme-about-page .about-section-heading.about-section-heading--compact .about-section-label:hover::before,
+.asme-about-page .about-section-heading.about-section-heading--compact .about-section-label:hover::after,
+.asme-about-page .about-section-heading.about-section-heading--compact .about-section-label:focus-visible::before,
+.asme-about-page .about-section-heading.about-section-heading--compact .about-section-label:focus-visible::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>h2::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>h2::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>h2:hover::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>h2:hover::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>h2:focus-visible::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>h2:focus-visible::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>p::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>p::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>p:hover::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>p:hover::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>p:focus-visible::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>div>p:focus-visible::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>p::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>p::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>p:hover::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>p:hover::after,
+.asme-about-page .about-section-heading.about-section-heading--compact>p:focus-visible::before,
+.asme-about-page .about-section-heading.about-section-heading--compact>p:focus-visible::after,
+.asme-about-page .about-photo-strip::before,
+.asme-about-page .about-photo-strip::after,
+.asme-about-page .about-photo-strip:hover::before,
+.asme-about-page .about-photo-strip:hover::after,
+.asme-about-page .about-photo-strip:focus-visible::before,
+.asme-about-page .about-photo-strip:focus-visible::after,
+.asme-about-page .about-photo.about-photo--wide::before,
+.asme-about-page .about-photo.about-photo--wide::after,
+.asme-about-page .about-photo.about-photo--wide:hover::before,
+.asme-about-page .about-photo.about-photo--wide:hover::after,
+.asme-about-page .about-photo.about-photo--wide:focus-visible::before,
+.asme-about-page .about-photo.about-photo--wide:focus-visible::after,
+.asme-about-page .about-photo.about-photo--wide>img::before,
+.asme-about-page .about-photo.about-photo--wide>img::after,
+.asme-about-page .about-photo.about-photo--wide>img:hover::before,
+.asme-about-page .about-photo.about-photo--wide>img:hover::after,
+.asme-about-page .about-photo.about-photo--wide>img:focus-visible::before,
+.asme-about-page .about-photo.about-photo--wide>img:focus-visible::after,
+.asme-about-page .about-photo.about-photo--wide>figcaption::before,
+.asme-about-page .about-photo.about-photo--wide>figcaption::after,
+.asme-about-page .about-photo.about-photo--wide>figcaption:hover::before,
+.asme-about-page .about-photo.about-photo--wide>figcaption:hover::after,
+.asme-about-page .about-photo.about-photo--wide>figcaption:focus-visible::before,
+.asme-about-page .about-photo.about-photo--wide>figcaption:focus-visible::after,
+.asme-about-page .about-photo:not(.about-photo--wide)::before,
+.asme-about-page .about-photo:not(.about-photo--wide)::after,
+.asme-about-page .about-photo:not(.about-photo--wide):hover::before,
+.asme-about-page .about-photo:not(.about-photo--wide):hover::after,
+.asme-about-page .about-photo:not(.about-photo--wide):focus-visible::before,
+.asme-about-page .about-photo:not(.about-photo--wide):focus-visible::after,
+.asme-about-page .about-photo:not(.about-photo--wide)>img::before,
+.asme-about-page .about-photo:not(.about-photo--wide)>img::after,
+.asme-about-page .about-photo:not(.about-photo--wide)>img:hover::before,
+.asme-about-page .about-photo:not(.about-photo--wide)>img:hover::after,
+.asme-about-page .about-photo:not(.about-photo--wide)>img:focus-visible::before,
+.asme-about-page .about-photo:not(.about-photo--wide)>img:focus-visible::after,
+.asme-about-page .about-photo:not(.about-photo--wide)>figcaption::before,
+.asme-about-page .about-photo:not(.about-photo--wide)>figcaption::after,
+.asme-about-page .about-photo:not(.about-photo--wide)>figcaption:hover::before,
+.asme-about-page .about-photo:not(.about-photo--wide)>figcaption:hover::after,
+.asme-about-page .about-photo:not(.about-photo--wide)>figcaption:focus-visible::before,
+.asme-about-page .about-photo:not(.about-photo--wide)>figcaption:focus-visible::after,
+.asme-about-page .about-photo-strip>p::before,
+.asme-about-page .about-photo-strip>p::after,
+.asme-about-page .about-photo-strip>p:hover::before,
+.asme-about-page .about-photo-strip>p:hover::after,
+.asme-about-page .about-photo-strip>p:focus-visible::before,
+.asme-about-page .about-photo-strip>p:focus-visible::after,
+.asme-about-page .about-impact::before,
+.asme-about-page .about-impact::after,
+.asme-about-page .about-impact:hover::before,
+.asme-about-page .about-impact:hover::after,
+.asme-about-page .about-impact:focus-visible::before,
+.asme-about-page .about-impact:focus-visible::after,
+.asme-about-page .about-stats-strip::before,
+.asme-about-page .about-stats-strip::after,
+.asme-about-page .about-stats-strip:hover::before,
+.asme-about-page .about-stats-strip:hover::after,
+.asme-about-page .about-stats-strip:focus-visible::before,
+.asme-about-page .about-stats-strip:focus-visible::after,
+.asme-about-page .about-stat-item::before,
+.asme-about-page .about-stat-item:hover::before,
+.asme-about-page .about-stat-item:focus-visible::before,
+.asme-about-page .about-stat-num::before,
+.asme-about-page .about-stat-num::after,
+.asme-about-page .about-stat-num:hover::before,
+.asme-about-page .about-stat-num:hover::after,
+.asme-about-page .about-stat-num:focus-visible::before,
+.asme-about-page .about-stat-num:focus-visible::after,
+.asme-about-page .about-stat-item>br::before,
+.asme-about-page .about-stat-item>br::after,
+.asme-about-page .about-stat-item>br:hover::before,
+.asme-about-page .about-stat-item>br:hover::after,
+.asme-about-page .about-stat-item>br:focus-visible::before,
+.asme-about-page .about-stat-item>br:focus-visible::after,
+.asme-about-page .about-stat-label::before,
+.asme-about-page .about-stat-label::after,
+.asme-about-page .about-stat-label:hover::before,
+.asme-about-page .about-stat-label:hover::after,
+.asme-about-page .about-stat-label:focus-visible::before,
+.asme-about-page .about-stat-label:focus-visible::after,
+.asme-about-page .about-stats-strip>p::before,
+.asme-about-page .about-stats-strip>p::after,
+.asme-about-page .about-stats-strip>p:hover::before,
+.asme-about-page .about-stats-strip>p:hover::after,
+.asme-about-page .about-stats-strip>p:focus-visible::before,
+.asme-about-page .about-stats-strip>p:focus-visible::after,
+.asme-about-page .about-award.about-award--compact::before,
+.asme-about-page .about-award.about-award--compact::after,
+.asme-about-page .about-award.about-award--compact:hover::before,
+.asme-about-page .about-award.about-award--compact:hover::after,
+.asme-about-page .about-award.about-award--compact:focus-visible::before,
+.asme-about-page .about-award.about-award--compact:focus-visible::after,
+.asme-about-page .about-award-inner::before,
+.asme-about-page .about-award-inner::after,
+.asme-about-page .about-award-inner:hover::before,
+.asme-about-page .about-award-inner:hover::after,
+.asme-about-page .about-award-inner:focus-visible::before,
+.asme-about-page .about-award-inner:focus-visible::after,
+.asme-about-page .about-award-badge-wrap::before,
+.asme-about-page .about-award-badge-wrap::after,
+.asme-about-page .about-award-badge-wrap:hover::before,
+.asme-about-page .about-award-badge-wrap:hover::after,
+.asme-about-page .about-award-badge-wrap:focus-visible::before,
+.asme-about-page .about-award-badge-wrap:focus-visible::after,
+.asme-about-page .about-award-badge-wrap>img::before,
+.asme-about-page .about-award-badge-wrap>img::after,
+.asme-about-page .about-award-badge-wrap>img:hover::before,
+.asme-about-page .about-award-badge-wrap>img:hover::after,
+.asme-about-page .about-award-badge-wrap>img:focus-visible::before,
+.asme-about-page .about-award-badge-wrap>img:focus-visible::after,
+.asme-about-page .about-award-copy::before,
+.asme-about-page .about-award-copy::after,
+.asme-about-page .about-award-copy:hover::before,
+.asme-about-page .about-award-copy:hover::after,
+.asme-about-page .about-award-copy:focus-visible::before,
+.asme-about-page .about-award-copy:focus-visible::after,
+.asme-about-page .about-award-copy .about-section-label::before,
+.asme-about-page .about-award-copy .about-section-label::after,
+.asme-about-page .about-award-copy .about-section-label:hover::before,
+.asme-about-page .about-award-copy .about-section-label:hover::after,
+.asme-about-page .about-award-copy .about-section-label:focus-visible::before,
+.asme-about-page .about-award-copy .about-section-label:focus-visible::after,
+.asme-about-page .about-award-copy>h2::before,
+.asme-about-page .about-award-copy>h2::after,
+.asme-about-page .about-award-copy>h2:hover::before,
+.asme-about-page .about-award-copy>h2:hover::after,
+.asme-about-page .about-award-copy>h2:focus-visible::before,
+.asme-about-page .about-award-copy>h2:focus-visible::after,
+.asme-about-page .about-award-copy>p::before,
+.asme-about-page .about-award-copy>p::after,
+.asme-about-page .about-award-copy>p:hover::before,
+.asme-about-page .about-award-copy>p:hover::after,
+.asme-about-page .about-award-copy>p:focus-visible::before,
+.asme-about-page .about-award-copy>p:focus-visible::after,
+.asme-about-page .about-award-inner>p::before,
+.asme-about-page .about-award-inner>p::after,
+.asme-about-page .about-award-inner>p:hover::before,
+.asme-about-page .about-award-inner>p:hover::after,
+.asme-about-page .about-award-inner>p:focus-visible::before,
+.asme-about-page .about-award-inner>p:focus-visible::after,
+.asme-about-page .about-semester::before,
+.asme-about-page .about-semester::after,
+.asme-about-page .about-semester:hover::before,
+.asme-about-page .about-semester:hover::after,
+.asme-about-page .about-semester:focus-visible::before,
+.asme-about-page .about-semester:focus-visible::after,
+.asme-about-page .about-semester-grid::before,
+.asme-about-page .about-semester-grid::after,
+.asme-about-page .about-semester-grid:hover::before,
+.asme-about-page .about-semester-grid:hover::after,
+.asme-about-page .about-semester-grid:focus-visible::before,
+.asme-about-page .about-semester-grid:focus-visible::after,
+.asme-about-page .about-semester-step::before,
+.asme-about-page .about-semester-step::after,
+.asme-about-page .about-semester-step:hover::before,
+.asme-about-page .about-semester-step:hover::after,
+.asme-about-page .about-semester-step:focus-visible::before,
+.asme-about-page .about-semester-step:focus-visible::after,
+.asme-about-page .about-semester-step>span::before,
+.asme-about-page .about-semester-step>span::after,
+.asme-about-page .about-semester-step>span:hover::before,
+.asme-about-page .about-semester-step>span:hover::after,
+.asme-about-page .about-semester-step>span:focus-visible::before,
+.asme-about-page .about-semester-step>span:focus-visible::after,
+.asme-about-page .about-semester-step>p::before,
+.asme-about-page .about-semester-step>p::after,
+.asme-about-page .about-semester-step>p:hover::before,
+.asme-about-page .about-semester-step>p:hover::after,
+.asme-about-page .about-semester-step>p:focus-visible::before,
+.asme-about-page .about-semester-step>p:focus-visible::after,
+.asme-about-page .about-semester-step>h3::before,
+.asme-about-page .about-semester-step>h3::after,
+.asme-about-page .about-semester-step>h3:hover::before,
+.asme-about-page .about-semester-step>h3:hover::after,
+.asme-about-page .about-semester-step>h3:focus-visible::before,
+.asme-about-page .about-semester-step>h3:focus-visible::after,
+.asme-about-page .about-semester-grid>p::before,
+.asme-about-page .about-semester-grid>p::after,
+.asme-about-page .about-semester-grid>p:hover::before,
+.asme-about-page .about-semester-grid>p:hover::after,
+.asme-about-page .about-semester-grid>p:focus-visible::before,
+.asme-about-page .about-semester-grid>p:focus-visible::after,
+.asme-about-page .about-cta-section::before,
+.asme-about-page .about-cta-section::after,
+.asme-about-page .about-cta-section:hover::before,
+.asme-about-page .about-cta-section:hover::after,
+.asme-about-page .about-cta-section:focus-visible::before,
+.asme-about-page .about-cta-section:focus-visible::after,
+.asme-about-page .about-cta-section .about-section-label::before,
+.asme-about-page .about-cta-section .about-section-label::after,
+.asme-about-page .about-cta-section .about-section-label:hover::before,
+.asme-about-page .about-cta-section .about-section-label:hover::after,
+.asme-about-page .about-cta-section .about-section-label:focus-visible::before,
+.asme-about-page .about-cta-section .about-section-label:focus-visible::after,
+.asme-about-page .about-cta-section>h2::before,
+.asme-about-page .about-cta-section>h2::after,
+.asme-about-page .about-cta-section>h2:hover::before,
+.asme-about-page .about-cta-section>h2:hover::after,
+.asme-about-page .about-cta-section>h2:focus-visible::before,
+.asme-about-page .about-cta-section>h2:focus-visible::after,
+.asme-about-page .about-cta-section>p::before,
+.asme-about-page .about-cta-section>p::after,
+.asme-about-page .about-cta-section>p:hover::before,
+.asme-about-page .about-cta-section>p:hover::after,
+.asme-about-page .about-cta-section>p:focus-visible::before,
+.asme-about-page .about-cta-section>p:focus-visible::after,
+.asme-about-page .about-cta-buttons::before,
+.asme-about-page .about-cta-buttons::after,
+.asme-about-page .about-cta-buttons:hover::before,
+.asme-about-page .about-cta-buttons:hover::after,
+.asme-about-page .about-cta-buttons:focus-visible::before,
+.asme-about-page .about-cta-buttons:focus-visible::after,
+.asme-about-page .about-cta-buttons>br::before,
+.asme-about-page .about-cta-buttons>br::after,
+.asme-about-page .about-cta-buttons>br:hover::before,
+.asme-about-page .about-cta-buttons>br:hover::after,
+.asme-about-page .about-cta-buttons>br:focus-visible::before,
+.asme-about-page .about-cta-buttons>br:focus-visible::after,
+.asme-about-page .about-cta-btn.about-cta-btn--secondary::before,
+.asme-about-page .about-cta-btn.about-cta-btn--secondary::after,
+.asme-about-page .about-cta-btn.about-cta-btn--secondary:hover::before,
+.asme-about-page .about-cta-btn.about-cta-btn--secondary:hover::after,
+.asme-about-page .about-cta-btn.about-cta-btn--secondary:focus-visible::before,
+.asme-about-page .about-cta-btn.about-cta-btn--secondary:focus-visible::after,
+.asme-about-page .about-sponsor-link::before,
+.asme-about-page .about-sponsor-link::after,
+.asme-about-page .about-sponsor-link:hover::before,
+.asme-about-page .about-sponsor-link:hover::after,
+.asme-about-page .about-sponsor-link:focus-visible::before,
+.asme-about-page .about-sponsor-link:focus-visible::after,
+.asme-about-page .about-cta-section>p>br::before,
+.asme-about-page .about-cta-section>p>br::after,
+.asme-about-page .about-cta-section>p>br:hover::before,
+.asme-about-page .about-cta-section>p>br:hover::after,
+.asme-about-page .about-cta-section>p>br:focus-visible::before,
+.asme-about-page .about-cta-section>p>br:focus-visible::after {
   box-sizing: border-box;
 }
 
 .asme-about-page>p {
   display: none;
+  height: 0;
   margin: 0;
   padding: 0;
-  height: 0px;
 }
 
 .asme-about-page .about-hero {
@@ -34,9 +476,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
   border: 1px solid var(--asme-c-border);
   border-radius: 20px;
-  min-width: 0px;
 }
 
 .asme-about-page .about-eyebrow {
@@ -61,8 +503,8 @@
   justify-content: center;
   background: var(--asme-c-accent);
   border: 1px solid #bb0000;
-  text-decoration: none;
   color: var(--asme-c-on-accent);
+  text-decoration: none;
 }
 
 .asme-about-page .about-cta-btn.about-cta-btn--primary:hover {
@@ -122,6 +564,7 @@
 .asme-about-page .about-hero-badge::before,
 .asme-about-page .about-hero-badge:hover::before,
 .asme-about-page .about-hero-badge:focus-visible::before {
+  box-sizing: border-box;
   content: "";
   width: 6px;
   height: 6px;
@@ -131,11 +574,11 @@
 }
 
 .asme-about-page .about-hero-image {
+  min-width: 0;
   overflow: hidden;
   background: #e9eef5;
   border: 1px solid var(--asme-c-border);
   border-radius: 20px;
-  min-width: 0px;
 }
 
 .asme-about-page .about-hero-image>img {
@@ -143,7 +586,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center;
 }
 
 .asme-about-page .about-experience,
@@ -158,7 +601,7 @@
 .asme-about-page .about-section-heading:not(.about-section-heading--compact)>div,
 .asme-about-page .about-section-heading.about-section-heading--compact>div,
 .asme-about-page .about-award-copy {
-  min-width: 0px;
+  min-width: 0;
 }
 
 .asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label,
@@ -190,10 +633,10 @@
 }
 
 .asme-about-page .about-pillar {
+  min-width: 0;
   padding: 22px;
   border: 1px solid var(--asme-c-border);
   border-radius: 16px;
-  min-width: 0px;
 }
 
 .asme-about-page .about-pillar-icon {
@@ -207,10 +650,10 @@
   background: rgba(187,0,0,0.09);
   border: 1px solid rgba(187,0,0,0.16);
   border-radius: 50%;
+  color: var(--asme-c-accent);
   font-size: 11px;
   font-weight: 850;
   line-height: 1;
-  color: var(--asme-c-accent);
 }
 
 .asme-about-page .about-pillar>h3,
@@ -235,11 +678,11 @@
 .asme-about-page .about-photo.about-photo--wide,
 .asme-about-page .about-photo:not(.about-photo--wide) {
   position: relative;
+  min-width: 0;
   margin: 0;
   overflow: hidden;
   background: #e9eef5;
   border-radius: 16px;
-  min-width: 0px;
 }
 
 .asme-about-page .about-photo.about-photo--wide>img,
@@ -267,18 +710,19 @@
   border-radius: 10px;
   text-align: center;
   text-transform: uppercase;
+  background-color: rgba(6,16,35,.65);
+  background-image: linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.012));
   border: 1px solid rgba(255,255,255,.32);
+  -webkit-backdrop-filter: blur(8px) saturate(1.15);
   backdrop-filter: blur(8px) saturate(1.15);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24),0 8px 24px rgba(6,16,35,.16);
+  color: var(--asme-c-on-accent);
   padding: 12px 14px;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.4;
-  background-color: rgba(6,16,35,0.65);
-  background-image: linear-gradient(135deg,rgba(255,255,255,0.075),rgba(255,255,255,0.01));
-  box-shadow: rgba(255,255,255,0.24) 0px 1px 0px inset,rgba(6,16,35,0.16) 0px 8px 24px;
-  color: var(--asme-c-on-accent);
-  letter-spacing: 0.02em;
-  text-shadow: rgba(6,16,35,0.85) 0px 1px 4px;
+  letter-spacing: .02em;
+  text-shadow: 0 1px 4px rgba(6,16,35,.85);
 }
 
 .asme-about-page .about-stats-strip {
@@ -292,12 +736,12 @@
 }
 
 .asme-about-page .about-stat-item {
+  min-width: 0;
   background: var(--asme-c-surface-alt);
   border: 1px solid var(--asme-c-border);
   border-top-style: solid;
   border-radius: 15px;
   box-shadow: none;
-  min-width: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -320,16 +764,17 @@
   height: 9px;
   border-top: 2px solid #ba0c2f;
   border-right: 2px solid #ba0c2f;
+  opacity: .65;
   pointer-events: none;
-  opacity: 0.65;
+  box-sizing: border-box;
 }
 
 .asme-about-page .about-stat-num {
   margin: 0;
-  font-weight: 400;
-  line-height: 1;
   color: var(--asme-c-accent);
   font-family: "DM Serif Display",Georgia,serif;
+  font-weight: 400;
+  line-height: 1;
 }
 
 .asme-about-page .about-stat-item>br {
@@ -371,7 +816,7 @@
   line-height: 1.2;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgb(184,197,214);
+  color: #b8c5d6;
 }
 
 .asme-about-page .about-award-copy>h2 {
@@ -389,10 +834,10 @@
 
 .asme-about-page .about-semester-step {
   position: relative;
+  min-width: 0;
   padding: 22px;
   border: 1px solid var(--asme-c-border);
   border-radius: 16px;
-  min-width: 0px;
 }
 
 .asme-about-page .about-semester-step>span {
@@ -421,14 +866,14 @@
   line-height: 1.2;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgb(174,191,211);
+  color: #aebfd3;
 }
 
 .asme-about-page .about-cta-section>h2 {
   margin: 0;
+  font-size: clamp(30px,3vw,43px);
   line-height: 1.08;
   letter-spacing: -0.015em;
-  font-size: clamp(30px,3vw,43px);
 }
 
 .asme-about-page .about-cta-section>p {
@@ -477,14 +922,14 @@
 .asme-about-page .about-sponsor-link {
   display: inline-block;
   margin-top: 20px;
+  color: #bdc9d8;
   font-size: 12px;
   font-weight: 750;
   text-decoration-line: underline;
   text-decoration-thickness: initial;
   text-decoration-style: initial;
-  text-underline-offset: 3px;
-  color: rgb(189,201,216);
   text-decoration-color: rgba(255,255,255,0.3);
+  text-underline-offset: 3px;
 }
 
 .asme-about-page .about-sponsor-link:hover {
@@ -495,23 +940,23 @@
 .asme-about-page .about-pillar>h3,
 .asme-about-page .about-section-heading.about-section-heading--compact>div>h2,
 .asme-about-page .about-semester-step>h3 {
-  font-weight: 400!important;
   font-family: "DM Serif Display",Georgia,serif!important;
+  font-weight: 400!important;
 }
 
 .asme-about-page .about-award-copy>h2,
 .asme-about-page .about-cta-section>h2 {
-  font-weight: 400!important;
   font-family: "DM Serif Display",Georgia,serif!important;
+  font-weight: 400!important;
   color: var(--asme-c-on-accent)!important;
 }
 
 .asme-about-page .about-award-copy>p {
-  color: rgb(213,222,234)!important;
+  color: #d5deea!important;
 }
 
 .asme-about-page .about-cta-section>p {
-  color: rgb(195,207,221)!important;
+  color: #c3cfdd!important;
 }
 
 @media (max-width: 1099px) {
@@ -527,7 +972,7 @@
   .asme-about-page .about-hero-copy,
   .asme-about-page .about-hero-image,
   .asme-about-page .about-hero-image>img {
-    min-height: 0px;
+    min-height: 0;
   }
 
   .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
@@ -539,7 +984,7 @@
   }
 
   .asme-about-page .about-stats-strip {
-    grid-template-columns: repeat(2,minmax(0px,1fr));
+    grid-template-columns: repeat(2,minmax(0,1fr));
   }
 
 }
@@ -547,7 +992,7 @@
 @media (max-width: 1279px) {
   .asme-about-page .about-pillar,
   .asme-about-page .about-semester-step {
-    min-height: 0px;
+    min-height: 0;
   }
 
 }
@@ -714,17 +1159,17 @@
 
 @media (max-width: 899px) {
   .asme-about-page {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
     margin-right: auto;
     margin-left: auto;
-    width: calc(-24px + 100vw);
-    max-width: calc(-24px + 100vw);
   }
 
   .asme-about-page .about-hero,
   .asme-about-page .about-pillars {
     width: 100%;
     max-width: 100%;
-    min-width: 0px;
+    min-width: 0;
   }
 
   .asme-about-page .about-pillar {
@@ -833,8 +1278,8 @@
   }
 
   html body #page .entry-content .asme-about-page .about-hero-copy>h1 {
-    line-height: 1.12!important;
     font-size: clamp(32px,4.5vw,40px)!important;
+    line-height: 1.12!important;
   }
 
 }
@@ -842,7 +1287,7 @@
 @media (min-width: 640px) and (max-width: 1279px) {
   .asme-about-page .about-pillars,
   .asme-about-page .about-semester-grid {
-    grid-template-columns: repeat(2,minmax(0px,1fr));
+    grid-template-columns: repeat(2,minmax(0,1fr));
   }
 
 }
@@ -878,8 +1323,8 @@
   .asme-about-page {
     width: 100%;
     max-width: none;
-    margin-right: 0px;
-    margin-left: 0px;
+    margin-right: 0;
+    margin-left: 0;
   }
 
 }
@@ -890,8 +1335,8 @@
   }
 
   .asme-about-page .about-hero {
+    grid-template-columns: minmax(0,1fr) minmax(360px,0.95fr);
     gap: 20px;
-    grid-template-columns: minmax(0px,1fr) minmax(360px,0.95fr);
   }
 
   .asme-about-page .about-hero-copy,
@@ -910,7 +1355,7 @@
   }
 
   .asme-about-page .about-stats-strip {
-    grid-template-columns: repeat(4,minmax(0px,1fr));
+    grid-template-columns: repeat(4,minmax(0,1fr));
   }
 
 }
@@ -937,7 +1382,7 @@
 @media (min-width: 1280px) {
   .asme-about-page .about-pillars,
   .asme-about-page .about-semester-grid {
-    grid-template-columns: repeat(4,minmax(0px,1fr));
+    grid-template-columns: repeat(4,minmax(0,1fr));
   }
 
   .asme-about-page .about-pillar {
@@ -1035,7 +1480,7 @@
   .asme-about-page .about-eyebrow,
   .asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label,
   .asme-about-page .about-section-heading.about-section-heading--compact .about-section-label {
-    color: rgb(102,112,133);
+    color: #667085;
   }
 
   .asme-about-page .about-hero-copy>p,
@@ -1057,7 +1502,7 @@
   .asme-about-page .about-hero-badge {
     background: #eef3f8;
     border: 1px solid #d8e1ec;
-    color: rgb(51,65,85);
+    color: #334155;
   }
 
   .asme-about-page .about-experience,
@@ -1078,11 +1523,11 @@
   }
 
   .asme-about-page .about-stat-label {
-    color: rgb(82,97,116);
+    color: #526174;
   }
 
   .asme-about-page .about-semester-step>span {
-    color: rgb(187,0,0);
+    color: #bb0000;
   }
 
   .asme-about-page .about-hero-copy>h1,
@@ -1110,18 +1555,18 @@
   .asme-about-page .about-eyebrow,
   .asme-about-page .about-section-heading:not(.about-section-heading--compact) .about-section-label,
   .asme-about-page .about-section-heading.about-section-heading--compact .about-section-label {
-    color: rgb(159,176,198);
+    color: #9fb0c6;
   }
 
   .asme-about-page .about-cta-btn.about-cta-btn--outline {
     border-color: #3a506d;
-    color: rgb(248,250,252);
+    color: #f8fafc;
   }
 
   .asme-about-page .about-cta-btn.about-cta-btn--outline:hover {
     background-color: rgb(22,38,59);
     border-color: #526b89;
-    color: rgb(255,255,255);
+    color: #ffffff;
   }
 
   .asme-about-page .about-hero-badge {
@@ -1140,7 +1585,7 @@
     border-image-repeat: stretch;
     background: #16263b;
     border-color: #2a3e59;
-    color: rgb(217,226,236);
+    color: #d9e2ec;
   }
 
   .asme-about-page .about-experience,
@@ -1166,7 +1611,7 @@
   }
 
   .asme-about-page .about-stat-label {
-    color: rgb(196,207,221);
+    color: #c4cfdd;
   }
 
   .asme-about-page .about-semester-step {
@@ -1183,7 +1628,7 @@
   .asme-about-page .about-pillar>h3,
   .asme-about-page .about-section-heading.about-section-heading--compact>div>h2,
   .asme-about-page .about-semester-step>h3 {
-    color: rgb(248,250,252)!important;
+    color: #f8fafc!important;
   }
 
   .asme-about-page .about-hero-copy>p,
@@ -1191,7 +1636,7 @@
   .asme-about-page .about-pillar>p,
   .asme-about-page .about-section-heading.about-section-heading--compact>p,
   .asme-about-page .about-semester-step>p {
-    color: rgb(195,207,221)!important;
+    color: #c3cfdd!important;
   }
 
 }
@@ -1201,77 +1646,19 @@
    DevTools does not report (::placeholder), overlays outside the page content
    such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
    [aria-*]) whose values change while the page is used. */
-@media (prefers-reduced-motion: no-preference) {
-  .about-pillar {
-    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
-  }
-
+@media (prefers-reduced-motion:no-preference){.about-pillar{transition:transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important}
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .about-pillar:hover {
-    transform: translateY(-4px)!important;
-    box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
-  }
-
+@media (prefers-reduced-motion:no-preference){.about-pillar:hover{transform:translateY(-4px)!important;box-shadow:0 12px 32px rgba(15,52,96,0.14)!important}
 }
-
-body #page .asme-about-page .about-pillars>p:empty,
-body #page .asme-about-page .about-photo-strip>p:empty,
-body #page .asme-about-page .about-stats-strip>p:empty,
-body #page .asme-about-page .about-semester-grid>p:empty,
-body #page .asme-about-page .about-award-inner>p:empty,
-body #page .asme-about-page .about-section-heading>p:empty,
-html body #page .entry-content .asme-about-page .about-pillars>p:empty,
-html body #page .entry-content .asme-about-page .about-photo-strip>p:empty,
-html body #page .entry-content .asme-about-page .about-stats-strip>p:empty,
-html body #page .entry-content .asme-about-page .about-semester-grid>p:empty,
-html body #page .entry-content .asme-about-page .about-award-inner>p:empty,
-html body #page .entry-content .asme-about-page .about-section-heading>p:empty {
-  display: none!important;
+body #page .asme-about-page .about-pillars>p:empty,body #page .asme-about-page .about-photo-strip>p:empty,body #page .asme-about-page .about-stats-strip>p:empty,body #page .asme-about-page .about-semester-grid>p:empty,body #page .asme-about-page .about-award-inner>p:empty,body #page .asme-about-page .about-section-heading>p:empty,html body #page .entry-content .asme-about-page .about-pillars>p:empty,html body #page .entry-content .asme-about-page .about-photo-strip>p:empty,html body #page .entry-content .asme-about-page .about-stats-strip>p:empty,html body #page .entry-content .asme-about-page .about-semester-grid>p:empty,html body #page .entry-content .asme-about-page .about-award-inner>p:empty,html body #page .entry-content .asme-about-page .about-section-heading>p:empty{display:none!important}
+body #page .asme-about-page .about-stat-item>p,html body #page .entry-content .asme-about-page .about-stat-item>p{display:none!important;margin:0!important;padding:0!important}
+@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero{grid-template-columns:1fr!important;gap:14px!important}
 }
-
-body #page .asme-about-page .about-stat-item>p,
-html body #page .entry-content .asme-about-page .about-stat-item>p {
-  display: none!important;
-  margin: 0!important;
-  padding: 0!important;
+@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero-copy{min-height:0!important;padding:34px 36px!important}
 }
-
-@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
-  body #page .asme-about-page .about-hero {
-    grid-template-columns: 1fr!important;
-    gap: 14px!important;
-  }
-
+@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero-copy h1{max-width:17ch!important}
 }
-
-@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
-  body #page .asme-about-page .about-hero-copy {
-    min-height: 0!important;
-    padding: 34px 36px!important;
-  }
-
+@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero-image{min-height:0!important;aspect-ratio:16/7!important}
 }
-
-@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
-  body #page .asme-about-page .about-hero-copy h1 {
-    max-width: 17ch!important;
-  }
-
-}
-
-@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
-  body #page .asme-about-page .about-hero-image {
-    min-height: 0!important;
-    aspect-ratio: 16/7!important;
-  }
-
-}
-
-@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
-  body #page .asme-about-page .about-hero-image img {
-    min-height: 0!important;
-  }
-
+@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero-image img{min-height:0!important}
 }

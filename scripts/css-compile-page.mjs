@@ -48,6 +48,9 @@ const group = new Set(groupArg ? groupArg.split(',') : [name]);
 if (!group.has(name)) group.add(name);
 const emitOnly = process.argv.includes('--emit');
 const stripOnly = process.argv.includes('--strip');
+// --live-only lists the owned selectors reaching live widgets (styles/live/)
+// and stops: a few minutes instead of a full compile.
+const liveOnly = process.argv.includes('--live-only');
 
 // Views and the width ranges they stand for (mobile-first breakpoints). Ten
 // widths keep the layouts the legacy CSS had between phone, tablet and
@@ -56,7 +59,9 @@ const stripOnly = process.argv.includes('--strip');
 const WIDTHS = [375, 480, 640, 768, 900, 1100, 1280, 1440, 1700, 1920];
 const BOUNDS = [0, 480, 640, 768, 900, 1100, 1280, 1440, 1700, 1920];
 const SCHEMES = ['light', 'dark'];
-const VIEWS = WIDTHS.flatMap((width, w) => SCHEMES.map(scheme => ({ width, w, scheme, id: `${width}-${scheme}` })));
+// --strip only removes owned selectors from the layers, which needs no
+// rendering: it skips every view and finishes in seconds.
+const VIEWS = stripOnly ? [] : WIDTHS.flatMap((width, w) => SCHEMES.map(scheme => ({ width, w, scheme, id: `${width}-${scheme}` })));
 
 // ---- Selector ownership ---------------------------------------------------
 const rendered = JSON.parse(fs.readFileSync('tests/visual/.output/classes.json', 'utf8'));
@@ -178,6 +183,8 @@ const OWNED_SELECTORS = (() => {
   return [...list];
 })();
 const matchedSelectors = new Set();
+const liveMatched = new Set();
+if (stripOnly) for (const page of group) { try { JSON.parse(fs.readFileSync(`styles/live/${page}.json`, 'utf8')).forEach(sel => liveMatched.add(sel)); } catch {} }
 const withinContent = (selector, classes) => [...requirements(selector).classes].every(c => classes.has(c));
 
 // Selectors whose match depends on state that changes while the page is used
@@ -186,7 +193,30 @@ const withinContent = (selector, classes) => [...requirements(selector).classes]
 // derived; the rules are carried verbatim.
 const DYNAMIC_ATTRIBUTE = /\[\s*(hidden|open|disabled|checked|selected|readonly|required|inert|style|aria-[\w-]+|data-[\w-]+)\b/i;
 const DYNAMIC_PSEUDO = /:(empty|has|checked|disabled|enabled|invalid|valid|user-invalid|user-valid|placeholder-shown|target|focus-within|open|closed|read-only|read-write|indeterminate|defined|popover-open|modal|playing|paused)(?![\w-])/i;
+// Classes the site's scripts switch on and off (is-active on the Home
+// spotlight card, is-current on Join's steps) and classes of lists built from
+// live data (leaderboard rows and their loading skeleton, calendar cards,
+// gallery photos). The compiler sees one state and one data set, so rules
+// naming these classes are carried verbatim too. Deriving them broke the
+// spotlight's second slide and the leaderboard skeleton: the rows were pinned
+// by position (div:nth-child(6)) and the slide had no rule for its active
+// state. Page wrapper classes never count, or the whole page would be carried.
+const SCRIPT_TOGGLED = new Set(fs.readdirSync('.').filter(f => f.endsWith('.js'))
+  .flatMap(f => [...fs.readFileSync(f, 'utf8').matchAll(/classList\.(?:add|toggle|remove|replace)\(([^)]*)\)/g)])
+  .flatMap(m => [...m[1].matchAll(/['"]([\w -]+)['"]/g)].flatMap(q => q[1].split(/\s+/)))
+  .filter(c => /^[a-z][\w-]*$/.test(c)));
+const LIVE_DATA = [/^asme-leaderboard-/, /^asme-points-skeleton/, /^asme-points-loading/, /^asme-rank-trend/, /^asme-data-enter$/, /^asme-live-/,
+  /^acp-event-/, /^gallery-instagram-/, /^gallery-item--google-photos$/, /^asme-gallery-justified/];
+const WRAPPERS = new Set([...Object.values(PAGE_SCOPES).flat(), ...Object.values(COMPONENTS).map(c => c.root)]);
+// Classes scripts add once and keep (scroll reveal, page-level markers, the
+// header) are steady states the compiler already renders; they are not live.
+const STEADY = new Set(['asme-animate', 'asme-reveal', 'is-visible', 'asme-page-last-block', 'asme-page-bottom-frame', 'asme-footer-spacer',
+  'asme-home-refined', 'asme-motion-static', 'asme-compact-header', 'asme-header-hidden', 'asme-header-pending', 'asme-footer-custom-page',
+  'asme-footer-spacing-ready', 'asme-empty-theme-footer', 'screen-reader-text', 'sfHover', 'dropdown-hover']);
+const liveClass = c => !WRAPPERS.has(c) && !STEADY.has(c) && !c.startsWith('asme-hd-') && (SCRIPT_TOGGLED.has(c) || [...SCRIPT_TOGGLED].some(t => t.endsWith('-') && c.startsWith(t)) || LIVE_DATA.some(p => p.test(c)));
+const selectorClasses = selector => [...selector.matchAll(/\.(-?[_a-zA-Z][\w-]*)/g)].map(m => m[1]);
 const dynamic = selector => DYNAMIC_ATTRIBUTE.test(selector) || DYNAMIC_PSEUDO.test(selector)
+  || selectorClasses(selector).some(liveClass) || liveMatched.has(selector)
   || (componentSets ? [...requirements(selector).classes].some(c => componentSets.varying.has(c)) : false);
 
 function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
@@ -313,7 +343,7 @@ const EXPANSIONS = new Map();
 function expandLonghands(name, value) {
   return EXPANSIONS.get(name + ':' + value);
 }
-const SHORTHANDS = ['margin', 'padding', 'border', 'border-top', 'border-right', 'border-bottom', 'border-left', 'border-width', 'border-style', 'border-color', 'border-radius', 'border-image', 'border-block', 'border-inline', 'background', 'font', 'flex', 'flex-flow', 'grid', 'grid-template', 'grid-area', 'grid-row', 'grid-column', 'gap', 'inset', 'outline', 'transition', 'animation', 'list-style', 'overflow', 'place-items', 'place-content', 'place-self', 'text-decoration', 'columns', 'mask', 'margin-block', 'margin-inline', 'padding-block', 'padding-inline', 'inset-block', 'inset-inline', 'scroll-margin', 'scroll-padding', 'font-variant', 'white-space', 'container', 'text-emphasis'];
+const SHORTHANDS = ['margin', 'padding', 'border', 'border-top', 'border-right', 'border-bottom', 'border-left', 'border-width', 'border-style', 'border-color', 'border-radius', 'border-image', 'border-block', 'border-inline', 'background', 'font', 'flex', 'flex-flow', 'grid', 'grid-template', 'grid-area', 'grid-row', 'grid-column', 'gap', 'inset', 'outline', 'transition', 'animation', 'list-style', 'overflow', 'place-items', 'place-content', 'place-self', 'text-decoration', 'columns', 'mask', 'margin-block', 'margin-inline', 'padding-block', 'padding-inline', 'inset-block', 'inset-inline', 'scroll-margin', 'scroll-padding', 'font-variant', 'white-space', 'container', 'text-emphasis', 'background-position', 'background-repeat', 'mask-position', 'overscroll-behavior', 'text-wrap', 'border-spacing'];
 
 // What the re-emitted declaration needs to beat every kept competitor.
 function requirement(winner) {
@@ -339,6 +369,46 @@ const perElement = new Map();
 // shared header and footer. Views run in parallel.
 const CONTENT = component ? `.${component.root}, .${component.root} *` : '.entry-content, .entry-content *';
 const started = Date.now();
+// Pre-pass: find every owned selector that reaches a live widget in any view.
+// Those rules are carried verbatim, so the main pass must treat them like
+// dynamic selectors (competitors, never derived); otherwise a carried generic
+// rule (".hero h1") would land after the derived rules and override them on
+// elements outside the widget.
+// Every page of a group is scanned, so grouped pages agree on what is carried.
+const prePages = component ? [target] : [...group].map(page => PAGES.find(p => p.name === page)).filter(Boolean);
+await pool(prePages.flatMap(pg => VIEWS.map(view => ({ pg, view }))), 4, async ({ pg, view }) => {
+  const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + pg.path, width: view.width, scheme: view.scheme });
+  const cdp = await context.newCDPSession(page);
+  const sheets = new Map();
+  cdp.on('CSS.styleSheetAdded', ({ header }) => sheets.set(header.styleSheetId, header.sourceURL || ''));
+  await cdp.send('DOM.enable'); await cdp.send('CSS.enable');
+  const ourSheets = new Set([...sheets].filter(([, url]) => /ASME(%20| )Custom(%20| )CSS/.test(url)).map(([id]) => id));
+  const { root } = await cdp.send('DOM.getDocument', { depth: -1 });
+  const { nodeIds } = await cdp.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: CONTENT });
+  const chains = await page.evaluate(content => [...document.querySelectorAll(content)].map(el => {
+    const list = []; for (let node = el; node && node !== document.body; node = node.parentElement) list.push(...node.classList); return list;
+  }), CONTENT);
+  for (let i = 0; i < nodeIds.length; i += 1) {
+    if (!chains[i] || !chains[i].some(liveClass)) continue;
+    const result = await cdp.send('CSS.getMatchedStylesForNode', { nodeId: nodeIds[i] });
+    for (const m of result.matchedCSSRules) {
+      if (!m.rule.styleSheetId || !ourSheets.has(m.rule.styleSheetId)) continue;
+      for (const index of m.matchingSelectors) { const sel = normalize(m.rule.selectorList.selectors[index].text); if (owned(sel)) liveMatched.add(sel); }
+    }
+    for (const pseudo of result.pseudoElements || []) for (const m of pseudo.matches) {
+      if (!m.rule.styleSheetId || !ourSheets.has(m.rule.styleSheetId)) continue;
+      for (const index of m.matchingSelectors) { const sel = normalize(m.rule.selectorList.selectors[index].text); if (owned(sel)) liveMatched.add(sel); }
+    }
+  }
+  await context.close();
+});
+console.log(`Live widgets: ${liveMatched.size} owned selectors stay in place in the shared layers.`);
+// Saved so --strip (which renders nothing) keeps the same selectors in place.
+if (!stripOnly) {
+  fs.mkdirSync('styles/live', { recursive: true });
+  fs.writeFileSync(`styles/live/${name}.json`, JSON.stringify([...liveMatched].sort(), null, 1) + '\n');
+}
+if (liveOnly) { await browser.close(); process.exit(0); }
 await pool(VIEWS, 4, async view => {
   const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + target.path, width: view.width, scheme: view.scheme });
   if (!LONGHANDS.size) {
@@ -404,12 +474,13 @@ await pool(VIEWS, 4, async view => {
       return parts.join('>');
     };
     return [...document.querySelectorAll(content)].map(el => ({
-      key: keyOf(el), id: pathOf(el), empty: !el.firstChild, nth: Array.prototype.indexOf.call(el.parentElement.children, el) + 1,
+      key: keyOf(el), id: pathOf(el), empty: !el.firstChild,
+      chain: (() => { const list = []; for (let node = el; node && node !== document.body; node = node.parentElement) list.push(...node.classList); return list; })(), nth: Array.prototype.indexOf.call(el.parentElement.children, el) + 1,
       ancestors: (() => { const list = []; for (let node = el.parentElement; node && el.closest('.' + wrapper) && node !== el.closest('.' + wrapper); node = node.parentElement) { const o = own(node); if (o) list.push(o); } return list; })(),
       exact: (() => { const wrap = el.closest('.' + wrapper); if (!wrap || el === wrap) return null; const parts = []; for (let node = el; node !== wrap; node = node.parentElement) parts.unshift(node.tagName.toLowerCase() + ':nth-child(' + (Array.prototype.indexOf.call(node.parentElement.children, node) + 1) + ')'); return '.' + wrapper + ' > ' + parts.join(' > '); })(),
       interactive: el.matches('a[href], button, summary, input, select, textarea') && !!el.closest('.' + wrapper)
     }));
-  }, [wrapperClass, CONTENT, componentSets ? [...componentSets.varying] : []]);
+  }, [wrapperClass, CONTENT, [...(componentSets ? componentSets.varying : []), ...[...SCRIPT_TOGGLED].filter(liveClass)]]);
 
   const record = (el, stateKey, map) => {
     if (process.env.DEBUG_KEY && el.key.includes(process.env.DEBUG_KEY) && !stateKey) {
@@ -429,6 +500,16 @@ await pool(VIEWS, 4, async view => {
     const nodeId = nodeIds[i];
     const info = keys[i];
     const result = await cdp.send('CSS.getMatchedStylesForNode', { nodeId });
+    // Inside a live widget, every owned rule reaching the element is carried
+    // verbatim as well, so the widget keeps its styles in states not rendered.
+    if (info.chain.some(liveClass)) for (const m of result.matchedCSSRules) {
+      if (!m.rule.styleSheetId || !ourSheets.has(m.rule.styleSheetId)) continue;
+      for (const index of m.matchingSelectors) { const sel = normalize(m.rule.selectorList.selectors[index].text); if (owned(sel)) liveMatched.add(sel); }
+    }
+    // Live elements get no derived rules (their rules are all carried), and
+    // are not registered: derived keys that also match them are narrowed
+    // with :not() below, so a derived value never lands on a live element.
+    if (info.chain.some(liveClass)) continue;
     const base = winners(result.matchedCSSRules, result.inlineStyle, ourSheets, viewClasses);
     const hasOwned = [...base.values()].some(w => w.owned) || (result.pseudoElements || []).some(p => p.matches.some(m => m.rule.styleSheetId && ourSheets.has(m.rule.styleSheetId)));
     // Every element inside the page is registered with the views it appears
@@ -489,6 +570,7 @@ await pool(VIEWS, 4, async view => {
 // page's compile, so it must not be carried here (the carried copy would land
 // in the shared bundle and override the derived one). Test the other pages too.
 for (const other of group) {
+  if (stripOnly) break;
   if (other === name) continue;
   const otherPage = PAGES.find(page => page.name === other);
   await pool(VIEWS, 4, async view => {
@@ -549,7 +631,7 @@ for (const [key, members] of keyGroups) {
 }
 // A key like ".page .card" also matches ".page .card.card--wide". Exclude
 // elements that belong to other keys with :not(.class).
-{
+if (!stripOnly) {
   const view = VIEWS.find(v => v.id === '1280-light');
   const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + target.path, width: view.width, scheme: view.scheme });
   const keyed = new Map();
@@ -902,7 +984,12 @@ function stripOwned(text) {
     }
     if (node.type !== 'Rule' || !node.prelude.children) return;
     const selectors = node.prelude.children.toArray();
-    const keep = selectors.filter(s => !owned(generate(s)));
+    // Rules for live widgets stay where they are in the shared layers, so
+    // their order against every other rule is exactly the original one.
+    // (Moved to the end of a page file, they overrode later site-wide rules:
+    // the calendar cards' radius, the sponsor form's select arrow.)
+    const stays = sel => !owned(sel) || selectorClasses(sel).some(liveClass) || liveMatched.has(sel);
+    const keep = selectors.filter(s => stays(generate(s)));
     if (keep.length === selectors.length) return;
     // Carried verbatim: rules under unmodeled media, and selectors for
     // pseudo-elements DevTools does not report (::placeholder lives in the
@@ -911,7 +998,7 @@ function stripOwned(text) {
     const opaquePseudo = sel => /::(?!before\b|after\b)[a-z-]+/i.test(sel);
     const outsideContent = sel => !withinContent(sel, contentClasses);
     const neverMatched = sel => !matchedSelectors.has(sel);
-    const mine = selectors.filter(s => owned(generate(s))).map(s => generate(s)).filter(sel => (unmodeled || opaquePseudo(sel) || outsideContent(sel) || neverMatched(sel) || dynamic(sel)) && reachesPage(sel));
+    const mine = selectors.map(s => generate(s)).filter(sel => !stays(sel)).filter(sel => (unmodeled || opaquePseudo(sel) || outsideContent(sel) || neverMatched(sel) || dynamic(sel)) && reachesPage(sel));
     if (mine.length) carried.push({ chain, selectors: mine, block: generate(node.block) });
     removedSelectors += selectors.length - keep.length;
     if (!keep.length) { removedRules += 1; edits.push([node.loc.start.offset, node.loc.end.offset, '']); }

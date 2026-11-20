@@ -30,17 +30,37 @@ test('hero loads only the first image initially and respects reduced motion', ()
     assert.equal(s.intervals.size, 0);
   } finally { s.close(); }
 });
-test('homepage images and spotlight change only when selected', () => {
+test('homepage photos and spotlight rotate on their own and pause on hover', () => {
   const s = setup(fs.readFileSync('Home Page.html', 'utf8'), false);
   try {
-    const dots = s.d.querySelectorAll('#ahDots > button');
+    const dots = [...s.d.querySelectorAll('#ahDots > button')];
+    const guide = s.d.querySelector('[data-spotlight-dot="1"]');
     assert.equal(dots.length, 5);
     assert.equal(s.d.querySelectorAll('.ah-hero-slide img').length, 1);
-    dots[2].click();
-    assert.equal(dots[2].getAttribute('aria-pressed'), 'true');
-    const guide = s.d.querySelector('[data-spotlight-dot="1"]');
-    guide.click();
-    assert.equal(guide.getAttribute('aria-selected'), 'true');
+    assert.equal(s.intervals.size, 2, 'one timer for the photos, one for the spotlight');
+    for (const tick of [...s.intervals.values()]) tick();
+    assert.equal(dots[1].getAttribute('aria-pressed'), 'true', 'photos advanced');
+    assert.equal(s.d.querySelectorAll('.ah-hero-slide img').length, 2, 'next photo loads only when shown');
+    assert.equal(guide.getAttribute('aria-selected'), 'true', 'spotlight advanced');
+    dots[4].click();
+    for (const tick of [...s.intervals.values()]) tick();
+    assert.equal(dots[0].getAttribute('aria-pressed'), 'true', 'wraps from the last photo to the first');
+    // The spotlight sits inside the hero: pointing at it enters both.
+    s.d.querySelector('.ah-hero').dispatchEvent(new s.w.Event('mouseenter'));
+    assert.equal(s.intervals.size, 1, 'hovering the photos pauses them');
+    s.d.querySelector('#ahSpotlight').dispatchEvent(new s.w.Event('mouseenter'));
+    assert.equal(s.intervals.size, 0, 'hovering the spotlight pauses it too');
+    s.d.querySelector('.ah-hero').dispatchEvent(new s.w.Event('mouseleave'));
+    s.d.querySelector('#ahSpotlight').dispatchEvent(new s.w.Event('mouseleave'));
+    assert.equal(s.intervals.size, 2, 'leaving resumes both');
+  } finally { s.close(); }
+});
+test('homepage photos and spotlight stay still for reduced motion', () => {
+  const s = setup(fs.readFileSync('Home Page.html', 'utf8'), true);
+  try {
+    assert.equal(s.intervals.size, 0);
+    s.d.querySelectorAll('#ahDots > button')[2].click();
+    s.d.querySelector('[data-spotlight-dot="1"]').click();
     assert.equal(s.intervals.size, 0);
   } finally { s.close(); }
 });
