@@ -102,7 +102,14 @@ function sourceDeclarations(rule) {
 const MODELED_PART = /^(screen|all)?$|^\((max|min)-width:\d+(\.\d+)?px\)$|^\(prefers-color-scheme:(dark|light)\)$/;
 const modeled = media => !media.includes(',') && media.replace(/\s+/g, '').split(/and/).every(part => MODELED_PART.test(part));
 
-function winners(matched, inline, ourSheets) {
+// Classes found inside the page content, per view and in total. A selector
+// that needs a class found only outside it (the lightbox overlay appended to
+// <body>, body-level state classes) targets states the compiler never renders,
+// so it is carried verbatim instead of derived.
+const contentClasses = new Set();
+const withinContent = (selector, classes) => [...requirements(selector).classes].every(c => classes.has(c));
+
+function winners(matched, inline, ourSheets, viewClasses = contentClasses) {
   // Returns Map(prop -> { value, important, owned, spec, sheet, kept: [competitors] })
   const decls = new Map();
   const push = (prop, entry) => { if (!decls.has(prop)) decls.set(prop, []); decls.get(prop).push(entry); };
@@ -114,7 +121,7 @@ function winners(matched, inline, ourSheets) {
     const spec = matching.map(s => s.specificity || zero).sort(cmp).pop() || zero;
     const isOurs = ourSheets.has(rule.styleSheetId);
     const inModeledMedia = (rule.media || []).filter(m => m.source === 'mediaRule').every(m => modeled(m.text));
-    const isOwned = isOurs && inModeledMedia && matching.length > 0 && matching.every(s => owned(normalize(s.text)));
+    const isOwned = isOurs && inModeledMedia && matching.length > 0 && matching.every(s => owned(normalize(s.text)) && withinContent(normalize(s.text), viewClasses));
     const selectorText = matching.map(s => s.text).join(', ');
     const seen = new Set();
     const fallback = isOurs && !rule.style.range ? sourceDeclarations(rule) : null;
@@ -242,6 +249,8 @@ await pool(VIEWS, 4, async view => {
   const { root } = await cdp.send('DOM.getDocument', { depth: -1 });
   const { nodeIds } = await cdp.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: CONTENT });
   // Element keys: a selector describing each element, computed in the page.
+  const viewClasses = new Set(await page.evaluate(content => [...new Set([...document.querySelectorAll(content)].flatMap(el => [...el.classList]))], CONTENT));
+  viewClasses.forEach(c => contentClasses.add(c));
   const keys = await page.evaluate(([wrapper, content]) => {
     const dynamic = new Set(['asme-animate', 'asme-reveal', 'is-visible', 'asme-page-last-block', 'asme-page-bottom-frame', 'asme-footer-spacer']);
     const esc = cls => CSS.escape(cls);
@@ -298,7 +307,7 @@ await pool(VIEWS, 4, async view => {
     const nodeId = nodeIds[i];
     const info = keys[i];
     const result = await cdp.send('CSS.getMatchedStylesForNode', { nodeId });
-    const base = winners(result.matchedCSSRules, result.inlineStyle, ourSheets);
+    const base = winners(result.matchedCSSRules, result.inlineStyle, ourSheets, viewClasses);
     const hasOwned = [...base.values()].some(w => w.owned) || (result.pseudoElements || []).some(p => p.matches.some(m => m.rule.styleSheetId && ourSheets.has(m.rule.styleSheetId)));
     // Every element inside the page is registered with the views it appears
     // in, even without owned styles, so selectors shared with it are checked.
@@ -327,7 +336,7 @@ await pool(VIEWS, 4, async view => {
       // DevTools calls ::placeholder "input-placeholder".
       const pseudoName = { 'input-placeholder': 'placeholder' }[pseudo.pseudoType] || pseudo.pseudoType;
       if (!['before', 'after', 'placeholder', 'marker'].includes(pseudoName)) continue;
-      record(el, '::' + pseudoName, winners(pseudo.matches, null, ourSheets));
+      record(el, '::' + pseudoName, winners(pseudo.matches, null, ourSheets, viewClasses));
     }
     // Hover and focus effects are not limited to links and buttons (cards lift
     // on hover), so every element with owned styles is probed.
@@ -336,7 +345,7 @@ await pool(VIEWS, 4, async view => {
         await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [state] });
         const forced = await cdp.send('CSS.getMatchedStylesForNode', { nodeId });
         await cdp.send('CSS.forcePseudoState', { nodeId, forcedPseudoClasses: [] });
-        const map = winners(forced.matchedCSSRules, forced.inlineStyle, ourSheets);
+        const map = winners(forced.matchedCSSRules, forced.inlineStyle, ourSheets, viewClasses);
         // Keep only what differs from the element's normal state.
         for (const [prop, win] of [...map]) {
           const normal = base.get(prop);
@@ -345,7 +354,7 @@ await pool(VIEWS, 4, async view => {
         record(el, ':' + state, map);
         for (const pseudo of forced.pseudoElements || []) {
           if (!['before', 'after'].includes(pseudo.pseudoType)) continue;
-          record(el, ':' + state + '::' + pseudo.pseudoType, winners(pseudo.matches, null, ourSheets));
+          record(el, ':' + state + '::' + pseudo.pseudoType, winners(pseudo.matches, null, ourSheets, viewClasses));
         }
       }
     }
@@ -722,7 +731,8 @@ function stripOwned(text) {
     // input's internal shadow DOM; also ::selection, scrollbar parts).
     const unmodeled = chain.some(at => at.name !== 'media' || !modeled(at.prelude));
     const opaquePseudo = sel => /::(?!before\b|after\b)[a-z-]+/i.test(sel);
-    const mine = selectors.filter(s => owned(generate(s))).map(s => generate(s)).filter(sel => (unmodeled || opaquePseudo(sel)) && reachesPage(sel));
+    const outsideContent = sel => !withinContent(sel, contentClasses);
+    const mine = selectors.filter(s => owned(generate(s))).map(s => generate(s)).filter(sel => (unmodeled || opaquePseudo(sel) || outsideContent(sel)) && reachesPage(sel));
     if (mine.length) carried.push({ chain, selectors: mine, block: generate(node.block) });
     removedSelectors += selectors.length - keep.length;
     if (!keep.length) { removedRules += 1; edits.push([node.loc.start.offset, node.loc.end.offset, '']); }
@@ -749,7 +759,7 @@ const sharedFiles = ['styles/design-system.css', 'styles/widescreen.css', 'style
 const shared = sharedFiles.map(file => [file, stripOwned(fs.readFileSync(file, 'utf8'))]);
 if (carried.length) {
   const raw = carried.map(({ chain, selectors, block }) => chain.reduceRight((inner, at) => `@${at.name} ${at.prelude}{${inner}}`, `${selectors.join(',')}${block}`)).join('\n');
-  css += '\n/* Carried over unchanged: rules for conditions the compiler does not reproduce\n   from its test views (motion preference, orientation, print) and pseudo-elements\n   DevTools does not report (::placeholder). */\n' + pretty(raw);
+  css += '\n/* Carried over unchanged: rules for conditions the compiler does not reproduce\n   from its test views (motion preference, orientation, print) and pseudo-elements\n   DevTools does not report (::placeholder), and overlays outside the page content\n   such as the gallery lightbox. */\n' + pretty(raw);
 }
 
 console.log(`${name}: ${decls} declarations in ${[...byMedia.values()].reduce((t, r) => t + r.length, 0)} rules (${importantCount} !important); specificity levels used ${levelCount.join('/')} (plain / #page / html body #page .entry-content / doubled id)`);

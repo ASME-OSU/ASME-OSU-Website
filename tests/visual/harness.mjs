@@ -259,4 +259,10 @@ async function settle(page) {
     window.scrollTo(0, 0);
   });
   await page.quiet();
+  // Scripts that lay out from image sizes (the gallery's justified rows) use
+  // whichever images had loaded on their last pass, so results follow load
+  // order. One resize after everything has loaded makes them lay out again
+  // from final inputs.
+  await page.evaluate(() => window.dispatchEvent(new Event('resize')));
+  await page.quiet();
 }

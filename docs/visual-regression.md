@@ -56,3 +56,5 @@ The injected rule must win the cascade to have any effect. Many current rules us
 - Page HTML comes from the recording, so it reflects the live WordPress content. Edits to the HTML files in this repo (copy/paste blocks) do not appear until they are published and recaptured. Inline `<style>` blocks inside pages (the Join page's critical styles) are part of that HTML.
 - Third-party embeds (Google Calendar iframe) are blank. Their internal styling is outside this repository.
 - Chromium only, at emulated sizes. This is not a cross-browser or physical-device test.
+
+To watch a long run, `sh tests/visual/watch.sh <log file>` in a second terminal shows how many screenshots each stage has written, what is running, and the end of the log.

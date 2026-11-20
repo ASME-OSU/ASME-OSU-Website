@@ -55,6 +55,11 @@ Found on the sponsor pages:
 
 The first About and Calendar compiles (commits `ec5aa62`, `0864760`) lacked the last two fixes. They dropped the pillar and info-item hover lifts, their transitions, the Subscribe button's focus outline, and About's portrait-tablet hero rules (901–1100px, portrait). The screenshots run without hover and with reduced motion, so they could not show this. All pages were then recompiled from the Phase 1 stylesheet with the fixed compiler.
 
+Found on Gallery:
+
+- **Overlays outside the page content.** The footer script appends the photo lightbox to `<body>` and gives it its open-state classes only on click. The compiler examines only the page content and never clicks, so it carries verbatim any owned selector that needs a class never found inside the page content (the lightbox, body-level state classes such as `asme-lightbox-open-body`). Gallery's carried section is large (127 `!important`) for this reason: it holds the lightbox's rules unchanged.
+- **Script layouts follow image load order.** The gallery script plans justified rows from each photo's aspect ratio, read from the loaded image or, before it loads, from its `width`/`height` attributes. One photo's file is 303×227 while its attributes say 768×576; that 0.1% difference decides between `span 4` and `span 5`. The harness now fires one `resize` after everything has loaded so scripts lay out again from final inputs. That fixed most cases, but `gallery--768` still varies between runs with the same stylesheet, matching on some runs and not others. Visitors can see either layout too. Treat a difference limited to two gallery photos' column spans there as noise.
+
 Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winners the compiler records for matching elements, and `DEBUG_RAW=<selector text>` prints the raw DevTools entries for matching rules.
 
 ## Limits
@@ -71,6 +76,7 @@ Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winner
 | Calendar | 317 → 15 + 10 | 106/106 pixels + computed styles |
 | Privacy | 0 → 0 (4 rules) | 106/106 pixels + computed styles |
 | Sponsor ASME + Current Sponsors (group) | 1,866 → 185 + 85 | 106/106 pixels + computed styles |
+| Gallery | 779 → 18 + 127 | 105/106; `gallery--768` varies run to run (see below) |
 
 All pages were recompiled together from the Phase 1 stylesheet with the final compiler on November 19, 2026. Whole stylesheet compared with Phase 1: 635 → 610 KB minified (77.2 → 74.3 KB gzipped), 9,056 → 6,631 `!important`. "Carried" rules are copied verbatim (motion preference, orientation, `::placeholder`) and keep their original `!important`. The sponsor pages' derived rules still need `!important` in about 8% of declarations to beat site-wide button and form-field rules. That falls once those shared rules are rebuilt.
 
