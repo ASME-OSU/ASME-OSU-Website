@@ -97,6 +97,7 @@ Debugging: `DEBUG_KEY=<part of a selector> DEBUG_PROP=<regex>` prints the winner
 | Leadership | 67 → 5 + 61 | screenshots + computed styles + browser tests |
 | Join | 825 → 48 + 57 | screenshots + computed styles + browser tests (newsletter flow) |
 | Member Resources + Member Points (group) | 983 → 45 + 123 | screenshots + computed styles + browser tests |
+| Home | 1,359 → 49 + 70 | screenshots (incl. menu, search, header fallback) + computed styles + browser tests (slideshow, carousels) |
 
 All ten pages were recompiled together from the Phase 1 stylesheet with the final compiler on November 20, 2026. Result: 102/106 screenshots match in pixels and computed styles, and all 9 browser tests pass. Whole stylesheet compared with Phase 1: 9,056 → 4,497 `!important`, 77.2 → 72.8 KB gzipped (607 KB minified). The carried sections hold rules copied verbatim, with their original `!important` (motion preference, orientation, `::placeholder`, overlays, state-dependent selectors). The four differences: `gallery--768` (light and dark), the timing-dependent justified row, and `current-sponsors--768` (light and dark), where four empty, zero-height WordPress `<p>` elements in the logo cards occupy a different grid cell (pixel-identical).
 

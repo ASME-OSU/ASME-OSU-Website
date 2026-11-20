@@ -37,16 +37,10 @@
   }
   
   /* The button is the touch target; its pseudo-element is the visual dot. */
-  html body #page .entry-content .asme-home :is(.ah-hero-dot, .ah-spotlight-dot, .ah-hero-dot.active, .ah-spotlight-dot.is-active) {
-    position: relative !important; width: 44px !important; height: 44px !important;
-    min-width: 44px !important; min-height: 44px !important;
-    background: transparent !important; box-shadow: none !important;
-  }
-  html body #page .entry-content .asme-home :is(.ah-hero-dots, .ah-spotlight-dots) {
-    gap: 0 !important;
-  }
-  html body #page .entry-content .asme-home .ah-hero-dots { bottom: 0 !important; }
-  html body #page .entry-content .asme-home.asme-home-refined .ah-hero { padding-bottom: 48px !important; }
+  
+  
+  
+  
   
 }
 

@@ -181,26 +181,6 @@ html body.blog #page article :is(.post-image, .post-thumbnail, .entry-thumbnail)
 }
 
 /* Compact carousel dots retain keyboard selection. */
-html body #page .entry-content .asme-home :is(.ah-hero-dot, .ah-spotlight-dot) {
-  flex: 0 0 auto !important;
-  width: 8px !important;
-  height: 8px !important;
-  min-width: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 999px !important;
-  background: rgba(255, 255, 255, 0.6) !important;
-  transform: none !important;
-}
-html body #page .entry-content .asme-home :is(.ah-hero-dot.active, .ah-spotlight-dot.is-active) {
-  width: 22px !important;
-  background: #fff !important;
-}
-html body #page .entry-content .asme-home :is(.ah-hero-dots, .ah-spotlight-dots) {
-  gap: 8px !important;
-  align-items: center !important;
-}
-html body #page .entry-content .asme-home .ah-hero-dots { bottom: 6px !important; }
 
 @media (prefers-color-scheme: dark) {
   :root { --asme-shadow-card: 0 6px 24px rgb(0 0 0 / 20%); --asme-focus: #79c5ff; }
@@ -235,9 +215,8 @@ html body.blog #page article.asme-reveal.is-visible:hover {
 }
 /* Initial headings stay readable during startup; below-fold sections still
    reveal. This also prevents late JS from hiding an already-painted hero. */
-html body #page .entry-content :is(.about-hero, .join-hero-copy, .sponsors-hero, .sponsor-hero, .gallery-hero, .acp-header).asme-reveal,
-html body #page .entry-content .ah-hero :is(.ah-eyebrow, .ah-title, .ah-sub, .ah-btns, .ah-stats, .ah-badge),
-html.asme-motion-static body :is(.asme-reveal, .asme-animate) {
+html body #page .entry-content :is(.about-hero,.join-hero-copy,.sponsors-hero,.sponsor-hero,.gallery-hero,.acp-header).asme-reveal,
+html.asme-motion-static body :is(.asme-reveal,.asme-animate) {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
@@ -316,24 +295,6 @@ html body #page .entry-content .asme-points-page-v2 .asme-points-summary-skeleto
 
 .gallery-instagram-carousel-pause { width: auto !important; padding: 0 12px !important; font-size: 12px !important; }
 .acp-feed-notice { grid-column: 1 / -1; margin: 8px 0 0; font-size: 14px; }
-
-@media (max-width: 700px) {
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  html body #page .entry-content .asme-home .ah-hero { min-height: 0 !important; }
-  html body #page .entry-content .asme-home .ah-hero-left { padding-top: 30px !important; padding-bottom: 30px !important; }
-  
-  
-}
 
 /* Featured Instagram: broad fabric folds, with a quiet center for the story.
    Decorative SVGs are CSS backgrounds so CMS markup and feed behavior stay intact. */
