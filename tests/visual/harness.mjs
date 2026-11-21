@@ -162,9 +162,9 @@ export function launch(chromium) {
   });
 }
 
-export async function render(browser, snapshot, { mode, url, width, scheme, state, injectCss }) {
+export async function render(browser, snapshot, { mode, url, width, scheme, state, injectCss, motion = 'reduce' }) {
   const context = await browser.newContext({
-    viewport: { width, height: 900 }, deviceScaleFactor: 1, colorScheme: scheme, reducedMotion: 'reduce',
+    viewport: { width, height: 900 }, deviceScaleFactor: 1, colorScheme: scheme, reducedMotion: motion,
     locale: 'en-US', timezoneId: 'America/New_York', serviceWorkers: 'block'
   });
   const page = await context.newPage();
@@ -173,6 +173,18 @@ export async function render(browser, snapshot, { mode, url, width, scheme, stat
   // invitation is on screen depends on timing. Start as a visitor who chose
   // "Maybe later" so it never appears.
   await page.addInitScript(() => { try { localStorage.setItem('asme-gearly-tour-dismissed', 'dismissed'); } catch {} });
+  // With motion on, scroll-reveal sections stay hidden until they scroll into
+  // view. Report every observed element as visible at once, so the page
+  // renders as a visitor sees it after scrolling (the motion-on path of the
+  // reveal script, unlike removing IntersectionObserver, which switches the
+  // site to its static fallback). Microtasks, because the clock is frozen.
+  if (motion !== 'reduce') await page.addInitScript(() => {
+    window.IntersectionObserver = class {
+      constructor(callback) { this.callback = callback; }
+      observe(target) { queueMicrotask(() => this.callback([{ target, isIntersecting: true, intersectionRatio: 1, boundingClientRect: target.getBoundingClientRect(), intersectionRect: target.getBoundingClientRect(), rootBounds: null, time: 0 }], this)); }
+      unobserve() {} disconnect() {} takeRecords() { return []; }
+    };
+  });
   const time = mode === 'replay' && snapshot.capturedAt ? new Date(snapshot.capturedAt) : new Date();
   await page.clock.install({ time });
 

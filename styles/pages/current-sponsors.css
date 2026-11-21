@@ -105,6 +105,8 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  transform: none;
+  opacity: 1;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt::before,
@@ -128,6 +130,7 @@
   font-size: 9px;
   display: none;
   content: none;
+  animation: none;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt::after,
@@ -147,7 +150,9 @@
   border-radius: 999px;
   opacity: 0;
   pointer-events: none;
+  display: none;
   content: none;
+  animation: none;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-ribbon,
@@ -392,6 +397,7 @@
   position: relative;
   flex: unset;
   align-self: stretch;
+  opacity: 1;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko::before,
@@ -642,10 +648,7 @@
   border-image-repeat: stretch;
   border-radius: 14px;
   text-align: center;
-}
-
-.asme-sponsors-page .sponsor-card.sponsor-card-partner:hover {
-  box-shadow: 0 6px 18px rgba(15,52,96,0.08);
+  opacity: 1;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-partner .sponsor-logo-link:not(.sponsor-logo-area):not(.sponsor-logo-area--featured):not(.sponsor-logo-area--wordmark) .sponsor-logo-frame {
@@ -749,14 +752,11 @@
   width: 100%!important;
   max-width: 980px!important;
   margin: 0!important;
-  transform: none!important;
   box-sizing: border-box!important;
-  opacity: 1!important;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:hover,
-.asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:hover,
-.asme-sponsors-page .sponsor-card.sponsor-card-partner:hover {
+.asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:hover {
   transform: translateY(-2px)!important;
 }
 
@@ -776,19 +776,10 @@
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier,
 .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier {
   box-sizing: border-box!important;
-  opacity: 1!important;
-}
-
-.asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--blocko:hover,
-.asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier:hover,
-.asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--scarlet-tier:hover,
-.asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier:hover {
-  transform: translateY(-4px)!important;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-partner {
   padding: 18px 18px 20px!important;
-  opacity: 1!important;
 }
 
 .asme-sponsors-page .sponsor-card.sponsor-card-partner>h3 {
@@ -804,25 +795,6 @@
   border-radius: 24px!important;
   text-align: left!important;
   align-items: flex-start!important;
-}
-
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt::before,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:hover::before,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:focus-visible::before,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg::before,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:hover::before,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:focus-visible::before {
-  animation: none!important;
-}
-
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt::after,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:hover::after,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt:focus-visible::after,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg::after,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:hover::after,
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--ppg:focus-visible::after {
-  display: none!important;
-  animation: none!important;
 }
 
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--brutus.sponsor-card--editorial.sponsor-card--pratt .sponsor-card__content .sponsor-card__name {
@@ -859,10 +831,6 @@
 #page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--gray-tier>h3 {
   align-self: end!important;
   margin-bottom: 0!important;
-}
-
-#page .asme-sponsors-page .sponsor-card.sponsor-card-primary.sponsor-card--buckeye-tier {
-  transition: box-shadow 0.25s ease,transform 0.2s ease!important;
 }
 
 html body #page .entry-content .asme-sponsors-page .sponsor-logo-link.sponsor-logo-area.sponsor-logo-area--wordmark,

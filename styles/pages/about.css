@@ -498,6 +498,7 @@
 }
 
 .asme-about-page .about-cta-btn.about-cta-btn--primary {
+  transition: background 0.2s ease,transform 0.18s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -520,6 +521,7 @@
 }
 
 .asme-about-page .about-cta-btn.about-cta-btn--outline {
+  transition: background 0.2s ease,transform 0.18s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -891,6 +893,7 @@
 }
 
 .asme-about-page .about-cta-btn.about-cta-btn--secondary {
+  transition: background 0.2s ease,transform 0.18s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1646,19 +1649,77 @@
    DevTools does not report (::placeholder), overlays outside the page content
    such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
    [aria-*]) whose values change while the page is used. */
-@media (prefers-reduced-motion:no-preference){.about-pillar{transition:transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important}
+@media (prefers-reduced-motion: no-preference) {
+  .about-pillar {
+    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
+  }
+
 }
-@media (prefers-reduced-motion:no-preference){.about-pillar:hover{transform:translateY(-4px)!important;box-shadow:0 12px 32px rgba(15,52,96,0.14)!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  .about-pillar:hover {
+    transform: translateY(-4px)!important;
+    box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
+  }
+
 }
-body #page .asme-about-page .about-pillars>p:empty,body #page .asme-about-page .about-photo-strip>p:empty,body #page .asme-about-page .about-stats-strip>p:empty,body #page .asme-about-page .about-semester-grid>p:empty,body #page .asme-about-page .about-award-inner>p:empty,body #page .asme-about-page .about-section-heading>p:empty,html body #page .entry-content .asme-about-page .about-pillars>p:empty,html body #page .entry-content .asme-about-page .about-photo-strip>p:empty,html body #page .entry-content .asme-about-page .about-stats-strip>p:empty,html body #page .entry-content .asme-about-page .about-semester-grid>p:empty,html body #page .entry-content .asme-about-page .about-award-inner>p:empty,html body #page .entry-content .asme-about-page .about-section-heading>p:empty{display:none!important}
-body #page .asme-about-page .about-stat-item>p,html body #page .entry-content .asme-about-page .about-stat-item>p{display:none!important;margin:0!important;padding:0!important}
-@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero{grid-template-columns:1fr!important;gap:14px!important}
+
+body #page .asme-about-page .about-pillars>p:empty,
+body #page .asme-about-page .about-photo-strip>p:empty,
+body #page .asme-about-page .about-stats-strip>p:empty,
+body #page .asme-about-page .about-semester-grid>p:empty,
+body #page .asme-about-page .about-award-inner>p:empty,
+body #page .asme-about-page .about-section-heading>p:empty,
+html body #page .entry-content .asme-about-page .about-pillars>p:empty,
+html body #page .entry-content .asme-about-page .about-photo-strip>p:empty,
+html body #page .entry-content .asme-about-page .about-stats-strip>p:empty,
+html body #page .entry-content .asme-about-page .about-semester-grid>p:empty,
+html body #page .entry-content .asme-about-page .about-award-inner>p:empty,
+html body #page .entry-content .asme-about-page .about-section-heading>p:empty {
+  display: none!important;
 }
-@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero-copy{min-height:0!important;padding:34px 36px!important}
+
+body #page .asme-about-page .about-stat-item>p,
+html body #page .entry-content .asme-about-page .about-stat-item>p {
+  display: none!important;
+  margin: 0!important;
+  padding: 0!important;
 }
-@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero-copy h1{max-width:17ch!important}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero {
+    grid-template-columns: 1fr!important;
+    gap: 14px!important;
+  }
+
 }
-@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero-image{min-height:0!important;aspect-ratio:16/7!important}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero-copy {
+    min-height: 0!important;
+    padding: 34px 36px!important;
+  }
+
 }
-@media (min-width:901px) and (max-width:1100px) and (orientation:portrait){body #page .asme-about-page .about-hero-image img{min-height:0!important}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero-copy h1 {
+    max-width: 17ch!important;
+  }
+
+}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero-image {
+    min-height: 0!important;
+    aspect-ratio: 16/7!important;
+  }
+
+}
+
+@media (min-width: 901px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-about-page .about-hero-image img {
+    min-height: 0!important;
+  }
+
 }

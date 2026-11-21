@@ -67,7 +67,7 @@ directly in a page file. See [Rebuilding page styles](docs/css-page-rebuild.md)
 and [Stylesheet foundation](docs/css-foundation.md).
 
 Before and after any CSS change, run the [visual regression suite](docs/visual-regression.md)
-(`npm run visual:baseline`, edit, `npm run build:styles`, `npm run visual:compare`).
+(`npm run visual:baseline`, edit, `npm run build:styles`, `npm run visual:compare`). Screenshots run with reduced motion; for animation or transition changes also run `node tests/visual/motion-check.mjs` (see that guide).
 
 ## Files
 

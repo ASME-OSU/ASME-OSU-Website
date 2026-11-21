@@ -66,3 +66,7 @@ VISUAL_WIDTHS=480,640,900,1100,1440,1700 node tests/visual/run.mjs --update --on
 ```
 
 Take the reference with the stylesheet you trust, then run without `--update` after the change.
+
+## Motion
+
+Screenshots run with reduced motion, so they cannot see animations or transitions. `node tests/visual/motion-check.mjs` renders every page at 375 and 1280px, light and dark, with motion on and compares each element's animation and transition settings with a reference. Save the reference from the stylesheet you trust (`--save`), change the CSS, then run it without `--save`.
