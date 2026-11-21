@@ -2,6 +2,7 @@
 // Each check guards a mistake that has happened or is easy to make; the
 // messages say how to fix it. See AGENTS.md.
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const problems = [];
 const read = file => fs.readFileSync(file, 'utf8');
@@ -44,4 +45,6 @@ if (problems.length) {
   console.error('Guardrail checks failed:\n' + problems.map(p => '  - ' + p).join('\n'));
   process.exit(1);
 }
-console.log(`Guardrails passed (${pages.length} page style files, ${Object.keys(compiled).length} unchanged since compiled).`);
+const unchanged = pages.filter(page => compiled[page] === createHash('sha256').update(fs.readFileSync(`styles/pages/${page}.css`)).digest('hex'));
+const handEdited = pages.filter(page => !unchanged.includes(page));
+console.log(`Guardrails passed (${pages.length} page style files; edited by hand, so protected from recompiling: ${handEdited.join(', ') || 'none'}).`);

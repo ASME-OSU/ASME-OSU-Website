@@ -45,7 +45,10 @@ Recompiling would discard those edits. Make style changes by editing the page fi
 edits, rerun with --force and re-apply them afterwards.`);
   process.exit(1);
 }
-const jobs = Number(process.env.JOBS) || Math.max(1, Math.min(4, Math.floor(os.cpus().length / 2)));
+// One page at a time by default: on an 8-core Mac, 3 at once took as long in
+// total (each page ran 2-7 times slower) and some views rendered wrongly
+// under load (Home: 102 min and a bloated file; alone: 14 min, exact).
+const jobs = Number(process.env.JOBS) || 1;
 const LOGS = 'tests/visual/.output/rebuild';
 fs.mkdirSync(LOGS, { recursive: true });
 
@@ -62,7 +65,8 @@ const elapsed = () => `${Math.round((Date.now() - started) / 60000)} min`;
 // 1. Phase 1 layers, with no page files, as every compile's input. Page files
 //    of pages not being rebuilt are kept aside and put back afterwards.
 const keep = fs.mkdtempSync(path.join(os.tmpdir(), 'asme-pages-'));
-for (const file of fs.existsSync('styles/pages') ? fs.readdirSync('styles/pages') : []) fs.renameSync(path.join('styles/pages', file), path.join(keep, file));
+// Only the page files move; .compiled.json stays and is updated by each compile.
+for (const file of fs.existsSync('styles/pages') ? fs.readdirSync('styles/pages').filter(f => f.endsWith('.css')) : []) fs.renameSync(path.join('styles/pages', file), path.join(keep, file));
 for (const file of LAYERS) fs.writeFileSync(file, execFileSync('git', ['show', `${BASE}:${file}`]));
 build();
 console.log(`Rebuilding ${selected.join(', ')} from Phase 1 (${jobs} at a time).`);

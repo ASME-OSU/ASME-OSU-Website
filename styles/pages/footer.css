@@ -284,74 +284,6 @@
   color: var(--asme-c-accent)!important;
 }
 
-@media (max-width: 1099px) {
-  .asme-footer-inner .asme-footer-grid {
-    column-gap: 0px;
-    grid-template-columns: 1.12fr 0.88fr;
-    row-gap: 42px;
-  }
-
-  .asme-footer-inner .asme-footer-address {
-    align-items: flex-start;
-  }
-
-  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
-    display: flex;
-    align-items: flex-start;
-    width: auto;
-    text-align: left;
-  }
-
-  .asme-footer-inner .asme-footer-col.asme-footer-links,
-  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
-  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
-    text-align: left;
-  }
-
-  .asme-footer-inner .asme-footer-col.asme-footer-links>h3::after,
-  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:hover::after,
-  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:focus-visible::after,
-  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3::after,
-  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:hover::after,
-  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:focus-visible::after {
-    left: 0;
-  }
-
-  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .asme-footer-inner .asme-footer-col.asme-footer-connect {
-    text-align: left;
-    grid-column: 1/-1;
-  }
-
-  .asme-footer-inner .asme-footer-bottom {
-    position: relative;
-  }
-
-  .asme-footer-inner .asme-footer-login {
-    align-items: center;
-    opacity: 0.25;
-  }
-
-  .asme-footer-inner .asme-footer-login:hover {
-    opacity: 0.7;
-  }
-
-  .asme-footer-inner .asme-footer-login>svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  .asme-footer-inner .asme-footer-login {
-    display: none!important;
-  }
-
-}
-
 @media (max-width: 1919px) {
   .asme-footer-inner {
     max-width: 1440px;
@@ -359,7 +291,7 @@
 
 }
 
-@media (max-width: 479px) {
+@media (max-width: 390px) {
   .asme-footer-inner {
     width: calc(100% - 28px);
     padding-top: 36px;
@@ -402,7 +334,18 @@
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 640px) {
+  .asme-footer-inner .asme-footer-bottom {
+    box-sizing: border-box;
+  }
+
+  .asme-footer-inner .asme-footer-bottom>span {
+    white-space: normal;
+  }
+
+}
+
+@media (max-width: 720px) {
   .asme-footer-inner {
     padding-right: 0px;
     padding-bottom: 0px;
@@ -482,7 +425,6 @@
   }
 
   .asme-footer-inner .asme-footer-bottom {
-    box-sizing: border-box;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -492,7 +434,6 @@
   }
 
   .asme-footer-inner .asme-footer-bottom>span {
-    white-space: normal;
     max-width: 330px;
     font-size: 13px;
   }
@@ -503,7 +444,78 @@
 
 }
 
-@media (min-width: 480px) {
+@media (max-width: 979px) {
+  .asme-footer-inner .asme-footer-bottom {
+    position: relative;
+  }
+
+  .asme-footer-inner .asme-footer-login {
+    align-items: center;
+    opacity: 0.25;
+  }
+
+  .asme-footer-inner .asme-footer-login:hover {
+    opacity: 0.7;
+  }
+
+  .asme-footer-inner .asme-footer-login>svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .asme-footer-inner .asme-footer-login {
+    display: none!important;
+  }
+
+}
+
+@media (max-width: 980px) {
+  .asme-footer-inner .asme-footer-grid {
+    column-gap: 0px;
+    grid-template-columns: 1.12fr 0.88fr;
+    row-gap: 42px;
+  }
+
+  .asme-footer-inner .asme-footer-address {
+    align-items: flex-start;
+  }
+
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    display: flex;
+    align-items: flex-start;
+    width: auto;
+    text-align: left;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3 {
+    text-align: left;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-links>h3:focus-visible::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:hover::after,
+  .asme-footer-inner .asme-footer-col.asme-footer-connect>h3:focus-visible::after {
+    left: 0;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .asme-footer-inner .asme-footer-col.asme-footer-connect {
+    text-align: left;
+    grid-column: 1/-1;
+  }
+
+}
+
+@media (min-width: 391px) {
   .asme-footer-inner .asme-footer-address,
   .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
     font-size: 15px;
@@ -511,15 +523,7 @@
 
 }
 
-@media (min-width: 480px) and (max-width: 1099px) {
-  .asme-footer-inner .asme-footer-address,
-  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
-    gap: 13px;
-  }
-
-}
-
-@media (min-width: 480px) and (max-width: 767px) {
+@media (min-width: 391px) and (max-width: 720px) {
   .asme-footer-inner {
     width: min(100% - 40px,480px);
     padding-top: 42px;
@@ -553,7 +557,15 @@
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 391px) and (max-width: 980px) {
+  .asme-footer-inner .asme-footer-address,
+  .asme-footer-inner .asme-footer-contact>p:not(.asme-footer-address) {
+    gap: 13px;
+  }
+
+}
+
+@media (min-width: 721px) {
   .asme-footer-inner {
     padding: 56px 0 0;
   }
@@ -624,7 +636,7 @@
 
 }
 
-@media (min-width: 768px) and (max-width: 1099px) {
+@media (min-width: 721px) and (max-width: 980px) {
   .asme-footer-inner {
     width: min(960px,calc(100vw - 48px));
   }
@@ -669,7 +681,7 @@
 
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 981px) {
   .asme-footer-inner {
     position: relative;
   }
@@ -825,7 +837,7 @@
 
 }
 
-@media (min-width: 1100px) and (max-width: 1919px) {
+@media (min-width: 981px) and (max-width: 1919px) {
   .asme-footer-inner {
     width: min(1440px,calc(100vw - 64px));
   }
@@ -873,14 +885,7 @@
 
 }
 
-@media (prefers-color-scheme: light) and (max-width: 1099px) {
-  .asme-footer-inner .asme-footer-login {
-    color: #38516f;
-  }
-
-}
-
-@media (prefers-color-scheme: light) and (max-width: 767px) {
+@media (prefers-color-scheme: light) and (max-width: 720px) {
   .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
     border-bottom: 1px solid #d7dee8;
   }
@@ -893,14 +898,21 @@
 
 }
 
-@media (prefers-color-scheme: light) and (min-width: 768px) {
+@media (prefers-color-scheme: light) and (max-width: 979px) {
+  .asme-footer-inner .asme-footer-login {
+    color: #38516f;
+  }
+
+}
+
+@media (prefers-color-scheme: light) and (min-width: 721px) {
   .asme-footer-inner .asme-footer-col.asme-footer-links {
     border-left: 1px solid #d7dee8;
   }
 
 }
 
-@media (prefers-color-scheme: light) and (min-width: 1100px) {
+@media (prefers-color-scheme: light) and (min-width: 981px) {
   .asme-footer-inner .asme-footer-col.asme-footer-links::before,
   .asme-footer-inner .asme-footer-col.asme-footer-links:hover::before,
   .asme-footer-inner .asme-footer-col.asme-footer-links:focus-visible::before,
@@ -958,14 +970,7 @@
 
 }
 
-@media (prefers-color-scheme: dark) and (max-width: 1099px) {
-  .asme-footer-inner .asme-footer-login {
-    color: #c8d8ef;
-  }
-
-}
-
-@media (prefers-color-scheme: dark) and (max-width: 767px) {
+@media (prefers-color-scheme: dark) and (max-width: 720px) {
   .asme-footer-inner .asme-footer-col.asme-footer-links>ul>li>a {
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -993,7 +998,14 @@
 
 }
 
-@media (prefers-color-scheme: dark) and (min-width: 768px) {
+@media (prefers-color-scheme: dark) and (max-width: 979px) {
+  .asme-footer-inner .asme-footer-login {
+    color: #c8d8ef;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 721px) {
   .asme-footer-inner .asme-footer-col.asme-footer-links {
     border-left-width: 1px;
     border-left-style: solid;
@@ -1002,7 +1014,7 @@
 
 }
 
-@media (prefers-color-scheme: dark) and (min-width: 768px) and (max-width: 1099px) {
+@media (prefers-color-scheme: dark) and (min-width: 721px) and (max-width: 980px) {
   .asme-footer-inner .asme-footer-col.asme-footer-brand {
     border-color: #2a4262;
   }
@@ -1015,7 +1027,7 @@
 
 }
 
-@media (prefers-color-scheme: dark) and (min-width: 1100px) {
+@media (prefers-color-scheme: dark) and (min-width: 981px) {
   .asme-footer-inner .asme-footer-col.asme-footer-brand {
     border-top-color: rgb(42,66,98);
     border-right-color: rgb(42,66,98);

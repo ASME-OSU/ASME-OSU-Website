@@ -1,8 +1,8 @@
 /* /asme/privacy-policy/ page styles, compiled from the legacy and shared layers by
-   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   scripts/css-compile-page.mjs on 2026-11-21. Each declaration reproduces the value
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
-@media (min-width: 768px) and (max-width: 1099px) {
+@media (min-width: 761px) and (max-width: 979px) {
   .asme-privacy-page .pp-nav {
     display: flex;
     flex-wrap: wrap;

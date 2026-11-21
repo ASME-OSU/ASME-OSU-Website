@@ -52,5 +52,5 @@ for (const [view, elements] of Object.entries(ref)) {
     (byPage[page] ||= []).push(`${view}  ${key.slice(-70)}\n      was: ${elements[key] || '(no motion)'}\n      now: ${now[key] || '(no motion)'}`);
   }
 }
-for (const [page, list] of Object.entries(byPage)) { console.log(`${page}: ${list.length} differences`); list.slice(0, 6).forEach(line => console.log('  ' + line)); }
+for (const [page, list] of Object.entries(byPage)) { console.log(`${page}: ${list.length} differences`); list.slice(0, process.argv.includes('--all') ? Infinity : 6).forEach(line => console.log('  ' + line)); }
 console.log(differences ? `${differences} motion differences.` : 'Motion matches.');

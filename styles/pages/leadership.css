@@ -1,5 +1,5 @@
 /* /asme/leadership/ page styles, compiled from the legacy and shared layers by
-   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   scripts/css-compile-page.mjs on 2026-11-21. Each declaration reproduces the value
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
 .asme-leadership .lb-past-years {
@@ -22,103 +22,13 @@
   margin-bottom: 28px;
 }
 
-.asme-leadership .lb-year-tab.active {
-  appearance: none;
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 1px;
-  border-top-style: solid;
-  border-right-style: solid;
-  border-bottom-style: solid;
-  border-left-style: solid;
-  border-image-source: none;
-  border-image-slice: 100%;
-  border-image-width: 1;
-  border-image-outset: 0;
-  border-image-repeat: stretch;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.18s,color 0.18s,border-color 0.18s;
-  user-select: none;
-  color: var(--asme-c-on-accent);
-  background: var(--asme-c-accent);
-  border-color: var(--asme-c-accent);
-}
-
-.asme-leadership .lb-year-tab.active:hover {
-  background: var(--osu-scarlet-light);
-  color: var(--asme-c-accent);
-}
-
-.asme-leadership .lb-year-tab:not(.active) {
-  appearance: none;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
-  color: #4b5563;
-  cursor: pointer;
-  transition: background 0.18s,color 0.18s,border-color 0.18s;
-  user-select: none;
-}
-
 .asme-leadership .lb-year-tab:not(.active):hover {
   background: var(--osu-scarlet-light);
   color: var(--asme-c-accent);
   border-color: var(--asme-c-accent);
 }
 
-.asme-leadership .lb-year-panel.active {
-  animation: lb-fade-in 0.3s ease;
-  display: block;
-}
-
-.asme-leadership .lb-year-panel-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.asme-leadership .lb-year-panel-header::before,
-.asme-leadership .lb-year-panel-header::after,
-.asme-leadership .lb-year-panel-header:hover::before,
-.asme-leadership .lb-year-panel-header:hover::after,
-.asme-leadership .lb-year-panel-header:focus-visible::before,
-.asme-leadership .lb-year-panel-header:focus-visible::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #e5e7eb;
-}
-
-.asme-leadership .lb-year-panel-header>h2 {
-  background: #6b7280;
-  border-radius: 999px;
-  padding: 7px 20px;
-  white-space: nowrap;
-}
-
-.asme-leadership .leader-photo {
-  display: block;
-  background: #eef2f7;
-}
-
-.asme-leadership .contact-icon:not(.officer-linkedin):not(.officer-mail) {
-  word-break: break-all;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-}
-
-.asme-leadership .lb-year-panel:not(.active) {
-  animation: lb-fade-in 0.3s ease;
-}
-
-html body #page#page .entry-content .asme-leadership .leader-card {
-  text-align: center;
-}
-
-@media (max-width: 899px) {
+@media (max-width: 768px) {
   .asme-leadership .lb-current-year {
     width: 100%;
     max-width: 100%;
@@ -135,31 +45,9 @@ html body #page#page .entry-content .asme-leadership .leader-card {
     box-sizing: border-box;
   }
 
-  .asme-leadership .leader-card {
-    flex: none;
-  }
-
-  .asme-leadership .contact-icon:not(.officer-linkedin):not(.officer-mail) {
-    line-height: 1.3;
-  }
-
-  .asme-leadership .leader-card {
-    width: 100%!important;
-    max-width: none!important;
-    min-width: 0!important;
-    margin: 0!important;
-  }
-
   #page .asme-leadership .lb-current-year {
     margin-left: auto;
     margin-right: auto;
-  }
-
-}
-
-@media (min-width: 900px) {
-  .asme-leadership .contact-icon:not(.officer-linkedin):not(.officer-mail) {
-    line-height: 1.4;
   }
 
 }
@@ -207,23 +95,9 @@ body.archive .site-main {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .leader-card {
-    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
-  }
-
-}
-
-@media (prefers-reduced-motion: no-preference) {
   .leader-card:hover {
     transform: translateY(-4px)!important;
     box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
-  }
-
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .leader-photo {
-    transition: transform 0.35s ease,filter 0.25s ease!important;
   }
 
 }

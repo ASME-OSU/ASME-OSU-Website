@@ -30,12 +30,15 @@ if (!snapshot.capturedAt) {
   console.error('No snapshot found. Run `npm run visual:capture` first.');
   process.exit(1);
 }
-const badPages = snapshot.errorPages(PAGES.map(page => ORIGIN + page.path));
+// Only the pages this run screenshots need a complete recording, so one page
+// can be recorded and checked on its own (capture.mjs --only=join--).
+const list = jobs(option('only'));
+const needed = [...new Set(list.map(job => job.url))];
+const badPages = snapshot.errorPages(needed);
 if (badPages.length) {
   console.error(`These pages were not recorded successfully: ${badPages.join(', ')}\nRun \`npm run visual:capture\` again (it retries only what is missing).`);
   process.exit(1);
 }
-const list = jobs(option('only'));
 const target = update ? BASELINE : CURRENT;
 fs.mkdirSync(target, { recursive: true });
 if (!update) { fs.rmSync(DIFF, { recursive: true, force: true }); fs.mkdirSync(DIFF, { recursive: true }); }
@@ -43,6 +46,7 @@ fs.rmSync(path.join(OUTPUT, 'missing.txt'), { force: true });
 
 // Progress for tests/visual/watch.sh: line 1 is the total, then one line per
 // finished screenshot (id and result).
+fs.mkdirSync(OUTPUT, { recursive: true });
 const PROGRESS = path.join(OUTPUT, 'progress.txt');
 fs.writeFileSync(PROGRESS, `${list.length} ${process.env.VISUAL_WIDTHS ? 'in-between' : 'standard'}\n`);
 fs.writeFileSync(path.join(OUTPUT, 'progress-jobs.txt'), list.map(job => job.id).join('\n') + '\n');

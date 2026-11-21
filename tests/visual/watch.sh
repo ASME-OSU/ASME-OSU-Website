@@ -44,7 +44,9 @@ render() {
       views=""
       if [ -f "$plog" ]; then
         n=$(grep -c "^Compiled [0-9]" "$plog" 2>/dev/null)
-        if [ "$n" -gt 0 ]; then views=", $n / 20 views"; else views=", preparing"; fi
+        tv=$(sed -n 's/^Sampling \([0-9]*\) widths.*/\1/p' "$plog" | head -1)
+        tv=$(( ${tv:-10} * 2 ))
+        if [ "$n" -gt 0 ]; then views=", $n / $tv views"; else views=", preparing"; fi
       fi
       if [ -n "$t" ]; then echo "  [building]  $p   (running $(minutes "$t")$views)"; else echo "  [waiting]   $p"; fi
     fi
