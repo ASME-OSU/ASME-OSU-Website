@@ -6,6 +6,7 @@
  ".asme-gallery-page .gallery-icon a",
  ".asme-gallery-page .gallery-icon img",
  ".asme-gallery-page .gallery-item",
+ ".asme-gallery-page .gallery-item img",
  ".asme-gallery-page .gallery-item.is-landscape",
  ".asme-gallery-page .gallery-item.is-portrait",
  ".asme-gallery-page .gallery-item.is-square",

@@ -296,6 +296,7 @@
   font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
+  transition: color 180ms ease;
 }
 
 .asme-join-page .join-field>input {
@@ -308,6 +309,7 @@
   font-family: "DM Sans",sans-serif;
   line-height: 1.2;
   outline: none;
+  transition: border-color 180ms ease,box-shadow 180ms ease,transform 180ms ease,background-color 180ms ease;
 }
 
 .asme-join-page .join-field-row>p,
@@ -352,6 +354,7 @@
   color: var(--asme-c-on-accent);
   cursor: pointer;
   background: #c8102e;
+  transform: none;
   box-shadow: none;
 }
 
@@ -379,13 +382,13 @@
 }
 
 .asme-join-page .join-groupme-step.join-groupme-card {
+  transition: background 200ms ease,box-shadow 200ms ease;
   position: relative;
   margin: 0;
 }
 
 .asme-join-page .join-groupme-step-icon {
   border-radius: 13px;
-  background-position: center;
 }
 
 .asme-join-page .join-groupme-logo {
@@ -445,7 +448,9 @@
   text-decoration: none;
   margin-right: 0px;
   margin-left: 0px;
+  transform: none;
   box-shadow: none;
+  transition: transform 160ms ease,background-color 160ms ease,border-color 160ms ease;
 }
 
 .asme-join-page .join-groupme-button::before,
@@ -537,6 +542,7 @@
   font-size: 14px;
   font-weight: 800;
   line-height: 1.35;
+  transition: background-color 180ms ease,color 180ms ease;
 }
 
 .asme-join-page .join-faq-item>summary::after,
@@ -551,6 +557,7 @@
   font-size: 25px;
   font-weight: 800;
   line-height: 1;
+  transition: transform 220ms cubic-bezier(0.22,1,0.36,1),color 180ms ease;
 }
 
 .asme-join-page .join-faq-item>p {
@@ -584,6 +591,10 @@
   font-weight: 400!important;
 }
 
+.asme-join-page .join-submit-button {
+  transition: transform 160ms ease,background-color 160ms ease,border-color 160ms ease!important;
+}
+
 .asme-join-page .join-groupme-step-copy>h3 {
   font-family: "DM Serif Display",Georgia,serif!important;
 }
@@ -597,26 +608,12 @@
   font-weight: 400!important;
 }
 
-#page .asme-join-page .join-field>label {
-  transition: color 180ms ease!important;
-}
-
 #page .asme-join-page .join-submit-button:focus-visible,
 #page .asme-join-page .join-groupme-button:focus-visible,
 #page .asme-join-page .asme-return-confirm:focus-visible {
   outline: 3px solid var(--asme-c-focus)!important;
   outline-offset: 3px!important;
   box-shadow: 0 0 0 3px #fff!important;
-}
-
-#page .asme-join-page .join-faq-item>summary {
-  transition: background-color 180ms ease,color 180ms ease!important;
-}
-
-#page .asme-join-page .join-faq-item>summary::after,
-#page .asme-join-page .join-faq-item>summary:hover::after,
-#page .asme-join-page .join-faq-item>summary:focus-visible::after {
-  transition: transform 220ms cubic-bezier(0.22,1,0.36,1),color 180ms ease!important;
 }
 
 html body #page .entry-content .asme-join-page .join-submit-button {
@@ -1326,50 +1323,225 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
    DevTools does not report (::placeholder), overlays outside the page content
    such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
    [aria-*]) whose values change while the page is used. */
-@media (prefers-reduced-motion:reduce){body #page .asme-join-page .join-groupme-button,body #page .asme-join-page .join-groupme-step,html body #page .entry-content .asme-join-page .join-groupme-button,html body #page .entry-content .asme-join-page .join-groupme-step{transition:none!important}
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-join-page .join-groupme-button,
+  body #page .asme-join-page .join-groupme-step,
+  html body #page .entry-content .asme-join-page .join-groupme-button,
+  html body #page .entry-content .asme-join-page .join-groupme-step {
+    transition: none!important;
+  }
+
 }
-body #page .asme-join-page .join-form-purpose strong,html body #page .entry-content .asme-join-page .join-form-purpose strong{font-weight:800!important}
-body #page .asme-join-page .join-form-status[hidden],html body #page .entry-content .asme-join-page .join-form-status[hidden]{display:none!important}
-body #page .asme-join-page .join-submit-button:disabled,html body #page .entry-content .asme-join-page .join-submit-button:disabled{cursor:wait!important;opacity:0.78!important;transform:none!important}
-.asme-join-page p:empty{display:none!important}
-@media (prefers-color-scheme:dark){.asme-join-page .join-field input::placeholder{color:var(--asme-soft)!important}
+
+body #page .asme-join-page .join-form-purpose strong,
+html body #page .entry-content .asme-join-page .join-form-purpose strong {
+  font-weight: 800!important;
 }
-.asme-join-page .join-faq-item summary::-webkit-details-marker{display:none!important}
-.asme-join-page .join-faq-item[open] summary{padding-bottom:10px!important}
-.asme-join-page .join-faq-item[open] summary::after{content:"−"!important}
-@media (prefers-reduced-motion:no-preference){.join-faq-item{transition:transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important}
+
+body #page .asme-join-page .join-form-status[hidden],
+html body #page .entry-content .asme-join-page .join-form-status[hidden] {
+  display: none!important;
 }
-@media (prefers-reduced-motion:no-preference){.join-faq-item:hover{transform:translateY(-4px)!important;box-shadow:0 12px 32px rgba(15,52,96,0.14)!important}
+
+body #page .asme-join-page .join-submit-button:disabled,
+html body #page .entry-content .asme-join-page .join-submit-button:disabled {
+  cursor: wait!important;
+  opacity: 0.78!important;
+  transform: none!important;
 }
-@media (prefers-reduced-motion:no-preference){.join-submit-button{transition:transform 0.18s ease,background 0.18s ease,border-color 0.18s ease!important}
+
+.asme-join-page p:empty {
+  display: none!important;
 }
-@media (prefers-reduced-motion:no-preference){.join-submit-button:hover{transform:translateY(-2px)!important}
+
+@media (prefers-color-scheme: dark) {
+  .asme-join-page .join-field input::placeholder {
+    color: var(--asme-soft)!important;
+  }
+
 }
-@media (min-width:700px) and (max-width:1100px) and (orientation:portrait){body #page .asme-join-page .join-proof-stat,body #page .asme-join-page .join-proof-award,html body #page .entry-content .asme-join-page .join-proof-stat,html body #page .entry-content .asme-join-page .join-proof-award{width:100%!important;min-width:0!important;min-height:62px!important;margin:0!important;padding:9px 10px!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;background:rgba(255,255,255,0.07)!important;border:1px solid rgba(255,255,255,0.12)!important;border-radius:12px!important;box-sizing:border-box!important;line-height:1.2!important}
+
+.asme-join-page .join-faq-item summary::-webkit-details-marker {
+  display: none!important;
 }
-@media (min-width:700px) and (max-width:1100px) and (orientation:portrait){body #page .asme-join-page .join-proof-award{font-size:10px!important;white-space:normal!important}
+
+.asme-join-page .join-faq-item[open] summary {
+  padding-bottom: 10px!important;
 }
-body #page .asme-join-page .join-proof-stat>p,body #page .asme-join-page .join-proof-award>br,body #page .asme-join-page .join-proof-award>p,html body #page .entry-content .asme-join-page .join-proof-stat>p,html body #page .entry-content .asme-join-page .join-proof-award>br,html body #page .entry-content .asme-join-page .join-proof-award>p{display:none!important;margin:0!important;padding:0!important}
-body #page .asme-join-page .join-faq-item[open] summary::after{content:"+"!important;transform:translateY(-50%) rotate(45deg)!important}
-@supports selector(details: : details-content){body #page .asme-join-page .join-faq-item::details-content{block-size:0;overflow:clip;opacity:0;transition:block-size 300ms cubic-bezier(0.22,1,0.36,1),opacity 200ms ease,content-visibility 300ms allow-discrete}
+
+.asme-join-page .join-faq-item[open] summary::after {
+  content: "−"!important;
 }
-@supports selector(details: : details-content){body #page .asme-join-page .join-faq-item[open]::details-content{block-size:auto;opacity:1}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-faq-item {
+    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
+  }
+
 }
-body #page .asme-join-page .join-field:focus-within label{color:#ef4444!important}
-@media (prefers-reduced-motion:reduce){body #page .asme-join-page .join-faq-item::details-content,body #page .asme-join-page .join-field input{animation:none!important;transition:none!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-faq-item:hover {
+    transform: translateY(-4px)!important;
+    box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
+  }
+
 }
-body #page .asme-join-page .join-form-purpose strong,html body #page .entry-content .asme-join-page .join-form-purpose strong{display:block!important;margin-bottom:3px!important;color:#ba0c2f!important}
-body #page .asme-join-page .join-groupme-step-icon svg:not(.join-groupme-logo),html body #page .entry-content .asme-join-page .join-groupme-step-icon svg:not(.join-groupme-logo){visibility:hidden!important}
-body #page .asme-join-page .join-groupme-step-icon:has(.join-groupme-logo),html body #page .entry-content .asme-join-page .join-groupme-step-icon:has(.join-groupme-logo){background-image:none!important}
-html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):is(:hover,:focus-visible){background:var(--join-action-hover)!important;border-color:var(--join-action-hover)!important;transform:translateY(-1px)!important}
-html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):active{transform:translateY(0)!important}
-html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):is(:disabled,[aria-disabled="true"]){transform:none!important;transition:none!important}
-html body #page .entry-content .asme-join-page .join-submit-button:disabled:hover{background:#c8102e!important}
-@media (prefers-reduced-motion:reduce){html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm),html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):is(:hover,:focus-visible,:active){transform:none!important;transition:none!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-submit-button {
+    transition: transform 0.18s ease,background 0.18s ease,border-color 0.18s ease!important;
+  }
+
 }
-@media (prefers-color-scheme:dark){html body #page .entry-content .asme-join-page .join-form-purpose strong{color:#ffb4b4!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  .join-submit-button:hover {
+    transform: translateY(-2px)!important;
+  }
+
 }
-@media (min-width:1800px){html body #page .entry-content .asme-join-page .join-faq-list>:is(br,p:empty){display:none!important}
+
+@media (min-width: 700px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-join-page .join-proof-stat,
+  body #page .asme-join-page .join-proof-award,
+  html body #page .entry-content .asme-join-page .join-proof-stat,
+  html body #page .entry-content .asme-join-page .join-proof-award {
+    width: 100%!important;
+    min-width: 0!important;
+    min-height: 62px!important;
+    margin: 0!important;
+    padding: 9px 10px!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    justify-content: center!important;
+    gap: 4px!important;
+    background: rgba(255,255,255,0.07)!important;
+    border: 1px solid rgba(255,255,255,0.12)!important;
+    border-radius: 12px!important;
+    box-sizing: border-box!important;
+    line-height: 1.2!important;
+  }
+
 }
-@media (prefers-color-scheme:dark){html body #page .entry-content .asme-join-page a[href*="privacy-policy"]{color:#ffb4c3!important}
+
+@media (min-width: 700px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-join-page .join-proof-award {
+    font-size: 10px!important;
+    white-space: normal!important;
+  }
+
+}
+
+body #page .asme-join-page .join-proof-stat>p,
+body #page .asme-join-page .join-proof-award>br,
+body #page .asme-join-page .join-proof-award>p,
+html body #page .entry-content .asme-join-page .join-proof-stat>p,
+html body #page .entry-content .asme-join-page .join-proof-award>br,
+html body #page .entry-content .asme-join-page .join-proof-award>p {
+  display: none!important;
+  margin: 0!important;
+  padding: 0!important;
+}
+
+body #page .asme-join-page .join-faq-item[open] summary::after {
+  content: "+"!important;
+  transform: translateY(-50%) rotate(45deg)!important;
+}
+
+@supports selector(details: : details-content) {
+  body #page .asme-join-page .join-faq-item::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition: block-size 300ms cubic-bezier(0.22,1,0.36,1),opacity 200ms ease,content-visibility 300ms allow-discrete;
+  }
+
+}
+
+@supports selector(details: : details-content) {
+  body #page .asme-join-page .join-faq-item[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+
+}
+
+body #page .asme-join-page .join-field:focus-within label {
+  color: #ef4444!important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-join-page .join-faq-item::details-content,
+  body #page .asme-join-page .join-field input {
+    animation: none!important;
+    transition: none!important;
+  }
+
+}
+
+body #page .asme-join-page .join-form-purpose strong,
+html body #page .entry-content .asme-join-page .join-form-purpose strong {
+  display: block!important;
+  margin-bottom: 3px!important;
+  color: #ba0c2f!important;
+}
+
+body #page .asme-join-page .join-groupme-step-icon svg:not(.join-groupme-logo),
+html body #page .entry-content .asme-join-page .join-groupme-step-icon svg:not(.join-groupme-logo) {
+  visibility: hidden!important;
+}
+
+body #page .asme-join-page .join-groupme-step-icon:has(.join-groupme-logo),
+html body #page .entry-content .asme-join-page .join-groupme-step-icon:has(.join-groupme-logo) {
+  background-image: none!important;
+}
+
+html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):is(:hover,:focus-visible) {
+  background: var(--join-action-hover)!important;
+  border-color: var(--join-action-hover)!important;
+  transform: translateY(-1px)!important;
+}
+
+html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):active {
+  transform: translateY(0)!important;
+}
+
+html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):is(:disabled,[aria-disabled="true"]) {
+  transform: none!important;
+  transition: none!important;
+}
+
+html body #page .entry-content .asme-join-page .join-submit-button:disabled:hover {
+  background: #c8102e!important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm),
+  html body #page .entry-content .asme-join-page :is(.join-submit-button,.join-groupme-button,#asme-groupme-return .asme-return-confirm):not(:disabled):not([aria-disabled="true"]):is(:hover,:focus-visible,:active) {
+    transform: none!important;
+    transition: none!important;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  html body #page .entry-content .asme-join-page .join-form-purpose strong {
+    color: #ffb4b4!important;
+  }
+
+}
+
+@media (min-width: 1800px) {
+  html body #page .entry-content .asme-join-page .join-faq-list>:is(br,p:empty) {
+    display: none!important;
+  }
+
+}
+
+@media (prefers-color-scheme: dark) {
+  html body #page .entry-content .asme-join-page a[href*="privacy-policy"] {
+    color: #ffb4c3!important;
+  }
+
 }

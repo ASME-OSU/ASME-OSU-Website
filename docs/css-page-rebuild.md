@@ -85,6 +85,14 @@ A class counts as live when a site script adds, toggles or removes it (read from
 
 The visual suite has two states for this: `home--spotlight-2` (the second highlight slide) and `member-points--leaderboard-loading` (the skeleton).
 
+## Motion: compiled with motion on
+
+The screenshot suite renders with reduced motion so pictures are stable. The compiler first did the same, so the site's `prefers-reduced-motion` rules (`transition: none`, `animation: none`) won in every view it saw. The normal transitions were never derived and disappeared for everyone else: about 1,400 elements lost their hover and fade transitions (0.15–0.25 s color, background and lift changes), and the gallery lightbox lost its fade-in. Screenshots cannot show motion, so nothing failed.
+
+The compiler now renders with motion on (`MOTION` in the compiler; the harness reports every scroll-reveal section as already in view). Reduced-motion rules are carried over verbatim and still apply for visitors who ask for less motion. `node tests/visual/motion-check.mjs` compares every element's animation and transition settings with motion on against a saved reference (`--save` with the trusted stylesheet first); it is part of the final check.
+
+The hero photo zoom (`ah-ken-burns`) was not lost in the rebuild: the November 17 accessibility change set `animation: none` on the hero slides, along with removing the slide rotation. Both were restored on request on November 20; the zoom is a hand-written rule at the end of `styles/pages/home.css`.
+
 ## Shared components: footer and header
 
 The footer and the original theme header appear on every page, so page ownership does not apply. Only the footer is rebuilt; the theme header stays in the legacy layer (see below). They are compiled as components: `node scripts/css-compile-page.mjs footer --write --tokens` (or `header`). A component is rooted at its own element (`.asme-footer-inner`; `.site-header` for the WordPress theme header, which is hidden while the custom header from `Header.css` is loaded and shown if that fails). It is rendered on Home. A selector is owned when every class it needs occurs inside the component and at least one occurs nowhere else on any page. The output goes to `styles/pages/footer.css` and `styles/pages/header.css`. The custom header itself stays in `Header.css`, which is not part of this bundle.

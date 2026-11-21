@@ -1,5 +1,5 @@
 /* /asme/ page styles, compiled from the legacy and shared layers by
-   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   scripts/css-compile-page.mjs on 2026-11-21. Each declaration reproduces the value
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
 .asme-home {
@@ -31,7 +31,9 @@
   position: absolute;
   inset: 0;
   background-size: cover;
+  transition: opacity 1.2s ease;
   opacity: 1;
+  animation: none;
 }
 
 .asme-home .ah-hero-slide.active>img {
@@ -49,6 +51,8 @@
   inset: 0;
   opacity: 0;
   background-size: cover;
+  transition: opacity 1.2s ease;
+  animation: none;
 }
 
 .asme-home .ah-hero-overlay {
@@ -70,6 +74,7 @@
 .asme-home .ah-hero-dot.active,
 .asme-home .ah-hero-dot:not(.active) {
   cursor: pointer;
+  transition: background 0.25s,transform 0.25s;
 }
 
 .asme-home .ah-hero-left {
@@ -418,6 +423,7 @@ html body #page .entry-content .asme-home .ah-btn-o {
   border-radius: 28px;
   background: var(--event-surface);
   color: var(--event-text);
+  transform: none;
 }
 
 .asme-home .ah-featured-event::before,
@@ -792,10 +798,6 @@ html body #page .entry-content .asme-home .ah-btn-o {
   color: var(--asme-c-on-accent)!important;
 }
 
-.asme-home .ah-featured-event {
-  transform: none!important;
-}
-
 .asme-home .ah-featured-event>p:empty,
 .asme-home .ah-featured-event-copy>p:empty,
 .asme-home .ah-featured-event>p:not(:empty) {
@@ -811,6 +813,10 @@ html body #page .entry-content .asme-home .ah-btn-o {
   color: var(--event-muted)!important;
 }
 
+.asme-home .ah-featured-button:hover {
+  transform: translateY(-2px)!important;
+}
+
 .asme-home>div:nth-child(4)>div:nth-child(1)>h2:nth-child(2),
 .asme-home>h2:nth-child(5),
 .asme-home>div:nth-child(7)>div:nth-child(1)>h2:nth-child(2) {
@@ -820,11 +826,6 @@ html body #page .entry-content .asme-home .ah-btn-o {
 .asme-home .ah-card>h3 {
   font-family: "DM Serif Display",serif!important;
   font-weight: 400!important;
-}
-
-#page .asme-home .ah-hero-slide.active,
-#page .asme-home .ah-hero-slide:not(.active) {
-  animation: none!important;
 }
 
 #page .asme-home .ah-sub {
@@ -896,10 +897,6 @@ html body #page .entry-content .asme-home .ah-featured-button {
   border-radius: 999px!important;
   font-size: 16px!important;
   font-weight: 600!important;
-}
-
-html body #page .entry-content .asme-home .ah-featured-button:hover {
-  transform: translateY(-2px)!important;
 }
 
 @media (max-width: 1099px) {
@@ -1141,6 +1138,10 @@ html body #page .entry-content .asme-home .ah-featured-button:hover {
     opacity: .55;
   }
 
+  .asme-home .ah-featured-orbit-line {
+    filter: none;
+  }
+
   .asme-home .ah-featured-event>p:empty,
   .asme-home .ah-featured-event-copy>p:empty,
   .asme-home .ah-featured-event>p:not(:empty) {
@@ -1361,6 +1362,10 @@ html body #page .entry-content .asme-home .ah-featured-button:hover {
     flex-direction: row;
     gap: 24px 32px;
     padding: clamp(24px,2.3vw,32px) clamp(24px,3vw,44px);
+  }
+
+  .asme-home .ah-featured-orbit-line {
+    filter: drop-shadow(0 0 3px rgb(227 24 55/55%));
   }
 
   .asme-home .ah-featured-event>p:empty,
@@ -1832,59 +1837,277 @@ html body #page .entry-content .asme-home .ah-featured-button:hover {
    DevTools does not report (::placeholder), overlays outside the page content
    such as the gallery lightbox, and state-dependent selectors ([hidden], :empty,
    [aria-*]) whose values change while the page is used. */
-@media (prefers-reduced-motion:no-preference){.ah-card,body .asme-home .ah-featured-event{transition:transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important}
+@media (prefers-reduced-motion: no-preference) {
+  .ah-card,
+  body .asme-home .ah-featured-event {
+    transition: transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease,background 0.2s ease!important;
+  }
+
 }
-@media (prefers-reduced-motion:no-preference){.ah-card:hover,body .asme-home .ah-featured-event:hover{transform:translateY(-4px)!important;box-shadow:0 12px 32px rgba(15,52,96,0.14)!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ah-card:hover,
+  body .asme-home .ah-featured-event:hover {
+    transform: translateY(-4px)!important;
+    box-shadow: 0 12px 32px rgba(15,52,96,0.14)!important;
+  }
+
 }
-@media (prefers-reduced-motion:no-preference){.ah-btn-p,.ah-btn-o,.ah-featured-button{transition:transform 0.18s ease,background 0.18s ease,border-color 0.18s ease!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ah-btn-p,
+  .ah-btn-o,
+  .ah-featured-button {
+    transition: transform 0.18s ease,background 0.18s ease,border-color 0.18s ease!important;
+  }
+
 }
-@media (prefers-reduced-motion:no-preference){.ah-btn-p:hover,.ah-btn-o:hover,.ah-featured-button:hover{transform:translateY(-2px)!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ah-btn-p:hover,
+  .ah-btn-o:hover,
+  .ah-featured-button:hover {
+    transform: translateY(-2px)!important;
+  }
+
 }
-@media (prefers-reduced-motion:no-preference){body .asme-home .ah-status-pill::before{animation:asme-soft-pulse 2.2s ease-in-out infinite!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  body .asme-home .ah-status-pill::before {
+    animation: asme-soft-pulse 2.2s ease-in-out infinite!important;
+  }
+
 }
-@media (prefers-reduced-motion:no-preference){body .asme-home .ah-featured-event{transition:transform 0.2s ease,border-color 0.2s ease,box-shadow 0.2s ease!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  body .asme-home .ah-featured-event {
+    transition: transform 0.2s ease,border-color 0.2s ease,box-shadow 0.2s ease!important;
+  }
+
 }
-@media (prefers-reduced-motion:no-preference){body .asme-home .ah-featured-event:hover{transform:translateY(-2px)!important;border-color:rgba(187,0,0,0.35)!important;box-shadow:0 10px 26px rgba(15,52,96,0.1)!important}
+
+@media (prefers-reduced-motion: no-preference) {
+  body .asme-home .ah-featured-event:hover {
+    transform: translateY(-2px)!important;
+    border-color: rgba(187,0,0,0.35)!important;
+    box-shadow: 0 10px 26px rgba(15,52,96,0.1)!important;
+  }
+
 }
-@media (max-width:768px){body .asme-home .ah-about p:empty{display:none!important;height:0!important;margin:0!important;padding:0!important}
+
+@media (max-width: 768px) {
+  body .asme-home .ah-about p:empty {
+    display: none!important;
+    height: 0!important;
+    margin: 0!important;
+    padding: 0!important;
+  }
+
 }
-body .asme-home .ah-about p:empty{display:none!important}
-body #page .asme-home .ah-cards-grid>p:empty,body #page .asme-home .ah-stats>p:empty,html body #page .entry-content .asme-home .ah-cards-grid>p:empty,html body #page .entry-content .asme-home .ah-stats>p:empty{display:none!important}
-@media (min-width:700px) and (max-width:1100px) and (orientation:portrait){body #page .asme-home .ah-about{height:auto!important;padding-bottom:18px!important}
+
+body .asme-home .ah-about p:empty {
+  display: none!important;
 }
-body #page .asme-home .ah-about-text>p:not(:has(>.ah-about-link)){grid-column:2!important;grid-row:1/span 3!important;align-self:center!important;max-width:760px!important;margin:0!important;font-size:14px!important;line-height:1.58!important;text-align:left!important}
-body #page .asme-home .ah-about-text>.ah-about-link,body #page .asme-home .ah-about-text>p:has(>.ah-about-link){grid-column:1!important;grid-row:3!important;align-self:start!important;justify-self:start!important;margin:14px 0 0!important}
-body #page .asme-home .ah-about-text>p:has(>.ah-about-link){max-width:none!important;font-size:inherit!important;line-height:normal!important}
-@media (max-width:900px){body #page .asme-home .ah-about-text>.ah-about-link,body #page .asme-home .ah-about-text>p:has(>.ah-about-link){width:auto!important;margin-top:0!important}
+
+body #page .asme-home .ah-cards-grid>p:empty,
+body #page .asme-home .ah-stats>p:empty,
+html body #page .entry-content .asme-home .ah-cards-grid>p:empty,
+html body #page .entry-content .asme-home .ah-stats>p:empty {
+  display: none!important;
 }
-@media (max-width:900px){body #page .asme-home .ah-about-text>p:not(:has(>.ah-about-link)){margin-bottom:16px!important}
+
+@media (min-width: 700px) and (max-width: 1100px) and (orientation: portrait) {
+  body #page .asme-home .ah-about {
+    height: auto!important;
+    padding-bottom: 18px!important;
+  }
+
 }
-@media (max-width:600px){body #page .asme-home .ah-about-text>p:has(>.ah-about-link){width:100%!important;align-self:stretch!important}
+
+body #page .asme-home .ah-about-text>p:not(:has(>.ah-about-link)) {
+  grid-column: 2!important;
+  grid-row: 1/span 3!important;
+  align-self: center!important;
+  max-width: 760px!important;
+  margin: 0!important;
+  font-size: 14px!important;
+  line-height: 1.58!important;
+  text-align: left!important;
 }
-@media (max-width:600px){body #page .asme-home .ah-about-text>p:not(:has(>.ah-about-link)){text-align:left!important}
+
+body #page .asme-home .ah-about-text>.ah-about-link,
+body #page .asme-home .ah-about-text>p:has(>.ah-about-link) {
+  grid-column: 1!important;
+  grid-row: 3!important;
+  align-self: start!important;
+  justify-self: start!important;
+  margin: 14px 0 0!important;
 }
-@media (max-width:600px){body #page .asme-home .ah-about-text>p:not(:has(>.ah-about-link)){font-size:13px!important;line-height:1.55!important}
+
+body #page .asme-home .ah-about-text>p:has(>.ah-about-link) {
+  max-width: none!important;
+  font-size: inherit!important;
+  line-height: normal!important;
 }
-body #page .asme-home .ah-featured-event>p:empty{display:none!important}
-body #page .asme-home .ah-featured-event>p:not(:empty){display:contents!important;margin:0!important}
-body #page .asme-home .ah-featured-meta span:nth-child(2)::before{content:"⌖"!important}
-body #page .asme-home .ah-featured-orbit rect{x:1px;y:1px;width:calc(100% - 2px);height:calc(100% - 2px);rx:17px;ry:17px;fill:none!important;stroke-dasharray:9 91!important;stroke-linecap:round!important;vector-effect:non-scaling-stroke!important}
-@media (prefers-reduced-motion:no-preference){body #page .asme-home .ah-featured-orbit rect,body #page .asme-home .ah-featured-orbit path{animation:asme-featured-orbit-lap 6.8s linear infinite!important}
+
+@media (max-width: 900px) {
+  body #page .asme-home .ah-about-text>.ah-about-link,
+  body #page .asme-home .ah-about-text>p:has(>.ah-about-link) {
+    width: auto!important;
+    margin-top: 0!important;
+  }
+
 }
-@media (prefers-reduced-motion:reduce){body #page .asme-home .ah-featured-orbit-line{opacity:1!important;stroke-dasharray:5 95!important;stroke-dashoffset:0!important}
+
+@media (max-width: 900px) {
+  body #page .asme-home .ah-about-text>p:not(:has(>.ah-about-link)) {
+    margin-bottom: 16px!important;
+  }
+
 }
-@media (max-width:768px) and (prefers-reduced-motion:no-preference){body #page .asme-home .ah-about.asme-reveal,html body #page .entry-content .asme-home .ah-about.asme-reveal{opacity:1!important;transform:none!important;will-change:auto!important}
+
+@media (max-width: 600px) {
+  body #page .asme-home .ah-about-text>p:has(>.ah-about-link) {
+    width: 100%!important;
+    align-self: stretch!important;
+  }
+
 }
-@media (max-width:768px) and (prefers-reduced-motion:no-preference){body #page .asme-home .ah-about.asme-reveal .ah-about-text,html body #page .entry-content .asme-home .ah-about.asme-reveal .ah-about-text{opacity:0;transform:translateY(14px);transition:opacity var(--asme-motion-duration) var(--asme-motion-ease),transform var(--asme-motion-duration) var(--asme-motion-ease);will-change:opacity,transform}
+
+@media (max-width: 600px) {
+  body #page .asme-home .ah-about-text>p:not(:has(>.ah-about-link)) {
+    text-align: left!important;
+  }
+
 }
-@media (max-width:768px) and (prefers-reduced-motion:no-preference){body #page .asme-home .ah-about.asme-reveal.is-visible .ah-about-text,html body #page .entry-content .asme-home .ah-about.asme-reveal.is-visible .ah-about-text{opacity:1;transform:translateY(0)}
+
+@media (max-width: 600px) {
+  body #page .asme-home .ah-about-text>p:not(:has(>.ah-about-link)) {
+    font-size: 13px!important;
+    line-height: 1.55!important;
+  }
+
 }
-html body #page .entry-content .asme-home.asme-home-refined :is(.ah-btn-p,.ah-btn-o):is(:hover,:focus-visible){background-color:rgba(255,255,255,.16)!important;border-color:rgba(255,255,255,.72)!important}
-html body #page .entry-content .asme-home.asme-home-refined .ah-btn-p:is(:hover,:focus-visible){background-color:rgba(187,0,0,.88)!important}
-html body #page .entry-content .asme-home .ah-featured-eyebrow>br{display:none!important}
-html body #page .entry-content .asme-home .ah-featured-eyebrow>p{display:contents!important;margin:0!important}
-html body #page .entry-content .asme-home .ah-featured-event [hidden]{display:none!important}
-@media (prefers-reduced-motion:reduce){html body #page .entry-content .asme-home .ah-featured-orbit-line{display:none!important;animation:none!important;filter:none!important}
+
+body #page .asme-home .ah-featured-event>p:empty {
+  display: none!important;
 }
-@media (prefers-reduced-motion:reduce){html body #page .entry-content .asme-home .ah-featured-button{transition:none!important;transform:none!important}
+
+body #page .asme-home .ah-featured-event>p:not(:empty) {
+  display: contents!important;
+  margin: 0!important;
+}
+
+body #page .asme-home .ah-featured-meta span:nth-child(2)::before {
+  content: "⌖"!important;
+}
+
+body #page .asme-home .ah-featured-orbit rect {
+  x: 1px;
+  y: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  rx: 17px;
+  ry: 17px;
+  fill: none!important;
+  stroke-dasharray: 9 91!important;
+  stroke-linecap: round!important;
+  vector-effect: non-scaling-stroke!important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body #page .asme-home .ah-featured-orbit rect,
+  body #page .asme-home .ah-featured-orbit path {
+    animation: asme-featured-orbit-lap 6.8s linear infinite!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body #page .asme-home .ah-featured-orbit-line {
+    opacity: 1!important;
+    stroke-dasharray: 5 95!important;
+    stroke-dashoffset: 0!important;
+  }
+
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  body #page .asme-home .ah-about.asme-reveal,
+  html body #page .entry-content .asme-home .ah-about.asme-reveal {
+    opacity: 1!important;
+    transform: none!important;
+    will-change: auto!important;
+  }
+
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  body #page .asme-home .ah-about.asme-reveal .ah-about-text,
+  html body #page .entry-content .asme-home .ah-about.asme-reveal .ah-about-text {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity var(--asme-motion-duration) var(--asme-motion-ease),transform var(--asme-motion-duration) var(--asme-motion-ease);
+    will-change: opacity,transform;
+  }
+
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  body #page .asme-home .ah-about.asme-reveal.is-visible .ah-about-text,
+  html body #page .entry-content .asme-home .ah-about.asme-reveal.is-visible .ah-about-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+html body #page .entry-content .asme-home.asme-home-refined :is(.ah-btn-p,.ah-btn-o):is(:hover,:focus-visible) {
+  background-color: rgba(255,255,255,.16)!important;
+  border-color: rgba(255,255,255,.72)!important;
+}
+
+html body #page .entry-content .asme-home.asme-home-refined .ah-btn-p:is(:hover,:focus-visible) {
+  background-color: rgba(187,0,0,.88)!important;
+}
+
+html body #page .entry-content .asme-home .ah-featured-eyebrow>br {
+  display: none!important;
+}
+
+html body #page .entry-content .asme-home .ah-featured-eyebrow>p {
+  display: contents!important;
+  margin: 0!important;
+}
+
+html body #page .entry-content .asme-home .ah-featured-event [hidden] {
+  display: none!important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #page .entry-content .asme-home .ah-featured-orbit-line {
+    display: none!important;
+    animation: none!important;
+    filter: none!important;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #page .entry-content .asme-home .ah-featured-button {
+    transition: none!important;
+    transform: none!important;
+  }
+
+}
+
+/* Hero photo zoom: each photo slowly zooms in and back out (7% over 8 s),
+   as the site did before November 17. Hand-written, not compiled: skipped for
+   visitors who ask for reduced motion. The same selectors as the rules above
+   (and later in the file) let it replace their "animation: none". */
+@media (prefers-reduced-motion: no-preference) {
+  .asme-home .ah-hero-slide.active,
+  .asme-home .ah-hero-slide:not(.active) {
+    animation: ah-ken-burns 8s ease-in-out infinite alternate;
+  }
 }

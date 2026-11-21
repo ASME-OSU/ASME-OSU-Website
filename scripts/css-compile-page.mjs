@@ -48,6 +48,12 @@ const group = new Set(groupArg ? groupArg.split(',') : [name]);
 if (!group.has(name)) group.add(name);
 const emitOnly = process.argv.includes('--emit');
 const stripOnly = process.argv.includes('--strip');
+// Pages are rendered with motion on. With reduced motion, the site's
+// prefers-reduced-motion rules (transition: none, animation: none) win in
+// every view, so the normal transitions and animations were never derived and
+// disappeared for everyone else (the hero photo zoom, hover transitions on
+// about 1,400 elements). Reduced-motion rules are carried over verbatim.
+const MOTION = 'no-preference';
 // --live-only lists the owned selectors reaching live widgets (styles/live/)
 // and stops: a few minutes instead of a full compile.
 const liveOnly = process.argv.includes('--live-only');
@@ -72,7 +78,7 @@ const componentSets = component ? await (async () => {
   const pre = await launch(chromium); const snap = new Snapshot();
   const inside = new Set(); const outside = new Set(); const ids = new Set(); const pageClassLists = [];
   await pool(PAGES, 4, async pg => {
-    const { page, context } = await render(pre, snap, { mode: 'replay', url: ORIGIN + pg.path, width: 1280, scheme: 'light' });
+    const { page, context } = await render(pre, snap, { mode: 'replay', url: ORIGIN + pg.path, width: 1280, scheme: 'light', motion: MOTION });
     const r = await page.evaluate(root => {
       const roots = [...document.querySelectorAll('.' + root)];
       const ins = new Set(); const out = new Set(); const idList = new Set(); const byPath = {};
@@ -377,7 +383,7 @@ const started = Date.now();
 // Every page of a group is scanned, so grouped pages agree on what is carried.
 const prePages = component ? [target] : [...group].map(page => PAGES.find(p => p.name === page)).filter(Boolean);
 await pool(prePages.flatMap(pg => VIEWS.map(view => ({ pg, view }))), 4, async ({ pg, view }) => {
-  const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + pg.path, width: view.width, scheme: view.scheme });
+  const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + pg.path, width: view.width, scheme: view.scheme, motion: MOTION });
   const cdp = await context.newCDPSession(page);
   const sheets = new Map();
   cdp.on('CSS.styleSheetAdded', ({ header }) => sheets.set(header.styleSheetId, header.sourceURL || ''));
@@ -410,7 +416,7 @@ if (!stripOnly) {
 }
 if (liveOnly) { await browser.close(); process.exit(0); }
 await pool(VIEWS, 4, async view => {
-  const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + target.path, width: view.width, scheme: view.scheme });
+  const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + target.path, width: view.width, scheme: view.scheme, motion: MOTION });
   if (!LONGHANDS.size) {
     const map = await page.evaluate(list => Object.fromEntries(list.map(shorthand => {
       const style = document.createElement('div').style;
@@ -574,7 +580,7 @@ for (const other of group) {
   if (other === name) continue;
   const otherPage = PAGES.find(page => page.name === other);
   await pool(VIEWS, 4, async view => {
-    const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + otherPage.path, width: view.width, scheme: view.scheme });
+    const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + otherPage.path, width: view.width, scheme: view.scheme, motion: MOTION });
     (await page.evaluate(list => list.filter(sel => {
       const bare = sel.replace(/::?(before|after|placeholder|marker|selection|first-line|first-letter|backdrop|-webkit-[a-z-]+|-moz-[a-z-]+)(\([^)]*\))?/g, '')
         .replace(/:(hover|focus|focus-visible|focus-within|active|visited|checked|disabled|target|placeholder-shown)(?![\w-])/g, '').trim() || '*';
@@ -633,7 +639,7 @@ for (const [key, members] of keyGroups) {
 // elements that belong to other keys with :not(.class).
 if (!stripOnly) {
   const view = VIEWS.find(v => v.id === '1280-light');
-  const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + target.path, width: view.width, scheme: view.scheme });
+  const { page, context } = await render(browser, snapshot, { mode: 'replay', url: ORIGIN + target.path, width: view.width, scheme: view.scheme, motion: MOTION });
   const keyed = new Map();
   for (const [identity, el] of perElement) if (!el.outside && el.states.size) { if (!keyed.has(el.key)) keyed.set(el.key, new Set()); keyed.get(el.key).add(identity.split('|')[0]); }
   const fixes = await page.evaluate(list => {
