@@ -154,6 +154,14 @@ test('both desktop carousels rotate on their own and hold while pointed at', { t
   assert.notEqual(await currentSpotlight.getAttribute('aria-label'), firstSpotlight);
   // Clicking a spotlight dot leaves the pointer over the hero: both pause.
   await page.locator('.ah-hero-dot').nth(2).click({ force: true });
+  // The photo fading out keeps its cover framing; it once lost it and showed
+  // the top of the photo (the sky) for the 1.2 s fade.
+  const leaving = await page.evaluate(() => {
+    const img = document.querySelectorAll('.ah-hero-slide')[1].querySelector('img');
+    const s = getComputedStyle(img);
+    return `${s.position} ${s.objectFit}`;
+  });
+  assert.equal(leaving, 'absolute cover');
   await page.locator('.ah-spotlight-dot').nth(0).click({ force: true });
   await page.clock.runFor(14000);
   assert.equal(await currentPhoto.getAttribute('aria-label'), 'Show slide 3');

@@ -16912,7 +16912,7 @@ html body .asme-lightbox[hidden] {
   animation: none;
 }
 
-.asme-home .ah-hero-slide.active>img {
+.asme-home .ah-hero-slide.ah-hero-slide>img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -17949,7 +17949,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
     background-position: center center;
   }
 
-  .asme-home .ah-hero-slide.active>img {
+  .asme-home .ah-hero-slide.ah-hero-slide>img {
     object-position: center;
   }
 
@@ -18216,7 +18216,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
     border-radius: 20px;
   }
 
-  .asme-home .ah-hero-slide.active>img {
+  .asme-home .ah-hero-slide.ah-hero-slide>img {
     object-position: var(--ah-photo-position, center);
   }
 
@@ -18977,16 +18977,26 @@ html body #page .entry-content .asme-home .ah-featured-event [hidden] {
 
 }
 
-/* Hero photo zoom: each photo slowly zooms in and back out (7% over 8 s),
-   as the site did before November 17. Hand-written, not compiled: skipped for
-   visitors who ask for reduced motion. The same selectors as the rules above
-   (and later in the file) let it replace their "animation: none". */
+/* Hero photo zoom: each photo slowly zooms in and back out (3.5% over 8 s).
+   The site zoomed 7% before November 17, which crops too much of the photos.
+   Hand-written, not compiled: skipped for visitors who ask for reduced
+   motion. The same selectors as the rules above (and later in the file) let
+   it replace their "animation: none". */
+@keyframes ah-hero-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.035); }
+}
 @media (prefers-reduced-motion: no-preference) {
   .asme-home .ah-hero-slide.active,
   .asme-home .ah-hero-slide:not(.active) {
-    animation: ah-ken-burns 8s ease-in-out infinite alternate;
+    animation: ah-hero-zoom 8s ease-in-out infinite alternate;
   }
 }
+
+/* Photo rules apply to every slide, not only the active one: the compiler
+   only saw the first slide (the others load when shown), so they were written
+   for ".active" alone. A slide fading out lost them for 1.2 s and showed its
+   photo uncropped from the top (the sky) before the next one appeared. */
 
 /* /asme/join/ page styles, compiled from the legacy and shared layers by
    scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
