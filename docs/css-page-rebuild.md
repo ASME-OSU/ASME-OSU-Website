@@ -15,6 +15,8 @@ sh tests/visual/watch.sh /tmp/rebuild.log        # live progress, if the run's o
 
 `scripts/css-rebuild.mjs` compiles every page against the same input, the Phase 1 stylesheet (commit `5cb11bb`) with no page files, so pages do not depend on each other. They build in parallel, and one page can be redone alone in about 10 to 15 minutes instead of rerunning the whole chain. Each compile writes only its page file (`--emit`) and the list of rules its live widgets use (`styles/live/<page>.json`). Then every page's owned rules are removed from the shared layers with `--strip`, which renders nothing and takes seconds, and the stylesheet is built once. On an 8-core Mac, 4 compiles at once overloaded the machine (each ran 2 to 3 times slower), so use `JOBS=2` there.
 
+`styles/pages/.compiled.json` records a fingerprint of each page file as the compiler wrote it. `css-rebuild.mjs` refuses to recompile a page whose file no longer matches (someone edited it by hand, as intended for ordinary style changes), so those edits are not silently lost; `--force` overrides. Home is hand-edited (hero zoom and slide framing) and is therefore protected.
+
 The first versions compiled pages one after another, each from the layers the previous page left. Fixing one page meant rerunning the whole chain (over an hour).
 
 ## How the compiler works

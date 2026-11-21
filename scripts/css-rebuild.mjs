@@ -2,6 +2,7 @@
 //
 //   node scripts/css-rebuild.mjs                 every page, in parallel
 //   node scripts/css-rebuild.mjs gallery join    only these (others keep their files)
+//   --force recompiles pages even if their files were edited by hand
 //   add --verify to screenshot the rebuilt pages afterwards (standard and
 //   in-between widths) and run the browser tests.
 //
@@ -14,6 +15,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawn, execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 
 const BASE = '5cb11bb'; // Phase 1: foundation laid, no page files yet.
 const LAYERS = ['ASME Custom CSS.css', 'ASME Custom CSS.min.css', 'styles/design-system.css', 'styles/widescreen.css', 'styles/home-hero.css', 'styles/tablet.css', 'styles/home-event.css'];
@@ -29,6 +31,20 @@ const verify = args.includes('--verify');
 const asked = args.filter(a => !a.startsWith('--'));
 for (const name of asked) if (!ALL.includes(name)) throw new Error(`Unknown page ${name}. Pages: ${ALL.join(', ')}`);
 const selected = asked.length ? ALL.filter(name => asked.includes(name) || UNITS.find(u => u.includes(name)).some(n => asked.includes(n))) : ALL;
+// Refuse to overwrite page files edited by hand since they were compiled.
+const force = args.includes('--force');
+const compiled = (() => { try { return JSON.parse(fs.readFileSync('styles/pages/.compiled.json', 'utf8')); } catch { return {}; } })();
+const edited = selected.filter(name => {
+  const file = `styles/pages/${name}.css`;
+  return fs.existsSync(file) && compiled[name] !== createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+});
+if (edited.length && !force) {
+  console.error(`These page files were edited by hand after they were compiled: ${edited.join(', ')}.
+Recompiling would discard those edits. Make style changes by editing the page file
+(npm run build:styles), not by recompiling. To recompile anyway and lose the
+edits, rerun with --force and re-apply them afterwards.`);
+  process.exit(1);
+}
 const jobs = Number(process.env.JOBS) || Math.max(1, Math.min(4, Math.floor(os.cpus().length / 2)));
 const LOGS = 'tests/visual/.output/rebuild';
 fs.mkdirSync(LOGS, { recursive: true });

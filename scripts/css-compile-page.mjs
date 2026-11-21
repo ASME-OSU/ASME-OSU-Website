@@ -16,6 +16,7 @@
 //
 // Run npm run build:styles and npm run visual:compare afterwards.
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import { generate, parse, walk } from 'css-tree';
 import { chromium } from 'playwright';
 import { ORIGIN, PAGES } from '../tests/visual/config.mjs';
@@ -24,6 +25,16 @@ import { launch, render, Snapshot } from '../tests/visual/harness.mjs';
 import { PAGE_SCOPES, requirements } from './css-inventory.mjs';
 
 const name = process.argv[2];
+// Fingerprints of compiled page files (styles/pages/.compiled.json). A page
+// file that no longer matches was edited by hand; scripts/css-rebuild.mjs
+// refuses to recompile it without --force, so hand edits are not lost.
+const recordCompiled = (page, css) => {
+  const file = 'styles/pages/.compiled.json';
+  let record = {};
+  try { record = JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+  record[page] = createHash('sha256').update(css).digest('hex');
+  fs.writeFileSync(file, JSON.stringify(Object.fromEntries(Object.entries(record).sort()), null, 1) + '\n');
+};
 // Shared components appear on every page. They are compiled like a page, but
 // rooted at their own element: a selector is owned when it needs a class found
 // only inside the component (on every page), and the component is rendered on
@@ -1047,6 +1058,7 @@ if (stripOnly) {
 } else if (emitOnly) {
   fs.mkdirSync('styles/pages', { recursive: true });
   fs.writeFileSync(`styles/pages/${name}.css`, css);
+  recordCompiled(name, css);
   console.log(`Wrote styles/pages/${name}.css (layers untouched; run --strip once every page in the group is emitted).`);
 } else if (!write) {
   fs.mkdirSync('tests/visual/.output', { recursive: true });
@@ -1055,6 +1067,7 @@ if (stripOnly) {
 } else {
   fs.mkdirSync('styles/pages', { recursive: true });
   fs.writeFileSync(`styles/pages/${name}.css`, css);
+  recordCompiled(name, css);
   fs.writeFileSync(FILE, full.slice(0, startAt) + legacy.text + full.slice(endAt));
   for (const [file, s] of shared) fs.writeFileSync(file, s.text);
   console.log(`Wrote styles/pages/${name}.css and removed owned selectors. Run npm run build:styles next.`);

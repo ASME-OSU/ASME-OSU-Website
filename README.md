@@ -1,5 +1,7 @@
 # Ohio State ASME Website
 
+Working on this repository with an AI tool (Codex, Claude Code) or by hand? Start with [AGENTS.md](AGENTS.md): how changes reach the live site, how to change styles safely, and which checks to run. `npm run check` includes the repository guardrails (`scripts/check-guardrails.mjs`), and every pull request lists the WordPress steps it needs after merging.
+
 ## Reusable header component
 
 `Header.html` provides the semantic template, `Header.css` contains scoped desktop/tablet/mobile styles, and `Header Integration.js` populates the component from the existing WordPress logo and primary menu. Run `npm run build:header` to generate `Header Embed.html`, `Header Bootstrap.html`, and update only the marked component block at the end of `Footer.html`. Run `npm run check` and `npm test` before deployment.
