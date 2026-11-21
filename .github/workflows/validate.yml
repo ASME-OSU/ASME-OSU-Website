@@ -16,6 +16,34 @@ jobs:
     steps:
       - name: Check out website
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: List WordPress steps this change needs after merging
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          changed=$(git diff --name-only "origin/$BASE_REF...HEAD")
+          notes=""
+          if echo "$changed" | grep -qE '^(styles/|ASME Custom CSS)'; then
+            notes="$notes\n- Stylesheet changed: after GitHub Pages deploys, set a new ?v= on ASME%20Custom%20CSS.min.css in WordPress Settings > Advanced Settings > Header Tag (high priority), and update it in README.md."
+          fi
+          if echo "$changed" | grep -qE '^assets/gearly/'; then
+            notes="$notes\n- Gearly files changed: set one new ?v= on gearly.css and gearly-bootstrap.js in the WordPress Footer box, Footer.html and Gearly Embed.html."
+          fi
+          if echo "$changed" | grep -qE '^(Footer\.html|Gearly Embed\.html|Header Bootstrap\.html|Header Embed\.html)$'; then
+            notes="$notes\n- WordPress code changed (footer/header embeds): apply only the changed lines in Settings > Advanced Settings; the WordPress copy is not identical to the file."
+          fi
+          pages=$(echo "$changed" | grep -E ' Page\.html$' | tr '\n' ',' | sed 's/,$//; s/,/, /g')
+          if [ -n "$pages" ]; then
+            notes="$notes\n- Page HTML changed ($pages): paste into the matching WordPress page editor (docs/campuspress-publishing.md)."
+          fi
+          if [ -n "$notes" ]; then
+            printf '## After merging\n%b\n' "$notes" >> "$GITHUB_STEP_SUMMARY"
+            printf '%b\n' "$notes" | sed '/^$/d' | while IFS= read -r line; do echo "::warning title=WordPress step after merging::${line#- }"; done
+          else
+            echo "No WordPress steps needed." >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
