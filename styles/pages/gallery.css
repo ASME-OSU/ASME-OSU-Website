@@ -1,5 +1,5 @@
 /* /asme/pictures/ page styles, compiled from the legacy and shared layers by
-   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   scripts/css-compile-page.mjs on 2026-11-21. Each declaration reproduces the value
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
 .asme-gallery-page {
@@ -94,7 +94,7 @@
   color: var(--asme-c-accent)!important;
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1799px) {
   .asme-gallery-page .gallery-hero {
     padding: 34px 38px;
     margin-bottom: 24px;
@@ -115,7 +115,20 @@
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
+  .asme-gallery-page .gallery-archive-status {
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    grid-row: auto;
+    grid-column: 1;
+    justify-self: start;
+    margin-top: -10px;
+  }
+
+}
+
+@media (max-width: 760px) {
   .asme-gallery-page .gallery-archive-header {
     grid-template-columns: 1fr;
     align-items: start;
@@ -130,19 +143,9 @@
     scrollbar-width: none;
   }
 
-  .asme-gallery-page .gallery-archive-status {
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    grid-row: auto;
-    grid-column: 1;
-    justify-self: start;
-    margin-top: -10px;
-  }
-
 }
 
-@media (max-width: 899px) {
+@media (max-width: 768px) {
   .asme-gallery-page {
     width: calc(100vw - 24px);
     max-width: calc(100vw - 24px);
@@ -161,7 +164,17 @@
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 701px) {
+  .asme-gallery-page .gallery-archive-status {
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: end;
+    margin: -10px 0 0;
+  }
+
+}
+
+@media (min-width: 761px) {
   .asme-gallery-page .gallery-archive-header {
     grid-template-columns: minmax(0,1fr) auto;
     align-items: end;
@@ -172,16 +185,9 @@
     justify-content: flex-end;
   }
 
-  .asme-gallery-page .gallery-archive-status {
-    grid-row: 2;
-    grid-column: 2;
-    justify-self: end;
-    margin: -10px 0 0;
-  }
-
 }
 
-@media (min-width: 900px) and (max-width: 1919px) {
+@media (min-width: 769px) and (max-width: 1919px) {
   .asme-gallery-page {
     width: 100%;
     max-width: none;
@@ -191,7 +197,7 @@
 
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1800px) {
   .asme-gallery-page {
     display: grid;
     grid-template-columns: minmax(0,2.1fr) minmax(420px,1fr);
@@ -285,10 +291,6 @@
   display: none!important;
 }
 
-.asme-lightbox-open-body {
-  overflow: hidden!important;
-}
-
 .asme-lightbox {
   position: fixed!important;
   inset: 0!important;
@@ -302,11 +304,6 @@
   opacity: 0!important;
   pointer-events: none!important;
   transition: opacity 0.22s ease!important;
-}
-
-.asme-lightbox.active {
-  opacity: 1!important;
-  pointer-events: auto!important;
 }
 
 .asme-lightbox-content {

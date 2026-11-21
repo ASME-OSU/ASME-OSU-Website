@@ -79,6 +79,12 @@ Found on the member pages:
 - **Declaration order within a rule.** A rule with `border: 1px solid #ebc6cc !important` followed by `border-left: 4px solid var(--asme-scarlet) !important` gave both the same priority, so the earlier 1px pink left border could be emitted after the red one. Each declaration now carries its position in the rule as a tiebreaker.
 - **Universal rules on a shared wrapper.** `.asme-members-page *::before` was not recognized as a page-wide universal rule (the page's own wrapper is `.asme-member-resources-page`), so it was written once per element: one rule with about 770 selectors, around 80 KB per member page file. Any wrapper class of a page in the group now counts.
 
+## Widths: each page's own switch points
+
+Besides ten fixed widths (375, 480, 640, 768, 900, 1100, 1280, 1440, 1700, 1920), the compiler samples each page at its own original switch points: every `min-width`/`max-width` used by a rule naming the page's classes (`max-width: X` switches at X + 1). With the fixed widths alone, a page that switched at 769, 901 or 981px used the narrower layout up to the next sample, and portrait iPads (about 769–1099px) differed from the original on most pages (Join's step bar overlapped). Pages now use 12–18 widths. A check at 375, 600, 769, 834, 950, 1024, 1100, 1150, 1280 and 1920px matched the original on every page.
+
+Compile one page at a time (`scripts/css-rebuild.mjs` default). With three at once on an 8-core Mac, each page ran 2–7 times slower and some views rendered wrongly (Home came out at ten times its size); Home alone took 14 minutes and was exact.
+
 ## Live widgets: rules left in place
 
 Parts that scripts change while the page is used (slides and tabs with `is-active`, Join's `is-current` steps, gallery filters), and lists built from live data (the points leaderboard and its loading skeleton, calendar cards, gallery photos), are never derived. The compiler sees one state and one data set, so derived rules break the other states. The first rebuild did exactly that: Home's second highlight slide (the Career Guide) had no rule for its active state and showed an empty card, and leaderboard rows 6 to 10 were pinned by position (`div:nth-child(6)`), so the loading skeleton's first rows collapsed.

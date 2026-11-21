@@ -27,34 +27,6 @@
   z-index: 0;
 }
 
-.asme-home .ah-hero-slide.active {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  transition: opacity 1.2s ease;
-  opacity: 1;
-  animation: none;
-}
-
-.asme-home .ah-hero-slide.ah-hero-slide>img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  margin: 0;
-  object-fit: cover;
-}
-
-.asme-home .ah-hero-slide:not(.active) {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  background-size: cover;
-  transition: opacity 1.2s ease;
-  animation: none;
-}
-
 .asme-home .ah-hero-overlay {
   position: absolute;
   inset: 0;
@@ -69,12 +41,6 @@
   transform: translateX(-50%);
   pointer-events: auto;
   align-items: center;
-}
-
-.asme-home .ah-hero-dot.active,
-.asme-home .ah-hero-dot:not(.active) {
-  cursor: pointer;
-  transition: background 0.25s,transform 0.25s;
 }
 
 .asme-home .ah-hero-left {
@@ -899,60 +865,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
   font-weight: 600!important;
 }
 
-@media (max-width: 1099px) {
-  .asme-home .ah-hero {
-    overflow-y: hidden;
-    width: 100%;
-    overflow-x: hidden;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 0;
-    margin-right: 0;
-    text-align: center;
-    box-sizing: border-box;
-    gap: 24px;
-  }
-
-  .asme-home .ah-hero-left {
-    box-sizing: border-box;
-    flex: none;
-  }
-
-  .asme-home .ah-title {
-    justify-content: center;
-    display: block;
-  }
-
-  .asme-home .ah-sub {
-    justify-content: center;
-    display: block;
-    width: auto;
-  }
-
-  .asme-home .ah-status-row,
-  .asme-home .ah-btns,
-  .asme-home .ah-stats {
-    text-align: center;
-  }
-
-  .asme-home .ah-career-guide-icon {
-    margin: 2px auto 14px;
-  }
-
-  .asme-home .ah-career-guide-copy {
-    margin: 0 auto 14px;
-  }
-
-  .asme-home .ah-about-text .ah-eyebrow-dark:not(.ah-featured-eyebrow) {
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-left: 0px;
-    margin-bottom: 8px;
-  }
-
-}
-
-@media (max-width: 1279px) {
+@media (max-width: 1100px) {
   .asme-home .ah-about-text {
     grid-template-columns: minmax(300px,0.9fr) minmax(360px,1.1fr);
     gap: 0 32px;
@@ -960,7 +873,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1799px) {
   .asme-home .ah-about-text {
     align-items: start;
   }
@@ -981,7 +894,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (max-width: 639px) {
+@media (max-width: 599px) {
   .asme-home .ah-hero {
     padding: 44px 20px 88px;
   }
@@ -991,6 +904,9 @@ html body #page .entry-content .asme-home .ah-featured-button {
     gap: 8px;
   }
 
+}
+
+@media (max-width: 600px) {
   .asme-home .ah-about {
     text-align: left;
   }
@@ -1002,7 +918,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
   .asme-home .ah-hero {
     grid-template-columns: minmax(0,1fr);
     min-height: 0;
@@ -1015,7 +931,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
   }
 
   .asme-home .ah-hero-dots {
-    bottom: 44px;
+    bottom: 0; /* hand-edited: was 44px, which put the photo dots over the stats circles (unfolded Z Fold, small tablets) */
   }
 
   .asme-home .ah-hero-left {
@@ -1052,7 +968,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (max-width: 899px) {
+@media (max-width: 768px) {
   .asme-home {
     width: calc(100vw - 24px);
     max-width: calc(100vw - 24px);
@@ -1066,15 +982,6 @@ html body #page .entry-content .asme-home .ah-featured-button {
     margin-top: 10px;
     border-radius: 22px;
     justify-items: center;
-  }
-
-  .asme-home .ah-hero-slide.active,
-  .asme-home .ah-hero-slide:not(.active) {
-    background-position: center center;
-  }
-
-  .asme-home .ah-hero-slide.ah-hero-slide>img {
-    object-position: center;
   }
 
   .asme-home .ah-hero-left {
@@ -1210,10 +1117,8 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
   .asme-home .ah-cards-grid {
     min-width: 0;
-    gap: 22px;
     margin-top: 0px;
     margin-bottom: 28px;
-    grid-template-columns: 1fr;
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -1239,7 +1144,68 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 640px) and (max-width: 1279px) {
+@media (max-width: 819px) {
+  .asme-home .ah-cards-grid {
+    gap: 22px;
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 900px) {
+  .asme-home .ah-hero {
+    overflow-y: hidden;
+    width: 100%;
+    overflow-x: hidden;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+    box-sizing: border-box;
+    gap: 24px;
+  }
+
+  .asme-home .ah-hero-left {
+    box-sizing: border-box;
+    flex: none;
+  }
+
+  .asme-home .ah-title {
+    justify-content: center;
+    display: block;
+  }
+
+  .asme-home .ah-sub {
+    justify-content: center;
+    display: block;
+    width: auto;
+  }
+
+  .asme-home .ah-status-row,
+  .asme-home .ah-btns,
+  .asme-home .ah-stats {
+    text-align: center;
+  }
+
+  .asme-home .ah-career-guide-icon {
+    margin: 2px auto 14px;
+  }
+
+  .asme-home .ah-career-guide-copy {
+    margin: 0 auto 14px;
+  }
+
+  .asme-home .ah-about-text .ah-eyebrow-dark:not(.ah-featured-eyebrow) {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 8px;
+  }
+
+}
+
+@media (min-width: 600px) and (max-width: 1199px) {
   .asme-home .ah-hero {
     padding-bottom: 48px;
   }
@@ -1251,7 +1217,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 640px) and (max-width: 767px) {
+@media (min-width: 600px) and (max-width: 700px) {
   .asme-home .ah-hero {
     padding-top: 44px;
     padding-right: 20px;
@@ -1260,14 +1226,14 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 640px) and (max-width: 899px) {
+@media (min-width: 601px) and (max-width: 768px) {
   .asme-home .ah-about {
     text-align: center;
   }
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 701px) {
   .asme-home .ah-hero {
     align-items: center;
     align-content: center;
@@ -1307,7 +1273,21 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 768px) and (max-width: 1099px) {
+@media (min-width: 701px) and (max-width: 1199px) {
+  .asme-home .ah-hero-dots {
+    bottom: 0;
+  }
+
+}
+
+@media (min-width: 701px) and (max-width: 1799px) {
+  .asme-home .ah-hero {
+    min-height: 400px;
+  }
+
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
   .asme-home .ah-hero {
     grid-template-columns: minmax(0,1fr) 220px;
     padding-top: 28px;
@@ -1321,27 +1301,9 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
-  .asme-home .ah-hero-dots {
-    bottom: 0;
-  }
-
-}
-
-@media (min-width: 768px) and (max-width: 1919px) {
-  .asme-home .ah-hero {
-    min-height: 400px;
-  }
-
-}
-
-@media (min-width: 900px) {
+@media (min-width: 769px) {
   .asme-home .ah-hero {
     border-radius: 20px;
-  }
-
-  .asme-home .ah-hero-slide.ah-hero-slide>img {
-    object-position: var(--ah-photo-position, center);
   }
 
   .asme-home .ah-status-pill {
@@ -1400,7 +1362,6 @@ html body #page .entry-content .asme-home .ah-featured-button {
   }
 
   .asme-home .ah-cards-grid {
-    grid-template-columns: repeat(3,minmax(0,1fr));
     margin: 0 0 28px;
   }
 
@@ -1414,21 +1375,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 900px) and (max-width: 1279px) {
-  .asme-home .ah-cards-grid {
-    gap: 14px;
-  }
-
-}
-
-@media (min-width: 900px) and (max-width: 1919px) {
-  .asme-home {
-    width: 100%;
-    max-width: none;
-    margin-right: 0;
-    margin-left: 0;
-  }
-
+@media (min-width: 769px) and (max-width: 1799px) {
   .asme-home .ah-hero {
     margin-bottom: 24px;
   }
@@ -1443,7 +1390,31 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 769px) and (max-width: 1919px) {
+  .asme-home {
+    width: 100%;
+    max-width: none;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+}
+
+@media (min-width: 820px) {
+  .asme-home .ah-cards-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+
+}
+
+@media (min-width: 820px) and (max-width: 1100px) {
+  .asme-home .ah-cards-grid {
+    gap: 14px;
+  }
+
+}
+
+@media (min-width: 901px) {
   .asme-home .ah-hero {
     justify-content: space-between;
     overflow: hidden;
@@ -1475,10 +1446,6 @@ html body #page .entry-content .asme-home .ah-featured-button {
     margin-bottom: 12px;
   }
 
-  .asme-home .ah-eyebrow-dark.ah-featured-eyebrow {
-    padding-inline-start: 10px;
-  }
-
   .asme-home .ah-about {
     flex-direction: column;
     justify-content: center;
@@ -1490,7 +1457,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 1100px) and (max-width: 1279px) {
+@media (min-width: 901px) and (max-width: 1199px) {
   .asme-home .ah-hero {
     padding-top: 24px;
     padding-right: 40px;
@@ -1499,7 +1466,7 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 1100px) and (max-width: 1919px) {
+@media (min-width: 901px) and (max-width: 1799px) {
   .asme-home .ah-hero {
     gap: 32px;
   }
@@ -1510,16 +1477,14 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 1280px) {
-  .asme-home .ah-hero-dots {
-    gap: 8px;
-    bottom: 6px;
+@media (min-width: 981px) {
+  .asme-home .ah-eyebrow-dark.ah-featured-eyebrow {
+    padding-inline-start: 10px;
   }
 
-  .asme-home .ah-spotlight-dots {
-    gap: 8px;
-  }
+}
 
+@media (min-width: 1101px) {
   .asme-home .ah-about-text {
     grid-template-columns: minmax(340px,0.9fr) minmax(420px,1.1fr);
   }
@@ -1530,18 +1495,33 @@ html body #page .entry-content .asme-home .ah-featured-button {
 
 }
 
-@media (min-width: 1280px) and (max-width: 1919px) {
-  .asme-home .ah-hero {
-    padding: 24px 40px;
-  }
-
+@media (min-width: 1101px) and (max-width: 1799px) {
   .asme-home .ah-about-text {
     gap: 0 42px;
   }
 
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1200px) {
+  .asme-home .ah-hero-dots {
+    gap: 8px;
+    bottom: 6px;
+  }
+
+  .asme-home .ah-spotlight-dots {
+    gap: 8px;
+  }
+
+}
+
+@media (min-width: 1200px) and (max-width: 1799px) {
+  .asme-home .ah-hero {
+    padding: 24px 40px;
+  }
+
+}
+
+@media (min-width: 1800px) {
   .asme-home {
     display: grid;
     grid-template-columns: repeat(12,minmax(0,1fr));
@@ -2101,23 +2081,17 @@ html body #page .entry-content .asme-home .ah-featured-event [hidden] {
 
 }
 
-/* Hero photo zoom: each photo slowly zooms in and back out (3.5% over 8 s).
-   The site zoomed 7% before November 17, which crops too much of the photos.
-   Hand-written, not compiled: skipped for visitors who ask for reduced
-   motion. The same selectors as the rules above (and later in the file) let
-   it replace their "animation: none". */
+/* Hand-written: hero photo zoom, each photo slowly zooming in 3.5% and back
+   over 8 s. The site zoomed 7% before November 17, when it was turned off with
+   "animation: none !important" (still in the shared layers, as the slideshow
+   rules are kept in place); this rule matches that rule's specificity and
+   comes later. Skipped for visitors who ask for reduced motion. */
 @keyframes ah-hero-zoom {
   from { transform: scale(1); }
   to { transform: scale(1.035); }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .asme-home .ah-hero-slide.active,
-  .asme-home .ah-hero-slide:not(.active) {
-    animation: ah-hero-zoom 8s ease-in-out infinite alternate;
+  html body #page .entry-content .asme-home .ah-hero-slide {
+    animation: ah-hero-zoom 8s ease-in-out infinite alternate !important;
   }
 }
-
-/* Photo rules apply to every slide, not only the active one: the compiler
-   only saw the first slide (the others load when shown), so they were written
-   for ".active" alone. A slide fading out lost them for 1.2 s and showed its
-   photo uncropped from the top (the sky) before the next one appeared. */

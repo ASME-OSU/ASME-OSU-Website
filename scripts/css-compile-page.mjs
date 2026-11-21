@@ -73,8 +73,32 @@ const liveOnly = process.argv.includes('--live-only');
 // widths keep the layouts the legacy CSS had between phone, tablet and
 // desktop (iPads, small laptops); each sampled width applies from itself up
 // to the next one.
-const WIDTHS = [375, 480, 640, 768, 900, 1100, 1280, 1440, 1700, 1920];
-const BOUNDS = [0, 480, 640, 768, 900, 1100, 1280, 1440, 1700, 1920];
+// Each page is also sampled at its own original switch points: every
+// min-width / max-width used by a rule naming the page's (or group's, or
+// component's) classes. With only the ten fixed widths, a page that switched
+// at 901 or 981px used its 900px layout up to 1099px, which broke portrait
+// iPads (Join's step bar overlapped; most pages differed). Sampling at the
+// switch points makes every range exact. max-width: X switches at X + 1.
+const FIXED_WIDTHS = [375, 480, 640, 768, 900, 1100, 1280, 1440, 1700, 1920];
+const SWITCH_POINTS = (() => {
+  const classes = component ? [component.root.replace(/-inner$/, '')] : [...group].flatMap(page => PAGE_SCOPES[page] || []);
+  const points = new Set();
+  const visit = (list, media) => list.forEach(node => {
+    if (node.type === 'Atrule' && node.block) { visit(node.block.children.toArray(), media.concat(node.prelude ? generate(node.prelude) : '')); return; }
+    if (node.type !== 'Rule' || !media.length) return;
+    const selector = generate(node.prelude);
+    if (!classes.some(c => selector.includes('.' + c))) return;
+    for (const m of media.join(' ').matchAll(/(min|max)-width:\s*(\d+(?:\.\d+)?)px/g)) {
+      const point = m[1] === 'max' ? Math.floor(Number(m[2])) + 1 : Math.ceil(Number(m[2]));
+      if (point > 375 && point < 1920) points.add(point);
+    }
+  });
+  visit(parse(fs.readFileSync('ASME Custom CSS.min.css', 'utf8')).children.toArray(), []);
+  return points;
+})();
+const WIDTHS = [...new Set([...FIXED_WIDTHS, ...SWITCH_POINTS])].sort((x, y) => x - y);
+const BOUNDS = [0, ...WIDTHS.slice(1)];
+if (!stripOnly) console.log(`Sampling ${WIDTHS.length} widths: ${WIDTHS.join(', ')}`);
 const SCHEMES = ['light', 'dark'];
 // --strip only removes owned selectors from the layers, which needs no
 // rendering: it skips every view and finishes in seconds.
@@ -218,7 +242,10 @@ const DYNAMIC_PSEUDO = /:(empty|has|checked|disabled|enabled|invalid|valid|user-
 // spotlight's second slide and the leaderboard skeleton: the rows were pinned
 // by position (div:nth-child(6)) and the slide had no rule for its active
 // state. Page wrapper classes never count, or the whole page would be carried.
-const SCRIPT_TOGGLED = new Set(fs.readdirSync('.').filter(f => f.endsWith('.js'))
+// Scripts in the WordPress footer and page HTML count too: the hero slideshow
+// toggles .active from Footer.html, and missing it let the outgoing photo lose
+// its framing during each switch (the "sky" flash).
+const SCRIPT_TOGGLED = new Set(fs.readdirSync('.').filter(f => f.endsWith('.js') || f.endsWith('.html'))
   .flatMap(f => [...fs.readFileSync(f, 'utf8').matchAll(/classList\.(?:add|toggle|remove|replace)\(([^)]*)\)/g)])
   .flatMap(m => [...m[1].matchAll(/['"]([\w -]+)['"]/g)].flatMap(q => q[1].split(/\s+/)))
   .filter(c => /^[a-z][\w-]*$/.test(c)));

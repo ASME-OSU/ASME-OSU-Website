@@ -37,6 +37,15 @@ html body #page .entry-content .asme-home.asme-home-refined .ah-badge-year { fon
   html body #page .entry-content .asme-home.asme-home-refined .ah-badge > img { width: 180px !important; height: 180px !important; }
 }
 
+html body #page .entry-content .asme-home .ah-hero-slide img {
+  position: absolute !important; inset: 0 !important;
+  width: 100% !important; height: 100% !important; max-width: none !important;
+  margin: 0 !important; object-fit: cover !important;
+  object-position: var(--ah-photo-position, center) !important;
+}
+html body #page .entry-content .asme-home .ah-hero-slide {
+  animation: none !important;
+}
 /* Preserve the dot shapes while giving the actual buttons a larger hit area. */
 html body #page .entry-content .asme-home :is(.ah-hero-dot, .ah-spotlight-dot, .ah-hero-dot.active, .ah-spotlight-dot.is-active) {
   position: relative !important;
@@ -54,3 +63,7 @@ html body #page .entry-content .asme-home :is(.ah-hero-dot.active, .ah-spotlight
   width: 22px; background: #fff;
 }
 
+@media (max-width: 768px) {
+  html body #page .entry-content .asme-home .ah-hero-slide img { object-position: center !important; }
+  
+}

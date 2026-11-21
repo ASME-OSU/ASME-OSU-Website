@@ -1,1 +1,19 @@
-[]
+[
+ ".lb-year-panel",
+ ".lb-year-panel-header",
+ ".lb-year-panel-header h2",
+ ".lb-year-panel-header::after",
+ ".lb-year-panel-header::before",
+ ".lb-year-panel.active",
+ ".lb-year-tab",
+ ".lb-year-tab.active",
+ ".leader-card",
+ ".leader-card a",
+ ".leader-card h3",
+ ".leader-card h4",
+ ".leader-photo",
+ "body .leader-card",
+ "body .leader-card a",
+ "body .leader-card h4",
+ "body .leader-photo"
+]

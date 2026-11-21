@@ -1,5 +1,5 @@
 /* /asme/aboutus/ page styles, compiled from the legacy and shared layers by
-   scripts/css-compile-page.mjs on 2026-11-20. Each declaration reproduces the value
+   scripts/css-compile-page.mjs on 2026-11-21. Each declaration reproduces the value
    that won in the cascade at 375/768/1280/1920px in light and dark mode. Edit
    by hand from here on and verify with npm run visual:compare. */
 .asme-about-page {
@@ -962,37 +962,7 @@
   color: #c3cfdd!important;
 }
 
-@media (max-width: 1099px) {
-  .asme-about-page {
-    gap: 18px;
-  }
-
-  .asme-about-page .about-hero {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .asme-about-page .about-hero-copy,
-  .asme-about-page .about-hero-image,
-  .asme-about-page .about-hero-image>img {
-    min-height: 0;
-  }
-
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
-  .asme-about-page .about-section-heading.about-section-heading--compact>p {
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    margin-top: 14px;
-  }
-
-  .asme-about-page .about-stats-strip {
-    grid-template-columns: repeat(2,minmax(0,1fr));
-  }
-
-}
-
-@media (max-width: 1279px) {
+@media (max-width: 1100px) {
   .asme-about-page .about-pillar,
   .asme-about-page .about-semester-step {
     min-height: 0;
@@ -1000,7 +970,7 @@
 
 }
 
-@media (max-width: 1699px) {
+@media (max-width: 1599px) {
   .asme-about-page .about-hero-copy>h1 {
     margin: 0 0 14px;
   }
@@ -1020,7 +990,7 @@
 
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1799px) {
   .asme-about-page .about-section-heading:not(.about-section-heading--compact),
   .asme-about-page .about-section-heading.about-section-heading--compact {
     display: block;
@@ -1045,13 +1015,16 @@
 
 }
 
-@media (max-width: 639px) {
-  .asme-about-page .about-hero-copy {
-    padding: 28px 22px;
-  }
-
+@media (max-width: 599px) {
   .asme-about-page .about-hero-copy>h1 {
     max-width: 13ch;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .asme-about-page .about-hero-copy {
+    padding: 28px 22px;
   }
 
   .asme-about-page .about-hero-copy>p {
@@ -1160,7 +1133,7 @@
 
 }
 
-@media (max-width: 899px) {
+@media (max-width: 768px) {
   .asme-about-page {
     width: calc(100vw - 24px);
     max-width: calc(100vw - 24px);
@@ -1188,7 +1161,50 @@
 
 }
 
-@media (min-width: 640px) {
+@media (max-width: 900px) {
+  .asme-about-page {
+    gap: 18px;
+  }
+
+  .asme-about-page .about-hero {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .asme-about-page .about-hero-copy,
+  .asme-about-page .about-hero-image,
+  .asme-about-page .about-hero-image>img {
+    min-height: 0;
+  }
+
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
+  .asme-about-page .about-section-heading.about-section-heading--compact>p {
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 14px;
+  }
+
+  .asme-about-page .about-stats-strip {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .asme-about-page .about-hero-copy>h1 {
+    width: 100%;
+    max-width: 24ch;
+  }
+
+  html body #page .entry-content .asme-about-page .about-hero-copy>h1 {
+    font-size: clamp(32px,4.5vw,40px)!important;
+    line-height: 1.12!important;
+  }
+
+}
+
+@media (min-width: 601px) {
   .asme-about-page .about-hero-actions,
   .asme-about-page .about-cta-buttons {
     display: flex;
@@ -1253,14 +1269,44 @@
 
 }
 
-@media (min-width: 640px) and (max-width: 1099px) {
-  .asme-about-page .about-hero-copy {
-    padding: 34px 30px;
+@media (min-width: 601px) and (max-width: 1100px) {
+  .asme-about-page .about-pillars,
+  .asme-about-page .about-semester-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
   }
 
-  .asme-about-page .about-hero-copy>h1 {
-    width: 100%;
-    max-width: 24ch;
+}
+
+@media (min-width: 601px) and (max-width: 1599px) {
+  .asme-about-page .about-hero-copy>p {
+    font-size: 15px;
+    line-height: 1.58;
+  }
+
+  .asme-about-page .about-hero-badges {
+    margin-top: 12px;
+  }
+
+}
+
+@media (min-width: 601px) and (max-width: 1799px) {
+  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2,
+  .asme-about-page .about-section-heading.about-section-heading--compact>div>h2 {
+    font-size: clamp(30px,3vw,43px);
+  }
+
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .asme-about-page .about-award-inner {
+    text-align: center;
+  }
+
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .asme-about-page .about-hero-copy {
+    padding: 34px 30px;
   }
 
   .asme-about-page .about-hero-image {
@@ -1280,49 +1326,9 @@
     height: 250px;
   }
 
-  html body #page .entry-content .asme-about-page .about-hero-copy>h1 {
-    font-size: clamp(32px,4.5vw,40px)!important;
-    line-height: 1.12!important;
-  }
-
 }
 
-@media (min-width: 640px) and (max-width: 1279px) {
-  .asme-about-page .about-pillars,
-  .asme-about-page .about-semester-grid {
-    grid-template-columns: repeat(2,minmax(0,1fr));
-  }
-
-}
-
-@media (min-width: 640px) and (max-width: 1699px) {
-  .asme-about-page .about-hero-copy>p {
-    font-size: 15px;
-    line-height: 1.58;
-  }
-
-  .asme-about-page .about-hero-badges {
-    margin-top: 12px;
-  }
-
-}
-
-@media (min-width: 640px) and (max-width: 1919px) {
-  .asme-about-page .about-section-heading:not(.about-section-heading--compact)>div>h2,
-  .asme-about-page .about-section-heading.about-section-heading--compact>div>h2 {
-    font-size: clamp(30px,3vw,43px);
-  }
-
-}
-
-@media (min-width: 640px) and (max-width: 899px) {
-  .asme-about-page .about-award-inner {
-    text-align: center;
-  }
-
-}
-
-@media (min-width: 900px) and (max-width: 1919px) {
+@media (min-width: 769px) and (max-width: 1919px) {
   .asme-about-page {
     width: 100%;
     max-width: none;
@@ -1332,7 +1338,7 @@
 
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 901px) {
   .asme-about-page {
     gap: 20px;
   }
@@ -1363,7 +1369,7 @@
 
 }
 
-@media (min-width: 1100px) and (max-width: 1699px) {
+@media (min-width: 901px) and (max-width: 1599px) {
   .asme-about-page .about-hero-copy {
     padding: 36px 40px;
   }
@@ -1374,7 +1380,7 @@
 
 }
 
-@media (min-width: 1100px) and (max-width: 1919px) {
+@media (min-width: 901px) and (max-width: 1799px) {
   .asme-about-page .about-section-heading:not(.about-section-heading--compact)>p,
   .asme-about-page .about-section-heading.about-section-heading--compact>p {
     margin: 12px 0 0;
@@ -1382,7 +1388,7 @@
 
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1101px) {
   .asme-about-page .about-pillars,
   .asme-about-page .about-semester-grid {
     grid-template-columns: repeat(4,minmax(0,1fr));
@@ -1398,7 +1404,7 @@
 
 }
 
-@media (min-width: 1700px) {
+@media (min-width: 1600px) {
   .asme-about-page .about-hero-copy>h1 {
     margin-top: 0px;
     margin-right: 0px;
@@ -1419,7 +1425,7 @@
 
 }
 
-@media (min-width: 1700px) and (max-width: 1919px) {
+@media (min-width: 1600px) and (max-width: 1799px) {
   .asme-about-page .about-hero-copy {
     padding: 48px;
   }
@@ -1432,7 +1438,7 @@
 
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1800px) {
   .asme-about-page .about-hero-copy {
     padding: var(--asme-wide-pad);
   }
