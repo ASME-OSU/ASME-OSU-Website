@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-25T17:25:02.175Z",
-  "checkedAt": "2026-11-27T02:57:02.183Z",
+  "generatedAt": "2026-11-27T12:46:18.907Z",
+  "checkedAt": "2026-11-27T12:46:18.905Z",
   "windowStart": "2026-08-01T04:00:00.000Z",
-  "windowEnd": "2026-11-27T02:57:02.162Z",
+  "windowEnd": "2026-11-27T12:46:18.885Z",
   "calendarId": "c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba@group.calendar.google.com",
   "calendarName": "ASME Public",
   "timeZone": "America/New_York",
@@ -387,6 +387,16 @@
       "location": "",
       "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
       "updated": "2026-07-09T22:58:42.000Z"
+    },
+    {
+      "id": "4f5cqobo57scvsmjmglroaor7a@google.com::2026-11-27T12:00:00.000Z",
+      "title": "Indigenous People's Day/ Columbus Day observed no classes, offices closed",
+      "start": "2026-11-27T12:00:00.000Z",
+      "end": "2026-11-28T12:00:00.000Z",
+      "allDay": true,
+      "location": "",
+      "url": "https://calendar.google.com/calendar/embed?src=c93730cdacb567b0f010d1367080e3028ec5c7657d9713b675ac9e5c437b9fba%40group.calendar.google.com&ctz=America%2FNew_York",
+      "updated": "2026-07-09T23:06:03.000Z"
     }
   ]
 }
