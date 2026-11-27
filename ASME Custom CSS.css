@@ -3188,10 +3188,6 @@ textarea::placeholder {
 
   /* Sponsors */
 
-  .sponsors-grid-primary .sponsor-card h3,
-.sponsors-grid-primary .sponsor-card h3 a {
-    color: #ffffff !important;
-  }
 
   .sponsors-grid-primary .sponsor-card h3 a:hover {
     color: var(--asme-blue) !important;
@@ -5929,11 +5925,6 @@ body.blog #page #main {
    CURRENT SPONSORS - blended feature/grid layout
    ============================================================ */
 
-body #page .asme-sponsors-page .sponsors-tier-block--blocko,
-body #page .asme-sponsors-page .sponsors-tier-block--scarlet {
-  display: flex !important;
-  flex-direction: column !important;
-}
 
 /* WORDPRESS MOBILE SPACING DEFENSES
    The Classic Editor's wpautop pass can inject empty paragraphs and breaks
