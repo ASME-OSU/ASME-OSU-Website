@@ -7,6 +7,8 @@ full map of files.
 
 ## How changes reach the live site
 
+See the [asset caching guide](docs/caching.md) for the optional switch to commit-pinned jsDelivr URLs.
+
 | What changed | How it goes live |
 | --- | --- |
 | CSS (`styles/**`), scripts (`*.js`), `assets/**`, `data/**` | Merge to `main`; GitHub Pages serves them within about 10 minutes. Then bump the `?v=` value in WordPress (below). |
