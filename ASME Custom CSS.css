@@ -1291,11 +1291,6 @@ body #page .asme-members-page .asme-event-type-count {
     color: #e2e8f0;
   }
 
-  body #page .asme-members-page .asme-member-picker select {
-    border-color: #324a6e;
-    background: #142236;
-    color: #e2e8f0;
-  }
 
   
 
@@ -4627,11 +4622,6 @@ body .leader-card {
    Tablet and mobile adjustments.
    ─────────────────────────────────────────────────────────── */
 
-@media (max-width: 400px) {
-  .asme-points-features {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* =============================================
    MEMBER RESOURCES PAGE - polish
