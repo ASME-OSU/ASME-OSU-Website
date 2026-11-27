@@ -280,7 +280,9 @@ test('specific skating requests reach the skating event in the frozen feed even 
   // A frozen copy: the live feed changes hourly (the event was renamed in the
   // calendar, from "ASME Ice Skating Event" to "ASME ice skating event").
   const feed = JSON.parse(readFileSync(new URL('./fixtures/calendar-feed-2026-11-27.json',import.meta.url),'utf8'));
-  const {api} = setup([feed]);
+  // The clock is frozen at the fixture's date too: Gearly hides events that
+  // have ended, so after January 20, 2027 the skating event would drop out.
+  const {api} = setup([feed], '2026-11-27T12:00:00Z');
   const value = await api.load('events',{eventType:'ice-skating'});
   // The skating event comes first. In the calendar, the hot chocolate event and
   // poker night were copied from it and still carry the description "Ice
