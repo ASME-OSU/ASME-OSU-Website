@@ -2050,38 +2050,9 @@ h1, h2, h3, h4, h5, h6,
    SPONSOR ASME PAGE
    ============================================= */
 
-.sponsor-opportunity p {
-  color: var(--asme-muted);
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 0;
-}
 
-.sponsor-opportunity {
-  background: #f9fafb;
-  border: 1px solid var(--asme-line);
-  border-radius: 16px;
-  padding: 24px 22px;
-}
 
-.sponsor-opportunity h3 {
-  color: var(--asme-navy) !important;
-  font-family: 'DM Serif Display', serif !important;
-  font-size: 24px !important;
-  margin: 0 0 8px !important;
-}
 
-@media (max-width: 900px) {
-  .sponsor-opportunity-list {
-    grid-template-columns: 1fr;
-  }
-
-  
-
-  
-
-  
-}
 
 /* =============================================
    SPONSOR ASME PAGE — final stat panel
@@ -3166,10 +3137,6 @@ h1, h2, h3, h4, h5, h6,
     color: var(--asme-text) !important;
   }
 
-  .sponsor-opportunity {
-    background: var(--asme-card-soft) !important;
-    border-color: var(--asme-line) !important;
-  }
 
   /* Headings */
   h1,
