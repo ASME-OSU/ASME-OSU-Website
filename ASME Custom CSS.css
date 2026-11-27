@@ -5141,48 +5141,6 @@ body #page .asme-member-resources-page .asme-status-badge--resource {
    count alignment, and the two-card admin group.
    ============================================================ */
 
-@media (max-width: 640px) {
-  
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: stretch !important;
-    gap: 14px !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    max-width: 100% !important;
-    padding: 2px 2px 14px !important;
-    margin-right: -2px !important;
-    scroll-snap-type: x mandatory;
-    scroll-padding-left: 2px;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(15, 52, 96, 0.38) rgba(15, 52, 96, 0.08);
-    -webkit-overflow-scrolling: touch;
-  }
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar::-webkit-scrollbar-track {
-    border-radius: 999px;
-    background: rgba(15, 52, 96, 0.08);
-  }
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar::-webkit-scrollbar-thumb {
-    border-radius: 999px;
-    background: rgba(15, 52, 96, 0.38);
-  }
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar .asme-resource-card {
-    flex: 0 0 min(300px, 82vw) !important;
-    min-width: min(300px, 82vw) !important;
-    height: auto !important;
-    align-self: stretch !important;
-    scroll-snap-align: start;
-  }
-}
 
 /* MEMBERS SECTION - group header/title/count alignment.
    Single source of truth for member resource section headings across Resources
@@ -8477,14 +8435,6 @@ html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-
 /* Make the two onboarding actions lead the tablet layout, followed by three
    evenly balanced utility cards instead of an orphaned final card. */
 
-@media (prefers-color-scheme: dark) {
-  
-
-  body #page .asme-member-resources-page .asme-resource-scroll-hint,
-html body #page .entry-content .asme-member-resources-page .asme-resource-scroll-hint {
-    color: #94a3b8 !important;
-  }
-}
 
 /* JOIN — use GroupMe's recognizable public brand mark in the connection step. */
 
