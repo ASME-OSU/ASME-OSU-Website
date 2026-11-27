@@ -32,6 +32,8 @@ The live site runs on WordPress with GeneratePress. CSS is loaded from this GitH
 
 ## Live CSS
 
+See the [asset caching guide](docs/caching.md) for measured cache headers and the optional jsDelivr release process.
+
 WordPress loads the minified stylesheet from GitHub Pages. The link is in
 **Settings → Advanced Settings → Additional code → Header Tag (high priority)**:
 
