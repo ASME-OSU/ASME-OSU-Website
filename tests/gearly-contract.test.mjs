@@ -109,9 +109,14 @@ test('calendar contracts skip excluded academic titles, tolerate malformed patte
   assert.deepEqual(result.warnings, ['Calendar event has no configured event type: Unknown chapter outing']);
 });
 
-test('current calendar feed has no event type warnings after academic filtering and source-based classification', async () => {
+// A frozen copy of the chapter calendar: the live data/calendar-events.json is
+// refreshed hourly, and new event titles must not break the checks. New titles
+// Gearly cannot classify are reported as warnings by the CI step that runs
+// scripts/check-calendar-types.mjs against the live feed.
+const FROZEN_FEED = 'tests/fixtures/calendar-feed-2026-11-27.json';
+test('frozen calendar feed has no event type warnings after academic filtering and source-based classification', async () => {
   const data = JSON.parse(await fs.readFile('assets/gearly/gearly-data.json','utf8'));
-  const result = await checkContract(data, file => fs.readFile(file,'utf8'));
+  const result = await checkContract(data, file => fs.readFile(file === 'data/calendar-events.json' ? FROZEN_FEED : file,'utf8'));
   assert.deepEqual(result.errors, []);
   assert.deepEqual(result.warnings.filter(w => w.startsWith('Calendar event')), []);
 });

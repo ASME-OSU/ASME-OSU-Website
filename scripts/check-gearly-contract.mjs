@@ -146,7 +146,10 @@ if (isMain) {
   const data = JSON.parse(await fs.readFile(path.join(root, 'assets/gearly/gearly-data.json'), 'utf8'));
   const index = JSON.parse(await fs.readFile(path.join(root, 'assets/gearly/gearly-index.json'), 'utf8'));
   const result = await checkContract(data, file => fs.readFile(path.join(root, file), 'utf8'), index);
-  result.warnings.forEach(warning => console.warn(`Gearly warning: ${warning}`));
+  // Warnings never fail the check. On GitHub they show as annotations, so new
+  // calendar events Gearly cannot classify (the live feed changes hourly) are
+  // visible on every run without blocking it.
+  result.warnings.forEach(warning => console.warn(process.env.GITHUB_ACTIONS ? `::warning title=Gearly::${warning}` : `Gearly warning: ${warning}`));
   result.errors.forEach(error => console.error(`Gearly contract error: ${error}`));
   if (result.errors.length) process.exitCode = 1;
   else console.log('Gearly source contracts are current.');
