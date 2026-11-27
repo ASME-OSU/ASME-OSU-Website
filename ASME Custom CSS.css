@@ -1133,10 +1133,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-carousel-st
 
 /* JOIN — clearly separate newsletter signup from real-time GroupMe updates. */
 
-body #page .asme-join-page .join-submission-frame,
-html body #page .entry-content .asme-join-page .join-submission-frame {
-  display: none !important;
-}
 
 @media (max-width: 700px) {
   body #page .asme-gallery-page .gallery-instagram-media-shell,
@@ -2988,9 +2984,6 @@ h1, h2, h3, h4, h5, h6,
 @media (max-width: 900px) {
   
 
-  .asme-join-page .join-hero {
-    grid-template-columns: 1fr !important;
-  }
 
   
 
@@ -3542,10 +3535,6 @@ body .sidebar .widget {
     box-sizing: border-box !important;
   }
 
-  body .join-hero {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-  }
 
   body.search .content-sidebar-wrap {
     display: block !important;
@@ -7035,12 +7024,6 @@ body #masthead .inside-header {
 
   
 
-  body #page .asme-join-page .join-hero {
-    width: 100% !important;
-    max-width: none !important;
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
 
   
 
