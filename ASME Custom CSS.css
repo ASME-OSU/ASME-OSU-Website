@@ -1133,10 +1133,6 @@ html body #page .entry-content .asme-gallery-page .gallery-instagram-carousel-st
 
 /* JOIN — clearly separate newsletter signup from real-time GroupMe updates. */
 
-body #page .asme-join-page .join-submission-frame,
-html body #page .entry-content .asme-join-page .join-submission-frame {
-  display: none !important;
-}
 
 @media (max-width: 700px) {
   body #page .asme-gallery-page .gallery-instagram-media-shell,
@@ -1295,11 +1291,6 @@ body #page .asme-members-page .asme-event-type-count {
     color: #e2e8f0;
   }
 
-  body #page .asme-members-page .asme-member-picker select {
-    border-color: #324a6e;
-    background: #142236;
-    color: #e2e8f0;
-  }
 
   
 
@@ -2054,38 +2045,9 @@ h1, h2, h3, h4, h5, h6,
    SPONSOR ASME PAGE
    ============================================= */
 
-.sponsor-opportunity p {
-  color: var(--asme-muted);
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 0;
-}
 
-.sponsor-opportunity {
-  background: #f9fafb;
-  border: 1px solid var(--asme-line);
-  border-radius: 16px;
-  padding: 24px 22px;
-}
 
-.sponsor-opportunity h3 {
-  color: var(--asme-navy) !important;
-  font-family: 'DM Serif Display', serif !important;
-  font-size: 24px !important;
-  margin: 0 0 8px !important;
-}
 
-@media (max-width: 900px) {
-  .sponsor-opportunity-list {
-    grid-template-columns: 1fr;
-  }
-
-  
-
-  
-
-  
-}
 
 /* =============================================
    SPONSOR ASME PAGE — final stat panel
@@ -2988,9 +2950,6 @@ h1, h2, h3, h4, h5, h6,
 @media (max-width: 900px) {
   
 
-  .asme-join-page .join-hero {
-    grid-template-columns: 1fr !important;
-  }
 
   
 
@@ -3173,10 +3132,6 @@ h1, h2, h3, h4, h5, h6,
     color: var(--asme-text) !important;
   }
 
-  .sponsor-opportunity {
-    background: var(--asme-card-soft) !important;
-    border-color: var(--asme-line) !important;
-  }
 
   /* Headings */
   h1,
@@ -3228,10 +3183,6 @@ textarea::placeholder {
 
   /* Sponsors */
 
-  .sponsors-grid-primary .sponsor-card h3,
-.sponsors-grid-primary .sponsor-card h3 a {
-    color: #ffffff !important;
-  }
 
   .sponsors-grid-primary .sponsor-card h3 a:hover {
     color: var(--asme-blue) !important;
@@ -3542,10 +3493,6 @@ body .sidebar .widget {
     box-sizing: border-box !important;
   }
 
-  body .join-hero {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-  }
 
   body.search .content-sidebar-wrap {
     display: block !important;
@@ -4675,11 +4622,6 @@ body .leader-card {
    Tablet and mobile adjustments.
    ─────────────────────────────────────────────────────────── */
 
-@media (max-width: 400px) {
-  .asme-points-features {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* =============================================
    MEMBER RESOURCES PAGE - polish
@@ -5199,48 +5141,6 @@ body #page .asme-member-resources-page .asme-status-badge--resource {
    count alignment, and the two-card admin group.
    ============================================================ */
 
-@media (max-width: 640px) {
-  
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: stretch !important;
-    gap: 14px !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    max-width: 100% !important;
-    padding: 2px 2px 14px !important;
-    margin-right: -2px !important;
-    scroll-snap-type: x mandatory;
-    scroll-padding-left: 2px;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(15, 52, 96, 0.38) rgba(15, 52, 96, 0.08);
-    -webkit-overflow-scrolling: touch;
-  }
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar::-webkit-scrollbar-track {
-    border-radius: 999px;
-    background: rgba(15, 52, 96, 0.08);
-  }
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar::-webkit-scrollbar-thumb {
-    border-radius: 999px;
-    background: rgba(15, 52, 96, 0.38);
-  }
-
-  body #page .asme-member-resources-page .asme-member-grid--scrollbar .asme-resource-card {
-    flex: 0 0 min(300px, 82vw) !important;
-    min-width: min(300px, 82vw) !important;
-    height: auto !important;
-    align-self: stretch !important;
-    scroll-snap-align: start;
-  }
-}
 
 /* MEMBERS SECTION - group header/title/count alignment.
    Single source of truth for member resource section headings across Resources
@@ -5973,11 +5873,6 @@ body.blog #page #main {
    CURRENT SPONSORS - blended feature/grid layout
    ============================================================ */
 
-body #page .asme-sponsors-page .sponsors-tier-block--blocko,
-body #page .asme-sponsors-page .sponsors-tier-block--scarlet {
-  display: flex !important;
-  flex-direction: column !important;
-}
 
 /* WORDPRESS MOBILE SPACING DEFENSES
    The Classic Editor's wpautop pass can inject empty paragraphs and breaks
@@ -7035,12 +6930,6 @@ body #masthead .inside-header {
 
   
 
-  body #page .asme-join-page .join-hero {
-    width: 100% !important;
-    max-width: none !important;
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
 
   
 
@@ -8546,14 +8435,6 @@ html body #page .entry-content .asme-join-page .join-groupme-card .join-groupme-
 /* Make the two onboarding actions lead the tablet layout, followed by three
    evenly balanced utility cards instead of an orphaned final card. */
 
-@media (prefers-color-scheme: dark) {
-  
-
-  body #page .asme-member-resources-page .asme-resource-scroll-hint,
-html body #page .entry-content .asme-member-resources-page .asme-resource-scroll-hint {
-    color: #94a3b8 !important;
-  }
-}
 
 /* JOIN — use GroupMe's recognizable public brand mark in the connection step. */
 
