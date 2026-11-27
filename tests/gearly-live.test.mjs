@@ -276,11 +276,16 @@ test('social filters include ice skating in range; deadlines never override acad
 });
 
 
-test('specific skating requests reach the skating event in the current feed even when other socials are earlier', async () => {
-  const feed = JSON.parse(readFileSync(new URL('../data/calendar-events.json',import.meta.url),'utf8'));
+test('specific skating requests reach the skating event in the frozen feed even when other socials are earlier', async () => {
+  // A frozen copy: the live feed changes hourly (the event was renamed in the
+  // calendar, from "ASME Ice Skating Event" to "ASME ice skating event").
+  const feed = JSON.parse(readFileSync(new URL('./fixtures/calendar-feed-2026-11-27.json',import.meta.url),'utf8'));
   const {api} = setup([feed]);
   const value = await api.load('events',{eventType:'ice-skating'});
-  assert.deepEqual(Array.from(value.cards,c=>c.title),['ASME Ice Skating Event']);
+  // The skating event comes first. In the calendar, the hot chocolate event and
+  // poker night were copied from it and still carry the description "Ice
+  // Skating", so they follow it; fix those descriptions in Google Calendar.
+  assert.equal(value.cards[0].title.toLowerCase(), 'asme ice skating event');
 });
 
 

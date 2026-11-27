@@ -2239,7 +2239,9 @@
       "skating",
       "ice skating",
       "friendsgiving",
-      "sweets with swe"
+      "sweets with swe",
+      "hot chocolate",
+      "poker"
     ],
     "workshop": [
       "workshop",
@@ -2252,7 +2254,8 @@
       "employer",
       "recruiting",
       "recruiter",
-      "corporate"
+      "corporate",
+      "career fair"
     ],
     "volunteering": [
       "volunteer",
@@ -2263,13 +2266,15 @@
       "competition",
       "contest",
       "design challenge",
-      "robotics competition"
+      "robotics competition",
+      "derby"
     ],
     "meeting": [
       "meeting",
       "gbm",
       "general body",
-      "chapter session"
+      "chapter session",
+      "gb"
     ],
     "deadline": [
       "due date",
@@ -2280,7 +2285,8 @@
       "matlab info session",
       "scheduling",
       "buckeyelink tour",
-      "study tables"
+      "study tables",
+      "pups"
     ],
     "ice-skating": [
       "ice skating",
