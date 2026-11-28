@@ -70,3 +70,7 @@ Take the reference with the stylesheet you trust, then run without `--update` af
 ## Motion
 
 Screenshots run with reduced motion, so they cannot see animations or transitions. `node tests/visual/motion-check.mjs` renders every page at 375 and 1280px, light and dark, with motion on and compares each element's animation and transition settings with a reference. Save the reference from the stylesheet you trust (`--save`), change the CSS, then run it without `--save`.
+
+The motion check resolves `animation-delay` and `transition-delay` with inline `--asme-delay` values held at zero. This removes timing variation from the reveal script while preserving stylesheet delays and the other computed motion properties. Refresh references saved before this change with `--save`.
+
+Motion replay starts deferred startup timers after the page loads, so the footer's reveal cleanup runs after the inline footer registers its targets.
