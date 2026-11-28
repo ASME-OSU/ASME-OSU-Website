@@ -1555,6 +1555,11 @@
     color: var(--asme-c-text);
   }
 
+  .asme-about-page .about-pillar-icon,
+  .asme-about-page .about-stat-num {
+    color: var(--asme-c-accent-text);
+  }
+
   .asme-about-page .about-hero-copy {
     color: var(--asme-c-text);
     background: radial-gradient(circle at 100% 0%,rgba(187,0,0,0.12),transparent 38%),var(--asme-c-surface);
