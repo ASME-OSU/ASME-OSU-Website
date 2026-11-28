@@ -38,7 +38,7 @@ WordPress loads the minified stylesheet from GitHub Pages. The link is in
 **Settings → Advanced Settings → Additional code → Header Tag (high priority)**:
 
 ```html
-<link rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/ASME%20Custom%20CSS.min.css?v=20261127-cleanup1">
+<link rel="stylesheet" href="https://asme-osu.github.io/ASME-OSU-Website/ASME%20Custom%20CSS.min.css?v=20261128-a11y1">
 ```
 
 Merging to `main` publishes the new file within about 10 minutes. The `v=` value
