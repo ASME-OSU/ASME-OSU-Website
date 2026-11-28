@@ -507,6 +507,10 @@
   grid-column: 1/-1;
 }
 
+.asme-join-page .join-form-purpose>a {
+  text-decoration: underline;
+}
+
 .asme-join-page .join-faq-heading>p {
   min-height: 0;
   max-height: none;
@@ -1040,9 +1044,12 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
   .asme-join-page .join-benefits.join-highlights>p,
   .asme-join-page .join-form-purpose,
   .asme-join-page .join-form-heading>p:not(.join-form-purpose),
-  .asme-join-page .join-faq-heading>p,
   .asme-join-page .join-faq-item>p {
     color: var(--asme-c-muted);
+  }
+
+  .asme-join-page .join-faq-heading>p {
+    color: var(--asme-c-readable-muted);
   }
 
   .asme-join-page .join-flow-progress {

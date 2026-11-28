@@ -4144,7 +4144,14 @@ body .asme-home .ah-impact-mini strong {
   body .menu-toggle .mobile-menu,
   body .menu-toggle .menu-toggle-text,
   body .menu-toggle .screen-reader-text {
-    display: none !important;
+    display: block !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
   }
 
   body .menu-toggle .gp-icon,
@@ -11613,6 +11620,11 @@ html body #page .entry-content .asme-home :is(.ah-hero-dot.active, .ah-spotlight
     color: var(--asme-c-text);
   }
 
+  .asme-about-page .about-pillar-icon,
+  .asme-about-page .about-stat-num {
+    color: var(--asme-c-accent-text);
+  }
+
   .asme-about-page .about-hero-copy {
     color: var(--asme-c-text);
     background: radial-gradient(circle at 100% 0%,rgba(187,0,0,0.12),transparent 38%),var(--asme-c-surface);
@@ -13353,7 +13365,7 @@ html body #page .entry-content .asme-cal-page .acp-info-item p[hidden] {
   gap: 24px;
 }
 
-.asme-sponsors-page>section:nth-child(5)>div:nth-child(1)>div:nth-child(1) {
+.asme-sponsors-page .sponsors-cta .sponsors-eyebrow {
   color: var(--asme-c-subtle);
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -14483,6 +14495,7 @@ html body #page#page .entry-content .asme-sponsors-page .sponsor-card__descripti
   .asme-sponsors-page>section:nth-child(2)>div:nth-child(1)>div:nth-child(1),
   .asme-sponsors-page .sponsors-section-sub,
   .asme-sponsors-page .sponsor-card__description,
+  .asme-sponsors-page .sponsors-cta .sponsors-eyebrow,
   .asme-sponsors-page>section:nth-child(4)>div:nth-child(1)>div:nth-child(1) {
     color: var(--asme-c-readable-muted);
   }
@@ -18616,6 +18629,11 @@ html body #page .entry-content .asme-home .ah-featured-button {
 }
 
 @media (prefers-color-scheme: light) {
+  .asme-home .ah-about-text .ah-eyebrow-dark:not(.ah-featured-eyebrow),
+  .asme-home .ah-calendar-heading .ah-eyebrow-dark:not(.ah-featured-eyebrow) {
+    color: var(--asme-c-readable-muted);
+  }
+
   .asme-home .ah-featured-event {
     --event-surface:  linear-gradient(115deg, #fff, #f7f8fa 65%, #edf0f5);
     --event-text:  #172033;
@@ -19632,6 +19650,10 @@ html body #page .entry-content .asme-home .ah-featured-event [hidden] {
   grid-column: 1/-1;
 }
 
+.asme-join-page .join-form-purpose>a {
+  text-decoration: underline;
+}
+
 .asme-join-page .join-faq-heading>p {
   min-height: 0;
   max-height: none;
@@ -20165,9 +20187,12 @@ html body #page#page .entry-content .asme-join-page .join-groupme-button {
   .asme-join-page .join-benefits.join-highlights>p,
   .asme-join-page .join-form-purpose,
   .asme-join-page .join-form-heading>p:not(.join-form-purpose),
-  .asme-join-page .join-faq-heading>p,
   .asme-join-page .join-faq-item>p {
     color: var(--asme-c-muted);
+  }
+
+  .asme-join-page .join-faq-heading>p {
+    color: var(--asme-c-readable-muted);
   }
 
   .asme-join-page .join-flow-progress {
@@ -26126,7 +26151,7 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
   }
 
   .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro .sponsor-eyebrow {
-    color: #9aa4b2;
+    color: var(--asme-c-readable-muted);
   }
 
   .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro>p,
@@ -26221,7 +26246,7 @@ html body #page .entry-content .asme-member-resources-page .asme-member-grid>p:h
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group .sponsor-form-optional {
-    color: #9ca3af;
+    color: var(--asme-c-readable-muted);
   }
 
   .asme-sponsor-page .sponsor-benefit-card>h3 {

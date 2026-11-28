@@ -1824,7 +1824,7 @@
   }
 
   .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro .sponsor-eyebrow {
-    color: #9aa4b2;
+    color: var(--asme-c-readable-muted);
   }
 
   .asme-sponsor-page .sponsor-contact-header.sponsor-form-intro>p,
@@ -1919,7 +1919,7 @@
   }
 
   .asme-sponsor-page .sponsor-inquiry-form:not(.sponsor-inquiry-form--modal) .sponsor-form-group .sponsor-form-optional {
-    color: #9ca3af;
+    color: var(--asme-c-readable-muted);
   }
 
   .asme-sponsor-page .sponsor-benefit-card>h3 {

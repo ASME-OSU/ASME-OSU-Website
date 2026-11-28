@@ -1589,6 +1589,11 @@ html body #page .entry-content .asme-home .ah-featured-button {
 }
 
 @media (prefers-color-scheme: light) {
+  .asme-home .ah-about-text .ah-eyebrow-dark:not(.ah-featured-eyebrow),
+  .asme-home .ah-calendar-heading .ah-eyebrow-dark:not(.ah-featured-eyebrow) {
+    color: var(--asme-c-readable-muted);
+  }
+
   .asme-home .ah-featured-event {
     --event-surface:  linear-gradient(115deg, #fff, #f7f8fa 65%, #edf0f5);
     --event-text:  #172033;
