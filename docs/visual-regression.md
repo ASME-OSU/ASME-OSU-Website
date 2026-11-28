@@ -6,7 +6,7 @@ Use this before and after any stylesheet change. It screenshots every public pag
 
 - 12 pages: Home, About, Join, Calendar, Gallery, Leadership, Sponsor ASME, Current Sponsors, Member Resources, Member Points, Privacy, Blog.
 - 4 widths (375, 768, 1280, 1920) in light and dark mode: 96 screenshots.
-- 5 interaction states in light and dark: mobile menu open, search open, Join FAQ expanded, gallery lightbox, and the original-header fallback (header component blocked). 10 screenshots.
+- 13 interaction states in light and dark, for 26 screenshots. Home covers the open mobile menu, search, second spotlight, original-header fallback, and open Gearly panel. Join covers an expanded FAQ at 768px and 375px. Gallery covers the lightbox and an active Industry filter. Sponsor ASME covers an open tier modal, Calendar covers the alternate Upcoming view, and Member Points covers the loading skeleton and a selected leaderboard row.
 
 Pages and states are listed in `tests/visual/config.mjs`.
 
