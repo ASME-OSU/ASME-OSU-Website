@@ -162,7 +162,7 @@ export function launch(chromium) {
   });
 }
 
-export async function render(browser, snapshot, { mode, url, width, scheme, state, injectCss, motion = 'reduce' }) {
+export async function render(browser, snapshot, { mode, url, width, scheme, state, injectCss, motion = 'reduce', holdStartupTimers = false }) {
   const context = await browser.newContext({
     viewport: { width, height: 900 }, deviceScaleFactor: 1, colorScheme: scheme, reducedMotion: motion,
     locale: 'en-US', timezoneId: 'America/New_York', serviceWorkers: 'block'
@@ -187,6 +187,9 @@ export async function render(browser, snapshot, { mode, url, width, scheme, stat
   });
   const time = mode === 'replay' && snapshot.capturedAt ? new Date(snapshot.capturedAt) : new Date();
   await page.clock.install({ time });
+  // The motion check starts the footer's deferred timers after the page's
+  // markup and inline listeners have registered the reveal elements.
+  if (holdStartupTimers) await page.clock.pauseAt(new Date(time.getTime() + 60_000));
 
   await page.route('**/*', async route => {
     const request = route.request();
@@ -231,6 +234,7 @@ export async function render(browser, snapshot, { mode, url, width, scheme, stat
   page.quiet = () => waitQuiet(page, inflight);
 
   await page.goto(url, { waitUntil: 'load', timeout: 150_000 });
+  if (holdStartupTimers) await page.clock.resume();
   await settle(page);
   if (mode === 'capture') await recordCandidates(page, snapshot);
   if (state) { await state.run(page); await page.quiet(); }
