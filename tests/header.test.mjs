@@ -167,13 +167,17 @@ test('Members click opens the dropdown and an outside click closes it',()=>{
   s.close();
 });
 test('Members disclosure supports keyboard entry and Escape with focus return',()=>{
-  const s=setup();const button=s.d.querySelector('[aria-controls="asme-header-members"]');button.focus();button.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));
+  const s=setup();
+  s.d.querySelector('.asme-hd-menu-toggle').click();
+  const button=s.d.querySelector('[aria-controls="asme-header-members"]');button.focus();button.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));
   assert.equal(button.getAttribute('aria-expanded'),'true');assert.equal(s.d.activeElement.textContent,'Member Resources');
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
   assert.equal(s.d.querySelector('#asme-header-members').hidden,true);assert.equal(s.d.activeElement,button);s.close();
 });
 test('Corporate disclosure exposes both destinations and supports keyboard entry and Escape',()=>{
-  const s=setup();const button=s.d.querySelector('[aria-controls="asme-header-corporate"]');button.focus();button.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));
+  const s=setup();
+  s.d.querySelector('.asme-hd-menu-toggle').click();
+  const button=s.d.querySelector('[aria-controls="asme-header-corporate"]');button.focus();button.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));
   assert.equal(button.getAttribute('aria-expanded'),'true');assert.equal(s.d.activeElement.textContent,'Current Sponsors');
   s.d.activeElement.dispatchEvent(new s.w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));
   assert.equal(s.d.querySelector('#asme-header-corporate').hidden,true);assert.equal(s.d.activeElement,button);s.close();
