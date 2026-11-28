@@ -235,9 +235,15 @@ export async function render(browser, snapshot, { mode, url, width, scheme, stat
 
   await page.goto(url, { waitUntil: 'load', timeout: 150_000 });
   if (holdStartupTimers) await page.clock.resume();
-  await settle(page);
+  const gallery = mode === 'replay' && new URL(url).pathname === '/asme/pictures/'
+    ? page.locator('.asme-gallery-page .gallery') : null;
+  await settle(page, gallery);
   if (mode === 'capture') await recordCandidates(page, snapshot);
-  if (state) { await state.run(page); await page.quiet(); }
+  if (state) {
+    await state.run(page);
+    await page.quiet();
+    if (gallery) await waitForGalleryLayout(gallery);
+  }
   if (mode === 'capture' && state) await recordCandidates(page, snapshot);
   return { page, context };
 }
@@ -262,7 +268,32 @@ async function waitQuiet(page, inflight) {
   await page.waitForTimeout(300);
 }
 
-async function settle(page) {
+async function waitForGalleryLayout(gallery) {
+  await gallery.evaluate(async grid => {
+    let previous = '';
+    for (let frame = 0; frame < 60; frame += 1) {
+      await new Promise(resolve => requestAnimationFrame(resolve));
+      const images = [...grid.querySelectorAll('.gallery-item img')];
+      if (!grid.classList.contains('asme-gallery-justified') || !images.length || images.some(img => !img.complete)) {
+        previous = '';
+        continue;
+      }
+      const current = JSON.stringify([
+        grid.getBoundingClientRect().width,
+        grid.style.gridTemplateRows,
+        ...[...grid.querySelectorAll('.gallery-item')].map(item => [
+          item.className, item.style.gridRow, item.style.gridColumn,
+          item.querySelector('img')?.currentSrc
+        ])
+      ]);
+      if (current === previous) return;
+      previous = current;
+    }
+    throw new Error('Gallery layout did not settle after 60 animation frames');
+  });
+}
+
+async function settle(page, gallery) {
   // Load lazy images, then return to the top so fixed headers sit in place.
   // Full-page captures can skip painting off-screen images decoded asynchronously.
   await page.evaluate(() => document.querySelectorAll('img').forEach(img => { img.loading = 'eager'; img.decoding = 'sync'; }));
@@ -275,10 +306,26 @@ async function settle(page) {
     window.scrollTo(0, 0);
   });
   await page.quiet();
+  if (gallery) {
+    // Gallery row spans depend on image ratios. WordPress srcset variants
+    // round to different ratios, and Chromium can keep an earlier candidate
+    // it loaded while the grid was still sizing. Replay the recorded src
+    // for each archive image while leaving the site's layout code in charge.
+    await gallery.evaluate(grid => {
+      grid.querySelectorAll('img[src][srcset]').forEach(img => {
+        // Use an explicit density. Removing srcset can leave Chromium's
+        // cached source density even if currentSrc matches the recorded src.
+        img.removeAttribute('sizes');
+        img.srcset = img.src + ' 1x';
+      });
+    });
+    await page.quiet();
+  }
   // Scripts that lay out from image sizes (the gallery's justified rows) use
   // whichever images had loaded on their last pass, so results follow load
   // order. One resize after everything has loaded makes them lay out again
   // from final inputs.
   await page.evaluate(() => window.dispatchEvent(new Event('resize')));
   await page.quiet();
+  if (gallery) await waitForGalleryLayout(gallery);
 }
