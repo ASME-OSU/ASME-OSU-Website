@@ -23,6 +23,8 @@ export const WIDTHS = process.env.VISUAL_WIDTHS ? process.env.VISUAL_WIDTHS.spli
 export const SCHEMES = ['light', 'dark'];
 
 const settle = page => page.waitForTimeout(700);
+// Full-page screenshots include the fixed header at the current scroll offset.
+const scrollToTop = page => page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
 
 // Click a disclosure toggle until it reports aria-expanded="true"; the header
 // script may not have wired the button yet on the first click.
@@ -93,5 +95,53 @@ export const STATES = [
     // The bootstrap restores the theme header when the component cannot load.
     name: 'header-fallback', page: 'home', width: 1280, viewportOnly: true, blockHeader: true,
     async run(page) { await page.waitForTimeout(4200); }
+  },
+  {
+    name: 'sponsor-modal-open', page: 'sponsor-asme', width: 1280, viewportOnly: true,
+    async run(page) {
+      await page.locator('.sponsor-tier-cta').first().click();
+      await page.locator('#sponsor-modal').waitFor({ state: 'visible' });
+    }
+  },
+  {
+    name: 'faq-open-mobile', page: 'join', width: 375,
+    async run(page) {
+      const faq = page.locator('.join-faq-section details').first();
+      await faq.locator('summary').click();
+      await page.locator('.join-faq-section details:first-of-type[open]').first().waitFor({ state: 'visible' });
+      await scrollToTop(page);
+    }
+  },
+  {
+    name: 'calendar-alternate-view', page: 'calendar', width: 1280,
+    async run(page) {
+      await page.locator('[data-calendar-mode="AGENDA"]').click();
+      await page.locator('[data-calendar-mode="AGENDA"][aria-pressed="true"]').waitFor();
+      await page.locator('#asmeCalendarFrame[src*="mode=AGENDA"]').waitFor();
+    }
+  },
+  {
+    name: 'gallery-filter-selected', page: 'gallery', width: 1280,
+    async run(page) {
+      await page.locator('[data-gallery-filter="industry"]').click();
+      await page.locator('[data-gallery-filter="industry"][aria-pressed="true"]').waitFor();
+      await page.locator('.gallery-item[data-gallery-category="industry"]:not(.is-filtered-out)').first().waitFor();
+      await page.locator('.gallery-item.is-filtered-out').first().waitFor({ state: 'attached' });
+      await scrollToTop(page);
+    }
+  },
+  {
+    name: 'leaderboard-row-selected', page: 'member-points', width: 1280,
+    async run(page) {
+      await page.locator('#asmeLeaderboardRows .asme-leaderboard-row[role="button"]').first().click();
+      await page.locator('#asmeMemberDashboardPanel:not([hidden])').waitFor({ state: 'visible' });
+    }
+  },
+  {
+    name: 'gearly-panel-open', page: 'home', width: 1280, viewportOnly: true,
+    async run(page) {
+      await page.getByRole('button', { name: 'Open Gearly, ASME website guide' }).click();
+      await page.getByRole('dialog', { name: 'Gearly website guide' }).waitFor({ state: 'visible' });
+    }
   }
 ];
