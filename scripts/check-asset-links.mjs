@@ -10,13 +10,7 @@ const checkedFiles = readdirSync(root, { withFileTypes: true })
   .map(entry => entry.name)
   .sort();
 
-// Round 2 Task 4 replaces this renamed Google Photos asset with a stable path.
-const allowedMissing = new Set([
-  'assets/gallery/google-photos-auto/AF1QipNccSdzis2qONbW8VRL0oYyUYU9lGv3nBnnZd-0-6dfe4afdcade1c9f-large.webp'
-]);
-
 let checked = 0;
-let skipped = 0;
 let failures = 0;
 for (const file of checkedFiles) {
   const lines = readFileSync(path.join(root, file), 'utf8').split(/\r?\n/);
@@ -43,9 +37,6 @@ for (const file of checkedFiles) {
       // Directory prefixes in loaders are expanded into asset URLs at runtime.
       if (asset.endsWith('/') ? stat?.isDirectory() : stat?.isFile()) {
         checked += 1;
-      } else if (allowedMissing.has(asset)) {
-        skipped += 1;
-        console.warn(file + ':' + (index + 1) + ' known missing published asset ' + asset);
       } else {
         failures += 1;
         console.error(file + ':' + (index + 1) + ' missing published asset ' + asset);
@@ -54,4 +45,4 @@ for (const file of checkedFiles) {
   }
 }
 if (failures) process.exitCode = 1;
-else console.log('Published asset links verified: ' + checked + ' present, ' + skipped + ' known missing.');
+else console.log('Published asset links verified: ' + checked + ' present.');
