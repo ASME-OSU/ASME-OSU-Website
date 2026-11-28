@@ -114,6 +114,75 @@ async function axeRule(page, rule, selector) {
   assert.ok(result.passes, rule + ' evaluated ' + selector);
 }
 
+// Rules with at least one pass and no violations in the fixture audit.
+const fixtureAxeRules = [
+  'aria-allowed-attr',
+  'aria-allowed-role',
+  'aria-conditional-attr',
+  'aria-deprecated-role',
+  'aria-hidden-body',
+  'aria-hidden-focus',
+  'aria-prohibited-attr',
+  'aria-required-attr',
+  'aria-required-children',
+  'aria-required-parent',
+  'aria-roles',
+  'aria-valid-attr',
+  'aria-valid-attr-value',
+  'autocomplete-valid',
+  'avoid-inline-spacing',
+  'bypass',
+  'document-title',
+  'duplicate-id-aria',
+  'empty-heading',
+  'form-field-multiple-labels',
+  'frame-title',
+  'frame-title-unique',
+  'heading-order',
+  'html-has-lang',
+  'html-lang-valid',
+  'image-alt',
+  'image-redundant-alt',
+  'label',
+  'label-title-only',
+  'landmark-banner-is-top-level',
+  'landmark-main-is-top-level',
+  'landmark-no-duplicate-banner',
+  'landmark-no-duplicate-main',
+  'landmark-one-main',
+  'link-name',
+  'list',
+  'listitem',
+  'meta-viewport',
+  'meta-viewport-large',
+  'nested-interactive',
+  'page-has-heading-one',
+  'region',
+  'scrollable-region-focusable',
+  'select-name',
+  'summary-name',
+  'tabindex',
+];
+
+for (const [path, fragment] of fragments) {
+  for (const width of [390, 1440]) {
+    for (const colorScheme of ['light', 'dark']) {
+      test(`Accessibility rules pass for ${fragment} at ${width}px in ${colorScheme}`, {
+        skip: live, timeout: 30_000
+      }, async t => {
+        const page = await visit(t, path, { width, colorScheme });
+        await page.waitForLoadState('load');
+        await page.addScriptTag({ content: axe.source });
+        const violations = await page.evaluate(async rules => {
+          const scan = await window.axe.run(document, { iframes: false, runOnly: rules });
+          return scan.violations.map(({ id, nodes }) => ({ id, targets: nodes.map(node => node.target) }));
+        }, fixtureAxeRules);
+        assert.deepEqual(violations, []);
+      });
+    }
+  }
+}
+
 test('Skip to content moves focus past the header and keeps the next Tab in main', { timeout: 30_000 }, async t => {
   const page = await visit(t, 'calendar/');
   await page.keyboard.press('Tab');
